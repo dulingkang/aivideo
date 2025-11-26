@@ -1,0 +1,659 @@
+{
+  "episode": 24,
+  "title": "Silver Core Stone · Competing for Materials",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第24集:银芯石·材料争夺。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "屋子一角有楼梯,附近摆着木椅,上面坐着一名面色焦黄、塌鼻子的老者,正微微瞌睡着。",
+      "mood": "Sleepy",
+      "lighting": "Interior Dim",
+      "action": "See Shopkeeper",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Stairs in corner, wooden chair nearby, sallow-faced flat-nosed old man sitting, dozing slightly",
+        "environment": "",
+        "character_pose": "Old man dozing in chair",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Stairs in corner, wooden chair nearby, sallow-faced flat-nosed old man sitting, dozing slightly.",
+      "narration": "屋子一角有楼梯，附近摆着木椅，上面坐着一名面色焦黄的老者，正微微瞌睡。",
+      "face_style_auto": {
+        "expression": "Sleepy",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴毫不客气,几步上前抓住老者肩膀一阵猛摇,叫道:'胥老!别睡了,我给你带人来了。'",
+      "mood": "Friendly",
+      "lighting": "Interior Dim",
+      "action": "Wake Shopkeeper",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing unceremoniously steps forward, grabs old man's shoulders, shakes him, shouts: 'Xu Lao! Wake up, I brought a customer!'",
+        "environment": "",
+        "character_pose": "Tian Xing shaking old man, old man waking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing unceremoniously steps forward, grabs old man's shoulders, shakes him, shouts: 'Xu Lao! Wake up, I brought a customer!'",
+      "narration": "田兴毫不客气，几步上前抓住老者肩膀一阵猛摇，叫道:'胥老!别睡了,我给你带人来了。'",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "老者睁开朦胧双目,一副尚未睡醒的样子,问道:'客人。在哪儿?'",
+      "mood": "Groggy",
+      "lighting": "Interior Dim",
+      "action": "Wake Up",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Old man opens bleary eyes, still half-asleep, asks: 'Customer. Where?'",
+        "environment": "",
+        "character_pose": "Old man blinking, groggy",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Old man opens bleary eyes, still half-asleep, asks: 'Customer. Where?'",
+      "narration": "老者睁开朦胧双目,一副尚未睡醒的样子,问道:'客人。在哪儿?'",
+      "face_style_auto": {
+        "expression": "Groggy",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立打量完掌柜后,不动声色地问道:'听说贵店有些特殊的东西,在下过来看上一看。'",
+      "mood": "Businesslike",
+      "lighting": "Interior Dim",
+      "action": "Ask About Special Items",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li examines shopkeeper, asks calmly: 'I heard your shop has special items, came to take a look.'",
+        "environment": "",
+        "character_pose": "Han Li asking, shopkeeper listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li examines shopkeeper, asks calmly: 'I heard your shop has special items, came to take a look.'",
+      "narration": "韩立打量完掌柜后，不动声色地问道:'听说贵店有些特殊的东西,在下过来看上一看。'",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "掌柜目光在韩立身上一扫,停留片刻后露出笑容,称本店专门收购不同一般的东西出售给所需之人。",
+      "mood": "Friendly",
+      "lighting": "Interior Dim",
+      "action": "Explain Shop",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Shopkeeper scans Han Li, pauses, smiles, says shop specializes in acquiring unusual items for those who need them",
+        "environment": "",
+        "character_pose": "Shopkeeper smiling, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shopkeeper scans Han Li, pauses, smiles, says shop specializes in acquiring unusual items for those who need them.",
+      "narration": "掌柜目光在韩立身上一扫,停留片刻后露出笑容,称本店专门收购不同一般的东西出售给所需之人。",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立平静说道需要灵具材料,掌柜称需要这种材料的人不多,但本店还真有这么两件东西。",
+      "mood": "Agreeable",
+      "lighting": "Interior Dim",
+      "action": "Request Materials",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li calmly says needs artifact materials, shopkeeper says few people need these, but shop does have two items",
+        "environment": "",
+        "character_pose": "Both discussing, agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li calmly says needs artifact materials, shopkeeper says few people need these, but shop does have two items.",
+      "narration": "韩立平静说道需要灵具材料,掌柜称需要这种材料的人不多,但本店还真有这么两件东西。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "掌柜转身顺着楼梯蹬蹬上楼,韩立望着背影双目微眯,询问田兴此人是否也是炼体士。",
+      "mood": "Observant",
+      "lighting": "Interior Dim",
+      "action": "Observe Shopkeeper",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shopkeeper turns and climbs stairs, Han Li watches back with narrowed eyes, asks Tian Xing if shopkeeper is also body cultivator",
+        "environment": "",
+        "character_pose": "Han Li observing, Tian Xing explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shopkeeper turns and climbs stairs, Han Li watches back with narrowed eyes, asks Tian Xing if shopkeeper is also body cultivator.",
+      "narration": "掌柜转身顺着楼梯蹬蹬上楼,韩立望着背影双目微眯,询问田兴此人是否也是炼体士。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴解释胥老以前是落日城颇有名气的高阶炼体士,数十年前在落日之墓中怪毒,失去力气。",
+      "mood": "Informative",
+      "lighting": "Interior Dim",
+      "action": "Explain Past",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing explains Xu Lao was once famous high-level body cultivator in Sunset City, poisoned in Sunset Tomb decades ago, lost strength",
+        "environment": "",
+        "character_pose": "Tian Xing explaining, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing explains Xu Lao was once famous high-level body cultivator in Sunset City, poisoned in Sunset Tomb decades ago, lost strength.",
+      "narration": "田兴解释胥老以前是落日城颇有名气的高阶炼体士,数十年前在落日之墓中怪毒,失去力气。",
+      "face_style_auto": {
+        "expression": "Sympathetic",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "突然外面一声低低的兽吼,接着听到清冷的呵斥声:'畜生,找死!'随后传来砰砰两声闷响。",
+      "mood": "Startled",
+      "lighting": "Daylight",
+      "action": "Beast Roar",
+      "camera": "Door Shot",
+      "visual": {
+        "composition": "Suddenly low beast roar outside, cold voice: 'Beast, seeking death!' Followed by two thuds",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing turning toward door",
+        "fx": "Beast roar, impact sounds",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Suddenly low beast roar outside, cold voice: 'Beast, seeking death!' Followed by two thuds.",
+      "narration": "突然外面一声低低的兽吼,接着听到清冷的呵斥声:'畜生,找死!'随后传来砰砰两声闷响。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立和田兴惊讶回身,只见从大门外走进来一男一女,门口两只怪兽背部朝地无法动弹。",
+      "mood": "Surprised",
+      "lighting": "Daylight",
+      "action": "See Newcomers",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li and Tian Xing turn in surprise, see man and woman entering from door, two beasts on backs unable to move",
+        "environment": "",
+        "character_pose": "Young man and woman entering, beasts downed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li and Tian Xing turn in surprise, see man and woman entering from door, two beasts on backs unable to move.",
+      "narration": "韩立和田兴惊讶回身,只见从大门外走进来一男一女,门口两只怪兽背部朝地无法动弹。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "这对男女年纪都不大,男的英俊轩昂,女的容颜秀丽,二人身上灵压不低,应该是结丹期修士。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Assess Newcomers",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Young man and woman, man handsome and upright, woman beautiful, both have strong spirit pressure, should be Core Formation cultivators",
+        "environment": "",
+        "character_pose": "Young cultivators standing, confident",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Young man and woman, man handsome and upright, woman beautiful, both have strong spirit pressure, should be Core Formation cultivators.",
+      "narration": "这对男女年纪都不大,男的英俊轩昂,女的容颜秀丽,二人身上灵压不低,应该是结丹期修士。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "男子看见韩立和田兴,神念一扫发现田兴只是炼气期修士,当即喝问是否是店里伙计,话语里掩饰不住傲然。",
+      "mood": "Arrogant",
+      "lighting": "Daylight",
+      "action": "Question Them",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Young man sees Han Li and Tian Xing, scans with spirit sense, finds Tian Xing only Qi Refining, arrogantly asks if they're shop assistants",
+        "environment": "",
+        "character_pose": "Young man arrogant, Han Li calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Young man sees Han Li and Tian Xing, scans with spirit sense, finds Tian Xing only Qi Refining, arrogantly asks if they're shop assistants.",
+      "narration": "男子看见韩立和田兴,神念一扫发现田兴只是炼气期修士,当即喝问是否是店里伙计,话语里掩饰不住傲然。",
+      "face_style_auto": {
+        "expression": "Arrogant",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴发现来人是两名结丹修士,心中一惊,连忙赔笑回道只是陪客人前来买东西的。",
+      "mood": "Nervous",
+      "lighting": "Daylight",
+      "action": "Explain Position",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing finds newcomers are Core Formation cultivators, startled, quickly smiles and explains he's just accompanying customer",
+        "environment": "",
+        "character_pose": "Tian Xing nervous, smiling",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing finds newcomers are Core Formation cultivators, startled, quickly smiles and explains he's just accompanying customer.",
+      "narration": "田兴发现来人是两名结丹修士,心中一惊,连忙赔笑回道只是陪客人前来买东西的。",
+      "face_style_auto": {
+        "expression": "Nervous",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "楼梯声响起,胥老手中捧着一大一小两个锦盒,慢悠悠走下楼来。",
+      "mood": "Anticipating",
+      "lighting": "Interior Dim",
+      "action": "Shopkeeper Returns",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Stairs creak, Xu Lao descends slowly holding one large and one small brocade box",
+        "environment": "",
+        "character_pose": "Old man descending with boxes",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Stairs creak, Xu Lao descends slowly holding one large and one small brocade box.",
+      "narration": "楼梯声响起,胥老手中捧着一大一小两个锦盒,慢悠悠走下楼来。",
+      "face_style_auto": {
+        "expression": "Anticipating",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老一见那对男女修士微微一怔,但目光往外一扫后,发现看门兽被伤,脸色微微一沉。",
+      "mood": "Annoyed",
+      "lighting": "Interior Dim",
+      "action": "See Beasts Injured",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xu Lao sees young cultivators, pauses, looks outside, finds guard beasts injured, face darkens slightly",
+        "environment": "",
+        "character_pose": "Old man annoyed, young cultivators standing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao sees young cultivators, pauses, looks outside, finds guard beasts injured, face darkens slightly.",
+      "narration": "胥老一见那对男女修士微微一怔,但目光往外一扫后,发现看门兽被伤,脸色微微一沉。",
+      "face_style_auto": {
+        "expression": "Annoyed",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "青年皮笑肉不笑地说道只是略加教训,并未真伤到性命,吕师妹是黄粱前辈的后人。",
+      "mood": "Threatening",
+      "lighting": "Interior Dim",
+      "action": "Threaten with Background",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Young man says with fake smile only gave slight lesson, didn't really hurt, Miss Lü is Huangliang Spirit Lord's descendant",
+        "environment": "",
+        "character_pose": "Young man arrogant, old man listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Young man says with fake smile only gave slight lesson, didn't really hurt, Miss Lü is Huangliang Spirit Lord's descendant.",
+      "narration": "青年皮笑肉不笑地说道只是略加教训,并未真伤到性命,吕师妹是黄粱前辈的后人。",
+      "face_style_auto": {
+        "expression": "Arrogant",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老听到黄粱灵君的后人,脸色微变但马上恢复如常,几步走到韩立面前,将手中锦盒递过去。",
+      "mood": "Resigned",
+      "lighting": "Interior Dim",
+      "action": "Give Boxes to Han Li",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xu Lao hears Huangliang Spirit Lord's descendant, face changes but recovers, steps to Han Li, offers boxes",
+        "environment": "",
+        "character_pose": "Old man giving boxes, Han Li receiving",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao hears Huangliang Spirit Lord's descendant, face changes but recovers, steps to Han Li, offers boxes.",
+      "narration": "胥老听到黄粱灵君的后人,脸色微变但马上恢复如常,几步走到韩立面前,将手中锦盒递过去。",
+      "face_style_auto": {
+        "expression": "Resigned",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立目光一闪,先问道:'盒中的是何稀奇之物,胥掌柜不先介绍一二吗?'",
+      "mood": "Cautious",
+      "lighting": "Interior Dim",
+      "action": "Ask About Contents",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li's eyes flash, asks first: 'What rare items are in boxes, Shopkeeper Xu won't introduce them?'",
+        "environment": "",
+        "character_pose": "Han Li asking, shopkeeper holding boxes",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's eyes flash, asks first: 'What rare items are in boxes, Shopkeeper Xu won't introduce them?'",
+      "narration": "韩立目光一闪,先问道:'盒中的是何稀奇之物,胥掌柜不先介绍一二吗?'",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老淡淡说道一个是叫银芯石的材料,一个本人也不知道是何物,顺手打开一个锦盒,露出淡银色石头。",
+      "mood": "Mysterious",
+      "lighting": "Interior Dim",
+      "action": "Reveal Silver Core Stone",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Xu Lao says calmly one is Silver Core Stone material, other he doesn't know, opens box revealing pale silver stone",
+        "environment": "",
+        "character_pose": "Shopkeeper opening box, stone visible",
+        "fx": "Silver glow",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao says calmly one is Silver Core Stone material, other he doesn't know, opens box revealing pale silver stone.",
+      "narration": "胥老淡淡说道一个是叫银芯石的材料,一个本人也不知道是何物,顺手打开一个锦盒,露出淡银色石头。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老将盖子一合,手一扬,直接将两个锦盒射向韩立,站在一旁的秀丽女子一听银芯石的名字,突然变得惊喜交加。",
+      "mood": "Excited",
+      "lighting": "Interior Dim",
+      "action": "Throw Boxes",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Xu Lao closes lid, throws both boxes to Han Li, beautiful woman hears Silver Core Stone name, suddenly overjoyed",
+        "environment": "",
+        "character_pose": "Boxes flying, woman excited",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao closes lid, throws both boxes to Han Li, beautiful woman hears Silver Core Stone name, suddenly overjoyed.",
+      "narration": "胥老将盖子一合,手一扬,直接将两个锦盒射向韩立,站在一旁的秀丽女子一听银芯石的名字,突然变得惊喜交加。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第25集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep24_full/scene_022.png"
+    }
+  ]
+}
+

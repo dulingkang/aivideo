@@ -1,0 +1,657 @@
+{
+  "episode": 23,
+  "title": "Material Shopping · Huangliang Spirit Lord",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第23集:材料采购·黄粱灵君。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立一家家查看店铺中的灵具材料,转了七八家后,心中暗叹一口气。",
+      "mood": "Disappointed",
+      "lighting": "Daylight",
+      "action": "Browse Shops",
+      "camera": "Street Tracking",
+      "visual": {
+        "composition": "Han Li checks artifact materials shop by shop, after seven or eight shops, sighs inwardly",
+        "environment": "",
+        "character_pose": "Han Li examining materials, disappointed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li checks artifact materials shop by shop, after seven or eight shops, sighs inwardly.",
+      "narration": "韩立一家家查看店铺中的灵具材料,转了七八家后,心中暗叹一口气。",
+      "face_style_auto": {
+        "expression": "Disappointed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "这些店铺的材料不能说不好,有些绝对称得上精品,但对韩立现在的境界来说用处不大。",
+      "mood": "Dissatisfied",
+      "lighting": "Daylight",
+      "action": "Assess Materials",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shop materials not bad, some truly fine, but useless to Han Li at his current level",
+        "environment": "",
+        "character_pose": "Han Li examining, shaking head",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shop materials not bad, some truly fine, but useless to Han Li at his current level.",
+      "narration": "这些店铺的材料不能说不好，有些绝对称得上精品，但对韩立用处不大。",
+      "face_style_auto": {
+        "expression": "Dissatisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴察言观色,看出韩立看不上这里的东西,提议去另一个地方看看。",
+      "mood": "Helpful",
+      "lighting": "Daylight",
+      "action": "Suggest Another Place",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing reads Han Li's expression, sees he doesn't like items here, suggests another place",
+        "environment": "",
+        "character_pose": "Tian Xing suggesting, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing reads Han Li's expression, sees he doesn't like items here, suggests another place.",
+      "narration": "田兴察言观色,看出韩立看不上这里的东西,提议去另一个地方看看。",
+      "face_style_auto": {
+        "expression": "Helpful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立和田兴离开街道,在城中拦了一辆兽车准备上车。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Get Beast Cart",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li and Tian Xing leave street, flag down a beast cart in city",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing boarding cart",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li and Tian Xing leave street, flag down a beast cart in city.",
+      "narration": "韩立和田兴离开街道,在城中拦了一辆兽车准备上车。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立刚将一只脚踏上兽车,忽然一声龙吟从高空传来,接着仿佛虎啸般的吼声滚滚而来。",
+      "mood": "Startled",
+      "lighting": "Daylight",
+      "action": "Dragon Roar",
+      "camera": "Sky Shot",
+      "visual": {
+        "composition": "Han Li just steps on cart when dragon roar from sky, followed by tiger-like roar rolling across",
+        "environment": "",
+        "character_pose": "Han Li looking up, surprised",
+        "fx": "Dragon and tiger sounds, sky",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li just steps on cart when dragon roar from sky, followed by tiger-like roar rolling across.",
+      "narration": "韩立刚将一只脚踏上兽车，忽然一声龙吟从高空传来，虎啸般的吼声滚滚而来。",
+      "face_style_auto": {
+        "expression": "Startled",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "两种声音交织顿挫,传遍附近整个天空,引得下方凡人和修士一阵骚动。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Sounds Echo",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Two sounds interweave and echo, spreading across nearby sky, causing commotion among mortals and cultivators below",
+        "environment": "",
+        "character_pose": "People looking up, commotion",
+        "fx": "Sound waves, commotion",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two sounds interweave and echo, spreading across nearby sky, causing commotion among mortals and cultivators below.",
+      "narration": "两种声音交织顿挫,传遍附近整个天空,引得下方凡人和修士一阵骚动。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立朝声音传来的天边望去,只见一个黑点以极快速度激射而来。",
+      "mood": "Focused",
+      "lighting": "Daylight",
+      "action": "Look at Sky",
+      "camera": "Sky Shot",
+      "visual": {
+        "composition": "Han Li looks toward sky where sound comes from, sees a black dot shooting over at incredible speed",
+        "environment": "",
+        "character_pose": "Han Li looking up, focused",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li looks toward sky where sound comes from, sees a black dot shooting over at incredible speed.",
+      "narration": "韩立朝声音传来的天边望去,只见一个黑点以极快速度激射而来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "转眼间就到了韩立等人上空,竟是三头生有虎头龙首两颗头颅的怪兽,拉着的一辆淡青色飞车。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "See Flying Cart",
+      "camera": "Aerial Shot",
+      "visual": {
+        "composition": "In moments reaches Han Li's group overhead, three beasts with tiger and dragon heads pulling pale green flying cart",
+        "environment": "",
+        "character_pose": "Flying cart above, beasts visible",
+        "fx": "Flying cart, dual-headed beasts",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "In moments reaches Han Li's group overhead, three beasts with tiger and dragon heads pulling pale green flying cart.",
+      "narration": "转眼间就到了韩立等人上空，竟是三头生有虎头龙首的怪兽，拉着淡青色飞车。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "飞车从高空飞快掠过,龙吟虎啸之声转眼间远去,田兴失声叫道:'黄粱灵君竟离开了洞府!'",
+      "mood": "Shocked",
+      "lighting": "Daylight",
+      "action": "Recognize Lord",
+      "camera": "Sky Tracking",
+      "visual": {
+        "composition": "Flying cart quickly passes overhead, dragon and tiger roars fade, Tian Xing exclaims: 'Huangliang Spirit Lord left his cave!'",
+        "environment": "",
+        "character_pose": "Tian Xing shocked, cart disappearing",
+        "fx": "Cart fading away",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Flying cart quickly passes overhead, dragon and tiger roars fade, Tian Xing exclaims: 'Huangliang Spirit Lord left his cave!'",
+      "narration": "飞车从高空飞快掠过,龙吟虎啸之声转眼间远去,田兴失声叫道:'黄粱灵君竟离开了洞府!'",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立询问黄粱灵君是何人,田兴称他是落日城第一修士,在附近山中居住了万年之久。",
+      "mood": "Informative",
+      "lighting": "Daylight",
+      "action": "Explain Identity",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li asks who Huangliang Spirit Lord is, Tian Xing says he's Sunset City's top cultivator, lived in nearby mountain for ten thousand years",
+        "environment": "",
+        "character_pose": "Tian Xing explaining, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li asks who Huangliang Spirit Lord is, Tian Xing says he's Sunset City's top cultivator, lived in nearby mountain for ten thousand years.",
+      "narration": "韩立询问黄粱灵君是何人,田兴称他是落日城第一修士,在附近山中居住了万年之久。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴称黄粱灵君已经过了五行合一的关口,是一名炼虚初期修士。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Reveal Cultivation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing says Huangliang Spirit Lord passed Five Elements Unity, is an early-stage Spirit Transformation cultivator",
+        "environment": "",
+        "character_pose": "Tian Xing excited, Han Li serious",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing says Huangliang Spirit Lord passed Five Elements Unity, is an early-stage Spirit Transformation cultivator.",
+      "narration": "田兴称黄粱灵君已经过了五行合一的关口,是一名炼虚初期修士。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立心中一惊,炼虚初期修士在灵界已经是极高的境界,三皇等人也不过是合体境界。",
+      "mood": "Respectful",
+      "lighting": "Daylight",
+      "action": "Realize Status",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li's heart startles, early Spirit Transformation is extremely high in Spirit Realm, Three Emperors only at Unity stage",
+        "environment": "",
+        "character_pose": "Han Li thinking, respectful",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart startles, early Spirit Transformation is extremely high in Spirit Realm, Three Emperors only at Unity stage.",
+      "narration": "韩立心中一惊,炼虚初期修士在灵界已经是极高的境界,三皇等人也不过是合体境界。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立和田兴上了兽车,田兴继续介绍黄粱灵君的事迹,韩立只是微微一笑。",
+      "mood": "Calm",
+      "lighting": "Daylight",
+      "action": "Ride Cart",
+      "camera": "Interior Shot",
+      "visual": {
+        "composition": "Han Li and Tian Xing board cart, Tian Xing continues explaining Huangliang Spirit Lord's deeds, Han Li smiles slightly",
+        "environment": "",
+        "character_pose": "Both in cart, Tian Xing talking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li and Tian Xing board cart, Tian Xing continues explaining Huangliang Spirit Lord's deeds, Han Li smiles slightly.",
+      "narration": "韩立和田兴上了兽车,田兴继续介绍黄粱灵君的事迹,韩立只是微微一笑。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "兽车在城中狂奔数个时辰后,上了一条陌生街道,在街头尽头处蓦然停下。",
+      "mood": "Arrival",
+      "lighting": "Daylight",
+      "action": "Arrive at Shop",
+      "camera": "Street Shot",
+      "visual": {
+        "composition": "Beast cart races through city for hours, reaches unfamiliar street, suddenly stops at end",
+        "environment": "",
+        "character_pose": "Cart stopping, street visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Beast cart races through city for hours, reaches unfamiliar street, suddenly stops at end.",
+      "narration": "兽车在城中狂奔数个时辰后,上了一条陌生街道,在街头尽头处蓦然停下。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立从车上跳下,目光一扫,就看到一个看似不小的店铺,大门高大,用金粉装饰,挂着'穹宇阁'招牌。",
+      "mood": "Noticing",
+      "lighting": "Daylight",
+      "action": "See Shop",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li jumps from cart, scans area, sees a sizable shop, tall golden-decorated door, 'Qiongyu Pavilion' sign",
+        "environment": "",
+        "character_pose": "Han Li looking at shop",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li jumps from cart, scans area, sees a sizable shop, tall golden-decorated door, 'Qiongyu Pavilion' sign.",
+      "narration": "韩立从车上跳下,目光一扫,就看到一个看似不小的店铺,大门高大,用金粉装饰,挂着'穹宇阁'招牌。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "大门前两侧有两根丈许长的青色铁柱,上面用银色细链各拴着一头赤红色、仿佛蜥蜴模样的怪兽。",
+      "mood": "Guarded",
+      "lighting": "Daylight",
+      "action": "See Guard Beasts",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Two zhang-tall cyan iron pillars before door, silver chains binding red lizard-like beasts on each",
+        "environment": "",
+        "character_pose": "Guard beasts visible, chained",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two zhang-tall cyan iron pillars before door, silver chains binding red lizard-like beasts on each.",
+      "narration": "大门前两侧有两根丈许长的青色铁柱,上面用银色细链各拴着一头赤红色、仿佛蜥蜴模样的怪兽。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "两只怪兽在韩立走下马车的一瞬间,马上站起身子,用小眼死死盯着韩立,露出不善的目光。",
+      "mood": "Threatening",
+      "lighting": "Daylight",
+      "action": "Beasts Alert",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Two beasts stand immediately as Han Li steps from cart, small eyes fixed on Han Li, showing hostile intent",
+        "environment": "",
+        "character_pose": "Beasts staring, Han Li alert",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two beasts stand immediately as Han Li steps from cart, small eyes fixed on Han Li, showing hostile intent.",
+      "narration": "两只怪兽在韩立走下马车的一瞬间,马上站起身子,用小眼死死盯着韩立,露出不善的目光。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴紧跟在韩立后面,见怪兽凑过来却毫不在意,手中掏出一个淡黄色牌子冲两只怪兽一摇。",
+      "mood": "Confident",
+      "lighting": "Daylight",
+      "action": "Show Token",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing follows behind Han Li, sees beasts approaching but unconcerned, takes out pale yellow token, waves at beasts",
+        "environment": "",
+        "character_pose": "Tian Xing showing token, beasts calming",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing follows behind Han Li, sees beasts approaching but unconcerned, takes out pale yellow token, waves at beasts.",
+      "narration": "田兴紧跟在韩立后面,见怪兽凑过来却毫不在意,手中掏出一个淡黄色牌子冲两只怪兽一摇。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "两只怪兽发出几声低吼,懒洋洋地再次趴伏在地上不动,二人从怪兽中间走过。",
+      "mood": "Calm",
+      "lighting": "Daylight",
+      "action": "Pass Beasts",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Two beasts growl softly, lazily lie down again, two men pass between them",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing walking past beasts",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two beasts growl softly, lazily lie down again, two men pass between them.",
+      "narration": "两只怪兽发出几声低吼,懒洋洋地再次趴伏在地上不动,二人从怪兽中间走过。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "到了里面,韩立眉头不经意一皱,只是一个六七丈大小的简单屋子,四周货架空空如也。",
+      "mood": "Curious",
+      "lighting": "Interior Dim",
+      "action": "Enter Shop",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Inside, Han Li frowns slightly, just a simple six-to-seven zhang room, empty shelves around",
+        "environment": "",
+        "character_pose": "Han Li looking around, puzzled",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Inside, Han Li frowns slightly, just a simple six-to-seven zhang room, empty shelves around.",
+      "narration": "到了里面,韩立眉头不经意一皱,只是一个六七丈大小的简单屋子,四周货架空空如也。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第24集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep23_full/scene_022.png"
+    }
+  ]
+}
+

@@ -1,0 +1,651 @@
+{
+  "episode": 29,
+  "title": "Spirit Race Appears · Mystery Discussion",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第29集:灵族浮现·身份疑云。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "过了好一会儿,附近一颗大树表面青光一闪,一团翠芒浮现而出,光濛濛的莹光中,竟有一名身高不足尺许的小人。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Spirit Being Appears",
+      "camera": "Close-Up Reveal",
+      "visual": {
+        "composition": "After a while, nearby tree surface flashes green, emerald glow appears, in glowing light, a figure less than one chi tall",
+        "environment": "",
+        "character_pose": "Small figure appearing from tree",
+        "fx": "Green spirit light, transformation",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After a while, nearby tree surface flashes green, emerald glow appears, in glowing light, a figure less than one chi tall.",
+      "narration": "大树表面青光一闪，翠芒浮现而出，莹光中竟有一名身高不足尺许小人。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "此小人身穿绿色长裙,眉目如画,身材妙曼凹凸,竟是一名缩小了十倍的美女。",
+      "mood": "Beautiful",
+      "lighting": "Spirit Light",
+      "action": "See Beauty",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "This small figure wears green long dress, beautiful features, graceful figure, actually a beauty shrunk ten times",
+        "environment": "",
+        "character_pose": "Beautiful small woman",
+        "fx": "Green spirit glow",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This small figure wears green long dress, beautiful features, graceful figure, actually a beauty shrunk ten times.",
+      "narration": "小人身穿绿色长裙,眉目如画,身材妙曼,竟是缩小了十倍的美女。",
+      "face_style_auto": {
+        "expression": "Beautiful",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "她望着韩立消失的方向,眉头微皱着。",
+      "mood": "Thoughtful",
+      "lighting": "Spirit Light",
+      "action": "Watch Direction",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "She looks at direction where Han Li disappeared, frowning slightly",
+        "environment": "",
+        "character_pose": "Small woman frowning, thoughtful",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "She looks at direction where Han Li disappeared, frowning slightly.",
+      "narration": "她望着韩立消失的方向，眉头微皱着，心中若有所思。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "另一团黄色光芒从某片灌木中悠悠升起,一名身材同样大小的黄袍老者诡异的浮现,手中还拄着一根白色拐杖。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Second Spirit Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Another yellow glow slowly rises from bushes, yellow-robed old man of same size mysteriously appears, holding white staff",
+        "environment": "",
+        "character_pose": "Old man appearing from bushes",
+        "fx": "Yellow spirit light, transformation",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Another yellow glow slowly rises from bushes, yellow-robed old man of same size mysteriously appears, holding white staff.",
+      "narration": "另一团黄色光芒从灌木中升起，黄袍老者诡异的浮现，手中拄白色拐杖。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄袍老者用不满的口气对绿光中女子说道:'天樱,刚才为何不出手。这人只是一名人族的高阶炼体士而已,你我联手完全可以轻易收拾掉他的。'",
+      "mood": "Dissatisfied",
+      "lighting": "Spirit Light",
+      "action": "Question Decision",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Yellow-robed old man says to woman in green light with dissatisfied tone: 'Tian Ying, why didn't you act just now? He's just a high-level human body cultivator, we could easily deal with him together.'",
+        "environment": "",
+        "character_pose": "Old man questioning, woman listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow-robed old man says to woman in green light with dissatisfied tone: 'Tian Ying, why didn't you act just now? He's just a high-level human body cultivator, we could easily deal with him together.'",
+      "narration": "黄袍老者不满地对女子说道，询问为何不出手，认为这人只是高阶炼体士而已。",
+      "face_style_auto": {
+        "expression": "Dissatisfied",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "绿裙女子瞅了老者一眼,淡淡回道:'黄石公!这次我们潜入此地,可不是为了多杀几名人族和妖族中人的。而是为了追杀本族的叛逆,追回神血的。'",
+      "mood": "Calm",
+      "lighting": "Spirit Light",
+      "action": "Explain Mission",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Green-dressed woman glances at old man, calmly replies: 'Huang Shigong! We didn't infiltrate here to kill more humans and demons, but to hunt down our race's traitor and recover divine blood.'",
+        "environment": "",
+        "character_pose": "Woman explaining, old man listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green-dressed woman glances at old man, calmly replies: 'Huang Shigong! We didn't infiltrate here to kill more humans and demons, but to hunt down our race's traitor and recover divine blood.'",
+      "narration": "绿裙女子淡淡回道，说明他们潜入此地是为了追杀本族叛逆，夺回神血。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄袍老者摇摇头,不太同意女子的说法,说道:'这人顶多相当于元婴期修士,你我两名灵将出手,还不是举手之劳的事情,何用顾及这么多。'",
+      "mood": "Argumentative",
+      "lighting": "Spirit Light",
+      "action": "Disagree",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Yellow-robed old man shakes head, disagrees with woman, says: 'He's at most equivalent to Nascent Soul cultivator, we two Spirit Generals acting would be effortless, why care so much.'",
+        "environment": "",
+        "character_pose": "Old man arguing, woman calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow-robed old man shakes head, disagrees with woman, says: 'He's at most equivalent to Nascent Soul cultivator, we two Spirit Generals acting would be effortless, why care so much.'",
+      "narration": "黄袍老者摇头说道，认为这人顶多相当于元婴期修士，两名灵将出手举手之劳。",
+      "face_style_auto": {
+        "expression": "Argumentative",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "绿裙女子沉默了好一会儿,才说出自己的心里话来:'若真能轻易击毙此人,我也不会介意出手的。但这人却有些古怪,还是不要打草惊蛇,坏了大事的好。'",
+      "mood": "Serious",
+      "lighting": "Spirit Light",
+      "action": "Explain Concern",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Green-dressed woman remains silent for a while, then says: 'If we could easily kill him, I wouldn't mind acting. But this person is strange, better not alert the enemy and ruin our mission.'",
+        "environment": "",
+        "character_pose": "Woman serious, concerned",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green-dressed woman remains silent for a while, then says: 'If we could easily kill him, I wouldn't mind acting. But this person is strange, better not alert the enemy and ruin our mission.'",
+      "narration": "绿裙女子沉默一会儿，说道若真能轻易击毙此人，她也会出手，但这人有些古怪。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄石公心中一怔,急忙问道:'古怪?天樱,你发现了什么?'",
+      "mood": "Curious",
+      "lighting": "Spirit Light",
+      "action": "Ask About Discovery",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huang Shigong's heart startles, urgently asks: 'Strange? Tian Ying, what did you discover?'",
+        "environment": "",
+        "character_pose": "Old man curious, questioning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huang Shigong's heart startles, urgently asks: 'Strange? Tian Ying, what did you discover?'",
+      "narration": "黄石公心中一怔，急忙问道是否发现了什么，询问这人古怪在哪里。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "女子目光闪动一下,反问了一句:'你觉得这人真是一名炼体士吗?'",
+      "mood": "Questioning",
+      "lighting": "Spirit Light",
+      "action": "Counter Question",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Woman's eyes flash, counters: 'Do you think this person is really a body cultivator?'",
+        "environment": "",
+        "character_pose": "Woman questioning, clever",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman's eyes flash, counters: 'Do you think this person is really a body cultivator?'",
+      "narration": "女子目光闪动一下，反问了一句，询问黄石公是否觉得这人真是一名炼体士而已。",
+      "face_style_auto": {
+        "expression": "Questioning",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄石公有些不明所以,说道:'这话什么意思?此人手持灵具就击毙结丹妖兽,身上也没有灵力波动,不是炼体士还是什么?'",
+      "mood": "Confused",
+      "lighting": "Spirit Light",
+      "action": "Express Confusion",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huang Shigong confused, says: 'What do you mean? He uses artifacts to kill Core Formation beast, no spirit power fluctuations, what else if not body cultivator?'",
+        "environment": "",
+        "character_pose": "Old man confused, woman calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huang Shigong confused, says: 'What do you mean? He uses artifacts to kill Core Formation beast, no spirit power fluctuations, what else if not body cultivator?'",
+      "narration": "黄石公不明所以，说道此人手持灵具击毙结丹妖兽，没有灵力波动，定是炼体士。",
+      "face_style_auto": {
+        "expression": "Confused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "女子缓缓说道:'你应该知道,我本体是木樱成灵,可以直接观察到一些常人无法观察到的东西。而这个人神识非常强大,几乎不在你我之下。'",
+      "mood": "Revealing",
+      "lighting": "Spirit Light",
+      "action": "Reveal Discovery",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Woman slowly says: 'You should know, my true form is cherry wood spirit, can directly observe things others cannot. This person's spirit sense is extremely strong, almost no less than ours.'",
+        "environment": "",
+        "character_pose": "Woman revealing, old man listening",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman slowly says: 'You should know, my true form is cherry wood spirit, can directly observe things others cannot. This person's spirit sense is extremely strong, almost no less than ours.'",
+      "narration": "女子缓缓说道，她本体是木樱成灵，能观察到常人无法观察的东西，此人神识强大。",
+      "face_style_auto": {
+        "expression": "Revealing",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "女子继续说道:'据我所知,人族的炼体士不可能有这般强大神识的。应该只有人族中的化神修士,才可能拥有的。'",
+      "mood": "Shocking",
+      "lighting": "Spirit Light",
+      "action": "Reveal Conclusion",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Woman continues: 'As I know, human body cultivators cannot have such strong spirit sense. Only Spirit Transformation cultivators could have this.'",
+        "environment": "",
+        "character_pose": "Woman explaining, old man shocked",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman continues: 'As I know, human body cultivators cannot have such strong spirit sense. Only Spirit Transformation cultivators could have this.'",
+      "narration": "女子继续说道，人族的炼体士不可能有这般强大神识，只有化神修士才可能拥有。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄石公脸现惊异之色,说道:'强大神识!你是说,这人不是炼体士而是一名化神期修士假扮的?'",
+      "mood": "Shocked",
+      "lighting": "Spirit Light",
+      "action": "React to Revelation",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huang Shigong shows shocked expression, says: 'Strong spirit sense! You mean this person isn't body cultivator but Spirit Transformation cultivator in disguise?'",
+        "environment": "",
+        "character_pose": "Old man shocked, understanding",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huang Shigong shows shocked expression, says: 'Strong spirit sense! You mean this person isn't body cultivator but Spirit Transformation cultivator in disguise?'",
+      "narration": "黄石公脸现惊异之色，说道这人不是炼体士而是化神期修士假扮的，大为震惊。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "女子说道:'我可没说什么,我并未在这人身上发现丝毫灵力存在。不过也不排除这种可能的。毕竟人族的许多功法不在我们灵族的天赋神通之下。'",
+      "mood": "Cautious",
+      "lighting": "Spirit Light",
+      "action": "Maintain Caution",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Woman says: 'I didn't say that, I didn't find any spirit power on him. But can't rule it out. Human techniques are no weaker than our spirit race's innate abilities.'",
+        "environment": "",
+        "character_pose": "Woman cautious, old man thoughtful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman says: 'I didn't say that, I didn't find any spirit power on him. But can't rule it out. Human techniques are no weaker than our spirit race's innate abilities.'",
+      "narration": "女子说道，她并未在这人身上发现丝毫灵力，但也不排除这种可能，人族功法不弱。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "女子肃然地说道:'我们此行目的是追杀叛逆,夺回神血。我可不想冒险行事,误了真正的大事。'",
+      "mood": "Resolute",
+      "lighting": "Spirit Light",
+      "action": "Emphasize Mission",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Woman solemnly says: 'Our mission is to hunt traitor and recover divine blood. I don't want to risk it and ruin the real mission.'",
+        "environment": "",
+        "character_pose": "Woman resolute, serious",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman solemnly says: 'Our mission is to hunt traitor and recover divine blood. I don't want to risk it and ruin the real mission.'",
+      "narration": "女子肃然地说道，他们此行目的是追杀叛逆，夺回神血，她不想冒险误了大事。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄袍老者认同地说道:'你说的没错。若真是化神修士的话,我们也没有十足把握击杀的。万一跑掉,可就得不偿失了。'",
+      "mood": "Agreeable",
+      "lighting": "Spirit Light",
+      "action": "Agree with Caution",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Yellow-robed old man agrees: 'You're right. If really Spirit Transformation cultivator, we don't have full certainty to kill. If he escapes, not worth it.'",
+        "environment": "",
+        "character_pose": "Old man agreeing, woman satisfied",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow-robed old man agrees: 'You're right. If really Spirit Transformation cultivator, we don't have full certainty to kill. If he escapes, not worth it.'",
+      "narration": "黄袍老者认同地说道，若真是化神修士，他们也没有十足把握击杀，得不偿失。",
+      "face_style_auto": {
+        "expression": "Agreeable",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄袍老者又有些幸灾乐祸地说道:'不过真是如此的话,人族可真够狡诈的!那些妖族的高阶存在碰见此人可就要倒大霉了。'",
+      "mood": "Amused",
+      "lighting": "Spirit Light",
+      "action": "Comment on Deception",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Yellow-robed old man somewhat gleefully says: 'If true, humans are truly cunning! High-level demon beings meeting him will be in big trouble.'",
+        "environment": "",
+        "character_pose": "Old man amused, woman calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow-robed old man somewhat gleefully says: 'If true, humans are truly cunning! High-level demon beings meeting him will be in big trouble.'",
+      "narration": "黄袍老者幸灾乐祸地说道，若真是如此，人族可真够狡诈，妖族的高阶可要倒霉了。",
+      "face_style_auto": {
+        "expression": "Amused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "绿裙女子想起了什么,突然问道:'对了,铁利和赤灭二人也应该进入了此地了吧。出了这等大事,我们五行灵族都应该出动了人手。'",
+      "mood": "Inquiring",
+      "lighting": "Spirit Light",
+      "action": "Ask About Others",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Green-dressed woman remembers something, suddenly asks: 'By the way, Tieli and Chimi should also have entered here. With such major event, all Five Element Spirit races should have sent people.'",
+        "environment": "",
+        "character_pose": "Woman asking, old man thinking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green-dressed woman remembers something, suddenly asks: 'By the way, Tieli and Chimi should also have entered here. With such major event, all Five Element Spirit races should have sent people.'",
+      "narration": "绿裙女子突然问道，铁利和赤灭二人也应该进入了此地，五行灵族都应出动人手。",
+      "face_style_auto": {
+        "expression": "Inquiring",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "两名灵族讨论着各自的任务和计划,身影渐渐消失在密林之中。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Disappear",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Two spirit beings discuss their tasks and plans, figures gradually disappear into dense forest",
+        "environment": "",
+        "character_pose": "Small figures disappearing",
+        "fx": "Spirit light fading",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two spirit beings discuss their tasks and plans, figures gradually disappear into dense forest.",
+      "narration": "两名灵族讨论着各自的任务和计划,身影渐渐消失在密林之中。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第30集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep29_full/scene_022.png"
+    }
+  ]
+}
+

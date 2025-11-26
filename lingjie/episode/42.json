@@ -1,0 +1,503 @@
+{
+  "episode": 42,
+  "title": "Discussion and Alliance · Giant Battle Begins",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第42集:讨论联手·巨人大战开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰姓少年面带煞气的说道,哼,这个自然,上古巨人这般体形之人,就算把守三境入口之人再两眼昏花,也不可能放这般凶物进入境内。",
+      "mood": "Assertive",
+      "lighting": "Mixed Lighting",
+      "action": "Assert",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth with fierce expression says, humph, naturally, ancient giant such size, even if Three Realms gatekeepers blind, cannot let such monster enter territory",
+        "environment": "Sky above, Huan Cangqi speaking",
+        "character_pose": "Huan Cangqi assertive, speaking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth with fierce expression says, humph, naturally, ancient giant such size, even if Three Realms gatekeepers blind, cannot let such monster enter territory.",
+      "narration": "寰姓少年面带煞气的说道,上古巨人这般体形之人,不可能放这般凶物进入境内。",
+      "face_style_auto": {
+        "expression": "Assertive",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰姓少年说,不过,好在这只是一只独目族巨人,并且应该身负重伤,所以才一直在谷中沉睡不起的,你我联手损耗些元气,足以击杀它的。",
+      "mood": "Confident",
+      "lighting": "Mixed Lighting",
+      "action": "Propose Plan",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth says, however, good this is just one one-eyed clan giant, and should be heavily injured, that's why sleeping in valley, our two sides join forces expend some vitality, enough to kill it",
+        "environment": "Sky above, two discussing",
+        "character_pose": "Huan Cangqi proposing, Huangliang listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says, however, good this is just one one-eyed clan giant, and should be heavily injured, that's why sleeping in valley, our two sides join forces expend some vitality, enough to kill it.",
+      "narration": "寰姓少年说,好在这只是一只独目族巨人,并且应该身负重伤,你我联手足以击杀它。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君眉头微微一皱,说道,那东西如何分,我听说此巨人身上竟然还带有一大块落阳晶,这可是炼制至阳灵宝的最佳材料。",
+      "mood": "Negotiating",
+      "lighting": "Spirit Light",
+      "action": "Discuss Distribution",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord slightly frowns, says, how to split things, heard this giant actually carries large Setting Sun Crystal, this is best material for refining supreme yang spirit treasure",
+        "environment": "Sky above, Huangliang speaking",
+        "character_pose": "Huangliang negotiating, frowning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord slightly frowns, says, how to split things, heard this giant actually carries large Setting Sun Crystal, this is best material for refining supreme yang spirit treasure.",
+      "narration": "黄粱灵君眉头微微一皱,说道,那东西如何分,我听说此巨人身上还带有一大块落阳晶。",
+      "face_style_auto": {
+        "expression": "Negotiating",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰姓少年似乎早就考虑过了,毫不迟疑的说道,我对那灵族叛逆带的东西不感兴趣,就要那块落阳晶了,黄粱灵君说,好,就如此说定了。",
+      "mood": "Decisive",
+      "lighting": "Demonic Mist",
+      "action": "Agree on Distribution",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth seems already considered, without hesitation says, I'm not interested in spirit traitor's things, want that Setting Sun Crystal, Huangliang Spirit Lord says, good, agreed",
+        "environment": "Sky above, two agreeing",
+        "character_pose": "Huan Cangqi decisive, Huangliang agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth seems already considered, without hesitation says, I'm not interested in spirit traitor's things, want that Setting Sun Crystal, Huangliang Spirit Lord says, good, agreed.",
+      "narration": "寰姓少年毫不迟疑的说道,我对那灵族叛逆带的东西不感兴趣,就要那块落阳晶了。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "半截身子仍在土中的独目巨人见了这般多人,似乎让其联想到了什么,目中凶光一闪,一扬头颅,蓦然发出雷鸣般的滚滚吼声。",
+      "mood": "Angry",
+      "lighting": "Yellow Light",
+      "action": "Giant Roars",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Half body still in ground one-eyed giant sees so many people, seems reminds it of something, eyes flash with fierce light, raises head, suddenly emits thunderous rolling roar",
+        "environment": "Giant, roaring",
+        "character_pose": "Giant raising head, roaring",
+        "fx": "Thunderous roar, ground shaking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Half body still in ground one-eyed giant sees so many people, seems reminds it of something, eyes flash with fierce light, raises head, suddenly emits thunderous rolling roar.",
+      "narration": "半截身子仍在土中的独目巨人见了这般多人,目中凶光一闪,蓦然发出雷鸣般的吼声。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随后再一低首,独目蓦然白光刺目,接着无数道白丝狂涌射出,将不远的寰天奇和黄粱灵君全都罩在了其下。",
+      "mood": "Attacking",
+      "lighting": "White Light",
+      "action": "Light Threads Attack",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Then lowers head, single eye suddenly white light blinding, then countless white threads wildly shoot out, covers nearby Huan Tianqi and Huangliang Spirit Lord below",
+        "environment": "Giant's eye, white threads shooting",
+        "character_pose": "Giant attacking, two targets below",
+        "fx": "White light from eye, countless threads shooting",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Then lowers head, single eye suddenly white light blinding, then countless white threads wildly shoot out, covers nearby Huan Tianqi and Huangliang Spirit Lord below.",
+      "narration": "随后再一低首,独目蓦然白光刺目,接着无数道白丝狂涌射出,将两人罩在其下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君冷哼一声,想不到竟将那落阳晶彻底炼化了,但区区的一些火丝也想伤到我等,真是痴心妄想了,随即袖袍一抖,那个八卦镜般的宝物再次浮现而出。",
+      "mood": "Defensive",
+      "lighting": "Golden Light",
+      "action": "Activate Mirror",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord snorts coldly, didn't expect actually completely refined Setting Sun Crystal, but mere fire threads want to hurt us, truly wishful thinking, then sleeves shake, that Eight Trigrams mirror-like treasure appears again",
+        "environment": "Sky above, Huangliang activating mirror",
+        "character_pose": "Huangliang with mirror, blocking threads",
+        "fx": "Golden mirror appearing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord snorts coldly, didn't expect actually completely refined Setting Sun Crystal, but mere fire threads want to hurt us, truly wishful thinking, then sleeves shake, that Eight Trigrams mirror-like treasure appears again.",
+      "narration": "黄粱灵君冷哼一声,想不到竟将那落阳晶彻底炼化了,但区区的一些火丝也想伤到我等。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "光丝纷纷反射而回,射到了巨人的庞大身躯上,但是这些光丝一接触巨人身体,纷纷一闪的没入其中,丝毫无法伤及巨人,巨人一见独目攻击无效,口中一声低吼。",
+      "mood": "Ineffective",
+      "lighting": "Mixed Lighting",
+      "action": "Attack Fails",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Light threads reflect back, shoot at giant's huge body, but these threads contact giant body, all flash and enter, cannot harm giant at all, giant sees single eye attack ineffective, mouth low roar",
+        "environment": "Giant's body, threads being absorbed",
+        "character_pose": "Threads hitting giant, being absorbed",
+        "fx": "Reflected threads, being absorbed",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Light threads reflect back, shoot at giant's huge body, but these threads contact giant body, all flash and enter, cannot harm giant at all, giant sees single eye attack ineffective, mouth low roar.",
+      "narration": "光丝纷纷反射而回,射到了巨人的庞大身躯上,但这些光丝一接触巨人身体,纷纷没入其中。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一只大手五指一分,仿佛一面巨型蒲扇,直接朝黄粱灵君二人扫去,尚未接触二人,一股飓风就先席卷而来,黄粱灵君脸色一沉,一张口,一只白濛濛的纸扇吐出了口外。",
+      "mood": "Powerful",
+      "lighting": "White Light",
+      "action": "Giant Hand Swipes",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "One huge hand fingers spread, like giant palm fan, directly sweeps toward Huangliang Spirit Lord two people, before contacting, hurricane wind first sweeps over, Huangliang Spirit Lord's face darkens, opens mouth, white misty paper fan spits out",
+        "environment": "Giant hand swiping, hurricane approaching",
+        "character_pose": "Giant hand swiping, Huangliang activating fan",
+        "fx": "Giant hand, hurricane wind, white fan",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "One huge hand fingers spread, like giant palm fan, directly sweeps toward Huangliang Spirit Lord two people, before contacting, hurricane wind first sweeps over, Huangliang Spirit Lord's face darkens, opens mouth, white misty paper fan spits out.",
+      "narration": "一只大手五指一分,仿佛一面巨型蒲扇,直接朝黄粱灵君二人扫去,一股飓风先席卷而来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "他一把将纸扇抓住,对准压来的巨手狠狠一挥,刹那间一股白风凭空生出,直接和卷来的飓风撞击到了一起,让飓风根本无法靠近二人分毫。",
+      "mood": "Counterattacking",
+      "lighting": "White Light",
+      "action": "Wind Collides",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "He grabs fan, toward pressing giant hand fiercely waves, in a blink white wind generates from void, directly collides with rolling hurricane, makes hurricane cannot approach two people at all",
+        "environment": "Sky above, winds colliding",
+        "character_pose": "Huangliang waving fan, white wind vs hurricane",
+        "fx": "White wind, hurricane, collision",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "He grabs fan, toward pressing giant hand fiercely waves, in a blink white wind generates from void, directly collides with rolling hurricane, makes hurricane cannot approach two people at all.",
+      "narration": "他一把将纸扇抓住,对准压来的巨手狠狠一挥,一股白风凭空生出,直接和卷来的飓风撞击。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "眼看巨手扫来,寰姓少年却两手一搓,一道灰色电芒凭空浮现,此电芒在两手间略一变形幻化,形成一口不起眼的灰色长刀,此刀看起来狭长锋利,黯淡无光。",
+      "mood": "Preparing",
+      "lighting": "Gray Light",
+      "action": "Create Blade",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Seeing giant hand sweeping, Huan youth but rubs hands together, gray lightning appears from void, this lightning between hands slightly transforms, forms inconspicuous gray long blade, blade looks long and sharp, dull",
+        "environment": "Sky above, Huan Cangqi creating blade",
+        "character_pose": "Huan Cangqi with gray blade, preparing",
+        "fx": "Gray lightning, transforming to blade",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Seeing giant hand sweeping, Huan youth but rubs hands together, gray lightning appears from void, this lightning between hands slightly transforms, forms inconspicuous gray long blade, blade looks long and sharp, dull.",
+      "narration": "眼看巨手扫来,寰姓少年却两手一搓,一道灰色电芒凭空浮现,形成一口灰色长刀。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "与此同时,少年口中念念有词,清秀面孔上浮现出一根根黄毛,两眼也一下变得碧绿阴森起来,一声大喝后,冲天灵压从少年身上爆发而出。",
+      "mood": "Transforming",
+      "lighting": "Gray Light",
+      "action": "Transform Appearance",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "At same time, youth mutters incantations, handsome face appears with yellow fur, eyes also turn jade green and sinister, after loud shout, soaring spirit pressure bursts from youth",
+        "environment": "Sky above, Huan Cangqi transforming",
+        "character_pose": "Huan Cangqi face transforming, yellow fur appearing",
+        "fx": "Yellow fur appearing, eyes turning green, spirit pressure",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At same time, youth mutters incantations, handsome face appears with yellow fur, eyes also turn jade green and sinister, after loud shout, soaring spirit pressure bursts from youth.",
+      "narration": "与此同时,少年口中念念有词,清秀面孔上浮现出一根根黄毛,两眼变得碧绿阴森。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "手中长刀只是轻轻一挥,一道灰线蓦然斩出,噗嗤一声,灰线一下涨到了丈许之大,一闪后没入巨掌上的拇指上,巨掌一颤,拇指根部顿时多出了一道纤细异常的灰线。",
+      "mood": "Powerful",
+      "lighting": "Gray Light",
+      "action": "Slash with Blade",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Long blade in hand just lightly waves, gray line suddenly slashes, puff sound, gray line expands to zhang size, flashes then enters giant palm's thumb, giant palm trembles, thumb root suddenly appears thin gray line",
+        "environment": "Giant's thumb, attack landing",
+        "character_pose": "Gray line on thumb, cutting",
+        "fx": "Gray line slashing, expanding, cutting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Long blade in hand just lightly waves, gray line suddenly slashes, puff sound, gray line expands to zhang size, flashes then enters giant palm's thumb, giant palm trembles, thumb root suddenly appears thin gray line.",
+      "narration": "手中长刀只是轻轻一挥,一道灰线蓦然斩出,灰线一下涨到了丈许之大,没入巨掌上的拇指。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但随之黄芒一闪,灰线就此消失的无影无踪了,看到此幕,寰姓少年和黄粱灵君互望了一眼,都从对方眼中看到了一丝骇然,这上古巨人竟然拥有不灭之体。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Immortal Body",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "But then yellow light flashes, gray line disappears completely, seeing this, Huan youth and Huangliang Spirit Lord look at each other, both see shock in other's eyes, this ancient giant actually has immortal body",
+        "environment": "Sky above, two looking at each other",
+        "character_pose": "Two shocked, realizing difficulty",
+        "fx": "Yellow light, healing, gray line disappearing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "But then yellow light flashes, gray line disappears completely, seeing this, Huan youth and Huangliang Spirit Lord look at each other, both see shock in other's eyes, this ancient giant actually has immortal body.",
+      "narration": "但随之黄芒一闪,灰线就此消失的无影无踪了,这上古巨人竟然拥有不灭之体。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "隐匿在高空中的韩立,静静观察着下方的战斗,他知道这场大战将会异常激烈,而神血很可能就在巨人体内,他必须找到合适的机会出手。",
+      "mood": "Patient",
+      "lighting": "Mixed Lighting",
+      "action": "Wait for Opportunity",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li hiding high above, quietly observes battle below, knows this battle will be extremely intense, divine blood probably in giant's body, must find right opportunity to act",
+        "environment": "Sky above, Han Li invisible",
+        "character_pose": "Han Li patient, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li hiding high above, quietly observes battle below, knows this battle will be extremely intense, divine blood probably in giant's body, must find right opportunity to act.",
+      "narration": "隐匿在高空中的韩立,静静观察着下方的战斗,他知道这场大战将会异常激烈。",
+      "face_style_auto": {
+        "expression": "Patient",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_016.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第43集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep42_full/scene_017.png"
+    }
+  ]
+}
+

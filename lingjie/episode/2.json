@@ -1,0 +1,623 @@
+{
+  "episode": 2,
+  "title": "Blood Curse Document.Tiandong Trading Company",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "calm",
+      "lighting": "soft",
+      "action": "title display",
+      "camera": "fixed shot",
+      "visual": {
+        "composition": "mist swirling immortal realm above,golden scrollunfurl",
+        "environment": "immortal realmsky,mistswirling,goldenlight",
+        "character_pose": "",
+        "fx": "golden light,scrollunfurleffect",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "xianxiaopening,mist swirling immortal realm sky,golden scrollunfurl,spiritual energy particlesfloating,panoramic shot,cinematic lighting,4k",
+      "narration": "我是云卷仙音,欢迎回来。第2集:血咒文书·天东商号。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "青年将圆盘对准韩立,一道青濛濛光柱激射而出。",
+      "mood": "alert",
+      "lighting": "night",
+      "action": "detecting with disk",
+      "camera": "disk close-up",
+      "visual": {
+        "composition": "young man infusedisk aim atHan Li,a beam of bluish light beam shoot out out",
+        "environment": "",
+        "character_pose": "young maninfusediskaim atHan Li",
+        "fx": "bluish light beam shoot out out",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "young man infusedisk aim atHan Li,a beam of bluish light beam shoot out out。",
+      "narration": "青年在几丈外叽里咕噜说话,韩立听不懂只能静看。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "光柱照在韩立身上,韩立神色平静,任凭探测。",
+      "mood": "calm",
+      "lighting": "night",
+      "action": "enduring detection",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "light beam shines onHan Li on body,Han Liexpressioncalm",
+        "environment": "",
+        "character_pose": "Han Liexpressioncalm,allowdetection",
+        "fx": "light beam shines onHan Li on body",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "light beam shines onHan Li on body,Han Liexpressioncalm,allowdetection。",
+      "narration": "青色光柱罩住韩立,他面无表情任其扫过。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "圆盘灵光大放,青年满脸惊容,冲身后大叫。",
+      "mood": "surprised",
+      "lighting": "night",
+      "action": "reacting to result",
+      "camera": "face close-up",
+      "visual": {
+        "composition": "diskspiritual light radiates,young manfull of surprise",
+        "environment": "",
+        "character_pose": "young manfull of surprise,shout to companions behind",
+        "fx": "diskspiritual light radiates",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "diskspiritual light radiates,young manfull of surprise,shout to companions behind。",
+      "narration": "光柱消失,圆盘反而亮起,青年惊叫朝同伴示警。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "疤面大汉走过来,开口问韩立,但韩立听不懂。",
+      "mood": "confused",
+      "lighting": "night",
+      "action": "attempting communication",
+      "camera": "two-person medium shot",
+      "visual": {
+        "composition": "scarred big manwalk over,askHan Li",
+        "environment": "",
+        "character_pose": "askHan Li,butHan Licannot understand",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "scarred big manwalk over,askHan Li,butHan Licannot understand。",
+      "narration": "疤面大汉再问几句,韩立仍然一句听不懂。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "大汉换了一种语言,韩立神色一动,觉得耳熟。",
+      "mood": "curious",
+      "lighting": "night",
+      "action": "identifying language",
+      "camera": "face close-up",
+      "visual": {
+        "composition": "big manchanged language,Han Liexpression changes",
+        "environment": "",
+        "character_pose": "Han Liexpression changes,feels familiar",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "big manchanged language,Han Liexpression changes,feels familiar。",
+      "narration": "他换成古怪语言,韩立只觉耳熟却仍难理解。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "大汉掏出淡黄色木盒,里面是一颗乳黄色圆珠。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "taking out wooden box",
+      "camera": "wooden box close-up",
+      "visual": {
+        "composition": "big mantake outpale yellowwooden box,insideisa milky yellow bead",
+        "environment": "",
+        "character_pose": "big mantake outpale yellowwooden box",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "big mantake outpale yellowwooden box,insideisa milky yellow bead。",
+      "narration": "大汉无奈取出淡黄木盒,露出一颗乳黄圆珠。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "大汉将圆珠按在指环晶石上,光芒大放。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "activating bead",
+      "camera": "activation close-up",
+      "visual": {
+        "composition": "big maninfusebeadpress onring crystal on,light radiates",
+        "environment": "",
+        "character_pose": "big maninfusebeadpress onring crystal on",
+        "fx": "light radiates",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "big maninfusebeadpress onring crystal on,light radiates。",
+      "narration": "大汉将圆珠往那晶石上一按,蓦然间光芒大放,圆珠耀目之极。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "圆珠没入韩立身体,凉气窜入脑中。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "receiving bead",
+      "camera": "body close-up",
+      "visual": {
+        "composition": "beadenter intoHan Libody,cool airrush intobrainin",
+        "environment": "",
+        "character_pose": "",
+        "fx": "beadenter into,cool airrush intobrainin",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "beadenter intoHan Libody,cool airrush intobrainin。",
+      "narration": "圆珠没入体内,一股凉意直冲脑海,让韩立愣住。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "韩立头颅刺痛,神识中浮现众多东西,瞬间掌握语言。",
+      "mood": "intense",
+      "lighting": "night",
+      "action": "learning language",
+      "camera": "head close-up",
+      "visual": {
+        "composition": "Han Liheadstings,divine senseinappearmanythings",
+        "environment": "",
+        "character_pose": "Han Liheadstings",
+        "fx": "divine senseinappearmanythings",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Liheadstings,divine senseinappearmanythings,instantly masterlanguage。",
+      "narration": "脑海刺痛,陌生字符狂涌,韩立以强大神识瞬间吸纳语言。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "韩立与大汉对话,确认这里是青罗沙漠,灵界。",
+      "mood": "understanding",
+      "lighting": "night",
+      "action": "confirming location",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Han Liwithbig mandialogue,confirmhereisQingluodesert",
+        "environment": "Qingluodesert,Spirit Realm",
+        "character_pose": "Han Liwithbig mandialogue",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Liwithbig mandialogue,confirmhereisQingluodesert,Spirit Realm。",
+      "narration": "大汉再问:‘现在听懂了吧？你是谁,为何在青罗沙漠？'",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "大汉提出签订血咒文书,韩立答应。",
+      "mood": "serious",
+      "lighting": "night",
+      "action": "agreeing to contract",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "big manproposesignblood curse document,Han Liagree",
+        "environment": "",
+        "character_pose": "Han Liagree",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "big manproposesignblood curse document,Han Liagree。",
+      "narration": "他告诫蝎潮将至,劝韩立签约效力十年换取性命。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "骑士拿出血咒文书,咬破手指书写。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "writing contract",
+      "camera": "hand close-up",
+      "visual": {
+        "composition": "riderstake out blood curse document,bite fingerwrite",
+        "environment": "",
+        "character_pose": "bite fingerwrite",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "riderstake out blood curse document,bite fingerwrite。",
+      "narration": "另一名骑士抽出符纸,咬破手指写好条款后跳下龟背。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "韩立查看血咒文书,认出是符箓,分析其约束力。",
+      "mood": "analyzing",
+      "lighting": "night",
+      "action": "analyzing contract",
+      "camera": "document close-up",
+      "visual": {
+        "composition": "Han Liexamineblood curse document,recognizeistalisman",
+        "environment": "",
+        "character_pose": "Han Liexamineblood curse document,analyzingitsbinding force",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Liexamineblood curse document,recognizeistalisman,analyzingitsbinding force。",
+      "narration": "符纸递到韩立眼前,他认出是约束筑基的符箓,只默默皱眉。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "骑士用匕首划韩立手腕,但无法划破。",
+      "mood": "surprised",
+      "lighting": "night",
+      "action": "attempting to cut",
+      "camera": "wrist close-up",
+      "visual": {
+        "composition": "riderscut with daggerHan Liwrist,butcannot cut",
+        "environment": "",
+        "character_pose": "",
+        "fx": "cannot cut",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "riderscut with daggerHan Liwrist,butcannot cut。",
+      "narration": "小七按符咒划刀,却只听金属声,韩立皮肤连白痕都没有。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "大汉询问韩立是否修炼金刚诀,韩立确认第三层。",
+      "mood": "understanding",
+      "lighting": "night",
+      "action": "confirming cultivation",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "big manaskHan LiiswhethercultivateVajra Art,Han Liconfirmthird layer",
+        "environment": "",
+        "character_pose": "Han Liconfirmthird layer",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "big manaskHan LiiswhethercultivateVajra Art,Han Liconfirmthird layer。",
+      "narration": "疤面大汉惊问金刚诀层数,韩立坦言已至第三层,心中暗喜确认此地",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "大汉拿出金莹剑,骑士戴上手套,剑身金芒四射。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "using spirit tool",
+      "camera": "sword close-up",
+      "visual": {
+        "composition": "big mantake outGolden Ying Sword,ridersput on gloves,sword bladegolden light radiates",
+        "environment": "",
+        "character_pose": "big mantake outGolden Ying Sword,ridersput on gloves",
+        "fx": "golden light radiates",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "big mantake outGolden Ying Sword,ridersput on gloves,sword bladegolden light radiates。",
+      "narration": "他索性取出低阶灵具金莹剑,小七戴上手套,剑身金光更盛。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "韩立发现灵具的奥秘,剑柄有灵石,手套也有灵石。",
+      "mood": "curious",
+      "lighting": "night",
+      "action": "discovering secret",
+      "camera": "macro",
+      "visual": {
+        "composition": "Han Lidiscoverspirit tool secret,sword hilthavespirit stone,glovesalsohavespirit stone",
+        "environment": "",
+        "character_pose": "Han Lidiscoverspirit tool secret",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Lidiscoverspirit tool secret,sword hilthavespirit stone,glovesalsohavespirit stone。",
+      "narration": "韩立注意剑柄与手套都镶灵石,小七一催动,符文亮起灵光奔涌。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "dramatic",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "金莹剑划破韩立手腕,鲜血流出,书写血咒符文。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "writing blood curse runes",
+      "camera": "blood close-up",
+      "visual": {
+        "composition": "Golden Ying SwordcutHan Liwrist,blood flows out,writing blood curse runes",
+        "environment": "",
+        "character_pose": "",
+        "fx": "cut,blood flows out",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Golden Ying SwordcutHan Liwrist,blood flows out,writing blood curse runes。",
+      "narration": "金芒终划破肌肤,小七用那缕血在血咒文书上写符,符文即刻没入。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "dramatic",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "血咒文书血光大放,符文飞射而出,文书自燃。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "contract activation",
+      "camera": "contract close-up",
+      "visual": {
+        "composition": "blood curse documentblood light radiates,runes shoot out,document self-ignites",
+        "environment": "",
+        "character_pose": "",
+        "fx": "blood light radiates,runes shoot out,document self-ignites",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "blood curse documentblood light radiates,runes shoot out,document self-ignites。",
+      "narration": "韩立照做默念,符咒飞入两人体内,血咒文书随即化作碧焰。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "dramatic",
+        "detail": "natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "远处灰尘大起,一只巨大的陆行龟出现,车厢门打开。",
+      "mood": "grand",
+      "lighting": "night",
+      "action": "observing giant turtle",
+      "camera": "land turtle panoramic",
+      "visual": {
+        "composition": "distance dust rising,a giant land turtle appear,carriage door open",
+        "environment": "distance,dust rising",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "distance dust rising,a giant land turtle appear,carriage door open.",
+      "narration": "闲聊间远处尘浪翻滚",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "dramatic",
+        "detail": "natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "calm",
+      "lighting": "soft",
+      "action": "ending display",
+      "camera": "fixed shot",
+      "visual": {
+        "composition": "nightunder immortal citysilhouette,skyscatterspiritual light",
+        "environment": "night sky,immortal citysilhouette,spiritual lightparticles",
+        "character_pose": "",
+        "fx": "spiritual lightparticlesfall,fade outeffect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxiaending,night skyunder immortal citysilhouette,spiritual lightparticlesfall,calmmysteriousatmosphere,panoramic shot,cinematiclighting,4k",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第3集即将开始。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "dramatic",
+        "detail": "natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep2_full/scene_022.png"
+    }
+  ]
+}

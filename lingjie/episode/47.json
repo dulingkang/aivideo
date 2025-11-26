@@ -1,0 +1,553 @@
+{
+  "episode": 47,
+  "title": "Identity Exposed · First Battle Void Refinement",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第47集:身份暴露·初战炼虚。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "此妖虽然无法看到韩立的身影,但以其争斗经验自然一眼看出,有人施法隐匿在一旁,这才收走了小瓶,韩立一见妖风袭来,脸色微变,以他隐匿后的情形,可无法马上飞遁离开妖风的攻击范围。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "Sense Danger",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This demon though cannot see Han Li's figure, but with his battle experience naturally sees someone casting hidden spell aside, that's why took small bottle, Han Li sees demon wind attacking, face slightly changes, with hidden situation, cannot immediately escape demon wind's attack range",
+        "environment": "Sky above, Han Li invisible, demon wind approaching",
+        "character_pose": "Han Li alert, demon wind coming",
+        "fx": "Demon wind, approaching",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "This demon though cannot see Han Li's figure, but with his battle experience naturally sees someone casting hidden spell aside, that's why took small bottle, Han Li sees demon wind attacking, face slightly changes, with hidden situation, cannot immediately escape demon wind's attack range.",
+      "narration": "此妖虽然无法看到韩立的身影,但以其争斗经验自然一眼看出,有人施法隐匿在一旁,韩立一见妖风袭来,脸色微变。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一被这妖风卷入其中,太一化清符的神通立刻就会被破去的,在这一刹那,一旁的旭天却脸色一沉,单手掐诀对准卷来的妖风凝重一点,噗的一声,一道仿佛天外惊虹的血色剑光从旭天手中激射而出。",
+      "mood": "Rescuing",
+      "lighting": "Red Light",
+      "action": "Xutian Blocks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Once caught in this demon wind, Taiyi Huaqing Talisman's ability immediately breaks, at this instant, Xutian beside but face darkens, single hand forms seal toward rolling demon wind seriously points, puff sound, blood-colored sword light like heavenly rainbow shoots from Xutian's hand",
+        "environment": "Sky above, Xutian blocking",
+        "character_pose": "Xutian forming seal, blood sword shooting",
+        "fx": "Red sword light, shooting, blocking",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Once caught in this demon wind, Taiyi Huaqing Talisman's ability immediately breaks, at this instant, Xutian beside but face darkens, single hand forms seal toward rolling demon wind seriously points, puff sound, blood-colored sword light like heavenly rainbow shoots from Xutian's hand.",
+      "narration": "一被这妖风卷入其中,太一化清符的神通立刻就会被破去的,一旁的旭天却脸色一沉,一道血色剑光从旭天手中激射而出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一闪下,竟将那妖风从中间一斩而开,并直奔那寰天奇斩去,寰天奇吓了一跳,急忙单手虚空一抓,一只灰色妖爪在头顶浮现,随之向血光一抓而去,灰红两色光芒交织一起,竟一时相持不下。",
+      "mood": "Clashing",
+      "lighting": "Gray and Red Light",
+      "action": "Attack Blocked",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Flashes, actually splits demon wind from middle, directly slashes toward Huan Tianqi, Huan Tianqi startled, urgently single hand grabs void, gray demon claw appears above head, then grabs toward blood light, gray red two-color light interweaves, temporarily stalemate",
+        "environment": "Sky above, clashing",
+        "character_pose": "Blood sword vs demon claw, stalemate",
+        "fx": "Red sword light, gray claw, interweaving",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Flashes, actually splits demon wind from middle, directly slashes toward Huan Tianqi, Huan Tianqi startled, urgently single hand grabs void, gray demon claw appears above head, then grabs toward blood light, gray red two-color light interweaves, temporarily stalemate.",
+      "narration": "一闪下,竟将那妖风从中间一斩而开,并直奔那寰天奇斩去,灰红两色光芒交织一起,竟一时相持不下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gray and Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立见此大喜,身形隐匿之下,当即轻飘飘的向高空遁去,可就在这时,韩立忽然听到背后传来一声冷哼,你想到哪里去,随之他蓦然感到空中黄霞一闪,一只白色玉印在其头顶诡异浮现而出。",
+      "mood": "Trapped",
+      "lighting": "White Light",
+      "action": "Seal Descends",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Han Li sees this overjoyed, body hidden, immediately lightly floats toward high sky, but at this time, Han Li suddenly hears cold snort from behind, where do you think you're going, then suddenly feels yellow light flashes in air, white jade seal eerily appears above head",
+        "environment": "Sky above, seal appearing",
+        "character_pose": "Han Li trying to escape, seal above",
+        "fx": "Yellow light, white seal appearing",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Han Li sees this overjoyed, body hidden, immediately lightly floats toward high sky, but at this time, Han Li suddenly hears cold snort from behind, where do you think you're going, then suddenly feels yellow light flashes in air, white jade seal eerily appears above head.",
+      "narration": "韩立见此大喜,身形隐匿之下,当即轻飘飘的向高空遁去,可就在这时,韩立忽然听到背后传来一声冷哼。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一晃下化为十余丈大小,并一砸而下,正好将韩立罩在了其中,这一击快似闪电,连那旭天都来不及出手相助了,口中一声低呼,韩立早就见识过此玉印的威力,连和那独目巨人小山般大小的石棒硬碰,都可以完好无恙的。",
+      "mood": "Trapped",
+      "lighting": "White Light",
+      "action": "Seal Crushes Down",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Flickers transforms to dozen zhang size, and smashes down, just covers Han Li inside, this strike fast like lightning, even Xutian cannot help in time, mouth low exclamation, Han Li long seen this jade seal's power, even against one-eyed giant hill-sized stone rod, can remain intact",
+        "environment": "Sky above, seal crushing down",
+        "character_pose": "Seal descending, Han Li below",
+        "fx": "Large seal, crushing down, fast",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Flickers transforms to dozen zhang size, and smashes down, just covers Han Li inside, this strike fast like lightning, even Xutian cannot help in time, mouth low exclamation, Han Li long seen this jade seal's power, even against one-eyed giant hill-sized stone rod, can remain intact.",
+      "narration": "一晃下化为十余丈大小,并一砸而下,正好将韩立罩在了其中,这一击快似闪电,连那旭天都来不及出手相助了。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "自己绝对不可能轻易接下此击,他面色连变数下,轻叹了一口气,只见玉印下方原本看似空无一人的地方,银光一闪,突然现出了韩立的身影,他一拍自己天灵盖,一团青光包裹着一只小鼎浮现而出。",
+      "mood": "Revealing",
+      "lighting": "Green Light",
+      "action": "Reveal and Activate",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Himself absolutely cannot easily block this strike, face changes several times, sighs lightly, sees below jade seal originally seeming empty place, silver light flashes, suddenly appears Han Li's figure, he slaps own crown, green light mass wraps small cauldron appears",
+        "environment": "Sky above, Han Li revealing, cauldron appearing",
+        "character_pose": "Han Li appearing, cauldron emerging",
+        "fx": "Silver light, Han Li appearing, green cauldron",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Himself absolutely cannot easily block this strike, face changes several times, sighs lightly, sees below jade seal originally seeming empty place, silver light flashes, suddenly appears Han Li's figure, he slaps own crown, green light mass wraps small cauldron appears.",
+      "narration": "自己绝对不可能轻易接下此击,他面色连变数下,轻叹了一口气,银光一闪,突然现出了韩立的身影。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "接着鼎盖一开,一阵清鸣声从鼎中发出,随之无数道青丝喷射而出,交织闪烁下,瞬间形成了一只光网,正好托向迎头砸下之物,大印毫不留情的落到了青色光网之上。",
+      "mood": "Blocking",
+      "lighting": "Green Light",
+      "action": "Form Light Net",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Then cauldron lid opens, clear chirping sound comes from cauldron, then countless cyan threads spray out, interweave and flash, instantly forms light net, just supports thing smashing down above head, large seal mercilessly falls on cyan light net",
+        "environment": "Sky above, light net forming",
+        "character_pose": "Cauldron opening, light net forming, seal falling",
+        "fx": "Cyan threads, light net, seal falling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Then cauldron lid opens, clear chirping sound comes from cauldron, then countless cyan threads spray out, interweave and flash, instantly forms light net, just supports thing smashing down above head, large seal mercilessly falls on cyan light net.",
+      "narration": "接着鼎盖一开,一阵清鸣声从鼎中发出,随之无数道青丝喷射而出,瞬间形成了一只光网,正好托向迎头砸下之物。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "轰隆隆的一阵爆裂声传出,那玉印果然非比寻常,青网一接触下就开始寸寸的断裂,不过虚天鼎毕竟是通天灵宝,喷出的光丝一荡之下,仍然让玉印下落之势为之一顿,趁此机会,韩立两手掐诀。",
+      "mood": "Resisting",
+      "lighting": "Green and White Light",
+      "action": "Light Net Breaking",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Rumbling explosion sounds, that jade seal indeed extraordinary, cyan net upon contact begins breaking inch by inch, but Xutian Cauldron after all Heavenly Spirit Treasure, sprayed threads shake, still makes jade seal's falling momentum pause, seizing opportunity, Han Li two hands form seals",
+        "environment": "Sky above, net breaking, seal pausing",
+        "character_pose": "Net breaking, Han Li forming seals",
+        "fx": "Cyan net breaking, seal pausing, explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Rumbling explosion sounds, that jade seal indeed extraordinary, cyan net upon contact begins breaking inch by inch, but Xutian Cauldron after all Heavenly Spirit Treasure, sprayed threads shake, still makes jade seal's falling momentum pause, seizing opportunity, Han Li two hands form seals.",
+      "narration": "轰隆隆的一阵爆裂声传出,那玉印果然非比寻常,青网一接触下就开始寸寸的断裂,不过虚天鼎毕竟是通天灵宝。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green and White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "背后雷鸣声一起,青白色羽翅浮现而出,接着他身形一扭,就化为一道白丝,和头顶小鼎一同不见了,大印这才破尽青网砸下,自然落到了空处,这时,三十佘丈外青色电弧一闪,韩立身形才无声无息的显露而出。",
+      "mood": "Escaping",
+      "lighting": "Green and White Light",
+      "action": "Teleport Away",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Behind thunder sounds, cyan-white feathered wings appear, then body twists, transforms into white thread, and small cauldron above head together disappear, large seal then breaks cyan net completely smashes down, naturally hits empty space, at this time, thirty zhang away cyan lightning arc flashes, Han Li's figure silently appears",
+        "environment": "Sky above, teleporting",
+        "character_pose": "Han Li teleporting, appearing distant",
+        "fx": "Cyan-white wings, white thread, lightning arc, teleporting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Behind thunder sounds, cyan-white feathered wings appear, then body twists, transforms into white thread, and small cauldron above head together disappear, large seal then breaks cyan net completely smashes down, naturally hits empty space, at this time, thirty zhang away cyan lightning arc flashes, Han Li's figure silently appears.",
+      "narration": "背后雷鸣声一起,青白色羽翅浮现而出,接着他身形一扭,就化为一道白丝,和头顶小鼎一同不见了。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green and White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "你怎会驱使这些宝物,你不是噬炎,血云中突然响起了旭天难以置信的声音,随即血云翻滚,一个数寸高人影浮现在云上,他满脸惊怒望向韩立,正是玄灵旭天,你不是灵族,是人族修士。",
+      "mood": "Exposed",
+      "lighting": "Red Light",
+      "action": "Identity Exposed",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "How can you control these treasures, you're not Shiyan, blood cloud suddenly sounds Xutian's unbelievable voice, then blood cloud rolls, several inch tall figure appears on cloud, face full of shock and anger looks at Han Li, it's Xuangling Xutian, you're not spirit race, you're human cultivator",
+        "environment": "Sky above, Xutian appearing",
+        "character_pose": "Xutian shocked, angry, realizing",
+        "fx": "Blood cloud rolling, Xutian appearing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "How can you control these treasures, you're not Shiyan, blood cloud suddenly sounds Xutian's unbelievable voice, then blood cloud rolls, several inch tall figure appears on cloud, face full of shock and anger looks at Han Li, it's Xuangling Xutian, you're not spirit race, you're human cultivator.",
+      "narration": "你怎会驱使这些宝物,你不是噬炎,血云中突然响起了旭天难以置信的声音,一个数寸高人影浮现在云上。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立原先所在位置的背后,光霞闪动,黄粱灵君的身影也显露而出,满脸的惊讶,寰天奇也趁机操纵妖爪,一把抓散了血色剑光,同时自己连闪几下,就出现在了黄粱灵君的一侧,同样惊疑的打量着韩立。",
+      "mood": "Surrounded",
+      "lighting": "Mixed Lighting",
+      "action": "Surrounded by Three",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Behind Han Li's original position, light flashes, Huangliang Spirit Lord's figure also appears, face full of surprise, Huan Tianqi also seizes opportunity controls demon claw, grabs and disperses blood-colored sword light, simultaneously flashes several times, appears beside Huangliang Spirit Lord, also suspiciously examines Han Li",
+        "environment": "Sky above, three surrounding",
+        "character_pose": "Han Li surrounded, three examining",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Behind Han Li's original position, light flashes, Huangliang Spirit Lord's figure also appears, face full of surprise, Huan Tianqi also seizes opportunity controls demon claw, grabs and disperses blood-colored sword light, simultaneously flashes several times, appears beside Huangliang Spirit Lord, also suspiciously examines Han Li.",
+      "narration": "韩立原先所在位置的背后,光霞闪动,黄粱灵君的身影也显露而出,满脸的惊讶,寰天奇也出现在了黄粱灵君的一侧。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "面对三位全都吃了一惊的炼虚级存在,韩立却没有再多说一句的意思,只是两手掐诀的一张口,一团精血喷出了体外,随即浓浓血雾,一下将他身形淹没进了其中,想跑,旭天一见此景,一眼就看出了这是一种高明的遁术。",
+      "mood": "Preparing Escape",
+      "lighting": "Red Light",
+      "action": "Prepare Blood Escape",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Facing three all shocked Void Refinement level existences, Han Li has no intention to say more, just two hands form seals opens mouth, essence blood spits out, then thick blood mist, instantly submerges his figure inside, want to escape, Xutian sees this, immediately sees this is high-level escape technique",
+        "environment": "Sky above, blood mist forming",
+        "character_pose": "Han Li in blood mist, Xutian realizing",
+        "fx": "Blood mist, forming escape",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Facing three all shocked Void Refinement level existences, Han Li has no intention to say more, just two hands form seals opens mouth, essence blood spits out, then thick blood mist, instantly submerges his figure inside, want to escape, Xutian sees this, immediately sees this is high-level escape technique.",
+      "narration": "面对三位全都吃了一惊的炼虚级存在,韩立却没有再多说一句的意思,只是两手掐诀的一张口,一团精血喷出了体外。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "大怒的说道,随后他身下血云一动,就要扑了过去,哼,旭天道友何必如此心急,寰某再领教一下你的血煞灵莲,黄粱兄,既然是人族修士,那人就交给你了,寰天奇瞬间半妖化起来,身形一晃,化为一道流光扑向了旭天。",
+      "mood": "Dividing Enemies",
+      "lighting": "Mixed Lighting",
+      "action": "Split Battle",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Angrily says, then blood cloud below moves, about to pounce, humph, Fellow Daoist Xutian why so impatient, I'll experience your Blood Fiend Spirit Lotus again, Brother Huangliang, since it's human cultivator, leave that person to you, Huan Tianqi instantly half-beast transforms, body flickers, transforms into light stream pounces toward Xutian",
+        "environment": "Sky above, battle splitting",
+        "character_pose": "Huan Cangqi half-beast, pouncing at Xutian",
+        "fx": "Light stream, transforming",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Angrily says, then blood cloud below moves, about to pounce, humph, Fellow Daoist Xutian why so impatient, I'll experience your Blood Fiend Spirit Lotus again, Brother Huangliang, since it's human cultivator, leave that person to you, Huan Tianqi instantly half-beast transforms, body flickers, transforms into light stream pounces toward Xutian.",
+      "narration": "大怒的说道,随后他身下血云一动,就要扑了过去,寰天奇瞬间半妖化起来,化为一道流光扑向了旭天。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "同时口中发出阴森的话语声,放心,区区一名化神修士,就算有一件灵宝,也绝逃不出我手心的,黄粱灵君盯着韩立眼也不眨一下,淡然的说道,他竟然一眼就看出韩立的虚天鼎是一件灵宝。",
+      "mood": "Confident",
+      "lighting": "Spirit Light",
+      "action": "Huangliang Confident",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Simultaneously mouth emits sinister voice, rest assured, mere Deity Transformation cultivator, even with one Spirit Treasure, absolutely cannot escape my grasp, Huangliang Spirit Lord stares at Han Li without blinking, calmly says, he actually immediately sees Han Li's Xutian Cauldron is Spirit Treasure",
+        "environment": "Sky above, Huangliang confident",
+        "character_pose": "Huangliang staring, confident",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Simultaneously mouth emits sinister voice, rest assured, mere Deity Transformation cultivator, even with one Spirit Treasure, absolutely cannot escape my grasp, Huangliang Spirit Lord stares at Han Li without blinking, calmly says, he actually immediately sees Han Li's Xutian Cauldron is Spirit Treasure.",
+      "narration": "放心,区区一名化神修士,就算有一件灵宝,也绝逃不出我手心的,黄粱灵君盯着韩立眼也不眨一下,淡然的说道。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君话语刚落,一张口,一道绿色小剑仿佛蛟龙般的喷出,只是一晃,就到了血雾上空,毫不留情的一斩而下,当的一声轻响,同样一道金光从血雾中射出,虽然被一弹而开,但一击的挡下了绿虹。",
+      "mood": "Blocking",
+      "lighting": "Green and Golden Light",
+      "action": "Sword Clash",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's words just finished, opens mouth, green small sword like dragon sprays out, just flickers, arrives above blood mist, mercilessly slashes down, clang sound, similarly golden light shoots from blood mist, though bounced away, but blocks green rainbow with one strike",
+        "environment": "Sky above, swords clashing",
+        "character_pose": "Green sword vs golden sword, clashing",
+        "fx": "Green sword, golden sword, clashing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's words just finished, opens mouth, green small sword like dragon sprays out, just flickers, arrives above blood mist, mercilessly slashes down, clang sound, similarly golden light shoots from blood mist, though bounced away, but blocks green rainbow with one strike.",
+      "narration": "黄粱灵君话语刚落,一张口,一道绿色小剑仿佛蛟龙般的喷出,就到了血雾上空,毫不留情的一斩而下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green and Golden Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "现出了一口尺许长的金色飞剑,黄粱灵君冷笑一声,单手冲绿虹一点指,绿虹一扑而下,立刻和金色飞剑交织到了一起,光芒大放的将金光压得光芒大敛,随后绿虹滴溜溜一转,化为一团丈许大的绿色剑轮。",
+      "mood": "Pressing",
+      "lighting": "Green Light",
+      "action": "Form Sword Wheel",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Appears chi-sized long golden flying sword, Huangliang Spirit Lord snorts coldly, single hand points at green rainbow, green rainbow pounces down, immediately interweaves with golden flying sword, light brightens suppresses golden light dims, then green rainbow spins, transforms into zhang-sized green sword wheel",
+        "environment": "Sky above, sword wheel forming",
+        "character_pose": "Green rainbow, golden sword, sword wheel forming",
+        "fx": "Green rainbow, golden sword, sword wheel",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Appears chi-sized long golden flying sword, Huangliang Spirit Lord snorts coldly, single hand points at green rainbow, green rainbow pounces down, immediately interweaves with golden flying sword, light brightens suppresses golden light dims, then green rainbow spins, transforms into zhang-sized green sword wheel.",
+      "narration": "现出了一口尺许长的金色飞剑,绿虹一扑而下,立刻和金色飞剑交织到了一起,化为一团丈许大的绿色剑轮。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "极速转动间,就要将中间的飞剑搅成粉碎,一阵金属摩擦刺耳声音传出,金色飞剑几乎黯淡的只剩一丝,但在剑轮狂斩之下,竟然安然无恙,丝毫无损,反而此飞剑,硬生生的缠住了青虹,让其无法落下。",
+      "mood": "Resisting",
+      "lighting": "Green and Golden Light",
+      "action": "Sword Resists",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Extremely fast rotating, about to shred flying sword inside to pieces, metal friction piercing sound, golden flying sword almost dims to thread, but under sword wheel's fierce slashing, actually safe and sound, undamaged, instead this flying sword, hard tangles green rainbow, makes it cannot fall",
+        "environment": "Sky above, sword resisting",
+        "character_pose": "Golden sword in sword wheel, resisting",
+        "fx": "Sword wheel rotating, golden sword resisting",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Extremely fast rotating, about to shred flying sword inside to pieces, metal friction piercing sound, golden flying sword almost dims to thread, but under sword wheel's fierce slashing, actually safe and sound, undamaged, instead this flying sword, hard tangles green rainbow, makes it cannot fall.",
+      "narration": "极速转动间,就要将中间的飞剑搅成粉碎,金色飞剑几乎黯淡的只剩一丝,但在剑轮狂斩之下,竟然安然无恙。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Green and Golden Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_018.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第48集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep47_full/scene_019.png"
+    }
+  ]
+}
+

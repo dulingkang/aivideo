@@ -1,0 +1,415 @@
+{
+  "episode": 54,
+  "title": "Heavenly Tribulation Descends · Two-Color Lightning",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第54集:天劫降临·两色雷劫。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "整个天变的过程,竟然仅仅一瞬间的工夫,老者甚至还未来得及先将窗帘合上。",
+      "mood": "Sudden",
+      "lighting": "Dark",
+      "action": "Sudden Sky Change",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Entire sky change process, actually just instant, old man even hasn't had time close curtain",
+        "environment": "Inside carriage, old man shocked",
+        "character_pose": "Old man surprised, sky darkening",
+        "fx": "Dark clouds, sudden change",
+        "motion": {
+          "type": "push_in",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Entire sky change process, actually just instant, old man even hasn't had time close curtain.",
+      "narration": "整个天变的过程,竟然仅仅一瞬间的工夫,老者甚至还未来得及先将窗帘合上。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "那是什么……中年骑士身处兽车外,目光一扫之下,蓦然盯着巨山高耸入云的顶部,吃惊的失声起来。",
+      "mood": "Shocked",
+      "lighting": "Dark and Dramatic",
+      "action": "Knight Sees Sky",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "What is that, middle-aged knight outside carriage, gaze sweeps, suddenly stares at giant mountain's towering peak, shocked exclaims",
+        "environment": "Outside carriage, dark sky, mountain peak",
+        "character_pose": "Knight shocked, looking at mountain",
+        "fx": "Dark clouds, lightning on mountain peak",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "What is that, middle-aged knight outside carriage, gaze sweeps, suddenly stares at giant mountain's towering peak, shocked exclaims.",
+      "narration": "那是什么,中年骑士蓦然盯着巨山高耸入云的顶部,吃惊的失声起来,看到天劫降临。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dark and Dramatic",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "老者眉头一皱,抬手蓦然朝车厢噔噔的敲击了三下。兽车一顿,马上停了下来。",
+      "mood": "Alert",
+      "lighting": "Dark",
+      "action": "Stops Carriage",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Old man's eyebrows wrinkle, hand raises suddenly knocks carriage three times, beast carriage stops, immediately stops",
+        "environment": "Outside carriage, old man alert",
+        "character_pose": "Old man knocking, carriage stopping",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Old man's eyebrows wrinkle, hand raises suddenly knocks carriage three times, beast carriage stops, immediately stops.",
+      "narration": "老者眉头一皱,抬手蓦然朝车厢敲击了三下,兽车一顿马上停了下来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "老者一推车门,人走下了兽车,出现在了车外的平地上,然后同样朝巨山之顶所在的高空望去。结果脸色顿时大变起来。",
+      "mood": "Shocked",
+      "lighting": "Dark and Dramatic",
+      "action": "Sees Tribulation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Old man pushes carriage door, person gets off beast carriage, appears on ground outside, then also looks at giant mountain peak's sky, result face immediately greatly changes",
+        "environment": "Outside carriage, old man looking at sky",
+        "character_pose": "Old man shocked, looking up",
+        "fx": "Dark clouds, lightning, dramatic sky",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Old man pushes carriage door, person gets off beast carriage, appears on ground outside, then also looks at giant mountain peak's sky, result face immediately greatly changes.",
+      "narration": "老者一推车门走下兽车,朝巨山之顶所在的高空望去,结果脸色顿时大变起来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dark and Dramatic",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "天劫,这是有修士在度天劫！有些奇怪,这好像不是小天劫,但也不像大天劫。老者惊疑不定的望着远处山顶电蛇狂舞的天象,有些发怔了。",
+      "mood": "Puzzled",
+      "lighting": "Dark with Lightning",
+      "action": "Recognizes Tribulation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Heavenly tribulation, this is cultivator undergoing tribulation, somewhat strange, this seems not small tribulation, but also not like great tribulation, old man uncertain looks at distant mountain peak electric snakes dancing wildly, somewhat dazed",
+        "environment": "Outside, old man looking at mountain peak",
+        "character_pose": "Old man puzzled, looking at sky",
+        "fx": "Lightning snakes, dark clouds",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Heavenly tribulation, this is cultivator undergoing tribulation, somewhat strange, this seems not small tribulation, but also not like great tribulation, old man uncertain looks at distant mountain peak electric snakes dancing wildly, somewhat dazed.",
+      "narration": "天劫,这是有修士在度天劫,有些奇怪,这好像不是小天劫,但也不像大天劫。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Dark with Lightning",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "只见远处的巨山顶部,早已变的漆黑如同锅底一般,一道道金银两色的电弧在云中出没跳跃不止,沉闷的轰隆隆之声正是从那边传来。",
+      "mood": "Dramatic",
+      "lighting": "Dark with Gold and Silver Lightning",
+      "action": "Two-Color Lightning",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "See distant giant mountain peak, already became pitch black like pot bottom, streams of gold silver two-color electric arcs appear disappear jump in clouds, deep rumbling sounds come from there",
+        "environment": "Mountain peak, dark clouds, two-color lightning",
+        "character_pose": "",
+        "fx": "Gold and silver lightning arcs, dark clouds",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "See distant giant mountain peak, already became pitch black like pot bottom, streams of gold silver two-color electric arcs appear disappear jump in clouds, deep rumbling sounds come from there.",
+      "narration": "只见远处的巨山顶部,早已变的漆黑如同锅底一般,一道道金银两色的电弧在云中跳跃。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with Gold and Silver Lightning",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "而在黑云稍下些的地方,一股股白濛濛飓风在狂舞呼啸着,不停击打着山头,让山石崩裂,树木横飞。",
+      "mood": "Destructive",
+      "lighting": "Dark with White Wind",
+      "action": "Hurricane Attacks",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "And below dark clouds, streams of white misty hurricanes wildly dance howling, continuously strike mountain peak, make mountain rocks crack, trees fly",
+        "environment": "Mountain peak, hurricanes attacking",
+        "character_pose": "",
+        "fx": "White hurricanes, rocks cracking, trees flying",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "And below dark clouds, streams of white misty hurricanes wildly dance howling, continuously strike mountain peak, make mountain rocks crack, trees fly.",
+      "narration": "而在黑云稍下些的地方,一股股白濛濛飓风在狂舞呼啸着,不停击打着山头,让山石崩裂。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with White Wind",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "这时整个车队全都停了下来,那些骑士也都一个个目瞪口呆的望着这种也许一生都无法目睹的奇景。",
+      "mood": "Awe",
+      "lighting": "Dark",
+      "action": "Caravan Stops",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "At this time entire caravan all stops, those knights also one by one dumbfounded watch this wonder maybe cannot witness in lifetime",
+        "environment": "Caravan stopped, knights watching",
+        "character_pose": "Knights awestruck, watching sky",
+        "fx": "Dark sky, dramatic atmosphere",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this time entire caravan all stops, those knights also one by one dumbfounded watch this wonder maybe cannot witness in lifetime.",
+      "narration": "这时整个车队全都停了下来,那些骑士也都一个个目瞪口呆的望着这种一生都无法目睹的奇景。",
+      "face_style_auto": {
+        "expression": "Awestruck",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "而其他几辆兽车中也有几人腾空飞起,略一盘旋后,就纷纷朝老者这边飞遁而来。",
+      "mood": "Alert",
+      "lighting": "Dark",
+      "action": "Cultivators Fly Over",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "And other several beast carriages also several people fly up, slightly circle, then all fly toward old man",
+        "environment": "Sky above caravan, cultivators flying",
+        "character_pose": "Cultivators flying toward old man",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "right_to_left",
+          "speed": "medium"
+        }
+      },
+      "prompt": "And other several beast carriages also several people fly up, slightly circle, then all fly toward old man.",
+      "narration": "而其他几辆兽车中也有几人腾空飞起,略一盘旋后,就纷纷朝老者这边飞遁而来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "火老,这是哪位前辈在此度天劫,你老可看出是何种天劫。似乎不是小天劫,难道是哪位炼虚期的前辈隐居在山中。一名面孔英俊的黄袍青年,似乎是这群人的为首之人,一到老者这边立刻带头降了下来,并神态恭敬的问道。",
+      "mood": "Respectful Question",
+      "lighting": "Dark",
+      "action": "Young Cultivator Asks",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Fire Elder, which senior undergoing tribulation here, can you see what kind tribulation, seems not small tribulation, could be Refining Void senior hidden in mountain, handsome yellow-robed young man, seems this group's leader, arrives old man immediately lands, respectfully asks",
+        "environment": "Outside carriage, young cultivator asking",
+        "character_pose": "Young cultivator respectfully asking old man",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Fire Elder, which senior undergoing tribulation here, can you see what kind tribulation, seems not small tribulation, could be Refining Void senior hidden in mountain, handsome yellow-robed young man, seems this group's leader, arrives old man immediately lands, respectfully asks.",
+      "narration": "火老,这是哪位前辈在此度天劫,似乎不是小天劫,难道是哪位炼虚期的前辈隐居在山中。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "不是大天劫,真正的大天劫我见过一次,降下的天雷全部都是紫金色的,威力远比这里的要猛烈得多。老者摇摇头,非常肯定的否认道。",
+      "mood": "Certain",
+      "lighting": "Dark",
+      "action": "Denies Great Tribulation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Not great tribulation, true great tribulation I've seen once, descending heavenly thunder all purple-gold, power far more violent than here, old man shakes head, very certain denies",
+        "environment": "Outside carriage, old man speaking",
+        "character_pose": "Old man shaking head, certain",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Not great tribulation, true great tribulation I've seen once, descending heavenly thunder all purple-gold, power far more violent than here, old man shakes head, very certain denies.",
+      "narration": "不是大天劫,真正的大天劫我见过一次,降下的天雷全部都是紫金色的,威力远比这里猛烈。",
+      "face_style_auto": {
+        "expression": "Certain",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "但小天劫天雷也不是金银色的,应该是青色天雷才对。我等数次亲眼见过师门长老度过的,绝不会错。黄袍青年脸带古怪之色的说道。",
+      "mood": "Puzzled",
+      "lighting": "Dark",
+      "action": "Young Cultivator Confused",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "But small tribulation heavenly thunder also not gold-silver color, should be cyan heavenly thunder, we several times witnessed sect elders undergo, definitely not wrong, yellow-robed young man says with strange expression",
+        "environment": "Outside carriage, young cultivator speaking",
+        "character_pose": "Young cultivator puzzled, speaking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But small tribulation heavenly thunder also not gold-silver color, should be cyan heavenly thunder, we several times witnessed sect elders undergo, definitely not wrong, yellow-robed young man says with strange expression.",
+      "narration": "但小天劫天雷也不是金银色的,应该是青色天雷才对,我等数次亲眼见过师门长老度过的。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "此天劫看起来比一般小天劫猛烈得多,也不可能是妖兽的化形之劫。妖兽的化形雷劫打下的天雷,一律都是银白色的。老者脸上凝重,似乎也难以判断的。",
+      "mood": "Serious",
+      "lighting": "Dark",
+      "action": "Difficult to Judge",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This tribulation looks far more violent than normal small tribulation, also cannot be demon beast's transformation tribulation, demon beast transformation thunder tribulation's heavenly thunder all silver-white, old man's face serious, seems also hard to judge",
+        "environment": "Outside carriage, old man serious",
+        "character_pose": "Old man serious, thinking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "This tribulation looks far more violent than normal small tribulation, also cannot be demon beast's transformation tribulation, demon beast transformation thunder tribulation's heavenly thunder all silver-white, old man's face serious, seems also hard to judge.",
+      "narration": "此天劫看起来比一般小天劫猛烈得多,也不可能是妖兽的化形之劫,老者脸上凝重难以判断。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_014.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第55集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep54_full/scene_015.png"
+    }
+  ]
+}
+

@@ -1,0 +1,655 @@
+{
+  "episode": 25,
+  "title": "Silver Core Stone Competition · Refusal to Give In",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第25集:银芯石之争·寸步不让。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹一听银芯石的名字,突然变得惊喜交加,钱师兄虽然一愣但马上反应过来,单手急忙虚空一抓。",
+      "mood": "Urgent",
+      "lighting": "Interior Dim",
+      "action": "Grab for Box",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Miss Lü hears Silver Core Stone name, suddenly overjoyed, Senior Brother Qian reacts, reaches out with one hand",
+        "environment": "",
+        "character_pose": "Young cultivator grabbing, woman excited",
+        "fx": "Green light shooting out",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü hears Silver Core Stone name, suddenly overjoyed, Senior Brother Qian reacts, reaches out with one hand.",
+      "narration": "吕师妹一听银芯石的名字，突然变得惊喜交加，钱师兄反应过来，单手急忙虚空一抓。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "一股青色霞光直接冲那个装着晶石的锦盒滚滚卷去,韩立听到银芯石名字时面色一动,等到青年出手脸色一沉。",
+      "mood": "Alert",
+      "lighting": "Interior Dim",
+      "action": "React to Grab",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Green light shoots toward crystal box, Han Li's face moves at Silver Core Stone name, darkens when young man acts",
+        "environment": "",
+        "character_pose": "Han Li alert, green light coming",
+        "fx": "Green light, tension",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green light shoots toward crystal box, Han Li's face moves at Silver Core Stone name, darkens when young man acts.",
+      "narration": "一股青色霞光直接冲向装着晶石的锦盒，韩立听到银芯石名字时面色一动，脸色一沉。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立一只手臂一动,嘎巴一声轻响,手臂暴涨数尺,一把将两只锦盒抓到手中。",
+      "mood": "Powerful",
+      "lighting": "Interior Dim",
+      "action": "Grab Boxes First",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li's arm moves, cracking sound, arm extends several feet, grabs both boxes in hand",
+        "environment": "",
+        "character_pose": "Han Li's arm extending, grabbing boxes",
+        "fx": "Arm extension, golden glow",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's arm moves, cracking sound, arm extends several feet, grabs both boxes in hand.",
+      "narration": "韩立一只手臂一动，嘎巴一声轻响，手臂暴涨数尺，一把将两只锦盒抓到手中。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "这时青霞才堪堪到了跟前,竟然丝毫没有停下之意,直奔韩立身上卷来,想要强行抢回。",
+      "mood": "Aggressive",
+      "lighting": "Interior Dim",
+      "action": "Green Light Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Green light reaches Han Li, shows no sign of stopping, rushes toward Han Li to snatch boxes",
+        "environment": "",
+        "character_pose": "Green light attacking, Han Li holding boxes",
+        "fx": "Green light, aggressive attack",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green light reaches Han Li, shows no sign of stopping, rushes toward Han Li to snatch boxes.",
+      "narration": "这时青霞才堪堪到了跟前，竟然丝毫没有停下之意，直奔韩立身上卷来，想要抢回。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立冷哼一声,肩膀一晃,身体仿佛弹簧般向后滑出丈许远,同时一只金灿灿手掌对准青霞,一拳击出。",
+      "mood": "Powerful",
+      "lighting": "Interior Dim",
+      "action": "Counter Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li snorts coldly, shoulder shifts, body slides back like spring, golden palm punches at green light",
+        "environment": "",
+        "character_pose": "Han Li punching, golden fist",
+        "fx": "Golden light, punch impact",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li snorts coldly, shoulder shifts, body slides back like spring, golden palm punches at green light.",
+      "narration": "韩立冷哼一声,肩膀一晃,身体仿佛弹簧般向后滑出丈许远,同时一只金灿灿手掌对准青霞,一拳击出。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.93
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "噗嗤一声,青霞仿佛纸糊一般就被金色手掌洞穿而过,一下溃灭消失。",
+      "mood": "Triumphant",
+      "lighting": "Interior Dim",
+      "action": "Shatter Green Light",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Puff sound, green light like paper torn apart by golden palm, instantly destroyed and vanished",
+        "environment": "",
+        "character_pose": "Golden fist shattering green light",
+        "fx": "Green light shattered, golden glow",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Puff sound, green light like paper torn apart by golden palm, instantly destroyed and vanished.",
+      "narration": "噗嗤一声,青霞仿佛纸糊一般就被金色手掌洞穿而过,一下溃灭消失。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄原本已经掐诀的双手,在韩立一显现身手后,面色微微一变,变得迟疑起来。",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "Realize Strength",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Senior Brother Qian's hands already forming seals, after Han Li shows strength, face changes slightly, becomes hesitant",
+        "environment": "",
+        "character_pose": "Young man shocked, hesitant",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian's hands already forming seals, after Han Li shows strength, face changes slightly, becomes hesitant.",
+      "narration": "钱师兄原本已经掐诀的双手,在韩立一显现身手后,面色微微一变,变得迟疑起来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄惊道:'高阶炼体士!'吕师妹叫住钱师兄,说可以好好谈谈,无须动手。",
+      "mood": "Calming",
+      "lighting": "Interior Dim",
+      "action": "Stop Fighting",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Senior Brother Qian exclaims: 'High-level body cultivator!' Miss Lü stops him, says can talk properly, no need to fight",
+        "environment": "",
+        "character_pose": "Young man shocked, woman stopping him",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian exclaims: 'High-level body cultivator!' Miss Lü stops him, says can talk properly, no need to fight.",
+      "narration": "钱师兄惊道:'高阶炼体士!'吕师妹叫住钱师兄,说可以好好谈谈,无须动手。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹聪颖异常地向掌柜问道:'这块银芯石应该还没有卖给这位道友吧,无论什么价格,我都愿意出双倍价钱。'",
+      "mood": "Negotiating",
+      "lighting": "Interior Dim",
+      "action": "Offer Double Price",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Miss Lü cleverly asks shopkeeper: 'This Silver Core Stone hasn't been sold yet, whatever price, I'll pay double.'",
+        "environment": "",
+        "character_pose": "Woman asking, shopkeeper listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü cleverly asks shopkeeper: 'This Silver Core Stone hasn't been sold yet, whatever price, I'll pay double.'",
+      "narration": "吕师妹聪颖异常地向掌柜问道:'这块银芯石应该还没有卖给这位道友吧,无论什么价格,我都愿意出双倍价钱。'",
+      "face_style_auto": {
+        "expression": "Clever",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老淡淡说道本店不是拍卖行,不是谁出的价高就给谁,而是讲究先来后到,除非韩道友不愿要了。",
+      "mood": "Firm",
+      "lighting": "Interior Dim",
+      "action": "Explain Rules",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xu Lao says calmly shop isn't auction house, not highest bidder wins, but first come first served, unless Han Li doesn't want it",
+        "environment": "",
+        "character_pose": "Shopkeeper firm, young cultivators listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao says calmly shop isn't auction house, not highest bidder wins, but first come first served, unless Han Li doesn't want it.",
+      "narration": "胥老淡淡说道本店不是拍卖行,不是谁出的价高就给谁,而是讲究先来后到,除非韩道友不愿要了。",
+      "face_style_auto": {
+        "expression": "Firm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立头也未抬一下,正将另一只锦盒打开,露出了一块灰扑扑的长方形矿石,表面光滑异常。",
+      "mood": "Focused",
+      "lighting": "Interior Dim",
+      "action": "Examine Second Box",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li doesn't even look up, opens other box, reveals gray rectangular ore, surface unusually smooth",
+        "environment": "",
+        "character_pose": "Han Li examining ore, ignoring others",
+        "fx": "Gray glow on ore",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li doesn't even look up, opens other box, reveals gray rectangular ore, surface unusually smooth.",
+      "narration": "韩立头也未抬一下,正将另一只锦盒打开,露出了一块灰扑扑的长方形矿石,表面光滑异常。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄盯着韩立,缓缓说道:'家师虬龙尊者,这件银芯石是吕师妹必得之物,我替吕师妹付双倍价钱,你将此物让出来。'",
+      "mood": "Threatening",
+      "lighting": "Interior Dim",
+      "action": "Threaten with Master",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Senior Brother Qian stares at Han Li, slowly says: 'My master is Qiu Long Venerable, this Silver Core Stone is necessary for Miss Lü, I'll pay double, give it to us.'",
+        "environment": "",
+        "character_pose": "Young man threatening, Han Li ignoring",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian stares at Han Li, slowly says: 'My master is Qiu Long Venerable, this Silver Core Stone is necessary for Miss Lü, I'll pay double, give it to us.'",
+      "narration": "钱师兄盯着韩立,缓缓说道:'家师虬龙尊者,这件银芯石是吕师妹必得之物,我替吕师妹付双倍价钱,你将此物让出来。'",
+      "face_style_auto": {
+        "expression": "Arrogant",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立盯着手中的灰色石条,用一根手指轻轻摩擦,眼皮没抬一下,平静说道:'不让!'",
+      "mood": "Resolute",
+      "lighting": "Interior Dim",
+      "action": "Refuse",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li stares at gray stone strip, rubs with finger, doesn't look up, calmly says: 'Won't give it.'",
+        "environment": "",
+        "character_pose": "Han Li focused on stone, calm",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stares at gray stone strip, rubs with finger, doesn't look up, calmly says: 'Won't give it.'",
+      "narration": "韩立盯着手中的灰色石条,用一根手指轻轻摩擦,眼皮没抬一下,平静说道:'不让!'",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄脸孔变得难看异常,根本没想到韩立会一口回绝,连思量都没有思量一下。",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "React to Refusal",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Senior Brother Qian's face becomes ugly, never expected Han Li would refuse outright without thinking",
+        "environment": "",
+        "character_pose": "Young man shocked, angry",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian's face becomes ugly, never expected Han Li would refuse outright without thinking.",
+      "narration": "钱师兄脸孔变得难看异常,根本没想到韩立会一口回绝,连思量都没有思量一下。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立望了青年一眼,平静说道:'也许这东西真对阁下同伴珍稀异常,但是你怎么知道在下就不需要此物了。'",
+      "mood": "Calm",
+      "lighting": "Interior Dim",
+      "action": "Explain Reason",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li looks at young man, calmly says: 'Maybe this item is precious to your companion, but how do you know I don't need it?'",
+        "environment": "",
+        "character_pose": "Han Li calm, young man frustrated",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li looks at young man, calmly says: 'Maybe this item is precious to your companion, but how do you know I don't need it?'",
+      "narration": "韩立望了青年一眼,平静说道:'也许这东西真对阁下同伴珍稀异常,但是你怎么知道在下就不需要此物了。'",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄目光冰冷下来,话语里隐隐带来一丝威胁之意,说道:'我说过了,钱某愿意付双倍的价钱!'",
+      "mood": "Threatening",
+      "lighting": "Interior Dim",
+      "action": "Increase Threat",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Senior Brother Qian's eyes turn cold, hidden threat in words, says: 'I said, I'm willing to pay double price!'",
+        "environment": "",
+        "character_pose": "Young man threatening, Han Li unmoved",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian's eyes turn cold, hidden threat in words, says: 'I said, I'm willing to pay double price!'",
+      "narration": "钱师兄目光冰冷下来,话语里隐隐带来一丝威胁之意,说道:'我说过了,钱某愿意付双倍的价钱!'",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立叹了一口气,喃喃说道:'在下并不缺灵石,阁下若肯掉头就走,在下宁愿付给阁下一笔灵石。'",
+      "mood": "Ironical",
+      "lighting": "Interior Dim",
+      "action": "Reverse Offer",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li sighs, mutters: 'I'm not short of spirit stones, if you turn and leave, I'd rather pay you some spirit stones.'",
+        "environment": "",
+        "character_pose": "Han Li mocking, young man angry",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li sighs, mutters: 'I'm not short of spirit stones, if you turn and leave, I'd rather pay you some spirit stones.'",
+      "narration": "韩立叹了一口气,喃喃说道:'在下并不缺灵石,阁下若肯掉头就走,在下宁愿付给阁下一笔灵石。'",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "毫不留情的回话,不但田兴脸色变的苍白无比,就是胥老也不禁露出几分讶色来。",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "Reactions",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Ruthless reply, not only Tian Xing's face turns pale, even Xu Lao shows surprise",
+        "environment": "",
+        "character_pose": "Tian Xing pale, old man surprised",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Ruthless reply, not only Tian Xing's face turns pale, even Xu Lao shows surprise.",
+      "narration": "毫不留情的回话,不但田兴脸色变的苍白无比,就是胥老也不禁露出几分讶色来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹打量了韩立数遍后,突然檀口一张说道:'阁下贵姓,师从那位前辈门下?说不定令师认得家祖呢!'",
+      "mood": "Inquiring",
+      "lighting": "Interior Dim",
+      "action": "Ask Background",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Miss Lü examines Han Li several times, suddenly asks: 'What's your name, which master do you study under? Maybe your master knows my ancestor!'",
+        "environment": "",
+        "character_pose": "Woman asking, Han Li calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü examines Han Li several times, suddenly asks: 'What's your name, which master do you study under? Maybe your master knows my ancestor!'",
+      "narration": "吕师妹打量了韩立数遍后,突然檀口一张说道:'阁下贵姓,师从那位前辈门下?说不定令师认得家祖呢!'",
+      "face_style_auto": {
+        "expression": "Clever",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立一笑,不置可否地说道:'在下一介散人,哪有什么师承。至于姓名不说也罢。'",
+      "mood": "Evasive",
+      "lighting": "Interior Dim",
+      "action": "Evade Questions",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li smiles, noncommittally says: 'I'm just a wanderer, no master. As for name, doesn't matter.'",
+        "environment": "",
+        "character_pose": "Han Li smiling, woman listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li smiles, noncommittally says: 'I'm just a wanderer, no master. As for name, doesn't matter.'",
+      "narration": "韩立一笑,不置可否地说道:'在下一介散人,哪有什么师承。至于姓名不说也罢。'",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第26集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep25_full/scene_022.png"
+    }
+  ]
+}
+

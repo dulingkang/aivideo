@@ -1,0 +1,636 @@
+{
+  "episode": 3,
+  "title": "Nanqizi & Elder Fu.Sand Beasts",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面由云雾弥漫的仙域天空淡入，金色卷轴舒展并闪烁灵光。",
+      "mood": "calm",
+      "lighting": "soft",
+      "action": "title reveal",
+      "camera": "static wide shot",
+      "visual": {
+        "composition": "Misty immortal clouds with a radiant golden scroll",
+        "environment": "Immortal sky,drifting clouds,warm golden light",
+        "character_pose": "",
+        "fx": "Glowing glyphs and light particles",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "misty immortal sky,golden scroll unfurling,drifting light particles,cinematic lighting",
+      "narration": "我是云卷仙音，欢迎收看第三集《南歧子与符老·沙虫兽》。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "车厢外响起脚步与敲门声，南歧子道长和符老抵达门口。",
+      "mood": "mysterious",
+      "lighting": "night",
+      "action": "hearing visitors",
+      "camera": "door close-up",
+      "visual": {
+        "composition": "Carriage door in shadow with silhouettes beyond",
+        "environment": "Night desert lit by lantern fire",
+        "character_pose": "",
+        "fx": "Gentle vibration from the knocks",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "lantern-lit carriage door,silhouettes of visiting cultivators knocking softly",
+      "narration": "柳儿在门后沉声询问，南歧子答复要探望韩立。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "韩立睁眼嘴角带笑，正好与蓝衫少女对视。",
+      "mood": "calm",
+      "lighting": "night",
+      "action": "waking up",
+      "camera": "face close-up",
+      "visual": {
+        "composition": "Close shot of Han Li reclining with gentle smile",
+        "environment": "Warm lamplight inside the carriage",
+        "character_pose": "Relaxed,eyes meeting the girl's",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li waking with a faint smile,warm lamplight interior,soft focus",
+      "narration": "她抬眼发现韩立已醒，含笑与她相望，眼中闪过一丝惊讶。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "车门推开，南歧子和符老步入昏暗的车厢。",
+      "mood": "serious",
+      "lighting": "night",
+      "action": "entering carriage",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Two elders framed by the doorway,robes catching lantern light",
+        "environment": "Tight carriage interior",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "carriage interior,wooden door opening,two robed elders entering,warm lantern light",
+      "narration": "香儿拉开车门，黄袍道士与白袍老者气息内敛地走了进来。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "符老说明此行是因为韩立把金刚诀修到第三层。",
+      "mood": "respectful",
+      "lighting": "night",
+      "action": "stating intent",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "White-robed elder gesturing while Han Li listens from the bed",
+        "environment": "Carriage interior with hanging charms",
+        "character_pose": "Han Li upright,calm",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "elder explaining mission to recovering cultivator inside lantern-lit carriage",
+      "narration": "符老笑言张奎坚持要他来见这位练到三层的年轻体修。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "南歧子轻触青色手环取出黄铜镜，韩立立刻留意。",
+      "mood": "curious",
+      "lighting": "night",
+      "action": "revealing artifact",
+      "camera": "ring close-up",
+      "visual": {
+        "composition": "Hand with azure ring summoning a copper mirror",
+        "environment": "",
+        "character_pose": "Han Li watching intently",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close-up of cultivator's wrist ring producing a copper mirror,soft teal glow",
+      "narration": "他抚过淡青手环取出一面铜镜，韩立心知那是高阶储物法器。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "铜镜对准韩立，青色光幕铺散检查全身。",
+      "mood": "mystical",
+      "lighting": "night",
+      "action": "diagnostic scan",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Mirror casting teal light across Han Li",
+        "environment": "",
+        "character_pose": "Han Li seated,calm",
+        "fx": "Runic light beams",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "copper mirror projecting teal diagnostic light over seated cultivator",
+      "narration": "南歧子闭目运转法力，一片青光笼罩住韩立。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "南歧子睁眼神色骇然，提醒韩立经脉已大半裂开。",
+      "mood": "grave",
+      "lighting": "night",
+      "action": "diagnosis",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Concerned daoist facing Han Li",
+        "environment": "",
+        "character_pose": "Han Li listening quietly",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "concerned daoist warning patient,tense carriage interior",
+      "narration": "片刻后他惊叹韩立经脉破损严重，必须立刻调养。",
+      "face_style_auto": {
+        "expression": "curious",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "符老扣住韩立手腕，袖中骤射出细细金丝。",
+      "mood": "mystical",
+      "lighting": "night",
+      "action": "casting golden needles",
+      "camera": "hand close-up",
+      "visual": {
+        "composition": "Old hand gripping the wrist while gold filaments extend",
+        "environment": "",
+        "character_pose": "Han Li's limp arm",
+        "fx": "Sparkling golden threads",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close-up of elder launching golden acupuncture threads into patient's wrist",
+      "narration": "符老上前按住他的手腕，袖里金丝破空而出。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "金针没入穴道，韩立猛地坐直却依旧僵硬。",
+      "mood": "tense",
+      "lighting": "night",
+      "action": "forced upright",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Han Li sitting bolt upright with golden needles along his torso",
+        "environment": "",
+        "character_pose": "Rigid,eyes forward",
+        "fx": "Needles glowing faintly",
+        "motion": {
+          "type": "pan",
+          "direction": "up",
+          "speed": "medium"
+        }
+      },
+      "prompt": "patient studded with glowing gold needles,suddenly sitting upright",
+      "narration": "金色细针扎满全身，韩立倏然坐起仍像木人。",
+      "face_style_auto": {
+        "expression": "serious",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "香儿把丝被垫在韩立背后，让他半靠休息。",
+      "mood": "gentle",
+      "lighting": "night",
+      "action": "arranging support",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Girl placing cushions behind Han Li",
+        "environment": "",
+        "character_pose": "Han Li leaning back with needles in place",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "young attendant placing silk cushions behind recovering cultivator",
+      "narration": "香儿递上带香丝被垫在他身后，韩立低声道谢。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "符老再度抖手，漫天金芒把韩立身躯包裹。",
+      "mood": "mystical",
+      "lighting": "night",
+      "action": "second acupuncture wave",
+      "camera": "wide shot",
+      "visual": {
+        "composition": "Room filled with golden threads swirling around Han Li",
+        "environment": "",
+        "character_pose": "Han Li encased in light",
+        "fx": "Radiant golden arcs",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide shot of golden acupuncture light enveloping seated cultivator",
+      "narration": "符老再次抖动金针，片片金芒瞬间刺遍韩立全身。",
+      "face_style_auto": {
+        "expression": "surprised",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "酸麻暖流涌上四肢，韩立缓缓抬起双臂。",
+      "mood": "hopeful",
+      "lighting": "night",
+      "action": "testing movement",
+      "camera": "arm close-up",
+      "visual": {
+        "composition": "Hands lifting with needles still shining",
+        "environment": "",
+        "character_pose": "Controlled,deliberate motion",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "up",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close-up of recovering cultivator lifting hands,golden needles still embedded",
+      "narration": "清凉麻意沿着手臂涌动，韩立终于举起双臂。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "车厢里众人倒吸凉气，南歧子也称赞符老针法。",
+      "mood": "impressed",
+      "lighting": "night",
+      "action": "reacting",
+      "camera": "wide shot",
+      "visual": {
+        "composition": "Group of attendants watching Han Li regain motion",
+        "environment": "Carriage interior crowded with onlookers",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide shot of attendants gasping in lantern-lit carriage,elders nodding in approval",
+      "narration": "一阵惊叹在车厢内响起，南歧子连连夸赞符老医术。",
+      "face_style_auto": {
+        "expression": "focused",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "符老收针后，韩立活动双腿并站起行走。",
+      "mood": "grateful",
+      "lighting": "night",
+      "action": "standing up",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Han Li rising from bedding with supportive attendants nearby",
+        "environment": "",
+        "character_pose": "Careful steps,hands balancing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "recovering cultivator taking cautious steps after acupuncture,attendants watching",
+      "narration": "拔针之后，韩立活动手脚走下长榻，确认能自行行走。",
+      "face_style_auto": {
+        "expression": "grateful",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "南歧子递上清心符，与符老告辞离开。",
+      "mood": "thankful",
+      "lighting": "night",
+      "action": "receiving talisman",
+      "camera": "talisman close-up",
+      "visual": {
+        "composition": "Paper talisman exchanged between hands",
+        "environment": "",
+        "character_pose": "Han Li bowing slightly",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close-up of talisman exchange between cultivators inside carriage",
+      "narration": "他将清心符交给韩立后，与符老拱手告别，姑娘们相送出车。",
+      "face_style_auto": {
+        "expression": "grateful",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "韩立与几名侍女交谈，打听天东商号的情况。",
+      "mood": "conversational",
+      "lighting": "night",
+      "action": "casual talk",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Group seated inside carriage sharing stories",
+        "environment": "",
+        "character_pose": "Liu'er animatedly describing routes",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "carriage interior conversation,cultivator speaking with two smiling attendants",
+      "narration": "柳儿打趣询问他的金刚诀层数，又自豪介绍商号遍布天元。",
+      "face_style_auto": {
+        "expression": "grateful",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "巨龟车骤然停下，柳儿得知前方出现沙虫。",
+      "mood": "alert",
+      "lighting": "night",
+      "action": "reacting to stop",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Passengers bracing as the giant tortoise carriage stops",
+        "environment": "Interior lanterns swaying",
+        "character_pose": "Liu'er leaning toward the door",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "interior of tortoise carriage jolting to a stop,attendants alarmed",
+      "narration": "话音刚落龟车猛然一震，柳儿喝问后确定是沙虫兽逼近。",
+      "face_style_auto": {
+        "expression": "grateful",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "柳儿决定放出虎兽助阵，少女们推门走出车厢。",
+      "mood": "determined",
+      "lighting": "night",
+      "action": "leaving carriage",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Girls grabbing weapons and stepping toward the exit",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator girls drawing curtains aside as they exit carriage to deploy beast",
+      "narration": "她沉吟片刻后下定决心，带着姑娘们推门而出。",
+      "face_style_auto": {
+        "expression": "calm",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "韩立走到龟壳边，望见车队组成巨大的防御环。",
+      "mood": "observant",
+      "lighting": "night",
+      "action": "surveying convoy",
+      "camera": "wide shot",
+      "visual": {
+        "composition": "Expansive desert with multiple tortoise carriages forming ranks",
+        "environment": "Moonlit dunes and lantern fires",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "wide view of giant tortoise convoy forming defensive circle under moonlight",
+      "narration": "他立于龟壳边远眺，只见车队首尾相接、形成环形阵列。",
+      "face_style_auto": {
+        "expression": "alert",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "远处人群围着黑布罩着的笼子，里面传出低沉兽吼。",
+      "mood": "ominous",
+      "lighting": "night",
+      "action": "watching caged beast",
+      "camera": "medium shot",
+      "visual": {
+        "composition": "Cage covered in dark cloth surrounded by guards",
+        "environment": "Campfire-lit sand,anxious faces",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "dark cloth-draped cage rumbling with low roar,guards encircling",
+      "narration": "另一只龟车旁黑布包裹的物体剧烈抖动，闷沉兽吼不断传出。",
+      "face_style_auto": {
+        "expression": "determined",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出，夜色中的仙城剪影与灵光飘落渐渐归于黑暗。",
+      "mood": "calm",
+      "lighting": "soft",
+      "action": "ending tableau",
+      "camera": "static wide shot",
+      "visual": {
+        "composition": "City silhouette under moonlit clouds,drifting spirit motes",
+        "environment": "Night sky above immortal spires",
+        "character_pose": "",
+        "fx": "Falling light particles and vignette fade",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "night skyline of immortal city,drifting spirit lights,serene fade-out",
+      "narration": "下集再会，我是云卷仙音，第四集即将开始。",
+      "face_style_auto": {
+        "expression": "observant",
+        "lighting": "soft",
+        "detail": "natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep3_full/scene_022.png"
+    }
+  ]
+}

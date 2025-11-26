@@ -1,0 +1,647 @@
+{
+  "episode": 9,
+  "title": "Leopard Raptors Breach the City · Plots Renewed at Camp",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal sky with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, drifting spiritual motes, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第9集:豹禽破城·营地再谋。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "赤蟒连成巨弩,士兵举盾列阵抵挡雨点般的蟒身。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Brace for Impact",
+      "camera": "Low-Angle Action Shot",
+      "visual": {
+        "composition": "Scarlet pythons chain together like giant crossbows as soldiers raise shields to block the rain of bodies",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Crimson pythons lash together like immense crossbows while shield-bearing soldiers hold the line against the downpour.",
+      "narration": "赤蟒如巨弩射上城墙,守军紧握盾牌硬顶。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "巨弩怒射丈许铁箭,将连锁蟒蛇贯穿坠落。",
+      "mood": "Hopeful",
+      "lighting": "Daylight",
+      "action": "Fire Ballista",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "Great ballistae launch yard-long iron bolts that pierce the chained pythons and send them crashing down",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Massive ballista bolts skewer the interlocked pythons and hurl them from the wall.",
+      "narration": "丈许铁箭穿透蟒群，暂时稳住了城头，守军士气稍振。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "韩立一刀斩碎变异巨蟒头颅,血雾遮天。",
+      "mood": "Decisive",
+      "lighting": "Daylight",
+      "action": "Slay the Python",
+      "camera": "Dynamic Close-Up",
+      "visual": {
+        "composition": "Han Li cleaves the mutant python’s head with one stroke, blood mist filling the air",
+        "environment": "",
+        "character_pose": "Han Li mid-slash",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li’s blade flashes and the mutant python’s head erupts into a skyful of blood mist.",
+      "narration": "他寒光一闪，巨蟒首级瞬间化为血雾，威力惊人。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "巨蟒残尸突然抽尾偷袭,韩立金拳轰碎蟒尾。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Counter the Tail",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "The severed python corpse lashes its tail without warning and Han Li crushes it with a golden fist",
+        "environment": "",
+        "character_pose": "Han Li punching through the tail",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The severed python snaps its tail in ambush, but Han Li smashes it apart with his gilded fist.",
+      "narration": "蟒尾骤然抽来，他抬拳砸穿，化险为夷，反应迅速。",
+      "face_style_auto": {
+        "expression": "Ferocious",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "韩立身影连闪,将三条突袭巨蟒先后击杀。",
+      "mood": "Commanding",
+      "lighting": "Daylight",
+      "action": "Triple Kill",
+      "camera": "Action Wide Shot",
+      "visual": {
+        "composition": "Han Li blurs across the wall, cutting down three ambushing pythons in succession",
+        "environment": "",
+        "character_pose": "Han Li flashing between targets",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li’s silhouette flickers as he dispatches three lunging pythons one after another.",
+      "narration": "他或掷刀或空拳，三条巨蟒瞬息毙命，战力强悍。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "空中修士与豹禽对峙,妖羽与雷火互相湮灭。",
+      "mood": "Stalemate",
+      "lighting": "Daylight",
+      "action": "Aerial Duel",
+      "camera": "Dynamic Wide Shot",
+      "visual": {
+        "composition": "Cultivators and leopard raptors face off in the air, demonic feathers and thunderfire canceling each other",
+        "environment": "Skyline clash between cultivators and raptors",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "High above, cultivators and leopard birds stare each other down as demonic feathers and lightning flames annihilate midair.",
+      "narration": "空中僵持不下，雷火与妖羽互相消耗，战况胶着。",
+      "face_style_auto": {
+        "expression": "Stern",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "雾化豹禽突然坠落,韩立仓促准备面对致命冲击。",
+      "mood": "Ominous",
+      "lighting": "Daylight",
+      "action": "Brace for Collision",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "A mist-wreathed leopard raptor plummets abruptly while Han Li hastily steels himself for impact",
+        "environment": "",
+        "character_pose": "Han Li tensing for the hit",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "A vaporous leopard raptor drops out of the sky, forcing Han Li to ready himself for a lethal strike.",
+      "narration": "雾化豹禽无视灵器轰击,径直坠向韩立所在段。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "韩立犹豫是否动用灭仙珠,最终以金刚诀迎击。",
+      "mood": "Resolute",
+      "lighting": "Dusk",
+      "action": "Weigh the Trump Card",
+      "camera": "Facial Close-Up",
+      "visual": {
+        "composition": "Han Li hesitates about using the Extinction Pearl but decides to meet the strike with the Vajra Art",
+        "environment": "",
+        "character_pose": "Han Li torn yet resolute",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li debates unleashing the Extinction Pearl, then resolves to bear the blow with his Vajra Art instead.",
+      "narration": "他舍不得王牌,只能催动金刚诀正面扛下。",
+      "face_style_auto": {
+        "expression": "Severe",
+        "lighting": "Dramatic Glow",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "雾化豹禽撞碎城墙,绿雾席卷,士兵纷纷化作碧尸。",
+      "mood": "Catastrophic",
+      "lighting": "Dusk",
+      "action": "Wall Collapse",
+      "camera": "Destruction Wide Shot",
+      "visual": {
+        "composition": "The vaporous leopard breaks the wall, unleashing green fog that turns soldiers into jade corpses",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The mist-wreathed leopard raptor smashes through the wall and a green miasma sweeps soldiers into verdant corpses.",
+      "narration": "缺口轰然炸开,绿雾所过之处尸骨无存。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Dramatic Glow",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "豹禽与赤蟒趁势冲入缺口,城中防线瞬间崩溃。",
+      "mood": "Panicked",
+      "lighting": "Dusk",
+      "action": "Rush the Breach",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Leopard raptors and crimson pythons flood through the breach, collapsing the inner defense",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Leopard birds and crimson pythons surge through the opening and the city’s defenses crumble instantly.",
+      "narration": "妖禽与蟒潮涌入城内,人族防线顷刻崩溃。",
+      "face_style_auto": {
+        "expression": "Horrified",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "远处沙虫兽黄雾滚滚压境,修士们心如死灰。",
+      "mood": "Despairing",
+      "lighting": "Dusk",
+      "action": "Sand Worms Arrive",
+      "camera": "Telephoto",
+      "visual": {
+        "composition": "Yellow fog from sand worm beasts rolls toward the city as cultivators’ hearts sink",
+        "environment": "Approaching yellow sand-fog front",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow mists from sand worm beasts surge closer, leaving the cultivators utterly hopeless.",
+      "narration": "黄沙滚滚，沙虫也赶来分食残城，场面混乱。",
+      "face_style_auto": {
+        "expression": "Afraid",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "锦袍修士提醒同伴各自退走,光头修士亦无奈离开。",
+      "mood": "Resigned",
+      "lighting": "Dusk",
+      "action": "Retreat",
+      "camera": "Aerial Medium Shot",
+      "visual": {
+        "composition": "The brocade-robed cultivator signals his companions to withdraw, and the bald monk departs reluctantly",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "The robed cultivator urges everyone to retreat separately, and even the bald monk withdraws with a sigh.",
+      "narration": "修士们彼此拱手，各自带人撤离，分道扬镳。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "城内四日被兽群肆虐,血火交织,随后妖兽退去。",
+      "mood": "Devastated",
+      "lighting": "Dusk",
+      "action": "City Aftermath",
+      "camera": "Aerial Pan",
+      "visual": {
+        "composition": "The city endures four days of beast rampage, blood and flame intertwined before the monsters withdraw",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "For four days beasts ravage the city in a haze of blood and fire until they finally disperse.",
+      "narration": "安远城化为焦土,少量幸存者仓皇逃离。",
+      "face_style_auto": {
+        "expression": "Sad",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "一队修士飞临缺口上方,寻找韩立踪迹。",
+      "mood": "Searching",
+      "lighting": "Daylight",
+      "action": "Survey the Breach",
+      "camera": "Aerial Medium Shot",
+      "visual": {
+        "composition": "A squad of cultivators flies above the breach, scanning for any trace of Han Li",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A group of cultivators sweeps over the breach, searching for signs of Han Li.",
+      "narration": "兽潮退后,秦师兄等人赶来搜寻韩立。",
+      "face_style_auto": {
+        "expression": "Grief-stricken",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "乱石堆炸裂,韩立背着女童破土而出。",
+      "mood": "Dramatic",
+      "lighting": "Daylight",
+      "action": "Emerge Alive",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "A pile of rubble explodes as Han Li bursts out carrying the little girl on his back",
+        "environment": "",
+        "character_pose": "Han Li emerging with the girl on his back",
+        "fx": "Explosion debris",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The rubble pile detonates and Han Li surfaces with the young girl on his back.",
+      "narration": "石堆轰然裂开,他带着小女童安然现身。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "韩立解释救下女童“黛儿”的经过,女孩紧抓衣襟。",
+      "mood": "Gentle",
+      "lighting": "Daylight",
+      "action": "Introduce the Child",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li recounts saving little Dai’er, the girl clutching tightly to his robe",
+        "environment": "",
+        "character_pose": "Han Li holding the girl while explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Han Li explains how he rescued the girl Dai’er as she clings to his clothing.",
+      "narration": "他说城破时不忍其死,顺手救下了赵城主孙女。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "秦师兄暗赞金刚诀坚韧,邀请韩立随他离开。",
+      "mood": "Scheming",
+      "lighting": "Daylight",
+      "action": "Extend Invitation",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Senior Brother Qin quietly praises the toughness of the Vajra Art and invites Han Li to leave with him",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qin lauds Han Li’s Vajra resilience and subtly invites him to depart together.",
+      "narration": "秦师兄赞其肉身惊人,婉言相邀同行。",
+      "face_style_auto": {
+        "expression": "Soft",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "韩立抱起女童,女子修士尝试接手却被黛儿躲避。",
+      "mood": "Lighthearted",
+      "lighting": "Daylight",
+      "action": "Child Clings Tight",
+      "camera": "Upward Close-Up",
+      "visual": {
+        "composition": "Han Li lifts the girl while a female cultivator tries to take her, but Dai’er hides away",
+        "environment": "",
+        "character_pose": "Han Li holding the child",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li picks up the girl; when a female cultivator reaches for her, Dai’er dodges and clings tighter.",
+      "narration": "女童只认韩立，死死抱住不肯松手，不愿离开。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "众人御器腾空离去,法器光幕裹住韩立与女童。",
+      "mood": "Transitional",
+      "lighting": "Daylight",
+      "action": "Depart the Ruins",
+      "camera": "Aerial Tracking Shot",
+      "visual": {
+        "composition": "Everyone rises on their artifacts, a glowing shield wrapping around Han Li and the child",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "They lift off on artifacts, a luminous barrier encasing Han Li and the girl as they leave the ruins.",
+      "narration": "秦师兄开启法器护罩,带着二人飞往安全营地。",
+      "face_style_auto": {
+        "expression": "Shy",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "丘陵营地广布帐篷,潘青与方夫人等人迎上前。",
+      "mood": "Reunion",
+      "lighting": "Daylight",
+      "action": "Arrive at Camp",
+      "camera": "Establishing Wide Shot",
+      "visual": {
+        "composition": "Tents sprawl across the hill camp as Pan Qing and Madam Fang walk forward to greet them",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A hilltop camp filled with tents, with Pan Qing and Madam Fang stepping out to welcome the arrivals.",
+      "narration": "丘陵间扎满营帐,方夫人、潘青率众相迎。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath nightfall, spiritual light raining from the sky",
+        "environment": "Night sky, city silhouette, drifting spirit particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第10集即将开始。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep9_full/scene_022.png"
+    }
+  ]
+}

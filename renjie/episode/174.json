@@ -1,0 +1,771 @@
+{
+  "episode": 174,
+  "title": "太妙玄禁 · 雷火试阵",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕“上一回 · 血虹争锋”，背景为草原暮色与裂开的黄土荒地。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll unfurling above prairie at dusk with dust storm remnants",
+        "environment": "Prairie horizon blended with yellow wasteland",
+        "character_pose": "",
+        "fx": "Floating calligraphy sparks",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia title card, golden scroll over prairie dusk and dusty wasteland, cinematic lighting",
+      "narration": "我是云卷仙音，第174集《太妙玄禁》开篇随诸位同行。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "韩立握着被冰封的穆姓法士躯体，灵气震荡将尸身震碎成寒霜光屑。",
+      "mood": "Resolute",
+      "lighting": "Cool daylight",
+      "action": "Destroy evidence",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li holding frozen body as icy shards scatter",
+        "environment": "High-altitude prairie sky",
+        "character_pose": "One hand lifting, other flicking",
+        "fx": "Blue ice particles exploding",
+        "motion": {
+          "type": "burst"
+        }
+      },
+      "prompt": "cultivator shattering frozen foe in mid-air, blue ice shards scattering, cool lighting",
+      "narration": "韩立毁尸收袋，将寒霜余辉驱散于风中，以免留下任何痕迹。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "韩立展开淡银色储物袋，神识一扫仅见零散灵石和俗丹。",
+      "mood": "Disappointed",
+      "lighting": "Soft daylight",
+      "action": "Checking loot",
+      "camera": "Top-down close",
+      "visual": {
+        "composition": "Open pouch with a few spirit stones and bottles",
+        "environment": "Floating mid-air with blurred prairie backdrop",
+        "character_pose": "Hands holding pouch, brow slightly furrowed",
+        "fx": "Soft glow from items",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of cultivator inspecting small stash of spirit stones and pills, disappointed mood",
+      "narration": "他神识扫遍储袋，只见灵石寥寥，丹瓶寻常，难免失落叹息。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "韩立抬手招来黑色巨峰，宝物缩成掌心大小刻有“千重峰”。",
+      "mood": "Curious",
+      "lighting": "Neutral daylight",
+      "action": "Inspecting treasure",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Miniature black mountain resting on palm with golden inscription",
+        "environment": "Sky backdrop with drifting clouds",
+        "character_pose": "Hand raised, eyes examining",
+        "fx": "Faint black aura",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close shot of cultivator holding miniature black mountain artifact with gold inscription, intrigued expression",
+      "narration": "他招手摄来千重峰，黑光收缩落入掌中，巴掌大小的小山沉甸在握。",
+      "face_style_auto": {
+        "expression": "Intrigued",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 3,
+      "description": "骨白御风车缩成光球被收入袖中，符纹黯淡。",
+      "mood": "Efficient",
+      "lighting": "Cool daylight",
+      "action": "Collecting artifact",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Bone chariot miniaturizing into glowing orb before sleeve",
+        "environment": "Sky with fading dust",
+        "character_pose": "Han Li extending sleeve",
+        "fx": "White glow lines collapsing",
+        "motion": {
+          "type": "shrink"
+        }
+      },
+      "prompt": "bone wind chariot shrinking into glowing orb as cultivator collects it into sleeve",
+      "narration": "御风车化光收于袖中，骨翼符纹皆被他收入囊中，留待后用。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "韩立目送元婴远遁的方向，转身化作青虹离开尘幕。",
+      "mood": "Determined",
+      "lighting": "Bright daylight",
+      "action": "Departing",
+      "camera": "Rear tracking",
+      "visual": {
+        "composition": "Azure streak launching southward above prairie edge",
+        "environment": "Clear sky with residual dust clouds",
+        "character_pose": "Figure turning before shooting off",
+        "fx": "Blue light trail",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "cultivator transforms into azure streak departing dusty battlefield toward prairie",
+      "narration": "他望元婴逃去方向略作思索，旋即改道化青虹离去。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "山丘上方青光盘旋，韩立降落在南陇侯设下的隐形禁制前。",
+      "mood": "Calm",
+      "lighting": "Morning light",
+      "action": "Arriving",
+      "camera": "High angle",
+      "visual": {
+        "composition": "Hilltop with faint translucent barrier shimmer",
+        "environment": "Prairie hill among grasses",
+        "character_pose": "Han Li descending with light aura",
+        "fx": "Ripple across barrier",
+        "motion": {
+          "type": "descend"
+        }
+      },
+      "prompt": "cultivator descending onto secluded hilltop with faint barrier shimmer, calm mood",
+      "narration": "他依约抵达山丘上空，青光盘旋后落入禁制屏障之前静候。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "众人围坐商议同伴动向，顺带谈及慕兰与九国盟再战的可能。",
+      "mood": "Thoughtful",
+      "lighting": "Soft daylight",
+      "action": "Discussion",
+      "camera": "Medium group shot",
+      "visual": {
+        "composition": "Cultivators seated in circle atop hill with prairie background",
+        "environment": "Wind-blown grassland",
+        "character_pose": "Various speaking gestures",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators discussing on hilltop, prairie background, thoughtful mood",
+      "narration": "众人言笑间谈及同伴去向，也对慕兰再战表示忧虑。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "黝黑汉子推测慕兰得到援军，猜测对方为何主动挑起冲突。",
+      "mood": "Suspicious",
+      "lighting": "Neutral daylight",
+      "action": "Speculating",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Black-faced cultivator speaking with furrowed brow",
+        "environment": "Hilltop breeze",
+        "character_pose": "Hands folded, eyes narrowed",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close shot of cultivator speculating, suspicious expression, windy prairie setting",
+      "narration": "黑脸汉子猜测慕兰得新援，质疑对方为何执意挑起战火。",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "三道光华自远空坠落，王天古带着王蝉与燕如嫣从黑雾中步出。",
+      "mood": "Neutral",
+      "lighting": "Daylight",
+      "action": "Arrivals",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Three cultivators landing with black aura swirl",
+        "environment": "Grassland hilltop meeting point",
+        "character_pose": "Leader in front, two juniors behind",
+        "fx": "Dark mist dissipating",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "three cultivators descend onto hilltop with dark aura trailing, neutral tone",
+      "narration": "三道光华落下，王天古携二女现身山丘，神色从容。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Stylized",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "韩立与王天古寒暄，言语暗提王蝉旧事，双方面色沉浮。",
+      "mood": "Tense",
+      "lighting": "Balanced daylight",
+      "action": "Verbal spar",
+      "camera": "Shot-reverse",
+      "visual": {
+        "composition": "Two cultivators facing each other with juniors in background",
+        "environment": "Windy hilltop",
+        "character_pose": "Subtle smiles masking tension",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators exchanging polite yet tense words on windy hilltop, subtle expressions",
+      "narration": "韩立淡笑回礼，话语藏锋提及王婵旧事，令对方神色一滞略显尴尬。",
+      "face_style_auto": {
+        "expression": "Smirk",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 3,
+      "description": "突然空中灵光翻腾，众人抬首察觉新的遁光逼近。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Sensing danger",
+      "camera": "Upward tilt",
+      "visual": {
+        "composition": "Cultivators looking upward as sky ripples",
+        "environment": "Hilltop sky with light streak",
+        "character_pose": "Heads tilted, robes fluttering",
+        "fx": "Rippled air distortion",
+        "motion": {
+          "type": "tilt"
+        }
+      },
+      "prompt": "group of cultivators looking up as new light streak approaches, alert mood",
+      "narration": "众人忽觉天际灵光翻涌，纷纷抬首戒备陌生气息。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "尤姓修士被两道霞光紧追，落下后连声道谢仍显疲态。",
+      "mood": "Weary",
+      "lighting": "Daylight",
+      "action": "Landing exhausted",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "White-robed cultivator breathing heavily while bowing",
+        "environment": "Hilltop with others surrounding",
+        "character_pose": "One hand on chest, other cupped",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator landing exhausted, offering thanks while two light streaks loom behind",
+      "narration": "尤姓修士白虹狼狈坠落，感谢众人接应仍掩不住疲惫神色。",
+      "face_style_auto": {
+        "expression": "Tired",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "八名修士同时升空结阵，在尤姓修士面前形成弧形防线。",
+      "mood": "Ready",
+      "lighting": "Bright daylight",
+      "action": "Forming formation",
+      "camera": "Wide aerial",
+      "visual": {
+        "composition": "Arc of floating cultivators emitting various colored auras",
+        "environment": "Sky above hill",
+        "character_pose": "Hands raised, facing outward",
+        "fx": "Interlocking light arcs",
+        "motion": {
+          "type": "pan",
+          "speed": "slow"
+        }
+      },
+      "prompt": "eight cultivators forming arc formation mid-air with colorful auras, defensive stance",
+      "narration": "八位修士化光升空迎敌，阵线舒展开形成弧形防守稳固。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "红绿两道霞光停在远处，麻冠和绿袍法士冷冷观望。",
+      "mood": "Tense",
+      "lighting": "Harsh sunlight",
+      "action": "Standoff",
+      "camera": "Telephoto",
+      "visual": {
+        "composition": "Two distant figures wreathed in colored light hovering",
+        "environment": "Open sky with heat distortion",
+        "character_pose": "Arms folded",
+        "fx": "Red and green aura plumes",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "telephoto view of two robed figures hovering in red and green light, tense standoff",
+      "narration": "前方红绿霞光停驻，麻冠与绿袍法士遥遥对峙，气定神闲不退。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "双方在空中隔空交锋，慕兰法士放言要拖住他们半日。",
+      "mood": "Confrontational",
+      "lighting": "Daylight",
+      "action": "Verbal duel",
+      "camera": "Medium telephoto",
+      "visual": {
+        "composition": "Two groups facing each other across distance",
+        "environment": "Sky with swirling clouds",
+        "character_pose": "Gesture-laden speech",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two airborne groups exchanging shouts across distance, tense confrontation",
+      "narration": "双方言辞交锋，南陇侯警告对面，但仍被对方奚落，扬言要拖住半日。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "一道火色传音符掠至麻冠法士手中，符火爆裂传来急讯。",
+      "mood": "Surprised",
+      "lighting": "Bright daylight",
+      "action": "Receiving message",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Fire talisman hovering above palm flaring",
+        "environment": "Sky background",
+        "character_pose": "Eyes widening",
+        "fx": "Burst of flame, glowing runes",
+        "motion": {
+          "type": "hover"
+        }
+      },
+      "prompt": "close shot of fiery talisman exploding into message over cultivator's palm",
+      "narration": "红色传音符飞至麻冠掌心，火焰开裂带来惊悚讯息，令其变色。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "两名法士互传神识，狠狠盯向韩立后化虹回撤。",
+      "mood": "Suspicious",
+      "lighting": "Daylight",
+      "action": "Withdrawing",
+      "camera": "Telephoto tracking",
+      "visual": {
+        "composition": "Two streaks of light turning away rapidly",
+        "environment": "Sky with faint contrails",
+        "character_pose": "",
+        "fx": "Red and green trails stretching",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "two colored light streaks turning and speeding away after glaring, suspicious mood",
+      "narration": "两名法士互传神识后狠狠盯向韩立，旋即化虹匆匆退走。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "王天古似笑非笑询问韩立可曾识得二人，暗藏试探。",
+      "mood": "Probing",
+      "lighting": "Neutral daylight",
+      "action": "Questioning",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Cultivator leaning slightly toward Han Li, inquisitive eyes",
+        "environment": "Hilltop breeze",
+        "character_pose": "Hands behind back",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator casually questioning another with sly smile, grassy hill background",
+      "narration": "王天古装作随意询问韩立是否识得二人，言语暗藏探试。",
+      "face_style_auto": {
+        "expression": "Sly",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "南陇侯打断闲话，催促众人赶赴苍坤遗地破禁取宝。",
+      "mood": "Focused",
+      "lighting": "Bright daylight",
+      "action": "Rallying",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader gesturing toward horizon",
+        "environment": "Prairie expanse",
+        "character_pose": "Arm outstretched commandingly",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivation leader rallying group on prairie, pointing forward with determination",
+      "narration": "南陇侯不纠缠旧事，催促众人尽快赴约破禁，以免迟滞更多。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "沿草原边缘飞行，众人望见一座灰白秃山孤立无草。",
+      "mood": "Curious",
+      "lighting": "Afternoon light",
+      "action": "Approaching landmark",
+      "camera": "Aerial wide",
+      "visual": {
+        "composition": "Small barren mountain amid green plains",
+        "environment": "Contrasting landscapes",
+        "character_pose": "Light streaks circling above",
+        "fx": "",
+        "motion": {
+          "type": "orbit",
+          "speed": "slow"
+        }
+      },
+      "prompt": "aerial shot of barren gray hill rising from green prairie as cultivators approach",
+      "narration": "沿草原西行，一座灰白秃山突兀而立，毫无灵气波动，令人疑惑。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "南陇侯与白衫老者掷出绿黄秘旗，法阵光丝渗入山体。",
+      "mood": "Mystic",
+      "lighting": "Soft daylight",
+      "action": "Activate mechanism",
+      "camera": "Medium wide",
+      "visual": {
+        "composition": "Two cultivators casting glowing flags into rocky slope",
+        "environment": "Rocky hillside",
+        "character_pose": "Hands weaving seals",
+        "fx": "Green and yellow runes sinking into stone",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "two cultivators casting glowing flags into barren hill to activate mechanism",
+      "narration": "南陇侯与白衫老者同掷秘旗，咒语交织令旗影没入石壁。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "大地震颤，石山自上而下裂开，白光中显出幽深阶梯。",
+      "mood": "Awe",
+      "lighting": "Glow",
+      "action": "Revealing entrance",
+      "camera": "Low angle",
+      "visual": {
+        "composition": "Mountain splitting with glowing fissure",
+        "environment": "Dust clouds and light beams",
+        "character_pose": "",
+        "fx": "Radiant crack, falling rocks",
+        "motion": {
+          "type": "expand"
+        }
+      },
+      "prompt": "dramatic shot of barren mountain splitting open to reveal glowing staircase",
+      "narration": "大地震颤间石山劈开，柔白裂缝显出通往地下的阶梯，幽深。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "众人鱼贯踏入石阶，南陇侯与白衫老者走在最前领路。",
+      "mood": "Cautious",
+      "lighting": "Glowing interior",
+      "action": "Entering passage",
+      "camera": "Rear tracking",
+      "visual": {
+        "composition": "Line of cultivators descending staircase lit by moonstones",
+        "environment": "Stone corridor",
+        "character_pose": "Robes trailing",
+        "fx": "Soft white light",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "line of cultivators descending glowing stone staircase into mountain interior",
+      "narration": "众人鱼贯踏入石阶，南陇侯与白衫老者当先领路，沉稳谨慎。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "越往下越寒，月光石变成幽绿色，众人自动与前者拉开距离。",
+      "mood": "Uneasy",
+      "lighting": "Green glow",
+      "action": "Descending",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Narrow corridor with green lighting, shadows stretching",
+        "environment": "Stone walls lined with luminescent tiles",
+        "character_pose": "Figures spaced apart",
+        "fx": "Breath condensation",
+        "motion": {
+          "type": "dolly",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivators cautiously descending corridor lit by eerie green stones, spaced out",
+      "narration": "阶梯越走越寒，月光石转幽绿，众人下意识拉开距离，保持警觉。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "地下巨厅闪耀蓝翠光泽，晶壁硬如翡翠反弹众人神识。",
+      "mood": "Impressed",
+      "lighting": "Crystal glow",
+      "action": "Observing hall",
+      "camera": "Wide pan",
+      "visual": {
+        "composition": "Large jade-like hall with glowing walls",
+        "environment": "Polished crystal surfaces",
+        "character_pose": "Figures staring around",
+        "fx": "Reflections, refracted light",
+        "motion": {
+          "type": "pan",
+          "speed": "slow"
+        }
+      },
+      "prompt": "vast underground hall with jade-like walls glowing blue-green, cultivators observing",
+      "narration": "百丈深处现出蓝翠巨厅，晶壁反弹神识令众人惊讶连连。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "入口闭合成蓝墙，南陇侯解释外层禁制自动封合不可久留。",
+      "mood": "Calming",
+      "lighting": "Ambient glow",
+      "action": "Explaining",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Leader addressing group with sealed wall behind",
+        "environment": "Crystal hall",
+        "character_pose": "Hands raised reassuringly",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "leader explaining to group inside glowing crystal hall after entrance seals shut",
+      "narration": "通道忽然闭合，石厅被封，南陇侯解释外层禁制自动封合，无需惊慌。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "邰夫人提出动用雷火锥破阵，要求若成功可提前择宝。",
+      "mood": "Negotiating",
+      "lighting": "Soft glow",
+      "action": "Making offer",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Elderly woman holding glowing flame-etched cone",
+        "environment": "Crystal hall corner",
+        "character_pose": "Smiling slightly",
+        "fx": "Red and white sparks from treasure",
+        "motion": {
+          "type": "minimal"
+        }
+      },
+      "prompt": "elder female cultivator presenting a fiery cone artifact while negotiating",
+      "narration": "邰夫人提出以雷火锥试阵，条件是若成可提前挑宝一次。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "雷火锥化虹撞向晶墙，火浪雷弧散尽却连痕迹都未留下。",
+      "mood": "Tense",
+      "lighting": "Fiery",
+      "action": "First attempt",
+      "camera": "Dynamic close",
+      "visual": {
+        "composition": "Red-white cone striking glowing wall",
+        "environment": "Crystal wall with flames washing over",
+        "character_pose": "",
+        "fx": "Flames and lightning spreading across surface",
+        "motion": {
+          "type": "impact"
+        }
+      },
+      "prompt": "fiery lightning drill impacting crystal wall, flames dispersing without effect",
+      "narration": "她先以试探之击轰向晶墙，火浪雷弧散去，却未留下任何痕迹。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "雷火锥被全力催动钻入墙内，却被白色光丝缠断化作齑粉。",
+      "mood": "Shocking",
+      "lighting": "Electric blue",
+      "action": "Catastrophic failure",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Glowing white filaments wrapping around burning drill",
+        "environment": "Translucent wall interior",
+        "character_pose": "",
+        "fx": "Blazing sparks, sudden shatter",
+        "motion": {
+          "type": "snap"
+        }
+      },
+      "prompt": "white energy threads inside crystal wall constricting and shattering fiery drill artifact",
+      "narration": "雷火锥全力旋入晶壁，白丝忽现缠断宝物令邰夫人吐血欲坠。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "众人面露骇色时，韩立主动上前自荐尝试破解太妙神禁。",
+      "mood": "Hopeful",
+      "lighting": "Ambient glow",
+      "action": "Volunteering",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li stepping from crowd toward crystal wall",
+        "environment": "Blue-lit hall",
+        "character_pose": "Hand cupped, confident gaze",
+        "fx": "Subtle azure aura",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator stepping forward confidently toward glowing wall while others watch",
+      "narration": "众人犹豫之际，韩立自荐试破太妙神禁，目露淡淡自信光芒。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "片尾画面定格在韩立步向晶墙的背影，蓝光流转。",
+      "mood": "Anticipatory",
+      "lighting": "Cool glow",
+      "action": "End teaser",
+      "camera": "Rear medium",
+      "visual": {
+        "composition": "Back view of Han Li approaching crystal wall with light trails",
+        "environment": "Jade hall interior",
+        "character_pose": "Silhouette against glow",
+        "fx": "Slow pulsating light",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "rear view of cultivator walking toward glowing crystal wall, blue light pulsing, cliffhanger tone",
+      "narration": "我是云卷仙音，下集看韩立阵破太妙神禁，揭开苍坤秘境。喜欢的话请点赞支持一下！下集再见。",
+      "face_style_auto": null,
+      "image_path": ""
+    }
+  ]
+}
+

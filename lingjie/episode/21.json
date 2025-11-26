@@ -1,0 +1,654 @@
+{
+  "episode": 21,
+  "title": "Retrieve Treasures · Journey to Sunset Tomb",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第21集:收取宝物·前往落日之墓。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立站在原地想了很久,摇摇头不愿多想六翼霜蚣的事,想起噬金虫和啼魂兽。",
+      "mood": "Thoughtful",
+      "lighting": "Daylight",
+      "action": "Think About Spirit Beasts",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li stands thinking for a long time, shakes head, unwilling to dwell on Six-Winged Frost Centipede, remembers Gold Devouring Beetles and Crying Soul Beast",
+        "environment": "",
+        "character_pose": "Han Li standing, thinking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stands thinking for a long time, shakes head, unwilling to dwell on Six-Winged Frost Centipede, remembers Gold Devouring Beetles and Crying Soul Beast.",
+      "narration": "韩立站在原地想了很久，摇摇头不愿多想六翼霜蚣的事，想起噬金虫和啼魂兽。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立脸色一沉,快步疾走,片刻工夫就到了百余丈外的某处地方。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Walk to Burial Site",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li's face darkens, walks quickly, reaches a place over a hundred zhang away in moments",
+        "environment": "",
+        "character_pose": "Han Li walking quickly",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's face darkens, walks quickly, reaches a place over a hundred zhang away in moments.",
+      "narration": "韩立脸色一沉,快步疾走,片刻工夫就到了百余丈外的某处地方。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立低头看了一眼,二话不说单手一握拳,金光闪动间,对准地面就是狠狠一击。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "Punch Ground",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li looks down, clenches fist without hesitation, golden light flashes, punches ground with full force",
+        "environment": "",
+        "character_pose": "Han Li punching ground, golden aura",
+        "fx": "Golden light, impact",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li looks down, clenches fist without hesitation, golden light flashes, punches ground with full force.",
+      "narration": "韩立低头看了一眼，二话不说单手一握拳，金光闪动间，对准地面狠狠一击。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "轰的一声巨响,青灰色沙地以韩立为中心彻底爆裂,沙尘掀起高高的蘑菇状灰尘。",
+      "mood": "Explosive",
+      "lighting": "Daylight",
+      "action": "Ground Explodes",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "A thunderous boom, gray-green sand explodes with Han Li at center, sand dust rising in mushroom cloud",
+        "environment": "",
+        "character_pose": "Han Li at center, dust cloud rising",
+        "fx": "Explosion, mushroom cloud of dust",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A thunderous boom, gray-green sand explodes with Han Li at center, sand dust rising in mushroom cloud.",
+      "narration": "轰的一声巨响，青灰色沙地以韩立为中心彻底爆裂，沙尘掀起蘑菇状灰尘。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "一个圆形大坑显现而出,深足有三四丈,宽二十几丈,大坑正中间摆放着一只储物袋和三只灵兽袋。",
+      "mood": "Revealing",
+      "lighting": "Daylight",
+      "action": "Reveal Pit",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "A circular pit appears, three to four zhang deep, over twenty zhang wide, storage pouch and three spirit beast pouches in center",
+        "environment": "",
+        "character_pose": "Pit with bags visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A circular pit appears, three to four zhang deep, over twenty zhang wide, storage pouch and three spirit beast pouches in center.",
+      "narration": "一个圆形大坑显现而出,深足有三四丈,宽二十几丈,大坑正中间摆放着一只储物袋和三只灵兽袋。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立见储物袋袋口完好无损,心中一安,将几只袋子都抓到手中。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Retrieve Bags",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li sees storage pouch mouth intact, relieved, grabs all bags in hand",
+        "environment": "",
+        "character_pose": "Han Li picking up bags",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li sees storage pouch mouth intact, relieved, grabs all bags in hand.",
+      "narration": "韩立见储物袋袋口完好无损,心中一安,将几只袋子都抓到手中。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立心神微妙联系下,感应到噬金虫和啼魂兽的存在,从一只袋子中传来啼魂兽阵阵酣睡声。",
+      "mood": "Reassured",
+      "lighting": "Daylight",
+      "action": "Check Spirit Beasts",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Through subtle connection, Han Li senses Gold Devouring Beetles and Crying Soul Beast, hears Crying Soul Beast's deep sleep sounds from one bag",
+        "environment": "",
+        "character_pose": "Han Li holding bags, listening",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Through subtle connection, Han Li senses Gold Devouring Beetles and Crying Soul Beast, hears deep sleep sounds from one bag.",
+      "narration": "韩立心神微妙联系下,感应到噬金虫和啼魂兽的存在,从一只袋子中传来啼魂兽阵阵酣睡声。",
+      "face_style_auto": {
+        "expression": "Content",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立嘴角一翘,最后一丝担心荡然无存,当即将袋口扎紧,都揣进怀中。",
+      "mood": "Satisfied",
+      "lighting": "Daylight",
+      "action": "Store Bags",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li smiles slightly, last trace of worry gone, ties bag mouths tightly, puts them in his robes",
+        "environment": "",
+        "character_pose": "Han Li storing bags in robes",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li smiles slightly, last trace of worry gone, ties bag mouths tightly, puts them in his robes.",
+      "narration": "韩立嘴角一翘,最后一丝担心荡然无存,当即将袋口扎紧,都揣进怀中。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立眉头一皱,六翼霜蚣留下的巨大虫壳颇为麻烦,接连数拳将大坑再扩大。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Expand Pit",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li frowns, Six-Winged Frost Centipede shell is troublesome, punches several times to expand pit",
+        "environment": "",
+        "character_pose": "Han Li punching, expanding pit",
+        "fx": "Punches, dust",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li frowns, Six-Winged Frost Centipede shell is troublesome, punches several times to expand pit.",
+      "narration": "韩立眉头一皱,六翼霜蚣留下的巨大虫壳颇为麻烦,接连数拳将大坑再扩大。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立将整只虫壳扔进大坑中,再用厚厚的沙土掩盖住。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Bury Shell",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li throws entire shell into pit, covers with thick sand",
+        "environment": "",
+        "character_pose": "Han Li burying shell",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li throws entire shell into pit, covers with thick sand.",
+      "narration": "韩立将整只虫壳扔进大坑中,再用厚厚的沙土掩盖住。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立围着原地转了数圈,确认发现不出什么痕迹后,面露满意之色。",
+      "mood": "Satisfied",
+      "lighting": "Daylight",
+      "action": "Inspect Burial Site",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li circles area several times, confirms no traces visible, shows satisfaction",
+        "environment": "",
+        "character_pose": "Han Li inspecting, satisfied",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li circles area several times, confirms no traces visible, shows satisfaction.",
+      "narration": "韩立围着原地转了数圈,确认发现不出什么痕迹后,面露满意之色。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立抬头看了看远处黑云消失的方向,脸色阴厉了片刻,蓦然一转身朝相反方向扬长而去。",
+      "mood": "Resolved",
+      "lighting": "Daylight",
+      "action": "Leave Desert",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li looks up at distant direction where black cloud disappeared, face darkens briefly, suddenly turns and strides opposite direction",
+        "environment": "",
+        "character_pose": "Han Li turning away, walking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li looks up at distant direction where black cloud disappeared, face darkens briefly, suddenly turns and strides opposite direction.",
+      "narration": "韩立抬头看了看远处黑云消失的方向,脸色阴厉了片刻,蓦然一转身朝相反方向扬长而去。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立远行的目标,是千万里外的一座颇负盛名的妖兽之地。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Set Journey Goal",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li's journey goal is a famous beast land tens of millions of li away",
+        "environment": "",
+        "character_pose": "Han Li walking, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's journey goal is a famous beast land tens of millions of li away.",
+      "narration": "韩立远行的目标,是千万里外的一座颇负盛名的妖兽之地。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "那里是天元境和某一妖地相邻的边缘之地,整片区域横跨天元境和妖兽之地。",
+      "mood": "Explanatory",
+      "lighting": "Daylight",
+      "action": "Describe Borderland",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "That place is borderland between Tianyuan Realm and a beast land, entire region spans both realms",
+        "environment": "",
+        "character_pose": "Han Li walking, landscape stretching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "That place is borderland between Tianyuan Realm and a beast land, entire region spans both realms.",
+      "narration": "那里是天元境和某一妖地相邻的边缘之地,整片区域横跨天元境和妖兽之地。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "此区域最广阔最大的一部分,属于三不管的地方,作为缓冲之用。",
+      "mood": "Dangerous",
+      "lighting": "Daylight",
+      "action": "Describe Neutral Zone",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The largest part of this region is a neutral buffer zone, ungoverned by anyone",
+        "environment": "",
+        "character_pose": "Han Li walking through dangerous land",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The largest part of this region is a neutral buffer zone, ungoverned by anyone.",
+      "narration": "此区域最广阔最大的一部分,属于三不管的地方,作为缓冲之用。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "此区域妖兽、蛮荒古兽以及众多半妖人频繁活动,越到中间最广阔地方也就危险之极。",
+      "mood": "Perilous",
+      "lighting": "Daylight",
+      "action": "Describe Dangers",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "This region has frequent activity by beast cultivators, ancient beasts, and many half-demons, extremely dangerous toward center",
+        "environment": "",
+        "character_pose": "Han Li walking cautiously",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This region has frequent activity by beast cultivators, ancient beasts, and many half-demons, extremely dangerous toward center.",
+      "narration": "此区域妖兽、蛮荒古兽以及众多半妖人频繁活动,越到中间最广阔地方也就危险之极。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "据说还有人见到化神小成的神秘灵族,也见过高达数十丈的上古巨人,还有人声称听到过类似真龙的吼声。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "Describe Legends",
+      "camera": "Montage",
+      "visual": {
+        "composition": "Legends say people have seen mysterious Spirit Clan at early Deity Transformation, ancient giants dozens of zhang tall, even heard sounds like true dragons",
+        "environment": "",
+        "character_pose": "Han Li walking, mysterious figures in distance",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Legends say people have seen mysterious Spirit Clan at early Deity Transformation, ancient giants dozens of zhang tall, even heard sounds like true dragons.",
+      "narration": "据说还有人见到化神小成的神秘灵族,也见过高达数十丈的上古巨人,还有人声称听到过类似真龙的吼声。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "此地方一直未遭人妖两族正式开发,里面灵脉灵药丰富之极,连三皇等存在也颇为重视。",
+      "mood": "Abundant",
+      "lighting": "Daylight",
+      "action": "Describe Resources",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "This place has never been officially developed by human and demon races, rich in spirit veins and medicines, even Three Emperors value it",
+        "environment": "",
+        "character_pose": "Han Li walking, rich resources visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This place has never been officially developed by human and demon races, rich in spirit veins and medicines, even Three Emperors value it.",
+      "narration": "此地方一直未遭人妖两族正式开发,里面灵脉灵药丰富之极,连三皇等存在也颇为重视。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "有大量修士、炼体士前赴后继涌来,有的是想碰运气得到灵药,有的是借此地杀戮突破修炼瓶颈。",
+      "mood": "Busy",
+      "lighting": "Daylight",
+      "action": "Describe Seekers",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Many cultivators and body cultivators come here, some seeking luck for spirit medicines, others using killing here to break bottlenecks",
+        "environment": "",
+        "character_pose": "Multiple figures in distance, Han Li among them",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Many cultivators and body cultivators come here, some seeking luck for spirit medicines, others using killing here to break bottlenecks.",
+      "narration": "有大量修士、炼体士前赴后继涌来,有的是想碰运气得到灵药,有的是借此地杀戮突破修炼瓶颈。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立经过数年风尘仆仆的赶路,终于到了这片边境之地。",
+      "mood": "Arrival",
+      "lighting": "Daylight",
+      "action": "Arrive at Borderland",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li after years of dusty travel, finally reaches this borderland",
+        "environment": "",
+        "character_pose": "Han Li arriving, borderland visible ahead",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li after years of dusty travel, finally reaches this borderland.",
+      "narration": "韩立经过数年风尘仆仆的赶路,终于到了这片边境之地。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第22集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep21_full/scene_022.png"
+    }
+  ]
+}
+

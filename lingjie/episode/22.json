@@ -1,0 +1,688 @@
+{
+  "episode": 22,
+  "title": "Sunset Tomb · Sunset City",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第22集:落日之墓·落日城。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "人妖两族之人对此片边境之地的共同称呼是'落日之墓'。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "Introduce Sunset Tomb",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The borderland is commonly called 'Sunset Tomb' by both human and demon races",
+        "environment": "",
+        "character_pose": "Borderland landscape",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The borderland is commonly called 'Sunset Tomb' by both human and demon races.",
+      "narration": "人妖两族之人对此片边境之地的共同称呼是'落日之墓'。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "据说远古时候,灵界空中并非是七个太阳,而是九个。",
+      "mood": "Legendary",
+      "lighting": "Bright Sky",
+      "action": "Describe Ancient Sky",
+      "camera": "Sky Shot",
+      "visual": {
+        "composition": "Legend says in ancient times, Spirit Realm sky had nine suns, not seven",
+        "environment": "",
+        "character_pose": "Sky with multiple suns visible",
+        "fx": "Multiple suns in sky",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Legend says in ancient times, Spirit Realm sky had nine suns, not seven.",
+      "narration": "据说远古时候,灵界空中并非是七个太阳,而是九个。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Sky",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "当初人妖两族刚到灵界之时,恰好爆发一场席卷了大半个灵界种族的真灵之战。",
+      "mood": "Epic",
+      "lighting": "War Sky",
+      "action": "Describe True Spirit War",
+      "camera": "Epic Wide",
+      "visual": {
+        "composition": "When human and demon races first arrived in Spirit Realm, a True Spirit War erupted affecting most races",
+        "environment": "",
+        "character_pose": "Epic battle scene",
+        "fx": "War atmosphere, chaos",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "When human and demon races first arrived in Spirit Realm, a True Spirit War erupted affecting most races.",
+      "narration": "当初人妖两族刚到灵界之时，恰好爆发席卷大半个灵界种族的真灵之战。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "War Sky",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "数以百计修为可比真仙界仙人的存在大打出手,十之八九陨落而亡,两个太阳也被波及而毁。",
+      "mood": "Catastrophic",
+      "lighting": "Apocalyptic Sky",
+      "action": "Describe Destruction",
+      "camera": "Epic Wide",
+      "visual": {
+        "composition": "Hundreds of beings with Immortal-level cultivation fought, most perished, two suns destroyed",
+        "environment": "",
+        "character_pose": "Catastrophic destruction",
+        "fx": "Falling suns, destruction",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Hundreds of beings with Immortal-level cultivation fought, most perished, two suns destroyed.",
+      "narration": "数以百计修为可比真仙界仙人的存在大打出手，十之八九陨落，两太阳被毁。",
+      "face_style_auto": {
+        "expression": "Horrified",
+        "lighting": "Apocalyptic Sky",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "这片边境之地,据说就是其中一个太阳坠落之后,形成的巨大洼地。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "Describe Formation",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "This borderland is said to be the giant depression formed after one sun fell",
+        "environment": "",
+        "character_pose": "Massive depression visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This borderland is said to be the giant depression formed after one sun fell.",
+      "narration": "这片边境之地,据说就是其中一个太阳坠落之后,形成的巨大洼地。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "这所谓的'洼地',即使高阶修士用法宝全力飞遁,从一端到另一端也需花上年许时间。",
+      "mood": "Vast",
+      "lighting": "Daylight",
+      "action": "Describe Vastness",
+      "camera": "Epic Wide",
+      "visual": {
+        "composition": "This 'depression' is so vast, high-level cultivators flying at full speed need over a year to cross",
+        "environment": "",
+        "character_pose": "Vast landscape stretching endlessly",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This 'depression' is so vast, high-level cultivators flying at full speed need over a year to cross.",
+      "narration": "这所谓的'洼地'，即使高阶修士用法宝全力飞遁，从一端到另一端也需年许。",
+      "face_style_auto": {
+        "expression": "Amazed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "围着他修建的人族城市中最出名的,是由修士自己掌控的巨型城市'落日城'。",
+      "mood": "Majestic",
+      "lighting": "Daylight",
+      "action": "See Sunset City",
+      "camera": "Telephoto Shot",
+      "visual": {
+        "composition": "The most famous human city built around it is the giant 'Sunset City' controlled by cultivators",
+        "environment": "",
+        "character_pose": "Massive city in distance",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The most famous human city built around it is the giant 'Sunset City' controlled by cultivators.",
+      "narration": "围着他修建的人族城市中最出名的,是由修士自己掌控的巨型城市'落日城'。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立走进落日城,看着两旁一个个高大整洁的店铺,脸上略现出一丝异色。",
+      "mood": "Curious",
+      "lighting": "Daylight",
+      "action": "Enter City",
+      "camera": "Street Tracking",
+      "visual": {
+        "composition": "Han Li enters Sunset City, sees tall neat shops on both sides, shows slight surprise",
+        "environment": "",
+        "character_pose": "Han Li walking, observing shops",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li enters Sunset City, sees tall neat shops on both sides, shows slight surprise.",
+      "narration": "韩立走进落日城,看着两旁一个个高大整洁的店铺,脸上略现出一丝异色。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "两旁店铺中坐着的不是炼气期修士,就是低阶炼体士等模样的掌柜。",
+      "mood": "Busy",
+      "lighting": "Daylight",
+      "action": "Observe Shops",
+      "camera": "Street Shot",
+      "visual": {
+        "composition": "Shop owners are either Qi Refining cultivators or low-level body cultivators",
+        "environment": "",
+        "character_pose": "Shops with cultivator owners visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shop owners are either Qi Refining cultivators or low-level body cultivators.",
+      "narration": "两旁店铺中坐着的不是炼气期修士,就是低阶炼体士等模样的掌柜。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "店铺中摆着的东西,下至妖兽材料,上至法器灵具,全都是五花八门的东西。",
+      "mood": "Varied",
+      "lighting": "Daylight",
+      "action": "See Wares",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shops display everything from beast materials to magical tools and artifacts, all varied",
+        "environment": "",
+        "character_pose": "Han Li looking at displayed wares",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shops display everything from beast materials to magical tools and artifacts, all varied.",
+      "narration": "店铺中摆着的东西,下至妖兽材料,上至法器灵具,全都是五花八门的东西。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立走到街道一拐角处,目光一扫后,突然朝附近一名和几人吐沫乱飞的枯瘦男子走去。",
+      "mood": "Intentional",
+      "lighting": "Daylight",
+      "action": "Approach Guide",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li reaches street corner, scans area, suddenly walks toward thin man talking animatedly to others",
+        "environment": "",
+        "character_pose": "Han Li approaching, thin man talking",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li reaches street corner, scans area, suddenly walks toward thin man talking animatedly to others.",
+      "narration": "韩立走到街道一拐角处,目光一扫后,突然朝附近一名和几人吐沫乱飞的枯瘦男子走去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "枯瘦男子正在吹嘘自己的经历,突然一只手按在肩头,吓了一跳急忙转身。",
+      "mood": "Surprised",
+      "lighting": "Daylight",
+      "action": "Be Interrupted",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Thin man boasting about his experience, suddenly hand on shoulder, startled and turns",
+        "environment": "",
+        "character_pose": "Thin man startled, Han Li behind him",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Thin man boasting about his experience, suddenly hand on shoulder, startled and turns.",
+      "narration": "枯瘦男子正在吹嘘自己的经历,突然一只手按在肩头,吓了一跳急忙转身。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "枯瘦男子看到韩立手上的灵戒,脸色一变,强笑问道:'在下田兴,兄台有什么指教吗?'",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "Recognize Strength",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Thin man sees Han Li's spirit ring, face changes, forced smile asks: 'I'm Tian Xing, what can I help you with?'",
+        "environment": "",
+        "character_pose": "Tian Xing cautious, Han Li smiling",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Thin man sees Han Li's spirit ring, face changes, forced smile asks: 'I'm Tian Xing, what can I help you with?'",
+      "narration": "枯瘦男子看到韩立手上的灵戒,脸色一变,强笑问道:'在下田兴,兄台有什么指教吗?'",
+      "face_style_auto": {
+        "expression": "Polite",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立看田兴似乎对这座城市颇为了解,询问是否愿意做数日向导。",
+      "mood": "Businesslike",
+      "lighting": "Daylight",
+      "action": "Offer Guide Job",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li sees Tian Xing seems to know the city well, asks if he would be willing to be a guide for a few days",
+        "environment": "",
+        "character_pose": "Han Li asking, Tian Xing listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li sees Tian Xing seems to know the city well, asks if he would be willing to be a guide for a few days.",
+      "narration": "韩立看田兴似乎对这座城市颇为了解,询问是否愿意做数日向导。",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴一喜,称自己在落日城待了数十年,没有不知道的地方,询问雇佣价格。",
+      "mood": "Eager",
+      "lighting": "Daylight",
+      "action": "Accept Job",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing happily says he has been in Sunset City for decades, knows everything, asks about payment",
+        "environment": "",
+        "character_pose": "Tian Xing eager, Han Li negotiating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing happily says he has been in Sunset City for decades, knows everything, asks about payment.",
+      "narration": "田兴一喜,称自己在落日城待了数十年,没有不知道的地方,询问雇佣价格。",
+      "face_style_auto": {
+        "expression": "Happy",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立开价一天十块灵石,田兴嫌少讨价还价,最终以一天十二块灵石成交。",
+      "mood": "Negotiating",
+      "lighting": "Daylight",
+      "action": "Negotiate Price",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li offers ten spirit stones per day, Tian Xing haggles, finally agrees on twelve per day",
+        "environment": "",
+        "character_pose": "Both negotiating, agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li offers ten spirit stones per day, Tian Xing haggles, finally agrees on twelve per day.",
+      "narration": "韩立开价一天十块灵石,田兴嫌少讨价还价,最终以一天十二块灵石成交。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴殷勤询问韩立想先去何处,韩立要求先去灵具材料店,并介绍城中情况。",
+      "mood": "Helpful",
+      "lighting": "Daylight",
+      "action": "Ask Direction",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing eagerly asks where Han Li wants to go first, Han Li requests artifact material shops and city information",
+        "environment": "",
+        "character_pose": "Tian Xing guiding, Han Li following",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing eagerly asks where Han Li wants to go first, Han Li requests artifact material shops and city information.",
+      "narration": "田兴殷勤询问韩立想先去何处,韩立要求先去灵具材料店,并介绍城中情况。",
+      "face_style_auto": {
+        "expression": "Helpful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴介绍落日城分为八个区域,五个是修仙者和炼体士居住交易区域,中心区域需缴纳灵石。",
+      "mood": "Informative",
+      "lighting": "Daylight",
+      "action": "Explain City Layout",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing explains Sunset City has eight districts, five for cultivators and body cultivators, center district requires spirit stone fee",
+        "environment": "",
+        "character_pose": "Tian Xing explaining, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing explains Sunset City has eight districts, five for cultivators and body cultivators, center district requires spirit stone fee.",
+      "narration": "田兴介绍落日城分为八个区域,五个是修仙者和炼体士居住交易区域,中心区域需缴纳灵石。",
+      "face_style_auto": {
+        "expression": "Attentive",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴提到中心区域汇集天元境多家大商号,有精品灵具和顶阶宝物,听说还有灵宝出售。",
+      "mood": "Exciting",
+      "lighting": "Daylight",
+      "action": "Mention Treasures",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Tian Xing mentions center district gathers major trading companies from Tianyuan Realm, has fine artifacts and top-grade treasures, even spirit treasures",
+        "environment": "",
+        "character_pose": "Tian Xing excited, Han Li interested",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing mentions center district gathers major trading companies from Tianyuan Realm, has fine artifacts and top-grade treasures, even spirit treasures.",
+      "narration": "田兴提到中心区域汇集天元境多家大商号,有精品灵具和顶阶宝物,听说还有灵宝出售。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴突然想起重要消息,称拍卖行得到一套当年圣皇亲自使用过的天元武具,正准备拍卖。",
+      "mood": "Important",
+      "lighting": "Daylight",
+      "action": "Mention Tianyuan Artifacts",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Tian Xing suddenly remembers important news, says auction house obtained a set of Tianyuan Artifacts used by the former Saint Emperor, preparing to auction",
+        "environment": "",
+        "character_pose": "Tian Xing excited, Han Li surprised",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing suddenly remembers important news, says auction house obtained a set of Tianyuan Artifacts used by the former Saint Emperor, preparing to auction.",
+      "narration": "田兴突然想起重要消息,称拍卖行得到一套当年圣皇亲自使用过的天元武具,正准备拍卖。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立听闻天元武具一套五件,每件都是顶阶精品,能根据炼体士肉体强横表现出不同威力,脚步一顿。",
+      "mood": "Intrigued",
+      "lighting": "Daylight",
+      "action": "Stop Walking",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Han Li hears Tianyuan Artifacts are a set of five pieces, each top-grade, adapt to body cultivator strength, stops walking",
+        "environment": "",
+        "character_pose": "Han Li stopped, interested",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li hears Tianyuan Artifacts are a set of five pieces, each top-grade, adapt to body cultivator strength, stops walking.",
+      "narration": "韩立听闻天元武具一套五件,每件都是顶阶精品,能根据炼体士肉体强横表现出不同威力,脚步一顿。",
+      "face_style_auto": {
+        "expression": "Intrigued",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_022.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第23集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep22_full/scene_023.png"
+    }
+  ]
+}
+

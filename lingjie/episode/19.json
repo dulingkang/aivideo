@@ -1,0 +1,531 @@
+{
+  "episode": 19,
+  "title": "Spirit Clan Reinforcements · Chaos Valley",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": "Slow camera drift showcasing the immortal realm"
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第19集:灵族援军·混沌谷。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      }
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "一片巨型湖泊边上,十余名人族炼体士被一群头顶鸡冠浑身赤红的怪蛇包围,奋力抵挡。",
+      "mood": "Desperate",
+      "lighting": "Daylight",
+      "action": "Fight Snakes",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Ten human body cultivators surrounded by red-crowned snakes at a giant lake, fighting desperately",
+        "environment": "",
+        "character_pose": "Body cultivators fighting back-to-back, snakes attacking",
+        "fx": "Red mist, snake attacks",
+        "motion": "Wide shot"
+      },
+      "prompt": "Ten human body cultivators surrounded by red-crowned snakes at a giant lake, fighting desperately.",
+      "narration": "一片巨型湖泊边上,十余名人族炼体士被一群怪蛇包围,奋力抵挡攻击。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      }
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "突然湖面下传来雷鸣般的嗡鸣声,大片银光一闪,无数道晶莹水箭激射而出。",
+      "mood": "Shocking",
+      "lighting": "Water Glow",
+      "action": "Water Arrows Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Thunderous sounds from lake, silver light flashes, countless crystal water arrows shoot out",
+        "environment": "",
+        "character_pose": "Water arrows striking",
+        "fx": "Water arrows, silver light",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Thunderous sounds from lake, silver light flashes, countless crystal water arrows shoot out.",
+      "narration": "突然湖面下传来雷鸣般的嗡鸣声，无数道晶莹水箭激射而出，笼罩人蛇。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Water Glow",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "人类炼体士和怪蛇全都被洞穿成马蜂窝,纷纷倒在血泊中,只有巨蛇王堪堪避过。",
+      "mood": "Brutal",
+      "lighting": "Daylight",
+      "action": "Massacre",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Human body cultivators and snakes all pierced through, falling in pools of blood, only giant snake king barely avoids",
+        "environment": "",
+        "character_pose": "Bodies falling, blood everywhere",
+        "fx": "Blood splatter",
+        "motion": "Wide shot"
+      },
+      "prompt": "Human body cultivators and snakes all pierced through, falling in pools of blood, only giant snake king barely avoids.",
+      "narration": "人类炼体士和怪蛇全都被洞穿成马蜂窝，倒在血泊中，只有巨蛇王避过。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "地面蓦然崩裂,一只银色大手射出,一把抓住了巨蛇王的七寸处。",
+      "mood": "Powerful",
+      "lighting": "Silver Glow",
+      "action": "Silver Hand Grabs",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Ground cracks open, a silver hand shoots out, grabbing the giant snake king's vitals",
+        "environment": "",
+        "character_pose": "Silver hand grabbing snake",
+        "fx": "Ground cracking, silver glow",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Ground cracks open, a silver hand shoots out, grabbing the giant snake king's vitals.",
+      "narration": "地面蓦然崩裂,一只银色大手射出,一把抓住了巨蛇王头颅下的七寸处。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Silver Glow",
+        "detail": "Natural",
+        "strength": 0.91
+      }
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "巨蛇咬在银手上,反而崩断了满口利牙,另一只银手出现,硬生生将蛇首揪了下来。",
+      "mood": "Brutal",
+      "lighting": "Silver Glow",
+      "action": "Snake Killed",
+      "camera": "Close-Up Action",
+      "visual": {
+        "composition": "Giant snake bites silver hand, breaks teeth, another silver hand appears, rips off snake head",
+        "environment": "",
+        "character_pose": "Silver hands ripping snake head",
+        "fx": "Blood spray, silver glow",
+        "motion": "Close-up action"
+      },
+      "prompt": "Giant snake bites silver hand, breaks teeth, another silver hand appears, rips off snake head.",
+      "narration": "巨蛇咬在银手上反而崩断利牙,另一只银手出现,硬生生将蛇首揪了下来。",
+      "face_style_auto": {
+        "expression": "Brutal",
+        "lighting": "Silver Glow",
+        "detail": "Natural",
+        "strength": 0.92
+      }
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "灰尘飘散后,原地出现一名浑身银光闪闪看不清面目的男子,湖面上浮现一名晶莹水人。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Spirit Beings Revealed",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "After dust settles, a silver-glowing man appears, a crystal water person emerges from lake",
+        "environment": "",
+        "character_pose": "Silver man and water person facing each other",
+        "fx": "Silver glow, water shimmering",
+        "motion": "Wide reveal"
+      },
+      "prompt": "After dust settles, a silver-glowing man appears, a crystal water person emerges from lake.",
+      "narration": "灰尘飘散后,一名银光闪闪的男子出现,湖面上浮现出一名晶莹剔透的水人。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "银色人影发出打雷般的声音,称水人为水魅,并说赤灭也应该来了。",
+      "mood": "Formal",
+      "lighting": "Spirit Light",
+      "action": "Recognize Water Spirit",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Silver figure speaks in thunderous voice, calls water person Shui Mei, says Chi Mie should also come",
+        "environment": "",
+        "character_pose": "Silver man speaking to water person",
+        "fx": "",
+        "motion": "Medium two-shot"
+      },
+      "prompt": "Silver figure speaks in thunderous voice, calls water person Shui Mei, says Chi Mie should also come.",
+      "narration": "银色人影发出打雷般的声音,称水人为水魅,并说赤灭也应该来了。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      }
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "一团赤红光焰浮现而出,转眼化为半尺来高的火人,浑身火焰翻滚。",
+      "mood": "Powerful",
+      "lighting": "Fire Glow",
+      "action": "Fire Spirit Appears",
+      "camera": "Reveal Shot",
+      "visual": {
+        "composition": "A red fire flame appears, transforms into a half-foot tall fire person, flames rolling",
+        "environment": "",
+        "character_pose": "Fire person standing with flames",
+        "fx": "Fire, flames rolling",
+        "motion": "Reveal shot"
+      },
+      "prompt": "A red fire flame appears, transforms into a half-foot tall fire person, flames rolling.",
+      "narration": "一团赤红光焰浮现而出,转眼化为半尺来高的火人,浑身火焰翻滚不止。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Fire Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "水魅询问二人突然找他是否与叛逆有关,银色人影确认已发现叛逆的隐身之所。",
+      "mood": "Serious",
+      "lighting": "Spirit Light",
+      "action": "Discuss Traitor",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shui Mei asks if their sudden visit relates to traitor, silver figure confirms finding traitor's hiding place",
+        "environment": "",
+        "character_pose": "Three spirit beings talking",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Shui Mei asks if their sudden visit relates to traitor, silver figure confirms finding traitor's hiding place.",
+      "narration": "水魅询问二人突然找他是否与叛逆有关,银色人影确认已发现叛逆的隐身之所。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "火人说道叛逆抢先一步进入了混沌谷的炙光潭下,只有身具水性神通的水魅才能潜入。",
+      "mood": "Urgent",
+      "lighting": "Spirit Light",
+      "action": "Explain Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fire person explains traitor entered Blazing Light Pool in Chaos Valley, only Shui Mei can enter",
+        "environment": "",
+        "character_pose": "Fire person explaining",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Fire person explains traitor entered Blazing Light Pool in Chaos Valley, only Shui Mei can enter.",
+      "narration": "火人说道叛逆抢先一步进入混沌谷的炙光潭下,只有身具水性神通的水魅才能潜入。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "水魅听到炙光潭的名字,声音变得尖利起来,表示连他也没有把握安然进出那里。",
+      "mood": "Alarmed",
+      "lighting": "Spirit Light",
+      "action": "React to Danger",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Shui Mei's voice becomes sharp hearing Blazing Light Pool name, says even he cannot safely enter",
+        "environment": "",
+        "character_pose": "Shui Mei agitated",
+        "fx": "",
+        "motion": "Close-up"
+      },
+      "prompt": "Shui Mei's voice becomes sharp hearing Blazing Light Pool name, says even he cannot safely enter.",
+      "narration": "水魅听到炙光潭的名字,声音变得尖利起来,表示连他也没有把握安然进出那里。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "银色人影提到途中遇到妖族之人阻拦,甚至还有黑凤族妖修出面,才让叛逆逃脱。",
+      "mood": "Frustrated",
+      "lighting": "Spirit Light",
+      "action": "Explain Obstacle",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Silver figure mentions encountering demon clan interference, even Black Phoenix demon cultivator appeared",
+        "environment": "",
+        "character_pose": "Silver figure frustrated",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Silver figure mentions encountering demon clan interference, even Black Phoenix demon cultivator appeared.",
+      "narration": "银色人影提到途中遇到妖族之人阻拦,甚至还有黑凤族妖修出面,才让叛逆逃脱。",
+      "face_style_auto": {
+        "expression": "Frustrated",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      }
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "水魅告诉二人,器灵族的人过几日就要赶到,带队的是八大玄灵之一的旭天。",
+      "mood": "Revealing",
+      "lighting": "Spirit Light",
+      "action": "Reveal Reinforcements",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shui Mei tells them Artifact Spirit Clan reinforcements coming in days, led by Xu Tian, one of Eight Xuan Ling",
+        "environment": "",
+        "character_pose": "Shui Mei revealing news",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Shui Mei tells them Artifact Spirit Clan reinforcements coming in days, led by Xu Tian, one of Eight Xuan Ling.",
+      "narration": "水魅告诉二人,器灵族的人过几日就要赶到,带队的是八大玄灵之一的旭天。",
+      "face_style_auto": {
+        "expression": "Revealing",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "银色人影和火人同时惊呼旭天玄灵的名字,水魅说只要等到器灵族到来,叛逆就无路可逃。",
+      "mood": "Shocked",
+      "lighting": "Spirit Light",
+      "action": "React to News",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Silver figure and fire person exclaim Xu Tian Xuan Ling's name, Shui Mei says traitor will have no escape",
+        "environment": "",
+        "character_pose": "All three reacting",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Silver figure and fire person exclaim Xu Tian Xuan Ling's name, Shui Mei says traitor will have no escape.",
+      "narration": "银色人影和火人同时惊呼旭天玄灵的名字,水魅说只要等到器灵族到来,叛逆就无路可逃。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "银色人影不甘神血落到器灵族手中,水魅说总比落到人妖两族手中好,五行灵族的玄灵都在对抗夜叉族。",
+      "mood": "Serious",
+      "lighting": "Spirit Light",
+      "action": "Discuss Strategy",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Silver figure reluctant about divine blood falling to Artifact Spirit Clan, Shui Mei says better than human-demon clans",
+        "environment": "",
+        "character_pose": "Three discussing",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Silver figure reluctant about divine blood falling to Artifact Spirit Clan, Shui Mei says better than human-demon clans.",
+      "narration": "银色人影不甘神血落到器灵族手中,水魅说总比落到人妖两族手中好,五行灵族的玄灵都在对抗夜叉族。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "水魅提到夜叉族才是灵族真正的大敌,他们天生喜欢吸食天地之灵,克制灵族神通。",
+      "mood": "Solemn",
+      "lighting": "Spirit Light",
+      "action": "Explain Enemy",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shui Mei mentions Yaksha Clan is true enemy of Spirit Clan, they devour heaven-earth spirits, counter Spirit Clan powers",
+        "environment": "",
+        "character_pose": "Shui Mei solemn",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Shui Mei mentions Yaksha Clan is true enemy of Spirit Clan, they devour heaven-earth spirits, counter Spirit Clan powers.",
+      "narration": "水魅提到夜叉族才是灵族真正的大敌,他们天生喜欢吸食天地之灵,克制灵族神通。",
+      "face_style_auto": {
+        "expression": "Solemn",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_lake",
+      "duration": 4,
+      "description": "火人和银色人影听了水魅的话,心情都变得沉重起来,一时无语。",
+      "mood": "Heavy",
+      "lighting": "Spirit Light",
+      "action": "Reflect",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fire person and silver figure become heavy-hearted after Shui Mei's words, silent for a moment",
+        "environment": "",
+        "character_pose": "All three solemn, silent",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Fire person and silver figure become heavy-hearted after Shui Mei's words, silent for a moment.",
+      "narration": "火人和银色人影听了水魅的话,心情都变得沉重起来,一时无语。",
+      "face_style_auto": {
+        "expression": "Heavy",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      }
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_hill",
+      "duration": 4,
+      "description": "另一处山丘上,宫装少妇在数名化形妖修的簇拥下,盯着不远处灰濛濛山谷的入口,脸色阴沉。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Watch Valley",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "On another hill, palace-dressed woman surrounded by demon cultivators watches gray valley entrance, face gloomy",
+        "environment": "",
+        "character_pose": "Woman and demon cultivators watching",
+        "fx": "",
+        "motion": "Wide shot"
+      },
+      "prompt": "On another hill, palace-dressed woman surrounded by demon cultivators watches gray valley entrance, face gloomy.",
+      "narration": "另一处山丘上,宫装少妇在数名化形妖修的簇拥下,盯着不远处灰濛濛山谷的入口。",
+      "face_style_auto": {
+        "expression": "Gloomy",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_hill",
+      "duration": 4,
+      "description": "少妇询问是否联系上寰前辈,显示他们正在等待指示,准备行动。",
+      "mood": "Waiting",
+      "lighting": "Daylight",
+      "action": "Wait for Orders",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Woman asks if they've contacted Huan senior, showing they're waiting for orders before action",
+        "environment": "",
+        "character_pose": "Woman asking",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Woman asks if they've contacted Huan senior, showing they're waiting for orders before action.",
+      "narration": "少妇询问是否联系上寰前辈,显示他们正在等待指示,准备展开下一步行动。",
+      "face_style_auto": {
+        "expression": "Waiting",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      }
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": "Static framing, gradual fade"
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第20集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      }
+    }
+  ]
+}
+
+

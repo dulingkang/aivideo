@@ -1,0 +1,877 @@
+{
+  "episode": 41,
+  "title": "Three-Headed Wolf · Huan Cangqi Arrives",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第41集:三首月狼·寰苍奇至。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "少妇再没有任何迟疑,两手掐诀一催,身上红色光罩滴溜溜的一阵急转,砰的一声闷响,光罩化为片片的红霞碎裂了开来。",
+      "mood": "Activating",
+      "lighting": "Red Light",
+      "action": "Activate Escape",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Woman without any hesitation, hands form seals and activate, red light shield on body spins rapidly, bang sound, light shield transforms into red clouds and shatters",
+        "environment": "Pool edge, woman activating escape",
+        "character_pose": "Woman forming seals, light shield spinning",
+        "fx": "Red light shield, shattering into clouds",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Woman without any hesitation, hands form seals and activate, red light shield on body spins rapidly, bang sound, light shield transforms into red clouds and shatters.",
+      "narration": "少妇再没有任何迟疑,两手掐诀一催,身上红色光罩急转,光罩化为红霞碎裂。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "光罩碎裂后,里面的少妇赫然不见了踪影,但下一刻,五六十丈之外的某处空中红光一闪,少妇婀娜的身形浮现而出。",
+      "mood": "Teleporting",
+      "lighting": "Red Light",
+      "action": "Teleport Away",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "After light shield shatters, woman inside disappears, but next moment, fifty to sixty zhang away, red light flashes in air, woman's graceful figure appears",
+        "environment": "Distant sky, woman teleporting",
+        "character_pose": "Woman appearing at distance",
+        "fx": "Red light, teleportation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "After light shield shatters, woman inside disappears, but next moment, fifty to sixty zhang away, red light flashes in air, woman's graceful figure appears.",
+      "narration": "光罩碎裂后,里面的少妇不见了踪影,下一刻五六十丈之外红光一闪,少妇身形浮现而出。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "那三名黑瘦青年见到巨人同样骇然,一见少妇逃掉了,这才醒悟过来的同时掐诀,也要施展独门遁术远离近在咫尺的煞星。",
+      "mood": "Realizing",
+      "lighting": "Silver Light",
+      "action": "Realize Danger",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Three black thin youths see giant also shocked, seeing woman escaped, realize and simultaneously form seals, also want to use secret escape to flee nearby death star",
+        "environment": "Pool edge, youths realizing",
+        "character_pose": "Three youths panicking, forming seals",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Three black thin youths see giant also shocked, seeing woman escaped, realize and simultaneously form seals, also want to use secret escape to flee nearby death star.",
+      "narration": "那三名黑瘦青年见到巨人同样骇然,一见少妇逃掉了,这才醒悟过来要施展遁术。",
+      "face_style_auto": {
+        "expression": "Panicked",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但是就在这时,独目巨人忽然一张口,喉咙中发出怪异之声的猛然一吸,顿时狂风大作,三名黑瘦青年只觉一股巨力猛然将护体银光一扯。",
+      "mood": "Devouring",
+      "lighting": "Yellow Light",
+      "action": "Giant Sucks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "But at this moment, one-eyed giant suddenly opens mouth, throat makes strange sound, suddenly inhales, immediately strong wind, three black thin youths feel huge force pulling protective silver light",
+        "environment": "Giant's mouth, sucking",
+        "character_pose": "Giant inhaling, youths being pulled",
+        "fx": "Strong wind, suction force, pulling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But at this moment, one-eyed giant suddenly opens mouth, throat makes strange sound, suddenly inhales, immediately strong wind, three black thin youths feel huge force pulling protective silver light.",
+      "narration": "但是就在这时,独目巨人忽然一张口,喉咙中发出怪异之声的猛然一吸,顿时狂风大作。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "三名黑瘦青年就往空中狂拉而去,三人大惊的极力掐动口诀想要对抗,但是连少妇和蓝城主这样化神修士都要落荒而逃,又岂是他们可以轻易对抗的。",
+      "mood": "Helpless",
+      "lighting": "Silver Light",
+      "action": "Pulled Up",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Three black thin youths pulled wildly toward sky, three greatly shocked, desperately form seals trying to resist, but even woman and City Lord Lan such Deity Transformation cultivators flee, how can they easily resist",
+        "environment": "Sky above, youths being pulled",
+        "character_pose": "Three youths being pulled, struggling",
+        "fx": "Suction force, pulling upward",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Three black thin youths pulled wildly toward sky, three greatly shocked, desperately form seals trying to resist, but even woman and City Lord Lan such Deity Transformation cultivators flee, how can they easily resist.",
+      "narration": "三名黑瘦青年就往空中狂拉而去,三人大惊的极力掐动口诀想要对抗,但岂是他们可以对抗的。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "三名妖修身形一起,被强行的吸离了地面,往巨人血盆大口中送去,这一下,这三名妖修才真的惊恐起来。",
+      "mood": "Terrified",
+      "lighting": "Yellow Light",
+      "action": "Being Devoured",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Three demon cultivators' bodies together, forcefully sucked from ground, sent toward giant's huge mouth, now these three demon cultivators truly terrified",
+        "environment": "Being pulled toward giant's mouth",
+        "character_pose": "Three cultivators terrified, being pulled",
+        "fx": "Suction force, being pulled toward mouth",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Three demon cultivators' bodies together, forcefully sucked from ground, sent toward giant's huge mouth, now these three demon cultivators truly terrified.",
+      "narration": "三名妖修身形一起,被强行的吸离了地面,往巨人血盆大口中送去,才真的惊恐起来。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "其中一名青年,蓦然在空中一打滚,化为一只体长数丈的银色巨狼,此狼只是冲高空一声凄厉的狼啸。",
+      "mood": "Transforming",
+      "lighting": "Silver Light",
+      "action": "Transform to Wolf",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "One youth suddenly rolls in air, transforms into silver giant wolf several zhang long, this wolf just howls toward high sky",
+        "environment": "Sky above, transforming",
+        "character_pose": "Youth transforming into giant wolf",
+        "fx": "Transformation, silver light, wolf howling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "One youth suddenly rolls in air, transforms into silver giant wolf several zhang long, this wolf just howls toward high sky.",
+      "narration": "其中一名青年,蓦然在空中一打滚,化为一只体长数丈的银色巨狼,冲高空一声狼啸。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "另外两名青年就毫不犹豫的化为一道银影,冲进了巨狼身体中,顿时银色狼头两侧,青红两色的刺目光团闪动起来。",
+      "mood": "Merging",
+      "lighting": "Silver Light",
+      "action": "Merge into Wolf",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Other two youths without hesitation transform into silver shadows, rush into giant wolf body, immediately both sides of silver wolf head, cyan and red bright light groups flash",
+        "environment": "Giant wolf, merging",
+        "character_pose": "Two youths merging into wolf",
+        "fx": "Silver shadows, cyan and red light, merging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Other two youths without hesitation transform into silver shadows, rush into giant wolf body, immediately both sides of silver wolf head, cyan and red bright light groups flash.",
+      "narration": "另外两名青年就毫不犹豫的化为一道银影,冲进了巨狼身体中,青红两色的刺目光团闪动起来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "各浮现出一颗稍小些的青红两色狼首,三颗狼首同时长啸出口,随之银红青三色光霞从狼口中喷出,瞬间加入了护体银光中。",
+      "mood": "Powerful",
+      "lighting": "Tri-Color Light",
+      "action": "Three Heads Appear",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Each appears slightly smaller cyan and red wolf head, three wolf heads simultaneously howl, then silver red cyan three-color light sprays from wolf mouths, instantly joins protective silver light",
+        "environment": "Three-headed wolf, three heads",
+        "character_pose": "Three wolf heads howling, three-color light",
+        "fx": "Three heads, three-color light, howling",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Each appears slightly smaller cyan and red wolf head, three wolf heads simultaneously howl, then silver red cyan three-color light sprays from wolf mouths, instantly joins protective silver light.",
+      "narration": "各浮现出一颗稍小些的青红两色狼首,三颗狼首同时长啸出口,三色光霞从狼口中喷出。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Tri-Color Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "虽然没有让身形彻底停了下来,但急去之势也马上一顿,立刻大缓了起来,此妖情急之下终于合三为一,回归了三首妖狼的本体。",
+      "mood": "Resisting",
+      "lighting": "Tri-Color Light",
+      "action": "Slow Down",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Although didn't completely stop movement, rushing momentum immediately pauses, greatly slows, this demon in desperation finally merges three into one, returns to three-headed demon wolf's true form",
+        "environment": "Sky above, three-headed wolf resisting",
+        "character_pose": "Three-headed wolf slowing down",
+        "fx": "Three-color light, resisting suction",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Although didn't completely stop movement, rushing momentum immediately pauses, greatly slows, this demon in desperation finally merges three into one, returns to three-headed demon wolf's true form.",
+      "narration": "虽然没有让身形彻底停下来,但急去之势也马上一顿,立刻大缓了起来,合三为一。",
+      "face_style_auto": {
+        "expression": "Struggling",
+        "lighting": "Tri-Color Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "隐匿空中的韩立见到此幕,却心中一动,脑中顿时浮现出另一只体态优雅的身影出来,但轻叹了一口气,就将此身影驱逐出了脑中。",
+      "mood": "Nostalgic",
+      "lighting": "Mixed Lighting",
+      "action": "Recall Memory",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li hiding in air sees this, heart moves, mind immediately appears another graceful figure, but sighs lightly, drives this figure from mind",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li nostalgic, then focused",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li hiding in air sees this, heart moves, mind immediately appears another graceful figure, but sighs lightly, drives this figure from mind.",
+      "narration": "隐匿空中的韩立见到此幕,心中一动,脑中浮现出另一只体态优雅的身影,但轻叹了一口气。",
+      "face_style_auto": {
+        "expression": "Nostalgic",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立重将注意力回到下面的情景上,既然水潭是巨人独目幻化而成,那岂不是说那名灵族叛逆已经被这巨人吞噬掉了。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li returns attention to scene below, since pool is giant's single eye transformed, doesn't that mean spirit traitor already devoured by giant",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li realizing, analyzing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li returns attention to scene below, since pool is giant's single eye transformed, doesn't that mean spirit traitor already devoured by giant.",
+      "narration": "韩立重将注意力回到下面的情景上,既然水潭是巨人独目幻化而成,那灵族叛逆已被吞噬。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立想,而据他了解,上古巨人一族灵智极其低下,喜欢生啖一切他族之人,根本不可能辨认出什么神血,盛装神血的瓶子,多半在巨人体内了。",
+      "mood": "Understanding",
+      "lighting": "Mixed Lighting",
+      "action": "Understand Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li thinks, according to his knowledge, ancient giant race intelligence extremely low, like to devour all other races, cannot recognize divine blood, divine blood vial probably in giant's body",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li understanding, contemplating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li thinks, according to his knowledge, ancient giant race intelligence extremely low, like to devour all other races, cannot recognize divine blood, divine blood vial probably in giant's body.",
+      "narration": "韩立想,上古巨人一族灵智极其低下,喜欢生啖一切他族之人,神血瓶子多半在巨人体内。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立心中有些嘀咕,但就此让他退却,却又大为的不舍,上古巨人就算是最低阶的种类,成年后也具有炼虚初期那种等阶的神通。",
+      "mood": "Hesitant",
+      "lighting": "Mixed Lighting",
+      "action": "Consider Options",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's heart somewhat uncertain, but to retreat now, greatly unwilling, ancient giants even lowest tier, adults have Void Refinement early level abilities",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li hesitant, considering",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart somewhat uncertain, but to retreat now, greatly unwilling, ancient giants even lowest tier, adults have Void Refinement early level abilities.",
+      "narration": "韩立心中有些嘀咕,但就此让他退却,却又大为的不舍,上古巨人成年后具有炼虚初期神通。",
+      "face_style_auto": {
+        "expression": "Hesitant",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这时,三首银狼一连从口中喷出数件宝物,想击破吸力,脱困而逃,但无一不刚一出口,就嗖的一声,直接被浮现的朵朵银色符文一卷,凭空被巨人摄入了大口。",
+      "mood": "Desperate",
+      "lighting": "Silver Light",
+      "action": "Treasures Devoured",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "At this time, three-headed silver wolf continuously sprays several treasures from mouth, wants to break suction, escape, but every one just leaving, swoosh sound, directly pulled by silver runes appearing, sucked into giant's mouth",
+        "environment": "Sky above, treasures being devoured",
+        "character_pose": "Treasures being sucked, wolf desperate",
+        "fx": "Silver runes, treasures being devoured",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "fast"
+        }
+      },
+      "prompt": "At this time, three-headed silver wolf continuously sprays several treasures from mouth, wants to break suction, escape, but every one just leaving, swoosh sound, directly pulled by silver runes appearing, sucked into giant's mouth.",
+      "narration": "这时,三首银狼一连从口中喷出数件宝物,想击破吸力,但无一不被巨人摄入大口。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "三首银狼只能单凭本身法力苦苦支撑下去,身形仍徐徐的向巨人大口中飞去,即使巨狼拼命狂喷三色光霞,但仍无法阻止分毫的。",
+      "mood": "Hopeless",
+      "lighting": "Tri-Color Light",
+      "action": "Struggling in Vain",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Three-headed silver wolf can only rely on own mana to struggle, body still slowly flies toward giant's mouth, even wolf desperately sprays three-color light, still cannot stop at all",
+        "environment": "Sky above, wolf being pulled",
+        "character_pose": "Three-headed wolf struggling, being pulled",
+        "fx": "Three-color light, struggling",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three-headed silver wolf can only rely on own mana to struggle, body still slowly flies toward giant's mouth, even wolf desperately sprays three-color light, still cannot stop at all.",
+      "narration": "三首银狼只能单凭本身法力苦苦支撑下去,身形仍徐徐的向巨人大口中飞去。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Tri-Color Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但就这样,巨人还有些不耐了,突然抬起一只巨掌,仿佛拍苍蝇般的一把向三首狼妖抓去,大片黑影从天而降。",
+      "mood": "Terrifying",
+      "lighting": "Shadow",
+      "action": "Giant Hand Grabs",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "But even so, giant still impatient, suddenly lifts one giant palm, like swatting fly, grabs toward three-headed wolf demon, large shadow descends from sky",
+        "environment": "Giant's hand descending",
+        "character_pose": "Giant hand grabbing, wolf below",
+        "fx": "Giant hand shadow, descending",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "But even so, giant still impatient, suddenly lifts one giant palm, like swatting fly, grabs toward three-headed wolf demon, large shadow descends from sky.",
+      "narration": "但就这样,巨人还有些不耐了,突然抬起一只巨掌,仿佛拍苍蝇般的一把向三首狼妖抓去。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Shadow",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一下将狼妖罩在了其下,尚未真抓下,妖狼的护体光焰就被掌风压的摇摇欲晃,仿佛随时都有可能溃灭消失,被如此大的恐怖手掌抓住,哪怕它身体坚硬逾铁,也会被捏成肉饼的。",
+      "mood": "Desperate",
+      "lighting": "Shadow",
+      "action": "Shadow Covers Wolf",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Instantly covers wolf demon below, before really grabbing, demon wolf's protective light flames pressed by palm wind, shaking, seems could collapse anytime, caught by such huge terrifying palm, even body hard as iron, will be crushed",
+        "environment": "Giant hand shadow covering wolf",
+        "character_pose": "Wolf in shadow, protective light shaking",
+        "fx": "Shadow, palm wind, light shaking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Instantly covers wolf demon below, before really grabbing, demon wolf's protective light flames pressed by palm wind, shaking, seems could collapse anytime, caught by such huge terrifying palm, even body hard as iron, will be crushed.",
+      "narration": "一下将狼妖罩在了其下,尚未真抓下,妖狼的护体光焰就被掌风压的摇摇欲晃。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Shadow",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但此狼偏偏被巨力牵制住,根本无法躲避此抓,巨狼不禁目露出了绝望之色,眼见仿佛阁楼般大小的大手就要将三首巨狼一把抓住时,异变突现。",
+      "mood": "Last Hope",
+      "lighting": "Shadow",
+      "action": "Rescue Arrives",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "But this wolf trapped by huge force, cannot dodge grab, giant wolf eyes show despair, seeing building-sized hand about to grab three-headed giant wolf, sudden change appears",
+        "environment": "Giant hand about to grab, rescue coming",
+        "character_pose": "Wolf despairing, help arriving",
+        "fx": "Shadow, rescue light appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But this wolf trapped by huge force, cannot dodge grab, giant wolf eyes show despair, seeing building-sized hand about to grab three-headed giant wolf, sudden change appears.",
+      "narration": "但此狼偏偏被巨力牵制住,根本无法躲避此抓,巨狼不禁目露出了绝望之色。",
+      "face_style_auto": {
+        "expression": "Despairing",
+        "lighting": "Shadow",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "忽然巨狼附近黄光一闪,一个瘦弱人影从虚空中诡异的浮现而出,二话不说的呼呼两拳击出,正是那名琼鼠族长老,寰苍奇。",
+      "mood": "Rescue",
+      "lighting": "Yellow Light",
+      "action": "Huan Cangqi Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Suddenly near giant wolf yellow light flashes, thin weak figure eerily appears from void, without a word huffs two punches, it's that Plum Mouse clan elder, Huan Cangqi",
+        "environment": "Sky above, Huan Cangqi appearing",
+        "character_pose": "Huan Cangqi appearing, punching",
+        "fx": "Yellow light, appearing from void, punches",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Suddenly near giant wolf yellow light flashes, thin weak figure eerily appears from void, without a word huffs two punches, it's that Plum Mouse clan elder, Huan Cangqi.",
+      "narration": "忽然巨狼附近黄光一闪,一个瘦弱人影从虚空中诡异的浮现而出,正是寰苍奇。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "他一拳击向空中巨手,另一拳却对准了在三色光焰中的三首狼妖,两只拳头上刺目灵光闪动,两团黄色光拳浮现射出。",
+      "mood": "Powerful",
+      "lighting": "Yellow Light",
+      "action": "Two Punches",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "He punches toward giant hand in sky, other punch aims at three-headed wolf demon in three-color light flames, two fists shine with bright spirit light, two yellow light fists appear and shoot",
+        "environment": "Sky above, Huan Cangqi attacking",
+        "character_pose": "Huan Cangqi punching, two light fists",
+        "fx": "Yellow light fists, shooting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "He punches toward giant hand in sky, other punch aims at three-headed wolf demon in three-color light flames, two fists shine with bright spirit light, two yellow light fists appear and shoot.",
+      "narration": "他一拳击向空中巨手,另一拳却对准了在三色光焰中的三首狼妖,两团黄色光拳浮现射出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "轰轰两声巨响,一只光拳和巨掌一接触,让其只顿了一顿,随之就被巨力一下压的溃散消灭,另一只则正击在妖狼护体光焰上。",
+      "mood": "Collision",
+      "lighting": "Mixed Lighting",
+      "action": "Punches Hit",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Boom boom two loud sounds, one light fist contacts giant palm, makes it pause, then crushed by huge force and disperses, other hits demon wolf's protective light flames",
+        "environment": "Sky above, punches colliding",
+        "character_pose": "Light fists hitting, effects",
+        "fx": "Explosions, light fists, collisions",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Boom boom two loud sounds, one light fist contacts giant palm, makes it pause, then crushed by huge force and disperses, other hits demon wolf's protective light flames.",
+      "narration": "轰轰两声巨响,一只光拳和巨掌一接触,让其只顿了一顿,另一只则正击在妖狼护体光焰上。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "让其身躯一颤,随之弩箭般的被强行击了出去,竟就此脱离了巨人大口的狂吸,这时巨人手掌压了下来,少年却身形一晃,就仿佛鬼魅的在原地消失了。",
+      "mood": "Successful",
+      "lighting": "Yellow Light",
+      "action": "Wolf Freed",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Makes body tremble, then like crossbow arrow forcefully knocked out, actually escapes giant mouth's suction, at this time giant palm presses down, youth body flickers, like ghost disappears in place",
+        "environment": "Sky above, wolf freed, youth disappearing",
+        "character_pose": "Wolf flying away, youth disappearing",
+        "fx": "Wolf escaping, youth teleporting",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Makes body tremble, then like crossbow arrow forcefully knocked out, actually escapes giant mouth's suction, at this time giant palm presses down, youth body flickers, like ghost disappears in place.",
+      "narration": "让其身躯一颤,随之弩箭般的被强行击了出去,竟就此脱离了巨人大口的狂吸。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "少年一下出现在了数十丈外,竟跑到了被击飞出的妖狼的前方,并冲飞射而来三首妖狼轻轻一点,点点青光凭空凝聚成形。",
+      "mood": "Rescuing",
+      "lighting": "Green Light",
+      "action": "Create Mirror",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Youth suddenly appears dozens of zhang away, runs ahead of knocked-out demon wolf, lightly points at three-headed demon wolf flying over, dots of cyan light condense from void",
+        "environment": "Sky above, youth creating mirror",
+        "character_pose": "Youth pointing, cyan light forming",
+        "fx": "Cyan light, forming mirror",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Youth suddenly appears dozens of zhang away, runs ahead of knocked-out demon wolf, lightly points at three-headed demon wolf flying over, dots of cyan light condense from void.",
+      "narration": "少年一下出现在了数十丈外,竟跑到了被击飞出的妖狼的前方,并冲飞射而来的妖狼轻轻一点。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "转眼化为一块巨大青镜,晶莹剔透,狼妖偌大身躯一头撞进了镜面上,随之荡起了一层层的波纹后,就被缓缓的反弹开来。",
+      "mood": "Saving",
+      "lighting": "Green Light",
+      "action": "Mirror Stops Wolf",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "In a blink transforms into huge cyan mirror, crystal clear, demon wolf's large body crashes into mirror surface, ripples appear, then slowly bounces back",
+        "environment": "Sky above, mirror stopping wolf",
+        "character_pose": "Wolf hitting mirror, bouncing back",
+        "fx": "Cyan mirror, ripples, bouncing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In a blink transforms into huge cyan mirror, crystal clear, demon wolf's large body crashes into mirror surface, ripples appear, then slowly bounces back.",
+      "narration": "转眼化为一块巨大青镜,晶莹剔透,狼妖偌大身躯一头撞进了镜面上,被缓缓的反弹开来。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_026.png"
+    },
+    {
+      "id": 26,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "摇摇头有些眩晕的三颗狼首,这只银狼族妖狼惊喜之极的连忙称谢,多谢寰前辈救命之恩,它竟然安然无恙了。",
+      "mood": "Grateful",
+      "lighting": "Mixed Lighting",
+      "action": "Thank for Rescue",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shaking three wolf heads somewhat dizzy, this Silver Wolf clan demon wolf extremely joyful, hurriedly thanks, thank Fellow Daoist Huan for saving life, actually safe and sound",
+        "environment": "Sky above, wolf thanking",
+        "character_pose": "Three-headed wolf thanking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shaking three wolf heads somewhat dizzy, this Silver Wolf clan demon wolf extremely joyful, hurriedly thanks, thank Fellow Daoist Huan for saving life, actually safe and sound.",
+      "narration": "摇摇头有些眩晕的三颗狼首,这只银狼族妖狼惊喜之极的连忙称谢,多谢寰前辈救命之恩。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_027.png"
+    },
+    {
+      "id": 27,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰姓少年说道,你退到一边去,根本对付不了这东西的,没想到此地竟然还有上古巨人,看来应该在三境建立之前,就一直沉睡在谷中了。",
+      "mood": "Commanding",
+      "lighting": "Mixed Lighting",
+      "action": "Command Retreat",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth says, you retreat to side, cannot handle this thing, didn't expect this place actually has ancient giant, seems should have slept in valley since before Three Realms established",
+        "environment": "Sky above, Huan Cangqi speaking",
+        "character_pose": "Huan Cangqi commanding, explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says, you retreat to side, cannot handle this thing, didn't expect this place actually has ancient giant, seems should have slept in valley since before Three Realms established.",
+      "narration": "寰姓少年说道,你退到一边去,根本对付不了这东西的,没想到此地竟然还有上古巨人。",
+      "face_style_auto": {
+        "expression": "Commanding",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_028.png"
+    },
+    {
+      "id": 28,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "附近空中又一团白光闪动,一名白袍男子也双手倒背的浮现而出,正是黄粱灵君,他双目微眯的盯着不远处的庞然巨物,脸色凝重异常。",
+      "mood": "Serious",
+      "lighting": "White Light",
+      "action": "Huangliang Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Nearby air another white light flashes, white-robed man also appears hands behind back, it's Huangliang Spirit Lord, eyes slightly squinting at nearby huge thing, face extremely grave",
+        "environment": "Sky above, Huangliang appearing",
+        "character_pose": "Huangliang Spirit Lord appearing, serious",
+        "fx": "White light, appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Nearby air another white light flashes, white-robed man also appears hands behind back, it's Huangliang Spirit Lord, eyes slightly squinting at nearby huge thing, face extremely grave.",
+      "narration": "附近空中又一团白光闪动,一名白袍男子也双手倒背的浮现而出,正是黄粱灵君。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_029.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第42集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep41_full/scene_030.png"
+    }
+  ]
+}
+
+

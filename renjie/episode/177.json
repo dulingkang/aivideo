@@ -1,0 +1,831 @@
+{
+  "episode": 177,
+  "title": "背叛与冰封 · 逃离玉矶阁",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕“上一回 · 妖神金像”，背景为玉矶阁二层对峙场面。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll unfurling above tense confrontation scene",
+        "environment": "Jade pavilion second floor with opposing groups",
+        "character_pose": "",
+        "fx": "Floating golden particles",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia title card, golden scroll over tense confrontation in jade pavilion",
+      "narration": "我是云卷仙音，第177集《背叛与冰封》敬请诸位观赏。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "白衫老者忽然一步上前，冰寒地说着话，张口就要喷出法宝的样子。",
+      "mood": "Tense",
+      "lighting": "Harsh",
+      "action": "Preparing to attack",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Elder stepping forward with mouth opening",
+        "environment": "Second floor interior",
+        "character_pose": "Body tensed, mouth opening",
+        "fx": "White light gathering",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of elder preparing to attack, white light gathering in mouth",
+      "narration": "白衫老者忽然一步上前，冰寒地说着话，张口就要喷出法宝。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "南陇侯想阻止白衫老者，但老者猛一回头，银轮激射而出击中南陇侯。",
+      "mood": "Shocking",
+      "lighting": "Bright flash",
+      "action": "Betrayal attack",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Silver wheel streaking toward Nan Long Hou",
+        "environment": "Second floor interior",
+        "character_pose": "Elder turning, wheel flying",
+        "fx": "Silver flash, impact",
+        "motion": {
+          "type": "snap",
+          "speed": "fast"
+        }
+      },
+      "prompt": "silver wheel streaking toward Nan Long Hou in betrayal attack, fast motion",
+      "narration": "南陇侯想阻止老者，但老者猛一回头，银轮激射而出击中南陇侯。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "砰的一声闷响，银轮切开护体金光，直接击中南陇侯的胸膛。",
+      "mood": "Violent",
+      "lighting": "Bright",
+      "action": "Impact",
+      "camera": "Close-up impact",
+      "visual": {
+        "composition": "Silver wheel impacting chest, golden light breaking",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Impact flash, golden shards",
+        "motion": {
+          "type": "impact"
+        }
+      },
+      "prompt": "close-up of silver wheel impacting chest, golden light shattering",
+      "narration": "砰的一声闷响，银轮切开护体金光，直接击中南陇侯的胸膛。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "南陇侯被击退数步，胸部凹瘪，他惊怒反应，金色小剑激射而出。",
+      "mood": "Angry",
+      "lighting": "Harsh",
+      "action": "Counter-attacking",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Nan Long Hou staggering back, throwing golden sword",
+        "environment": "Second floor interior",
+        "character_pose": "Hand throwing, body recoiling",
+        "fx": "Golden sword streak",
+        "motion": {
+          "type": "recoil"
+        }
+      },
+      "prompt": "Nan Long Hou staggering back after impact, throwing golden sword",
+      "narration": "南陇侯被击退数步，胸部凹瘪，他惊怒反应，金色小剑激射而出。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "白衫老者身形一晃到了王天古等人身边，收回银轮挡下金剑。",
+      "mood": "Calculating",
+      "lighting": "Neutral",
+      "action": "Joining allies",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder moving to allies, blocking golden sword",
+        "environment": "Second floor interior",
+        "character_pose": "Blocking stance",
+        "fx": "Sword and wheel clash",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "elder moving to allies and blocking golden sword with silver wheel",
+      "narration": "白衫老者身形一晃到了王天古等人身边，收回银轮挡下金剑。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "南陇侯衣襟里露出闪着青光的皮甲，虽然深陷但未被切开，那是青犀甲。",
+      "mood": "Revealing",
+      "lighting": "Green glow",
+      "action": "Revealing armor",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Green glowing armor visible through torn clothes",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Green light emanating",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of green glowing armor through torn clothes, protective",
+      "narration": "南陇侯衣襟露出闪着青光的皮甲，虽然深陷但未被切开，是青犀甲。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "白衫老者面无表情地说出青犀甲之名，确认南陇侯果然贴身穿戴了此宝。",
+      "mood": "Cold",
+      "lighting": "Neutral",
+      "action": "Recognizing",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Elder's cold face speaking",
+        "environment": "Second floor interior",
+        "character_pose": "Expressionless",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of elder's cold expressionless face speaking",
+      "narration": "白衫老者面无表情地说出青犀甲之名，确认南陇侯果然贴身佩戴。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "南陇侯面颊殷红，单手抚胸，双目喷火地盯着老者，说没想到他也被收买了。",
+      "mood": "Furious",
+      "lighting": "Harsh",
+      "action": "Confronting",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Nan Long Hou's furious face, hand on chest",
+        "environment": "Second floor interior",
+        "character_pose": "Hand on chest, eyes glaring",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Nan Long Hou's furious face, hand clutching chest",
+      "narration": "南陇侯面颊殷红，单手抚胸，双目喷火地盯着老者，说被收买了。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "白衫老者不理会南陇侯，反而冲王天古等人说决不可放南陇侯离开此地。",
+      "mood": "Cold",
+      "lighting": "Neutral",
+      "action": "Warning allies",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder speaking to allies, ignoring Nan Long Hou",
+        "environment": "Second floor interior",
+        "character_pose": "Turning away",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "elder speaking to allies, turning away from wounded opponent",
+      "narration": "白衫老者不理会南陇侯，反而冲王天古等人说决不可放南陇侯离开。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "尤姓修士阴笑着放出一口白濛濛的飞刀法宝，说南陇侯插翅难飞。",
+      "mood": "Confident",
+      "lighting": "Soft white",
+      "action": "Releasing weapon",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Cultivator releasing white flying blade",
+        "environment": "Second floor interior",
+        "character_pose": "Hand gesturing",
+        "fx": "White blade floating",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator releasing white flying blade weapon confidently",
+      "narration": "尤姓修士阴笑着放出一口白濛濛的飞刀法宝，说南陇侯插翅难飞。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "王天古热情地邀请韩立联手对付南陇侯，说宝物也算他一份。",
+      "mood": "Deceptive",
+      "lighting": "Neutral",
+      "action": "Inviting",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Wang Tian Gu speaking to Han Li warmly",
+        "environment": "Second floor interior",
+        "character_pose": "Open gesture",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator warmly inviting another to join, deceptive smile",
+      "narration": "王天古热情地邀请韩立联手对付南陇侯，说宝物也算他一份。",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "韩立被刚才一幕震惊，目光一转落在楼梯口，发现老妇人已守在那里。",
+      "mood": "Alert",
+      "lighting": "Subtle",
+      "action": "Scanning",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li looking toward staircase, old woman blocking",
+        "environment": "Second floor interior",
+        "character_pose": "Head turned, eyes scanning",
+        "fx": "",
+        "motion": {
+          "type": "pan"
+        }
+      },
+      "prompt": "cultivator scanning environment, noticing blocked exit",
+      "narration": "韩立被刚才一幕震惊，目光落在楼梯口，发现老妇人已守在那里。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Subtle",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "南陇侯单手向后一拂，金霞卷住玉床上的三个玉盒，飞带回手中。",
+      "mood": "Desperate",
+      "lighting": "Golden glow",
+      "action": "Grabbing boxes",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Golden light grabbing three jade boxes from bed",
+        "environment": "Second floor interior",
+        "character_pose": "Hand sweeping back",
+        "fx": "Golden light stream",
+        "motion": {
+          "type": "sweep"
+        }
+      },
+      "prompt": "golden light stream grabbing three jade boxes, desperate action",
+      "narration": "南陇侯单手向后一拂，金霞卷住玉床上的三个玉盒，飞带回手中。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Golden",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "南陇侯一甩手，其中一个玉盒激射向韩立，大出所有人意料。",
+      "mood": "Surprising",
+      "lighting": "Golden flash",
+      "action": "Throwing box",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Jade box flying through air toward Han Li",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Golden trail",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "jade box flying through air with golden trail, surprising moment",
+      "narration": "南陇侯一甩手，其中一个玉盒激射向韩立，大出所有人意料。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "玉盒被韩立轻易接到手中，他眨了眨眼睛，目露一分疑惑。",
+      "mood": "Puzzled",
+      "lighting": "Soft",
+      "action": "Receiving",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li holding jade box, puzzled expression",
+        "environment": "Second floor interior",
+        "character_pose": "Hand holding box, eyes blinking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Han Li holding jade box with puzzled expression",
+      "narration": "玉盒被韩立轻易接到手中，他眨了眨眼睛，目露一分疑惑。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "南陇侯说既然韩立没有同流合污，这玉盒就送给他，若是坠魔谷秘密就归他了。",
+      "mood": "Calculating",
+      "lighting": "Soft",
+      "action": "Explaining",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Nan Long Hou speaking, hands behind back",
+        "environment": "Second floor interior",
+        "character_pose": "Hands behind back, speaking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Nan Long Hou speaking strategically, hands behind back",
+      "narration": "南陇侯说既然韩立没有同流合污，这玉盒就送他，若有秘密归他了。",
+      "face_style_auto": {
+        "expression": "Calculating",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "王天古和云姓老者等人闻言面色大变，韩立低首看了看手中的玉盒。",
+      "mood": "Shocked",
+      "lighting": "Harsh",
+      "action": "Reacting",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Group showing shocked expressions, Han Li looking at box",
+        "environment": "Second floor interior",
+        "character_pose": "Various shocked poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group showing shocked expressions, Han Li examining box",
+      "narration": "王天古和云姓老者等人闻言面色大变，韩立低首看了看手中的玉盒。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "韩立心中想狂笑但按捺下来，明白南陇侯这是在玩祸水东移的把戏。",
+      "mood": "Amused",
+      "lighting": "Soft",
+      "action": "Realizing",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li's face showing subtle amusement",
+        "environment": "Second floor interior",
+        "character_pose": "Suppressed smile",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Han Li's face showing subtle amusement, suppressed smile",
+      "narration": "韩立心中想狂笑但按捺下来，明白南陇侯这是在玩祸水东移的把戏。",
+      "face_style_auto": {
+        "expression": "Amused",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "韩立冷笑一声，毫不迟疑手掌一翻，玉盒消失不见，被收进储物袋中。",
+      "mood": "Decisive",
+      "lighting": "Neutral",
+      "action": "Storing",
+      "camera": "Close-up hand",
+      "visual": {
+        "composition": "Hand flipping, box disappearing into storage",
+        "environment": "Second floor interior",
+        "character_pose": "Hand gesture",
+        "fx": "Box vanishing",
+        "motion": {
+          "type": "flip"
+        }
+      },
+      "prompt": "close-up of hand flipping, box disappearing into storage bag",
+      "narration": "韩立冷笑一声，毫不迟疑手掌一翻，玉盒消失不见，收进储物袋中。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "王天古脸色一沉，吩咐王蝉和燕如嫣协助尤姓修士，别让韩立跑掉。",
+      "mood": "Ordering",
+      "lighting": "Harsh",
+      "action": "Commanding",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Wang Tian Gu ordering, pointing at Han Li",
+        "environment": "Second floor interior",
+        "character_pose": "Commanding gesture",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator ordering others, pointing commandingly",
+      "narration": "王天古脸色一沉，吩咐王蝉和燕如嫣协助尤姓修士，别让韩立跑掉。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "王蝉目中厉色一闪，阴阴一笑答应下来，冲燕如嫣一招手走了过来。",
+      "mood": "Vicious",
+      "lighting": "Dark",
+      "action": "Approaching",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Wang Chan walking toward Han Li with vicious smile",
+        "environment": "Second floor interior",
+        "character_pose": "Walking with dark expression",
+        "fx": "",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator walking with vicious smile, dark expression",
+      "narration": "王蝉目中厉色一闪，阴阴一笑答应下来，冲燕如嫣一招手走了过来。",
+      "face_style_auto": {
+        "expression": "Vicious",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "尤姓修士嘿嘿一笑，一只白濛濛的玉如意从袖口中无声滑出。",
+      "mood": "Confident",
+      "lighting": "Soft white",
+      "action": "Releasing weapon",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "White jade ruyi sliding from sleeve",
+        "environment": "Second floor interior",
+        "character_pose": "Hand holding ruyi",
+        "fx": "White glow",
+        "motion": {
+          "type": "slide"
+        }
+      },
+      "prompt": "close-up of white jade ruyi sliding from sleeve, glowing",
+      "narration": "尤姓修士嘿嘿一笑，一只白濛濛的玉如意从袖口中无声滑出。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "韩立轻叹一声，抬手浮现出一只黑乎乎的东西，往空中一抛。",
+      "mood": "Decisive",
+      "lighting": "Dark",
+      "action": "Releasing treasure",
+      "camera": "Close-up hand",
+      "visual": {
+        "composition": "Black object appearing in hand, being thrown upward",
+        "environment": "Second floor interior",
+        "character_pose": "Throwing gesture",
+        "fx": "Black aura",
+        "motion": {
+          "type": "throw"
+        }
+      },
+      "prompt": "close-up of hand throwing black object upward, dark aura",
+      "narration": "韩立轻叹一声，抬手浮现出一只黑乎乎的东西，往空中一抛。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "黑色小山在空中狂涨，转眼间变得七八丈之巨，横在两人之间。",
+      "mood": "Powerful",
+      "lighting": "Dark shadow",
+      "action": "Expanding",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Black mountain expanding to huge size",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Mountain growing, dark shadow",
+        "motion": {
+          "type": "expand"
+        }
+      },
+      "prompt": "black mountain expanding to huge size, blocking view",
+      "narration": "黑色小山在空中狂涨，转眼间变得七八丈之巨，横在两人之间。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "玉如意白光大起，现形出一只白色巨虎，血盆大口喷出炙白光柱。",
+      "mood": "Fierce",
+      "lighting": "Bright white",
+      "action": "Attacking",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "White tiger appearing from ruyi, breathing white beam",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "White tiger, bright beam",
+        "motion": {
+          "type": "breath_attack"
+        }
+      },
+      "prompt": "white tiger appearing from jade ruyi, breathing white beam",
+      "narration": "玉如意白光大起，现形出一只白色巨虎，血盆大口喷出炙白光柱。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "白芒瞬间将大半小山都淹没，但黑色小山岿然不动，毫发无损。",
+      "mood": "Resilient",
+      "lighting": "Mixed",
+      "action": "Resisting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "White beam engulfing black mountain, mountain unmoved",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "White light washing over, dark mountain",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "white beam washing over black mountain, mountain standing firm",
+      "narration": "白芒瞬间将大半小山都淹没，但黑色小山岿然不动，毫发无损。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "韩立身侧银色电弧一闪，背生双翅的身影浮现，几乎紧贴尤姓修士。",
+      "mood": "Swift",
+      "lighting": "Electric",
+      "action": "Teleporting",
+      "camera": "Dynamic",
+      "visual": {
+        "composition": "Han Li appearing with wings, electric arcs",
+        "environment": "Second floor interior",
+        "character_pose": "Wings spread, appearing",
+        "fx": "Silver lightning, wings",
+        "motion": {
+          "type": "teleport",
+          "speed": "instant"
+        }
+      },
+      "prompt": "cultivator teleporting with silver lightning, wings spread, appearing instantly",
+      "narration": "韩立身侧银色电弧一闪，背生双翅的身影浮现，几乎紧贴尤姓修士。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Electric",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "韩立张口喷出一缕纤细如丝的蓝色火焰，丝毫无阻地洞穿了白色光罩。",
+      "mood": "Powerful",
+      "lighting": "Blue glow",
+      "action": "Breathing fire",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Slender blue flame piercing through white shield",
+        "environment": "Second floor interior",
+        "character_pose": "Mouth open, flame shooting",
+        "fx": "Blue flame, white shield breaking",
+        "motion": {
+          "type": "pierce"
+        }
+      },
+      "prompt": "close-up of slender blue flame piercing through white shield, powerful",
+      "narration": "韩立张口喷出一缕纤细蓝色火焰，丝毫无阻地洞穿了白色光罩。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Blue",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "蓝焰一闪即逝击中尤姓修士脖颈，兹啦一声，蓝冰蓦然出现，将他化为冰雕。",
+      "mood": "Frozen",
+      "lighting": "Blue ice",
+      "action": "Freezing",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Cultivator turning into blue ice statue",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Blue ice spreading, freezing",
+        "motion": {
+          "type": "freeze"
+        }
+      },
+      "prompt": "close-up of cultivator turning into blue ice statue, frozen",
+      "narration": "蓝焰一闪即逝击中尤姓修士脖颈，兹啦一声，将他化为蓝色冰雕。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "韩立毫不停顿身形微探，一抬手劈手将蓝色葫芦抓去，过程瞬间完成。",
+      "mood": "Efficient",
+      "lighting": "Neutral",
+      "action": "Grabbing treasure",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li grabbing blue gourd from frozen enemy",
+        "environment": "Second floor interior",
+        "character_pose": "Grabbing gesture",
+        "fx": "",
+        "motion": {
+          "type": "snatch",
+          "speed": "fast"
+        }
+      },
+      "prompt": "cultivator grabbing blue gourd from frozen enemy, efficient action",
+      "narration": "韩立毫不停顿身形微探，一抬手将蓝色葫芦抓去，过程瞬间完成。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "片尾画面定格在韩立抓取葫芦的瞬间，背景是混战的场面。",
+      "mood": "Intense",
+      "lighting": "Dynamic",
+      "action": "End teaser",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li grabbing gourd, chaotic battle in background",
+        "environment": "Second floor interior with battle",
+        "character_pose": "Grabbing pose",
+        "fx": "Battle effects",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li grabbing gourd in foreground, chaotic battle in background",
+      "narration": "我是云卷仙音，下集看韩立用阴魔斩击伤王蝉，逃离玉矶阁。",
+      "face_style_auto": null,
+      "image_path": ""
+    }
+  ]
+}

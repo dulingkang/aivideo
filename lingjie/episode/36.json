@@ -1,0 +1,1059 @@
+{
+  "episode": 36,
+  "title": "Entering Chaos Valley · Taiyi Huaqing Talisman",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第36集:进入混沌谷·太一化清符。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立一进入谷中,立刻发现此谷为何被称为混沌谷,谷中无论天空地面山壁都是灰蒙蒙颜色。",
+      "mood": "Mysterious",
+      "lighting": "Gray Mist",
+      "action": "Observe Valley",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li enters valley, immediately discovers why called Chaos Valley, valley sky ground walls all gray mist color",
+        "environment": "Chaos Valley interior, gray mist everywhere",
+        "character_pose": "Han Li observing valley",
+        "fx": "Gray mist covering everything",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li enters valley, immediately discovers why called Chaos Valley, valley sky ground walls all gray mist color.",
+      "narration": "韩立一进入谷中,立刻发现此谷为何被称为混沌谷,谷中都是灰蒙蒙颜色。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "仿佛有一层无法拭去的灰纱笼罩着整个山谷一般,韩立遁光蓦然停了下来。",
+      "mood": "Eerie",
+      "lighting": "Gray Mist",
+      "action": "Stop Moving",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "As if layer of unremovable gray veil covers entire valley, Han Li's escape light suddenly stops",
+        "environment": "Chaos Valley interior, gray mist",
+        "character_pose": "Han Li stopping, observing",
+        "fx": "Gray mist veil",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "As if layer of unremovable gray veil covers entire valley, Han Li's escape light suddenly stops.",
+      "narration": "仿佛一层无法拭去的灰纱笼罩整个山谷,韩立遁光蓦然停了下来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立望了望前边几名人族修士和妖族之人飞也似的朝谷中深处而去,双目微眯一下。",
+      "mood": "Observant",
+      "lighting": "Gray Mist",
+      "action": "Watch Others",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li watches several human cultivators and demon people flying quickly toward valley depths, eyes slightly squint",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li observing, squinting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li watches several human cultivators and demon people flying quickly toward valley depths, eyes slightly squint.",
+      "narration": "韩立望了望前边几名人族修士和妖族之人朝谷中深处而去,双目微眯。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "突然双手一掐诀,一张口,一团银色火球喷了出来,火球中一声清脆的鸣叫声传来。",
+      "mood": "Revealing",
+      "lighting": "Silver Fire",
+      "action": "Spit Fire",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Suddenly hands form seals, opens mouth, silver fireball spits out, clear cry comes from fireball",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li spitting fireball",
+        "fx": "Silver fire, fireball",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Suddenly hands form seals, opens mouth, silver fireball spits out, clear cry comes from fireball.",
+      "narration": "突然双手一掐诀,张口一团银色火球喷出,火球中传来清脆的鸣叫声。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "噗的一声后,火焰高涨之下,化为一只尺许大的火鸟,围着韩立盘旋飞舞起来。",
+      "mood": "Revealing",
+      "lighting": "Silver Fire",
+      "action": "Fire Bird Appears",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Puff sound, flames rise, transforms into fire bird about one chi, circles around Han Li flying",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Fire bird circling Han Li",
+        "fx": "Silver fire bird, circling",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Puff sound, flames rise, transforms into fire bird about one chi, circles around Han Li flying.",
+      "narration": "噗的一声后,火焰高涨化为一只尺许大的火鸟,围着韩立盘旋飞舞。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立看着眼前的银色火鸟,脸上露出一丝古怪之色,喃喃说道应该叫噬炎还是太阴真火。",
+      "mood": "Contemplative",
+      "lighting": "Silver Fire",
+      "action": "Contemplate Name",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li looks at silver fire bird before him, shows strange expression, mutters should call it Shi Yan or Taiyin True Fire",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li contemplating, fire bird circling",
+        "fx": "Silver fire bird",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li looks at silver fire bird before him, shows strange expression, mutters should call it Shi Yan or Taiyin True Fire.",
+      "narration": "韩立看着眼前的银色火鸟,脸上露出古怪之色,喃喃说道应该叫什么。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立说算了,反正先前已经融合了太阳精火,现在又吸收了噬炎,就叫你噬灵天火吧。",
+      "mood": "Decisive",
+      "lighting": "Silver Fire",
+      "action": "Name Fire Bird",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li says forget it, anyway previously fused Sun Essence Fire, now absorbed Shi Yan, call you Devouring Spirit Heaven Fire",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li speaking, fire bird circling",
+        "fx": "Silver fire bird",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li says forget it, anyway previously fused Sun Essence Fire, now absorbed Shi Yan, call you Devouring Spirit Heaven Fire.",
+      "narration": "韩立说算了,反正先前融合了太阳精火,现在又吸收了噬炎,就叫噬灵天火。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立想起幸亏在人界时将紫罗极火转化为太阴真火,让其威力大增,否则差点真被其得手。",
+      "mood": "Relieved",
+      "lighting": "Silver Fire",
+      "action": "Recall Process",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li remembers fortunately in human realm converted Violet Luo Extreme Fire to Taiyin True Fire, greatly increased power, otherwise almost succeeded",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li remembering",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li remembers fortunately in human realm converted Violet Luo Extreme Fire to Taiyin True Fire, greatly increased power, otherwise almost succeeded.",
+      "narration": "韩立想起幸亏在人界时将紫罗极火转化为太阴真火,让其威力大增。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "原来韩立被噬炎侵入体内之后,并没有被吞噬神识,反而太阴真火被激发与火蛟战在一起。",
+      "mood": "Revealing",
+      "lighting": "Silver Fire",
+      "action": "Explain Process",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Turns out after Shi Yan invaded Han Li's body, didn't devour divine sense, instead Taiyin True Fire was activated, fought with fire dragon",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Turns out after Shi Yan invaded Han Li's body, didn't devour divine sense, instead Taiyin True Fire was activated, fought with fire dragon.",
+      "narration": "原来韩立被噬炎侵入体内之后,并没有被吞噬神识,反而太阴真火被激发。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "噬炎正和太阴火鸟争斗难分难解时,韩立立刻催动神念,一下将其神念强行束缚住。",
+      "mood": "Powerful",
+      "lighting": "Silver Fire",
+      "action": "Bind Divine Sense",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "While Shi Yan and Taiyin fire bird fight evenly, Han Li immediately activates divine sense, forcefully binds its divine sense",
+        "environment": "Chaos Valley interior, flashback",
+        "character_pose": "Han Li using divine sense",
+        "fx": "Divine sense binding, fire fighting",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "While Shi Yan and Taiyin fire bird fight evenly, Han Li immediately activates divine sense, forcefully binds its divine sense.",
+      "narration": "噬炎正和太阴火鸟争斗难分难解时,韩立立刻催动神念,将其神念束缚住。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "然后让太阴火鸟硬生生将其吞噬干净,甚至本体一颗赤红的噬炎宝珠,都被融化进火鸟体内。",
+      "mood": "Powerful",
+      "lighting": "Silver Fire",
+      "action": "Devour Completely",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Then makes Taiyin fire bird forcefully devour it completely, even its true form a red Shi Yan treasure bead, all melted into fire bird body",
+        "environment": "Chaos Valley interior, flashback",
+        "character_pose": "Fire bird devouring",
+        "fx": "Fire bird devouring, bead melting",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Then makes Taiyin fire bird forcefully devour it completely, even its true form a red Shi Yan treasure bead, all melted into fire bird body.",
+      "narration": "然后让太阴火鸟硬生生将其吞噬干净,甚至本体噬炎宝珠都融化进火鸟体内。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立才能控制火鸟模仿噬炎的气息和口气,与其他灵族之人说话,瞒过了玄灵级存在。",
+      "mood": "Deceptive",
+      "lighting": "Silver Fire",
+      "action": "Mimic Voice",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li can control fire bird to mimic Shi Yan's aura and tone, speak with other spirit clan people, deceived Xuangling level existence",
+        "environment": "Chaos Valley interior, flashback",
+        "character_pose": "Han Li controlling fire bird",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li can control fire bird to mimic Shi Yan's aura and tone, speak with other spirit clan people, deceived Xuangling level existence.",
+      "narration": "韩立才能控制火鸟模仿噬炎的气息和口气,与其他灵族之人说话,瞒过了玄灵。",
+      "face_style_auto": {
+        "expression": "Deceptive",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "因为太阴火鸟被炼化的缘故,韩立也知道了灵族到落日之墓的目的,灵族叛逆和神血的存在。",
+      "mood": "Understanding",
+      "lighting": "Silver Fire",
+      "action": "Learn Information",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Because Taiyin fire bird was refined, Han Li also learned spirit clan's purpose in Sunset Tomb, spirit traitor and divine blood existence",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li understanding, thinking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Because Taiyin fire bird was refined, Han Li also learned spirit clan's purpose in Sunset Tomb, spirit traitor and divine blood existence.",
+      "narration": "因为太阴火鸟被炼化,韩立也知道了灵族的目的,灵族叛逆和神血的存在。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立得知神血是圣灵级灵族自行消亡后产生的神秘液体,滴在天地灵物上可让其产生灵智。",
+      "mood": "Impressed",
+      "lighting": "Silver Fire",
+      "action": "Learn About Divine Blood",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li learns divine blood is mysterious liquid produced after Saint Spirit level spirits self-destruct, drops on heaven-earth spiritual objects can give them intelligence",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li thinking, impressed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li learns divine blood is mysterious liquid produced after Saint Spirit level spirits self-destruct, drops on heaven-earth spiritual objects can give them intelligence.",
+      "narration": "韩立得知神血是圣灵级灵族消亡后产生的神秘液体,可让灵物产生灵智。",
+      "face_style_auto": {
+        "expression": "Impressed",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立得知神血对炼体士大有用处,可以修炼血晶战衣,也能刺激神念灵性突破瓶颈。",
+      "mood": "Excited",
+      "lighting": "Silver Fire",
+      "action": "Understand Benefits",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li learns divine blood very useful for body cultivators, can cultivate Blood Crystal Battle Armor, also stimulate divine sense to break bottleneck",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li excited, thinking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li learns divine blood very useful for body cultivators, can cultivate Blood Crystal Battle Armor, also stimulate divine sense to break bottleneck.",
+      "narration": "韩立得知神血对炼体士大有用处,可以修炼血晶战衣,也能突破瓶颈。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立大喜过望,他现在身具化神级神识,偏偏修炼的是炼体士功法,神血对他正好合适。",
+      "mood": "Delighted",
+      "lighting": "Silver Fire",
+      "action": "Realize Suitability",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li overjoyed, he now has Deity Transformation level divine sense, coincidentally cultivating body cultivator technique, divine blood perfect for him",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li delighted, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li overjoyed, he now has Deity Transformation level divine sense, coincidentally cultivating body cultivator technique, divine blood perfect for him.",
+      "narration": "韩立大喜过望,他现在身具化神级神识,修炼炼体士功法,神血正好合适。",
+      "face_style_auto": {
+        "expression": "Delighted",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立决定浑水摸鱼将那神血抢到手,现在终于趁乱进入了混沌谷中,要独自行动寻找机会。",
+      "mood": "Determined",
+      "lighting": "Gray Mist",
+      "action": "Decide to Act",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li decides to fish in troubled waters and grab that divine blood, now finally enters Chaos Valley in chaos, will act alone to find opportunity",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li determined, planning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li decides to fish in troubled waters and grab that divine blood, now finally enters Chaos Valley in chaos, will act alone to find opportunity.",
+      "narration": "韩立决定浑水摸鱼将那神血抢到手,现在趁乱进入了混沌谷中,要独自行动。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立冲身前的噬灵火鸟轻轻一点,顿时银色火鸟双翅一展,朝一侧石壁中激射过去。",
+      "mood": "Commanding",
+      "lighting": "Silver Fire",
+      "action": "Send Fire Bird",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li lightly points at devouring spirit fire bird before him, silver fire bird wings spread, shoots toward side stone wall",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li pointing, fire bird flying away",
+        "fx": "Silver fire bird, shooting toward wall",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li lightly points at devouring spirit fire bird before him, silver fire bird wings spread, shoots toward side stone wall.",
+      "narration": "韩立冲身前的噬灵火鸟轻轻一点,银色火鸟双翅一展,朝一侧石壁激射过去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver Fire",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "一声轻响后,银色火鸟没入壁中不见了踪影,韩立自己则单手一翻转,手指间多出了一张淡黄色灵符。",
+      "mood": "Preparing",
+      "lighting": "Yellow Light",
+      "action": "Take Out Talisman",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Light sound, silver fire bird enters wall and disappears, Han Li himself flips hand, finger tips hold pale yellow spirit talisman",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li holding talisman",
+        "fx": "Yellow talisman glowing",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Light sound, silver fire bird enters wall and disappears, Han Li himself flips hand, finger tips hold pale yellow spirit talisman.",
+      "narration": "一声轻响后,银色火鸟没入壁中不见,韩立手指间多出一张淡黄色灵符。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立往身上一拍,浑身黄光大放,两手一掐诀,身形一晃之下,就要施展土遁术没入地下。",
+      "mood": "Activating",
+      "lighting": "Yellow Light",
+      "action": "Activate Talisman",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li slaps on body, whole body glows yellow, hands form seals, body shakes, about to use earth escape to enter ground",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li activating talisman, glowing yellow",
+        "fx": "Yellow light, earth escape attempt",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li slaps on body, whole body glows yellow, hands form seals, body shakes, about to use earth escape to enter ground.",
+      "narration": "韩立往身上一拍,浑身黄光大放,两手一掐诀,就要施展土遁术没入地下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "但让韩立意外的事情发生了,双腿方没入地下尺许,就一顿的无法再下去,地下有诡异的反弹之力。",
+      "mood": "Surprised",
+      "lighting": "Yellow Light",
+      "action": "Earth Escape Fails",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "But something unexpected happens to Han Li, legs only sink into ground one chi, stop, cannot go down, ground has strange rebound force",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li stuck, surprised",
+        "fx": "Yellow light, ground resistance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But something unexpected happens to Han Li, legs only sink into ground one chi, stop, cannot go down, ground has strange rebound force.",
+      "narration": "但让韩立意外的事情发生了,双腿方没入地下尺许,就无法再下去。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立心中一凛,看来这混沌谷还真有些诡异之处,要多加小心一二,略一犹豫后从储物镯中掏出一张紫色符箓。",
+      "mood": "Cautious",
+      "lighting": "Purple Light",
+      "action": "Take Out Purple Talisman",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li's heart tightens, seems Chaos Valley really has strange features, must be careful, slightly hesitates then takes purple talisman from storage bracelet",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li taking out purple talisman, cautious",
+        "fx": "Purple talisman, glowing",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart tightens, seems Chaos Valley really has strange features, must be careful, slightly hesitates then takes purple talisman from storage bracelet.",
+      "narration": "韩立心中一凛,看来这混沌谷还真有些诡异之处,要多加小心一二。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Purple Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "紫色符箓上面隐隐有数个银色符文闪动,竟然是在灵界也很少有人能掌握的银蝌灵文。",
+      "mood": "Mysterious",
+      "lighting": "Purple Light",
+      "action": "Observe Talisman",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Purple talisman above vaguely has several silver runes flashing, actually Silver Ke spirit text rarely mastered in spirit realm",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Talisman in hand, runes flashing",
+        "fx": "Purple talisman, silver runes",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Purple talisman above vaguely has several silver runes flashing, actually Silver Ke spirit text rarely mastered in spirit realm.",
+      "narration": "紫色符箓上面隐隐有数个银色符文闪动,竟然是灵界少有人掌握的银蝌灵文。",
+      "face_style_auto": {
+        "expression": "Impressed",
+        "lighting": "Purple Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "正是韩立看了天澜兽分神所给的金阙玉书残页,在人界失败了无数次后,炼成的唯一一张太一化清符。",
+      "mood": "Precious",
+      "lighting": "Purple Light",
+      "action": "Reveal Origin",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "It's the Taiyi Huaqing Talisman Han Li refined after reading Tianlan Beast avatar's Golden Tower Jade Book fragment, failed countless times in human realm",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li holding precious talisman",
+        "fx": "Purple talisman, precious",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "It's the Taiyi Huaqing Talisman Han Li refined after reading Tianlan Beast avatar's Golden Tower Jade Book fragment, failed countless times in human realm.",
+      "narration": "正是韩立看了天澜兽分神所给的金阙玉书残页,在人界炼成的太一化清符。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Purple Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立拿出符箓后,就没有再多加迟疑,手轻轻在身前一晃,随即松开了手指,紫色符箓爆裂开来。",
+      "mood": "Activating",
+      "lighting": "Purple Light",
+      "action": "Activate Talisman",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li takes out talisman, doesn't hesitate more, hand lightly shakes before body, releases fingers, purple talisman explodes",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li activating talisman",
+        "fx": "Purple talisman, explosion, silver runes",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li takes out talisman, doesn't hesitate more, hand lightly shakes before body, releases fingers, purple talisman explodes.",
+      "narration": "韩立拿出符箓后,手轻轻在身前一晃,松开手指,紫色符箓爆裂开来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Purple Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_026.png"
+    },
+    {
+      "id": 26,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "数个银灿灿的银蝌文随之浮现而出,围着韩立一阵上下飞舞,随即噗嗤几声轻响后,符文化为银雾。",
+      "mood": "Magical",
+      "lighting": "Silver Light",
+      "action": "Runes Transform",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Several silver Silver Ke runes appear, circle around Han Li up and down, then puff sounds, runes transform into silver mist",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li surrounded by silver runes",
+        "fx": "Silver runes, silver mist forming",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Several silver Silver Ke runes appear, circle around Han Li up and down, then puff sounds, runes transform into silver mist.",
+      "narration": "数个银灿灿的银蝌文随之浮现而出,围着韩立上下飞舞,符文化为银雾。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_027.png"
+    },
+    {
+      "id": 27,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "眨眼间就将韩立淹没其中,片刻后银雾散尽,原地竟空无一人了,韩立已经隐匿不见。",
+      "mood": "Vanishing",
+      "lighting": "Silver Light",
+      "action": "Disappear",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "In a blink submerges Han Li, moments later silver mist disperses, original place empty, Han Li already hidden invisible",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li disappearing, becoming invisible",
+        "fx": "Silver mist, disappearance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In a blink submerges Han Li, moments later silver mist disperses, original place empty, Han Li already hidden invisible.",
+      "narration": "眨眼间就将韩立淹没其中,片刻后银雾散尽,原地竟空无一人了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_028.png"
+    },
+    {
+      "id": 28,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "这时谷口方向又传来破空之声,远远望去,又有数道遁光冲进谷中,向这边激射而来。",
+      "mood": "Alert",
+      "lighting": "Gray Mist",
+      "action": "More Arrivals",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "At this time valley entrance direction comes sounds of breaking air, looking far, several escape lights rush into valley, shoot this way",
+        "environment": "Chaos Valley interior, valley entrance visible",
+        "character_pose": "Escape lights approaching",
+        "fx": "Escape lights, approaching",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this time valley entrance direction comes sounds of breaking air, looking far, several escape lights rush into valley, shoot this way.",
+      "narration": "这时谷口方向又传来破空之声,又有数道遁光冲进谷中,向这边激射而来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_029.png"
+    },
+    {
+      "id": 29,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "他们转眼间掠过了韩立刚才隐匿的地方,一闪的冲向了山谷的深处,丝毫没有察觉韩立的存在。",
+      "mood": "Successful",
+      "lighting": "Gray Mist",
+      "action": "Pass Unnoticed",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "They in a blink pass where Han Li just hid, flash toward valley depths, completely unaware of Han Li's presence",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Escape lights passing, Han Li invisible",
+        "fx": "Escape lights passing, Han Li hidden",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "They in a blink pass where Han Li just hid, flash toward valley depths, completely unaware of Han Li's presence.",
+      "narration": "他们转眼间掠过了韩立刚才隐匿的地方,丝毫没有察觉韩立的存在。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_030.png"
+    },
+    {
+      "id": 30,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立心中一喜,此刻他根本待在原地没动一步,这些人族和妖修竟然丝毫没有察觉。",
+      "mood": "Delighted",
+      "lighting": "Gray Mist",
+      "action": "Realize Success",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's heart joyful, at this moment he stays in place without moving, these humans and demon cultivators completely unaware",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li satisfied, invisible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart joyful, at this moment he stays in place without moving, these humans and demon cultivators completely unaware.",
+      "narration": "韩立心中一喜,此刻他待在原地没动,这些人族和妖修竟然丝毫没有察觉。",
+      "face_style_auto": {
+        "expression": "Delighted",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_031.png"
+    },
+    {
+      "id": 31,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立特别看的清楚,其中一名头陀可是一名化神期修士,连化神期都无法察觉,可见符箓威力。",
+      "mood": "Impressed",
+      "lighting": "Gray Mist",
+      "action": "Confirm Effectiveness",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li especially sees clearly, one head monk is Deity Transformation cultivator, even Deity Transformation cannot detect, shows talisman power",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li impressed, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li especially sees clearly, one head monk is Deity Transformation cultivator, even Deity Transformation cannot detect, shows talisman power.",
+      "narration": "韩立特别看的清楚,其中一名头陀是化神期修士,连化神期都无法察觉。",
+      "face_style_auto": {
+        "expression": "Impressed",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_032.png"
+    },
+    {
+      "id": 32,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立整个人仿佛成了一种透明的雾化存在,躯体仿若无形,一吹就可飘走的样子。",
+      "mood": "Mysterious",
+      "lighting": "Gray Mist",
+      "action": "Observe State",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's whole person seems like transparent mist existence, body like intangible, one blow could float away",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li in mist form, transparent",
+        "fx": "Mist form, transparent",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's whole person seems like transparent mist existence, body like intangible, one blow could float away.",
+      "narration": "韩立整个人仿佛成了一种透明的雾化存在,躯体仿若无形,一吹就可飘走。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_033.png"
+    },
+    {
+      "id": 33,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立也暗中掐诀试了一下,发现任何太耗费灵力的秘术和法宝都无法动用的样子。",
+      "mood": "Testing",
+      "lighting": "Gray Mist",
+      "action": "Test Limitations",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li also secretly forms seals to test, finds any too mana-consuming techniques and treasures cannot be used",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li testing, forming seals",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li also secretly forms seals to test, finds any too mana-consuming techniques and treasures cannot be used.",
+      "narration": "韩立也暗中掐诀试了一下,发现太耗费灵力的秘术和法宝都无法动用。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_034.png"
+    },
+    {
+      "id": 34,
+      "scene_profile": "chaos_valley_interior",
+      "duration": 4,
+      "description": "韩立很快收敛了心神,驱动身躯,轻飘飘的也向谷中飞去了,准备前往炙光潭寻找神血。",
+      "mood": "Determined",
+      "lighting": "Gray Mist",
+      "action": "Fly to Pool",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li quickly collects mind, drives body, lightly floats toward valley depths, prepares to go to Scorching Light Pool to find divine blood",
+        "environment": "Chaos Valley interior",
+        "character_pose": "Han Li floating, invisible",
+        "fx": "Mist form floating",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li quickly collects mind, drives body, lightly floats toward valley depths, prepares to go to Scorching Light Pool to find divine blood.",
+      "narration": "韩立很快收敛了心神,驱动身躯轻飘飘的也向谷中飞去,准备前往炙光潭。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Gray Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_035.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第37集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep36_full/scene_036.png"
+    }
+  ]
+}
+

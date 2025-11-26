@@ -1,0 +1,592 @@
+# 场景风格框架配置文件
+# 用于确保同一场景系列中背景的一致性
+# 
+# 注意：场景配置不绑定特定集数，可在多个episode中复用
+# 例如：天元城、如云客栈等场景可能在多个集数中出现
+# 如需记录首次出现，可在 notes 字段中标注（可选）
+
+scenes:
+  qingluo_desert:
+    scene_name: "青罗沙漠"
+    # notes: "首次出现在第1集，后续可能复用"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["金黄", "暖橙", "淡褐色"]
+      secondary: ["沙黄", "米色", "浅棕"]
+      accent: ["深褐", "暗金"]
+      prompt: "(金黄色沙子:1.4), (暖橙色调:1.3), (米色和褐色调:1.2), (非白沙，非红沙:1.3)"
+    
+    # 地形地貌
+    terrain:
+      description: "连绵沙丘、干燥空气、远处偶有岩壁"
+      details: "连绵的沙丘，干燥的空气，远方的岩壁"
+      prompt: "(翻滚的沙浪:1.3), (广阔的金色沙漠:1.4), (远方的石峰:1.2), (飘散的沙子:1.1)"
+    
+    # 天空
+    sky:
+      description: "明亮日光，略微有热浪扭曲效果"
+      details: "明亮的阳光，微妙的热浪扭曲"
+      prompt: "(强烈的阳光:1.3), (热浪扭曲:1.2), (晴朗明亮的天空:1.2), (金色的夕阳光线:1.1)"
+    
+    # 氛围
+    atmosphere:
+      description: "干旱、空旷、带一点神秘灵气波动"
+      details: "干旱、广阔，带有微妙的灵气波动"
+      prompt: "(干旱的氛围:1.2), (广阔空旷的景观:1.3), (微妙的灵气:1.1), (神秘的灵气波动:1.1)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格"
+      keywords: ["仙侠修炼世界", "中国古代玄幻", "电影级仙侠风格"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "沙子颜色始终偏金黄，不要出现白沙或红沙"
+      - "天空保持晴朗，不出现奇怪云层风暴"
+      - "岩石结构保持东方玄幻风，不要变现代"
+      - "保持沙漠的干燥感，不要出现水或绿洲（除非脚本明确要求）"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, 电影级规模感, 仙侠沙漠边境
+
+  qingluo_palace:
+    scene_name: "青罗灵宫"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["青色", "墨绿", "深青"]
+      secondary: ["淡蓝", "青白", "银灰"]
+      accent: ["金色", "灵光蓝", "符文青"]
+      prompt: "(green palace:1.5), (cyan and jade tones:1.4), (spiritual blue glow:1.3), (ancient green stone:1.3), (no red, no yellow:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "巨大的青色宫殿，石柱雕刻灵文，殿前广场空旷"
+      details: "massive green palace, pillars with runes, vast empty plaza"
+      prompt: "(massive green palace:1.4), (ancient stone pillars with glowing runes:1.4), (vast empty plaza:1.2), (towering architecture:1.3)"
+    
+    # 天空/空间
+    sky:
+      description: "灵光如水波荡漾，虚空流光，神秘光雾"
+      details: "spiritual light waves, ethereal void, mysterious light mist"
+      prompt: "(spiritual light waves:1.3), (ethereal void space:1.3), (mysterious light mist:1.2), (flowing spiritual energy:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "古老神秘、庄严肃穆、灵气浓郁"
+      details: "ancient mysterious, solemn and majestic, rich spiritual energy"
+      prompt: "(ancient mysterious atmosphere:1.3), (solemn and majestic:1.3), (rich spiritual energy:1.2), (otherworldly palace:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·灵界宫殿"
+      keywords: ["xianxia spirit realm palace", "ancient Chinese fantasy architecture", "mystical spiritual palace", "cultivation world temple"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "宫殿颜色始终偏青色系，不要出现红色或黄色宫殿"
+      - "保持灵界宫殿的神秘感，符文和灵光要统一"
+      - "建筑风格保持东方玄幻风，不要变现代或西式"
+      - "保持庄严肃穆的氛围，不要出现过于活泼的元素"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia spirit realm palace
+
+  sand_worm_battlefield:
+    scene_name: "龟车防线·沙虫战场"
+
+    color_palette:
+      primary: ["灰青", "沙黄", "暗褐"]
+      secondary: ["尘橙", "土金", "铁黑"]
+      accent: ["灵白", "青光", "血红"]
+      prompt: "(dusty grey-green desert:1.4), (sand yellow haze:1.3), (dark brown turtle shells:1.3), (no lush green:1.2), (battlefield blood accents:1.2)"
+
+    terrain:
+      description: "陆行龟组成的环形防线，龟壳平台连成战场，四周沙丘滚动"
+      details: "ringed formation of land turtles, shells linked as battlements, dunes and shifting sand"
+      prompt: "(ring of massive turtle wagons:1.4), (linked shell battlements:1.4), (rolling dunes around battlefield:1.2), (scarred desert ground:1.2)"
+
+    sky:
+      description: "烈日被黄尘遮蔽，光线被沙幕折散，空气带有热浪"
+      details: "sun dimmed by dust, light diffused through sand curtain, shimmering heat"
+      prompt: "(sunlight filtered through sandstorm:1.3), (dust curtain diffused light:1.3), (heat shimmer sky:1.2), (no clear blue sky:1.2)"
+
+    atmosphere:
+      description: "危机四伏、尘烟弥漫、血腥紧绷"
+      details: "perilous, dust-choked, metallic blood scent, strained tension"
+      prompt: "(perilous battlefield atmosphere:1.3), (dust-choked air:1.3), (metallic blood scent mood:1.2), (high tension warzone:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·沙漠战场"
+      keywords: ["xianxia desert battlefield", "turtle caravan defense circle", "sand worm siege", "dust-choked warzone"]
+
+    consistency_rules:
+      - "背景颜色以灰青、沙黄、尘橙为主，保持战场压迫感"
+      - "必须出现陆行龟龟壳或其残影，提醒这是龟车防线"
+      - "空气应充满尘烟和热浪，不要清新天空"
+      - "战场元素需体现虫兽攻伐，可见残骸或血迹"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia turtle caravan battlefield
+
+  tianyuan_prairie:
+    scene_name: "天元大草原"
+
+    color_palette:
+      primary: ["灰绿", "苍青", "淡褐"]
+      secondary: ["浅蓝", "银灰", "土黄"]
+      accent: ["灵白", "微青光"]
+      prompt: "(muted grey-green prairie:1.4), (pale blue sky:1.3), (dusty brown tracks:1.2), (no lush saturated colors:1.2)"
+
+    terrain:
+      description: "平坦草原无高差，草浪连天，远处偶有低丘和枯木"
+      details: "flat prairie, endless grass waves, occasional low knolls and dead trees"
+      prompt: "(endless flat prairie:1.4), (rolling grass waves:1.3), (scattered low knolls:1.2), (occasional deadwood silhouettes:1.2)"
+
+    sky:
+      description: "多轮日月同空，光线被薄尘滤过，天空苍白"
+      details: "multiple suns and moons, light filtered by dust veil, pale sky"
+      prompt: "(multiple suns in pale sky:1.3), (dust-filtered sunlight:1.3), (soft white haze:1.2)"
+
+    atmosphere:
+      description: "压抑寂静、潜伏危机、风声低沉"
+      details: "oppressive silence, hidden danger, low moaning wind"
+      prompt: "(oppressive silent prairie:1.3), (hidden danger mood:1.3), (low wind hum:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·戒备草原"
+      keywords: ["xianxia prairie march", "cautious caravan field", "muted spirit grassland"]
+
+    consistency_rules:
+      - "草色要偏灰绿，体现阴郁"
+      - "画面需出现龟车或车辙，强调行军"
+      - "天空带多轮日月或朦胧光圈"
+      - "空气要有薄尘或热浪，不要清丽天空"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia vigilant prairie
+
+  anyuan_city:
+    scene_name: "安远巨城"
+
+    color_palette:
+      primary: ["石灰白", "暗铁灰", "墨黑"]
+      secondary: ["靛蓝", "青灰", "铜金"]
+      accent: ["灵白光", "符纹青"]
+      prompt: "(towering stone walls:1.4), (dark iron gates:1.3), (subtle rune glow:1.2), (no bright festive colors:1.2)"
+
+    terrain:
+      description: "三十丈高的石城墙，密布符纹，城门厚重，城内街道笔直"
+      details: "thirty-zhang stone walls with runes, massive gates, straight stone streets"
+      prompt: "(colossal rune-covered walls:1.4), (massive black gates:1.3), (straight cobbled avenues:1.2)"
+
+    sky:
+      description: "天空清朗但光线冷硬，偶有尘雾飘过"
+      details: "clear yet harsh light, drifting dust veils"
+      prompt: "(clear sky with harsh light:1.2), (dust veils crossing sun:1.2)"
+
+    atmosphere:
+      description: "城中戒备、百姓拥堵、兽潮将临的压迫感"
+      details: "military alertness, crowded refugees, looming beast tide pressure"
+      prompt: "(crowded refugee tension:1.3), (military readiness mood:1.3), (looming threat vibe:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·边城防线"
+      keywords: ["xianxia fortress city", "beast tide defense", "crowded martial streets"]
+
+    consistency_rules:
+      - "必须体现高墙巨弩或符纹，突出军事化"
+      - "街道保持笔直石质感，避免小镇风格"
+      - "人群应携兵器或物资，表现避难"
+      - "色调偏冷灰，不要鲜艳暖色"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia fortress city
+
+  anyuan_wall:
+    scene_name: "安远城墙防线"
+    # notes: "城墙内外、守备场景通用模板"
+
+    color_palette:
+      primary: ["石灰白", "铁灰", "暗金"]
+      secondary: ["尘黄", "火红", "靛蓝旗"]
+      accent: ["灵光白", "兵器银"]
+      prompt: "(stone battlements with iron-gray tones:1.4), (dusty battlefield haze:1.3), (no lush colors:1.2)"
+
+    terrain:
+      description: "高大城墙、宽阔女墙平台、投石机与巨弩排布，外侧延伸至战场"
+      details: "towering walls, broad parapets, rows of ballistae and catapults, battlefield extending beyond"
+      prompt: "(towering fortress wall with parapets:1.4), (rows of ballistae and catapults:1.3), (battlefield beyond the wall:1.3)"
+
+    sky:
+      description: "黄尘与战烟交织，天空被灵光与火光染色"
+      details: "dust-laden sky, mingled battle smoke, streaks of spell light"
+      prompt: "(dusty sky with battle smoke:1.3), (spell light streaks:1.2)"
+
+    atmosphere:
+      description: "戒备紧张、兵甲轰鸣、杀气弥漫"
+      details: "tense vigilance, clashing armor, pervasive killing intent"
+      prompt: "(tense battlefield atmosphere:1.4), (clashing armor sounds:1.2), (pervasive killing intent:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·城防战场"
+      keywords: ["xianxia fortress wall", "battle-ready parapets", "siege defense scene"]
+
+    consistency_rules:
+      - "画面需体现高墙、女墙或外战场元素"
+      - "加入兵器、旗帜或军士，突出守备氛围"
+      - "色调偏灰白与尘黄，可混合火光/灵光"
+      - "保持战备紧张感，可见烟尘"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia fortress wall defense
+
+  anyuan_market:
+    scene_name: "安远城市集"
+
+    color_palette:
+      primary: ["石灰", "灰绿", "木褐"]
+      secondary: ["帆布白", "旗帜绛蓝", "尘黄"]
+      accent: ["灵光白", "符纹青"]
+      prompt: "(stone streets with muted colors:1.3), (dusty market tones:1.2), (no neon colors:1.2)"
+
+    terrain:
+      description: "笔直石街两旁挤满铺面、武器摊和杂货棚"
+      details: "straight cobbled streets, dense storefronts, weapon stalls and awnings"
+      prompt: "(straight cobbled street lined with shops:1.4), (crowded weapon stalls:1.3), (canvas awnings:1.2)"
+
+    sky:
+      description: "城市烟尘与阳光交织，空中悬着多轮淡日"
+      details: "hazy sunlight filtered by city dust, multiple pale suns overhead"
+      prompt: "(hazy sun above city dust:1.3), (multiple pale suns:1.2)"
+
+    atmosphere:
+      description: "人潮拥挤、戒备紧张、商贩吆喝与兵甲撞响交织"
+      details: "crowded press, tense vigilance, vendors and armor clatter"
+      prompt: "(crowded tense marketplace atmosphere:1.3), (clanging weapons, shouted sales:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·边城市集"
+      keywords: ["xianxia frontier market", "weapon bazaar", "dusty fortress streets"]
+
+    consistency_rules:
+      - "街道保持笔直石板，建筑偏灰白"
+      - "画面需有人群携兵器或补给"
+      - "空气要有尘雾或旗帜飘动，突出紧张感"
+      - "色调克制，避免鲜艳暖色块"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia frontier market
+
+  ruyun_inn:
+    scene_name: "如云客栈"
+
+    color_palette:
+      primary: ["深木棕", "墨青", "青石灰"]
+      secondary: ["竹绿", "奶白帘", "金字匾额"]
+      accent: ["暖灯橙", "灵光白"]
+      prompt: "(dark wood courtyards with jade tiles:1.4), (muted teal walls:1.3), (golden plaque glow:1.2)"
+
+    terrain:
+      description: "多重院落、回廊与竹影交织，雅致却防守森严"
+      details: "layered courtyards, covered walkways, bamboo groves, guarded gates"
+      prompt: "(layered courtyards with covered walkways:1.4), (bamboo shadows across stone:1.3), (guarded gate presence:1.2)"
+
+    sky:
+      description: "城中天空被屋檐切割，光线柔和"
+      details: "soft daylight filtered by eaves, occasional lantern glow at night"
+      prompt: "(soft courtyard light filtered by eaves:1.2)"
+
+    atmosphere:
+      description: "贵客云集、侍卫巡逻、屋内香火静雅"
+      details: "prestigious clientele, patrolling guards, incense calm"
+      prompt: "(tranquil yet guarded inn atmosphere:1.3), (incense haze:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·高阶客栈"
+      keywords: ["xianxia noble inn", "layered courtyards", "guarded residence"]
+
+    consistency_rules:
+      - "画面需出现金字匾额或长廊竹影，体现客栈身份"
+      - "可见侍卫、侍者或贵客，突出防备"
+      - "色调偏沉稳木色与青石，不用艳丽配色"
+      - "如入内室需有雅致屏风与香炉"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia noble inn
+
+  sealed_space_abyss:
+    scene_name: "灵光深渊"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["深蓝", "青蓝", "幽蓝"]
+      secondary: ["淡蓝", "银白", "灵光蓝"]
+      accent: ["金色", "符文青", "灵光白"]
+      prompt: "(deep blue abyss:1.5), (cyan blue tones:1.4), (spiritual blue glow:1.3), (ethereal blue mist:1.3), (no red, no yellow:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "无尽的灵雾深渊，封印之门后的空间，灵雾浓厚如海"
+      details: "endless spiritual mist abyss, space behind sealed door, mist thick as sea"
+      prompt: "(endless spiritual mist abyss:1.4), (sealed space:1.3), (dense spiritual mist:1.4), (ethereal void:1.3)"
+    
+    # 天空/空间
+    sky:
+      description: "灵光如水波荡漾，虚空流光，神秘光雾，灵压弥漫"
+      details: "spiritual light waves, ethereal void, mysterious light mist, spiritual pressure dense"
+      prompt: "(spiritual light waves:1.3), (ethereal void space:1.4), (mysterious light mist:1.3), (dense spiritual pressure:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "压抑神秘、未知深邃、灵气浓郁、古老传承"
+      details: "oppressive mysterious, unknown deep, rich spiritual energy, ancient inheritance"
+      prompt: "(oppressive mysterious atmosphere:1.3), (unknown deep space:1.3), (rich spiritual energy:1.2), (ancient inheritance:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·灵界深渊"
+      keywords: ["xianxia sealed space", "spiritual mist abyss", "ancient inheritance realm", "mystical void space"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "空间颜色始终偏蓝色系，不要出现红色或黄色"
+      - "保持灵雾深渊的神秘感，灵光和符文要统一"
+      - "保持压抑神秘的氛围，不要出现过于明亮的场景"
+      - "灵雾要浓厚如海，不要过于稀薄"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia sealed space abyss
+
+  huanling_mountain:
+    scene_name: "幻灵山"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["青色", "翠绿", "深绿"]
+      secondary: ["淡蓝", "青白", "灵光绿"]
+      accent: ["金色", "灵光蓝", "符文青"]
+      prompt: "(green spirit mountain:1.5), (emerald green tones:1.4), (spiritual green glow:1.3), (ancient green stone:1.3), (no red, no yellow:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "悬浮在空中的山峰，灵兽化光而行，灵花盛开的山谷"
+      details: "floating mountains in air, spiritual beasts as light, valleys with blooming spiritual flowers"
+      prompt: "(floating mountains in air:1.4), (spiritual beasts as light:1.3), (valleys with spiritual flowers:1.3), (dreamlike landscape:1.2)"
+    
+    # 天空/空间
+    sky:
+      description: "云海翻涌，灵光流转，梦幻虚空"
+      details: "cloud sea churning, spiritual light flowing, dreamlike void"
+      prompt: "(cloud sea churning:1.3), (spiritual light flowing:1.3), (dreamlike void:1.3), (ethereal sky:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "奇幻神秘、试炼之地、灵气浓郁、梦幻真实"
+      details: "fantasy mysterious, trial ground, rich spiritual energy, dreamlike yet real"
+      prompt: "(fantasy mysterious atmosphere:1.3), (trial ground:1.2), (rich spiritual energy:1.2), (dreamlike yet real:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·幻灵试炼"
+      keywords: ["xianxia trial mountain", "floating spirit mountain", "illusory spirit realm", "spiritual trial ground"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "山峰颜色始终偏绿色系，不要出现红色或黄色"
+      - "保持幻灵山的奇幻感，悬浮和灵光要统一"
+      - "保持试炼之地的神秘感，不要出现过于现代的元素"
+      - "灵兽要化光而行，不要实体化"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia trial mountain
+
+  lanfeng_city:
+    scene_name: "澜风城"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["青色", "淡蓝", "银白"]
+      secondary: ["灵光蓝", "青白", "云白"]
+      accent: ["金色", "符文青", "灵光白"]
+      prompt: "(cyan city:1.5), (light blue tones:1.4), (silver white:1.3), (spiritual blue glow:1.3), (no red, no yellow:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "悬浮在云海的城池，宫阙悬空，灵桥连接，灵市繁华"
+      details: "city floating in cloud sea, palaces suspended, spiritual bridges, bustling spirit market"
+      prompt: "(floating city in cloud sea:1.4), (suspended palaces:1.4), (spiritual bridges:1.3), (bustling spirit market:1.2)"
+    
+    # 天空/空间
+    sky:
+      description: "云海翻涌，灵光蒸腾，星空璀璨"
+      details: "cloud sea churning, spiritual energy steaming, starry sky brilliant"
+      prompt: "(cloud sea churning:1.3), (spiritual energy steaming:1.3), (starry sky brilliant:1.2), (ethereal sky:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "宏伟安宁、灵族圣地、灵气浓郁、庄严神秘"
+      details: "majestic peaceful, spirit tribe sacred land, rich spiritual energy, solemn mysterious"
+      prompt: "(majestic peaceful atmosphere:1.3), (spirit tribe sacred land:1.3), (rich spiritual energy:1.2), (solemn mysterious:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·灵族圣地"
+      keywords: ["xianxia spirit city", "floating spirit realm city", "spirit tribe sacred land", "ancient spirit capital"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "城市颜色始终偏青色和蓝色系，不要出现红色或黄色"
+      - "保持灵族圣地的庄严感，建筑和灵光要统一"
+      - "保持悬浮在云海的感觉，不要接地"
+      - "保持灵族文化的特色，不要出现现代元素"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia spirit city
+
+  true_immortal_mansion:
+    scene_name: "真仙遗府"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["金色", "淡金", "古铜"]
+      secondary: ["银白", "玉白", "灵光金"]
+      accent: ["深金", "符文金", "仙光白"]
+      prompt: "(golden immortal mansion:1.5), (pale gold tones:1.4), (ancient bronze:1.3), (immortal golden glow:1.3), (no blue, no green:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "残破的真仙仙府，悬浮在封印空间中，刻满真仙界符文"
+      details: "broken True Immortal mansion, floating in sealed space, covered with True Immortal Realm runes"
+      prompt: "(broken True Immortal mansion:1.4), (floating in sealed space:1.3), (True Immortal Realm runes:1.4), (ancient immortal architecture:1.3)"
+    
+    # 天空/空间
+    sky:
+      description: "封印的古老空间，真仙界气息弥漫，灵光流转"
+      details: "sealed ancient space, True Immortal Realm aura, spiritual light flowing"
+      prompt: "(sealed ancient space:1.3), (True Immortal Realm aura:1.4), (spiritual light flowing:1.3), (ethereal immortal space:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "古老庄严、真仙遗韵、神秘深邃、残破沧桑"
+      details: "ancient solemn, True Immortal legacy, mysterious deep, broken and weathered"
+      prompt: "(ancient solemn atmosphere:1.3), (True Immortal legacy:1.3), (mysterious deep:1.2), (broken and weathered:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·真仙遗府"
+      keywords: ["xianxia True Immortal mansion", "immortal realm ruins", "ancient immortal legacy", "True Immortal Realm architecture"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "仙府颜色始终偏金色系，体现真仙界的尊贵"
+      - "保持真仙遗府的古老感，符文和建筑要统一"
+      - "保持残破沧桑的氛围，不要过于完整"
+      - "真仙界气息要浓郁，与灵界区分"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia True Immortal mansion
+
+  realm_source_chamber:
+    scene_name: "界源之地"
+    
+    # 颜色调色板（强制使用）
+    color_palette:
+      primary: ["深蓝", "幽蓝", "灵光蓝"]
+      secondary: ["银白", "淡蓝", "灵光白"]
+      accent: ["金色", "符文蓝", "界源光"]
+      prompt: "(deep blue chamber:1.5), (dark blue tones:1.4), (spiritual blue glow:1.4), (realm source light:1.3), (no red, no yellow:1.2)"
+    
+    # 地形地貌
+    terrain:
+      description: "巨大的地下空间，中央悬浮着灵界界源，光链连接虚空"
+      details: "huge underground chamber, spirit realm source floating in center, light chains connecting to void"
+      prompt: "(huge underground chamber:1.4), (spirit realm source floating:1.5), (light chains connecting:1.3), (vast underground space:1.3)"
+    
+    # 天空/空间
+    sky:
+      description: "地下空间穹顶，灵光流转，界源光芒照亮整个空间"
+      details: "underground chamber ceiling, spiritual light flowing, source light illuminating space"
+      prompt: "(underground chamber ceiling:1.3), (spiritual light flowing:1.3), (source light illuminating:1.4), (ethereal underground:1.2)"
+    
+    # 氛围
+    atmosphere:
+      description: "庄严神圣、界源之力、危机四伏、真仙威胁"
+      details: "solemn sacred, realm source power, danger lurking, True Immortal threat"
+      prompt: "(solemn sacred atmosphere:1.3), (realm source power:1.4), (danger lurking:1.2), (True Immortal threat:1.2)"
+    
+    # 风格标签
+    style:
+      type: "国漫·玄幻风格·界源禁地"
+      keywords: ["xianxia realm source", "spirit realm core", "underground sacred chamber", "realm power source"]
+    
+    # 一致性规则（强制遵守）
+    consistency_rules:
+      - "空间颜色始终偏蓝色系，体现界源的神圣"
+      - "保持界源之地的庄严感，光链和界源要统一"
+      - "保持地下空间的广阔感，不要过于狭窄"
+      - "界源光芒要强烈，体现其重要性"
+    
+    # 合并到 prompt 的完整背景描述（自动生成）
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt}, 
+      {style_keywords}, cinematic sense of scale, xianxia realm source chamber
+
+  tianyuan_city:
+    scene_name: "天元圣城"
+    # notes: "天元境主城，可在多个集数中复用"
+
+    color_palette:
+      primary: ["玉白", "淡金", "青灰"]
+      secondary: ["云白", "银灰", "淡青"]
+      accent: ["圣光金", "符文青", "灵光白"]
+      prompt: "(jade-white capital city:1.5), (pale gold accents:1.4), (spiritual blue glow:1.3), (no dark colors:1.2)"
+
+    terrain:
+      description: "面积如小国般的巨城，儒门建筑群，圣山耸立，宫殿连绵"
+      details: "country-sized capital, Confucian architecture, sacred mountain, palace complexes"
+      prompt: "(country-sized capital city:1.5), (Confucian-style palaces:1.4), (sacred mountain backdrop:1.3), (endless palace complexes:1.2)"
+
+    sky:
+      description: "清朗天空，圣光普照，灵气浓郁如雾"
+      details: "clear sky, holy light, dense spiritual energy like mist"
+      prompt: "(clear sky with holy light:1.3), (dense spiritual energy mist:1.3), (radiant atmosphere:1.2)"
+
+    atmosphere:
+      description: "庄严神圣、儒门圣地、灵气浓郁、繁华安宁"
+      details: "solemn sacred, Confucian holy land, rich spiritual energy, prosperous peaceful"
+      prompt: "(solemn sacred capital atmosphere:1.4), (Confucian holy land:1.3), (rich spiritual energy:1.2), (prosperous peaceful:1.2)"
+
+    style:
+      type: "国漫·玄幻风格·圣城"
+      keywords: ["xianxia capital city", "Confucian holy capital", "sacred mountain city", "spirit realm metropolis"]
+
+    consistency_rules:
+      - "城市颜色偏玉白和淡金，体现圣城尊贵"
+      - "必须出现圣山或宫殿群，强调主城地位"
+      - "建筑风格保持儒门特色，不要过于现代"
+      - "保持庄严神圣的氛围，灵气要浓郁"
+
+    background_prompt: |
+      {color_palette}, {terrain_prompt}, {sky_prompt}, {atmosphere_prompt},
+      {style_keywords}, cinematic sense of scale, xianxia holy capital city
+

@@ -1,0 +1,614 @@
+{
+  "episode": 16,
+  "title": "Qingluo Desert · Retrieving Treasures",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第16集:青罗沙漠·重得宝物。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立离开安远城废墟,直奔青罗沙漠而去。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Travel to Desert",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li leaves Anyuan City ruins, heading straight toward Qingluo Desert",
+        "environment": "",
+        "character_pose": "Han Li walking, back view",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li departs from Anyuan City ruins, heading directly toward Qingluo Desert.",
+      "narration": "韩立离开安远城废墟，踏上前往青罗沙漠的旅程，准备取回宝物。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "一个多月后,韩立踏进青灰色沙地,深入青罗沙漠。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Enter Desert",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "After over a month, Han Li steps onto the grayish sand, entering deep into Qingluo Desert",
+        "environment": "",
+        "character_pose": "Han Li walking on sand",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After over a month, Han Li steps onto the grayish sand, venturing deep into Qingluo Desert.",
+      "narration": "一个多月后，韩立终于踏进青罗沙漠，眼前是一望无际的青灰色沙地。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "沙漠中太安静了,除了风沙之声,再也听不到任何声响,仿佛整片沙漠变成了死域。",
+      "mood": "Eerie",
+      "lighting": "Daylight",
+      "action": "Notice Silence",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The desert is too quiet, only wind and sand sounds, like a dead zone",
+        "environment": "",
+        "character_pose": "Han Li looking around, alert",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The desert is eerily silent, only wind and sand sounds, like a dead zone.",
+      "narration": "沙漠中太安静了,仿佛整片沙漠变成了死域。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "十余日后,韩立出现在埋藏宝物处,望着不远处的一件十余丈大白濛濛物品,有些目瞪口呆了。",
+      "mood": "Shocked",
+      "lighting": "Daylight",
+      "action": "Discover Giant Shell",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "After over ten days, Han Li discovers a huge white object over ten zhang tall",
+        "environment": "",
+        "character_pose": "Han Li looking at giant shell, shocked",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After over ten days, Han Li discovers a huge white object over ten zhang tall in the desert.",
+      "narration": "十余日后，韩立来到埋藏宝物处，发现十余丈大的白色物品，目瞪口呆。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "这竟是一只仿佛水晶般的巨大虫壳,壳的背部有六只丈许长蝉翼,正是六翼霜蚣的虫壳。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "Examine Shell",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "This is a crystal-like giant insect shell with six wings over a zhang long on its back",
+        "environment": "",
+        "character_pose": "Han Li examining the shell",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This is a crystal-like giant insect shell with six wings over a zhang long on its back.",
+      "narration": "这竟是一只水晶般的巨大虫壳，背部有六只丈许长的蝉翼，正是六翼霜蚣虫壳。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立心中震惊,六翼霜蚣怎么可能进化的这般快?就在这时,一阵怪异的啸声从极远处传来。",
+      "mood": "Alarmed",
+      "lighting": "Stormy",
+      "action": "Hear Distant Storm",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Strange howling sounds come from far away, followed by thunder, black clouds rolling in the sky",
+        "environment": "",
+        "character_pose": "Han Li looking at distant storm",
+        "fx": "Thunder, black clouds",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Strange howling sounds come from far away, followed by thunder and rolling black clouds.",
+      "narration": "就在这时，一阵怪异的啸声从极远处传来，紧接着雷鸣声阵阵，黑云滚滚。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立感受到心神相连的感觉,远处的天象中赫然藏着自己的灵虫,一只六翼霜蚣,竟然可以施展呼风唤雨的天地神通。",
+      "mood": "Astonished",
+      "lighting": "Stormy",
+      "action": "Realize Power",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li senses the mental connection, his six-winged Frost Centipede can control weather",
+        "environment": "",
+        "character_pose": "Han Li watching storm",
+        "fx": "Storm, wind, rain",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The six-winged mature form can actually control weather, astonishing Han Li.",
+      "narration": "六翼霜蚣竟然可以施展呼风唤雨的天地神通。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "忽然又一阵嗡鸣声大起,从另一边天空中,大片五色斑斓的云雾浮现而出,赫然是一群群背生双翅的飞蝎。",
+      "mood": "Shocked",
+      "lighting": "Stormy",
+      "action": "See Flying Scorpions",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Buzzing sounds rise as colorful clouds appear, groups of winged flying scorpions covering the sky",
+        "environment": "",
+        "character_pose": "Han Li looking at scorpions",
+        "fx": "Flying scorpions, colorful mist",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Buzzing sounds rise as colorful clouds appear, groups of winged flying scorpions covering the sky.",
+      "narration": "另一边天空中,大片五色斑斓的飞蝎浮现而出。",
+      "face_style_auto": {
+        "expression": "Astonished",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "黑云和彩雾撞击在一起,无数的飞蝎被黑云中吹出的白濛濛寒风,转眼间化为冰晶坠落。",
+      "mood": "Intense",
+      "lighting": "Stormy",
+      "action": "Battle Begins",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Black clouds and colored mist collide, countless flying scorpions frozen by white cold wind, falling as ice crystals",
+        "environment": "",
+        "character_pose": "Battle in distance",
+        "fx": "Ice crystals, cold wind, scorpions falling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Black clouds and colored mist collide, scorpions frozen by cold wind, falling as ice crystals.",
+      "narration": "黑云和彩雾猛烈撞击在一起,无数的飞蝎被白濛濛寒风瞬间冻结,化为冰晶坠落。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "六翼霜蚣探出巨首,一张口,一道粗若水缸的光柱喷射而出,洞穿巨蝎身躯,巨蝎身体彻底碎裂开来。",
+      "mood": "Powerful",
+      "lighting": "Stormy",
+      "action": "Centipede Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Six-winged Frost Centipede reveals its giant head, shoots a thick light beam, piercing and shattering the giant scorpion",
+        "environment": "",
+        "character_pose": "Centipede attacking",
+        "fx": "Light beam, piercing attack, shattering",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The six-winged Frost Centipede reveals its head and shoots a thick light beam, piercing and shattering the giant scorpion.",
+      "narration": "六翼霜蚣探出巨首,一张口喷射出粗若水缸的光柱,瞬间洞穿了巨蝎的身躯。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "六翼霜蚣将地面上的飞蝎全都吃了个干干净净,接着头颅一偏,猛然朝韩立所在方向望了过来,目中竟然隐隐透漏一丝阴寒。",
+      "mood": "Tense",
+      "lighting": "Stormy",
+      "action": "Centipede Looks at Han Li",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Six-winged Frost Centipede finishes eating scorpions, turns head toward Han Li with cold gaze",
+        "environment": "",
+        "character_pose": "Centipede looking at Han Li",
+        "fx": "Cold gaze",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The six-winged Frost Centipede finishes eating scorpions, turns head toward Han Li with cold gaze.",
+      "narration": "六翼霜蚣将飞蝎吃尽后,头颅一偏望向韩立,目中竟然隐隐透漏出一丝阴寒之意。",
+      "face_style_auto": {
+        "expression": "Intense",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "六翼霜蚣骤然间化为一道白色残影冲韩立这边激射而来,仅仅几个呼吸间就扑到了韩立头顶处,用不善的目光死死盯着韩立。",
+      "mood": "Threatening",
+      "lighting": "Stormy",
+      "action": "Centipede Approaches",
+      "camera": "Dynamic Shot",
+      "visual": {
+        "composition": "Six-winged Frost Centipede transforms into white streak, rushes toward Han Li, hovering above him with hostile gaze",
+        "environment": "",
+        "character_pose": "Centipede above Han Li, Han Li tense",
+        "fx": "White streak, threatening presence",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The six-winged Frost Centipede transforms into white streak, rushes toward Han Li, hovering above with hostile gaze.",
+      "narration": "六翼霜蚣冲向韩立,用不善的目光盯着他。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立面露奇怪之色,盯着此虫眼都不眨一下,但是倒背在身后的双手却袖袍一抖,两颗灭仙珠同时滑落而下,无声无息的被抓到了手心中。",
+      "mood": "Prepared",
+      "lighting": "Stormy",
+      "action": "Prepare Defense",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li stares at the centipede, secretly grasping two Immortal-Destroying Beads in his hands",
+        "environment": "",
+        "character_pose": "Han Li tense, hands behind back",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stares at the centipede, secretly grasping two Immortal-Destroying Beads in his hands.",
+      "narration": "韩立面不改色地盯着六翼霜蚣,但双手却暗中握住了两颗灭仙珠,随时准备应对。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Stormy",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "空中的雪白蜈蚣发出一声低低的嘶鸣后,一个转身,忽然就朝远处飞射而走,转眼间就消失在了天边之外。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Centipede Leaves",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "The white centipede lets out a low hiss, turns and flies away, disappearing into the horizon",
+        "environment": "",
+        "character_pose": "Centipede flying away",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The white centipede lets out a low hiss, turns and flies away, disappearing into the horizon.",
+      "narration": "六翼霜蚣发出一声低低的嘶鸣后,忽然转身朝远处飞射而走,转眼间消失在天边。",
+      "face_style_auto": {
+        "expression": "Calm but Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立大松了一口气,原本绷得紧紧的面皮也松缓了下来,但随即又苦笑了一声,灵虫意外的跨阶进化,反而根本无法控制了。",
+      "mood": "Mixed",
+      "lighting": "Daylight",
+      "action": "Reflect on Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li relaxes, but then smiles wryly, realizing the centipede can no longer be controlled",
+        "environment": "",
+        "character_pose": "Han Li reflecting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li relaxes, but then smiles wryly, realizing the centipede can no longer be controlled.",
+      "narration": "韩立大松了一口气,但随即苦笑一声,灵虫意外的跨阶进化,反而根本无法控制了。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立快步疾走,片刻工夫就到了百余丈外的某处地方,单手一握拳,金光闪动间,对准地面就是狠狠一击。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Dig for Treasures",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li walks quickly, reaches a location, clenches fist with golden light, strikes the ground hard",
+        "environment": "",
+        "character_pose": "Han Li punching ground",
+        "fx": "Golden light, ground explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li walks quickly, reaches a location, clenches fist with golden light, strikes the ground hard.",
+      "narration": "韩立快步来到埋藏宝物处,单手一握拳,金光闪动间,对准地面就是狠狠一击。",
+      "face_style_auto": {
+        "expression": "Wry Smile",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "轰的一声惊天动地的巨响传来,青灰色沙地彻底爆裂开来,一个圆形大坑显现而出,在大坑的正中间,摆放着一只储物袋和三只灵兽袋。",
+      "mood": "Successful",
+      "lighting": "Daylight",
+      "action": "Retrieve Treasures",
+      "camera": "Reveal Shot",
+      "visual": {
+        "composition": "A huge explosion, grayish sand explodes, revealing a circular pit with a storage bag and three spirit beast bags",
+        "environment": "",
+        "character_pose": "Han Li looking at bags in pit",
+        "fx": "Explosion, dust",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A huge explosion, grayish sand explodes, revealing a circular pit with a storage bag and three spirit beast bags.",
+      "narration": "轰的一声巨响,沙地爆裂开来,大坑中显现出一只储物袋和三只灵兽袋。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立检查储物袋和灵兽袋,确认袋中东西并未缺少,噬金虫和啼魂兽都安然无恙。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Check Bags",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li checks the storage bag and spirit beast bags, confirming everything is intact",
+        "environment": "",
+        "character_pose": "Han Li examining bags",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li checks the storage bag and spirit beast bags, confirming everything is intact.",
+      "narration": "韩立仔细检查储物袋和灵兽袋,确认袋中东西并未缺少,噬金虫和啼魂兽都安然无恙。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "qingluo_desert",
+      "duration": 4,
+      "description": "韩立将袋口扎紧,都揣进了怀中,然后掩埋虫壳,准备离开青罗沙漠,前往落日之墓。",
+      "mood": "Resolved",
+      "lighting": "Daylight",
+      "action": "Prepare to Leave",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li secures the bags, buries the shell, prepares to leave Qingluo Desert for Sunset Tomb",
+        "environment": "",
+        "character_pose": "Han Li preparing, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li secures the bags, buries the shell, prepares to leave for Sunset Tomb.",
+      "narration": "韩立将袋口扎紧揣入怀中,掩埋虫壳后,准备离开青罗沙漠,前往千万里外的落日之墓。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_020.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第17集即将开始。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep16_full/scene_021.png"
+    }
+  ]
+}

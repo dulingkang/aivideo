@@ -1,0 +1,813 @@
+{
+  "episode": 172,
+  "title": "荒地凶险 · 法士初现",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕提示“上一回 · 南陇侯的邀约”，背景是宴会厅与幕兰草原远景。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll opening over banquet hall merging into prairie landscape",
+        "environment": "Palace interior transitioning to vast grassland",
+        "character_pose": "",
+        "fx": "Gold sparkles, drifting motes",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia fantasy title card, golden scroll unfolds above banquet hall transitioning to Muklan Prairie, soft blue-gold glow, cinematic wide shot",
+      "narration": "我是云卷仙音，欢迎回来。第一百七十二集《荒地凶险·法士初现》。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "宴会厅内，南陇侯提出条件，众人同意后发下心魔誓，约定两日后出发。",
+      "mood": "Solemn",
+      "lighting": "Warm candle",
+      "action": "Making vow",
+      "camera": "Medium wide",
+      "visual": {
+        "composition": "Nine cultivators seated around banquet table, hands raised in oath gesture",
+        "environment": "Golden banquet hall with floating talismans",
+        "character_pose": "All making solemn gestures",
+        "fx": "Soul-binding runes glowing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivators making heart demon oath around banquet table, golden runes floating, solemn xianxia ceremony",
+      "narration": "南陇侯提出先选两件宝物，众人无异议。为了防泄密，所有人发下心魔誓，约定两日后出发。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "韩立离开宴会，走在夜色中的街道，内心思考此行利弊。",
+      "mood": "Contemplative",
+      "lighting": "Night street",
+      "action": "Walking alone",
+      "camera": "Rear tracking",
+      "visual": {
+        "composition": "Han Li walking down moonlit street, deep in thought",
+        "environment": "Quiet night street with lanterns",
+        "character_pose": "Hands behind back, contemplative",
+        "fx": "Soft moonlight",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "nighttime xianxia street, Han Li walking alone in contemplation, soft moonlight, cinematic tracking shot",
+      "narration": "韩立会答应此行，有他自己的思量。元婴期后没有合适丹药，光靠苦修至少二三百年才能达到初期顶峰。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "闪回画面：韩立修炼青元剑诀进展缓慢，眼神中露出渴望突破的光芒。",
+      "mood": "Determined",
+      "lighting": "Inner glow",
+      "action": "Cultivation flashback",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li in meditation chamber, slow progress shown by subtle visual",
+        "environment": "Secluded cultivation cave",
+        "character_pose": "Sitting in lotus position",
+        "fx": "Slowly rotating spiritual energy",
+        "motion": {
+          "type": "dissolve"
+        }
+      },
+      "prompt": "cultivation flashback, Han Li meditating with slow progress, determined expression, inner spiritual glow",
+      "narration": "坠魔谷的宝物，说不定就是突破境界的机缘，这样的机会绝不容错过。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "韩立眼中寒光一闪，想起王婵和燕家堡的旧仇。",
+      "mood": "Hostile",
+      "lighting": "High contrast",
+      "action": "Remembering past",
+      "camera": "Extreme close-up eyes",
+      "visual": {
+        "composition": "Han Li's eyes with cold glint, flashback overlay of past battles",
+        "environment": "Split between present and memory",
+        "character_pose": "Eyes narrowed with killing intent",
+        "fx": "Red flashback overlay",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "extreme close-up of Han Li's eyes with cold killing intent, red flashback overlay of past battles",
+      "narration": "路上若有机会灭掉王婵，韩立自然不会客气。只要不被王天古当场抓住，对方还能怎样？",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Dramatic",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "次日清晨，韩立采购材料，吕洛答应帮忙照看慕沛灵。",
+      "mood": "Calm",
+      "lighting": "Daylight",
+      "action": "Preparing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li handing jade slip to fellow cultivator, morning market in background",
+        "environment": "Morning street with vendors",
+        "character_pose": "Handing over item",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "morning scene, Han Li discussing with fellow cultivator, preparing for journey, soft daylight",
+      "narration": "韩立花了一整日购置材料，拜托吕洛照看慕沛灵，这位师兄一口答应，让韩立大增好感。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 3,
+      "description": "第三日，阗天城南面千里外的小山，南陇侯与白衫老者等待众人集合。",
+      "mood": "Anticipatory",
+      "lighting": "Morning light",
+      "action": "Gathering",
+      "camera": "Wide establishing",
+      "visual": {
+        "composition": "Two cultivators standing on hilltop, prairie visible in distance",
+        "environment": "Small hill with grassland beyond",
+        "character_pose": "Looking toward approaching figures",
+        "fx": "Morning mist",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "morning hilltop, two cultivators waiting, grassland horizon, soft morning light",
+      "narration": "到了约定时间，韩立来到阗天城南面千里外的小山，南陇侯已换成儒生打扮，与白衫老者等待。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "陆续有人抵达，最后王天古带着王婵和燕如嫣联袂而来，韩立脸色一动。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Arrival",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Three figures landing together, Han Li watching with slight reaction",
+        "environment": "Hilltop gathering point",
+        "character_pose": "Wang Tian Gu with two juniors, Han Li observing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "hilltop gathering, three figures arriving together, Han Li's subtle reaction, tense atmosphere",
+      "narration": "最后王天古三人联袂而来，韩立见此脸色动了一动，心中杀意更浓。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "南陇侯说“出发”，一行九人化为九道遁光，向南面幕兰草原方向飞去。",
+      "mood": "Adventurous",
+      "lighting": "Daylight",
+      "action": "Taking flight",
+      "camera": "Aerial tracking",
+      "visual": {
+        "composition": "Nine colored lights shooting south across sky",
+        "environment": "Open sky above rolling hills",
+        "character_pose": "Multiple flying figures",
+        "fx": "Colored light trails",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "aerial shot of nine cultivators flying as colored lights toward grassland, cinematic tracking, fast motion",
+      "narration": "在南陇侯一句'出发'后，一行九人悄然离开阗天城，往南面的慕兰草原方向而去。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "俯瞰画面：九国盟与幕兰草原之间，绵延万里的黄土荒地，狂风不止，黄土飞扬。",
+      "mood": "Desolate",
+      "lighting": "Harsh sunlight",
+      "action": "Landscape reveal",
+      "camera": "Aerial wide",
+      "visual": {
+        "composition": "Vast yellow wasteland stretching to horizon, dust storms visible",
+        "environment": "Barren yellow earth with wind and dust",
+        "character_pose": "",
+        "fx": "Dust clouds, wind patterns",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "aerial wide shot of vast yellow wasteland between cultivation realm and prairie, dust storms, desolate landscape",
+      "narration": "阗天城与幕兰草原之间，还隔了绵延近万里的黄土荒地。草木稀少，长年黄土飞扬，狂风不止，成了九国盟和法士的斗法之地。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "韩立等人飞行在荒地上空，偶尔有低阶修士出现在下方，但众人视若无物。",
+      "mood": "Confident",
+      "lighting": "Daylight",
+      "action": "Flying over wasteland",
+      "camera": "Aerial following",
+      "visual": {
+        "composition": "Flying cultivators high above wasteland, tiny figures below",
+        "environment": "Yellow wasteland from above",
+        "character_pose": "Flying in formation",
+        "fx": "Wind trails",
+        "motion": {
+          "type": "tracking",
+          "speed": "medium"
+        }
+      },
+      "prompt": "aerial following shot of cultivators flying above wasteland, tiny figures below, confident passage",
+      "narration": "万里的距离，对元婴期修士来说，大半日功夫即可穿过。几人也不慌不忙，以普通速度向前遁走。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "飞行半个时辰后，白衫老者身形一顿，停滞下来，脸色凝重。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Stopping",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder cultivator stopping mid-air, looking ahead with concern",
+        "environment": "Wasteland sky",
+        "character_pose": "Hand raised, alert posture",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator stopping in mid-air, alert expression, looking ahead with concern",
+      "narration": "几人刚在荒野之地飞行了近半个时辰，前边带路的白衫老者身形一顿，竟停滞了下来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "众人放出神识向前探查，只见前方黄风铺天盖地而来，足有百余丈高，如孽龙出世。",
+      "mood": "Alarming",
+      "lighting": "Dusty yellow",
+      "action": "Detecting danger",
+      "camera": "Wide forward",
+      "visual": {
+        "composition": "Massive yellow dust storm approaching like dragon",
+        "environment": "Wasteland with approaching storm",
+        "character_pose": "",
+        "fx": "Massive yellow dust clouds",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "massive yellow dust storm approaching like dragon, overwhelming scale, alarming atmosphere",
+      "narration": "韩立神识所感，黄风铺天盖地而来，足有百余丈高，飞沙走石，黄尘滚滚，如孽龙出世。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "南陇侯认出这是慕兰人的'红尘万丈'风灵术，众人闻言色变。",
+      "mood": "Tense",
+      "lighting": "Dusty yellow",
+      "action": "Recognition",
+      "camera": "Medium group shot",
+      "visual": {
+        "composition": "Group of cultivators reacting with alarm, dust storm in background",
+        "environment": "Sky with approaching storm",
+        "character_pose": "Various alarmed expressions",
+        "fx": "Dust particles in air",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators alarmed, massive dust storm approaching, tense atmosphere",
+      "narration": "南陇侯脸色阴沉：'这是慕兰人的风灵术！以前和我斗过法的法士，施展的就是这种红尘万丈灵术。'",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Dusty",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "白衫老者判断里面可能藏有同阶法士，众人商量对策。",
+      "mood": "Calculating",
+      "lighting": "Daylight filtering through dust",
+      "action": "Discussing strategy",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Two elders discussing while others listen, storm approaching",
+        "environment": "Sky with dust storm closing",
+        "character_pose": "Serious discussion poses",
+        "fx": "Dust haze",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivators in serious discussion, approaching dust storm, strategic planning atmosphere",
+      "narration": "白衫老者慎重说道：'看此术威力，里面更不知藏了多少法士，就是有同阶存在也并非不可能。'",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "王天古判断这是慕兰人准备发动新一轮争战，众人决定尝试从旁边穿插过去。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Decision making",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Cultivators nodding in agreement, determined expressions",
+        "environment": "Sky above wasteland",
+        "character_pose": "Resolute poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivators making determined decision, group resolve, cinematic medium shot",
+      "narration": "白衫老者建议先隐匿身形，从旁边穿插过去，只要不撞进风阵中心，应该没问题。众人同意了。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 3,
+      "description": "众人放出传信符，飞向最近的九国盟据点，然后收敛气息，隐匿身形向一边遁去。",
+      "mood": "Secretive",
+      "lighting": "Daylight",
+      "action": "Hiding and sending messages",
+      "camera": "Wide tracking",
+      "visual": {
+        "composition": "Cultivators becoming invisible, talismans flying away",
+        "environment": "Wasteland sky",
+        "character_pose": "Invisible figures",
+        "fx": "Invisibility shimmer, talisman trails",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivators becoming invisible, talismans flying away, stealthy movement",
+      "narration": "几人放出传信符通知九国盟据点，然后收敛气息，隐匿身形，开始向一边悄然遁去。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "黄沉沉的风沙从远处压来，巨大的风柱率先呼啸而过，里面隐约有人影晃动。",
+      "mood": "Ominous",
+      "lighting": "Dusty yellow",
+      "action": "Storm passing",
+      "camera": "Wide pan",
+      "visual": {
+        "composition": "Massive dust storm with wind columns passing by, shadows within",
+        "environment": "Overwhelming dust storm",
+        "character_pose": "",
+        "fx": "Massive dust clouds, wind columns",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "massive dust storm with wind columns, ominous shadows within, overwhelming scale",
+      "narration": "黄沉沉的风沙从远处压来，巨大的风柱率先呼啸而过。韩立用神识感应，风柱中模模糊糊有人影晃动。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "一道粗约百丈的巨大风柱横着向他们狂啸而来，众人戒备，但风柱擦身而过。",
+      "mood": "Tense relief",
+      "lighting": "Dusty yellow",
+      "action": "Narrow escape",
+      "camera": "Dynamic tracking",
+      "visual": {
+        "composition": "Massive wind column passing close by invisible cultivators",
+        "environment": "Inside dust storm",
+        "character_pose": "Tense invisible figures",
+        "fx": "Massive wind column",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "massive wind column passing dangerously close, tense narrow escape, dynamic tracking shot",
+      "narration": "一道粗约百丈的巨大风柱横着向他们狂啸而来，众人戒备，但风柱擦身而过，竟似毫不发觉。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "无边沙雾从天而降，一下将众人淹没其中，四周变得昏沉沉，到处都是深黄之色。",
+      "mood": "Trapped",
+      "lighting": "Dim yellow",
+      "action": "Being engulfed",
+      "camera": "Immersion shot",
+      "visual": {
+        "composition": "View from inside dust storm, everything yellow and hazy",
+        "environment": "Inside dust cloud",
+        "character_pose": "Blurred figures",
+        "fx": "Thick yellow haze",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "view from inside dust storm, thick yellow haze, trapped feeling, immersion shot",
+      "narration": "就这片刻耽搁，从天而降无边沙雾，一下将众人淹没其中，四周立刻变得黯淡，到处是深黄色。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "韩立等人继续隐匿身形前进，但飞遁一顿饭后，韩立察觉到不对劲，停下遁光。",
+      "mood": "Suspicious",
+      "lighting": "Dim yellow",
+      "action": "Sensing danger",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Han Li stopping mid-flight, looking around suspiciously",
+        "environment": "Inside yellow dust cloud",
+        "character_pose": "Alert stopping pose",
+        "fx": "Yellow haze",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li stopping mid-flight inside dust storm, suspicious expression, alert pose",
+      "narration": "仅飞遁了一顿饭功夫，韩立打量着四周黯然单调的景色，心中隐隐觉得不对劲。",
+      "face_style_auto": {
+        "expression": "Suspicious",
+        "lighting": "Dim",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "韩立指出问题：飞了这么久没遇到一个法士，四周景色也没变，说明有人在施展禁制。",
+      "mood": "Revealing",
+      "lighting": "Dim yellow",
+      "action": "Pointing out trap",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li explaining to group, same yellow background repeating",
+        "environment": "Trapped in illusion",
+        "character_pose": "Han Li pointing out issue",
+        "fx": "Repeating pattern",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li explaining trap to group, repeating yellow background, revealing moment",
+      "narration": "韩立面无表情：'我们在这风沙飞了这么久，怎么连一个法士都没碰到，而且四周景色一直没变。'",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dim",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "众人恍然大悟，纷纷放出法宝，开始冲击四周的禁制。",
+      "mood": "Determined",
+      "lighting": "Mixed colors",
+      "action": "Breaking formation",
+      "camera": "Wide dynamic",
+      "visual": {
+        "composition": "Multiple cultivators releasing magical weapons, colorful lights breaking yellow haze",
+        "environment": "Breaking through illusion",
+        "character_pose": "Attacking poses",
+        "fx": "Colorful weapon lights, breaking illusion",
+        "motion": {
+          "type": "arc",
+          "speed": "fast"
+        }
+      },
+      "prompt": "cultivators breaking formation with colorful weapons, dynamic wide shot, breaking illusion",
+      "narration": "黝黑汉子脸色难看：'有人在施展禁制暗算我们！'南陇侯点头：'看来我们被对方察觉了。'",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "韩立随手一弹，三道青芒化为青色惊虹，向黄沙席卷而去，禁制如水波般被轻易撕碎。",
+      "mood": "Dominant",
+      "lighting": "Azure glow",
+      "action": "Breaking free",
+      "camera": "Dynamic close-up",
+      "visual": {
+        "composition": "Three blue sword lights breaking through yellow barrier",
+        "environment": "Breaking illusion barrier",
+        "character_pose": "Han Li with casual gesture",
+        "fx": "Blue sword trails, breaking barrier",
+        "motion": {
+          "type": "arc",
+          "speed": "fast"
+        }
+      },
+      "prompt": "three blue sword lights easily breaking through yellow barrier, Han Li casual gesture, dominant moment",
+      "narration": "韩立飘逸地随手一弹，三道青芒脱手后，迎风狂涨，化为青色惊虹，向黄沙席卷而去。",
+      "face_style_auto": {
+        "expression": "Composed",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "众人从禁制缺口遁出，韩立立即将灵力注入双目，使用明清灵目神通查看四周。",
+      "mood": "Alert",
+      "lighting": "Daylight with haze",
+      "action": "Activating eye technique",
+      "camera": "Close-up eyes",
+      "visual": {
+        "composition": "Han Li's eyes glowing blue, seeing through dust storm",
+        "environment": "Dusty wasteland",
+        "character_pose": "Eyes with blue glow",
+        "fx": "Blue eye glow, seeing through haze",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Han Li's eyes with blue glow, seeing through dust storm, mystical eye technique",
+      "narration": "一出去后，韩立立即将灵力注入双目，试试那明清灵目的神通。原本黄濛濛的风沙，在灵目一扫之下，竟轻易透彻而出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "韩立用灵目看到不远处风沙中有一个圆乎乎的黑影，直径足有十余丈，里面隐约有人形晃动。",
+      "mood": "Discovering",
+      "lighting": "Mystic blue",
+      "action": "Discovering hidden threat",
+      "camera": "Vision overlay",
+      "visual": {
+        "composition": "Blue vision overlay showing dark void in dust storm with shadowy figures",
+        "environment": "Through Han Li's special vision",
+        "character_pose": "",
+        "fx": "Blue vision effect, hidden figures in void",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "blue vision overlay revealing hidden dark void with shadowy figures in dust storm, discovery shot",
+      "narration": "在不远处的风沙中，他竟看到一个圆乎乎的黑影，直径足有十余丈，隐隐有几个人形在晃动。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "韩立明白有人在偷窥，但没有喝破，而是故作不知的离去，同时南陇侯拿出定星盘辨别方向。",
+      "mood": "Calculating",
+      "lighting": "Daylight",
+      "action": "Strategic decision",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Han Li keeping secret while Nanlong Hou uses compass-like device",
+        "environment": "Dusty wasteland",
+        "character_pose": "Han Li watching, Nanlong using device",
+        "fx": "Compass glowing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li keeping discovery secret while Nanlong uses compass device, strategic moment",
+      "narration": "韩立已明白，那里有人在施展神通，隐匿在附近偷窥他们。但他没有喝破，故作不知离去。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "南陇侯用定星盘确定方向，带领众人飞遁，韩立临走前又看了一眼那个方向，冷笑而去。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "Departing",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Cultivators flying away, Han Li looking back with slight smile",
+        "environment": "Wasteland sky",
+        "character_pose": "Han Li looking back knowingly",
+        "fx": "",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "cultivators flying away, Han Li looking back with knowing smile, mysterious departure",
+      "narration": "韩立眼看就要独自落在后面，却不在意地笑了笑，飞走前又望了望原先方向，嘿嘿冷笑破空而去。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "画面切换到隐藏处：一只巨大乌黑的妖虫从空间裂缝中爬出，背上站着三名法士。",
+      "mood": "Revealing",
+      "lighting": "Dark ominous",
+      "action": "Revealing hidden threat",
+      "camera": "Low angle reveal",
+      "visual": {
+        "composition": "Giant black insect emerging from spatial rift with three figures on back",
+        "environment": "Spatial void",
+        "character_pose": "Three ominous figures on insect back",
+        "fx": "Spatial crack, dark energy",
+        "motion": {
+          "type": "tilt",
+          "direction": "up",
+          "speed": "slow"
+        }
+      },
+      "prompt": "giant black insect emerging from spatial rift with three ominous figures on back, low angle reveal",
+      "narration": "韩立原先所望之处刺目黄芒亮起，一个黑乎乎的大洞显现，从中爬出一只乌黑发亮的妖虫，背上站着三名人影。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "三名慕兰大上师讨论：绿雾中的大上师疑惑韩立似乎发现了他们，但认为可能是巧合。",
+      "mood": "Suspicious",
+      "lighting": "Mixed colors",
+      "action": "Discussion",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Three figures in different colored auras discussing, one in green mist",
+        "environment": "On giant insect back",
+        "character_pose": "Discussion poses",
+        "fx": "White, green, and blue auras",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "three figures in colored auras discussing on giant insect, suspicious atmosphere",
+      "narration": "绿雾中的大上师沉思：'最先破阵出来那年轻人，好像发现了躲在须弥孔洞中的我们，这可有点古怪！'",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "众人甩开黄沙风阵后保持阵形，遁光在漫天尘浪间拉出长虹。",
+      "mood": "Relieved",
+      "lighting": "Dusty daylight",
+      "action": "Accelerating",
+      "camera": "Wide tracking",
+      "visual": {
+        "composition": "Nine streaks of light weaving through thinning dust storm",
+        "environment": "Dusty sky with torn clouds and sand curtains",
+        "character_pose": "Cultivators maintaining tight flight line",
+        "fx": "Trailing light ribbons, drifting sand",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "cultivators flying fast out of sandstorm, nine light trails, dusty golden daylight, cinematic wide tracking shot",
+      "narration": "众人冲出风阵后，只敢稍作喘息，便立刻提速拉开距离。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出，远方的幕兰草原边缘显现，天幕中隐约可见御风车的光点。",
+      "mood": "Foreboding",
+      "lighting": "Dusk",
+      "action": "End-credit teaser",
+      "camera": "Wide establishing",
+      "visual": {
+        "composition": "Distant prairie edge with tiny light dot in sky, ominous atmosphere",
+        "environment": "Wasteland transitioning to prairie",
+        "character_pose": "",
+        "fx": "Distant light, ominous clouds",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "dusk shot of prairie edge with distant ominous light dot in sky, foreboding atmosphere, wide establishing shot",
+      "narration": "我是云卷仙音，第一百七十三集的故事即将开始。喜欢的话请点赞支持一下！下集再见。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    }
+  ]
+}

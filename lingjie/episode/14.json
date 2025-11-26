@@ -1,0 +1,647 @@
+{
+  "episode": 14,
+  "title": "Yu Yang Life · Artifact Crafting",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第14集:虞阳生活·灵具炼制。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "时间流逝,韩立在虞阳城隐姓埋名,炼制灵具,帮助范胖子发展拍卖行。",
+      "mood": "Prosperous",
+      "lighting": "Forge Glow",
+      "action": "Craft Artifacts",
+      "camera": "Montage",
+      "visual": {
+        "composition": "Time passes as Han Li crafts artifacts anonymously, helping Fan Pang develop the auction house",
+        "environment": "",
+        "character_pose": "Han Li at forge, crafting, time-lapse",
+        "fx": "Forge fire, glowing artifacts, time passing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Time flows as Han Li crafts spiritual artifacts anonymously, the auction house gradually expanding.",
+      "narration": "时间流逝,韩立在虞阳城隐姓埋名,炼制灵具,帮助范胖子发展拍卖行。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Forge Glow",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立凭借阵法造诣和化神修士见识,炼制出精品灵具。",
+      "mood": "Successful",
+      "lighting": "Forge Glow",
+      "action": "Create Fine Artifacts",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li uses his array expertise and Deity Transformation knowledge to craft fine artifacts",
+        "environment": "",
+        "character_pose": "Han Li crafting, artifacts glowing",
+        "fx": "Glowing artifacts, arrays forming",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li crafts fine spiritual artifacts using his array mastery and Deity Transformation expertise.",
+      "narration": "韩立凭借阵法造诣和化神修士见识,炼制出精品灵具。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Forge Glow",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "范胖子拍卖行逐渐发展壮大,成为虞阳城知名拍卖行。",
+      "mood": "Prosperous",
+      "lighting": "Interior Warm",
+      "action": "Business Grows",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Fan Pang's auction house gradually expands, becoming famous in Yu Yang City",
+        "environment": "",
+        "character_pose": "Busy auction house, customers, artifacts displayed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang's auction house steadily grows, becoming a renowned establishment in Yu Yang City.",
+      "narration": "范胖子拍卖行逐渐发展壮大,成为虞阳城知名拍卖行。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立隐姓埋名,将炼制灵具交给范胖子拍卖,两人配合默契。",
+      "mood": "Harmonious",
+      "lighting": "Interior Soft",
+      "action": "Cooperation",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li works anonymously, giving crafted artifacts to Fan Pang for auction, perfect cooperation",
+        "environment": "",
+        "character_pose": "Han Li and Fan Pang discussing, artifacts on table",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li works anonymously with Fan Pang, providing crafted artifacts for auction in perfect harmony.",
+      "narration": "韩立隐姓埋名,将炼制灵具交给范胖子拍卖,两人配合默契。",
+      "face_style_auto": {
+        "expression": "Happy",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立潜心修炼金刚诀第五层,修炼进度远超预期。",
+      "mood": "Serene",
+      "lighting": "Interior Soft",
+      "action": "Cultivate Fifth Layer",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Han Li diligently cultivates the fifth layer of Vajra Art, progress far exceeding expectations",
+        "environment": "",
+        "character_pose": "Han Li meditating, golden aura",
+        "fx": "Subtle golden glow",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li cultivates the fifth layer of Vajra Art, his progress far beyond what he anticipated.",
+      "narration": "韩立潜心修炼金刚诀第五层,修炼进度远超预期。",
+      "face_style_auto": {
+        "expression": "Content",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "灵界灵气浓密,灵气灌体效果极佳,加速韩立修炼。",
+      "mood": "Beneficial",
+      "lighting": "Spirit Light",
+      "action": "Spirit Energy Absorption",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Dense spirit world qi provides excellent body infusion effects, accelerating Han Li's cultivation",
+        "environment": "",
+        "character_pose": "Han Li with spirit energy flowing around him",
+        "fx": "Spirit energy streams, golden aura",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Dense spirit world qi provides excellent body infusion, greatly accelerating Han Li's cultivation.",
+      "narration": "灵界灵气浓密,灵气灌体效果极佳,加速韩立修炼。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立身体经过灵药改造,肉体天赋远超人类极限。",
+      "mood": "Powerful",
+      "lighting": "Interior Soft",
+      "action": "Body Enhancement",
+      "camera": "Close-Up Body",
+      "visual": {
+        "composition": "Han Li's body enhanced by spirit medicines, physical talent far exceeding human limits",
+        "environment": "",
+        "character_pose": "Han Li's enhanced physique visible",
+        "fx": "Subtle enhancement glow",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's body transformed by spirit medicines, his physical talent surpassing human limits.",
+      "narration": "韩立身体经过灵药改造,肉体天赋远超人类极限。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立金刚诀第五层修炼至大成,开始面临第六层瓶颈。",
+      "mood": "Challenging",
+      "lighting": "Interior Soft",
+      "action": "Face Sixth Layer Bottleneck",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li reaches perfection in the fifth layer, now facing the sixth layer bottleneck",
+        "environment": "",
+        "character_pose": "Han Li in meditation, golden aura fluctuating",
+        "fx": "Unstable golden light",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li achieves fifth layer perfection but now confronts the sixth layer bottleneck.",
+      "narration": "韩立金刚诀第五层修炼至大成,开始面临第六层瓶颈。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立想起九玄明玉潭保举文书,决定前往金玉宗。",
+      "mood": "Determined",
+      "lighting": "Interior Soft",
+      "action": "Recall Document",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li remembers the recommendation document for Jiuxuan Bright Jade Pool, decides to visit Gold Jade Sect",
+        "environment": "",
+        "character_pose": "Han Li looking at document, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li recalls the recommendation letter for Jiuxuan Bright Jade Pool and resolves to visit Gold Jade Sect.",
+      "narration": "韩立想起九玄明玉潭保举文书,决定前往金玉宗。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立向范胖子告辞,准备离开虞阳城寻找金玉宗。",
+      "mood": "Parting",
+      "lighting": "Interior Warm",
+      "action": "Bid Farewell",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li bids farewell to Fan Pang, preparing to leave Yu Yang City to find Gold Jade Sect",
+        "environment": "",
+        "character_pose": "Han Li and Fan Pang, farewell gesture",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li takes leave of Fan Pang, preparing to depart Yu Yang City to locate Gold Jade Sect.",
+      "narration": "韩立向范胖子告辞,准备离开虞阳城寻找金玉宗。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立离开虞阳城,踏上寻找金玉宗的旅程。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Begin Journey",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li leaves Yu Yang City, beginning his journey to find Gold Jade Sect",
+        "environment": "",
+        "character_pose": "Han Li walking away, back view",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li departs Yu Yang City, starting his search for Gold Jade Sect.",
+      "narration": "韩立离开虞阳城，踏上寻找金玉宗的旅程，前往山中。",
+      "face_style_auto": {
+        "expression": "Polite",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立翻山越岭,寻找金玉宗山门。",
+      "mood": "Searching",
+      "lighting": "Daylight",
+      "action": "Search Sect",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li crosses mountains and valleys, searching for Gold Jade Sect's mountain gate",
+        "environment": "",
+        "character_pose": "Han Li traveling, looking around",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li traverses mountains and valleys, seeking Gold Jade Sect's entrance.",
+      "narration": "韩立翻山越岭，寻找金玉宗山门，历经艰难险阻。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "花费年许时间,韩立终于找到金玉宗山门。",
+      "mood": "Successful",
+      "lighting": "Daylight",
+      "action": "Find Sect",
+      "camera": "Telephoto Shot",
+      "visual": {
+        "composition": "After about a year, Han Li finally finds Gold Jade Sect's mountain gate",
+        "environment": "",
+        "character_pose": "Han Li looking at distant sect gate",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After nearly a year, Han Li finally locates Gold Jade Sect's mountain gate.",
+      "narration": "花费年许时间，韩立终于找到金玉宗山门，心中欣喜。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立来到金玉宗山门,求见秦师兄。",
+      "mood": "Respectful",
+      "lighting": "Daylight",
+      "action": "Request Meeting",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li arrives at Gold Jade Sect's gate, requesting to meet Senior Brother Qin",
+        "environment": "",
+        "character_pose": "Han Li speaking to sect guards",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li arrives at Gold Jade Sect's entrance and requests an audience with Senior Brother Qin.",
+      "narration": "韩立来到金玉宗山门，求见秦师兄，说明来意。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "秦师兄已经进阶结丹修士,见到韩立前来,颇为惊讶。",
+      "mood": "Surprised",
+      "lighting": "Daylight",
+      "action": "Meet Senior Brother Qin",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Senior Brother Qin, now a Core Formation cultivator, is surprised to see Han Li",
+        "environment": "",
+        "character_pose": "Qin surprised, Han Li standing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qin, now a Core Formation cultivator, is astonished to see Han Li arrive.",
+      "narration": "秦师兄已经进阶结丹修士,见到韩立前来,颇为惊讶。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立展示金刚诀第五层大成境界,单凭肉体可对抗结丹修士。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Demonstrate Strength",
+      "camera": "Dynamic Shot",
+      "visual": {
+        "composition": "Han Li demonstrates his perfected fifth layer, capable of matching Core Formation cultivators with pure physical strength",
+        "environment": "",
+        "character_pose": "Han Li showing golden aura, Qin impressed",
+        "fx": "Golden aura, power display",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li displays his perfected fifth layer, matching Core Formation cultivators with physical might alone.",
+      "narration": "韩立展示金刚诀第五层大成境界,单凭肉体可对抗结丹修士。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "秦师兄确认韩立实力后,同意安排浸泡九玄明玉潭。",
+      "mood": "Agreement",
+      "lighting": "Daylight",
+      "action": "Agree to Pool",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "After confirming Han Li's strength, Senior Brother Qin agrees to arrange the Jiuxuan Bright Jade Pool",
+        "environment": "",
+        "character_pose": "Qin agreeing, Han Li grateful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After verifying Han Li's power, Senior Brother Qin agrees to arrange the pool access.",
+      "narration": "秦师兄确认韩立实力后,同意安排浸泡九玄明玉潭。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立跟随秦师兄进入金玉宗,前往九玄明玉潭。",
+      "mood": "Anticipating",
+      "lighting": "Daylight",
+      "action": "Enter Sect",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li follows Senior Brother Qin into Gold Jade Sect, heading toward Jiuxuan Bright Jade Pool",
+        "environment": "",
+        "character_pose": "Two men walking, Han Li following",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li follows Senior Brother Qin into the sect, proceeding toward Jiuxuan Bright Jade Pool.",
+      "narration": "韩立跟随秦师兄进入金玉宗,前往九玄明玉潭。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "九玄明玉潭出现在眼前,潭水深处散发着不可思议的力量。",
+      "mood": "Awed",
+      "lighting": "Spirit Light",
+      "action": "See Pool",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Jiuxuan Bright Jade Pool appears ahead, deep waters radiating incredible power",
+        "environment": "",
+        "character_pose": "Han Li looking at pool, pool glowing",
+        "fx": "Mysterious pool glow, spirit energy",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Jiuxuan Bright Jade Pool comes into view, its depths radiating extraordinary power.",
+      "narration": "九玄明玉潭出现在眼前,潭水深处散发着不可思议的力量。",
+      "face_style_auto": {
+        "expression": "Anticipating",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立准备进入九玄明玉潭,突破第六层瓶颈。",
+      "mood": "Ready",
+      "lighting": "Spirit Light",
+      "action": "Prepare to Enter Pool",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li prepares to enter Jiuxuan Bright Jade Pool, ready to break through the sixth layer bottleneck",
+        "environment": "",
+        "character_pose": "Han Li at pool edge, determined",
+        "fx": "Pool glow, anticipation",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li prepares to enter the pool, ready to break through the sixth layer bottleneck.",
+      "narration": "韩立准备进入九玄明玉潭，突破第六层瓶颈，冲击更高境界。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第15集即将开始。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep14_full/scene_022.png"
+    }
+  ]
+}

@@ -1,0 +1,760 @@
+{
+  "episode": 32,
+  "title": "Chaos Valley · Three Races Gather",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第32集:混沌谷·三族齐聚。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "六日后,韩立身影出现在混沌谷外某个小山上,与七八名人族修士和炼体士一起。",
+      "mood": "Waiting",
+      "lighting": "Daylight",
+      "action": "Arrive at Valley",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Six days later, Han Li appears on small hill outside Chaos Valley, with seven or eight human cultivators and body cultivators",
+        "environment": "Small hill outside Chaos Valley",
+        "character_pose": "Group of cultivators on hill",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Six days later, Han Li appears on small hill outside Chaos Valley, with seven or eight human cultivators and body cultivators.",
+      "narration": "六日后,韩立出现在混沌谷外小山上,与七八名人族修士一起。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "众人神情凝重望向极远处的混沌谷入口,人人沉默不语,等待大战开始。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Watch Valley",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Everyone looks tense toward distant Chaos Valley entrance, all silent, waiting for battle",
+        "environment": "Hill overlooking valley",
+        "character_pose": "Group watching valley, tense",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Everyone looks tense toward distant Chaos Valley entrance, all silent, waiting for battle.",
+      "narration": "众人神情凝重望向远处谷口,人人沉默不语,等待大战开始。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "灰衫中年人询问孙姓老者,黄粱前辈和蓝城主是否真的今日会出现。",
+      "mood": "Inquiring",
+      "lighting": "Daylight",
+      "action": "Ask About Arrival",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Gray-robed middle-aged man asks Sun elder if Huangliang Spirit Lord and City Lord Lan will really appear today",
+        "environment": "Hill outside valley",
+        "character_pose": "Two men talking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Gray-robed middle-aged man asks Sun elder if Huangliang Spirit Lord and City Lord Lan will really appear today.",
+      "narration": "灰衫中年人询问孙姓老者,黄粱前辈和蓝城主是否今日会出现。",
+      "face_style_auto": {
+        "expression": "Inquiring",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "孙姓老者十分肯定,说亲自接到蓝城主身边之人的飞剑传书,绝不会错。",
+      "mood": "Confident",
+      "lighting": "Daylight",
+      "action": "Confirm Arrival",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Sun elder very confident, says personally received flying sword message from City Lord Lan's side, absolutely correct",
+        "environment": "Hill outside valley",
+        "character_pose": "Elder speaking confidently",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Sun elder very confident, says personally received flying sword message from City Lord Lan's side, absolutely correct.",
+      "narration": "孙姓老者十分肯定,说亲自接到蓝城主身边之人的飞剑传书。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "老者询问韩立为何愿意半途加入,韩立不动声色说化神级以上争斗不想错过。",
+      "mood": "Conversational",
+      "lighting": "Daylight",
+      "action": "Explain Reason",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Elder asks Han Li why willing to join halfway, Han Li calmly says doesn't want to miss Deity Transformation level battle",
+        "environment": "Hill outside valley",
+        "character_pose": "Elder asking, Han Li responding",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Elder asks Han Li why willing to join halfway, Han Li calmly says doesn't want to miss Deity Transformation level battle.",
+      "narration": "老者询问韩立为何愿意加入,韩立说化神级以上争斗不想错过。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "忽然从混沌谷一侧传来冲天长啸声,无数股妖气纷纷冒出,融合成灰白色妖雾。",
+      "mood": "Alarming",
+      "lighting": "Demonic Mist",
+      "action": "Demon Qi Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Suddenly from one side of Chaos Valley comes long howl, countless demon qi emerge, merge into gray-white demon mist",
+        "environment": "Valley side, demon mist spreading",
+        "character_pose": "Mist spreading across sky",
+        "fx": "Gray-white demon mist, demon qi",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Suddenly from one side of Chaos Valley comes long howl, countless demon qi emerge, merge into gray-white demon mist.",
+      "narration": "忽然从谷侧传来冲天长啸,无数股妖气冒出,融合成灰白色妖雾。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "妖雾将半天天空都罩住,云下兽吼声阵阵,腥风大作,气势惊人。",
+      "mood": "Threatening",
+      "lighting": "Demonic Mist",
+      "action": "Demon Mist Spreads",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Demon mist covers half the sky, beast roars beneath clouds, foul wind strong, impressive momentum",
+        "environment": "Sky covered in demon mist",
+        "character_pose": "Mist covering sky",
+        "fx": "Demon mist, beast roars",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Demon mist covers half the sky, beast roars beneath clouds, foul wind strong, impressive momentum.",
+      "narration": "妖雾将半天天空都罩住,云下兽吼声阵阵,腥风大作气势惊人。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "隐藏的人族一方人人心中惊异,妖族突然摆出强攻架势,难道来了援军。",
+      "mood": "Surprised",
+      "lighting": "Daylight",
+      "action": "React to Demon Army",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Hidden human side all surprised, demon race suddenly showing strong attack posture, did reinforcements arrive",
+        "environment": "Hill outside valley",
+        "character_pose": "Humans surprised, watching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Hidden human side all surprised, demon race suddenly showing strong attack posture, did reinforcements arrive.",
+      "narration": "隐藏的人族一方人人心中惊异,妖族突然摆出强攻架势。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "混沌谷方向传来轰隆隆巨响,谷口方向黄土飞扬,地面和高空同时涌出大批傀儡。",
+      "mood": "Formidable",
+      "lighting": "Dust Cloud",
+      "action": "Puppets Emerge",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Chaos Valley direction comes roaring sounds, valley entrance yellow dust flying, ground and sky simultaneously surge with many puppets",
+        "environment": "Valley entrance, puppets emerging",
+        "character_pose": "Puppets emerging from ground and sky",
+        "fx": "Yellow dust, puppets appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Chaos Valley direction comes roaring sounds, valley entrance yellow dust flying, ground and sky simultaneously surge with many puppets.",
+      "narration": "混沌谷方向传来巨响,谷口黄土飞扬,地面和高空涌出大批傀儡。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Dust Cloud",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "空中全都是丈许长的绿色木鸟,地面上则六七丈高的石巨人,全部狂涌而出。",
+      "mood": "Massive",
+      "lighting": "Daylight",
+      "action": "Puppet Army Revealed",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Sky full of green wooden birds several zhang long, ground has stone giants six or seven zhang tall, all surging out",
+        "environment": "Valley entrance, puppet army",
+        "character_pose": "Wooden birds in sky, stone giants on ground",
+        "fx": "Wooden birds, stone giants",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Sky full of green wooden birds several zhang long, ground has stone giants six or seven zhang tall, all surging out.",
+      "narration": "空中全是丈许长的绿色木鸟,地面六七丈高的石巨人狂涌而出。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "木鸟傀儡栩栩如生体态轻盈,石巨人身躯粗糙面目简陋,如此多傀儡令人倒吸凉气。",
+      "mood": "Imposing",
+      "lighting": "Daylight",
+      "action": "Observe Puppets",
+      "camera": "Close-Up Details",
+      "visual": {
+        "composition": "Wooden bird puppets lifelike and graceful, stone giants rough and simple, so many puppets make people gasp",
+        "environment": "Valley entrance, puppet details",
+        "character_pose": "Puppets visible in detail",
+        "fx": "Wooden birds, stone giants",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Wooden bird puppets lifelike and graceful, stone giants rough and simple, so many puppets make people gasp.",
+      "narration": "木鸟傀儡栩栩如生,石巨人粗糙简陋,如此多傀儡令人倒吸凉气。",
+      "face_style_auto": {
+        "expression": "Impressed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "一只翠绿色木凤和一只灰白石人走出队列,木凤头顶灵光一闪浮现绿裙女子。",
+      "mood": "Revealing",
+      "lighting": "Spirit Light",
+      "action": "Spirit Leaders Appear",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "One emerald green wooden phoenix and one gray-white stone person walk from ranks, phoenix top spirit light flashes, green-dressed woman appears",
+        "environment": "Valley entrance",
+        "character_pose": "Wooden phoenix, stone giant, green-dressed woman appearing",
+        "fx": "Spirit light, transformation",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One emerald green wooden phoenix and one gray-white stone person walk from ranks, phoenix top spirit light flashes, green-dressed woman appears.",
+      "narration": "翠绿木凤和灰白石人走出队列,木凤头顶灵光一闪浮现绿裙女子。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "石巨人伸出大手,同样浮现一名老翁,手持白色石拐,冷冷打量对面惊人妖气。",
+      "mood": "Formidable",
+      "lighting": "Spirit Light",
+      "action": "Stone Elder Appears",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Stone giant extends big hand, also appears old man, holding white stone staff, coldly examining opposite demon qi",
+        "environment": "Valley entrance",
+        "character_pose": "Old man on stone giant's hand, examining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Stone giant extends big hand, also appears old man, holding white stone staff, coldly examining opposite demon qi.",
+      "narration": "石巨人伸手浮现老翁,手持白色石拐,冷冷打量对面惊人妖气。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "老翁开口发出钟鸣般嗡嗡话语,询问筱道友可在,出来答话,声音传遍十余里。",
+      "mood": "Commanding",
+      "lighting": "Spirit Light",
+      "action": "Call Out",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Old man opens mouth, bell-like buzzing voice, asks if Fellow Daoist Xiao present, come out to talk, voice spreads ten li",
+        "environment": "Valley entrance",
+        "character_pose": "Old man speaking loudly",
+        "fx": "Voice waves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Old man opens mouth, bell-like buzzing voice, asks if Fellow Daoist Xiao present, come out to talk, voice spreads ten li.",
+      "narration": "老翁开口发出钟鸣般话语,询问筱道友可在,出来答话,声传十余里。",
+      "face_style_auto": {
+        "expression": "Commanding",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "对面灰白色妖气翻滚,一声清脆凤鸣传来,幽黑火球激射而出,化为宫装少妇。",
+      "mood": "Revealing",
+      "lighting": "Demonic Mist",
+      "action": "Demon Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Opposite gray-white demon mist rolls, clear phoenix cry comes, dark fireball shoots out, transforms into palace-dressed woman",
+        "environment": "Valley entrance, demon mist",
+        "character_pose": "Palace-dressed woman appearing from mist",
+        "fx": "Dark fireball, transformation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Opposite gray-white demon mist rolls, clear phoenix cry comes, dark fireball shoots out, transforms into palace-dressed woman.",
+      "narration": "对面妖气翻滚,一声清脆凤鸣传来,幽黑火球激射化为宫装少妇。",
+      "face_style_auto": {
+        "expression": "Hostile",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "宫装少妇不客气说道,黄石公唤她出来作甚,莫非想让出混沌谷。",
+      "mood": "Hostile",
+      "lighting": "Demonic Mist",
+      "action": "Challenge",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman rudely says, why did Huang Shigong call her out, does he want to give up Chaos Valley",
+        "environment": "Valley entrance",
+        "character_pose": "Woman speaking, hostile",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman rudely says, why did Huang Shigong call her out, does he want to give up Chaos Valley.",
+      "narration": "宫装少妇不客气说道,黄石公唤她出来作甚,莫非想让出混沌谷。",
+      "face_style_auto": {
+        "expression": "Hostile",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "翠芒中妙龄女子说道,十余日前谁被他们杀得大败,区区化神初期如何对抗。",
+      "mood": "Defiant",
+      "lighting": "Spirit Light",
+      "action": "Refute",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Young woman in green light says, ten days ago who was defeated by them, mere early Deity Transformation how to resist",
+        "environment": "Valley entrance",
+        "character_pose": "Green-dressed woman speaking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Young woman in green light says, ten days ago who was defeated by them, mere early Deity Transformation how to resist.",
+      "narration": "翠芒中女子说道,十余日前谁被他们杀得大败,区区化神初期如何对抗。",
+      "face_style_auto": {
+        "expression": "Defiant",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "后面妖气翻滚,又有一名妖修徐徐飞出,身材瘦小肩头停着闪闪发光的飞蛾。",
+      "mood": "Revealing",
+      "lighting": "Demonic Mist",
+      "action": "Another Demon Appears",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Behind demon mist rolls, another demon cultivator slowly flies out, thin figure with glowing moth on shoulder",
+        "environment": "Valley entrance",
+        "character_pose": "Thin demon cultivator flying out",
+        "fx": "Demon mist, glowing moth",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Behind demon mist rolls, another demon cultivator slowly flies out, thin figure with glowing moth on shoulder.",
+      "narration": "后面妖气翻滚,又有一名妖修徐徐飞出,身材瘦小肩头停着飞蛾。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄石公和天樱一见少年大惊失色,黄石公失声叫道竟是寰苍奇,他怎会在这里。",
+      "mood": "Shocked",
+      "lighting": "Spirit Light",
+      "action": "Recognize Opponent",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huang Shigong and Tian Ying see youth, shocked, Huang Shigong exclaims it's Huan Cangqi, why is he here",
+        "environment": "Valley entrance",
+        "character_pose": "Spirit beings shocked, youth smiling",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huang Shigong and Tian Ying see youth, shocked, Huang Shigong exclaims it's Huan Cangqi, why is he here.",
+      "narration": "黄石公和天樱一见少年大惊失色,失声叫道竟是寰苍奇,他怎会在这里。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年平静说道,当年一战他尚未进阶炼虚已能敌二人不败,如今早已成就五行之体。",
+      "mood": "Confident",
+      "lighting": "Demonic Mist",
+      "action": "Show Strength",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth calmly says, in battle years ago he wasn't Void Refinement yet but could fight them undefeated, now has achieved Five Elements body",
+        "environment": "Valley entrance",
+        "character_pose": "Youth speaking confidently",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth calmly says, in battle years ago he wasn't Void Refinement yet but could fight them undefeated, now has achieved Five Elements body.",
+      "narration": "寰姓少年平静说道,当年一战他未进阶炼虚已能敌二人,如今成就五行之体。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年忽然转首冲远处虚空大喊,黄粱道友蓝城主,你们也现身出来吧。",
+      "mood": "Exposing",
+      "lighting": "Demonic Mist",
+      "action": "Expose Hidden",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Huan youth suddenly turns head, shouts toward distant void, Fellow Daoist Huangliang, City Lord Lan, you appear too",
+        "environment": "Valley entrance, distant sky",
+        "character_pose": "Youth shouting toward distance",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan youth suddenly turns head, shouts toward distant void, Fellow Daoist Huangliang, City Lord Lan, you appear too.",
+      "narration": "寰姓少年转首冲远处虚空大喊,黄粱道友蓝城主,你们也现身出来。",
+      "face_style_auto": {
+        "expression": "Smug",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "淡白色光霞一闪,虚空中现出巨型玉舟,通体白光濛濛,黄粱灵君等一干人族修士站立其上。",
+      "mood": "Revealing",
+      "lighting": "Spirit Light",
+      "action": "Jade Boat Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Pale white light flashes, giant jade boat appears in void, white light glowing, Huangliang Spirit Lord and human cultivators standing on it",
+        "environment": "Sky above valley, jade boat",
+        "character_pose": "Cultivators on jade boat",
+        "fx": "White light, jade boat",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Pale white light flashes, giant jade boat appears in void, white light glowing, Huangliang Spirit Lord and human cultivators standing on it.",
+      "narration": "淡白色光霞一闪,虚空中现出巨型玉舟,黄粱灵君等人族修士站立其上。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "蓝城主等人面带惊容,对行踪泄露大感意外,黄粱灵君目光一扫认出幻焰蛾。",
+      "mood": "Realizing",
+      "lighting": "Spirit Light",
+      "action": "Recognize Moth",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan and others surprised, shocked by leaked whereabouts, Huangliang Spirit Lord glances, recognizes Phantom Flame Moth",
+        "environment": "Jade boat",
+        "character_pose": "City Lord Lan surprised, Huangliang recognizing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan and others surprised, shocked by leaked whereabouts, Huangliang Spirit Lord glances, recognizes Phantom Flame Moth.",
+      "narration": "蓝城主等人面带惊容,对行踪泄露大感意外,黄粱灵君认出幻焰蛾。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君脸沉似水,说原来在落日城偷听交谈的,是你这个老鬼,寰姓少年微微一笑。",
+      "mood": "Confrontational",
+      "lighting": "Spirit Light",
+      "action": "Confront",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord face darkens, says so eavesdropping in Sunset City was you old ghost, Huan youth smiles slightly",
+        "environment": "Between jade boat and demon mist",
+        "character_pose": "Huangliang serious, Huan smiling",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord face darkens, says so eavesdropping in Sunset City was you old ghost, Huan youth smiles slightly.",
+      "narration": "黄粱灵君脸沉似水,说在落日城偷听的,是你这个老鬼,寰姓少年微笑。",
+      "face_style_auto": {
+        "expression": "Confrontational",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第33集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep32_full/scene_026.png"
+    }
+  ]
+}
+

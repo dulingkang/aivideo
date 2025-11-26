@@ -1,0 +1,626 @@
+{
+  "episode": 17,
+  "title": "Sunset Tomb · Arrival",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第17集:落日之墓·到达。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立经过数年风尘仆仆的赶路,终于到达了天元境和妖地相邻的边缘之地。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Arrive at Border",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li travels for years, finally reaching the border between Tianyuan Realm and demon lands",
+        "environment": "",
+        "character_pose": "Han Li walking, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li travels for years, finally reaching the border between Tianyuan Realm and demon lands.",
+      "narration": "韩立经过数年赶路，终于到达天元境和妖地相邻的边缘之地。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_entrance",
+      "duration": 4,
+      "description": "这片区域横跨天元境和妖兽之地,最广阔的部分属于三不管的缓冲地带,被称为落日之墓。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "See Sunset Tomb",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "This region spans Tianyuan Realm and demon lands, the vastest part is a neutral buffer zone called Sunset Tomb",
+        "environment": "",
+        "character_pose": "Han Li looking at vast landscape",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This region spans Tianyuan Realm and demon lands, the vastest part is a neutral buffer zone called Sunset Tomb.",
+      "narration": "这片区域横跨天元境和妖兽之地,最广阔的部分被称为落日之墓。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_entrance",
+      "duration": 4,
+      "description": "据说远古时候,灵界空中曾有九个太阳,真灵之战中两个太阳被毁,其中一个坠落形成这片洼地。",
+      "mood": "Epic",
+      "lighting": "Daylight",
+      "action": "Learn History",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Legend says ancient times had nine suns, two destroyed in True Spirit War, one fell forming this depression",
+        "environment": "",
+        "character_pose": "Han Li contemplating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Legend says ancient times had nine suns, two destroyed in True Spirit War, one fell forming this depression.",
+      "narration": "据说远古时候灵界曾有九个太阳，真灵之战中一个太阳坠落形成洼地。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立来到落日城,这是一座紧挨着落日之墓修建的巨型城市,城中中高阶修士和炼体士云集。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Enter City",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li arrives at Sunset City, a giant city built next to Sunset Tomb, filled with mid and high-level cultivators",
+        "environment": "",
+        "character_pose": "Han Li entering city",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li arrives at Sunset City, a giant city built next to Sunset Tomb, filled with cultivators.",
+      "narration": "韩立来到落日城，这是一座紧挨落日之墓修建的巨型城市，修士云集。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立走在街道上,看着两旁店铺,发现这里专门出售法器灵具和妖兽材料,没有普通凡人物品。",
+      "mood": "Curious",
+      "lighting": "Daylight",
+      "action": "Observe Shops",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li walks on streets, seeing shops selling artifacts, spiritual tools and demon beast materials",
+        "environment": "",
+        "character_pose": "Han Li looking around",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li walks on streets, seeing shops selling artifacts, spiritual tools and demon beast materials.",
+      "narration": "韩立走在街道上,发现这里专门出售法器灵具和妖兽材料,没有普通凡人物品。",
+      "face_style_auto": {
+        "expression": "Impressed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立找到一名炼气期修士田兴,请他做向导,了解落日城的情况。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Find Guide",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li finds a Qi Refining cultivator Tian Xing, asking him to be a guide",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing talking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li finds a Qi Refining cultivator Tian Xing, asking him to be a guide.",
+      "narration": "韩立找到一名炼气期修士田兴,以每天十二块灵石的价格请他做向导,了解落日城的情况。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴告诉韩立,落日城分为八个区域,其中五个是修士和炼体士居住交易的地方。",
+      "mood": "Informative",
+      "lighting": "Daylight",
+      "action": "Learn City Layout",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing tells Han Li the city is divided into eight districts, five for cultivators",
+        "environment": "",
+        "character_pose": "Tian Xing explaining, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing tells Han Li the city is divided into eight districts, five for cultivators.",
+      "narration": "田兴告诉韩立,落日城分为八个区域,其中五个是修士和炼体士居住交易的地方。",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴提到城市中心区域需要缴纳灵石才能进入,那里有精品灵具和顶阶宝物,甚至还有灵宝出售。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Learn About Center",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing mentions the center district requires payment, has fine artifacts and even spirit treasures",
+        "environment": "",
+        "character_pose": "Tian Xing explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing mentions the center district requires payment, has fine artifacts and even spirit treasures.",
+      "narration": "田兴提到城市中心区域需要缴纳灵石,那里有精品灵具和顶阶宝物,甚至还有灵宝出售。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴兴奋地告诉韩立,一家拍卖行得到一套天元圣皇使用过的天元武具,准备拍卖。",
+      "mood": "Excited",
+      "lighting": "Daylight",
+      "action": "Learn About Auction",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing excitedly tells Han Li about an auction house getting a set of Tianyuan artifacts used by the Saint Emperor",
+        "environment": "",
+        "character_pose": "Tian Xing excited, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing excitedly tells Han Li about an auction house getting a set of Tianyuan artifacts used by the Saint Emperor.",
+      "narration": "田兴兴奋地告诉韩立,一家拍卖行得到一套天元圣皇使用过的天元武具,准备拍卖。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立对天元武具感兴趣,但考虑到太过惹眼,决定还是自己炼制灵具,让田兴带他去材料店。",
+      "mood": "Decisive",
+      "lighting": "Daylight",
+      "action": "Decide to Craft",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li is interested but decides to craft his own artifacts, asks Tian Xing to take him to material shops",
+        "environment": "",
+        "character_pose": "Han Li determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li is interested but decides to craft his own artifacts, asks Tian Xing to take him to material shops.",
+      "narration": "韩立对天元武具感兴趣,但考虑到太过惹眼,决定还是自己炼制灵具。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立查看多家店铺的灵具材料,但发现这些材料虽然不错,却无法满足他的需求。",
+      "mood": "Disappointed",
+      "lighting": "Daylight",
+      "action": "Browse Materials",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li checks materials in many shops, but finds they cannot meet his needs",
+        "environment": "",
+        "character_pose": "Han Li examining materials",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li checks materials in many shops, but finds they cannot meet his needs.",
+      "narration": "韩立查看多家店铺的灵具材料,但发现这些材料虽然不错,却无法满足他的需求。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "就在这时,一声龙吟从高空传来,接着虎啸声滚滚,三头生有虎头龙首的怪兽拉着飞车掠过。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "See Flying Chariot",
+      "camera": "Aerial Shot",
+      "visual": {
+        "composition": "A dragon roar and tiger roar come from the sky, three beasts with tiger and dragon heads pull a flying chariot",
+        "environment": "",
+        "character_pose": "Han Li looking up at sky",
+        "fx": "Flying chariot, dragon and tiger sounds",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "A dragon roar and tiger roar come from the sky, three beasts with tiger and dragon heads pull a flying chariot.",
+      "narration": "就在这时,一声龙吟从高空传来,三头生有虎头龙首的怪兽拉着飞车掠过天空。",
+      "face_style_auto": {
+        "expression": "Disappointed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴失声叫道这是黄粱灵君,落日城第一修士,已经过了五行合一的关口,是一名炼虚初期修士。",
+      "mood": "Reverent",
+      "lighting": "Daylight",
+      "action": "Learn About Expert",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Tian Xing exclaims this is Huangliang Spirit Lord, the first cultivator of Sunset City, a Void Refinement cultivator",
+        "environment": "",
+        "character_pose": "Tian Xing excited, Han Li thoughtful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing exclaims this is Huangliang Spirit Lord, the first cultivator of Sunset City, a Void Refinement cultivator.",
+      "narration": "田兴失声叫道这是黄粱灵君,落日城第一修士,已经过了五行合一,是炼虚初期修士。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "田兴带韩立来到穹宇阁,这是一家专门收购和出售特殊物品的店铺,门前有两头赤红色怪兽看守。",
+      "mood": "Curious",
+      "lighting": "Daylight",
+      "action": "Enter Special Shop",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Tian Xing takes Han Li to Qiongyu Pavilion, a shop specializing in special items, guarded by two red beasts",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing approaching shop",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Tian Xing takes Han Li to Qiongyu Pavilion, a shop specializing in special items, guarded by two red beasts.",
+      "narration": "田兴带韩立来到穹宇阁,这是一家专门收购和出售特殊物品的店铺,门前有两头赤红色怪兽看守。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "店铺掌柜胥老是一名高阶炼体士,但数十年前在落日之墓中中毒,空有肉身却无法用力。",
+      "mood": "Sympathetic",
+      "lighting": "Interior Soft",
+      "action": "Meet Shopkeeper",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Shopkeeper Xu Lao is a high-level body cultivator, but was poisoned decades ago in Sunset Tomb",
+        "environment": "",
+        "character_pose": "Xu Lao sitting, Han Li observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Shopkeeper Xu Lao is a high-level body cultivator, but was poisoned decades ago in Sunset Tomb.",
+      "narration": "店铺掌柜胥老是一名高阶炼体士,但数十年前在落日之墓中中毒,无法用力。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老上楼取来两个锦盒,一个装着银芯石,另一个装着不知名的灰色矿石。",
+      "mood": "Anticipating",
+      "lighting": "Interior Soft",
+      "action": "Receive Materials",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xu Lao brings two brocade boxes, one with silver core stone, another with unknown gray ore",
+        "environment": "",
+        "character_pose": "Xu Lao presenting boxes, Han Li looking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao brings two brocade boxes, one with silver core stone, another with unknown gray ore.",
+      "narration": "胥老上楼取来两个锦盒,一个装着银芯石,另一个装着不知名的灰色矿石。",
+      "face_style_auto": {
+        "expression": "Sympathetic",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "就在这时,一男一女两名结丹修士进入店铺,女子听到银芯石的名字,立刻变得惊喜交加。",
+      "mood": "Tense",
+      "lighting": "Interior Soft",
+      "action": "Rivals Arrive",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "A male and female Core Formation cultivators enter, the woman becomes excited hearing silver core stone",
+        "environment": "",
+        "character_pose": "Two cultivators entering, woman excited",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A male and female Core Formation cultivators enter, the woman becomes excited hearing silver core stone.",
+      "narration": "就在这时,一男一女两名结丹修士进入店铺,女子听到银芯石的名字立刻变得惊喜交加。",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱姓青年出手抢夺银芯石,韩立手臂暴涨数尺,一把将两个锦盒抓到手,并一拳击溃青霞。",
+      "mood": "Powerful",
+      "lighting": "Interior Soft",
+      "action": "Defend Materials",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Qian tries to grab silver core stone, Han Li's arm extends, grabs both boxes, punches through green mist",
+        "environment": "",
+        "character_pose": "Han Li defending, Qian attacking",
+        "fx": "Arm extension, green mist, golden punch",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Qian tries to grab silver core stone, Han Li's arm extends, grabs both boxes, punches through green mist.",
+      "narration": "钱姓青年出手抢夺银芯石,韩立手臂暴涨数尺,一把将两个锦盒抓到手,并一拳击溃青霞。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕姓女子提出用天心丹交换银芯石,但韩立拒绝,钱姓青年脸色变得难看异常。",
+      "mood": "Stubborn",
+      "lighting": "Interior Soft",
+      "action": "Refuse Exchange",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Lu offers Heavenly Heart Pill in exchange, but Han Li refuses, Qian's face becomes ugly",
+        "environment": "",
+        "character_pose": "Lu offering, Han Li refusing, Qian angry",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Lu offers Heavenly Heart Pill in exchange, but Han Li refuses, Qian's face becomes ugly.",
+      "narration": "吕姓女子提出用天心丹交换银芯石,但韩立拒绝,钱姓青年脸色变得难看异常。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_020.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第18集即将开始。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep17_full/scene_021.png"
+    }
+  ]
+}

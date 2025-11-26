@@ -1,0 +1,771 @@
+{
+  "episode": 37,
+  "title": "Arriving at Scorching Light Pool · Confrontation",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第37集:到达炙光潭·对峙。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "韩立眼前一亮,出现在一里许大小水潭附近,在水潭边上已经围着十几名人妖两族高阶存在。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Arrive at Pool",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li's vision brightens, appears near pool about one li size, over ten high-level humans and demons around pool edge",
+        "environment": "Scorching Light Pool, forces gathered around",
+        "character_pose": "Han Li observing, forces around pool",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li's vision brightens, appears near pool about one li size, over ten high-level humans and demons around pool edge.",
+      "narration": "韩立眼前一亮,出现在一里许大小水潭附近,十几名人妖两族高阶存在围着。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "人妖两族分列水潭两侧对峙着,人族方面是面色阴沉的蓝城主和头陀,妖族方面是黑凤族宫装少妇和三名黑瘦青年。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Forces Confront",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Human and demon races stand on opposite sides of pool confronting, human side has dark-faced City Lord Lan and head monk, demon side has Black Phoenix palace-dressed woman and three black thin youths",
+        "environment": "Scorching Light Pool, two sides confronting",
+        "character_pose": "Forces on two sides, tense confrontation",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Human and demon races stand on opposite sides of pool confronting, human side has dark-faced City Lord Lan and head monk, demon side has Black Phoenix palace-dressed woman and three black thin youths.",
+      "narration": "人妖两族分列水潭两侧对峙,人族是蓝城主和头陀,妖族是宫装少妇和三名黑瘦青年。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "韩立目上一扫后,落在了中间的水潭表面,水潭除了清澈一些外,完全普普通通,看不出有何奇怪之处。",
+      "mood": "Observant",
+      "lighting": "Daylight",
+      "action": "Observe Pool",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li glances, falls on pool surface in center, pool only clear, completely ordinary, cannot see anything strange",
+        "environment": "Scorching Light Pool, pool surface",
+        "character_pose": "Han Li observing pool",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li glances, falls on pool surface in center, pool only clear, completely ordinary, cannot see anything strange.",
+      "narration": "韩立目上一扫后,落在了中间的水潭表面,水潭除了清澈一些外,完全普普通通。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主打量了几下对面有些陌生的三名黑瘦青年,突然问道,听说银月狼族有一位三首的变异狼妖。",
+      "mood": "Inquiring",
+      "lighting": "Daylight",
+      "action": "Ask About Youths",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan examines three unfamiliar black thin youths opposite, suddenly asks, heard Silver Moon Wolf clan has three-headed variant wolf demon",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan asking, three youths opposite",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan examines three unfamiliar black thin youths opposite, suddenly asks, heard Silver Moon Wolf clan has three-headed variant wolf demon.",
+      "narration": "蓝城主打量了几下对面陌生的三名黑瘦青年,突然问道,听说银月狼族有三首变异狼妖。",
+      "face_style_auto": {
+        "expression": "Inquiring",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主说在族中大神通之人帮助下,将三颗头颅分别修炼成了三个分身,每一个都有元婴大成修为。",
+      "mood": "Explaining",
+      "lighting": "Daylight",
+      "action": "Explain Ability",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan says with help of great power in clan, three heads separately cultivated into three avatars, each has Nascent Soul great achievement",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan says with help of great power in clan, three heads separately cultivated into three avatars, each has Nascent Soul great achievement.",
+      "narration": "蓝城主说在族中大神通之人帮助下,将三颗头颅分别修炼成了三个分身。",
+      "face_style_auto": {
+        "expression": "Explaining",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主说三化身联手下,足可抵挡一名化神期存在,难道就是你们,三名黑瘦青年一听都笑了起来。",
+      "mood": "Confirming",
+      "lighting": "Daylight",
+      "action": "Confirm Identity",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "City Lord Lan says three avatars together can match Deity Transformation, is it you, three black thin youths hear this all laugh",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan asking, three youths laughing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan says three avatars together can match Deity Transformation, is it you, three black thin youths hear this all laugh.",
+      "narration": "蓝城主说三化身联手下足可抵挡化神期存在,难道就是你们,三名黑瘦青年都笑了起来。",
+      "face_style_auto": {
+        "expression": "Confirming",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "三名黑瘦青年中一人开口回道,没想到我们兄弟名头都传到这里来了,不错,我们就是那只三首月狼。",
+      "mood": "Admitting",
+      "lighting": "Daylight",
+      "action": "Admit Identity",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "One of three black thin youths opens mouth replies, didn't expect our brothers' fame spread here, yes, we are that three-headed moon wolf",
+        "environment": "Scorching Light Pool",
+        "character_pose": "One youth speaking, three together",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One of three black thin youths opens mouth replies, didn't expect our brothers' fame spread here, yes, we are that three-headed moon wolf.",
+      "narration": "三名黑瘦青年中一人开口回道,没想到我们兄弟名头都传到这里来了,我们就是三首月狼。",
+      "face_style_auto": {
+        "expression": "Admitting",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "三首月狼说他们也久闻城主的大名,不如切磋一二如何,蓝城主哼了一声,说老夫现在可没工夫做这些事情。",
+      "mood": "Challenging",
+      "lighting": "Daylight",
+      "action": "Challenge",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Three-headed moon wolf says they also long heard city lord's fame, how about sparring, City Lord Lan snorts, says no time for this now",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Three youths challenging, City Lord Lan rejecting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three-headed moon wolf says they also long heard city lord's fame, how about sparring, City Lord Lan snorts, says no time for this now.",
+      "narration": "三首月狼说他们也久闻城主的大名,不如切磋一二如何,蓝城主说没工夫做这些。",
+      "face_style_auto": {
+        "expression": "Challenging",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主并未受黑瘦青年挑衅,反冲宫装少妇质问道,筱道友,你独自跑进谷中,有何打算的。",
+      "mood": "Questioning",
+      "lighting": "Daylight",
+      "action": "Question Woman",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "City Lord Lan not provoked by thin youths, instead questions palace-dressed woman, Fellow Daoist Xiao, you alone ran into valley, what are your plans",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan questioning, woman opposite",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan not provoked by thin youths, instead questions palace-dressed woman, Fellow Daoist Xiao, you alone ran into valley, what are your plans.",
+      "narration": "蓝城主并未受挑衅,反冲宫装少妇质问道,筱道友,你独自跑进谷中,有何打算的。",
+      "face_style_auto": {
+        "expression": "Questioning",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇淡淡一笑,说有何打算,先前寰前辈不是说了,灵族之人正在进入潭中抓人,自然要马上过来阻止他。",
+      "mood": "Defensive",
+      "lighting": "Daylight",
+      "action": "Explain Reason",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman smiles faintly, says what plans, didn't Fellow Daoist Huan say, spirit clan people entering pool to catch person, naturally must come stop them",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman explaining, smiling",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman smiles faintly, says what plans, didn't Fellow Daoist Huan say, spirit clan people entering pool to catch person, naturally must come stop them.",
+      "narration": "宫装少妇淡淡一笑,说有何打算,先前寰前辈不是说了,灵族之人正在进入潭中抓人。",
+      "face_style_auto": {
+        "expression": "Defensive",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主盯着少妇一会儿,又瞅了一眼水潭,嘿嘿一笑说道,是吗,筱道友这般有心,好,道友继续请进吧。",
+      "mood": "Mocking",
+      "lighting": "Daylight",
+      "action": "Mock Offer",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan stares at woman, glances at pool, laughs and says, is that so, Fellow Daoist Xiao so caring, good, please continue entering",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan mocking, woman watching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan stares at woman, glances at pool, laughs and says, is that so, Fellow Daoist Xiao so caring, good, please continue entering.",
+      "narration": "蓝城主盯着少妇一会儿,又瞅了一眼水潭,嘿嘿一笑说道,道友继续请进吧。",
+      "face_style_auto": {
+        "expression": "Mocking",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主说蓝某带领其他人替你守在潭外阻挡灵族之人,如何,宫装少妇一怔,目光在蓝城主一旁头陀身上一扫。",
+      "mood": "Calculating",
+      "lighting": "Daylight",
+      "action": "Assess Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan says I'll lead others to guard outside pool blocking spirits, how about it, palace-dressed woman startled, glances at head monk beside City Lord Lan",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan offering, woman calculating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan says I'll lead others to guard outside pool blocking spirits, how about it, palace-dressed woman startled, glances at head monk beside City Lord Lan.",
+      "narration": "蓝城主说蓝某带领其他人替你守在潭外阻挡灵族之人,如何,宫装少妇一怔。",
+      "face_style_auto": {
+        "expression": "Calculating",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇目光在蓝城主一旁头陀以及那数名元婴修士身上一扫后,咯咯的轻笑起来。",
+      "mood": "Amused",
+      "lighting": "Daylight",
+      "action": "Laugh",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman glances at head monk and several Nascent Soul cultivators beside City Lord Lan, giggles lightly",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman laughing, amused",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman glances at head monk and several Nascent Soul cultivators beside City Lord Lan, giggles lightly.",
+      "narration": "宫装少妇目光在头陀以及那数名元婴修士身上一扫后,咯咯的轻笑起来。",
+      "face_style_auto": {
+        "expression": "Amused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇说道友没来,妾身说不定也就带人进去了,但既然蓝兄到此了,机会自然应该让与蓝兄了。",
+      "mood": "Sarcastic",
+      "lighting": "Daylight",
+      "action": "Sarcastic Reply",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman says if you didn't come, I might have entered, but since you're here, opportunity should go to you",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman speaking sarcastically",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman says if you didn't come, I might have entered, but since you're here, opportunity should go to you.",
+      "narration": "宫装少妇说道友没来,妾身说不定也就带人进去了,但既然蓝兄到此了,机会应该让与蓝兄。",
+      "face_style_auto": {
+        "expression": "Sarcastic",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇说道友不会真想让一名弱女子进入下面吧,再说久闻蓝兄有一件辟水玉犀角,神奇无比。",
+      "mood": "Persuasive",
+      "lighting": "Daylight",
+      "action": "Persuade",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman says you won't really want a weak woman to enter below, also long heard you have Water-Repelling Jade Rhinoceros Horn, very magical",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman persuading",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman says you won't really want a weak woman to enter below, also long heard you have Water-Repelling Jade Rhinoceros Horn, very magical.",
+      "narration": "宫装少妇说道友不会真想让一名弱女子进入下面吧,再说久闻蓝兄有辟水玉犀角。",
+      "face_style_auto": {
+        "expression": "Persuasive",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主面容一沉,话语变得生硬无比,说让我去,也行,你带着其他人马上退出混沌谷,老夫这就下去。",
+      "mood": "Demanding",
+      "lighting": "Daylight",
+      "action": "Make Demand",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan's face darkens, words become harsh, says let me go, fine, you take others immediately exit Chaos Valley, I'll go down",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan demanding, serious",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan's face darkens, words become harsh, says let me go, fine, you take others immediately exit Chaos Valley, I'll go down.",
+      "narration": "蓝城主面容一沉,话语变得生硬,说让我去也行,你带着其他人马上退出混沌谷。",
+      "face_style_auto": {
+        "expression": "Demanding",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇听到蓝城主说话毫不客气,脸色微微一变,冷哼一声后,就不再言语了,其人自然同二人一样,决不会真在此刻退让。",
+      "mood": "Stubborn",
+      "lighting": "Daylight",
+      "action": "Refuse to Yield",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman hears City Lord Lan's harsh words, face slightly changes, snorts coldly, stops speaking, naturally like the other, won't really yield now",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman stubborn, refusing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman hears City Lord Lan's harsh words, face slightly changes, snorts coldly, stops speaking, naturally like the other, won't really yield now.",
+      "narration": "宫装少妇听到蓝城主说话毫不客气,脸色微变,冷哼一声后,就不再言语了。",
+      "face_style_auto": {
+        "expression": "Stubborn",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "蓝城主嘴唇微动的和头陀老者传音交谈着什么,望向对面少妇的目光,渐渐不善起来。",
+      "mood": "Plotting",
+      "lighting": "Daylight",
+      "action": "Plot Together",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "City Lord Lan's lips move, transmits voice to head monk elder discussing something, gaze toward opposite woman gradually turns hostile",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan and head monk plotting, woman opposite",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan's lips move, transmits voice to head monk elder discussing something, gaze toward opposite woman gradually turns hostile.",
+      "narration": "蓝城主嘴唇微动的和头陀老者传音交谈着什么,望向对面少妇的目光渐渐不善。",
+      "face_style_auto": {
+        "expression": "Plotting",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "对面除了少妇和三名瘦青年外,就只有另外三名化形妖修,而蓝城主和头陀之外,仍有七八名人族元婴修士。",
+      "mood": "Assessing",
+      "lighting": "Daylight",
+      "action": "Assess Forces",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Opposite side besides woman and three thin youths, only three other transformed demon cultivators, while City Lord Lan and head monk besides, still have seven or eight human Nascent Soul cultivators",
+        "environment": "Scorching Light Pool, both sides",
+        "character_pose": "Forces on both sides, assessing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Opposite side besides woman and three thin youths, only three other transformed demon cultivators, while City Lord Lan and head monk besides, still have seven or eight human Nascent Soul cultivators.",
+      "narration": "对面除了少妇和三名瘦青年外,就只有另外三名化形妖修,而人族有七八名元婴修士。",
+      "face_style_auto": {
+        "expression": "Assessing",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "明显应该稍占上风的,到了此刻没有人再过来,显然其他人被灵族之人缠住了,短时间内双方都不会再有增援。",
+      "mood": "Realizing",
+      "lighting": "Daylight",
+      "action": "Realize Situation",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Clearly should have slight advantage, at this moment no one else coming, obviously others trapped by spirit clan, short time both sides won't have reinforcements",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Forces realizing situation",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Clearly should have slight advantage, at this moment no one else coming, obviously others trapped by spirit clan, short time both sides won't have reinforcements.",
+      "narration": "明显应该稍占上风的,到了此刻没有人再过来,显然其他人被灵族之人缠住了。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "只要能先一步将东西抢走,所谓的平分协议,根本不会有人遵守的,因为谁都很清楚,先前的协议只是台阶而已。",
+      "mood": "Cynical",
+      "lighting": "Daylight",
+      "action": "Understand Reality",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "As long as can grab thing first, so-called split agreement, no one will follow, because everyone knows, previous agreement just a step",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Forces understanding reality",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "As long as can grab thing first, so-called split agreement, no one will follow, because everyone knows, previous agreement just a step.",
+      "narration": "只要能先一步将东西抢走,所谓的平分协议,根本不会有人遵守的。",
+      "face_style_auto": {
+        "expression": "Cynical",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "宫装少妇发觉了人族的跃跃欲试,黛眉一挑下,也用秘术提醒自己这边之人,并且袖袍玉手一抖,一样东西落在了手心中。",
+      "mood": "Preparing",
+      "lighting": "Daylight",
+      "action": "Prepare for Battle",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Palace-dressed woman discovers humans eager, eyebrows raise, also uses secret technique to remind her side, sleeve jade hand shakes, something falls into palm",
+        "environment": "Scorching Light Pool",
+        "character_pose": "Woman preparing, taking out item",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman discovers humans eager, eyebrows raise, also uses secret technique to remind her side, sleeve jade hand shakes, something falls into palm.",
+      "narration": "宫装少妇发觉了人族的跃跃欲试,黛眉一挑下,也用秘术提醒自己这边之人。",
+      "face_style_auto": {
+        "expression": "Preparing",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "气氛紧张无比,双方一触即发之际,突然水潭附近地面巨颤一下,原本平静异常的潭水,突然间激烈翻滚起来。",
+      "mood": "Sudden Change",
+      "lighting": "Daylight",
+      "action": "Pool Begins to Change",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Atmosphere extremely tense, both sides about to clash, suddenly ground near pool trembles, originally calm pool water suddenly violently churns",
+        "environment": "Scorching Light Pool, ground shaking",
+        "character_pose": "Forces tense, pool churning",
+        "fx": "Ground shaking, water churning",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Atmosphere extremely tense, both sides about to clash, suddenly ground near pool trembles, originally calm pool water suddenly violently churns.",
+      "narration": "气氛紧张无比,双方一触即发之际,突然水潭附近地面巨颤,潭水激烈翻滚起来。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "zhiguang_pool",
+      "duration": 4,
+      "description": "接着一根根乳白色光丝从水中毫无方向的激射而出,有的冲天而去,有的却直奔潭边的人妖两族罩下。",
+      "mood": "Dangerous",
+      "lighting": "White Light",
+      "action": "Light Beams Shoot Out",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Then countless milky white light threads shoot from water in all directions, some shoot skyward, some directly toward humans and demons at pool edge",
+        "environment": "Scorching Light Pool, light beams shooting",
+        "character_pose": "Forces reacting, light beams everywhere",
+        "fx": "White light beams shooting in all directions",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Then countless milky white light threads shoot from water in all directions, some shoot skyward, some directly toward humans and demons at pool edge.",
+      "narration": "接着一根根乳白色光丝从水中毫无方向的激射而出,有的冲天而去,有的直奔潭边。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第38集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep37_full/scene_026.png"
+    }
+  ]
+}
+
+

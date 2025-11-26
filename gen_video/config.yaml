@@ -1,0 +1,449 @@
+# AI视频生成系统配置文件
+
+# 路径配置
+paths:
+  # 输入目录
+  input_dir: 灵界/img2/jpgsrc
+  # 输出目录
+  output_dir: outputs
+  # 临时文件目录
+  temp_dir: temp
+  # 模型权重目录
+  model_dir: checkpoints
+  # 自动生成图像输出目录（每个项目会再加子目录）
+  image_output: outputs/images
+
+# 视频生成配置
+video:
+  # 使用模型：svd, svd-xt, svd-image-to-video
+  model_type: svd-xt
+  # 模型路径（从HuggingFace下载后放在model_dir中）
+  # 注意：svd-image-to-video 模型实际在 svd 目录中（svd_xt_image_decoder.safetensors）
+  model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/svd
+  # 生成帧数
+  # 关键优化：num_frames 必须 = duration * fps，否则会导致运动不连贯
+  # 例如：duration=5s, fps=24 → num_frames=120
+  # 24 帧太少，会导致雾气跳动、动作不连贯、人脸模糊
+  num_frames: 120  # 从75提高到120（= duration * fps = 5 * 24），极大改善流畅度和人脸清晰度
+  # 帧率（影响运动流畅度：fps太低会导致运动跳跃、不自然）
+  # 优化：提高到 24 fps 以获得更流畅的动画效果（标准视频帧率）
+  # 注意：提高帧率会增加生成时间和文件大小，但显著改善流畅度
+  fps: 24  # 从 15 提高到 24，标准视频帧率，显著改善流畅度和人脸清晰度
+  # 视频分辨率（SVD 要求必须是 64 的倍数，推荐 1024x576 或 1280x768）
+  # 优化：提高到 1280x768 以获得更好的人脸清晰度（后续可通过 Real-ESRGAN 超分到 1080P）
+  width: 1280  # 从 1024 提高到 1280，提升人脸清晰度
+  height: 768  # 从 576 提高到 768，提升人脸清晰度
+  # 生成参数
+  # 推理步数（增加步数可提高稳定性和质量，减少人物位置漂移和画面抖动）
+  # 注意：对运动自然度无影响，主要用于人物和背景稳定性
+  # 建议：40-50 步即可，60 步对运动自然度无帮助
+  # 对于动作场景，系统会自动增加到45步以提高稳定性
+  num_inference_steps: 40  # 基础步数，动作场景会自动增加
+  min_inference_steps_for_static: 0  # 静态场景（lying_still）的最小推理步数（设置为 0 禁用自动增加，推理步数对微动影响不大）
+  guidance_scale: 6.0
+  # 注意：svd-xt 和 svd-image-to-video 的参数范围不同
+  # svd-xt: motion_bucket_id <= 2, noise_aug_strength <= 0.0005（更适合静态场景）
+  # svd-image-to-video: motion_bucket_id 2-3, noise_aug_strength 0.015-0.025
+  # 运动参数（影响雾气等环境元素的运动自然度）
+  # motion_bucket_id: 控制运动幅度和连贯性
+  #   - 1.5: 最自然的雾气飘动（推荐）
+  #   - 2: 可能导致过度运动、反向拉回、背景抖动
+  #   注意：对于雾气、轻风、灵气飘动，motion_bucket_id 不应超过 2
+  motion_bucket_id: 1.5  # 从2降到1.5，最自然的雾气飘动，避免过度运动和反向拉回
+  # noise_aug_strength: 影响运动的平滑度和随机性
+  #   - 推荐范围：0.0001 ~ 0.00025（最自然的雾气）
+  #   - 0.0004 太高，会导致：雾气飘动过大、反向拉回、背景"中风式抖动"
+  noise_aug_strength: 0.00025  # 从0.0004降到0.00025，最自然的雾气飘动，避免过度运动和抖动
+  # decode_chunk_size: 控制解码时的块大小，影响帧间连贯性
+  #   - 推荐范围：6 ~ 8（SVD-XT 最稳定）
+  #   - 超过 8 会引发：某些帧视觉跳跃、局部动作反向、亮度不稳定
+  decode_chunk_size: 8  # 从10降到8，SVD-XT最稳定范围，避免补帧抖动和动作反向
+  # 视频时长（秒）
+  duration: 5.0
+  # 内存优化：限制最大时长和帧数，避免OOM
+  max_duration: 16.0  # 最大视频时长（秒），超过此值会被截断
+  max_frames: 384  # 最大帧数（约16秒@24fps），超过此值会被截断
+
+# 图像生成配置
+# 支持两种模式：sdxl（旧方案）和 instantid（新方案 1080P）
+image:
+  # 生成引擎：sdxl 或 instantid
+  engine: instantid  # 可选：sdxl, instantid
+  device: cuda
+  mixed_precision: fp16  # fp16 或 fp8（需要 PyTorch 2.5+ 和 CUDA 12.1+）
+  enable_cpu_offload: false
+  enable_vae_tiling: true
+  overwrite_existing: false
+  force_regenerate: false
+  # LoRA（角色定制）配置：InstantID / SDXL 均可复用
+  # 组合B（InstantID + LoRA 平衡）：推荐配置
+  lora:
+    enabled: true
+    weights_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/lora/hanli/pytorch_lora_weights.safetensors
+    adapter_name: hanli
+    # LoRA 权重（控制角色特征强度，影响服饰、发型等）
+    # 组合B（InstantID + LoRA 平衡）：推荐 0.55-0.65
+    # 过高会导致与 InstantID 冲突，产生畸变
+    alpha: 0.60  # 组合B优化：从0.75降到0.60，与InstantID平衡，避免畸变
+    force_cpu: false
+    # 注意：组合B 禁用额外的 IP-Adapter（InstantID 自己的 IP-Adapter 是必需的，用于面部嵌入）
+    # 使用 LoRA 时 IP-Adapter 权重乘数（避免与 LoRA 冲突）
+    # 组合B：此参数不适用（禁用额外的 IP-Adapter）
+    ip_adapter_scale_multiplier: 0.6  # 保留兼容性，但组合B不使用额外的 IP-Adapter
+  
+  # InstantID 配置（1080P 方案）
+  instantid:
+    # 基础模型：使用标准的 SDXL 模型（InstantID 支持）
+    # 推荐模型（按优先级）：
+    # 1. stabilityai/stable-diffusion-xl-base-1.0 (标准 SDXL，稳定可靠)
+    # 2. RunDiffusion/Juggernaut-XL-v9 (如果可用)
+    # 注意: Juggernaut-XL-v9-anime 可能不存在，使用标准 SDXL 即可
+    base_model: stabilityai/stable-diffusion-xl-base-1.0
+    # 模型路径（如果本地已有完整的 SDXL 模型，使用本地路径）
+    # 注意: 如果本地路径存在且完整，会优先使用本地模型，避免网络下载
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/sdxl-base
+    # InstantID ControlNet 路径
+    controlnet_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/instantid/ControlNet
+    # IP-Adapter 路径
+    ip_adapter_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/instantid/ip-adapter
+    # 面部参考图像路径（用于特征缓存）
+    # 建议使用正脸照片（如 韩立_face.png），效果更好
+    # 如果是目录，会优先查找 韩立_face.png、face.png 等正脸照片
+    face_image_path: /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/韩立_mid.png
+    # 分辨率：使用 1536x864 更稳定，避免身体拉伸（推荐方案）
+    # 之后可用 RealESRGAN 放大到 1080P
+    # 注意：分辨率必须是 8 的倍数（SDXL 要求）
+    width: 1536  # 从 1920 降到 1536（更稳定，避免身体拉伸）
+    height: 864  # 从 1080 降到 864（更稳定，避免身体拉伸）
+    # 推理步数（提高步数可改善生成质量，减少拉伸和变形）
+    # 建议范围：50-70，步数越多质量越好但速度越慢
+    # 如果使用 DPM++ 采样器，可以用更少步数（40-50 步）达到相同质量
+    num_inference_steps: 40  # 使用 DPM++ 采样器时，40 步即可达到 Euler 60 步的质量
+    # 引导尺度（控制文本提示的影响强度）
+    # 建议范围：7.0-8.5，过高可能导致过度引导和僵硬
+    guidance_scale: 7.5  # 从8.5降到7.5，减少过度引导，使生成更自然
+    # CFG Rescale（减少过度饱和，使颜色更自然）
+    # 主流做法：使用 CFG Rescale 避免高 CFG 值导致的颜色过度饱和
+    # 推荐值：0.5-0.8，0.7 是平衡点
+    guidance_rescale: 0.7  # 新增：CFG rescale factor，使颜色更自然
+    # 采样器配置（主流优化：使用 DPM++ 获得更好质量）
+    # 可选值：
+    #   - "EulerDiscreteScheduler" (默认，速度快但质量一般)
+    #   - "DPMSolverMultistepScheduler" (推荐，质量最好，业界标准)
+    scheduler: "DPMSolverMultistepScheduler"  # 新增：使用 DPM++ 采样器，质量提升 15-20%
+    # DPM++ 采样器参数（可选，使用默认值即可）
+    scheduler_config:
+      algorithm_type: "dpmsolver++"  # DPM++ 算法
+      solver_order: 2  # 求解器阶数（2 或 3，2 更稳定）
+      lower_order_final: true  # 最后几步使用低阶，更稳定
+      use_karras_sigmas: true  # 使用 Karras noise schedule，质量更好
+    # 面部特征缓存（30 张图只算 1 次）
+    enable_face_cache: true
+    # 量化类型：fp8, fp16, fp32
+    # 注意: fp8 需要 PyTorch 2.5+ 和 CUDA 12.1+，且需要硬件支持
+    # 如果遇到 "couldn't find storage object Float8_e4m3fnStorage" 错误，请使用 fp16
+    quantization: fp16  # 稳定可靠，广泛支持
+    # 面部权重（控制角色一致性强度，影响角色相似度和服饰准确性）
+    # 组合B（InstantID + LoRA 平衡）：推荐 0.55-0.65
+    # 组合A（只用 InstantID）：推荐 0.6-0.7
+    # 提高人脸相似度：从 0.60 提高到 0.75（如果还是不够，可以提高到 0.80）
+    # 用户反馈站着的场景也不太像，进一步提高到 0.85
+    face_emb_scale: 0.85  # 从0.8提高到0.85，进一步增强人脸相似度（站姿和躺姿都需要）
+    # 面部关键点图像缩放基准（控制面部关键点的控制强度，影响人物比例和拉伸）
+    # 1.0 表示原始尺寸，>1 放大（可能导致拉伸），<1 缩小（减少控制，更自然）
+    # 组合B（InstantID + LoRA 平衡）：推荐 0.65-0.70
+    face_kps_scale: 0.70  # 组合B优化：保持0.70，与LoRA平衡，避免畸变
+    face_kps_offset_y: 0  # 可微调关键点在竖向的位置（像素）
+  
+  # SDXL 配置（旧方案，保留兼容）
+  sdxl:
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/sdxl-base
+    model_name: sdxl-base
+    width: 1280
+    height: 720
+    use_img2img: true  # 启用img2img，用于场景连贯性（相邻场景使用前一个场景作为参考）
+    use_ip_adapter: true
+    img2img_strength: 0.18
+    reference_image_dir: 
+      /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/韩立_1024
+    reference_image_pattern: '*.png'
+    face_reference_dir: 
+      /vepfs-dev/shawn/vid/fanren/gen_video/reference_image_dir/faces
+    num_inference_steps: 40  # 统一为 40 步（与 InstantID 保持一致，如果使用 DPM++ 采样器）
+    guidance_scale: 8.5
+    ip_adapter:
+      model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/ip-adapter
+      subfolder: sdxl_models
+      weight_name: ip-adapter_sdxl.bin
+      scale: 0.7
+      clip_image_size: 224
+      face_image_size: 160
+      face_crop_ratio: 0.75
+      face_reference_only: true
+  
+  # 通用提示词配置（两种引擎共用）
+  character_prompt: Han Li, calm cultivator, lean and strong physique, flowing light-colored robe with golden trim, calm focused eyes, natural skin tone, gentle breeze on fabric, heroic and relaxed posture, small figure in medium shot
+  environment_prompt: (extreme wide shot:2.0), (ultra long shot:1.8), xianxia world desert oasis, vast sand dunes, distant stone peaks, drifting spiritual mist, golden sunset rays, cinematic scale, character occupies one-fifth of frame
+  base_style_prompt: photorealistic, hyperrealistic, cinematic lighting, volumetric light rays, detailed skin pores, natural hands, accurate anatomy, realistic fabric drape, 4k, cinematic color grading, sharp focus
+  negative_prompt: low quality, blurry, noise, overexposed, underexposed, deformed, distorted, mutated hands, deformed hands, extra fingers, missing fingers, fused fingers, bad anatomy, cartoon, anime, illustration, flat shading, cg, watermark, indoor, city, forest, mountains, night, text, logo, compression artifacts, oversized character, oversized subject, huge figure, camera shake, unstable camera, floating, drifting, unstable motion, inconsistent action, discontinuous action, jitter, flicker, unstable frame, fast movement, rapid action, sudden movement, broken frame, frame jump, inconsistent background, changing background, background jump, scene jump, style drift, style inconsistency, unstable environment, changing scene, motorcycle, bicycle, car, vehicle, modern transportation, modern technology, electronic products, appliances, modern architecture, skyscraper, modern city, modern architectural style, modern clothing, modern decoration, modern fashion, phone, computer, TV, camera, modern weapons, guns, firearms, modern equipment, horse, (multiple people:1.5), (two people:1.5), (crowd:1.5), (group of people:1.5), (extra person:1.5), (duplicate character:1.5), (second person:1.5), (additional figure:1.5), (cloned person:1.5), (duplicate person:1.5), (identical person:1.5), (twin character:1.5), (repeated character:1.5), (second identical figure:1.5), (duplicate figure:1.5), (mirrored person:1.5), (copy of person:1.5), (same person twice:1.5), (two same people:1.5), (two identical people:1.5)
+  ascii_only_prompt: true
+
+# 配音配置
+tts:
+  # TTS引擎：chattts, cosyvoice, openvoice, coqui
+  engine: cosyvoice  # 新方案使用 CosyVoice-2.0-0.5B
+  # 量化类型：int8, fp16, fp32（int8 显存 3.4GB → 1.1GB）
+  quantization: fp32
+  force_regenerate: false
+  # 采样率
+  sample_rate: 48000
+  # 位深度
+  bit_depth: 24
+  # 流式生成（首包 150ms，边生成边播）
+  stream: false
+  # 自动情感预测（内置 6 种风格）
+  auto_emotion: true
+  # 全局 TTS 随机种子（用于 CosyVoice 和 ChatTTS，确保生成结果可复现）
+  # 如果设置为 null 或不设置，每次生成结果会不同（随机）
+  seed: 777
+  # 语速配置（用于计算视频时长和字幕同步）
+  # 根据实际测试，朗读速度为 3.55 字/秒（中文字符），8 字符/秒（总字符，包括标点）
+  speech_rate:
+    chars_per_second: 8.0  # 总字符（包括标点）的朗读速度：8 字符/秒
+    words_per_second: 3.55  # 中文字符的朗读速度：3.55 字/秒
+    # 使用哪个参数计算时长：chars（总字符数）或 words（中文字符数）
+    # 推荐使用 chars，因为更准确（包含标点符号的停顿）
+    use_chars: true
+  
+  # CosyVoice 配置（新方案）
+  cosyvoice:
+    # 模型名称：CosyVoice2-0.5B（推荐，性能最好，根据 GitHub README）
+    # 其他可选：CosyVoice-300M, CosyVoice-300M-SFT, CosyVoice-300M-Instruct
+    # 注意: 模型名称需要与下载脚本中的映射一致
+    model_name: CosyVoice2-0.5B
+    # 模型路径（如果本地已有，通常下载到 CosyVoice/pretrained_models/ 目录）
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/cosyvoice
+    # 是否使用 CosyVoice2（True 使用 CosyVoice2，False 使用 CosyVoice）
+    use_cosyvoice2: true
+    # 默认情感风格（如果 auto_emotion=false）
+    # CosyVoice2: 使用 zero_shot 模式时需要 prompt_speech
+    # CosyVoice: 使用 SFT 模式，speaker 可选：中文女、中文男等
+    default_emotion: 中文女  # CosyVoice2 使用 zero_shot，CosyVoice 使用 SFT speaker
+    # CosyVoice2 zero_shot 模式配置（按照官方用法）
+    # prompt_speech: 用于 zero_shot 的参考音频文件路径（16kHz WAV 格式）
+    # 已准备：女性知性解说风格的参考音频
+    prompt_speech: /vepfs-dev/shawn/vid/fanren/gen_video/assets/prompts/zero_shot_prompt.wav
+    # prompt_text: 用于 zero_shot 的参考文本（对应参考音频的文本内容）
+    # 注意：这个文本应该与 prompt_speech 音频文件中的实际内容对应
+    prompt_text: "大家好，我是云卷仙音。今天我们要继续讲述凡人修仙传的故事。在这个故事中，韩立经历了无数的挑战和机遇。"  # 默认 prompt_text（可根据实际音频内容修改）
+    # mode: CosyVoice2 使用模式（zero_shot, instruct2, cross_lingual）
+    mode: zero_shot  # 默认使用 zero_shot 模式（女性知性解说风格）
+  
+  # ChatTTS 配置（旧方案，保留兼容）
+  chattts:
+    temperature: 0.3
+    speed: 1.0
+    pitch: 1.0
+    oral_ability: 1 
+    style_prompt: |
+      女性声音，温柔知性，情绪平稳，语调亲切自然，解说语气，吐字清晰，语速适中，句末轻柔收尾，女声旁白
+    negative_prompt: |
+      男性声音，男声，过度夸张、机械感、语速过快、咬字含糊
+    seed: 777
+
+# 字幕配置
+subtitle:
+  # Whisper模型大小：tiny, base, small, medium, large-v2, large-v3
+  # 注意: large-v3 需要大量显存，如果遇到 std::bad_alloc 错误，请使用 medium 或 base
+  # medium 模型在中文识别上表现也很好，且内存占用更少
+  model_size: medium  # 从 large-v3 改为 medium 以节省内存
+  # 如果遇到 std::bad_alloc 错误（不是内存不足，而是 CUDA/C++ 问题），可以强制使用 CPU
+  # 设置方法: export WHISPERX_FORCE_CPU=1 或在 config.yaml 中设置 force_cpu: true
+  force_cpu: true  # 设为 true 强制使用 CPU（避免 CUDA 问题，推荐）
+  # 注意: 如果使用 medium 模型，model_dir 应该指向 medium 模型目录
+  # 如果目录不存在，会自动下载到默认位置
+  model_dir: models/faster-whisper-medium  # 更新为 medium 模型目录
+  local_files_only: false
+  # 启用对齐功能（如果内存不足，可以设为 false）
+  align: false  # 暂时禁用以节省内存
+  # 对齐模型（中文专用）
+  align_model: ZhangCheng/whisperx-align-zh
+  # VAD 模型（语音活动检测）
+  vad_model: pyannote/segmentation-3.0
+  # 批量大小（medium 模型建议使用较小的 batch）
+  # 注意: 如果遇到内存不足错误，可以降低到 8 或 4
+  batch_size: 8  # 进一步降低以减少内存占用
+  use_script_segments: false  # 设为 false 以使用 WhisperX 实际识别音频，而不是占位字幕
+  # 语言代码
+  language: zh
+  # 计算类型：float16（CUDA）或 int8（更节省内存）
+  # 注意: int8 可以大幅减少内存占用，建议优先使用
+  compute_type: int8  # 使用 int8 以节省内存
+  # 输出格式：srt, vtt, ass
+  format: srt
+  # 是否将繁体中文转换为简体中文（默认启用）
+  convert_to_simplified: true
+  # 原稿字幕配置：使用原始文本替换 WhisperX 识别结果
+  script:
+    use_original_text: true  # 开启后，将使用原始脚本文本作为字幕内容
+    path: ""  # 可选：脚本文件路径（留空则使用 narration/segments）
+    format: auto  # auto / json / text
+    field: full_narration  # 当格式为 json 时，读取的字段
+    fields: []  # 可选：额外字段列表（支持 scenes[].narration 语法）
+    include_scene_narration: false  # 若为 true，会追加 scenes[*].narration
+    delimiters: "。！？!?；;>\n"  # 拆分脚本文本的分隔符
+  # 字体配置（用于硬编码字幕）
+  font:
+    family: SimHei
+    size: 36  # 1080P 下增大字体
+    color: white
+    outline_color: black
+    outline_width: 2
+
+# 视频合成配置
+composition:
+  # 输出视频分辨率（1080P 方案）
+  output_width: 1920
+  output_height: 1080
+  # 输出格式
+  output_format: mp4
+  # 视频编码器
+  # 优化：使用 libx264（H.264）编码器，兼容性好，质量高
+  video_codec: libx264
+  # 视频编码预设（影响编码速度和质量）
+  # 可选值：ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
+  # 优化：使用 medium 预设，平衡编码速度和质量
+  video_preset: medium  # 从默认值改为 medium，提升编码质量
+  # 视频编码质量参数（CRF，Constant Rate Factor）
+  # 范围：0-51，值越小质量越好（推荐：18-23）
+  # 优化：使用 20，在质量和文件大小之间取得平衡
+  video_crf: 18  # 从 20 降到 18，提升视频质量，改善人脸清晰度
+  # 音频编码器
+  audio_codec: aac
+  # 比特率
+  # 优化：提高视频比特率以提升质量（从 8000k 提高到 10000k）
+  video_bitrate: 10000k  # 从 8000k 提高到 10000k，提升视频质量
+  audio_bitrate: 192k
+  upscale:
+    enabled: true  # 启用 FFmpeg 简单放大（在 Real-ESRGAN 之前进行初步放大）
+    width: 1920
+    height: 1080
+    flags: lanczos  # 使用 lanczos 算法，质量较好
+  sharpen:
+    enabled: true
+    luma_msize_x: 7
+    luma_msize_y: 7
+    luma_amount: 0.85
+    chroma_msize_x: 5
+    chroma_msize_y: 5
+    chroma_amount: 0.0
+  bgm:
+    enabled: true
+    volume: 0.32  # 背景音乐音量（0.0-1.0）
+    intro_duration: 15.0  # BGM 开头播放时长（秒），之后淡出
+    fade_out: 2.0  # BGM 淡出时长（秒）
+    path: assets/bgm/lingjie_bgm.mp3  # 兼容旧配置，作为兜底音轨
+    fade_in: 800
+    fade_out: 1200
+    crossfade: 300
+    tracks:
+      default:
+        path: background_music/Whispers of the Bamboo Forest.mp3
+        fade_in: 1200
+        fade_out: 1600
+      alternate:
+        path: background_music/Whispering Bamboo Dreams.mp3
+        match_moods:
+          - calm
+          - tranquil
+          - cool
+          - composed
+          - lingering_power
+      start:
+        path: background_music/start.mp3
+        fade_in: 1800
+        fade_out: 1500
+        apply_to: opening
+      tense:
+        path: background_music/Celestial Shadows nurse.mp3
+        fade_in: 300
+        fade_out: 600
+        match_moods:
+          - tense
+          - crisis
+          - explosive
+          - shocking
+          - pressure
+      ending:
+        path: background_music/ending.mp3
+        fade_in: 400
+        fade_out: 400
+        apply_to: ending
+  # 音频音量
+  audio_volume: 1.35
+
+# GPU配置
+  postprocess:
+    enabled: true
+    # Real-ESRGAN 超分模型配置
+    # 根据 分析chatgpt.md 建议，使用 RealESRGAN（x2）进行超分
+    # 
+    # 模型选择（针对《凡人修仙传》等3D渲染动漫）：
+    # 方案1: RealESRGAN_x2plus.pth (推荐，速度最快，适合1080P视频)
+    #   - x2模型，速度比x4快约4倍（0.3帧/秒 → 1.2帧/秒）
+    #   - 适合从576P超分到1080P（需要2倍放大）
+    #   - 质量略低于x4，但对解说视频足够
+    #   - 下载地址: https://github.com/xinntao/Real-ESRGAN/releases
+    # 
+    # 方案2: RealESRGAN_x4plus_anime_6B.pth (当前使用，质量更好但较慢)
+    #   - 针对动漫优化，保留动漫风格
+    #   - 适合3D渲染动漫，如《凡人修仙传》
+    #   - 模型更小(6B)，但速度较慢（约0.3帧/秒）
+    # 
+    # 方案3: RealESRGAN_x4plus.pth (备选，如果方案1效果不理想)
+    #   - 通用模型，对3D纹理细节处理可能更好
+    #   - 可能过度锐化，失去动漫感
+    #   - 需要实际测试对比效果
+    # 
+    # 切换方法：修改下面的 model_path 和 model_scale 即可
+    # 例如：model_path: models/realesrgan/RealESRGAN_x2plus.pth, model_scale: 2
+    model_path: gen_video/models/realesrgan/RealESRGAN_x2plus.pth
+    model_scale: 2  # 模型本身的放大倍数（x4 模型用4，x2 模型用2）
+    outscale: 2   # 最终输出放大倍数（2.0 = x2 放大，符合文档建议）
+    # 目标分辨率（可选，如果设置，超分后会缩放到此分辨率）
+    # 格式: "宽度x高度"，例如 "1920x1080"
+    # 如果设置为 null 或空，则使用 outscale 的倍数输出
+    target_resolution: "1920x1080"  # 超分后缩放到 1920x1080
+    tile: 0  # 瓦片大小（设置为 400 可以加速处理，减少显存占用；0 表示不使用瓦片，可能更慢）
+    full_precision: false
+    codec: mp4v
+    suffix: _upx2
+    preserve_audio: true
+    # 并行处理线程数（用于预读取帧，提高IO效率）
+    # 注意：RealESRGANer不是线程安全的，实际处理仍在主线程
+    # 但预读取可以优化IO，建议设置为2-4
+    # 设置为1表示单线程模式（最稳定）
+    num_workers: 1  # 预读取线程数，可以提高IO效率（但RealESRGANer限制，实际提升有限）
+gpu:
+  # 设备ID
+  device_id: 0
+  # 混合精度
+  mixed_precision: fp16
+  # 显存优化
+  memory_efficient: true
+  # CPU offload（将模型部分卸载到CPU，减少GPU内存但降低速度）
+  # 设为 false 时，模型完全在GPU上，速度更快但占用更多显存（约10-15GB）
+  # 设为 true 时，模型部分在CPU上，显存占用更少（约2-3GB）但速度较慢
+  enable_cpu_offload: false  # 建议设为 false 以获得最佳性能
+
+# 批量处理配置
+batch:
+  # 批量大小
+  batch_size: 1
+  # 并行处理数量（视频生成并行数，显存充足时可设置为2）
+  # 注意：并行处理会增加显存占用，建议根据显存大小调整
+  # 如果显存不足，建议设置为1（顺序处理）
+  num_workers: 2  # 显存充足时可设置为2，同时处理2个视频
+
+
+

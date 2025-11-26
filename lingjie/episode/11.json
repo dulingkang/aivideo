@@ -1,0 +1,813 @@
+{
+  "episode": 11,
+  "title": "False City Lord Revealed · Black Phoenix Standoff",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第11集:假城主现·黑凤对峙。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立追踪假赵城主百里,来到一座小土包前。",
+      "mood": "Suspicious",
+      "lighting": "Moonlight",
+      "action": "Track to the Mound",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li tracks the fake Zhao City Lord for a hundred miles to a small mound",
+        "environment": "",
+        "character_pose": "Han Li stalking carefully",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li shadows the impostor city lord for a hundred miles until they reach a small knoll.",
+      "narration": "韩立追踪假赵城主百里，来到一座小土包前，停下观察。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "假赵城主在土包顶部停下,几名手下困惑跟随。",
+      "mood": "Uneasy",
+      "lighting": "Moonlight",
+      "action": "Pause on the Mound",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "The fake city lord halts atop the mound while a few subordinates trail in confusion",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "The impostor city lord pulls up at the mound’s crest, his followers bewildered.",
+      "narration": "假赵城主忽然在土包顶勒住坐骑,手下茫然停下。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "异变突起,一只狻狼足下土地裂开,连人带狼被吞噬。",
+      "mood": "Shocking",
+      "lighting": "Moonlight",
+      "action": "Ground Swallows Rider",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "A sudden fissure opens beneath a suanni wolf, devouring both beast and rider",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The ground rips open beneath a suanni wolf, swallowing rider and mount whole.",
+      "narration": "一只狻狼足下土地突然裂开,连人带狼瞬间被吞没。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "两根骨矛从地下激射而出,洞穿两名骑士。",
+      "mood": "Brutal",
+      "lighting": "Moonlight",
+      "action": "Bone Spears Strike",
+      "camera": "Dynamic Shot",
+      "visual": {
+        "composition": "Bone spears rocket from underground, skewering two riders",
+        "environment": "",
+        "character_pose": "",
+        "fx": "Spears blasting upward",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two bone spears burst from the ground and impale a pair of riders.",
+      "narration": "两根骨矛从地下激射而出,两名骑士瞬间毙命。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "最后一人欲逃,三颗乌黑蟒首咬住,将其撕成三截。",
+      "mood": "Horrific",
+      "lighting": "Moonlight",
+      "action": "Serpents Kill Rider",
+      "camera": "Action Wide Shot",
+      "visual": {
+        "composition": "The last rider tries to flee but three black serpent heads latch on and tear him apart",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "The final rider bolts only to be seized by three ebony serpent heads and ripped into thirds.",
+      "narration": "最后一人欲逃，三颗蟒首咬住，将其撕成三截，惨不忍睹。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "两只蛇妖和一只巨大沙虫从地下窜出,假赵城主吩咐收拾痕迹。",
+      "mood": "Menacing",
+      "lighting": "Moonlight",
+      "action": "Emerge from Underground",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Two serpent demons and a massive sand worm burst up as the fake city lord orders them to tidy the scene",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two serpent fiends and a giant sand worm surge from underground while the impostor commands them to erase the traces.",
+      "narration": "蛇妖和沙虫从地下窜出,假赵城主吩咐收拾干净。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "假赵城主击毙坐骑狻狼,女童神色平静。",
+      "mood": "Heartless",
+      "lighting": "Moonlight",
+      "action": "Slay the Wolf",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "The fake Zhao City Lord kills his suanni mount while the little girl remains eerily calm",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The impostor city lord casually crushes his suanni mount as the girl watches without emotion.",
+      "narration": "假赵城主反手一拍，狼兽头颅如西瓜般碎裂，威力惊人。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "假赵城主凝聚黑枪,射向韩立藏身处。",
+      "mood": "Threatening",
+      "lighting": "Moonlight",
+      "action": "Probe Han Li",
+      "camera": "Dynamic Shot",
+      "visual": {
+        "composition": "The impostor condenses a black spear and launches it toward Han Li’s hiding place",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The fake Zhao City Lord forms a jet-black spear and fires it like lightning at Han Li’s hideout.",
+      "narration": "假赵城主凝聚黑枪，闪电般射向韩立藏身处，速度极快。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立金拳击溃黑枪,现身而出。",
+      "mood": "Heroic",
+      "lighting": "Moonlight",
+      "action": "Reveal Himself",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "Han Li shatters the black spear with a golden fist and steps into view",
+        "environment": "",
+        "character_pose": "Han Li emerging",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li breaks the black spear with his golden fist and appears openly.",
+      "narration": "金拳击溃黑枪，韩立现身而出，气势如虹，威压四方。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "假赵城主下令击杀韩立,三妖同时扑来。",
+      "mood": "Furious",
+      "lighting": "Moonlight",
+      "action": "Beasts Attack",
+      "camera": "Action Wide Shot",
+      "visual": {
+        "composition": "At the impostor’s command the three monsters lunge at Han Li together",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "The fake city lord orders Han Li killed and the trio of demons pounces in unison.",
+      "narration": "假赵城主下令,蛇妖和沙虫同时扑向韩立。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立金拳击碎骨矛,身形一闪躲过绿液。",
+      "mood": "Agile",
+      "lighting": "Moonlight",
+      "action": "Dodge the Attack",
+      "camera": "Dynamic Action Shot",
+      "visual": {
+        "composition": "Han Li smashes the bone spear with a golden fist and sidesteps the splash of green venom",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li pulverizes the bone spear with his golden fist and flickers aside from the corrosive green fluid.",
+      "narration": "韩立金拳击碎骨矛,身形一闪躲过腐蚀绿液。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "三颗乌黑蛇首咬住韩立双肩和脖颈。",
+      "mood": "Tense",
+      "lighting": "Moonlight",
+      "action": "Serpents Bite",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Three black serpent heads clamp onto Han Li’s shoulders and neck",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three ebony serpent heads latch onto Han Li’s shoulders and throat.",
+      "narration": "三颗乌黑蛇首咬住韩立双肩和脖颈，形势危急，生死一线。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立扭断蛇首,双掌如刀斩落另两颗头颅。",
+      "mood": "Savage",
+      "lighting": "Moonlight",
+      "action": "Kill the Serpents",
+      "camera": "Dynamic Close-Up",
+      "visual": {
+        "composition": "Han Li snaps one serpent head and chops off the other two with blade-like palms",
+        "environment": "",
+        "character_pose": "Han Li striking viciously",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li wrenches one serpent head apart and cleaves the remaining two with golden palms.",
+      "narration": "韩立扭断蛇首,双掌金光一闪,另两颗头颅滚落。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立身形幻化,数道幻影迎向蛇妖和沙虫,血雨洒落。",
+      "mood": "Decisive",
+      "lighting": "Moonlight",
+      "action": "Slaughter the Beasts",
+      "camera": "Action Wide Shot",
+      "visual": {
+        "composition": "Han Li’s figure multiplies into afterimages that carve through the serpent demons and sand worm, raining blood",
+        "environment": "",
+        "character_pose": "",
+        "fx": "Illusory doubles striking the beasts",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li splits into streaks of afterimages, shredding the serpent demons and sand worm in a shower of blood.",
+      "narration": "韩立身形如幻,蛇妖和沙虫瞬间毙命,血雨洒落。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立质问假赵城主是傀儡,煞气大放。",
+      "mood": "Confrontational",
+      "lighting": "Moonlight",
+      "action": "Confront the Puppet",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li demands to know if the impostor is a puppet, murderous aura flaring",
+        "environment": "",
+        "character_pose": "",
+        "fx": "Killing intent radiating",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li snarls at the false city lord, accusing him of being a puppet as his killing aura erupts.",
+      "narration": "韩立质问假城主是傀儡,身上煞气大放。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "假赵城主称赞韩立秘术和煞气,询问其来历。",
+      "mood": "Inquisitive",
+      "lighting": "Moonlight",
+      "action": "Question Han Li",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "The false city lord praises Han Li’s arts and aura while asking about his origins",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The impostor commends Han Li’s secret techniques and murderous aura, probing his background.",
+      "narration": "假城主询问韩立来历,声音不含感情。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立拒绝回答,要假城主自行了断,金光一闪走向土包。",
+      "mood": "Resolute",
+      "lighting": "Moonlight",
+      "action": "Issue Ultimatum",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "Han Li refuses to answer, telling the impostor to end himself as golden light flares and he strides toward the mound",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li declines to respond, ordering the impostor to finish himself as he advances in a blaze of gold.",
+      "narration": "韩立要假城主自行了断,金光一闪大步上前。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "土包上空空间波动,黑焰闪现,宫装少妇现形。",
+      "mood": "Ominous",
+      "lighting": "Eerie Black Flame",
+      "action": "Black Phoenix Appears",
+      "camera": "Low-Angle Reveal",
+      "visual": {
+        "composition": "Space ripples above the mound as black flames flash and a palace-clad young woman materializes",
+        "environment": "Air shimmering overhead",
+        "character_pose": "",
+        "fx": "Spatial ripples and black flame",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Space warps above the mound, black flames flare, and a palace-dressed black phoenix woman appears.",
+      "narration": "土包上空黑焰闪现,宫装少妇现形而出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立察觉危险,取出两颗灭仙珠托在身前。",
+      "mood": "Critical",
+      "lighting": "Moonlight",
+      "action": "Ready the Extinction Beads",
+      "camera": "Hand Close-Up",
+      "visual": {
+        "composition": "Sensing danger, Han Li lifts two Extinction Beads before him",
+        "environment": "",
+        "character_pose": "Han Li holding the beads",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Feeling the threat, Han Li produces two Extinction Beads and cradles them in front of his chest.",
+      "narration": "韩立察觉危险,取出两颗灭仙珠托在身前。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "黑凤族妖女认出灭仙珠,脸色大变,双方僵持。",
+      "mood": "Tense Standoff",
+      "lighting": "Moonlight",
+      "action": "Hold Positions",
+      "camera": "Two-Person Wide Shot",
+      "visual": {
+        "composition": "The black phoenix demoness recognizes the Extinction Beads, face paling as both sides freeze",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The black phoenix woman reels upon seeing the Extinction Beads and the confrontation locks into a stalemate.",
+      "narration": "黑凤族妖女认出灭仙珠,双方陷入僵持。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "妖女使用迷魂大法,瞳孔紫芒闪动,韩立眼神变得茫然。",
+      "mood": "Hypnotic",
+      "lighting": "Moonlight",
+      "action": "Soul Confusion Art",
+      "camera": "Close-Up Faces",
+      "visual": {
+        "composition": "The demoness activates a soul confusion art, purple light flashing in her pupils as Han Li's eyes turn vacant",
+        "environment": "",
+        "character_pose": "Woman's eyes glowing, Han Li dazed",
+        "fx": "Purple light rays",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The black phoenix woman uses soul confusion art, purple light in her eyes as Han Li's gaze becomes blank.",
+      "narration": "妖女施展迷魂大法,瞳孔紫芒闪动,韩立眼神变得茫然。",
+      "face_style_auto": {
+        "expression": "Ferocious",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立瞳孔蓝芒大放,反噬妖女,妖女差点从空中坠落。",
+      "mood": "Counterattack",
+      "lighting": "Moonlight",
+      "action": "Spiritual Eye Counter",
+      "camera": "Dynamic Reverse",
+      "visual": {
+        "composition": "Han Li's pupils burst with blue light, countering the demoness who nearly falls from the sky",
+        "environment": "",
+        "character_pose": "Han Li's eyes flaring blue, woman staggering",
+        "fx": "Blue light explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li's eyes blaze blue, rebounding the soul confusion art and nearly knocking the demoness from the air.",
+      "narration": "韩立瞳孔蓝芒大放,反噬妖女,妖女差点从空中坠落。",
+      "face_style_auto": {
+        "expression": "Stern",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "黛儿喊话,说自己自愿跟随姑姑,因为传承珠让她知道半妖身份。",
+      "mood": "Resolved",
+      "lighting": "Moonlight",
+      "action": "Child Speaks",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Dai'er calls out, saying she willingly follows her aunt because the inheritance bead revealed her half-demon nature",
+        "environment": "",
+        "character_pose": "Girl on mound speaking firmly",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The girl Dai'er declares she will go with her aunt after the inheritance bead awakened her half-demon heritage.",
+      "narration": "黛儿喊话,说自己自愿跟随姑姑,因为传承珠让她知道半妖身份。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立确认黛儿决心后,轻叹一声,转身离开。",
+      "mood": "Accepting",
+      "lighting": "Moonlight",
+      "action": "Leave",
+      "camera": "Back Shot",
+      "visual": {
+        "composition": "Han Li confirms Dai'er's resolve, sighs softly, then turns and strides away",
+        "environment": "",
+        "character_pose": "Han Li walking away, beads in hand",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "After confirming the girl's determination, Han Li sighs and departs, leaving with the beads still in hand.",
+      "narration": "韩立确认黛儿决心后,轻叹一声,转身离开。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "黑凤族妖女焚毁假赵城主尸体,化为黑光吸入体内,带着黛儿消失。",
+      "mood": "Ominous",
+      "lighting": "Black Flame",
+      "action": "Burn Corpse",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The black phoenix woman burns the fake city lord's corpse, converting it to black light and absorbing it, then vanishes with Dai'er",
+        "environment": "",
+        "character_pose": "Woman consuming black light, girl held",
+        "fx": "Black flames, disappearance",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The black phoenix demoness incinerates the puppet corpse, absorbs it as black light, and vanishes with the child.",
+      "narration": "黑凤族妖女焚毁假城主尸体,化为黑光吸入体内,带着黛儿消失。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_026.png"
+    },
+    {
+      "id": 26,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "次日清晨,营地中数道遁光飞起,金玉宗修士与韩立出发取宝。",
+      "mood": "Determined",
+      "lighting": "Dawn",
+      "action": "Departure",
+      "camera": "Aerial Tracking",
+      "visual": {
+        "composition": "At dawn the next day, several beams of light rise from the camp as the Gold Jade Sect cultivators and Han Li set off",
+        "environment": "",
+        "character_pose": "Cultivators on flying swords, Han Li in protective light bubble",
+        "fx": "Glowing trails",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At dawn the next morning, beams of light streak from the camp as cultivators and Han Li depart for the treasure hunt.",
+      "narration": "次日清晨,营地中数道遁光飞起,金玉宗修士与韩立出发取宝。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_027.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第12集即将开始。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep11_full/scene_028.png"
+    }
+  ]
+}

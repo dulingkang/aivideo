@@ -1,0 +1,40 @@
+desert:
+  keywords:
+    - desert
+    - desert_like
+    - sand dune
+    - 沙漠
+palace:
+  keywords:
+    - palace
+    - temple
+    - hall
+    - 宫殿
+    - 大殿
+  include_auto_tags: true
+tense_battle:
+  keywords:
+    - magical battle
+    - energy explosion
+    - sword duel
+    - battle
+    - explosion
+    - energy beams
+    - battlefield
+    - smoky battlefield
+    - 激烈
+    - 战斗
+  include_auto_tags: true
+mystic:
+  keywords:
+    - mystical
+    - artifact
+    - glowing
+    - 灵气
+sunset:
+  keywords:
+    - warm
+    - sunset
+    - 余晖
+  include_auto_tags: true
+

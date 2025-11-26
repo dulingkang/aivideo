@@ -1,0 +1,604 @@
+{
+    "episode": 18,
+    "title": "Sunset Tomb · Battle and Insight",
+    "scenes": [
+      {
+        "id": 0,
+        "duration": 3,
+        "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+        "mood": "Calm",
+        "lighting": "Soft",
+        "action": "Title Reveal",
+        "camera": "Static Shot",
+        "visual": {
+          "composition": "Misty immortal skies with a golden scroll unfurling",
+          "environment": "Immortal realm sky filled with swirling clouds and golden light",
+          "character_pose": "",
+          "fx": "Golden radiance and unfolding scroll effect",
+          "motion": "Slow camera drift showcasing the immortal realm"
+        },
+        "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+        "narration": "我是云卷仙音,欢迎回来。第18集:落日之墓·战斗感悟。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.8
+        }
+      },
+      {
+        "id": 1,
+        "scene_profile": "sunset_tomb_entrance",
+        "duration": 4,
+        "description": "一个月后,韩立离开落日城,来到一个巨大峡谷面前,这就是落日之墓的入口。",
+        "mood": "Determined",
+        "lighting": "Daylight",
+        "action": "Arrive at Entrance",
+        "camera": "Wide Establishing",
+        "visual": {
+          "composition": "Han Li arrives at a huge canyon, the entrance to Sunset Tomb",
+          "environment": "",
+          "character_pose": "Han Li looking at canyon",
+          "fx": "",
+          "motion": "Slow pan left to right"
+        },
+        "prompt": "Han Li arrives at a huge canyon, the entrance to Sunset Tomb.",
+        "narration": "一个月后,韩立离开落日城,来到一个巨大峡谷面前,这就是落日之墓的入口。",
+        "face_style_auto": {
+          "expression": "Resolved",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.86
+        }
+      },
+      {
+        "id": 2,
+        "scene_profile": "sunset_tomb_entrance",
+        "duration": 4,
+        "description": "整个峡谷足有数里许之宽,无论地面还是两侧,都遍布鲜红颜色的怪异石头,连附近空中都被映成赤红色。",
+        "mood": "Ominous",
+        "lighting": "Red Tint",
+        "action": "See Red Canyon",
+        "camera": "Wide Shot",
+        "visual": {
+          "composition": "The canyon is several li wide, covered with red strange stones, even the sky is tinted red",
+          "environment": "",
+          "character_pose": "Han Li observing red canyon",
+          "fx": "Red glow",
+          "motion": "Slow pan left to right"
+        },
+        "prompt": "The canyon is several li wide, covered with red strange stones, even the sky is tinted red.",
+        "narration": "整个峡谷足有数里许之宽，遍布鲜红色怪异石头，空中都被映成赤红色。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Red Tint",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 3,
+        "scene_profile": "sunset_tomb_entrance",
+        "duration": 4,
+        "description": "峡谷附近有一些修士和炼体士三三两两聚集,有的在窃窃私语,有的在打坐,等待组队进入。",
+        "mood": "Cautious",
+        "lighting": "Daylight",
+        "action": "See Other Cultivators",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "Some cultivators and body cultivators gather near the canyon, whispering or meditating",
+          "environment": "",
+          "character_pose": "Groups of people waiting",
+          "fx": "",
+          "motion": "Slow pan left to right"
+        },
+        "prompt": "Some cultivators and body cultivators gather near the canyon, whispering or meditating.",
+        "narration": "峡谷附近修士和炼体士三三两两聚集，有的窃窃私语，有的打坐等待组队。",
+        "face_style_auto": {
+          "expression": "Observant",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.85
+        }
+      },
+      {
+        "id": 4,
+        "scene_profile": "sunset_tomb_entrance",
+        "duration": 4,
+        "description": "韩立一连拒绝了数波前来邀请的小团体后,就飘然进入了峡谷中,开始深入落日之墓。",
+        "mood": "Independent",
+        "lighting": "Daylight",
+        "action": "Enter Canyon",
+        "camera": "Tracking Shot",
+        "visual": {
+          "composition": "Han Li rejects several invitations, then enters the canyon alone",
+          "environment": "",
+          "character_pose": "Han Li walking into canyon",
+          "fx": "",
+          "motion": "Tracking shot"
+        },
+        "prompt": "Han Li rejects several invitations, then enters the canyon alone.",
+        "narration": "韩立一连拒绝了数波前来邀请的小团体后,就飘然进入了峡谷中,开始深入落日之墓。",
+        "face_style_auto": {
+          "expression": "Determined",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 5,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "五日后,韩立面前出现了一眼无法望到头的原始密林,树木全都三四十丈之高,枝叶肥大,幽暗阴凉。",
+        "mood": "Mysterious",
+        "lighting": "Dim Forest",
+        "action": "Enter Forest",
+        "camera": "Wide Shot",
+        "visual": {
+          "composition": "A vast primeval forest appears, trees thirty to forty zhang tall, dark and cool",
+          "environment": "",
+          "character_pose": "Han Li at forest edge",
+          "fx": "",
+          "motion": "Slow pan left to right"
+        },
+        "prompt": "A vast primeval forest appears, trees thirty to forty zhang tall, dark and cool.",
+        "narration": "五日后,韩立面前出现了一眼无法望到头的原始密林,树木全都三四十丈之高,幽暗阴凉。",
+        "face_style_auto": {
+          "expression": "Cautious",
+          "lighting": "Dim Forest",
+          "detail": "Natural",
+          "strength": 0.88
+        }
+      },
+      {
+        "id": 6,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "韩立施展罗烟步,即使森林中藤蔓遍地,灌木成群,他仍然犹如鬼魅一般在里面行进自如。",
+        "mood": "Agile",
+        "lighting": "Dim Forest",
+        "action": "Move Through Forest",
+        "camera": "Tracking Shot",
+        "visual": {
+          "composition": "Han Li uses Misty Step, moving like a ghost through the dense forest",
+          "environment": "",
+          "character_pose": "Han Li moving swiftly",
+          "fx": "",
+          "motion": "Fast tracking shot"
+        },
+        "prompt": "Han Li uses Misty Step, moving like a ghost through the dense forest.",
+        "narration": "韩立施展罗烟步,即使森林中藤蔓遍地,灌木成群,他仍然犹如鬼魅一般行进自如。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dim Forest",
+          "detail": "Natural",
+          "strength": 0.89
+        }
+      },
+      {
+        "id": 7,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "忽然行进中的韩立,银光一闪,一道银线激射而出,围着附近一颗数丈粗的大树一绕,又飞射而回。",
+        "mood": "Swift",
+        "lighting": "Dim Forest",
+        "action": "Attack with Silver Line",
+        "camera": "Dynamic Action",
+        "visual": {
+          "composition": "A silver line shoots out, wraps around a huge tree, then returns",
+          "environment": "",
+          "character_pose": "Han Li attacking",
+          "fx": "Silver line, cutting",
+          "motion": "Static shot"
+        },
+        "prompt": "A silver line shoots out, wraps around a huge tree, then returns.",
+        "narration": "忽然行进中的韩立,银光一闪,一道银线激射而出,围着附近一颗数丈粗的大树一绕。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dim Forest",
+          "detail": "Natural",
+          "strength": 0.9
+        }
+      },
+      {
+        "id": 8,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "一声凄厉的吼叫从树后爆发而出,一头头上生有独角,两丈来高的黄色巨熊,从树后一闪而出。",
+        "mood": "Dangerous",
+        "lighting": "Dim Forest",
+        "action": "Beast Appears",
+        "camera": "Dynamic Shot",
+        "visual": {
+          "composition": "A yellow giant bear with a horn, two zhang tall, bursts from behind the tree",
+          "environment": "",
+          "character_pose": "Giant bear roaring",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "A yellow giant bear with a horn, two zhang tall, bursts from behind the tree.",
+        "narration": "一声凄厉的吼叫从树后爆发而出,一头头上生有独角,两丈来高的黄色巨熊闪现而出。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Dim Forest",
+          "detail": "Natural",
+          "strength": 0.91
+        }
+      },
+      {
+        "id": 9,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "巨熊狠狠扑向韩立,但韩立身形连晃几下就到了数丈外,巨熊方扑出几步,就鲜血激射,整个身子从腰部一下分成了两截。",
+        "mood": "Powerful",
+        "lighting": "Dim Forest",
+        "action": "Kill Beast",
+        "camera": "Dynamic Action",
+        "visual": {
+          "composition": "Bear charges at Han Li, but Han Li dodges, bear is cut in half at the waist",
+          "environment": "",
+          "character_pose": "Bear cut in half, Han Li standing",
+          "fx": "Blood, cutting",
+          "motion": "Static shot"
+        },
+        "prompt": "Bear charges at Han Li, but Han Li dodges, bear is cut in half at the waist.",
+        "narration": "巨熊狠狠扑向韩立,但韩立身形连晃几下就到了数丈外,巨熊从腰部一下分成了两截。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Dim Forest",
+          "detail": "Natural",
+          "strength": 0.89
+        }
+      },
+      {
+        "id": 10,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "三个月后,在一片陌生山脉的深处,韩立双手倒背站在横木上,四周横七竖八躺着二十多头青色猿猴的尸体。",
+        "mood": "Triumphant",
+        "lighting": "Daylight",
+        "action": "After Battle",
+        "camera": "Wide Shot",
+        "visual": {
+          "composition": "Han Li stands on a log, surrounded by over twenty dead green monkeys",
+          "environment": "",
+          "character_pose": "Han Li standing, monkeys dead around",
+          "fx": "",
+          "motion": "Slow pan left to right"
+        },
+        "prompt": "Han Li stands on a log, surrounded by over twenty dead green monkeys.",
+        "narration": "三个月后,在一片陌生山脉的深处,韩立站在横木上,四周横七竖八躺着二十多头猿猴尸体。",
+        "face_style_auto": {
+          "expression": "Satisfied",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 11,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "十余丈外的一颗粗大树干上,一只浑身红毛,生有一大两小三颗头颅的巨大妖猴,被一杆黑色长枪从心脏处洞穿而过,硬生生钉在了那里。",
+        "mood": "Impressive",
+        "lighting": "Daylight",
+        "action": "See Pinned Monkey",
+        "camera": "Close-Up",
+        "visual": {
+          "composition": "A red-haired giant monkey with three heads, pinned to a tree by a black spear through its heart",
+          "environment": "",
+          "character_pose": "Monkey pinned to tree",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "A red-haired giant monkey with three heads, pinned to a tree by a black spear through its heart.",
+        "narration": "十余丈外的树干上,一只浑身红毛生有三颗头颅的巨大妖猴,被黑色长枪从心脏处洞穿钉在那里。",
+        "face_style_auto": {
+          "expression": "Impressed",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.88
+        }
+      },
+      {
+        "id": 12,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "韩立抬手虚空一抓,手指上灵戒青光一闪,黑枪从树干上一颤,就自行拔出的倒射而回,被韩立单手抓住。",
+        "mood": "Skillful",
+        "lighting": "Daylight",
+        "action": "Retrieve Spear",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "Han Li reaches out, green light flashes, black spear flies back to his hand",
+          "environment": "",
+          "character_pose": "Han Li catching spear",
+          "fx": "Green light, spear flying",
+          "motion": "Static shot"
+        },
+        "prompt": "Han Li reaches out, green light flashes, black spear flies back to his hand.",
+        "narration": "韩立抬手虚空一抓,手指上灵戒青光一闪,黑枪从树干上自行拔出倒射而回,被韩立单手抓住。",
+        "face_style_auto": {
+          "expression": "Confident",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 13,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "附近一颗大树表面青光一闪,一团翠芒浮现而出,光濛濛的莹光中,竟有一名身高不足尺许的绿裙女子。",
+        "mood": "Mysterious",
+        "lighting": "Spirit Light",
+        "action": "Spirit Appears",
+        "camera": "Close-Up",
+        "visual": {
+          "composition": "Green light flashes on a tree, a tiny green-robed woman less than a chi tall appears",
+          "environment": "",
+          "character_pose": "Tiny spirit woman",
+          "fx": "Green light, spirit appearance",
+          "motion": "Static shot"
+        },
+        "prompt": "Green light flashes on a tree, a tiny green-robed woman less than a chi tall appears.",
+        "narration": "附近一颗大树表面青光一闪,一团翠芒浮现而出,光濛濛的莹光中,竟有一名身高不足尺许的绿裙女子。",
+        "face_style_auto": {
+          "expression": "Surprised",
+          "lighting": "Spirit Light",
+          "detail": "Natural",
+          "strength": 0.89
+        }
+      },
+      {
+        "id": 14,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "另一团黄色光芒从灌木中升起,一名身材同样大小的黄袍老者浮现,两人都是灵族之人,正在观察韩立。",
+        "mood": "Revealing",
+        "lighting": "Spirit Light",
+        "action": "Second Spirit Appears",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "Yellow light rises from bushes, a tiny yellow-robed old man appears, both are spirit race",
+          "environment": "",
+          "character_pose": "Two tiny spirits",
+          "fx": "Yellow light, spirit appearance",
+          "motion": "Static shot"
+        },
+        "prompt": "Yellow light rises from bushes, a tiny yellow-robed old man appears, both are spirit race.",
+        "narration": "另一团黄色光芒从灌木中升起,一名身材同样大小的黄袍老者浮现,两人都是灵族之人。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Spirit Light",
+          "detail": "Natural",
+          "strength": 0.88
+        }
+      },
+      {
+        "id": 15,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "绿裙女子天樱发现韩立神识非常强大,几乎不在他们之下,怀疑他可能是化神期修士假扮的炼体士。",
+        "mood": "Suspicious",
+        "lighting": "Spirit Light",
+        "action": "Spirits Discuss",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "Green-robed woman Tian Ying discovers Han Li has extremely powerful divine sense",
+          "environment": "",
+          "character_pose": "Two spirits discussing",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "Green-robed woman Tian Ying discovers Han Li has extremely powerful divine sense.",
+        "narration": "绿裙女子天樱发现韩立神识非常强大,几乎不在他们之下,怀疑他可能是化神期修士假扮的。",
+        "face_style_auto": {
+          "expression": "Thoughtful",
+          "lighting": "Spirit Light",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 16,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "韩立看着三十余丈外的小兽,这头仿佛缩小了数倍,只有猫一般大小的金钱豹,速度之快,实在骇人听闻。",
+        "mood": "Tense",
+        "lighting": "Daylight",
+        "action": "Face Small Beast",
+        "camera": "Close-Up",
+        "visual": {
+          "composition": "Han Li faces a tiny leopard, cat-sized, with incredible speed",
+          "environment": "",
+          "character_pose": "Han Li and tiny leopard facing off",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "Han Li faces a tiny leopard, cat-sized, with incredible speed.",
+        "narration": "韩立看着三十余丈外的小兽,这头只有猫一般大小的金钱豹,速度之快,实在骇人听闻。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.9
+        }
+      },
+      {
+        "id": 17,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "韩立身上的青色长衫被抓得稀巴烂,露出灰扑扑战甲和淡金色的赤裸肌肤,战甲上一条条深浅不一的抓痕。",
+        "mood": "Battle-Worn",
+        "lighting": "Daylight",
+        "action": "Show Damage",
+        "camera": "Close-Up Body",
+        "visual": {
+          "composition": "Han Li's robe is torn, revealing armor with scratches and golden skin",
+          "environment": "",
+          "character_pose": "Han Li with torn clothes",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "Han Li's robe is torn, revealing armor with scratches and golden skin.",
+        "narration": "韩立身上的青色长衫被抓得稀巴烂,露出灰扑扑战甲和淡金色的赤裸肌肤,战甲上满是抓痕。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.88
+        }
+      },
+      {
+        "id": 18,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "小兽口中一声低吼,身形一晃之下,蓦然一化二,二化四,转眼间三十余只一般无二的小兽同时出现在对面树干上。",
+        "mood": "Threatening",
+        "lighting": "Daylight",
+        "action": "Beast Multiplies",
+        "camera": "Dynamic Shot",
+        "visual": {
+          "composition": "The tiny beast roars, splits into two, then four, soon over thirty identical beasts appear",
+          "environment": "",
+          "character_pose": "Many tiny leopards",
+          "fx": "Duplication, multiple images",
+          "motion": "Static shot"
+        },
+        "prompt": "The tiny beast roars, splits into two, then four, soon over thirty identical beasts appear.",
+        "narration": "小兽口中一声低吼,身形一晃之下,蓦然一化二,二化四,转眼间三十余只小兽同时出现。",
+        "face_style_auto": {
+          "expression": "Alarmed",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.91
+        }
+      },
+      {
+        "id": 19,
+        "scene_profile": "sunset_tomb_forest",
+        "duration": 4,
+        "description": "就在这关键时刻,忽然从远处传来一声怪异的鸣叫,对面的数十只小兽脸上同时一呆,虚影蓦然消失不见,只剩下了一只小兽。",
+        "mood": "Relieved",
+        "lighting": "Daylight",
+        "action": "Beast Leaves",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "A strange cry comes from afar, all the duplicate beasts disappear, only one remains",
+          "environment": "",
+          "character_pose": "Beast leaving",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "A strange cry comes from afar, all the duplicate beasts disappear, only one remains.",
+        "narration": "就在这关键时刻,远处传来一声怪异的鸣叫,对面的数十只小兽虚影蓦然消失,只剩下了一只。",
+        "face_style_auto": {
+          "expression": "Relieved",
+          "lighting": "Bright Normal",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 20,
+        "scene_profile": "sunset_tomb_cave",
+        "duration": 4,
+        "description": "韩立找了一处小山谷,在石壁上击出一个粗糙的小山洞,马上进入其中,盘膝打坐,参悟刚才战斗中的感悟。",
+        "mood": "Contemplative",
+        "lighting": "Interior Soft",
+        "action": "Meditate on Insight",
+        "camera": "Interior Medium Shot",
+        "visual": {
+          "composition": "Han Li finds a small valley, creates a cave, sits inside to meditate on his battle insight",
+          "environment": "",
+          "character_pose": "Han Li meditating in cave",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "Han Li finds a small valley, creates a cave, sits inside to meditate on his battle insight.",
+        "narration": "韩立找了一处小山谷,在石壁上击出一个小山洞,马上进入其中盘膝打坐,参悟刚才战斗中的感悟。",
+        "face_style_auto": {
+          "expression": "Serene",
+          "lighting": "Warm Interior",
+          "detail": "Natural",
+          "strength": 0.88
+        }
+      },
+      {
+        "id": 21,
+        "scene_profile": "sunset_tomb_cave",
+        "duration": 4,
+        "description": "这一次的顿悟,足足持续了三日三夜,当韩立再次睁开双目的时候,面色露出几分失望之色。",
+        "mood": "Disappointed",
+        "lighting": "Interior Soft",
+        "action": "Awaken from Meditation",
+        "camera": "Close-Up Face",
+        "visual": {
+          "composition": "After three days and nights of meditation, Han Li opens his eyes with disappointment",
+          "environment": "",
+          "character_pose": "Han Li opening eyes, disappointed",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "After three days and nights of meditation, Han Li opens his eyes with disappointment.",
+        "narration": "这一次的顿悟,足足持续了三日三夜,当韩立再次睁开双目的时候,面色露出几分失望之色。",
+        "face_style_auto": {
+          "expression": "Disappointed",
+          "lighting": "Warm Interior",
+          "detail": "Natural",
+          "strength": 0.86
+        }
+      },
+      {
+        "id": 22,
+        "scene_profile": "sunset_tomb_cave",
+        "duration": 4,
+        "description": "这次顿悟虽然有了一些收获,但还不足以让其突破瓶颈,不过韩立也没有太过沮丧,说明在生死搏杀中确有助于突破。",
+        "mood": "Resolved",
+        "lighting": "Interior Soft",
+        "action": "Reflect on Progress",
+        "camera": "Medium Shot",
+        "visual": {
+          "composition": "Han Li reflects that the insight helped but wasn't enough, but life-and-death battles do help",
+          "environment": "",
+          "character_pose": "Han Li thinking",
+          "fx": "",
+          "motion": "Static shot"
+        },
+        "prompt": "Han Li reflects that the insight helped but wasn't enough, but life-and-death battles do help.",
+        "narration": "这次顿悟虽然有了一些收获,但还不足以让其突破瓶颈,不过说明在生死搏杀中确有助于突破。",
+        "face_style_auto": {
+          "expression": "Determined",
+          "lighting": "Warm Interior",
+          "detail": "Natural",
+          "strength": 0.87
+        }
+      },
+      {
+        "id": 999,
+        "duration": 3,
+        "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+        "mood": "Calm",
+        "lighting": "Soft",
+        "action": "Closing Tableau",
+        "camera": "Static Shot",
+        "visual": {
+          "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+          "environment": "Night sky, city silhouette, floating light particles",
+          "character_pose": "",
+          "fx": "Falling spiritual motes with fade-out",
+          "motion": "Static framing, gradual fade"
+        },
+        "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+        "narration": "下一集再见。我是云卷仙音,原著作者忘语。第19集即将开始。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.8
+        }
+      }
+    ]
+  }

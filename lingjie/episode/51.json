@@ -1,0 +1,455 @@
+{
+  "episode": 51,
+  "title": "Examine Divine Blood · Divine Sense Search Fails",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第51集:检查神血·神念搜寻失败。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "韩立找了一处干净的地方,坐了下来,这才手上灵戒一闪,从储物镯上取出了那个血红小瓶,目放奇光的打量起来。",
+      "mood": "Curious",
+      "lighting": "Soft Moonlight",
+      "action": "Takes Out Blood Vial",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li finds clean place, sits down, then hand spirit ring flashes, takes out that blood red small bottle from storage bracelet, eyes emit strange light examining",
+        "environment": "Cave interior, moonstone illumination",
+        "character_pose": "Han Li sitting, examining bottle",
+        "fx": "Blood red glow from bottle",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li finds clean place, sits down, then hand spirit ring flashes, takes out that blood red small bottle from storage bracelet, eyes emit strange light examining.",
+      "narration": "韩立找了一处干净的地方坐下,从储物镯上取出了那个血红小瓶,目放奇光的打量起来。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "此瓶除了不停散发着血红光芒外,其他一切倒也普通之极,材质摸上去光滑异常,似乎就是普通的瓷器。",
+      "mood": "Examining",
+      "lighting": "Soft Moonlight and Red Glow",
+      "action": "Examines Bottle Material",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "This bottle besides continuously emitting blood red glow, everything else ordinary, material feels smooth, seems ordinary porcelain",
+        "environment": "Cave interior, close-up of bottle",
+        "character_pose": "Bottle in hand, Han Li examining",
+        "fx": "Blood red glow, ordinary porcelain appearance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "This bottle besides continuously emitting blood red glow, everything else ordinary, material feels smooth, seems ordinary porcelain.",
+      "narration": "此瓶除了不停散发着血红光芒外,其他一切倒也普通之极,材质摸上去光滑异常。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Soft Moonlight and Red Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "韩立用手指轻轻抚摸着小瓶,心中暗自嘀咕着,同时脑中不禁浮现出那名叫噬炎灵族对神血的一切记忆。",
+      "mood": "Recalling",
+      "lighting": "Soft Moonlight",
+      "action": "Recalls Memories",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li with finger gently strokes small bottle, heart muttering, brain can't help floating that name Devouring Flame Spirit Race's all memories about divine blood",
+        "environment": "Cave interior, Han Li's face",
+        "character_pose": "Han Li stroking bottle, recalling",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li with finger gently strokes small bottle, heart muttering, brain can't help floating that name Devouring Flame Spirit Race's all memories about divine blood.",
+      "narration": "韩立用手指轻轻抚摸着小瓶,脑中不禁浮现出噬炎灵族对神血的一切记忆。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "半晌后,他眉头一皱下,又从储物镯中取出一个巴掌大的碧玉圆钵,这才将血红小瓶的盖子打开,对准圆钵轻轻一斜的倒下。",
+      "mood": "Preparing",
+      "lighting": "Soft Moonlight",
+      "action": "Prepares to Pour",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "After a while, his eyebrows wrinkle, again takes out palm-sized jade green round bowl from storage bracelet, then opens blood red small bottle's lid, toward round bowl lightly tilts pours",
+        "environment": "Cave interior, bottle and bowl",
+        "character_pose": "Han Li preparing, opening bottle",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "After a while, his eyebrows wrinkle, again takes out palm-sized jade green round bowl from storage bracelet, then opens blood red small bottle's lid, toward round bowl lightly tilts pours.",
+      "narration": "半晌后,他又从储物镯中取出一个碧玉圆钵,将血红小瓶的盖子打开,对准圆钵轻轻一斜的倒下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "瓶口紫芒流转,好半天才有七八滴深紫色液体缓缓倒出,掉在圆钵中全都一滴滴的立刻分散开来,竟然无法融合一体。",
+      "mood": "Surprised",
+      "lighting": "Purple and Green Light",
+      "action": "Purple Liquid Pours",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Bottle mouth purple light flows, long time before seven eight drops deep purple liquid slowly pour out, drop in round bowl all immediately scatter separately, actually cannot merge together",
+        "environment": "Cave interior, close-up of bowl",
+        "character_pose": "Liquid dropping into bowl, scattering",
+        "fx": "Purple light, liquid scattering",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Bottle mouth purple light flows, long time before seven eight drops deep purple liquid slowly pour out, drop in round bowl all immediately scatter separately, actually cannot merge together.",
+      "narration": "瓶口紫芒流转,好半天才有七八滴深紫色液体缓缓倒出,掉在圆钵中立刻分散开来。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Purple and Green Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "韩立双目一眯的仔细凝望了一会儿,才伸出一根手指,在其中一滴紫液上轻轻一点。结果在其手指似触非触的一瞬间,这紫色液体竟蓦然自行跳起,一下将其指尖包裹进了其中,就想要就此侵入似的。",
+      "mood": "Alert",
+      "lighting": "Purple Light",
+      "action": "Liquid Attacks Finger",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Han Li's eyes squint carefully watches a while, then extends one finger, lightly touches one drop purple liquid, result in finger almost touching moment, this purple liquid actually suddenly jumps up, instantly wraps fingertip, wants to invade",
+        "environment": "Cave interior, close-up of finger and liquid",
+        "character_pose": "Finger touching, liquid jumping up",
+        "fx": "Purple liquid jumping, wrapping finger",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li's eyes squint carefully watches a while, then extends one finger, lightly touches one drop purple liquid, result in finger almost touching moment, this purple liquid actually suddenly jumps up, instantly wraps fingertip, wants to invade.",
+      "narration": "韩立伸出一根手指轻轻一点,紫色液体竟蓦然自行跳起,一下将其指尖包裹进了其中。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Purple Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "但是韩立眉梢一挑下,手指上金光一闪,就将这紫液隔断在了肌肤之外,然后轻轻一抖之下,液体就再次滑落入了圆钵中。",
+      "mood": "Controlled",
+      "lighting": "Golden and Purple Light",
+      "action": "Repels Liquid",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "But Han Li's eyebrow raises, finger golden light flashes, cuts off purple liquid outside skin, then lightly shakes, liquid again slides into round bowl",
+        "environment": "Cave interior, close-up of finger",
+        "character_pose": "Finger with golden light, repelling liquid",
+        "fx": "Golden light, purple liquid repelled",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But Han Li's eyebrow raises, finger golden light flashes, cuts off purple liquid outside skin, then lightly shakes, liquid again slides into round bowl.",
+      "narration": "但是韩立眉梢一挑下,手指上金光一闪,就将这紫液隔断在了肌肤之外,然后轻轻一抖。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden and Purple Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "不错,果然是灵族神血不假。韩立目中闪过兴奋之色。",
+      "mood": "Excited",
+      "lighting": "Soft Moonlight",
+      "action": "Confirms Divine Blood",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Good, indeed spirit race divine blood real, Han Li's eyes flash excited color",
+        "environment": "Cave interior, Han Li's face",
+        "character_pose": "Han Li excited, eyes flashing",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Good, indeed spirit race divine blood real, Han Li's eyes flash excited color.",
+      "narration": "不错,果然是灵族神血不假,韩立目中闪过兴奋之色,确认了神血的真假。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "下面,他将这些紫液再次倒入小瓶中,然后小心的收进储物镯中,自己则静心的在山洞中打坐休息起来。",
+      "mood": "Calm",
+      "lighting": "Soft Moonlight",
+      "action": "Stores Divine Blood and Meditates",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Below, he pours these purple liquids again into small bottle, then carefully stores in storage bracelet, himself peacefully sits in cave meditating resting",
+        "environment": "Cave interior, Han Li meditating",
+        "character_pose": "Han Li sitting, meditating",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Below, he pours these purple liquids again into small bottle, then carefully stores in storage bracelet, himself peacefully sits in cave meditating resting.",
+      "narration": "下面,他将这些紫液再次倒入小瓶中,然后小心的收进储物镯中,静心打坐休息起来。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "虽然他现在法力全无,但辟谷能力却未失分毫,根本不用吃喝什么的。",
+      "mood": "Calm",
+      "lighting": "Soft Moonlight",
+      "action": "Meditating Without Eating",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Although he now has no spiritual power at all, but fasting ability hasn't lost at all, don't need to eat or drink anything",
+        "environment": "Cave interior, Han Li meditating",
+        "character_pose": "Han Li sitting calmly, no need for food",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Although he now has no spiritual power at all, but fasting ability hasn't lost at all, don't need to eat or drink anything.",
+      "narration": "虽然他现在法力全无,但辟谷能力却未失分毫,根本不用吃喝什么的。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "开始的数天内,这些神念的搜索频繁异常,恨不得一天十几次的扫过。但过了半月后,立刻变得只有两三次了。",
+      "mood": "Hidden",
+      "lighting": "Soft Moonlight",
+      "action": "Divine Sense Frequency Decreases",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Beginning several days, these divine sense searches extremely frequent, wish dozen times day sweep, but after half month, immediately becomes only two three times",
+        "environment": "Cave interior, divine sense waves passing",
+        "character_pose": "Han Li sitting calmly, divine sense decreasing",
+        "fx": "Divine sense waves, decreasing frequency",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Beginning several days, these divine sense searches extremely frequent, wish dozen times day sweep, but after half month, immediately becomes only two three times.",
+      "narration": "开始的数天内,这些神念的搜索频繁异常,但过了半月后,立刻变得只有两三次了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "而再等两个月后,则只有一天一次了,而且动用的神念也明显远远比不上以前的强大,明显搜查之人换了。",
+      "mood": "Relieved",
+      "lighting": "Soft Moonlight",
+      "action": "Searchers Changed",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "And wait another two months, then only once day, and used divine sense obviously far weaker than before, clearly searchers changed",
+        "environment": "Cave interior, weak divine sense passing",
+        "character_pose": "Han Li sitting, weak divine sense passing",
+        "fx": "Weak divine sense waves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "And wait another two months, then only once day, and used divine sense obviously far weaker than before, clearly searchers changed.",
+      "narration": "而再等两个月后,则只有一天一次了,而且动用的神念也明显远远比不上以前的强大。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "但韩立不动声色的仍躲在石洞中未出去。",
+      "mood": "Patient",
+      "lighting": "Soft Moonlight",
+      "action": "Stays Hidden",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "But Han Li without expression still hides in stone cave not going out",
+        "environment": "Cave interior, Han Li sitting",
+        "character_pose": "Han Li patient, staying hidden",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But Han Li without expression still hides in stone cave not going out.",
+      "narration": "但韩立不动声色的仍躲在石洞中未出去,继续保持耐心等待。",
+      "face_style_auto": {
+        "expression": "Patient",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "就这般半年时间一闪而过,再也没有神念出现了。",
+      "mood": "Calm",
+      "lighting": "Soft Moonlight",
+      "action": "No More Divine Sense",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Just like this half year time flashes past, no more divine sense appearing",
+        "environment": "Cave interior, peaceful",
+        "character_pose": "Han Li sitting, no divine sense",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Just like this half year time flashes past, no more divine sense appearing.",
+      "narration": "就这般半年时间一闪而过,再也没有神念出现了,山洞恢复了平静。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_015.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第52集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep51_full/scene_016.png"
+    }
+  ]
+}
+

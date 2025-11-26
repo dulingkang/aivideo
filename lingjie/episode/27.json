@@ -1,0 +1,651 @@
+{
+  "episode": 27,
+  "title": "Continue Shopping · Start Crafting",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第27集:继续采购·开始炼制。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "接下来的数日里,韩立再跟着田兴将落日城其他几处出售材料的店铺都转了一遍。",
+      "mood": "Busy",
+      "lighting": "Daylight",
+      "action": "Continue Shopping",
+      "camera": "Street Tracking",
+      "visual": {
+        "composition": "In the following days, Han Li follows Tian Xing to visit other material shops in Sunset City",
+        "environment": "",
+        "character_pose": "Han Li and Tian Xing walking through streets",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "In the following days, Han Li follows Tian Xing to visit other material shops in Sunset City.",
+      "narration": "接下来的数日里，韩立再跟着田兴将落日城其他几处出售材料的店铺都转了一遍。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立又收集到其他几种材料后,就打发田兴离开了。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Dismiss Guide",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "After collecting several other materials, Han Li dismisses Tian Xing",
+        "environment": "",
+        "character_pose": "Han Li paying, Tian Xing leaving",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After collecting several other materials, Han Li dismisses Tian Xing.",
+      "narration": "韩立又收集到其他几种材料后,就打发田兴离开了。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立本人则找了一家不起眼的灵具炼制店铺,租下了其一整间炼制灵具铺子。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Rent Workshop",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Han Li finds an inconspicuous artifact crafting shop, rents entire workshop",
+        "environment": "",
+        "character_pose": "Han Li at workshop door",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li finds an inconspicuous artifact crafting shop, rents entire workshop.",
+      "narration": "韩立本人则找了一家不起眼的灵具炼制店铺，租下了其一整间炼制灵具铺子。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立开始闭门不出,专心炼制灵具。",
+      "mood": "Focused",
+      "lighting": "Forge Glow",
+      "action": "Start Crafting",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li begins seclusion, focusing on crafting artifacts",
+        "environment": "",
+        "character_pose": "Han Li at forge, focused",
+        "fx": "Forge fire glow",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li begins seclusion, focusing on crafting artifacts.",
+      "narration": "韩立开始闭门不出，专心炼制灵具，潜心修炼技艺。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Forge Glow",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "一个月后,韩立神色平静地离开了落日城,走上了半个月后,一人来到了一个巨大峡谷面前。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Leave City",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "A month later, Han Li calmly leaves Sunset City, walks for half a month, arrives alone at huge canyon",
+        "environment": "",
+        "character_pose": "Han Li walking, canyon ahead",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "A month later, Han Li calmly leaves Sunset City, walks for half a month, arrives alone at huge canyon.",
+      "narration": "一个月后,韩立神色平静地离开了落日城,走上了半个月后,一人来到了一个巨大峡谷面前。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "这就是落日之墓的入口,整个峡谷足有数里许之宽。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "See Entrance",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "This is the entrance to Sunset Tomb, the entire canyon is several li wide",
+        "environment": "",
+        "character_pose": "Han Li looking at canyon",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This is the entrance to Sunset Tomb, the entire canyon is several li wide.",
+      "narration": "这就是落日之墓的入口,整个峡谷足有数里许之宽。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "无论地面还是两侧,都遍布鲜红颜色的怪异石头,连附近空中似乎都被映成了赤红颜色。",
+      "mood": "Strange",
+      "lighting": "Red Glow",
+      "action": "See Red Stones",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Ground and both sides covered in strange red stones, even nearby sky seems dyed crimson",
+        "environment": "",
+        "character_pose": "Red stone landscape",
+        "fx": "Red glow",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Ground and both sides covered in strange red stones, even nearby sky seems dyed crimson.",
+      "narration": "无论地面还是两侧,都遍布鲜红颜色的怪异石头,连附近空中似乎都被映成了赤红颜色。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Red Glow",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "峡谷附近有一些修士、炼体士三三两两聚集在那里,有的在窃窃私语,有的面无表情地打坐不动。",
+      "mood": "Busy",
+      "lighting": "Daylight",
+      "action": "See Cultivators",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Near canyon, some cultivators and body cultivators gather in small groups, some whispering, some meditating expressionlessly",
+        "environment": "",
+        "character_pose": "Multiple figures visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Near canyon, some cultivators and body cultivators gather in small groups, some whispering, some meditating expressionlessly.",
+      "narration": "峡谷附近有一些修士、炼体士三三两两聚集在那里,有的在窃窃私语,有的面无表情地打坐不动。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "这些人大多是修为不太高的中阶修士和炼体士,只能找到足够的同伴后,才敢组成临时的队伍走进大峡谷中。",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "See Groups",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "These people are mostly mid-level cultivators and body cultivators, can only enter canyon after finding enough companions to form temporary teams",
+        "environment": "",
+        "character_pose": "Groups forming, cautious",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "These people are mostly mid-level cultivators and body cultivators, can only enter canyon after finding enough companions to form temporary teams.",
+      "narration": "这些人大多是修为不太高的中阶修士和炼体士,只能找到足够的同伴后,才敢组成临时的队伍走进大峡谷中。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "不时有些早就联系好的队伍,直接从远处呼啸而来,在入口处停也不停一下,直接进入到其中。",
+      "mood": "Confident",
+      "lighting": "Daylight",
+      "action": "See Prepared Teams",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Occasionally prepared teams directly rush from distance, don't stop at entrance, directly enter",
+        "environment": "",
+        "character_pose": "Teams rushing past",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Occasionally prepared teams directly rush from distance, don't stop at entrance, directly enter.",
+      "narration": "不时有些早就联系好的队伍,直接从远处呼啸而来,在入口处停也不停一下,直接进入到其中。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "更有一些自持修为高深的高阶修士和炼体士,也同样毫无顾忌的一闪进入。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "See High-Level Cultivators",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Some high-level cultivators and body cultivators confident in their strength also enter without hesitation",
+        "environment": "",
+        "character_pose": "Powerful figures entering",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Some high-level cultivators and body cultivators confident in their strength also enter without hesitation.",
+      "narration": "更有一些自持修为高深的高阶修士和炼体士,也同样毫无顾忌的一闪进入。",
+      "face_style_auto": {
+        "expression": "Powerful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "但无论修士还是炼体士,却都没有任何一人敢飞得太高,顶多在离地十余丈左右的低空飞行。",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "Low Flight",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "But whether cultivators or body cultivators, none dare fly too high, only low flight about ten zhang above ground",
+        "environment": "",
+        "character_pose": "Figures flying low",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "But whether cultivators or body cultivators, none dare fly too high, only low flight about ten zhang above ground.",
+      "narration": "但无论修士还是炼体士,却都没有任何一人敢飞得太高,顶多在离地十余丈左右的低空飞行。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "因为只要不是脑子不清楚的人,都会知道一旦在这片土地上飞到太高地方,就等于将自己的一条小命大半交给妖修或其他心怀叵测之人。",
+      "mood": "Dangerous",
+      "lighting": "Daylight",
+      "action": "Explain Danger",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Because anyone with sense knows flying too high here means handing half your life to demon cultivators or schemers",
+        "environment": "",
+        "character_pose": "Dangerous sky above",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Because anyone with sense knows flying too high here means handing half your life to demon cultivators or schemers.",
+      "narration": "因为只要不是脑子不清楚的人,都会知道一旦在这片土地上飞到太高地方,就等于将自己的一条小命大半交给妖修或其他心怀叵测之人。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "况且除此之外,落日之墓还生活着不计其数的禽类古兽,让空中彻底成了没有禁制的禁空之区。",
+      "mood": "Perilous",
+      "lighting": "Daylight",
+      "action": "Explain Flying Beasts",
+      "camera": "Sky Shot",
+      "visual": {
+        "composition": "Moreover, Sunset Tomb is home to countless ancient flying beasts, making the sky a forbidden zone without restrictions",
+        "environment": "",
+        "character_pose": "Dangerous sky with beasts",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Moreover, Sunset Tomb is home to countless ancient flying beasts, making the sky a forbidden zone without restrictions.",
+      "narration": "况且除此之外,落日之墓还生活着不计其数的禽类古兽,让空中彻底成了没有禁制的禁空之区。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立只在谷口附近略一耽搁,就感到了十几道神念连连从身上扫过。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Feel Spirit Scans",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li pauses briefly near canyon mouth, feels over ten spirit senses scanning him repeatedly",
+        "environment": "",
+        "character_pose": "Han Li alert, spirit senses visible",
+        "fx": "Spirit sense waves",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li pauses briefly near canyon mouth, feels over ten spirit senses scanning him repeatedly.",
+      "narration": "韩立只在谷口附近略一耽搁,就感到了十几道神念连连从身上扫过。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立不动声色地待了一小会儿,一连拒绝了数波看出他是高阶炼体士,急忙前来邀请的小团体后,就同样飘然进入了峡谷中。",
+      "mood": "Resolved",
+      "lighting": "Daylight",
+      "action": "Enter Canyon",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li calmly waits briefly, rejects several groups who see he's high-level body cultivator and rush to invite him, then drifts into canyon",
+        "environment": "",
+        "character_pose": "Han Li walking into canyon",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li calmly waits briefly, rejects several groups who see he's high-level body cultivator and rush to invite him, then drifts into canyon.",
+      "narration": "韩立不动声色地待了一小会儿,一连拒绝了数波看出他是高阶炼体士,急忙前来邀请的小团体后,就同样飘然进入了峡谷中。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "这个峡谷,只是落日之墓人族方面的数个入口之一,其余地方都被修士用数种奇阵人为的封锁住了。",
+      "mood": "Informative",
+      "lighting": "Daylight",
+      "action": "Explain Entrance",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "This canyon is only one of several entrances from human side, other places blocked by cultivators with strange arrays",
+        "environment": "",
+        "character_pose": "Canyon entrance visible",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This canyon is only one of several entrances from human side, other places blocked by cultivators with strange arrays.",
+      "narration": "这个峡谷,只是落日之墓人族方面的数个入口之一,其余地方都被修士用数种奇阵人为的封锁住了。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "在峡谷中,韩立一边缓缓前进,一边暗思量着这些天从他人手里搜集到的一些落日之墓的情报。",
+      "mood": "Thoughtful",
+      "lighting": "Daylight",
+      "action": "Think About Information",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "In canyon, Han Li slowly advances while pondering information about Sunset Tomb gathered from others",
+        "environment": "",
+        "character_pose": "Han Li walking, thinking",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In canyon, Han Li slowly advances while pondering information about Sunset Tomb gathered from others.",
+      "narration": "在峡谷中,韩立一边缓缓前进,一边暗思量着这些天从他人手里搜集到的一些落日之墓的情报。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "峡谷越来越宽广,当韩立走出百余里后,最后一条淡淡的道路也消失不见了。",
+      "mood": "Wild",
+      "lighting": "Daylight",
+      "action": "Path Disappears",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Canyon grows wider, after Han Li walks over a hundred li, the last faint path also disappears",
+        "environment": "",
+        "character_pose": "Han Li in wilderness",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Canyon grows wider, after Han Li walks over a hundred li, the last faint path also disappears.",
+      "narration": "峡谷越来越宽广,当韩立走出百余里后,最后一条淡淡的道路也消失不见了。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立站在原地四下眺望了一下,轻叹了一口气,神念无法外放的话,还真的很不方便。",
+      "mood": "Frustrated",
+      "lighting": "Daylight",
+      "action": "Sigh About Limitation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li stands in place, looks around, sighs lightly, without spirit sense, it's really inconvenient",
+        "environment": "",
+        "character_pose": "Han Li looking around, sighing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stands in place, looks around, sighs lightly, without spirit sense, it's really inconvenient.",
+      "narration": "韩立站在原地四下眺望了一下,轻叹了一口气,神念无法外放的话,还真的很不方便。",
+      "face_style_auto": {
+        "expression": "Frustrated",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第28集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep27_full/scene_022.png"
+    }
+  ]
+}
+

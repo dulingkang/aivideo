@@ -1,0 +1,763 @@
+{
+  "episode": 33,
+  "title": "Alliance Negotiation · Two Races Unite",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第33集:谈判联手·两族联手。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君传音讥讽寰姓少年,说这头老鼠一直躲在鼠巢中度大天劫,从不肯外出。",
+      "mood": "Mocking",
+      "lighting": "Spirit Light",
+      "action": "Mock Opponent",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord transmits voice mocking Huan youth, says this rat always hides in nest for great tribulation, never goes out",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang speaking, mocking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord transmits voice mocking Huan youth, says this rat always hides in nest for great tribulation, never goes out.",
+      "narration": "黄粱灵君传音讥讽寰姓少年,说这头老鼠一直躲在鼠巢中度大天劫。",
+      "face_style_auto": {
+        "expression": "Mocking",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年传音回答,说若真有把握度过三千年一次的大天劫,又怎会有闲心出现在这里。",
+      "mood": "Honest",
+      "lighting": "Demonic Mist",
+      "action": "Explain Reason",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth transmits voice answering, says if really confident about passing great tribulation every three thousand years, why come here",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth speaking honestly",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth transmits voice answering, says if really confident about passing great tribulation every three thousand years, why come here.",
+      "narration": "寰姓少年传音回答,说若真有把握度过大天劫,又怎会出现在这里。",
+      "face_style_auto": {
+        "expression": "Honest",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年长叹,说在炼虚初期徘徊了万余年,没有丝毫把握再度过下次,不如出来寻机缘。",
+      "mood": "Resigned",
+      "lighting": "Demonic Mist",
+      "action": "Explain Situation",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huan youth sighs, says stuck at early Void Refinement for over ten thousand years, no confidence for next, better seek opportunities",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth sighing, resigned",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth sighs, says stuck at early Void Refinement for over ten thousand years, no confidence for next, better seek opportunities.",
+      "narration": "寰姓少年长叹,说在炼虚初期徘徊万余年,没有把握再度过下次。",
+      "face_style_auto": {
+        "expression": "Resigned",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年说原本想邀请黄粱灵君再闯一次蛮荒,恰好碰到灵族的事情,自然插手一二。",
+      "mood": "Inviting",
+      "lighting": "Demonic Mist",
+      "action": "Invite to Wilderness",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth says originally wanted to invite Huangliang Spirit Lord to explore wilderness again, encountered spirit clan matter, naturally intervened",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth explaining, inviting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says originally wanted to invite Huangliang Spirit Lord to explore wilderness again, encountered spirit clan matter, naturally intervened.",
+      "narration": "寰姓少年说原本想邀请黄粱灵君再闯蛮荒,恰好碰到灵族事情插手。",
+      "face_style_auto": {
+        "expression": "Inviting",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年说虽然人妖有别,但神通互补,联手在蛮荒中可安全得多,数千年前就联手过。",
+      "mood": "Persuasive",
+      "lighting": "Demonic Mist",
+      "action": "Persuade",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth says though human and demon differ, abilities complement, joining forces in wilderness much safer, joined thousands of years ago",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth persuading",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says though human and demon differ, abilities complement, joining forces in wilderness much safer, joined thousands of years ago.",
+      "narration": "寰姓少年说虽人妖有别,但神通互补,联手在蛮荒中可安全得多。",
+      "face_style_auto": {
+        "expression": "Persuasive",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年说黄粱灵君的第二次大天劫也快到了,若不趁早找度劫宝物,不知有多少把握度过。",
+      "mood": "Warning",
+      "lighting": "Demonic Mist",
+      "action": "Warn About Tribulation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth says Huangliang Spirit Lord's second great tribulation coming soon, if not find tribulation treasures early, unsure how much chance",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth warning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says Huangliang Spirit Lord's second great tribulation coming soon, if not find tribulation treasures early, unsure how much chance.",
+      "narration": "寰姓少年说黄粱灵君第二次大天劫快到,若不趁早找度劫宝物,不知多少把握。",
+      "face_style_auto": {
+        "expression": "Warning",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君坦言第二次大劫只有一半把握度过,上一次度劫时毁掉了不少宝物。",
+      "mood": "Honest",
+      "lighting": "Spirit Light",
+      "action": "Admit Difficulty",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huangliang Spirit Lord honestly says second great tribulation only half chance, last time destroyed many treasures",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang serious, concerned",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord honestly says second great tribulation only half chance, last time destroyed many treasures.",
+      "narration": "黄粱灵君坦言第二次大劫只有一半把握度过,上次度劫毁掉不少宝物。",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年肃然传音正式邀请,说是否愿意和他再去蛮荒世界走上一趟。",
+      "mood": "Formal",
+      "lighting": "Demonic Mist",
+      "action": "Formal Invitation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth seriously transmits formal invitation, asks if willing to go to wilderness world again with him",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth serious, formal",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth seriously transmits formal invitation, asks if willing to go to wilderness world again with him.",
+      "narration": "寰姓少年肃然传音正式邀请,说是否愿意和他再去蛮荒世界走一趟。",
+      "face_style_auto": {
+        "expression": "Formal",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君脸色阴晴不定,眉头紧皱询问,既然打算联手去蛮荒,此地灵族之事如何解决。",
+      "mood": "Contemplative",
+      "lighting": "Spirit Light",
+      "action": "Ask About Current Situation",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huangliang Spirit Lord face changing, frowns and asks, since planning to join forces for wilderness, how to resolve spirit clan matter here",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang contemplating, frowning",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord face changing, frowns and asks, since planning to join forces for wilderness, how to resolve spirit clan matter here.",
+      "narration": "黄粱灵君脸色阴晴不定,询问既然打算联手去蛮荒,此地灵族之事如何解决。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年毫不迟疑说道,你我双方联手先将这些灵族擒下,抓到灵族叛逆再说。",
+      "mood": "Determined",
+      "lighting": "Demonic Mist",
+      "action": "Propose Alliance",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth without hesitation says, our two sides join forces to capture these spirits first, catch spirit traitor first",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth without hesitation says, our two sides join forces to capture these spirits first, catch spirit traitor first.",
+      "narration": "寰姓少年毫不迟疑说道,你我双方联手先将这些灵族擒下,抓到叛逆再说。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年说叛逆身上的东西,若数目多则两族平分,若只有一件则切磋神通,胜者拿走。",
+      "mood": "Negotiating",
+      "lighting": "Demonic Mist",
+      "action": "Discuss Distribution",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan youth says traitor's things, if many then split, if only one then compete, winner takes",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth negotiating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth says traitor's things, if many then split, if only one then compete, winner takes.",
+      "narration": "寰姓少年说叛逆身上的东西,若多则两族平分,若只有一件则切磋神通。",
+      "face_style_auto": {
+        "expression": "Negotiating",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君毫不犹豫摇头,说寰姓少年比他早进入炼虚期数千年,他不可能占上风。",
+      "mood": "Rejecting",
+      "lighting": "Spirit Light",
+      "action": "Reject Proposal",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord shakes head without hesitation, says Huan youth entered Void Refinement thousands of years earlier, cannot win",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang shaking head, rejecting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord shakes head without hesitation, says Huan youth entered Void Refinement thousands of years earlier, cannot win.",
+      "narration": "黄粱灵君毫不犹豫摇头,说寰姓少年比他早进炼虚期数千年,他不可能占上风。",
+      "face_style_auto": {
+        "expression": "Rejecting",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君一捻胡须说道,到时看看到底是何物再说,另一方必须付出差不多的代价。",
+      "mood": "Negotiating",
+      "lighting": "Spirit Light",
+      "action": "Propose Alternative",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord strokes beard, says see what it is first, other side must pay equivalent price",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang negotiating",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord strokes beard, says see what it is first, other side must pay equivalent price.",
+      "narration": "黄粱灵君一捻胡须说道,到时看看到底是何物再说,另一方须付代价。",
+      "face_style_auto": {
+        "expression": "Negotiating",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年面上厉色一闪,暗中提议道,没问题就以道友之言,你我两族动手先解决灵族。",
+      "mood": "Agreeing",
+      "lighting": "Demonic Mist",
+      "action": "Agree to Terms",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huan youth's face flashes with fierceness, secretly proposes, no problem as you say, our two races act to solve spirits first",
+        "environment": "Demon mist",
+        "character_pose": "Huan youth fierce, agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth's face flashes with fierceness, secretly proposes, no problem as you say, our two races act to solve spirits first.",
+      "narration": "寰姓少年面上厉色一闪,暗中提议道,没问题就以道友之言,两族动手先解决灵族。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君点点头,说好,你我就如说定了,随即转首向蓝城主等人传音解释几句。",
+      "mood": "Agreeing",
+      "lighting": "Spirit Light",
+      "action": "Explain to Others",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord nods, says good, agreed, then turns to City Lord Lan and others, transmits explanation",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang explaining to others",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord nods, says good, agreed, then turns to City Lord Lan and others, transmits explanation.",
+      "narration": "黄粱灵君点头说好,你我就如说定了,随即转首向蓝城主等人传音解释。",
+      "face_style_auto": {
+        "expression": "Agreeing",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "其他人见坐收渔利的打算被揭穿,妖族也出现了炼虚期妖修,自然只能无奈同意。",
+      "mood": "Resigned",
+      "lighting": "Spirit Light",
+      "action": "Reluctant Agreement",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Others see fishing for benefit plan exposed, demon race also has Void Refinement demon cultivator, naturally reluctantly agree",
+        "environment": "Jade boat",
+        "character_pose": "Others reluctantly agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Others see fishing for benefit plan exposed, demon race also has Void Refinement demon cultivator, naturally reluctantly agree.",
+      "narration": "其他人见坐收渔利打算被揭穿,妖族也有炼虚期妖修,只能无奈同意。",
+      "face_style_auto": {
+        "expression": "Resigned",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "蓝城主二话不说两手一搓一扬,一颗蓝灿灿的巨大火球冲天而起,在高空爆裂。",
+      "mood": "Signaling",
+      "lighting": "Blue Explosion",
+      "action": "Launch Signal",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "City Lord Lan without hesitation rubs hands together and raises, blue glowing giant fireball shoots up, explodes in sky",
+        "environment": "Sky above valley, signal explosion",
+        "character_pose": "City Lord Lan launching signal",
+        "fx": "Blue fireball explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "City Lord Lan without hesitation rubs hands together and raises, blue glowing giant fireball shoots up, explodes in sky.",
+      "narration": "蓝城主两手一搓一扬,蓝灿灿的巨大火球冲天而起,在高空爆裂。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Blue Explosion",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "chaos_valley_outside",
+      "duration": 4,
+      "description": "远处山头树林中各色光芒闪动,一道道遁光飞射而出,人类修士和炼体士纷纷现身。",
+      "mood": "Mobilizing",
+      "lighting": "Daylight",
+      "action": "Humans Appear",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Distant hills and forests glow with various lights, beams of light shoot out, human cultivators and body cultivators appear",
+        "environment": "Hills and forests around valley",
+        "character_pose": "Many cultivators appearing from hiding",
+        "fx": "Flying lights, cultivators appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Distant hills and forests glow with various lights, beams of light shoot out, human cultivators and body cultivators appear.",
+      "narration": "远处山头树林中各色光芒闪动,一道道遁光飞射而出,人类修士纷纷现身。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君大声吩咐,人族这面都知道了两族要联手先对付灵族的事情,虽然略感惊讶但未反对。",
+      "mood": "Ordering",
+      "lighting": "Spirit Light",
+      "action": "Give Orders",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord loudly commands, human side all know two races will join forces against spirits, slightly surprised but not opposed",
+        "environment": "Jade boat, surrounding area",
+        "character_pose": "Huangliang commanding, others listening",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord loudly commands, human side all know two races will join forces against spirits, slightly surprised but not opposed.",
+      "narration": "黄粱灵君大声吩咐,人族这面都知道两族要联手对付灵族,略感惊讶但未反对。",
+      "face_style_auto": {
+        "expression": "Commanding",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "那边妖气翻滚,大群相貌狰狞的妖兽和十几名化形妖修,先后现身而出。",
+      "mood": "Threatening",
+      "lighting": "Demonic Mist",
+      "action": "Demons Appear",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Over there demon qi rolls, large groups of fierce beasts and over ten transformed demon cultivators appear one after another",
+        "environment": "Demon mist area",
+        "character_pose": "Many demons and beasts appearing",
+        "fx": "Demon qi, fierce beasts",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Over there demon qi rolls, large groups of fierce beasts and over ten transformed demon cultivators appear one after another.",
+      "narration": "那边妖气翻滚,大群相貌狰狞的妖兽和十几名化形妖修,先后现身而出。",
+      "face_style_auto": {
+        "expression": "Threatening",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "人类这边各种法宝灵具纷纷被祭出,灵气冲天,化为片片光霞,气势惊人。",
+      "mood": "Powerful",
+      "lighting": "Spirit Light",
+      "action": "Activate Artifacts",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Human side various magic treasures and artifacts all activated, spiritual qi soaring, turning into light clouds, impressive momentum",
+        "environment": "Jade boat area, humans",
+        "character_pose": "Many cultivators activating artifacts",
+        "fx": "Spiritual light clouds, artifacts glowing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Human side various magic treasures and artifacts all activated, spiritual qi soaring, turning into light clouds, impressive momentum.",
+      "narration": "人类这边各种法宝灵具纷纷被祭出,灵气冲天,化为片片光霞气势惊人。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "对面的绿裙女子和黄石公见寰姓少年和黄粱灵君窃窃私语时,就大感不妙。",
+      "mood": "Alarmed",
+      "lighting": "Spirit Light",
+      "action": "Realize Danger",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Opposite green-dressed woman and Huang Shigong see Huan youth and Huangliang Spirit Lord whispering, feel very bad",
+        "environment": "Valley entrance, spirit side",
+        "character_pose": "Spirit beings alarmed, watching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Opposite green-dressed woman and Huang Shigong see Huan youth and Huangliang Spirit Lord whispering, feel very bad.",
+      "narration": "对面的绿裙女子和黄石公见两人窃窃私语时,就大感不妙。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "二人脸色阴霾互望一眼,忽然二话不说的往回就走,身后的木鸟和石巨人也飞快撤去。",
+      "mood": "Retreating",
+      "lighting": "Spirit Light",
+      "action": "Retreat",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Two people look at each other with dark faces, suddenly turn back without a word, wooden birds and stone giants behind also quickly withdraw",
+        "environment": "Valley entrance",
+        "character_pose": "Spirit beings retreating, puppets withdrawing",
+        "fx": "Puppets moving, retreat",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two people look at each other with dark faces, suddenly turn back without a word, wooden birds and stone giants behind also quickly withdraw.",
+      "narration": "二人脸色阴霾互望一眼,忽然二话不说往回就走,身后傀儡也飞快撤去。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "灵族竟然不战而退,人妖两族之人自然均都一怔,马上认为灵族准备逃走。",
+      "mood": "Surprised",
+      "lighting": "Mixed Lighting",
+      "action": "React to Retreat",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Spirit race actually retreats without fighting, human and demon races all stunned, immediately think spirits preparing to flee",
+        "environment": "Valley entrance, mixed forces",
+        "character_pose": "Humans and demons surprised, watching",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Spirit race actually retreats without fighting, human and demon races all stunned, immediately think spirits preparing to flee.",
+      "narration": "灵族竟然不战而退,人妖两族之人自然均都一怔,认为灵族准备逃走。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第34集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep33_full/scene_026.png"
+    }
+  ]
+}
+

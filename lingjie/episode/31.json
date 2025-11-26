@@ -1,0 +1,762 @@
+{
+  "episode": 31,
+  "title": "Spirit Artifact Control · Devouring Flame",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第31集:器灵控制·噬炎。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立刚要离开,头顶上空传来男子声音,称赞他能在灵族手下逃得性命。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Voice from Above",
+      "camera": "Looking Up",
+      "visual": {
+        "composition": "Han Li about to leave, man's voice from above praising his escape from spirit clan",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li looking up, alert",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li about to leave, man's voice from above praising his escape from spirit clan.",
+      "narration": "韩立刚要离开,头顶传来男子声音,称赞他能在灵族手下逃得性命。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "空中灵光闪动,浮现出三名数寸大小的灵族小人,为首者脚踩血色云雾。",
+      "mood": "Threatening",
+      "lighting": "Spirit Light",
+      "action": "Spirit Clan Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Spirit light flashes in air, three small spirit beings appear, leader on blood cloud",
+        "environment": "Forest clearing, spirit light",
+        "character_pose": "Three spirit beings floating, leader on cloud",
+        "fx": "Spirit light, blood cloud",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Spirit light flashes in air, three small spirit beings appear, leader standing on blood cloud.",
+      "narration": "空中灵光闪动,浮现三名数寸大小的灵族小人,为首者脚踩血色云雾。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "红光闪闪的壮汉建议旭天大人,说韩立是高阶炼体士,知道混沌谷位置,适合下手。",
+      "mood": "Sinister",
+      "lighting": "Spirit Light",
+      "action": "Recommend Target",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Red-glowing giant suggests to Xutian that Han Li is high-level body cultivator, knows Chaos Valley, suitable target",
+        "environment": "Forest clearing",
+        "character_pose": "Red giant speaking to leader, Han Li below",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Red-glowing giant suggests to Xutian that Han Li is high-level body cultivator, knows Chaos Valley, suitable target.",
+      "narration": "红光壮汉建议旭天,韩立是高阶炼体士,知道混沌谷位置,适合下手。",
+      "face_style_auto": {
+        "expression": "Sinister",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子轻描淡写点头同意,红光壮汉狞笑一下,化为尺许大火蛟直扑而下。",
+      "mood": "Attack",
+      "lighting": "Spirit Light",
+      "action": "Transform to Fire Dragon",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Man on blood cloud nods casually, red giant grins evilly, transforms into fire dragon, dives down",
+        "environment": "Forest clearing",
+        "character_pose": "Fire dragon diving, Han Li below",
+        "fx": "Fire dragon, red flames",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Man on blood cloud nods casually, red giant transforms into fire dragon, dives down toward Han Li.",
+      "narration": "血云上男子点头同意,红光壮汉狞笑化为火蛟,直扑而下。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立心中一惊,当即运转金刚诀,同时准备祭出两枚灭仙珠。",
+      "mood": "Defensive",
+      "lighting": "Spirit Light",
+      "action": "Prepare Defense",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li alarmed, activates Vajra Art, prepares to use two Extermination Immortal Beads",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li with golden aura, holding beads",
+        "fx": "Golden aura, glowing beads",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li alarmed, activates Vajra Art, prepares to use two Extermination Immortal Beads.",
+      "narration": "韩立心中一惊,当即运转金刚诀,准备祭出两枚灭仙珠。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子抬手一点,韩立突觉无形巨力降临,整个人陷入地面小半。",
+      "mood": "Trapped",
+      "lighting": "Spirit Light",
+      "action": "Suppressed",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Man on blood cloud points finger, Han Li feels invisible force, sinks halfway into ground",
+        "environment": "Forest clearing, ground cracking",
+        "character_pose": "Han Li sinking into ground, struggling",
+        "fx": "Invisible force, ground cracking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Man on blood cloud points finger, Han Li feels invisible force, sinks halfway into ground.",
+      "narration": "血云上男子抬手一点,无形巨力降临,韩立整个人陷入地面小半。",
+      "face_style_auto": {
+        "expression": "Struggling",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立通体麻痹无法动弹,红光一闪,迷你火蛟已到跟前,没入其头颅中。",
+      "mood": "Crisis",
+      "lighting": "Spirit Light",
+      "action": "Fire Dragon Enters",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li paralyzed, cannot move, red light flashes, mini fire dragon reaches him, enters his head",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li face distorted, fire dragon entering head",
+        "fx": "Red light, fire dragon entering",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li paralyzed, red light flashes, mini fire dragon reaches him, enters his head.",
+      "narration": "韩立通体麻痹无法动弹,红光一闪,火蛟没入其头颅中。",
+      "face_style_auto": {
+        "expression": "Pain",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立一声惊怒大喝,脸孔扭曲痛苦异常,血云上男子见状微笑,放下手指。",
+      "mood": "Painful",
+      "lighting": "Spirit Light",
+      "action": "Pain Reaction",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li cries out in pain and anger, face twisted, man on blood cloud smiles, lowers finger",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li in pain, man smiling",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li cries out in pain and anger, face twisted, man on blood cloud smiles, lowers finger.",
+      "narration": "韩立惊怒大喝,脸孔扭曲痛苦异常,血云上男子微笑放下手指。",
+      "face_style_auto": {
+        "expression": "Pain",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立身上巨力消失,身形拔地而起,金光刺目冲进树林,挥拳狂击巨树。",
+      "mood": "Frenzied",
+      "lighting": "Golden Glow",
+      "action": "Frenzied Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li's force disappears, body jumps up, golden light blazing, rushes into forest, punches trees wildly",
+        "environment": "Forest, trees breaking",
+        "character_pose": "Han Li punching trees, golden aura",
+        "fx": "Golden light, trees breaking",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Han Li's force disappears, body jumps up, golden light blazing, rushes into forest, punches trees wildly.",
+      "narration": "韩立身上巨力消失,金光刺目冲进树林,挥拳狂击巨树。",
+      "face_style_auto": {
+        "expression": "Frenzied",
+        "lighting": "Golden Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "所过之处大树被拦腰击断,轰隆巨响声中,韩立狂击近一顿饭工夫仍未停。",
+      "mood": "Intense",
+      "lighting": "Golden Glow",
+      "action": "Continue Destroying",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Trees broken in half everywhere, roaring sounds, Han Li punches for long time without stopping",
+        "environment": "Destroyed forest",
+        "character_pose": "Han Li continuing to punch, trees falling",
+        "fx": "Broken trees, dust",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Trees broken in half everywhere, roaring sounds, Han Li punches for long time without stopping.",
+      "narration": "所过之处大树被拦腰击断,轰隆巨响声中,韩立狂击近一顿饭工夫。",
+      "face_style_auto": {
+        "expression": "Frenzied",
+        "lighting": "Golden Glow",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子笑容收敛,目露惊疑,一旁少女担心询问噬炎是否出事。",
+      "mood": "Concerned",
+      "lighting": "Spirit Light",
+      "action": "Express Concern",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man on blood cloud's smile fades, shows surprise, girl beside asks if Shi Yan is okay",
+        "environment": "Forest clearing",
+        "character_pose": "Man concerned, girl asking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Man on blood cloud's smile fades, shows surprise, girl beside asks if Shi Yan is okay.",
+      "narration": "血云上男子笑容收敛目露惊疑,少女担心询问噬炎是否出事。",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子思量后摇头,说噬炎本体是噬火珠,吞噬炼体士神念轻而易举。",
+      "mood": "Confident",
+      "lighting": "Spirit Light",
+      "action": "Reassure",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man on blood cloud thinks then shakes head, says Shi Yan's true form is fire-devouring bead, easily devours body cultivator's divine sense",
+        "environment": "Forest clearing",
+        "character_pose": "Man explaining, girl listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Man on blood cloud thinks then shakes head, says Shi Yan's true form is fire-devouring bead, easily devours body cultivator's divine sense.",
+      "narration": "血云上男子思量后摇头,说噬炎本体是噬火珠,吞噬炼体士神念轻而易举。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "远处树林轰响声嘎然而止,少女面露欣喜,男子却下意识微眯双目。",
+      "mood": "Suspenseful",
+      "lighting": "Spirit Light",
+      "action": "Sounds Stop",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Distant forest sounds stop suddenly, girl looks happy, man squints suspiciously",
+        "environment": "Forest clearing, silence",
+        "character_pose": "Girl happy, man suspicious",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Distant forest sounds stop suddenly, girl looks happy, man squints suspiciously.",
+      "narration": "远处树林轰响声嘎然而止,少女面露欣喜,男子却微眯双目。",
+      "face_style_auto": {
+        "expression": "Suspicious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "片刻后韩立从树林深处走出,面无表情,双目略有些呆滞。",
+      "mood": "Controlled",
+      "lighting": "Daylight",
+      "action": "Walk Out",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Moments later Han Li walks out from forest depths, expressionless, eyes slightly dull",
+        "environment": "Forest edge",
+        "character_pose": "Han Li walking, expressionless",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Moments later Han Li walks out from forest depths, expressionless, eyes slightly dull.",
+      "narration": "片刻后韩立从树林深处走出,面无表情,双目略有些呆滞。",
+      "face_style_auto": {
+        "expression": "Dull",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子询问噬炎感觉如何,韩立扭动脖颈,口中传出灵族壮汉的声音。",
+      "mood": "Deceptive",
+      "lighting": "Spirit Light",
+      "action": "Respond in Voice",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man on blood cloud asks how Shi Yan feels, Han Li twists neck, voice of spirit giant comes out",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li speaking, spirit voice",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Man on blood cloud asks how Shi Yan feels, Han Li twists neck, voice of spirit giant comes out.",
+      "narration": "血云上男子询问感觉如何,韩立扭动脖颈,口中传出灵族壮汉声音。",
+      "face_style_auto": {
+        "expression": "Controlled",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立说这具人族躯体好用,只是对方神识比一般凡人强大,颇费了一番手脚。",
+      "mood": "Deceptive",
+      "lighting": "Spirit Light",
+      "action": "Explain Control",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li says this human body is good, but target's divine sense stronger than ordinary mortals, took some effort",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li speaking, controlled",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li says this human body is good, but target's divine sense stronger than ordinary mortals, took some effort.",
+      "narration": "韩立说这具人族躯体好用,只是对方神识比一般人强大,颇费手脚。",
+      "face_style_auto": {
+        "expression": "Controlled",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子放心下来,韩立说已查到混沌谷位置,询问是否现在过去。",
+      "mood": "Planning",
+      "lighting": "Spirit Light",
+      "action": "Discuss Next Step",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man on blood cloud relieved, Han Li says found Chaos Valley location, asks if go now",
+        "environment": "Forest clearing",
+        "character_pose": "Man and Han Li discussing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Man on blood cloud relieved, Han Li says found Chaos Valley location, asks if go now.",
+      "narration": "血云上男子放心,韩立说已查到混沌谷位置,询问是否现在过去。",
+      "face_style_auto": {
+        "expression": "Planning",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "血云上男子说不急,骅光去追变异豹麟兽了,不久就该回来,稍等一下。",
+      "mood": "Waiting",
+      "lighting": "Spirit Light",
+      "action": "Wait for Others",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man on blood cloud says not urgent, Huan Guang chasing variant leopard beast, should return soon, wait",
+        "environment": "Forest clearing",
+        "character_pose": "Man explaining, others waiting",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Man on blood cloud says not urgent, Huan Guang chasing variant leopard beast, should return soon, wait.",
+      "narration": "血云上男子说不急,骅光去追变异豹麟兽,不久就该回来,稍等。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "小半时辰后破空声传来,一道白虹激射而至,现出白色小人,牵着被捆缚的小兽。",
+      "mood": "Arrival",
+      "lighting": "Spirit Light",
+      "action": "White Light Arrives",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Half hour later, sound of breaking air, white rainbow shoots over, white small person appears, leading bound beast",
+        "environment": "Forest clearing",
+        "character_pose": "White spirit arriving, bound beast",
+        "fx": "White light, rainbow",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Half hour later, sound of breaking air, white rainbow shoots over, white small person appears, leading bound beast.",
+      "narration": "小半时辰后破空声传来,白虹激射而至,现出白色小人,牵着被捆缚的小兽。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "白色小人一见韩立一怔,血云上男子解释这人族神识已被火炎吞噬,被噬炎控制。",
+      "mood": "Explanatory",
+      "lighting": "Spirit Light",
+      "action": "Explain Control",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "White small person sees Han Li, surprised, man on blood cloud explains human's divine sense devoured, controlled by Shi Yan",
+        "environment": "Forest clearing",
+        "character_pose": "White spirit surprised, man explaining",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "White small person sees Han Li, surprised, man on blood cloud explains human's divine sense devoured, controlled by Shi Yan.",
+      "narration": "白色小人一见韩立一怔,血云上男子解释人族神识已被火炎吞噬控制。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "白色小人恍然,让韩立帮忙看管豹麟兽,韩立伸手抓住小兽,灵戒一闪收入其中。",
+      "mood": "Cooperative",
+      "lighting": "Spirit Light",
+      "action": "Store Beast",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "White small person understands, asks Han Li to watch leopard beast, Han Li catches beast, ring flash stores it",
+        "environment": "Forest clearing",
+        "character_pose": "Han Li catching beast, storing",
+        "fx": "Ring light flash",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "White small person understands, asks Han Li to watch leopard beast, Han Li catches beast, ring flash stores it.",
+      "narration": "白色小人恍然,让韩立看管豹麟兽,韩立伸手抓住小兽收入灵戒。",
+      "face_style_auto": {
+        "expression": "Cooperative",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "旭天吩咐噬炎带路去混沌谷,骅光去和五行灵族会合,说他们直接去混沌谷。",
+      "mood": "Commanding",
+      "lighting": "Spirit Light",
+      "action": "Give Orders",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xutian orders Shi Yan to lead to Chaos Valley, Huan Guang to meet Five Elements spirits, says going directly to valley",
+        "environment": "Forest clearing",
+        "character_pose": "Xutian commanding, others listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xutian orders Shi Yan to lead to Chaos Valley, Huan Guang to meet Five Elements spirits, says going directly to valley.",
+      "narration": "旭天吩咐噬炎带路去混沌谷,骅光去和五行灵族会合,直接去谷中。",
+      "face_style_auto": {
+        "expression": "Commanding",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "旭天说这是取得神血的绝佳机会,有了此滴神血,就可以再多一大批族人出来。",
+      "mood": "Determined",
+      "lighting": "Spirit Light",
+      "action": "Emphasize Mission",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Xutian says this is excellent opportunity to obtain divine blood, with this drop can create many more clan members",
+        "environment": "Forest clearing",
+        "character_pose": "Xutian serious, determined",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xutian says this is excellent opportunity to obtain divine blood, with this drop can create many more clan members.",
+      "narration": "旭天说这是取得神血的绝佳机会,有了此滴神血可多一大批族人。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "旭天说一定要成功,绝不允许失手,韩立冷静应道,一行人等立刻离开。",
+      "mood": "Departing",
+      "lighting": "Spirit Light",
+      "action": "Depart",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Xutian says must succeed, absolutely no failure, Han Li calmly responds, group immediately departs",
+        "environment": "Forest clearing, departing",
+        "character_pose": "Group departing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xutian says must succeed, absolutely no failure, Han Li calmly responds, group immediately departs.",
+      "narration": "旭天说一定要成功绝不允许失手,韩立冷静应道,一行人等立刻离开。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第32集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep31_full/scene_026.png"
+    }
+  ]
+}
+

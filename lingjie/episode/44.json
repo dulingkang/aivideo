@@ -1,0 +1,351 @@
+{
+  "episode": 44,
+  "title": "Observing Battle · Xutian Appears",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第44集:观战大战·旭天现身。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立躲在空中注视着一人一妖和巨人的大战,眉头皱成一团,不愧为炼虚期修士和传闻中的上古巨人之战,在他神识感应下,三者的一举一动间全都引得天地元气晃动不已。",
+      "mood": "Observant",
+      "lighting": "Mixed Lighting",
+      "action": "Observe Battle",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li hiding in air watches battle between one human one demon and giant, frowns, truly Void Refinement cultivators and legendary ancient giant battle, in his divine sense, three's every action shakes heaven and earth spiritual energy",
+        "environment": "Sky above, Han Li invisible observing",
+        "character_pose": "Han Li frowning, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li hiding in air watches battle between one human one demon and giant, frowns, truly Void Refinement cultivators and legendary ancient giant battle, in his divine sense, three's every action shakes heaven and earth spiritual energy.",
+      "narration": "韩立躲在空中注视着一人一妖和巨人的大战,眉头皱成一团,三者的一举一动间全都引得天地元气晃动不已。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "特别是那黄粱灵君元婴离体后,元婴指挥的那颗大印,每一击前都狂吸附近的灵气注入其中,让威力几乎增加大半,那名将身形化为一道晶莹流芒的半妖少年,身体忽闪忽现之间,惊人得仿佛一个巨大漩涡。",
+      "mood": "Powerful",
+      "lighting": "Mixed Lighting",
+      "action": "Analyze Techniques",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Especially Huangliang Spirit Lord's nascent soul after leaving body, nascent soul controls that large seal, before each strike wildly absorbs nearby spiritual energy, power increases by half, half-beast youth transforming to crystal light stream, body flickering like giant vortex",
+        "environment": "Sky above, battle techniques",
+        "character_pose": "Analyzing battle techniques",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Especially Huangliang Spirit Lord's nascent soul after leaving body, nascent soul controls that large seal, before each strike wildly absorbs nearby spiritual energy, power increases by half, half-beast youth transforming to crystal light stream, body flickering like giant vortex.",
+      "narration": "特别是那黄粱灵君元婴离体后,元婴指挥的那颗大印,每一击前都狂吸附近的灵气注入其中。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "至于那独目巨人,大口一张一合的不经意间,就下意识的吞吐着大量灵气,它吞吐的灵气数量远比黄粱灵君二人大得多,但论精纯程度,却又逊了人妖二人。",
+      "mood": "Analyzing",
+      "lighting": "Yellow Light",
+      "action": "Analyze Giant",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "As for one-eyed giant, large mouth opening and closing unconsciously, instinctively swallows large amounts of spiritual energy, amount much greater than Huangliang Spirit Lord two people, but purity inferior to human demon two",
+        "environment": "Giant breathing, absorbing energy",
+        "character_pose": "Giant breathing, absorbing energy",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "As for one-eyed giant, large mouth opening and closing unconsciously, instinctively swallows large amounts of spiritual energy, amount much greater than Huangliang Spirit Lord two people, but purity inferior to human demon two.",
+      "narration": "至于那独目巨人,大口一张一合的不经意间,就下意识的吞吐着大量灵气,但论精纯程度,却又逊了人妖二人。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立第一次如此近距离,观摩到炼虚期存在的争斗,自然不由自主的结合自己修炼的功法加以印证,结果,竟大有收获。",
+      "mood": "Learning",
+      "lighting": "Mixed Lighting",
+      "action": "Learn from Battle",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li first time so close, observes Void Refinement existence's battle, naturally unconsciously combines own cultivation techniques to verify, result, actually gains much",
+        "environment": "Sky above, Han Li learning",
+        "character_pose": "Han Li contemplative, learning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li first time so close, observes Void Refinement existence's battle, naturally unconsciously combines own cultivation techniques to verify, result, actually gains much.",
+      "narration": "韩立第一次如此近距离,观摩到炼虚期存在的争斗,自然不由自主的结合自己修炼的功法加以印证。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "正当韩立看得聚精会神的时候,忽然脸色一动,蓦然一转首,朝一侧某处虚空中望去,虽然那里明明什么都没有的样子,他的神念也未感应到任何异常。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "Sense Something",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Just as Han Li watching intently, suddenly expression changes, suddenly turns head, looks toward one side void, though there seems nothing, his divine sense also doesn't detect any anomaly",
+        "environment": "Sky above, Han Li alert",
+        "character_pose": "Han Li turning head, alert",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Just as Han Li watching intently, suddenly expression changes, suddenly turns head, looks toward one side void, though there seems nothing, his divine sense also doesn't detect any anomaly.",
+      "narration": "正当韩立看得聚精会神的时候,忽然脸色一动,蓦然一转首,朝一侧某处虚空中望去。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但是一对经过灵液洗涤过无数次的灵目,还是隐隐的在那处空中,看到了一个模糊异常透明影子站在那里,同样观望着下边的大战,旭天,虽然韩立的灵目还无法将人看得真切。",
+      "mood": "Discovering",
+      "lighting": "Mixed Lighting",
+      "action": "Discover Xutian",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "But pair of spirit eyes washed by spirit liquid countless times, still faintly sees in that air, a blurry transparent shadow standing there, also watching battle below, Xutian, though Han Li's spirit eyes cannot see clearly",
+        "environment": "Sky above, transparent shadow visible",
+        "character_pose": "Transparent shadow, Han Li discovering",
+        "fx": "Transparent shadow, barely visible",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But pair of spirit eyes washed by spirit liquid countless times, still faintly sees in that air, a blurry transparent shadow standing there, also watching battle below, Xutian, though Han Li's spirit eyes cannot see clearly.",
+      "narration": "但是一对经过灵液洗涤过无数次的灵目,还是隐隐的在那处空中,看到了一个模糊异常透明影子站在那里。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立暗喜的嘀咕起来,对他来说,局面越乱,才越有机可趁的,就在韩立凝望着那透明的影子一语不发的时候,那影子动了一动,蓦然一抬首,竟也朝韩立所在位置看了一眼。",
+      "mood": "Tense",
+      "lighting": "Mixed Lighting",
+      "action": "Mutual Discovery",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li secretly happy mutters, for him, the messier the situation, the more opportunity, just as Han Li stares at transparent shadow silently, shadow moves, suddenly raises head, also looks at Han Li's position",
+        "environment": "Sky above, two discovering each other",
+        "character_pose": "Shadow looking, Han Li alert",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li secretly happy mutters, for him, the messier the situation, the more opportunity, just as Han Li stares at transparent shadow silently, shadow moves, suddenly raises head, also looks at Han Li's position.",
+      "narration": "韩立暗喜的嘀咕起来,对他来说,局面越乱,才越有机可趁的,那影子蓦然一抬首,竟也朝韩立所在位置看了一眼。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立心中一凛,好在那影子马上又低下了头去,不知它是真的发现了韩立的存在,还是刚才的一眼只是无意之举,韩立双目一眯,脸色阴晴不定起来。",
+      "mood": "Cautious",
+      "lighting": "Mixed Lighting",
+      "action": "Stay Alert",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's heart trembles, good thing shadow immediately lowers head again, unknown if really discovered Han Li's presence, or that look was unintentional, Han Li squints eyes, expression uncertain",
+        "environment": "Sky above, Han Li cautious",
+        "character_pose": "Han Li squinting, uncertain",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart trembles, good thing shadow immediately lowers head again, unknown if really discovered Han Li's presence, or that look was unintentional, Han Li squints eyes, expression uncertain.",
+      "narration": "韩立心中一凛,好在那影子马上又低下了头去,不知它是真的发现了韩立的存在,还是刚才的一眼只是无意之举。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "下面的大战,足足持续了半天,在巨人和两名炼虚级存在的破坏下,整个混沌谷早已彻底变成了另外一番模样,不但地面土坑坑洼洼,到处都有里许以上的大坑。",
+      "mood": "Destructive",
+      "lighting": "Mixed Lighting",
+      "action": "Battle Destroys Valley",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Battle below lasts full half day, under giant and two Void Refinement level destruction, entire Chaos Valley completely transformed, not only ground pitted, everywhere has li-sized large pits",
+        "environment": "Chaos Valley, destroyed",
+        "character_pose": "Destroyed valley, battle continuing",
+        "fx": "Destroyed ground, pits",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Battle below lasts full half day, under giant and two Void Refinement level destruction, entire Chaos Valley completely transformed, not only ground pitted, everywhere has li-sized large pits.",
+      "narration": "下面的大战,足足持续了半天,在巨人和两名炼虚级存在的破坏下,整个混沌谷早已彻底变成了另外一番模样。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "而原本存在谷中的灰濛濛雾气,早就被三者的惊人灵压冲的一干二净,并且因为三者搅动了天地元气的急剧变化,附近空中一会儿阴云密布,泼天大雨,一会儿晴朗万里,烈阳高照。",
+      "mood": "Chaotic",
+      "lighting": "Mixed Lighting",
+      "action": "Weather Chaos",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Originally existing gray mist in valley, long since swept clean by three's astonishing spirit pressure, and because three stirred heaven and earth energy's drastic changes, nearby air sometimes dark clouds, pouring rain, sometimes clear, blazing sun",
+        "environment": "Chaos Valley, chaotic weather",
+        "character_pose": "Weather changing, chaotic",
+        "fx": "Dark clouds, rain, then sun",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Originally existing gray mist in valley, long since swept clean by three's astonishing spirit pressure, and because three stirred heaven and earth energy's drastic changes, nearby air sometimes dark clouds, pouring rain, sometimes clear, blazing sun.",
+      "narration": "而原本存在谷中的灰濛濛雾气,早就被三者的惊人灵压冲的一干二净,附近空中一会儿阴云密布,一会儿晴朗万里。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep44_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一会儿风雪交加,风刃乱舞,一会儿冰雹漫天,泥石如雨,除了宫装少妇等几名化神修士,还能远远的观战外,其余之人早就退出了混沌谷,生怕给牵扯进来,葬送了小命。",
+      "mood": "Extreme",
+      "lighting": "Mixed Lighting",
+      "action": "Extreme Weather",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Sometimes snow wind, wind blades dancing, sometimes hail everywhere, mud and rocks like rain, except palace-dressed woman and few Deity Transformation cultivators, still watching from distance, others long since retreated from Chaos Valley, afraid to get involved, lose lives",
+        "environment": "Chaos Valley, extreme weather, few observers",
+        "character_pose": "Extreme weather, few people remaining",
+        "fx": "Snow, wind blades, hail, mud and rocks",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Sometimes snow wind, wind blades dancing, sometimes hail everywhere, mud and rocks like rain, except palace-dressed woman and few Deity Transformation cultivators, still watching from distance, others long since retreated from Chaos Valley, afraid to get involved, lose lives.",
+      "narration": "一会儿风雪交加,风刃乱舞,一会儿冰雹漫天,泥石如雨,其余之人早就退出了混沌谷。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural"
+        "strength": 0.89
+      },
+      "image_path": 

@@ -1,0 +1,622 @@
+{
+    "episode": 1,
+    "title": "Strange Land.First Entry into the Spirit Realm",
+    "scenes": [
+      {
+        "id": 0,
+        "duration": 3,
+        "description": "镜头淡入，云雾笼罩的仙域天空中金色卷轴舒展开来并闪烁灵光。",
+        "mood": "Serene",
+        "lighting": "Soft",
+        "action": "Title reveal",
+        "camera": "Static shot",
+        "visual": {
+          "composition": "Immortal realm sky veiled in clouds,golden scroll unfurling",
+          "environment": "Sky of the immortal realm,mist-wreathed,golden radiance",
+          "character_pose": "",
+          "fx": "Golden light,scroll-unfurling effect",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "Xianxia opening,mist-shrouded immortal sky,golden scroll unfurling,spirit particles drifting,wide cinematic shot,film-grade lighting,4K",
+        "narration": "我是云卷仙音，欢迎回来。第一集《陌生之地·初入灵界》。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.82
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_001.png"
+      },
+      {
+        "id": 1,
+        "duration": 4,
+        "description": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。",
+        "mood": "Solemn",
+        "lighting": "Daytime",
+        "action": "Lying motionless",
+        "camera": "Top-down wide shot",
+        "visual": {
+          "composition": "Han Li lying on gray-green sand",
+          "environment": "Gray-green desert floor",
+          "character_pose": "Motionless,feeling the heat",
+          "fx": "",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li lying on gray-green sand,motionless,feeling the ground's dry heat.",
+        "narration": "韩立保持不动，静静体会脚下炽热的沙地。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Bright natural",
+          "detail": "Natural",
+          "strength": 0.83
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_002.png"
+      },
+      {
+        "id": 2,
+        "duration": 4,
+        "description": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。",
+        "mood": "Mysterious",
+        "lighting": "Daytime",
+        "action": "Observing the sky",
+        "camera": "Sky pan",
+        "visual": {
+          "composition": "Three dazzling suns and four faint lunar phantoms in the sky",
+          "environment": "Three brilliant suns,four hazy moon silhouettes",
+          "character_pose": "",
+          "fx": "",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Three dazzling suns and four hazy lunar silhouettes appear in the sky.",
+        "narration": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Bright natural",
+          "detail": "Natural",
+          "strength": 0.84
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_003.png"
+      },
+      {
+        "id": 3,
+        "duration": 4,
+        "description": "韩立回想空间节点的遭遇，面色渐渐阴沉。",
+        "mood": "Tense",
+        "lighting": "Daytime",
+        "action": "Recalling",
+        "camera": "Close-up on face",
+        "visual": {
+          "composition": "Han Li recalls the spatial node ordeal,his expression darkens",
+          "environment": "",
+          "character_pose": "Unpleasant expression",
+          "fx": "",
+          "motion": {
+            "type": "push_in",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li recalls the spatial-node ordeal,his expression turning grim.",
+        "narration": "每当想起空间节点发生的一切，韩立的脸色就会暗沉下来，心底泛起寒意。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Bright natural",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_004.png"
+      },
+      {
+        "id": 4,
+        "duration": 4,
+        "description": "他忆起与冰凤分离以及禁制爆发时的剧痛。",
+        "mood": "Agony",
+        "lighting": "Daytime",
+        "action": "Enduring pain",
+        "camera": "Medium shot",
+        "visual": {
+          "composition": "Han Li recalls separation from Ice Phoenix",
+          "environment": "",
+          "character_pose": "Wracked by the restriction's pain",
+          "fx": "",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li recalls being separated from Ice Phoenix and the agony of the restriction flaring up.",
+        "narration": "被迫与冰凤分开后，二人互下的禁制再度作祟。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Bright natural",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_005.png"
+      },
+      {
+        "id": 5,
+        "duration": 4,
+        "description": "韩立施展元婴虚化之法，将庞大的元婴精元灌注全身。",
+        "mood": "Resolute",
+        "lighting": "Mystical glow",
+        "action": "Casting spell",
+        "camera": "Energy close-up",
+        "visual": {
+          "composition": "Han Li uses Nascent Soul Void method,energy flowing",
+          "environment": "",
+          "character_pose": "Performing the Nascent Soul Void method",
+          "fx": "Nascent Soul essence flooding the body,visible energy flow",
+          "motion": {
+            "type": "pull_out",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li uses the Nascent Soul Void method,channeling its vast essence into his flesh.",
+        "narration": "他运转元婴虚化之法，硬生生将滚滚精元送入躯体每一处。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Bright natural",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_006.png"
+      },
+      {
+        "id": 6,
+        "duration": 4,
+        "description": "他费力偏过头，只见一望无际的青灰砂砾。",
+        "mood": "Calm",
+        "lighting": "Daytime",
+        "action": "Turning head",
+        "camera": "Wide pan",
+        "visual": {
+          "composition": "Han Li strains to tilt his head,sees endless gray-green gravel",
+          "environment": "Endless gray-green gravel plain",
+          "character_pose": "Straining to tilt head",
+          "fx": "",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li strains to tilt his head,revealing an endless expanse of gray-green gravel.",
+        "narration": "好不容易偏动头颅，映入眼帘的仍是无边无际的青灰沙砾。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_007.png"
+      },
+      {
+        "id": 7,
+        "duration": 4,
+        "description": "三颗太阳缩成两颗，最终只剩一颗，天空渐渐暗下。",
+        "mood": "Contemplative",
+        "lighting": "Sunset",
+        "action": "Watching sunset",
+        "camera": "Sky time-lapse",
+        "visual": {
+          "composition": "Suns reduce from three to two to one,sky darkening",
+          "environment": "Sky darkening,suns diminishing from three to one",
+          "character_pose": "",
+          "fx": "",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "The suns dwindle from three to two to one as the sky begins to dim.",
+        "narration": "头顶的三轮烈日渐渐化作两轮，最终只剩下一轮，天色随之黯淡。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_008.png"
+      },
+      {
+        "id": 8,
+        "duration": 4,
+        "description": "韩立睁大双眼盯着高空，瞳孔里隐隐闪烁蓝芒。",
+        "mood": "Alert",
+        "lighting": "Dusk",
+        "action": "Focusing gaze",
+        "camera": "Extreme eye close-up",
+        "visual": {
+          "composition": "Han Li's eyes widen,staring upward",
+          "environment": "High sky",
+          "character_pose": "Eyes wide,staring",
+          "fx": "Faint blue glints in pupils",
+          "motion": {
+            "type": "pull_out",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li's eyes widen,faint blue flickers in his pupils as he stares into the sky.",
+        "narration": "韩立非但没有闭眼，反而睁得更大，眼中泛起淡蓝光芒。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_009.png"
+      },
+      {
+        "id": 9,
+        "duration": 4,
+        "description": "刺耳尖鸣划破长空，二十多颗黑点从天俯冲而下。",
+        "mood": "Tense",
+        "lighting": "Dusk",
+        "action": "Sensing threat",
+        "camera": "Sky to ground",
+        "visual": {
+          "composition": "Over twenty black dots appear in the sky,diving down",
+          "environment": "Sky,black dots emerging",
+          "character_pose": "",
+          "fx": "Shrill cries,rapid descent",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "Shrill screeches echo as over twenty black dots dive from the sky.",
+        "narration": "附近上空响起凄厉尖鸣，一个个黑影相继扑向沙海。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_010.png"
+      },
+      {
+        "id": 10,
+        "duration": 4,
+        "description": "他看清那些是鹰首蝠身的黑色怪鸟，狰狞可怖。",
+        "mood": "Alert",
+        "lighting": "Dusk",
+        "action": "Identifying foe",
+        "camera": "Bird close-up",
+        "visual": {
+          "composition": "Han Li sees eagle-headed bat-bodied black monstrous birds",
+          "environment": "Eagle-headed bat-bodied black birds",
+          "character_pose": "Recognizing",
+          "fx": "",
+          "motion": {
+            "type": "pull_out",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li makes out eagle-headed bat-bodied black monstrous birds,hideous and fierce.",
+        "narration": "每一只都是鹰首蝠身的黑色怪鸟，足有四五尺长。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_011.png"
+      },
+      {
+        "id": 11,
+        "duration": 4,
+        "description": "怪鸟疾冲到离地三十余丈处，目标正对准韩立。",
+        "mood": "Perilous",
+        "lighting": "Dusk",
+        "action": "Preparing defense",
+        "camera": "Low-angle birds",
+        "visual": {
+          "composition": "Monstrous birds dive to thirty-plus zhang above ground,targeting Han Li",
+          "environment": "Thirty-plus zhang above ground",
+          "character_pose": "",
+          "fx": "",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "The monstrous birds swoop to thirty-plus zhang above ground,aiming straight at Han Li.",
+        "narration": "它们速度极快，眨眼间便压到离地三十多丈的低空。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_012.png"
+      },
+      {
+        "id": 12,
+        "duration": 4,
+        "description": "韩立头颅一偏，胸膛一瘪，吸起一团沙砾。",
+        "mood": "Focused",
+        "lighting": "Dusk",
+        "action": "Gathering sand",
+        "camera": "Close-up on mouth",
+        "visual": {
+          "composition": "Han Li tilts head,hollows chest,inhales a clump of sand",
+          "environment": "",
+          "character_pose": "Head tilt,chest hollowed",
+          "fx": "",
+          "motion": {
+            "type": "pull_out",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li tilts his head and sucks in a clump of sand.",
+        "narration": "他眼中寒芒一闪，微微侧首。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_013.png"
+      },
+      {
+        "id": 13,
+        "duration": 4,
+        "description": "沙砾在他唇边呼啸旋转，怪鸟逼近到十余丈。",
+        "mood": "Tense",
+        "lighting": "Dusk",
+        "action": "Charging attack",
+        "camera": "Medium shot",
+        "visual": {
+          "composition": "Sand spins at his lips as birds close to ten-plus zhang",
+          "environment": "Birds now ten-plus zhang away",
+          "character_pose": "",
+          "fx": "Spinning sand",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "The sand spins at his lips while the monstrous birds close to ten-plus zhang.",
+        "narration": "那团沙砾在嘴边滴溜溜旋转，却始终不曾落下。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_014.png"
+      },
+      {
+        "id": 14,
+        "duration": 4,
+        "description": "他胸膛鼓起，喷出劲风，将沙砾化作青芒激射。",
+        "mood": "Fierce",
+        "lighting": "Dusk",
+        "action": "Launching attack",
+        "camera": "Dynamic shot",
+        "visual": {
+          "composition": "Han Li's chest expands,gust erupts,sand turns into green streaks",
+          "environment": "",
+          "character_pose": "Chest swelling",
+          "fx": "Gusting wind,green streaks shooting out",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "Han Li's chest swells; he exhales a fierce gust that turns the sand into green streaks.",
+        "narration": "韩立胸膛猛然鼓起，口中喷出白蒙蒙的狂风。",
+        "face_style_auto": {
+          "expression": "Focused",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_015.png"
+      },
+      {
+        "id": 15,
+        "duration": 4,
+        "description": "青芒击中怪鸟，发出金属摩擦般的惨叫。",
+        "mood": "Fierce",
+        "lighting": "Dusk",
+        "action": "Hitting target",
+        "camera": "Medium shot on birds",
+        "visual": {
+          "composition": "Green streaks strike birds,metallic screeches erupt",
+          "environment": "",
+          "character_pose": "",
+          "fx": "Metallic screeching",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "The green streaks slam into the birds,producing metallic screeches.",
+        "narration": "漫天青光砸在当头几只怪鸟身上，发出低沉闷响。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_016.png"
+      },
+      {
+        "id": 16,
+        "duration": 4,
+        "description": "剩下的怪鸟扑向受伤的同类，将其撕裂吞噬。",
+        "mood": "Brutal",
+        "lighting": "Dusk",
+        "action": "Cannibalizing kin",
+        "camera": "Wide shot",
+        "visual": {
+          "composition": "Remaining birds pounce on wounded kin,tearing them apart",
+          "environment": "",
+          "character_pose": "",
+          "fx": "Tearing and dismemberment",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "slow"
+          }
+        },
+        "prompt": "The remaining birds pounce on their wounded kin,ripping them to pieces.",
+        "narration": "让人惊愕的是，剩余怪鸟一见同伴受创便蜂拥而上撕扯。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Dramatic",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_017.png"
+      },
+      {
+        "id": 17,
+        "duration": 4,
+        "description": "最后一轮太阳渐渐黯淡，形态变化，七枚弯月即将出现。",
+        "mood": "Mysterious",
+        "lighting": "Night transition",
+        "action": "Observing change",
+        "camera": "Sky time-lapse",
+        "visual": {
+          "composition": "Final sun dims,about to become seven crescent moons",
+          "environment": "Sky,last sun fading,seven crescents soon to appear",
+          "character_pose": "",
+          "fx": "Shape-shifting begins",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "The last sun dims and begins shifting form,seven crescent moons about to emerge.",
+        "narration": "不知过了多久，天上最后的太阳也慢慢暗去。",
+        "face_style_auto": {
+          "expression": "Calm",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_018.png"
+      },
+      {
+        "id": 18,
+        "duration": 4,
+        "description": "远处传来轰隆声，韩立神色一变。",
+        "mood": "Alert",
+        "lighting": "Night",
+        "action": "Hearing sound",
+        "camera": "Close-up on face",
+        "visual": {
+          "composition": "Han Li's expression changes as distant rumbling reaches him",
+          "environment": "Distant horizon",
+          "character_pose": "Expression shifts",
+          "fx": "Rumbling sound",
+          "motion": {
+            "type": "pull_out",
+            "speed": "slow"
+          }
+        },
+        "prompt": "Han Li's expression shifts as distant rumbling approaches.",
+        "narration": "忽然韩立神情骤变，脸上浮现惊疑。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.85
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_019.png"
+      },
+      {
+        "id": 19,
+        "duration": 4,
+        "description": "一只拳头大小的赤红小鸟悬在头顶盘旋不去。",
+        "mood": "Mysterious",
+        "lighting": "Night",
+        "action": "Observing bird",
+        "camera": "Low-angle bird",
+        "visual": {
+          "composition": "Fist-sized crimson firebird hovers above Han Li,circling",
+          "environment": "Above him",
+          "character_pose": "",
+          "fx": "",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "A fist-sized crimson firebird appears above Han Li,circling erratically.",
+        "narration": "一只浑身赤红的拳头大小怪鸟诡异地出现在他上空盘旋。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.84
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_020.png"
+      },
+      {
+        "id": 20,
+        "duration": 4,
+        "description": "地面轻轻震动，几名骑乘怪兽的骑士出现在远方。",
+        "mood": "Tense",
+        "lighting": "Night",
+        "action": "Observing riders",
+        "camera": "Wide shot of riders",
+        "visual": {
+          "composition": "Several beast-mounted riders appear in the distance",
+          "environment": "Distant horizon",
+          "character_pose": "",
+          "fx": "Ground tremor",
+          "motion": {
+            "type": "pan",
+            "direction": "left_to_right",
+            "speed": "medium"
+          }
+        },
+        "prompt": "The ground trembles as several beast-mounted riders appear afar.",
+        "narration": "不多时大地微微颤动，远处出现几名骑着怪兽的骑士。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.83
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_021.png"
+      },
+      {
+        "id": 999,
+        "duration": 3,
+        "description": "画面淡出，夜色下的仙城剪影与灵光缓缓下落。",
+        "mood": "Serene",
+        "lighting": "Soft",
+        "action": "End-credit visuals",
+        "camera": "Static shot",
+        "visual": {
+          "composition": "Night-time silhouette of immortal city,spirit light drifting down",
+          "environment": "Night sky,city silhouette,drifting spirit particles",
+          "character_pose": "",
+          "fx": "Spirit particles falling,fade-out",
+          "motion": {
+            "type": "static"
+          }
+        },
+        "prompt": "Xianxia ending,night silhouette of immortal city,spirit particles drifting,calm mystical mood,wide cinematic shot,film-grade lighting,4K",
+        "narration": "下集再见。我是云卷仙音，第二集的故事即将开始。",
+        "face_style_auto": {
+          "expression": "Alert",
+          "lighting": "Soft",
+          "detail": "Natural",
+          "strength": 0.82
+        },
+        "image_path": "outputs/images/lingjie_ep1_full/scene_022.png"
+      }
+    ]
+  }

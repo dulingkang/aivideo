@@ -1,0 +1,807 @@
+{
+  "episode": 171,
+  "title": "南陇侯的邀约 · 收仆赴宴",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕提示“上一回 · 交易的艺术”，背景是晶龙阁夜色。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll opening over Crystal Dragon Pavilion night skyline",
+        "environment": "Nighttime city lights with pavilion silhouette",
+        "character_pose": "",
+        "fx": "Gold sparkles, drifting motes",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia fantasy title card, golden scroll unfolds above Crystal Dragon Pavilion night skyline, soft blue-gold glow, cinematic wide shot",
+      "narration": "我是云卷仙音，欢迎回来。第一百七十一集《南陇侯的邀约·收仆赴宴》。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "交换会场内灯火渐暗，修士陆续起身离场，只剩天晶真人在高台上收拢灵光。",
+      "mood": "Calm",
+      "lighting": "Dim interior",
+      "action": "Crowd dispersing",
+      "camera": "Wide tracking",
+      "visual": {
+        "composition": "Trading hall benches emptying while Tianjing Zhenren stands on platform",
+        "environment": "Crystal-lit auction hall",
+        "character_pose": "Tianjing folding sleeves",
+        "fx": "Lingering light motes",
+        "motion": {
+          "type": "pan",
+          "direction": "right_to_left",
+          "speed": "slow"
+        }
+      },
+      "prompt": "animated trading hall interior, cultivators stand up and leave under fading crystal lamps, Tianjing Zhenren on dais collecting light, cinematic pan",
+      "narration": "交换会收尾，天晶真人准备收摊，韩立却仍盯着那几具结丹巅峰傀儡不放。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Low key",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "三具古铜色结丹傀儡排成一线，灵纹暗淡却杀意逼人。",
+      "mood": "Tense",
+      "lighting": "Spotlit",
+      "action": "Puppet reveal",
+      "camera": "Low-angle push",
+      "visual": {
+        "composition": "Three bronze puppets aligned with faint arrays",
+        "environment": "Auction platform with shadows",
+        "character_pose": "",
+        "fx": "Array patterns pulsing",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close low-angle shot of three bronze battle puppets, faint glowing array lines, murderous aura, dramatic lighting",
+      "narration": "傀儡的纹路和姿态，正是昔日千竹教的路数，韩立一眼便看穿来源。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "韩立侧目观察，目中灵光掠过，心思飞转。",
+      "mood": "Calculating",
+      "lighting": "Cool rim light",
+      "action": "Studying target",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Han Li half profile, eyes reflecting puppet silhouettes",
+        "environment": "Edge of trading hall",
+        "character_pose": "Hands folded in sleeves",
+        "fx": "Subtle blue glint in pupils",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li medium close-up, calm face yet eyes reflecting bronze puppets, cool rim lighting, xianxia cinematic",
+      "narration": "千竹教的傀儡术在灵界绝迹多年，这一次绝不能错过。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "灵石一袋袋砸在案几，仍旧无人愿意拿庚精换傀儡，气氛僵持。",
+      "mood": "Stalemate",
+      "lighting": "Mixed warm",
+      "action": "Failed trade",
+      "camera": "Tabletop close",
+      "visual": {
+        "composition": "Hands tossing spirit stones, Tianjing shakes head",
+        "environment": "Auction desk cluttered with jade slips",
+        "character_pose": "Cultivators frustrated",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "table close-up with spirit stone pouches piling up, cultivators gesturing anxiously, Tianjing refuses, tense auction atmosphere",
+      "narration": "庚精就是筹码，缺了它便是千金难买的遗憾，韩立只能暂时告退。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "韩立拂袖离开大堂，背影没入夜色，晶龙阁外灵灯摇曳。",
+      "mood": "Resolute",
+      "lighting": "Night street",
+      "action": "Leaving hall",
+      "camera": "Rear tracking",
+      "visual": {
+        "composition": "Han Li walks down pavilion steps into night market glow",
+        "environment": "Crystal Dragon Pavilion exterior with lanterns",
+        "character_pose": "Back straight, sleeves flowing",
+        "fx": "Lantern haze",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "nighttime xianxia street, Han Li walks away from Crystal Dragon Pavilion, lantern light trailing behind, cinematic tracking shot",
+      "narration": "看似败兴离场，其实韩立已打定主意，夜里再与天晶真人单独谈判。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Night",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "午夜子时，晶龙阁上空弥漫雾气，韩立隐匿身形再度返回。",
+      "mood": "Secretive",
+      "lighting": "Moonlit",
+      "action": "Approaching pavilion",
+      "camera": "Bird’s-eye tilt",
+      "visual": {
+        "composition": "Fog-wrapped pavilion roof with lone figure landing",
+        "environment": "Moonlit cityscape",
+        "character_pose": "Han Li descending in azure light",
+        "fx": "Mist trails",
+        "motion": {
+          "type": "tilt",
+          "direction": "down",
+          "speed": "slow"
+        }
+      },
+      "prompt": "moonlit fog surrounds Crystal Dragon Pavilion roof, Han Li descends in blue light, stealthy night scene",
+      "narration": "寅时，晶龙阁内外灵禁暂歇，正好方便两位元婴强者真心谈价。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "天晶真人释放灵压，满室寒风，试探韩立的底气。",
+      "mood": "Confrontational",
+      "lighting": "Harsh contrast",
+      "action": "Aura clash",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Tianjing seated radiating pressure, Han Li stands calm opposite",
+        "environment": "Private jade room",
+        "character_pose": "Han Li hands behind back",
+        "fx": "Distorting air currents",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators facing each other in jade chamber, one releases visible aura gusts, the other stands calm, dramatic lighting",
+      "narration": "先以灵压试探，再谈筹码，是天晶真人惯用的『交易的艺术』。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Dramatic",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "韩立抬手，青竹蜂云剑化作剑阵光雨，轻描淡写破开灵压。",
+      "mood": "Dominant",
+      "lighting": "Azure glow",
+      "action": "Sword display",
+      "camera": "Dynamic arc",
+      "visual": {
+        "composition": "Sword lights circling Han Li, carving azure net",
+        "environment": "Confined chamber",
+        "character_pose": "One-hand flick",
+        "fx": "Sword light trails",
+        "motion": {
+          "type": "arc",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Han Li summons blue sword array within chamber, countless light blades spiral and disperse spiritual pressure, cinematic dynamic shot",
+      "narration": "青竹蜂云剑一亮，相互探底的游戏算是告一段落。",
+      "face_style_auto": {
+        "expression": "Composed",
+        "lighting": "Cool bright",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "韩立铺开储物袋，成堆阴冥兽魂石堆成小山，寒气扑面。",
+      "mood": "Imposing",
+      "lighting": "Cold cyan",
+      "action": "Revealing assets",
+      "camera": "Overhead close",
+      "visual": {
+        "composition": "Mounds of ghostly soul stones emitting black mist",
+        "environment": "Stone table with jade tea",
+        "character_pose": "Han Li gestures downward",
+        "fx": "Cold vapor rising",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "pile of ghostly blue-black soul stones on stone table, cold mist rising, Han Li's hand indicating wealth, cinematic overhead shot",
+      "narration": "一袋又一袋魂石拍在案上，天晶真人终于收起轻视，转而认真谈价。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "双方落座，桌上摆开傀儡炼制玉简与庚精线索，烛火摇曳。",
+      "mood": "Negotiation",
+      "lighting": "Warm candle",
+      "action": "Trading terms",
+      "camera": "Medium two-shot",
+      "visual": {
+        "composition": "Two cultivators seated across low table with jade slips",
+        "environment": "Intimate negotiation room",
+        "character_pose": "Both leaning slightly forward",
+        "fx": "Floating talisman light",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators sit across low jade table, jade slips and maps laid out, warm candlelight, intense negotiation atmosphere",
+      "narration": "魂石换傀儡图，同时换庚精情报，韩立步步逼价，天晶真人只得服软。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "特写玉简，浮现傀儡炼制工序的微缩幻影。",
+      "mood": "Revealing",
+      "lighting": "Inner glow",
+      "action": "Inspecting jade slip",
+      "camera": "Macro close-up",
+      "visual": {
+        "composition": "Jade slip hovering with projected puppet schematics",
+        "environment": "Dark backdrop",
+        "character_pose": "",
+        "fx": "Miniature glyph animations",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "macro shot of glowing jade slip projecting puppet schematics in golden light, dark vignette background",
+      "narration": "玉简中记录着千竹教改良版傀儡术，韩立当场扫描，确认不是赝品。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "另一枚玉简展开庚精矿脉示意图，标注“幕兰草原”附近的隐秘矿带。",
+      "mood": "Intriguing",
+      "lighting": "Map glow",
+      "action": "Studying map",
+      "camera": "Top-down map",
+      "visual": {
+        "composition": "Holographic terrain map with glowing nodes",
+        "environment": "Tabletop with compasses",
+        "character_pose": "Fingers tracing routes",
+        "fx": "Floating rune markers",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "glowing jade map showing Muklan Prairie region with marked ore veins, mystical hologram style, tabletop view",
+      "narration": "庚精线索来自幕兰草原暗层，正吻合韩立接下来布局坠魔谷的打算。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "天晶真人起身拱手，口中笑喊“道友，请留步！”，神情真香。",
+      "mood": "Humorous",
+      "lighting": "Warm interior",
+      "action": "Calling out",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Tianjing reaching forward, robe sleeves flaring",
+        "environment": "Jade corridor",
+        "character_pose": "Half bow with outstretched hand",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator in ornate robe leaning forward calling out, humorous earnest expression, warm interior lighting",
+      "narration": "名场面再次上演，“道友请留步”成了弹幕狂刷的真香梗。",
+      "face_style_auto": {
+        "expression": "Smiling",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "月色下两人握手言欢，韩立收起玉简，化光离开。",
+      "mood": "Satisfied",
+      "lighting": "Moonlit",
+      "action": "Parting",
+      "camera": "Side silhouette",
+      "visual": {
+        "composition": "Two silhouettes clasping forearms against moon",
+        "environment": "Pavilion rooftop",
+        "character_pose": "Cloaks fluttering",
+        "fx": "Moon halo",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "silhouetted cultivators clasp wrists atop pavilion under bright moon, robes fluttering, serene farewell",
+      "narration": "交易达成，韩立笑纳傀儡术与庚精情报，天晶真人也得了海量魂石。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 3,
+      "description": "天色微明，阗天城街道慢慢热闹起来，摊贩开门。",
+      "mood": "Transition",
+      "lighting": "Dawn",
+      "action": "City wakes",
+      "camera": "Wide establishing",
+      "visual": {
+        "composition": "Market street with rising sun fog",
+        "environment": "Tantian City outer lane",
+        "character_pose": "",
+        "fx": "Morning mist",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "dawn shot of cultivation city street, vendors opening stalls, pale sunlight breaking through mist",
+      "narration": "第二天一早，城中消息四起，韩立也准备离城回宗。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "小杂货铺前围着一圈修士，争执声不断。",
+      "mood": "Chaotic",
+      "lighting": "Daytime",
+      "action": "Crowd arguing",
+      "camera": "Handheld sway",
+      "visual": {
+        "composition": "Group of cultivators arguing at storefront",
+        "environment": "Narrow market alley",
+        "character_pose": "Gesturing angrily",
+        "fx": "",
+        "motion": {
+          "type": "handheld"
+        }
+      },
+      "prompt": "daytime market alley crowded with cultivators arguing outside shop, handheld documentary feel",
+      "narration": "就在此时，韩立听见前方吵闹声，顺势拨开人群。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "孙火被店家围困，怒而亮出火属性符箓，却被嘲笑成穷鬼。",
+      "mood": "Frustrated",
+      "lighting": "Harsh daylight",
+      "action": "Defending self",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Young cultivator clutching talismans facing three shopkeepers",
+        "environment": "Shop threshold with shelves",
+        "character_pose": "Teeth clenched, brows knit",
+        "fx": "Scattered sparks",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "medium shot of young cultivator holding fire talismans facing bullying shopkeepers, harsh daylight, tense expressions",
+      "narration": "落云宗弟子孙火被刁难，只因一张火云符被狮子大开口。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "韩立一步踏入店内，青光一震逼退掌柜，众人惊呼。",
+      "mood": "Authoritative",
+      "lighting": "Spotlight",
+      "action": "Intervening",
+      "camera": "Low-angle hero",
+      "visual": {
+        "composition": "Han Li framed in doorway with backlight, shopkeepers recoiling",
+        "environment": "Cramped shop interior",
+        "character_pose": "One hand raised casually",
+        "fx": "Azure pressure wave",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li steps into doorway, blue aura pushes bullies back, dramatic low-angle heroic shot",
+      "narration": "青光一震，掌柜直接被逼退，现场瞬间安静，只剩韩立淡淡开口。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dramatic",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "孙火认出韩立，立刻跪地行礼，画面切到韩立微微点头。",
+      "mood": "Respectful",
+      "lighting": "Soft bounce",
+      "action": "Paying respects",
+      "camera": "Shot-reverse",
+      "visual": {
+        "composition": "Young cultivator kneels, elder viewed from above",
+        "environment": "Shop interior with scattered talismans",
+        "character_pose": "Hands cupped",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "kneeling disciple salutes elder cultivator inside shop, respectful xianxia moment, soft lighting",
+      "narration": "上一次还在试剑大会与韩师叔并肩，如今再见已是天壤之别。",
+      "face_style_auto": {
+        "expression": "Reverent",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "韩立询问来历，孙火提到祖上孙二狗，回忆画面闪回黄枫谷旧景。",
+      "mood": "Nostalgic",
+      "lighting": "Warm sepia",
+      "action": "Recounting past",
+      "camera": "Flashback dissolve",
+      "visual": {
+        "composition": "Overlay of present conversation with sepia memory frames",
+        "environment": "Split-scene shop and old mountain gate",
+        "character_pose": "Sun Huo speaking earnestly",
+        "fx": "Soft vignette",
+        "motion": {
+          "type": "dissolve"
+        }
+      },
+      "prompt": "split-scene showing present conversation and sepia flashback of Huang Feng Valley disciple, nostalgic overlay, warm lighting",
+      "narration": "原来孙火竟是昔日孙二狗的后人，一缕旧日情分让韩立心生怜惜。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "韩立递出主仆契约符，灵纹在二人之间形成束缚光链。",
+      "mood": "Solemn",
+      "lighting": "Mystic glow",
+      "action": "Forming contract",
+      "camera": "Close-up hands",
+      "visual": {
+        "composition": "Two palms facing, golden rune chain connecting",
+        "environment": "Floating talisman light",
+        "character_pose": "Palms steady",
+        "fx": "Contract glyphs spiraling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close shot of two cultivators forming servant contract, golden rune chains linking their palms, mystical glow",
+      "narration": "孙火自愿签下契约，自此跟随韩立，落云宗又多了一名元婴级打手胚子。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 3,
+      "description": "落云宗传讯玉牌亮起，南陇侯的请柬化作金色光鹤飞入屋中。",
+      "mood": "Anticipatory",
+      "lighting": "Gold shimmer",
+      "action": "Invitation arrival",
+      "camera": "Tracking light",
+      "visual": {
+        "composition": "Golden light crane entering window, dropping jade invitation",
+        "environment": "Cultivation chamber",
+        "character_pose": "Han Li catching jade",
+        "fx": "Feathered light",
+        "motion": {
+          "type": "tracking",
+          "speed": "medium"
+        }
+      },
+      "prompt": "magical golden light crane delivers jade invitation through window, shimmering particles, xianxia aesthetics",
+      "narration": "南陇侯亲自下帖，邀请韩立赴宴共商幕兰草原大事。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "韩立更换黑金长袍，孙火束发随侍，镜中映出二人新形象。",
+      "mood": "Prepared",
+      "lighting": "Interior soft",
+      "action": "Dressing",
+      "camera": "Mirror shot",
+      "visual": {
+        "composition": "Han Li adjusting collar, Sun Huo standing behind",
+        "environment": "Lavish dressing room",
+        "character_pose": "Focused grooming",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator dons ornate black-gold robe before mirror, loyal follower stands behind tying hair, refined interior lighting",
+      "narration": "赴宴之前，师徒二人重新整装，气场瞬间拉满。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "青虹飞过幕兰草原上空，镜头俯视韩立与孙火赶赴南陇侯府的轻车。",
+      "mood": "Adventurous",
+      "lighting": "Daylight",
+      "action": "Traveling",
+      "camera": "Aerial chase",
+      "visual": {
+        "composition": "Spirit carriage pulled by beasts over prairie",
+        "environment": "Rolling grassland and rivers",
+        "character_pose": "Figures seated inside car",
+        "fx": "Wind trails",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "aerial shot of spirit beast carriage racing above Muklan Prairie, blue energy trails, cinematic travel",
+      "narration": "带着新收的孙火，韩立踏上赴宴之途，同时暗算王婵旧账。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "南陇侯府门前巨大的灵兽车停靠，门卫列阵迎接。",
+      "mood": "Grand",
+      "lighting": "Sunlit",
+      "action": "Arrival",
+      "camera": "Wide frontal",
+      "visual": {
+        "composition": "Massive mansion gate with banners and guards",
+        "environment": "Marble steps, spirit beast statues",
+        "character_pose": "Han Li descending carriage",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "grand mansion gate with banners, cultivator descends from ornate carriage while guards bow, bright sun",
+      "narration": "南陇侯铺排大阵仗接待，明显另有所图。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "宴会上灯烛辉煌，南陇侯端坐主位，诸宗代表依次落座。",
+      "mood": "Formal",
+      "lighting": "Lavish warm",
+      "action": "Banquet scene",
+      "camera": "Wide interior",
+      "visual": {
+        "composition": "Long banquet table with cultivators, host at head",
+        "environment": "Golden hall",
+        "character_pose": "Han Li seated侧身",
+        "fx": "Floating incense smoke",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "lavish cultivation banquet hall, long table of representatives, Nanlong Hou at head, warm golden lantern light",
+      "narration": "幕兰草原则题名义上是合作，实则暗藏各派心思。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "鬼灵门少主王婵出场，一袭黑袍气质冷艳，脸庞稚嫩却带着危险的气息。",
+      "mood": "Surprised",
+      "lighting": "Spotlight",
+      "action": "Entrance",
+      "camera": "Slow dolly",
+      "visual": {
+        "composition": "Elegant young woman in dark robe enters hall",
+        "environment": "Banquet aisle",
+        "character_pose": "Chin raised",
+        "fx": "Soft focus sparkle",
+        "motion": {
+          "type": "dolly",
+          "direction": "forward",
+          "speed": "slow"
+        }
+      },
+      "prompt": "dramatic entrance of elegant dark-robed young woman in banquet hall, spotlight highlights youthful face, cinematic dolly",
+      "narration": "鬼灵门少主王婵也到场，一袭黑袍气质冷艳，瞬间成为全场焦点。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Stylized",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "韩立与王婵目光交错，画面快速闪回燕家堡血战与传送阵伏杀。",
+      "mood": "Hostile",
+      "lighting": "High contrast",
+      "action": "Face-off",
+      "camera": "Alternating close-ups",
+      "visual": {
+        "composition": "Split-screen stare with flashback overlays",
+        "environment": "Banquet table",
+        "character_pose": "Eyes narrowed",
+        "fx": "Red slash flashback",
+        "motion": {
+          "type": "cut",
+          "speed": "fast"
+        }
+      },
+      "prompt": "split close-up of Han Li and Wang Chan locking eyes, rapid flashback overlays of past battles, intense high-contrast lighting",
+      "narration": "仇人相见，韩立表面淡然，心底却回荡着燕家堡的血债与传送阵追杀之仇。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Dramatic",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "预告彩蛋：宴会结束时天幕骤裂，空间裂缝闪出暗紫雷光。",
+      "mood": "Foreboding",
+      "lighting": "Dark violet",
+      "action": "Space rift tease",
+      "camera": "Upward tilt",
+      "visual": {
+        "composition": "Palace roof tearing open with portal lightning",
+        "environment": "Night sky above manor",
+        "character_pose": "Silhouettes looking up",
+        "fx": "Spatial crack, violet bolts",
+        "motion": {
+          "type": "tilt",
+          "direction": "up",
+          "speed": "medium"
+        }
+      },
+      "prompt": "dramatic night shot of palace roof as purple space rift forms overhead, lightning arcs and debris floating, ominous teaser",
+      "narration": "一闪而逝的空间裂缝昭示坠魔谷副本逼近，天南第一凶地的秘密即将揭开。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出，夜色下的天南仙城剪影与灵光缓缓下落，字幕浮现“原创忘语”。",
+      "mood": "Serene",
+      "lighting": "Soft",
+      "action": "End-credit visuals",
+      "camera": "Static shot",
+      "visual": {
+        "composition": "Night-time silhouette of Tiannan immortal city, spirit light drifting down",
+        "environment": "Night sky, city silhouette, drifting spirit particles",
+        "character_pose": "",
+        "fx": "Spirit particles falling, fade-out, text overlay",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia ending, night silhouette of Tiannan cultivation city, spirit particles drifting, calm mystical mood, wide cinematic shot, film-grade lighting, 4K, text overlay '原创忘语'",
+      "narration": "我是云卷仙音，第一百七十二集的故事即将开始。喜欢的话请点赞支持一下！下集再见。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    }
+  ]
+}
+

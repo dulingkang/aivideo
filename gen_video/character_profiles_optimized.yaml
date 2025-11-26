@@ -1,0 +1,581 @@
+# Character Profile Configuration (Optimized)
+# 精简版：只保留实际使用的字段，去除重复和冗余描述
+
+characters:
+  hanli:
+    character_name: "Han Li"
+    # 身份和性别（用于提取性别信息，必须包含 Male/Female）
+    identity: "Male,young cultivator,calm and steady"
+    
+    # 面部特征（直接用于prompt）
+    face_keywords: "calm focused eyes,steady expression,determined gaze"
+    
+    # 发型（优先使用 prompt_keywords，否则使用 style+color）
+    hair:
+      prompt_keywords: "(tied long black hair:1.7),(forehead bangs:1.4),(neat:1.2)"
+      # 备用字段（如果 prompt_keywords 不存在时使用）
+      style: "long hair tied up,slight bangs"
+      color: "jet black"
+    
+    # 服饰（优先使用 prompt_keywords，否则使用 style+color）
+    clothes:
+      prompt_keywords: "(deep cyan cultivator robe:1.7),(simple elegant,not armor:1.4),(flowing fabric:1.3)"
+      # 备用字段（如果 prompt_keywords 不存在时使用）
+      style: "cultivator robe"
+      color: "deep cyan"
+    
+    # 身体特征（根据镜头类型使用）
+    body:
+      build: "lean and strong build"
+
+  zhangkui:
+    character_name: "Zhang Kui"
+    identity: "Male,scarred warrior,brave and rough"
+    
+    face_keywords: "battle-hardened gaze,scarred cheeks,fierce brows"
+    
+    hair:
+      prompt_keywords: "(back-combed dark brown short hair:1.5),(warrior hairstyle:1.4)"
+      style: "short hair tied back"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(sand-yellow leather armor:1.6),(battle scars:1.4),(not modern armor:1.3)"
+      style: "leather armor"
+      color: "sand-yellow"
+    
+    body:
+      build: "burly muscular build"
+
+  nanqizi:
+    character_name: "Nan Qizi"
+    identity: "Male,middle-aged Taoist,calm temperament"
+    
+    face_keywords: "calm scholarly gaze,steady Taoist demeanor"
+    
+    hair:
+      prompt_keywords: "(black hair in Taoist bun:1.5),(jade hair band:1.4)"
+      style: "long hair tied in Taoist bun"
+      color: "jet black"
+    
+    clothes:
+      prompt_keywords: "(bright yellow Taoist robe:1.6),(cyan trim:1.4)"
+      style: "yellow Taoist robe"
+      color: "bright yellow with cyan trim"
+    
+    body:
+      build: "lean scholar build"
+
+  fulao:
+    character_name: "Fu Lao"
+    identity: "Male,white-robed elder,patient healer"
+    
+    face_keywords: "deep wrinkles,sharp elderly gaze,patient expression"
+    
+    hair:
+      prompt_keywords: "(shoulder-length white hair:1.5),(neat elderly:1.3)"
+      style: "long hair over shoulders"
+      color: "pure white"
+    
+    clothes:
+      prompt_keywords: "(white robe with silver patterns:1.6)"
+      style: "white robe"
+      color: "white with silver patterns"
+    
+    body:
+      build: "lean elderly build"
+
+  liuer:
+    character_name: "Liu Er"
+    identity: "Female,blue-robed maid,calm commander"
+    
+    face_keywords: "calm commander's gaze,elegant lips"
+    
+    hair:
+      prompt_keywords: "(half-up black hair:1.5),(blue-silver hairpin:1.4)"
+      style: "half-up high bun"
+      color: "ink black"
+    
+    clothes:
+      prompt_keywords: "(deep blue flowing robe:1.5),(light armor shoulder:1.3)"
+      style: "blue long dress"
+      color: "indigo with silver accents"
+    
+    body:
+      build: "lean and fit build"
+
+  xianger:
+    character_name: "Xiang Er"
+    identity: "Female,emerald-robed maid,gentle and agile"
+    
+    face_keywords: "gentle smile,bright observant eyes"
+    
+    hair:
+      prompt_keywords: "(double black braids:1.5),(jade ribbon:1.4)"
+      style: "long hair braided in two strands"
+      color: "ink black"
+    
+    clothes:
+      prompt_keywords: "(emerald green dress:1.6),(cloud patterns:1.4)"
+      style: "emerald green dress"
+      color: "jade green with gold trim"
+    
+    body:
+      build: "slender elegant build"
+
+  quaner:
+    character_name: "Quan Er"
+    identity: "Female,red-robed young girl,lively and brave"
+    
+    face_keywords: "youthful radiance,expressive brows"
+    
+    hair:
+      prompt_keywords: "(high ponytail:1.6),(red ribbon:1.4)"
+      style: "high ponytail"
+      color: "jet black"
+    
+    clothes:
+      prompt_keywords: "(vermilion battle robe:1.6),(gold trim:1.4)"
+      style: "red short-fronted battle dress"
+      color: "vermilion with gold trim"
+    
+    body:
+      build: "petite agile build"
+
+  fang_furen:
+    character_name: "Lady Fang"
+    identity: "Female,merchant matriarch,dignified and elegant"
+    
+    face_keywords: "elegant gaze,steady smile,dignified demeanor"
+    
+    hair:
+      prompt_keywords: "(high phoenix bun:1.6),(gold hairpin:1.5)"
+      style: "high phoenix bun"
+      color: "ink black with gold strands"
+    
+    clothes:
+      prompt_keywords: "(deep cyan noble robe:1.6),(silver embroidery:1.4)"
+      style: "cyan satin long dress"
+      color: "deep cyan with silver thread"
+    
+    body:
+      build: "slender elegant build"
+
+  pan_qing:
+    character_name: "Pan Qing"
+    identity: "Male,Jinyu Sect disciple,refined and respectful"
+    
+    face_keywords: "refined gaze,respectful attitude"
+    
+    hair:
+      prompt_keywords: "(tied hair with jade band:1.5),(scholar hairstyle:1.3)"
+      style: "crown with hanging ribbons"
+      color: "jet black"
+    
+    clothes:
+      prompt_keywords: "(navy blue cultivator robe:1.6),(gold trim:1.4)"
+      style: "blue Taoist robe"
+      color: "navy blue with gold trim"
+    
+    body:
+      build: "lean scholar build"
+
+  qin_shixiong:
+    character_name: "Senior Brother Qin"
+    identity: "Male,Foundation Establishment cultivator,steady strategist"
+    
+    face_keywords: "sharp insightful gaze,steady expression"
+    
+    hair:
+      prompt_keywords: "(tied hair with gold crown:1.5)"
+      style: "tied hair with gold crown"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(dark gold brocade robe:1.6),(armor pieces:1.4)"
+      style: "brocade robe with Taoist armor"
+      color: "dark gold"
+    
+    body:
+      build: "strong medium build"
+
+  fan_pang:
+    character_name: "Fan Pang"
+    identity: "Male,middle-aged merchant,friendly and shrewd"
+    
+    face_keywords: "friendly merchant gaze,warm smile"
+    
+    hair:
+      prompt_keywords: "(neat short hair:1.5),(parted to side:1.3)"
+      style: "neat short hair"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(fine brown merchant robe:1.6),(gold trim:1.4)"
+      style: "fine merchant robe"
+      color: "brown with gold trim"
+    
+    body:
+      build: "rounded merchant build"
+
+  black_phoenix_woman:
+    character_name: "Black Phoenix Woman"
+    identity: "Female,Black Phoenix demoness,powerful and cold"
+    
+    face_keywords: "cold demoness gaze,piercing eyes,emotionless"
+    
+    hair:
+      prompt_keywords: "(elaborate palace bun:1.6),(phoenix hairpin:1.5)"
+      style: "elaborate palace bun"
+      color: "ink black"
+    
+    clothes:
+      prompt_keywords: "(palace black robe:1.7),(dark purple accents:1.4)"
+      style: "palace-dressed noble robe"
+      color: "black with dark purple accents"
+    
+    body:
+      build: "slender elegant build"
+
+  dai_er:
+    character_name: "Dai Er"
+    identity: "Female,young girl,half-demon heritage"
+    
+    face_keywords: "young innocent gaze,clear eyes"
+    
+    hair:
+      prompt_keywords: "(two small side buns:1.5),(child hair:1.4)"
+      style: "two small buns or simple ponytail"
+      color: "ink black"
+    
+    clothes:
+      prompt_keywords: "(child's dress:1.6),(bright colors:1.3)"
+      style: "child's dress"
+      color: "bright colors"
+    
+    body:
+      build: "petite child build"
+
+  fake_city_lord:
+    character_name: "Fake City Lord"
+    identity: "Male,puppet body,emotionless"
+    
+    face_keywords: "emotionless gaze,blank expression,unnatural"
+    
+    hair:
+      prompt_keywords: "(lifeless hair:1.5),(no vitality:1.3)"
+      style: "same as real city lord"
+      color: "dark brown or black"
+    
+    clothes:
+      prompt_keywords: "(purple city lord robe:1.6),(unnatural:1.3)"
+      style: "purple robe"
+      color: "purple with dark accents"
+    
+    body:
+      build: "similar to real city lord"
+
+  tian_xing:
+    character_name: "Tian Xing"
+    identity: "Male,Qi Refining cultivator,friendly and talkative"
+    
+    face_keywords: "friendly merchant gaze,quick smile"
+    
+    hair:
+      prompt_keywords: "(neat short dark brown hair:1.5),(simple style:1.3)"
+      style: "neat short hair"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(simple gray cultivator robe:1.6),(brown trim:1.4)"
+      style: "simple cultivator robe"
+      color: "gray with brown trim"
+    
+    body:
+      build: "thin lean build"
+
+  xu_lao:
+    character_name: "Xu Lao"
+    identity: "Male,former body cultivator,weary shopkeeper"
+    
+    face_keywords: "weary gaze,deep wrinkles,sad expression"
+    
+    hair:
+      prompt_keywords: "(short gray-white hair:1.5),(unkempt:1.3)"
+      style: "short gray hair"
+      color: "gray-white"
+    
+    clothes:
+      prompt_keywords: "(simple brown shopkeeper robe:1.6),(worn:1.3)"
+      style: "simple shopkeeper robe"
+      color: "brown with faded colors"
+    
+    body:
+      build: "once powerful but now weak build"
+
+  lv_shimei:
+    character_name: "Miss Lü"
+    identity: "Female,Core Formation cultivator,beautiful and intelligent"
+    
+    face_keywords: "beautiful gaze,clever expression,graceful"
+    
+    hair:
+      prompt_keywords: "(elaborate cultivator bun:1.6),(hairpins:1.4)"
+      style: "elaborate cultivator bun"
+      color: "ink black"
+    
+    clothes:
+      prompt_keywords: "(elegant cultivator robe:1.6),(pale blue or white:1.4)"
+      style: "elegant cultivator robe"
+      color: "pale blue or white with gold trim"
+    
+    body:
+      build: "slender elegant build"
+
+  qian_shixiong:
+    character_name: "Senior Brother Qian"
+    identity: "Male,Core Formation cultivator,arrogant and proud"
+    
+    face_keywords: "arrogant gaze,sharp brows,proud demeanor"
+    
+    hair:
+      prompt_keywords: "(neat cultivator crown:1.6),(noble style:1.4)"
+      style: "neat cultivator crown"
+      color: "jet black"
+    
+    clothes:
+      prompt_keywords: "(fine cultivator robe:1.6),(dark blue or black:1.4)"
+      style: "fine cultivator robe"
+      color: "dark blue or black with silver trim"
+    
+    body:
+      build: "tall strong build"
+
+  huangliang_lingjun:
+    character_name: "Huangliang Spirit Lord"
+    identity: "Male,Void Refinement cultivator,powerful and wise"
+    
+    face_keywords: "wise gaze,steady expression,commanding"
+    
+    hair:
+      prompt_keywords: "(tied hair with gold crown:1.5),(elder style:1.3)"
+      style: "tied hair with gold crown"
+      color: "gray-black"
+    
+    clothes:
+      prompt_keywords: "(golden cultivator robe:1.6),(Eight Trigrams:1.4)"
+      style: "golden Eight Trigrams robe"
+      color: "golden with yellow trim"
+    
+    body:
+      build: "lean elder build"
+
+  lan_chengzhu:
+    character_name: "City Lord Lan"
+    identity: "Male,high-level cultivator,powerful and authoritative"
+    
+    face_keywords: "authoritative gaze,steady expression,commanding"
+    
+    hair:
+      prompt_keywords: "(tied hair with jade crown:1.5),(city lord style:1.3)"
+      style: "tied hair with jade crown"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(deep blue cultivator robe:1.6),(gold trim:1.4)"
+      style: "blue cultivator robe"
+      color: "deep blue with gold trim"
+    
+    body:
+      build: "strong medium build"
+
+  huan_cangqi:
+    character_name: "Huan Cangqi"
+    identity: "Male,Void Refinement demon cultivator,experienced and shrewd"
+    
+    face_keywords: "shrewd gaze,sharp eyes,confident"
+    
+    hair:
+      prompt_keywords: "(short neat dark brown hair:1.5),(demon style:1.3)"
+      style: "short neat hair"
+      color: "dark brown"
+    
+    clothes:
+      prompt_keywords: "(gray demon cultivator robe:1.6),(dark accents:1.4)"
+      style: "demon cultivator robe"
+      color: "gray with dark accents"
+    
+    body:
+      build: "thin lean build"
+
+  huang_shigong:
+    character_name: "Huang Shigong"
+    identity: "Male,intermediate Spirit General,old and powerful"
+    
+    face_keywords: "cold gaze,solemn expression,formidable"
+    
+    hair:
+      prompt_keywords: "(elderly appearance:1.5),(white or gray:1.4)"
+      style: "appears as old man"
+      color: "white or gray"
+    
+    clothes:
+      prompt_keywords: "(spirit form:1.6),(stone giant:1.5)"
+      style: "spirit form"
+      color: "gray or stone-colored"
+    
+    body:
+      build: "appears as elderly figure on giant stone hand"
+
+  tian_ying:
+    character_name: "Tian Ying"
+    identity: "Female,intermediate Spirit General,young and powerful"
+    
+    face_keywords: "cold gaze,piercing eyes,defiant"
+    
+    hair:
+      prompt_keywords: "(long flowing hair:1.5),(green or black:1.4)"
+      style: "long hair flowing"
+      color: "green or black"
+    
+    clothes:
+      prompt_keywords: "(emerald green dress:1.6),(wooden phoenix:1.5)"
+      style: "green dress"
+      color: "emerald green"
+    
+    body:
+      build: "slender young build"
+
+  xutian_xuanling:
+    character_name: "Xutian Xuangling"
+    identity: "Male,Spirit Artifact race,extremely powerful"
+    
+    face_keywords: "piercing gaze,sharp eyes,formidable"
+    
+    hair:
+      prompt_keywords: "(neat cultivator style:1.5),(Xuangling appearance:1.3)"
+      style: "neat cultivator style"
+      color: "dark"
+    
+    clothes:
+      prompt_keywords: "(dark blue cultivator robe:1.6),(zao qing color:1.5)"
+      style: "dark blue cultivator robe"
+      color: "dark blue (zao qing)"
+    
+    body:
+      build: "strong medium build"
+
+  tie_ren:
+    character_name: "Tie Ren"
+    identity: "Male,Metal Spirit clan,powerful giant"
+    
+    face_keywords: "fierce gaze,metallic eyes,combat"
+    
+    hair:
+      prompt_keywords: "(silver metallic hair:1.5),(metal spirit:1.4)"
+      style: "silver metallic"
+      color: "silver"
+    
+    clothes:
+      prompt_keywords: "(silver metallic body:1.6),(metal spirit:1.5)"
+      style: "silver metallic body"
+      color: "silver"
+    
+    body:
+      build: "can become giant"
+
+  jin_dahan:
+    character_name: "Jin Big Man"
+    identity: "Male,top-level body cultivator,powerful giant"
+    
+    face_keywords: "fierce gaze,strong features,combat"
+    
+    hair:
+      prompt_keywords: "(short tough black hair:1.5),(body cultivator:1.3)"
+      style: "short tough hair"
+      color: "black"
+    
+    clothes:
+      prompt_keywords: "(body cultivator attire:1.6),(black iron fists:1.5)"
+      style: "body cultivator attire"
+      color: "dark or simple"
+    
+    body:
+      build: "can become giant over ten zhang tall"
+
+  toutuo:
+    character_name: "Head Monk"
+    identity: "Male,Deity Transformation cultivator,wise and serene"
+    
+    face_keywords: "wise monk gaze,serene expression,experienced"
+    
+    hair:
+      prompt_keywords: "(shaved head monk:1.5),(bald:1.4)"
+      style: "shaved head"
+      color: "no hair"
+    
+    clothes:
+      prompt_keywords: "(monk robe:1.6),(white or gray:1.4)"
+      style: "monk robe"
+      color: "white or gray"
+    
+    body:
+      build: "lean monk build"
+
+  san_shou_yue_lang:
+    character_name: "Three-Headed Moon Wolf"
+    identity: "Male,three identical black youths,Silver Moon Wolf clan"
+    
+    face_keywords: "identical features,sharp gaze,coordinated"
+    
+    hair:
+      prompt_keywords: "(short neat black hair:1.5),(three identical:1.4)"
+      style: "short neat hair"
+      color: "black"
+    
+    clothes:
+      prompt_keywords: "(black demon cultivator attire:1.6),(three identical:1.5)"
+      style: "demon cultivator attire"
+      color: "black or dark"
+    
+    body:
+      build: "thin lean build (three identical)"
+
+  dumu_juren:
+    character_name: "One-Eyed Giant"
+    identity: "Male,ancient giant,one-eyed colossal being"
+    
+    face_keywords: "single huge eye,fierce gaze,ancient"
+    
+    hair:
+      prompt_keywords: "(ancient giant:1.5),(wild hair or bald:1.4)"
+      style: "no hair or wild ancient hair"
+      color: "none or gray-white"
+    
+    clothes:
+      prompt_keywords: "(ancient giant body:1.6),(yellow-brown skin:1.5)"
+      style: "ancient stone or natural covering"
+      color: "yellow-brown or stone gray"
+    
+    body:
+      build: "colossal giant build"
+
+  lingzu_panni:
+    character_name: "Spirit Clan Traitor"
+    identity: "Male or unknown,Spirit Artifact race traitor,hidden"
+    
+    face_keywords: "hidden or fleeing,traitorous presence"
+    
+    hair:
+      prompt_keywords: "(hidden appearance:1.5),(traitor:1.3)"
+      style: "unknown"
+      color: "unknown"
+    
+    clothes:
+      prompt_keywords: "(Spirit Artifact race attire:1.5),(disguised:1.3)"
+      style: "Spirit Artifact race attire or disguised"
+      color: "unknown or spirit colors"
+    
+    body:
+      build: "unknown"
+

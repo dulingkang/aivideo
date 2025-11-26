@@ -1,0 +1,761 @@
+{
+  "episode": 38,
+  "title": "Pool Transformation · Light Beam Attack",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第38集:池水异变·光柱攻击。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "附近的岩石一被这些密密麻麻的光丝击中,立刻洞穿出了马蜂窝般的一个个针孔大孔洞。",
+      "mood": "Destructive",
+      "lighting": "White Light",
+      "action": "Light Beams Pierce Rocks",
+      "camera": "Close-Up Details",
+      "visual": {
+        "composition": "Nearby rocks hit by dense light threads, immediately pierced with honeycomb-like needle holes",
+        "environment": "Rocks near pool, light beams piercing",
+        "character_pose": "Rocks being pierced",
+        "fx": "White light beams, holes in rocks",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Nearby rocks hit by dense light threads, immediately pierced with honeycomb-like needle holes.",
+      "narration": "附近的岩石一被这些密密麻麻的光丝击中,立刻洞穿出了马蜂窝般的孔洞。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "两族等人大吃一惊后,纷纷或施展神通或放出宝物来抵挡光丝,场面一片混乱。",
+      "mood": "Chaotic",
+      "lighting": "White Light",
+      "action": "Defend Against Beams",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Both races greatly shocked, all either use abilities or release treasures to block light threads, scene chaotic",
+        "environment": "Scorching Light Pool, forces defending",
+        "character_pose": "Forces using abilities and treasures, chaotic",
+        "fx": "White light beams, defensive abilities, treasures",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Both races greatly shocked, all either use abilities or release treasures to block light threads, scene chaotic.",
+      "narration": "两族等人大吃一惊后,纷纷或施展神通或放出宝物来抵挡光丝,场面一片混乱。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "原本清澈无比的潭水下泛起了一层刺日耀眼的光芒,仿佛下面浮现出一只骄阳,徐徐从潭水下升起。",
+      "mood": "Revealing",
+      "lighting": "Scorching Light",
+      "action": "Sun Rises from Pool",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Originally clear pool water below glows with blinding light, as if sun rising from below, slowly rising from pool bottom",
+        "environment": "Scorching Light Pool, light rising",
+        "character_pose": "Light rising from pool",
+        "fx": "Scorching light, sun-like glow rising",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Originally clear pool water below glows with blinding light, as if sun rising from below, slowly rising from pool bottom.",
+      "narration": "原本清澈无比的潭水下泛起了一层刺日耀眼的光芒,仿佛下面浮现出一只骄阳。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Scorching Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "在潭水翻滚的同时,竟然放出了一股股炙热难当的高温,仿佛整个水潭在白光中,沸腾烧开了一般。",
+      "mood": "Boiling",
+      "lighting": "Scorching Light",
+      "action": "Pool Boils",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "While pool water churns, releases waves of unbearable scorching heat, as if entire pool boiling and burning in white light",
+        "environment": "Scorching Light Pool, boiling water",
+        "character_pose": "Pool boiling, heat waves",
+        "fx": "Boiling water, heat waves, white light",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "While pool water churns, releases waves of unbearable scorching heat, as if entire pool boiling and burning in white light.",
+      "narration": "在潭水翻滚的同时,竟然放出了一股股炙热难当的高温,仿佛整个水潭沸腾烧开。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Scorching Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "躲在空中偷窥下方一切的韩立,先是被那些光丝同样逼得一阵手忙脚乱,随后再见到潭水中的异样,不禁骇然起来。",
+      "mood": "Shocked",
+      "lighting": "Mixed Lighting",
+      "action": "Han Li Shocked",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li hiding in air watching below, first flustered by light threads, then sees pool abnormality, shocked",
+        "environment": "Sky above pool, Han Li invisible",
+        "character_pose": "Han Li shocked, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li hiding in air watching below, first flustered by light threads, then sees pool abnormality, shocked.",
+      "narration": "躲在空中偷窥下方一切的韩立,先是被光丝逼得手忙脚乱,随后见到潭水异样骇然。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "韩立心中骇然,想道是怎么回事,难道是下边的灵族人捣的鬼,不光是他,少妇和蓝城主等人也同样暗自嘀咕不停。",
+      "mood": "Confused",
+      "lighting": "Mixed Lighting",
+      "action": "Everyone Confused",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li shocked, thinks what's happening, is it spirit clan people below causing trouble, not just him, woman and City Lord Lan also muttering",
+        "environment": "Scorching Light Pool, forces confused",
+        "character_pose": "Forces confused, muttering",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li shocked, thinks what's happening, is it spirit clan people below causing trouble, not just him, woman and City Lord Lan also muttering.",
+      "narration": "韩立心中骇然,想道是怎么回事,难道是下边的灵族人捣的鬼。",
+      "face_style_auto": {
+        "expression": "Confused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主显然比较熟悉此水潭,失声的想说什么,不对,炙光不是只能隐藏水中的吗,怎么会离开水面的,莫非是。",
+      "mood": "Realizing",
+      "lighting": "Daylight",
+      "action": "Realize Problem",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan clearly familiar with pool, exclaims wanting to say something, no, scorching light should only hide in water, how leave surface, could it be",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan realizing, alarmed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan clearly familiar with pool, exclaims wanting to say something, no, scorching light should only hide in water, how leave surface, could it be.",
+      "narration": "蓝城主显然比较熟悉此水潭,失声说道,不对,炙光不是只能隐藏水中的吗。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "可尚未等他完全将话说出口,十几道水缸粗细的白色光柱破空射出,方一离开水面,光柱竟诡异的忽然一拐弯。",
+      "mood": "Sudden Attack",
+      "lighting": "White Light",
+      "action": "Light Columns Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Before he finishes speaking, over ten white light columns thick as water jars shoot from water, just leaving surface, columns weirdly suddenly turn",
+        "environment": "Scorching Light Pool, light columns shooting",
+        "character_pose": "Light columns turning, attacking",
+        "fx": "White light columns, turning and attacking",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Before he finishes speaking, over ten white light columns thick as water jars shoot from water, just leaving surface, columns weirdly suddenly turn.",
+      "narration": "可尚未等他完全将话说出口,十几道水缸粗细的白色光柱破空射出,光柱诡异拐弯。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "白色光柱直奔附近的人妖一齐射去,速度奇快无比,几乎转瞬就至,这一记防不胜防的偷袭,让人妖两族不及防下立刻吃了大亏。",
+      "mood": "Devastating",
+      "lighting": "White Light",
+      "action": "Light Columns Hit Forces",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "White light columns directly shoot toward nearby humans and demons, speed extremely fast, almost instant, this unexpected sneak attack, humans and demons unprepared immediately suffer heavy losses",
+        "environment": "Scorching Light Pool, forces being hit",
+        "character_pose": "Forces being hit, destroyed",
+        "fx": "White light columns, destruction",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "White light columns directly shoot toward nearby humans and demons, speed extremely fast, almost instant, this unexpected sneak attack, humans and demons unprepared immediately suffer heavy losses.",
+      "narration": "白色光柱直奔附近的人妖一齐射去,速度奇快无比,这一记防不胜防的偷袭让人妖两族吃了大亏。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "除了少妇以及蓝城主这般修为高深的寥寥数人,见势不妙的施展秘术遁开了外,化形妖修和元婴级修士在光柱及身的一瞬间,就蓦然消失得无影无踪。",
+      "mood": "Devastating",
+      "lighting": "White Light",
+      "action": "Forces Vanish",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Besides woman and City Lord Lan and few high-level people who saw danger and escaped, transformed demon cultivators and Nascent Soul cultivators hit by light columns instantly vanish completely",
+        "environment": "Scorching Light Pool, forces vanishing",
+        "character_pose": "Forces vanishing, few escaping",
+        "fx": "White light columns, forces vanishing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Besides woman and City Lord Lan and few high-level people who saw danger and escaped, transformed demon cultivators and Nascent Soul cultivators hit by light columns instantly vanish completely.",
+      "narration": "除了少妇以及蓝城主这般修为高深的寥寥数人遁开外,化形妖修和元婴级修士瞬间消失。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "管他什么护身法术还是防护法宝,全都丝毫效果未启的样子,连一丝痕迹都没有剩下,全部被光柱吞噬。",
+      "mood": "Unstoppable",
+      "lighting": "White Light",
+      "action": "No Defense Works",
+      "camera": "Close-Up Details",
+      "visual": {
+        "composition": "No matter protective spells or defensive treasures, all completely ineffective, not even a trace left, all devoured by light columns",
+        "environment": "Scorching Light Pool, defenses failing",
+        "character_pose": "Defenses failing, being devoured",
+        "fx": "White light columns, defenses breaking",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "No matter protective spells or defensive treasures, all completely ineffective, not even a trace left, all devoured by light columns.",
+      "narration": "管他什么护身法术还是防护法宝,全都丝毫效果未启,连一丝痕迹都没有剩下。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "见到这一幕,宫装少妇等人的惊怒可想而知了,但尚未等他们弄明白到底下面发生了何事时,轰的一声巨响,五根黄色柱子一下在水潭四周破土而出。",
+      "mood": "Shocked",
+      "lighting": "Yellow Light",
+      "action": "Yellow Pillars Emerge",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Seeing this, palace-dressed woman and others' shock and anger imaginable, but before they understand what happened below, boom sound, five yellow pillars suddenly emerge from ground around pool",
+        "environment": "Scorching Light Pool, pillars emerging",
+        "character_pose": "Forces shocked, pillars emerging",
+        "fx": "Ground breaking, yellow pillars emerging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Seeing this, palace-dressed woman and others' shock and anger imaginable, but before they understand what happened below, boom sound, five yellow pillars suddenly emerge from ground around pool.",
+      "narration": "见到这一幕,宫装少妇等人的惊怒可想而知了,但尚未等他们弄明白,五根黄色柱子破土而出。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "五根黄色柱子面面铅印着一些无法看明的花纹,人族元婴修士最多,刚才惨死的自然也不少,这些人大多都是蓝城主的心腹和门下弟子。",
+      "mood": "Grieving",
+      "lighting": "Yellow Light",
+      "action": "Observe Pillars",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Five yellow pillars all imprinted with incomprehensible patterns, human Nascent Soul cultivators most, many just died, most were City Lord Lan's confidants and disciples",
+        "environment": "Scorching Light Pool, yellow pillars",
+        "character_pose": "City Lord Lan grieving, pillars visible",
+        "fx": "Yellow pillars with patterns",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Five yellow pillars all imprinted with incomprehensible patterns, human Nascent Soul cultivators most, many just died, most were City Lord Lan's confidants and disciples.",
+      "narration": "五根黄色柱子面面铅印着一些无法看明的花纹,人族元婴修士刚才惨死的自然也不少。",
+      "face_style_auto": {
+        "expression": "Grieving",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主让其大怒之极,现在一见这些古怪柱子从地下冒出,哪还不知道刚才之事肯定和这些东西有关的,口中立刻一声大喝。",
+      "mood": "Furious",
+      "lighting": "Yellow Light",
+      "action": "Anger at Pillars",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan extremely furious, now seeing these strange pillars emerge from ground, knows previous events definitely related, immediately shouts loudly",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan furious, shouting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan extremely furious, now seeing these strange pillars emerge from ground, knows previous events definitely related, immediately shouts loudly.",
+      "narration": "蓝城主让其大怒之极,现在一见这些古怪柱子从地下冒出,哪还不知道刚才之事有关。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主大喝,是何方妖孽,竟然敢下如此毒手,随即他一摸自己天灵盖,顿时嗖嗖之声大起,一连五口蓝色小剑激射而出。",
+      "mood": "Attacking",
+      "lighting": "Blue Light",
+      "action": "Summon Swords",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan shouts, what demon dares such cruelty, then touches his head, swoosh sounds, five blue small swords shoot out",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan summoning swords",
+        "fx": "Blue swords emerging",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "City Lord Lan shouts, what demon dares such cruelty, then touches his head, swoosh sounds, five blue small swords shoot out.",
+      "narration": "蓝城主大喝,是何方妖孽,竟然敢下如此毒手,随即五口蓝色小剑激射而出。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "五口蓝色小剑一晃下,纷纷化为数丈大小巨剑,蓝城主森然的吐道,斩,五口巨剑一闪,就化为五道惊虹直奔五根黄柱而去。",
+      "mood": "Powerful",
+      "lighting": "Blue Light",
+      "action": "Swords Attack Pillars",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Five blue small swords shake, all transform into several zhang large giant swords, City Lord Lan coldly says cut, five giant swords flash, transform into five rainbows rush at five yellow pillars",
+        "environment": "Scorching Light Pool, swords attacking",
+        "character_pose": "Blue swords attacking yellow pillars",
+        "fx": "Blue swords, rainbows, attacking pillars",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Five blue small swords shake, all transform into several zhang large giant swords, City Lord Lan coldly says cut, five giant swords flash, transform into five rainbows rush at five yellow pillars.",
+      "narration": "五口蓝色小剑一晃下,纷纷化为数丈大小巨剑,蓝城主森然吐道,斩,五道惊虹直奔黄柱而去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "五道惊虹围着柱子根部飞快的一连绕了数圈,轰隆隆一连串巨响传来后,柱子被一斩两截,只在表面留下一圈圈的浅剑痕。",
+      "mood": "Ineffective",
+      "lighting": "Mixed Lighting",
+      "action": "Swords Cut Pillars",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Five rainbows quickly circle pillar roots several times, roaring sounds, pillars cut in half, only shallow sword marks on surface",
+        "environment": "Scorching Light Pool, pillars being cut",
+        "character_pose": "Pillars cut but not destroyed",
+        "fx": "Sword marks, pillars cut",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Five rainbows quickly circle pillar roots several times, roaring sounds, pillars cut in half, only shallow sword marks on surface.",
+      "narration": "五道惊虹围着柱子根部飞快的一连绕了数圈,柱子被一斩两截,只在表面留下浅剑痕。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主瞳孔一缩,一掐诀,急忙将五口巨剑唤了回去,就在这时,柱子表面剑痕处一下喷出一股股的绿色液体,散发着一股奇怪之极的腥气。",
+      "mood": "Alarming",
+      "lighting": "Green Light",
+      "action": "Green Liquid Sprays",
+      "camera": "Close-Up Details",
+      "visual": {
+        "composition": "City Lord Lan's pupils shrink, forms seals, urgently recalls five giant swords, at this moment, pillar surface sword marks spray streams of green liquid, emitting strange stench",
+        "environment": "Scorching Light Pool, pillars spraying",
+        "character_pose": "Green liquid spraying from pillars",
+        "fx": "Green liquid, stench",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan's pupils shrink, forms seals, urgently recalls five giant swords, at this moment, pillar surface sword marks spray streams of green liquid, emitting strange stench.",
+      "narration": "蓝城主瞳孔一缩,急忙将五口巨剑唤了回去,柱子表面剑痕处喷出绿色液体。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主让巨剑在头顶盘旋不定,目光一扫五根黄柱,脸上肌肉不禁跳动几下,他这几口飞剑的威力之大,自然只有他本人知道的最清楚。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Pillars Are Strong",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan makes giant swords circle above head, glances at five yellow pillars, face muscles twitch, he knows best how powerful these flying swords are",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan realizing, concerned",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan makes giant swords circle above head, glances at five yellow pillars, face muscles twitch, he knows best how powerful these flying swords are.",
+      "narration": "蓝城主让巨剑在头顶盘旋不定,目光一扫五根黄柱,脸上肌肉不禁跳动几下。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主想平常不要说一根柱子,就是一座小山,也能一剑轻易劈开的,但话说回来这些柱子真有些不对劲,表面看起来竟然有一定弹性,好像活物一般。",
+      "mood": "Suspicious",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Pillars Are Alive",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan thinks normally not just a pillar, even a small mountain can be easily cut, but these pillars really strange, surface looks elastic, like living things",
+        "environment": "Scorching Light Pool",
+        "character_pose": "City Lord Lan suspicious, examining pillars",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan thinks normally not just a pillar, even a small mountain can be easily cut, but these pillars really strange, surface looks elastic, like living things.",
+      "narration": "蓝城主想平常不要说一根柱子,就是一座小山也能一剑劈开,但这些柱子真有些不对劲。",
+      "face_style_auto": {
+        "expression": "Suspicious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "见蓝城主出手未果,宫装少妇在低空处,脸上也全是惊疑表情,一声低低的嗡鸣声从水潭下方传出,仿佛有人在呻吟着。",
+      "mood": "Ominous",
+      "lighting": "Mixed Lighting",
+      "action": "Strange Sound",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Seeing City Lord Lan's attack ineffective, palace-dressed woman at low altitude, face also full of shock, low buzzing sound comes from pool below, as if someone moaning",
+        "environment": "Scorching Light Pool, sound from below",
+        "character_pose": "Woman shocked, sound coming",
+        "fx": "Sound waves from pool",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Seeing City Lord Lan's attack ineffective, palace-dressed woman at low altitude, face also full of shock, low buzzing sound comes from pool below, as if someone moaning.",
+      "narration": "见蓝城主出手未果,宫装少妇脸上也全是惊疑表情,一声低低的嗡鸣声从水潭下方传出。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "仿佛什么人才刚刚苏醒的样子,随着此诡异声音发出,原本五根柱子却一下静止不动了,但潭水下,飞射出一颗直径十丈的巨大光球。",
+      "mood": "Revealing",
+      "lighting": "Golden Light",
+      "action": "Giant Light Ball Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "As if something just awakening, with this strange sound, five pillars suddenly stop, but from pool below, shoots out giant light ball ten zhang diameter",
+        "environment": "Scorching Light Pool, light ball rising",
+        "character_pose": "Light ball rising, pillars still",
+        "fx": "Giant light ball, golden glow",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "As if something just awakening, with this strange sound, five pillars suddenly stop, but from pool below, shoots out giant light ball ten zhang diameter.",
+      "narration": "仿佛什么人才刚刚苏醒的样子,随着此诡异声音发出,五根柱子静止不动,但潭水下飞射出巨大光球。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "此球通体白光闪动的,中心处却有一颗金灿灿的圆球状东西,头颅般大小,蓝城主身后头陀一下失声了起来,落阳晶。",
+      "mood": "Recognizing",
+      "lighting": "Golden Light",
+      "action": "Recognize Treasure",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "This ball whole body white light flashing, center has golden round thing, head-sized, head monk behind City Lord Lan exclaims, Setting Sun Crystal",
+        "environment": "Scorching Light Pool, light ball with crystal",
+        "character_pose": "Head monk recognizing, excited",
+        "fx": "Golden crystal in light ball",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This ball whole body white light flashing, center has golden round thing, head-sized, head monk behind City Lord Lan exclaims, Setting Sun Crystal.",
+      "narration": "此球通体白光闪动的,中心处却有一颗金灿灿的圆球状东西,头陀失声叫道,落阳晶。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "头陀此话刚一出口,他马上后悔起来,不加思索的身形一跃,化为一道白虹直取此宝,听到落阳晶这几个字眼,少妇和三名黑瘦青年一愣之下,随即也现出狂喜之色来。",
+      "mood": "Greedy",
+      "lighting": "Golden Light",
+      "action": "Rush for Treasure",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Head monk just says this, immediately regrets, without thinking body leaps, transforms into white rainbow rushes at treasure, hearing Setting Sun Crystal, woman and three thin youths stunned, then show ecstatic joy",
+        "environment": "Scorching Light Pool, forces rushing",
+        "character_pose": "Head monk rushing, others excited",
+        "fx": "White rainbow, forces rushing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Head monk just says this, immediately regrets, without thinking body leaps, transforms into white rainbow rushes at treasure, hearing Setting Sun Crystal, woman and three thin youths stunned, then show ecstatic joy.",
+      "narration": "头陀此话刚一出口,他马上后悔起来,不加思索的身形一跃,化为白虹直取此宝。",
+      "face_style_auto": {
+        "expression": "Greedy",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第39集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep38_full/scene_026.png"
+    }
+  ]
+}
+
+

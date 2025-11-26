@@ -1,0 +1,1289 @@
+scenes:
+  qingluo_desert:
+    scene_name: Qingluo Desert
+    color_palette:
+      primary:
+      - golden yellow
+      - warm orange
+      - light ochre
+      secondary:
+      - sand yellow
+      - beige
+      - pale brown
+      accent:
+      - dark brown
+      - muted gold
+      prompt: (golden-yellow sand:1.4),(warm orange tones:1.3),(beige and brown hues:1.2),(avoid white or red sand:1.3)
+    terrain:
+      description: rolling sand dunes,arid air,distant rock walls
+      details: endless dunes,dry atmosphere,stone ridges on the horizon
+      prompt: (rolling sand waves:1.3),(vast golden desert:1.4),(distant stone peaks:1.2),(windblown sand:1.1)
+    sky:
+      description: bright sunlight with subtle heat-haze distortion
+      details: intense sunshine,shimmering heat waves
+      prompt: (intense sunlight:1.3),(heat-haze distortion:1.2),(clear vivid sky:1.2),(golden sunset rays:1.1)
+    atmosphere:
+      description: arid,open,touched by faint spiritual currents
+      details: dry and expansive with subtle spirit-energy ripples
+      prompt: (arid atmosphere:1.2),(vast open landscape:1.3),(subtle spiritual energy:1.1),(mysterious aura flux:1.1)
+    style:
+      type: "Chinese animation fantasy"
+      keywords:
+      - xianxia cultivation world
+      - ancient Chinese fantasy
+      - cinematic xianxia tone
+    consistency_rules:
+    - Keep the sand golden-yellow; no white or red dunes.
+    - Sky should remain clear without bizarre storm clouds.
+    - Rocks must feel like Eastern fantasy formations,never modern.
+    - Maintain the dry desert mood; no water or oasis unless the script demands it.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia desert frontier'
+  qingluo_palace:
+    scene_name: Qingluo Spirit Palace
+    color_palette:
+      primary:
+      - teal
+      - ink green
+      - deep cyan
+      secondary:
+      - light blue
+      - pale cyan
+      - silver gray
+      accent:
+      - gold
+      - spirit-light blue
+      - rune cyan
+      prompt: (teal palace stone:1.5),(green-cyan palette:1.4),(spirit-light glows:1.3),(ancient teal stone:1.3),(avoid red or yellow:1.2)
+    terrain:
+      description: massive teal palaces with rune-carved pillars and a vast forecourt
+      details: towering teal structures,glowing rune columns,open ceremonial plaza
+      prompt: (towering teal palace:1.4),(ancient rune pillars:1.4),(expansive empty plaza:1.2),(soaring architecture:1.3)
+    sky:
+      description: spirit light ripples like water,void currents,mysterious mist
+      details: wavy spirit light,ethereal void,drifting luminous fog
+      prompt: (spirit-light ripples:1.3),(ethereal void:1.3),(mysterious luminous mist:1.2),(flowing aura:1.2)
+    atmosphere:
+      description: ancient,solemn,saturated with qi
+      details: ancient mystery,ceremonial solemnity,dense spirit energy
+      prompt: (ancient mysterious ambience:1.3),(solemn temple mood:1.3),(dense spiritual qi:1.2),(otherworldly palace:1.2)
+    style:
+      type: "Chinese animation - fantasy - spirit palace"
+      keywords:
+      - xianxia spirit palace
+      - ancient Chinese fantasy architecture
+      - mysterious spirit hall
+      - cultivation temple complex
+    consistency_rules:
+    - Palace hues stay teal/cyan; no red or yellow palaces.
+    - Maintain unified spirit-light and rune motifs.
+    - Architecture must remain Eastern fantasy,not modern or Western.
+    - Keep the scene dignified; avoid playful elements.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia spirit palace'
+  sand_worm_battlefield:
+    scene_name: "Turtle Caravan Defense Line - Sand Worm Battlefield"
+    color_palette:
+      primary:
+      - dusty gray-green
+      - sand yellow
+      - dark brown
+      secondary:
+      - dust orange
+      - earthy gold
+      - iron black
+      accent:
+      - spirit white
+      - cyan glows
+      - blood red
+      prompt: (dusty gray-green desert:1.4),(sand-yellow haze:1.3),(dark brown tortoise shells:1.3),(avoid lush greens:1.2),(bloodied battle accents:1.2)
+    terrain:
+      description: ring of land-tortoise wagons forming a connected battlefield platform amid rolling dunes
+      details: circular tortoise convoy,interlocked shell ramparts,scarred sand ridges
+      prompt: (massive land-tortoise convoy:1.4),(linked tortoise-shell fortifications:1.4),(dunes churning around the battlefield:1.2),(scarred desert ground:1.2)
+    sky:
+      description: sun dimmed by dust,light scattered through sand curtains,air shimmering with heat
+      details: sun behind dust veil,diffused beams,wavering heatlines
+      prompt: (sunlight through sandstorm:1.3),(dust-curtain diffusion:1.3),(heat-shimmered sky:1.2),(no clear blue sky:1.2)
+    atmosphere:
+      description: perilous,dust-choked,metallic and tense
+      details: dangerous battlefield,gritty air,metallic blood scent,high tension
+      prompt: (dangerous battlefield atmosphere:1.3),(dust-clogged air:1.3),(metallic blood scent:1.2),(high-tension war zone:1.2)
+    style:
+      type: "Chinese animation fantasy desert war"
+      keywords:
+      - xianxia desert battlefield
+      - tortoise-cart defensive circle
+      - sand worm siege
+      - dust-laden war zone
+    consistency_rules:
+    - Palette should emphasize gray-green,sand yellow,and dust orange.
+    - Always show tortoise shells or silhouettes to remind viewers of the mobile fort.
+    - Air must be full of dust and heat; no fresh blue skies.
+    - Include debris or blood to show worm-beast assaults.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia tortoise-war battlefield'
+  tianyuan_prairie:
+    scene_name: Tianyuan Great Prairie
+    color_palette:
+      primary:
+      - gray-green
+      - pale cyan
+      - muted brown
+      secondary:
+      - soft blue
+      - silver gray
+      - dusty yellow
+      accent:
+      - spirit white
+      - faint cyan glow
+      prompt: (gray-green grasslands:1.4),(soft blue sky:1.3),(dusty brown paths:1.2),(avoid saturated lush colors:1.2)
+    terrain:
+      description: flat prairie with endless grass waves,occasional low hills and dead trees
+      details: level grass sea,rolling gusts,scattered knolls and withered trunks
+      prompt: (boundless flat prairie:1.4),(rolling grass waves:1.3),(scattered low hills:1.2),(dead-tree silhouettes:1.2)
+    sky:
+      description: multiple suns and moons sharing the pale sky,light filtered by thin dust
+      details: dim celestial discs,dust-filtered sunlight,bleached vault
+      prompt: (multiple suns in pale sky:1.3),(dust-filtered sunlight:1.3),(soft white haze:1.2)
+    atmosphere:
+      description: oppressive silence,hidden dangers,low moaning wind
+      details: muted tension,lurking threats,low wind hum
+      prompt: (oppressive quiet prairie:1.3),(hidden-danger mood:1.3),(low moaning wind:1.2)
+    style:
+      type: "Chinese animation fantasy guarded prairie"
+      keywords:
+      - xianxia prairie march
+      - cautious caravan plain
+      - gray spirit steppe
+    consistency_rules:
+    - Grass should lean gray-green to emphasize gloom.
+    - Include tortoise carts or wheel tracks to stress the convoy.
+    - Sky should show multiple suns/moons or hazy halos.
+    - Air needs dust or heat shimmer,not clear blue.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,vigilant xianxia prairie'
+  anyuan_city:
+    scene_name: Anyuan Megacity
+    color_palette:
+      primary:
+      - limestone white
+      - dark iron gray
+      - ink black
+      secondary:
+      - indigo
+      - cyan gray
+      - aged bronze
+      accent:
+      - spirit-white glow
+      - rune cyan
+      prompt: (towering stone walls:1.4),(dark iron gates:1.3),(subtle rune light:1.2),(avoid bright festival colors:1.2)
+    terrain:
+      description: thirty-zhang rune-carved walls,heavy gates,straight stone avenues
+      details: engraved fortress walls,massive city gate,straight cobbled streets
+      prompt: (giant rune-covered walls:1.4),(massive black gate:1.3),(straight cobble avenue:1.2)
+    sky:
+      description: clear yet cold light with drifting dust veils
+      details: hard-edged daylight,sporadic dust clouds
+      prompt: (clear but cold sky:1.2),(dust veils slicing sunlight:1.2)
+    atmosphere:
+      description: city on alert,civilians crowded,beast tide impending
+      details: martial readiness,packed refugees,looming threat
+      prompt: (crowded refugee tension:1.3),(militarized ambience:1.3),(imminent threat mood:1.2)
+    style:
+      type: "Chinese animation fantasy border fortress"
+      keywords:
+      - xianxia fortress city
+      - beast-tide defense
+      - crowded weapon street
+    consistency_rules:
+    - Show high walls with giant crossbows or rune arrays.
+    - Streets must stay straight and stone-built.
+    - Crowds should carry weapons or supplies.
+    - Palette stays cool gray; avoid bright warm blocks.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia fortress city'
+  anyuan_wall:
+    scene_name: Anyuan City Wall Defense Line
+    color_palette:
+      primary:
+      - limestone white
+      - iron gray
+      - dark gold
+      secondary:
+      - dust yellow
+      - fiery red
+      - indigo banner
+      accent:
+      - spirit light white
+      - weapon silver
+      prompt: (iron-gray masonry fortifications:1.4),(dusty battlefield mist:1.3),(avoid lush colors:1.2)
+    terrain:
+      description: towering walls with broad battlements,rows of trebuchets and ballistae,battlefield extending beyond
+      details: high parapets,siege engines in formation,battlefield sprawl outside
+      prompt: (lofty fortress walls with crenels:1.4),(rows of trebuchets and ballistae:1.3),(battle zone beyond the wall:1.3)
+    sky:
+      description: yellow dust and battle smoke interwoven,streaked with spirit and firelight
+      details: smoke-choked sky,luminous aura streaks
+      prompt: (smoke-filled dusty sky:1.3),(spirit-light streaks:1.2)
+    atmosphere:
+      description: tense vigilance,clashing arms,murderous aura
+      details: tight patrols,weapon impacts,pervasive killing intent
+      prompt: (high-tension battlefield mood:1.4),(ringing armor and weapons:1.2),(pervasive killing aura:1.2)
+    style:
+      type: "Chinese animation fantasy siege defense"
+      keywords:
+      - xianxia fortress wall
+      - battle-ready parapet
+      - siege defense tableau
+    consistency_rules:
+    - Always show tall walls,parapets,or the outer battlefield.
+    - Include weapons,banners,or soldiers to emphasize readiness.
+    - Palette leans gray-white and dust yellow with fire/spirit light accents.
+    - Keep smoke and dust visible to reinforce tension.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia fortress wall defense'
+  anyuan_market:
+    scene_name: Anyuan City Market
+    color_palette:
+      primary:
+      - limestone gray
+      - gray-green
+      - wood brown
+      secondary:
+      - canvas white
+      - indigo banner blue
+      - dusty yellow
+      accent:
+      - spirit white
+      - rune cyan
+      prompt: (muted gray stone streets:1.3),(dusty market palette:1.2),(avoid neon hues:1.2)
+    terrain:
+      description: straight stone streets packed with shops,weapon stalls,and awnings
+      details: linearly arranged stalls,weapon racks,canvas canopies
+      prompt: (straight stone street with shops:1.4),(crowded weapon stalls:1.3),(canvas sunshades:1.2)
+    sky:
+      description: city dust mixing with sunlight,multiple pale suns overhead
+      details: dust-filtered glow,stacked pale suns
+      prompt: (hazy city sun above dust:1.3),(multiple pale suns:1.2)
+    atmosphere:
+      description: packed crowds,nervous vigilance,hawkers and clanging armor
+      details: dense refugees,soldiers on alert,merchants shouting
+      prompt: (crowded tense marketplace:1.3),(weapon clashes and hawker cries:1.2)
+    style:
+      type: "Chinese animation fantasy border market"
+      keywords:
+      - xianxia frontier bazaar
+      - weapon market street
+      - dusty fortress avenue
+    consistency_rules:
+    - Streets must stay straight and paved; buildings lean gray-white.
+    - Show people carrying weapons or supplies.
+    - Add dust haze or whipping banners to highlight tension.
+    - Use restrained colours; no vivid warm blocks.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia border market'
+  ruyun_inn:
+    scene_name: Ruyun Inn
+    color_palette:
+      primary:
+      - deep wood brown
+      - ink teal
+      - gray stone
+      secondary:
+      - bamboo green
+      - cream curtain white
+      - golden plaque
+      accent:
+      - warm lantern orange
+      - spirit white
+      prompt: (jade-roofed deep-wood courtyards:1.4),(muted teal walls:1.3),(glowing golden plaque:1.2)
+    terrain:
+      description: layered courtyards,covered corridors,bamboo shadows,guarded gates
+      details: multiple yards,roofed walkways,bamboo groves,watchful gatekeepers
+      prompt: (multi-courtyard complex with roofed corridors:1.4),(bamboo shadows on stone:1.3),(guarded entrance presence:1.2)
+    sky:
+      description: city sky sliced by eaves with softened light
+      details: filtered daylight by eaves,occasional lantern glow at night
+      prompt: (courtyard light filtered by eaves:1.2)
+    atmosphere:
+      description: noble guests,patrolling guards,quiet incense haze
+      details: gathered dignitaries,watchful guards,calm incense smoke
+      prompt: (serene yet guarded inn mood:1.3),(incense mist:1.2)
+    style:
+      type: "Chinese animation fantasy elite inn"
+      keywords:
+      - xianxia noble inn
+      - multi-courtyard residence
+      - guarded lodging
+    consistency_rules:
+    - Show the golden plaque or bamboo shadows to identify the inn.
+    - Include guards,attendants,or guests to show vigilance.
+    - Palette favors wood tones and stone teal; avoid flashy colors.
+    - Interior shots should feature elegant screens and incense burners.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia noble inn'
+  sealed_space_abyss:
+    scene_name: Spirit Light Abyss
+    color_palette:
+      primary:
+      - deep blue
+      - teal blue
+      - abyssal indigo
+      secondary:
+      - pale blue
+      - silver white
+      - spirit-light blue
+      accent:
+      - gold
+      - rune cyan
+      - spirit white
+      prompt: (deep blue abyss:1.5),(teal-blue palette:1.4),(spirit-light glows:1.3),(ethereal blue fog:1.3),(avoid red or yellow:1.2)
+    terrain:
+      description: endless spirit mist abyss beyond a sealed gate,fog dense like an ocean
+      details: limitless mist chasm,sealed doorway,ocean-thick spirit fog
+      prompt: (endless spirit-mist abyss:1.4),(sealed dimensional space:1.3),(dense spirit fog:1.4),(void realm:1.3)
+    sky:
+      description: spirit light ripples,flowing void currents,mysterious luminous fog,oppressive qi
+      details: wavy aura,void gradients,heavy pressure
+      prompt: (spirit-light ripples:1.3),(ethereal void:1.4),(mysterious glow fog:1.3),(dense spiritual pressure:1.2)
+    atmosphere:
+      description: oppressive,mysterious,deep unknown,ancient inheritance
+      details: somber mystery,unfathomable depth,rich qi,ancient legacy
+      prompt: (oppressive mystical mood:1.3),(deep unknown space:1.3),(rich spiritual qi:1.2),(ancient inheritance aura:1.2)
+    style:
+      type: "Chinese animation fantasy spirit abyss"
+      keywords:
+      - xianxia sealed space
+      - spirit-mist abyss
+      - ancient inheritance realm
+      - mysterious void domain
+    consistency_rules:
+    - Color palette must stay in blue tones; no red or yellow.
+    - Keep mist thick like an ocean with unified light and rune motifs.
+    - Scene should feel oppressive and mysterious,not brightly lit.
+    - Spirit fog should feel dense,never wispy.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia sealed abyss'
+  huanling_mountain:
+    scene_name: Huanling Mountain
+    color_palette:
+      primary:
+      - jade green
+      - emerald
+      - deep forest green
+      secondary:
+      - pale blue
+      - misty white
+      - spirit green
+      accent:
+      - gold
+      - spirit blue
+      - rune cyan
+      prompt: (emerald spirit mountain:1.5),(lush green palette:1.4),(spirit-green light:1.3),(ancient cyan stone:1.3),(avoid red or yellow:1.2)
+    terrain:
+      description: floating peaks,spirit beasts flowing as light,valleys of blooming spirit flowers
+      details: suspended mountains,luminous beasts,flourishing spirit-flower valleys
+      prompt: (floating mountain peaks:1.4),(spirit beasts made of light:1.3),(valley of blooming spirit flowers:1.3),(dreamlike landscape:1.2)
+    sky:
+      description: surging cloud seas,flowing spirit light,dreamlike void
+      details: billowing clouds,drifting aura,surreal firmament
+      prompt: (rolling cloud sea:1.3),(flowing spirit light:1.3),(dreamlike void:1.3),(ethereal sky:1.2)
+    atmosphere:
+      description: fantastical mystery,trial ground,dense qi,dreamlike reality
+      details: mystical trial site,rich spirit energy,surreal-yet-real mood
+      prompt: (fantastical mysterious mood:1.3),(trial ground vibe:1.2),(dense spirit qi:1.2),(dreamlike reality:1.2)
+    style:
+      type: "Chinese animation fantasy illusion trial"
+      keywords:
+      - xianxia trial mountain
+      - floating spirit range
+      - phantom spirit domain
+      - spirit realm proving ground
+    consistency_rules:
+    - Peak colors stay within green tones.
+    - Keep floating geometry and spirit-light consistent.
+    - "Maintain the sense of a sacred trial\u2014no modern elements."
+    - Spirit beasts should appear as light forms,not solid animals.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia trial mountain'
+  lanfeng_city:
+    scene_name: Lanfeng City
+    color_palette:
+      primary:
+      - teal
+      - light blue
+      - silver white
+      secondary:
+      - spirit blue
+      - pale cyan
+      - cloud white
+      accent:
+      - gold
+      - rune cyan
+      - spirit white
+      prompt: (teal floating city:1.5),(soft blue palette:1.4),(silver-white accents:1.3),(spirit-light glow:1.3),(avoid red or yellow:1.2)
+    terrain:
+      description: city suspended above cloud seas,hanging palaces,spirit bridges,thriving spirit markets
+      details: floating palace clusters,aerial bridges,lively sky markets
+      prompt: (city floating over clouds:1.4),(suspended palaces:1.4),(spirit bridges:1.3),(busy spirit market:1.2)
+    sky:
+      description: rolling cloud ocean,steaming spirit light,starry brilliance
+      details: billowing clouds,rising aura,sparkling stars
+      prompt: (surging cloud sea:1.3),(steaming spirit light:1.3),(brilliant starfield:1.2),(ethereal sky:1.2)
+    atmosphere:
+      description: majestic and serene,sacred home of spirit clans,dense qi,solemn mystery
+      details: grand calm,holy spirit sanctuary,rich aura,dignified mystery
+      prompt: (majestic tranquil aura:1.3),(spirit clan sanctuary:1.3),(dense spirit qi:1.2),(solemn mystery:1.2)
+    style:
+      type: "Chinese animation fantasy spirit sanctuary"
+      keywords:
+      - xianxia spirit city
+      - floating spirit metropolis
+      - spirit clan sanctuary
+      - ancient sky capital
+    consistency_rules:
+    - City colors should stay blue/teal; no red/yellow architecture.
+    - Maintain the feeling of floating above cloud seas.
+    - "Highlight spirit culture\u2014no modern elements."
+    - Architecture and spirit light must feel unified and sacred.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia spirit metropolis'
+  true_immortal_mansion:
+    scene_name: True Immortal Ruins
+    color_palette:
+      primary:
+      - gold
+      - pale gold
+      - aged bronze
+      secondary:
+      - silver white
+      - jade white
+      - spirit-light gold
+      accent:
+      - deep gold
+      - rune gold
+      - immortal light white
+      prompt: (golden immortal estate:1.5),(pale gold palette:1.4),(antique bronze:1.3),(immortal light flares:1.3),(avoid blue or green dominance:1.2)
+    terrain:
+      description: ruined immortal manor suspended in a sealed space,walls etched with true-immortal runes
+      details: broken halls,floating platforms,rune-covered relics
+      prompt: (ruined true-immortal estate:1.4),(floating within sealed space:1.3),(true-immortal runes:1.4),(ancient palace fragments:1.3)
+    sky:
+      description: sealed ancient domain,saturated with immortal aura and flowing light
+      details: enclosed void,immortal essence,drifting luminescence
+      prompt: (sealed ancient domain:1.3),(true-immortal aura:1.4),(flowing immortal light:1.3),(ethereal immortal void:1.2)
+    atmosphere:
+      description: ancient and solemn,steeped in immortal residue,mysterious and weathered
+      details: historic gravity,immortal legacy,deep mystery,aged decay
+      prompt: (ancient solemn ambience:1.3),(immortal legacy:1.3),(mysterious depth:1.2),(weathered ruin:1.2)
+    style:
+      type: "Chinese animation fantasy immortal ruins"
+      keywords:
+      - xianxia immortal ruin
+      - immortal realm ruins
+      - ancient immortal inheritance
+      - true-immortal architecture
+    consistency_rules:
+    - Colors should stay golden to express immortal prestige.
+    - Maintain the ruinous age with unified architecture and runes.
+    - Keep a sense of damage and erosion; nothing pristine.
+    - Immortal aura should feel dense and distinct from the spirit realm.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia immortal ruins'
+  realm_source_chamber:
+    scene_name: Realm Source Chamber
+    color_palette:
+      primary:
+      - deep blue
+      - abyssal indigo
+      - spirit-light blue
+      secondary:
+      - silver white
+      - pale blue
+      - spirit white
+      accent:
+      - gold
+      - rune blue
+      - realm-source glow
+      prompt: (deep blue sanctum:1.5),(rich blue tones:1.4),(spirit-light glow:1.4),(realm-source radiance:1.3),(avoid red or yellow:1.2)
+    terrain:
+      description: vast subterranean chamber with the realm source suspended at center,light chains linking to the void
+      details: colossal cavern,levitating core,luminous chains anchoring to nothingness
+      prompt: (massive underground chamber:1.4),(floating realm source:1.5),(interlinked light chains:1.3),(boundless cavern space:1.3)
+    sky:
+      description: arched cavern ceiling lit by flowing aura,realm source light illuminating everything
+      details: stone vault overhead,rivers of light,radiant core glow
+      prompt: (underground vault ceiling:1.3),(flowing aura bands:1.3),(realm-source illumination:1.4),(voidlike underground sky:1.2)
+    atmosphere:
+      description: sacred and solemn,charged with source power,danger lurking,immortal threat
+      details: holy tension,realm-source force,hidden peril,true-immortal pressure
+      prompt: (sacred solemn ambience:1.3),(realm-source power:1.4),(latent crisis:1.2),(true-immortal menace:1.2)
+    style:
+      type: "Chinese animation fantasy realm-source sanctum"
+      keywords:
+      - xianxia realm source
+      - spirit realm core
+      - underground holy chamber
+      - realm-source energy
+    consistency_rules:
+    - Keep colors blue-toned to emphasize sanctity.
+    - Realm source and light chains must always appear and feel unified.
+    - Maintain a sense of immense underground space.
+    - Realm-source glow should be intense and central.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia realm-source chamber'
+  tianyuan_city:
+    scene_name: Tianyuan Holy City
+    color_palette:
+      primary:
+      - jade white
+      - pale gold
+      - blue-gray
+      secondary:
+      - cloud white
+      - silver gray
+      - light cyan
+      accent:
+      - holy light gold
+      - rune cyan
+      - spirit white
+      prompt: (jade-white holy city:1.5),(pale gold highlights:1.4),(spirit-light blue glows:1.3),(avoid dark palettes:1.2)
+    terrain:
+      description: nation-sized metropolis with Confucian palatial complexes,towering holy mountain,endless palaces
+      details: immense cityscape,scholarly palaces,sacred mountain backdrop,continuous palace roofs
+      prompt: (nation-scale metropolis:1.5),(Confucian-style palaces:1.4),(sacred mountain backdrop:1.3),(endless palace clusters:1.2)
+    sky:
+      description: clear sky bathed in holy radiance,thick mist-like qi
+      details: shining heavens,sanctified glow,foglike spirit qi
+      prompt: (clear sky with holy light:1.3),(mist-like rich qi:1.3),(radiant ambience:1.2)
+    atmosphere:
+      description: solemn and sacred,scholastic sanctuary,dense qi,prosperous yet calm
+      details: reverent grandeur,scholarly holy ground,abundant qi,peaceful prosperity
+      prompt: (solemn holy-city mood:1.4),(Confucian sanctuary vibe:1.3),(dense spirit qi:1.2),(peaceful prosperity:1.2)
+    style:
+      type: "Chinese animation fantasy holy city"
+      keywords:
+      - xianxia holy capital
+      - Confucian sacred metropolis
+      - holy mountain city
+      - spirit megacity
+    consistency_rules:
+    - Palette should stay jade white and pale gold to show prestige.
+    - Include the holy mountain or sprawling palace clusters to stress importance.
+    - Architecture must preserve Confucian characteristics,never modern.
+    - Maintain a sacred,qi-rich ambience.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia holy city'
+  wasteland_night:
+    scene_name: Wasteland Night
+    color_palette:
+      primary:
+      - dark gray-brown
+      - charcoal black
+      - deep indigo
+      secondary:
+      - muted purple
+      - shadow gray
+      - midnight blue
+      accent:
+      - cold moonlight white
+      - eerie black flame
+      - spirit cyan
+      prompt: (dark gray-brown wasteland:1.4),(charcoal night:1.3),(cold moonlight:1.3),(eerie black flame:1.2),(avoid warm colors:1.2)
+    terrain:
+      description: barren wasteland with small mounds,scattered rocks,no vegetation
+      details: flat desolate land,low hills,rocky patches,dead ground
+      prompt: (barren wasteland:1.4),(small mounds:1.3),(scattered rocks:1.2),(dead ground:1.2)
+    sky:
+      description: dark night sky with cold moon,stars faint,no clouds
+      details: black vault,cold lunar glow,sparse starlight
+      prompt: (dark night sky:1.3),(cold moon:1.3),(faint stars:1.2),(no clouds:1.2)
+    atmosphere:
+      description: eerie,tense,hidden danger,oppressive silence
+      details: mysterious night,high tension,lurking threat,dead quiet
+      prompt: (eerie night atmosphere:1.3),(tense mood:1.3),(oppressive silence:1.2),(hidden danger:1.2)
+    style:
+      type: "Chinese animation fantasy wasteland night"
+      keywords:
+      - xianxia wasteland
+      - desolate night
+      - mysterious encounter
+      - tense confrontation
+    consistency_rules:
+    - Colors should stay dark gray-brown and charcoal; no warm tones.
+    - Moonlight should be cold and white,not warm yellow.
+    - Keep atmosphere tense and mysterious.
+    - No lush vegetation or bright colors.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia wasteland night'
+  beast_lair_entrance:
+    scene_name: Beast Lair Entrance
+    color_palette:
+      primary:
+      - dark gray stone
+      - earthy brown
+      - shadow black
+      secondary:
+      - muted green
+      - rust brown
+      - charcoal gray
+      accent:
+      - cave entrance glow
+      - spirit light
+      prompt: (dark gray stone cave:1.4),(earthy brown rocks:1.3),(shadowy entrance:1.3),(cave glow:1.2)
+    terrain:
+      description: hidden cave entrance among rocks,overgrown with moss,concealed location
+      details: rocky outcrop,cave mouth,dense vegetation,hidden path
+      prompt: (hidden cave entrance:1.4),(rocky outcrop:1.3),(overgrown moss:1.2),(concealed location:1.2)
+    sky:
+      description: daylight filtered through forest canopy or clear sky above cave
+      details: dappled sunlight or clear daylight
+      prompt: (daylight filtered through trees:1.2) or (clear daylight sky:1.2)
+    atmosphere:
+      description: cautious,mysterious,hidden danger,prepared for entry
+      details: tense anticipation,concealed threat,ready for action
+      prompt: (cautious mood:1.3),(mysterious cave entrance:1.3),(hidden danger:1.2),(prepared entry:1.2)
+    style:
+      type: "Chinese animation fantasy beast lair"
+      keywords:
+      - xianxia beast cave
+      - hidden lair entrance
+      - dangerous exploration
+      - treasure hunt
+    consistency_rules:
+    - Cave should look natural,not artificial.
+    - Colors stay dark and earthy.
+    - Atmosphere should be tense and mysterious.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia beast lair entrance'
+  beast_lair_interior:
+    scene_name: Beast Lair Interior
+    color_palette:
+      primary:
+      - deep cave black
+      - dark stone gray
+      - shadow indigo
+      secondary:
+      - dim orange
+      - muted gold
+      - cave brown
+      accent:
+      - golden restriction glow
+      - spirit herb light
+      - restriction barrier gold
+      prompt: (deep cave black:1.4),(dark stone gray:1.3),(golden restriction glow:1.4),(spirit herb light:1.3),(dim cave:1.2)
+    terrain:
+      description: deep cave tunnel,natural rock walls,restriction barrier ahead,herb growing in depths
+      details: narrow passage,rough walls,golden barrier,glowing herb beyond
+      prompt: (deep cave tunnel:1.4),(natural rock walls:1.3),(golden restriction barrier:1.4),(glowing herb in depths:1.3)
+    sky:
+      description: no sky,underground vault ceiling,dark stone overhead
+      details: cave ceiling,stone vault,no natural light
+      prompt: (cave ceiling:1.3),(underground vault:1.3),(no sky:1.2)
+    atmosphere:
+      description: tense,confined,dangerous,restricted space
+      details: tight quarters,guarded treasure,high stakes
+      prompt: (tense cave atmosphere:1.3),(confined space:1.3),(dangerous mood:1.2),(restricted barrier:1.2)
+    style:
+      type: "Chinese animation fantasy underground cave"
+      keywords:
+      - xianxia underground cave
+      - treasure chamber
+      - restriction barrier
+      - spiritual herb
+    consistency_rules:
+    - Must feel underground,no sky visible.
+    - Golden restriction barrier should be prominent.
+    - Colors stay dark with golden accents.
+    - Atmosphere tense and confined.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia beast lair interior'
+  beast_lair_exit:
+    scene_name: Beast Lair Exit
+    color_palette:
+      primary:
+      - daylight entrance
+      - bright stone gray
+      - natural brown
+      secondary:
+      - sky blue
+      - grass green
+      - rock brown
+      accent:
+      - light barrier
+      - escape glow
+      prompt: (daylight at cave exit:1.4),(bright stone:1.3),(natural colors:1.3),(escape light:1.2)
+    terrain:
+      description: cave exit to open wilderness,light streaming in,beasts held behind barrier
+      details: cave mouth opening,bright outside,formation barrier blocking pursuit
+      prompt: (cave exit:1.4),(bright wilderness beyond:1.3),(formation barrier:1.3),(beasts trapped:1.2)
+    sky:
+      description: clear daylight sky,fresh air,open horizon
+      details: blue sky,white clouds,daylight freedom
+      prompt: (clear daylight sky:1.3),(open horizon:1.3),(freedom:1.2)
+    atmosphere:
+      description: relieved,successful escape,tense but triumphant
+      details: successful mission,close call,relief mixed with tension
+      prompt: (relieved mood:1.3),(successful escape:1.3),(tense triumph:1.2)
+    style:
+      type: "Chinese animation fantasy cave exit"
+      keywords:
+      - xianxia cave exit
+      - successful escape
+      - daylight freedom
+      - formation barrier
+    consistency_rules:
+    - Bright daylight contrast with dark cave interior.
+    - Show relief and open space.
+    - Barrier should be visible holding back beasts.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia beast lair exit'
+  wilderness_path:
+    scene_name: Wilderness Path
+    color_palette:
+      primary:
+      - earthy brown
+      - grass green
+      - stone gray
+      secondary:
+      - sky blue
+      - path brown
+      - foliage green
+      accent:
+      - sunlight yellow
+      - spirit glow
+      prompt: (earthy wilderness path:1.4),(grass green:1.3),(stone gray rocks:1.3),(natural colors:1.2)
+    terrain:
+      description: winding path through wilderness,hills and valleys,natural landscape
+      details: dirt trail,rolling hills,scattered trees,open fields
+      prompt: (winding wilderness path:1.4),(rolling hills:1.3),(scattered trees:1.2),(open fields:1.2)
+    sky:
+      description: clear daylight sky or cloudy weather,changing conditions
+      details: blue sky or gray clouds,daylight hours
+      prompt: (clear daylight sky:1.2) or (cloudy sky:1.2)
+    atmosphere:
+      description: journeying,adventurous,uncertain path,ahead
+      details: traveling mood,open road,unknown destination
+      prompt: (journeying mood:1.3),(adventurous path:1.3),(uncertain destination:1.2)
+    style:
+      type: "Chinese animation fantasy wilderness"
+      keywords:
+      - xianxia wilderness
+      - traveling path
+      - natural landscape
+      - journey
+    consistency_rules:
+    - Natural colors,not fantastical.
+    - Show open wilderness and path.
+    - Atmosphere should feel like traveling.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia wilderness path'
+  wilderness_sky:
+    scene_name: Wilderness Sky
+    color_palette:
+      primary:
+      - sky blue
+      - cloud white
+      - daylight yellow
+      secondary:
+      - pale blue
+      - silver gray
+      - warm white
+      accent:
+      - sunlight gold
+      - flying trails
+      - spirit glow
+      prompt: (sky blue:1.4),(cloud white:1.3),(daylight:1.3),(flying trails:1.2)
+    terrain:
+      description: aerial view of wilderness below,clouds around,flying perspective
+      details: ground far below,clouds at same level,open sky
+      prompt: (aerial view:1.4),(ground below:1.3),(clouds around:1.3),(flying perspective:1.2)
+    sky:
+      description: clear open sky,clouds scattered,daylight
+      details: vast blue sky,white clouds,daylight
+      prompt: (clear open sky:1.3),(scattered clouds:1.3),(daylight:1.2)
+    atmosphere:
+      description: free,soaring,open air,traveling high
+      details: aerial freedom,high altitude,traveling mood
+      prompt: (soaring mood:1.3),(open air:1.3),(traveling high:1.2)
+    style:
+      type: "Chinese animation fantasy aerial"
+      keywords:
+      - xianxia aerial view
+      - flying sky
+      - open air travel
+      - cultivator flight
+    consistency_rules:
+    - Show aerial perspective with ground below.
+    - Sky should be clear and open.
+    - Include flying trails or cultivators if relevant.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia wilderness sky'
+  wilderness_dawn:
+    scene_name: Wilderness Dawn
+    color_palette:
+      primary:
+      - dawn purple
+      - pale pink
+      - soft orange
+      secondary:
+      - pale blue
+      - light gray
+      - warm white
+      accent:
+      - sunrise gold
+      - morning mist
+      prompt: (dawn purple:1.4),(pale pink sunrise:1.3),(soft orange:1.3),(sunrise gold:1.2)
+    terrain:
+      description: wilderness landscape in dawn light,long shadows,dewy grass
+      details: rolling hills in dawn,long shadows,morning mist,dew on grass
+      prompt: (wilderness at dawn:1.4),(long shadows:1.3),(morning mist:1.3),(dewy grass:1.2)
+    sky:
+      description: dawn sky with pink and orange hues,sun rising,soft light
+      details: sunrise colors,soft morning light,transitioning sky
+      prompt: (dawn sky:1.4),(pink and orange hues:1.3),(rising sun:1.3),(soft morning light:1.2)
+    atmosphere:
+      description: peaceful,hopeful,new day beginning,calm
+      details: morning serenity,new beginning,calm departure
+      prompt: (peaceful dawn:1.3),(hopeful mood:1.3),(new day:1.2),(calm departure:1.2)
+    style:
+      type: "Chinese animation fantasy dawn"
+      keywords:
+      - xianxia dawn
+      - morning departure
+      - sunrise wilderness
+      - new beginning
+    consistency_rules:
+    - Dawn colors: purple,pink,orange.
+    - Soft morning light,not harsh.
+    - Peaceful and hopeful atmosphere.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia wilderness dawn'
+  yu_yang_city:
+    scene_name: Yu Yang City
+    color_palette:
+      primary:
+      - city gray stone
+      - warm brown
+      - tile roof brown
+      secondary:
+      - market red
+      - banner blue
+      - wood brown
+      accent:
+      - lantern orange
+      - spirit light
+      - forge glow
+      prompt: (city gray stone:1.4),(warm brown roofs:1.3),(market colors:1.3),(lantern glow:1.2)
+    terrain:
+      description: bustling city streets,multiple buildings,shops and workshops,body cultivator training grounds
+      details: crowded streets,multi-story buildings,markets,training facilities
+      prompt: (bustling city streets:1.4),(multi-story buildings:1.3),(markets and shops:1.3),(training grounds:1.2)
+    sky:
+      description: city sky above buildings,smoke from workshops,daylight or night
+      details: sky between buildings,workshop smoke,day or night
+      prompt: (city sky:1.2),(workshop smoke:1.2),(daylight or night:1.2)
+    atmosphere:
+      description: bustling,prosperous,body cultivator city,active
+      details: busy marketplace,prosperous city,body cultivator hub
+      prompt: (bustling city:1.3),(prosperous mood:1.3),(body cultivator hub:1.2),(active streets:1.2)
+    style:
+      type: "Chinese animation fantasy city"
+      keywords:
+      - xianxia city
+      - body cultivator hub
+      - bustling marketplace
+      - prosperous city
+    consistency_rules:
+    - Show bustling city atmosphere.
+    - Include body cultivator elements if relevant.
+    - Colors warm and prosperous.
+    - Busy streets and markets.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia prosperous city'
+  ruined_anyuan_city:
+    scene_name: Ruined Anyuan City
+    color_palette:
+      primary:
+      - dusty gray
+      - broken stone gray
+      - faded white
+      secondary:
+      - rust brown
+      - charred black
+      - pale dust yellow
+      accent:
+      - desolate gray
+      - memory spirit light
+      prompt: (dusty gray ruins:1.4),(broken stone:1.3),(faded white:1.3),(desolate:1.2)
+    terrain:
+      description: collapsed city walls,ruined buildings,thick dust,abandoned remains
+      details: broken walls,collapsed structures,thick dust layer,empty ruins
+      prompt: (collapsed city walls:1.4),(ruined buildings:1.3),(thick dust:1.3),(abandoned remains:1.2)
+    sky:
+      description: pale sky over ruins,dust in air,desolate atmosphere
+      details: gray sky,dust clouds,empty horizon
+      prompt: (pale sky over ruins:1.3),(dust in air:1.3),(desolate atmosphere:1.2)
+    atmosphere:
+      description: desolate,abandoned,memories of past,lonely
+      details: empty ruins,past destruction,lonely visit,memories
+      prompt: (desolate mood:1.3),(abandoned city:1.3),(memories:1.2),(lonely visit:1.2)
+    style:
+      type: "Chinese animation fantasy ruins"
+      keywords:
+      - xianxia ruined city
+      - abandoned fortress
+      - desolate ruins
+      - past destruction
+    consistency_rules:
+    - Show ruins and destruction.
+    - Dusty and desolate atmosphere.
+    - Colors muted and gray.
+    - Empty and abandoned feeling.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia ruined city'
+  tianyuan_refuge_camp:
+    scene_name: Tianyuan Refuge Camp
+    color_palette:
+      primary:
+      - camp brown
+      - tent canvas
+      - earth yellow
+      secondary:
+      - warm fire orange
+      - lamp yellow
+      - wood brown
+      accent:
+      - campfire glow
+      - lantern light
+      - moon silver
+      prompt: (camp brown:1.4),(tent canvas:1.3),(warm fire:1.3),(lantern glow:1.2)
+    terrain:
+      description: temporary camp with tents and wooden huts,campfires,refugee gathering
+      details: scattered tents,wooden structures,campfires,people gathered
+      prompt: (temporary camp:1.4),(tents and huts:1.3),(campfires:1.3),(refugee gathering:1.2)
+    sky:
+      description: night sky with stars or daytime sky,camp atmosphere
+      details: stars at night or daylight,smoke from fires
+      prompt: (night sky with stars:1.2) or (daylight sky:1.2),(camp atmosphere:1.2)
+    atmosphere:
+      description: temporary,refugee camp,communal,uncertain future
+      details: makeshift settlement,people gathered,uncertainty,hope
+      prompt: (temporary camp mood:1.3),(refugee atmosphere:1.3),(communal:1.2),(uncertain future:1.2)
+    style:
+      type: "Chinese animation fantasy refugee camp"
+      keywords:
+      - xianxia refugee camp
+      - temporary settlement
+      - refugee gathering
+      - makeshift camp
+    consistency_rules:
+    - Show temporary camp structures.
+    - Warm fire and lantern light.
+    - Communal atmosphere.
+    - Uncertain and hopeful mood.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia refuge camp'
+  sunset_city:
+    scene_name: Sunset City
+    color_palette:
+      primary:
+      - city stone gray
+      - warm brown
+      - tile roof brown
+      secondary:
+      - market red
+      - banner blue
+      - wood brown
+      accent:
+      - lantern orange
+      - spirit light gold
+      - forge glow
+      prompt: (city stone gray:1.4),(warm brown roofs:1.3),(market colors:1.3),(lantern glow:1.2)
+    terrain:
+      description: bustling giant city streets,multiple-story buildings,shops and workshops,cultivator training grounds
+      details: crowded streets,tall buildings,markets,training facilities
+      prompt: (bustling giant city streets:1.4),(multi-story buildings:1.3),(markets and shops:1.3),(training grounds:1.2)
+    sky:
+      description: city sky above buildings,workshop smoke,daylight or night
+      details: sky between buildings,workshop smoke,day or night
+      prompt: (city sky:1.2),(workshop smoke:1.2),(daylight or night:1.2)
+    atmosphere:
+      description: bustling,prosperous,cultivator city,highly active
+      details: busy marketplace,prosperous city,cultivator hub,active streets
+      prompt: (bustling city:1.3),(prosperous mood:1.3),(cultivator hub:1.2),(highly active streets:1.2)
+    style:
+      type: "Chinese animation fantasy cultivator city"
+      keywords:
+      - xianxia cultivator city
+      - bustling marketplace
+      - prosperous trading city
+      - artifact city
+    consistency_rules:
+    - Show bustling city atmosphere with many cultivators.
+    - Include artifact shops and workshops if relevant.
+    - Colors warm and prosperous.
+    - Busy streets with both cultivators and mortals.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia prosperous cultivator city'
+  sunset_tomb_forest:
+    scene_name: Sunset Tomb Forest
+    color_palette:
+      primary:
+      - forest green
+      - dark brown
+      - shadow black
+      secondary:
+      - muted green
+      - earth brown
+      - tree bark gray
+      accent:
+      - sunset orange
+      - spirit light
+      - blood red
+      prompt: (forest green:1.4),(dark brown trees:1.3),(shadow black:1.3),(sunset orange:1.2)
+    terrain:
+      description: dense forest with ancient trees,thick undergrowth,dangerous beasts lurking
+      details: tall old trees,dense vegetation,hidden dangers,beast trails
+      prompt: (dense ancient forest:1.4),(tall old trees:1.3),(thick undergrowth:1.3),(hidden dangers:1.2)
+    sky:
+      description: sky filtered through dense canopy,dappled sunlight,or dark night
+      details: canopy-filtered light,sunbeams through leaves,or night sky
+      prompt: (canopy-filtered sky:1.2),(dappled sunlight:1.2) or (dark night sky:1.2)
+    atmosphere:
+      description: dangerous,wild,beast-filled,tense
+      details: perilous forest,lurking beasts,high tension,wild nature
+      prompt: (dangerous forest mood:1.3),(beast-filled:1.3),(tense atmosphere:1.2),(wild nature:1.2)
+    style:
+      type: "Chinese animation fantasy dangerous forest"
+      keywords:
+      - xianxia dangerous forest
+      - beast-filled wilderness
+      - Sunset Tomb forest
+      - wild nature
+    consistency_rules:
+    - Show dense forest with tall trees.
+    - Atmosphere should feel dangerous and tense.
+    - Colors dark green and brown.
+    - Include signs of beast presence.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia dangerous forest'
+  chaos_valley_outside:
+    scene_name: Chaos Valley Outside
+    color_palette:
+      primary:
+      - gray stone
+      - earthy brown
+      - shadow gray
+      secondary:
+      - muted green
+      - dusty yellow
+      - pale gray
+      accent:
+      - demon mist gray
+      - spirit light
+      prompt: (gray stone hills:1.4),(earthy brown:1.3),(shadow gray:1.3),(demon mist:1.2)
+    terrain:
+      description: small hills outside Chaos Valley,waiting forces,valley entrance visible in distance
+      details: rolling hills,scattered rocks,valley entrance far away
+      prompt: (small hills outside valley:1.4),(rolling terrain:1.3),(distant valley entrance:1.3),(waiting positions:1.2)
+    sky:
+      description: daylight sky above,clear or cloudy,valley mist visible
+      details: daylight,clouds possible,valley mist in distance
+      prompt: (daylight sky:1.3),(clear or cloudy:1.2),(valley mist visible:1.2)
+    atmosphere:
+      description: tense,waiting,battle preparation,forces gathering
+      details: high tension,forces waiting,battle imminent
+      prompt: (tense waiting mood:1.3),(battle preparation:1.3),(forces gathering:1.2),(high tension:1.2)
+    style:
+      type: "Chinese animation fantasy battle preparation"
+      keywords:
+      - xianxia battle preparation
+      - forces gathering
+      - valley entrance
+      - pre-battle tension
+    consistency_rules:
+    - Show hills and valley entrance in distance.
+    - Include waiting forces (humans and demons).
+    - Atmosphere tense and prepared.
+    - Colors gray and earthy.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia battle preparation'
+  chaos_valley_entrance:
+    scene_name: Chaos Valley Entrance
+    color_palette:
+      primary:
+      - gray stone
+      - dusty yellow
+      - shadow black
+      secondary:
+      - blood red
+      - demon mist gray
+      - spirit light
+      accent:
+      - blood red
+      - golden light
+      - gray mist
+      prompt: (gray stone valley entrance:1.4),(dusty yellow:1.3),(shadow black:1.3),(blood red accents:1.2)
+    terrain:
+      description: valley entrance opening,stone walls on sides,battlefield area,bodies and debris
+      details: wide entrance,stone cliffs,battlefield,scattered remains
+      prompt: (wide valley entrance:1.4),(stone cliffs:1.3),(battlefield area:1.3),(battle debris:1.2)
+    sky:
+      description: sky above entrance,battle smoke,blood red or mixed lighting
+      details: battle smoke,blood red clouds,mixed lighting
+      prompt: (battle smoke:1.3),(blood red clouds:1.3),(mixed lighting:1.2)
+    atmosphere:
+      description: chaotic,intense battle,forces clashing,blood and destruction
+      details: fierce battle,forces fighting,blood and chaos
+      prompt: (chaotic battle mood:1.4),(intense fighting:1.3),(blood and destruction:1.3),(forces clashing:1.2)
+    style:
+      type: "Chinese animation fantasy battlefield"
+      keywords:
+      - xianxia battlefield
+      - valley entrance battle
+      - three races clash
+      - intense combat
+    consistency_rules:
+    - Show valley entrance and battlefield.
+    - Include fighting forces and battle effects.
+    - Colors mixed with red accents for blood.
+    - Atmosphere chaotic and intense.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia battlefield'
+  chaos_valley_interior:
+    scene_name: Chaos Valley Interior
+    color_palette:
+      primary:
+      - gray mist
+      - dusty gray
+      - shadow gray
+      secondary:
+      - pale gray
+      - muted brown
+      - stone gray
+      accent:
+      - spirit light
+      - silver mist
+      prompt: (gray mist everywhere:1.5),(dusty gray:1.4),(shadow gray:1.3),(spirit light:1.2)
+    terrain:
+      description: valley interior covered in gray mist,all surfaces gray,unclear visibility
+      details: gray mist covering everything,unclear terrain,mysterious atmosphere
+      prompt: (gray mist covering valley:1.5),(unclear terrain:1.3),(mysterious mist:1.3),(gray everywhere:1.2)
+    sky:
+      description: gray mist sky,no clear sky visible,unremovable gray veil
+      details: gray mist instead of sky,unclear ceiling,oppressive gray
+      prompt: (gray mist sky:1.4),(no clear sky:1.3),(unremovable gray veil:1.3),(oppressive gray:1.2)
+    atmosphere:
+      description: mysterious,oppressive,gray mist everywhere,unclear surroundings
+      details: mysterious mood,oppressive mist,unclear visibility,strange environment
+      prompt: (mysterious valley mood:1.3),(oppressive gray mist:1.3),(unclear surroundings:1.2),(strange environment:1.2)
+    style:
+      type: "Chinese animation fantasy mysterious valley"
+      keywords:
+      - xianxia mysterious valley
+      - gray mist valley
+      - unclear terrain
+      - oppressive atmosphere
+    consistency_rules:
+    - Everything covered in gray mist.
+    - No clear sky or terrain visible.
+    - Atmosphere mysterious and oppressive.
+    - Colors all gray tones.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia mysterious valley'
+  zhiguang_pool:
+    scene_name: Zhiguang Pool (Scorching Light Pool)
+    color_palette:
+      primary:
+      - pool blue
+      - clear cyan
+      - bright white
+      secondary:
+      - pale blue
+      - light cyan
+      - spirit white
+      accent:
+      - scorching light gold
+      - spirit light blue
+      - divine glow
+      prompt: (pool blue:1.5),(clear cyan water:1.4),(bright white light:1.3),(scorching light gold:1.2)
+    terrain:
+      description: large pool about one li,clear water,surrounded by forces,pool surface calm or disturbed
+      details: wide pool,clear water,people around,pool center
+      prompt: (large clear pool:1.4),(about one li size:1.3),(people around pool:1.3),(pool surface:1.2)
+    sky:
+      description: sky above pool,clear or spirit light,pool reflection possible
+      details: clear sky or spirit light,pool reflection
+      prompt: (clear sky above pool:1.2) or (spirit light:1.2),(pool reflection:1.2)
+    atmosphere:
+      description: tense,forces waiting around pool,divine blood object,high stakes
+      details: tense confrontation,forces waiting,divine blood,high tension
+      prompt: (tense pool mood:1.3),(forces waiting:1.3),(divine blood stakes:1.2),(high tension:1.2)
+    style:
+      type: "Chinese animation fantasy divine pool"
+      keywords:
+      - xianxia divine pool
+      - scorching light pool
+      - forces confrontation
+      - divine blood object
+    consistency_rules:
+    - Show clear pool with forces around.
+    - Pool should look significant and important.
+    - Atmosphere tense and confrontational.
+    - Colors bright with pool blue/cyan.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia divine pool'
+  zhiguang_pool_transformation:
+    scene_name: Zhiguang Pool Transformation
+    color_palette:
+      primary:
+      - boiling white light
+      - scorching gold
+      - bright cyan
+      secondary:
+      - pale blue
+      - light cyan
+      - spirit white
+      accent:
+      - scorching light gold
+      - divine glow white
+      - boiling water white
+      prompt: (boiling white light:1.5),(scorching gold:1.4),(bright cyan:1.3),(divine glow:1.2)
+    terrain:
+      description: pool suddenly transforming,boiling water,white light beams shooting out,ten yellow pillars emerging from ground
+      details: pool center,ten yellow pillars around,ground shaking,water boiling
+      prompt: (pool transforming:1.4),(ten yellow pillars emerging:1.4),(boiling water:1.3),(ground shaking:1.3)
+    sky:
+      description: sky above pool,white light beams shooting upward,scorching atmosphere
+      details: light beams in sky,scorching heat,transforming sky
+      prompt: (white light beams in sky:1.3),(scorching atmosphere:1.3),(transforming sky:1.2)
+    atmosphere:
+      description: sudden transformation,boiling chaos,giant awakening,terrifying power
+      details: sudden change,pool boiling,giant awakening,high tension
+      prompt: (sudden transformation:1.4),(boiling chaos:1.3),(giant awakening:1.3),(terrifying power:1.2)
+    style:
+      type: "Chinese animation fantasy pool transformation"
+      keywords:
+      - xianxia pool transformation
+      - boiling divine pool
+      - giant awakening
+      - ancient power
+    consistency_rules:
+    - Show pool transforming with boiling water and light.
+    - Ten yellow pillars must be visible around pool.
+    - Atmosphere chaotic and terrifying.
+    - Colors bright white and gold with scorching effect.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia pool transformation'
+  giant_awakening:
+    scene_name: One-Eyed Giant Awakening
+    color_palette:
+      primary:
+      - yellow-brown giant
+      - stone gray
+      - earth brown
+      secondary:
+      - pale yellow
+      - dusty brown
+      - ancient gray
+      accent:
+      - giant eye glow
+      - scorching light gold
+      - ancient power aura
+      prompt: (yellow-brown giant:1.5),(stone gray:1.4),(earth brown:1.3),(giant eye glow:1.2)
+    terrain:
+      description: ground cracking open,enormous hands emerging from ground,ten yellow pillars are fingers,giant rising like mountain
+      details: massive ground cracks,enormous yellow-brown hands,colossal giant body,giant eye in pool center
+      prompt: (ground cracking open:1.4),(enormous yellow-brown hands:1.4),(colossal giant body:1.5),(giant single eye:1.4)
+    sky:
+      description: sky above giant,giant rising like mountain,ancient power visible
+      details: giant head visible in sky,mountain-like size,ancient aura
+      prompt: (giant head in sky:1.4),(mountain-like size:1.4),(ancient power:1.3)
+    atmosphere:
+      description: terrifying,ancient power awakening,colossal presence,world-shaking
+      details: terrifying giant,ancient being awakening,world-shaking event,high danger
+      prompt: (terrifying giant:1.4),(ancient power awakening:1.4),(world-shaking:1.3),(high danger:1.2)
+    style:
+      type: "Chinese animation fantasy giant awakening"
+      keywords:
+      - xianxia ancient giant
+      - one-eyed colossal being
+      - giant awakening
+      - world-shaking event
+    consistency_rules:
+    - Giant must be colossal,mountain-like size.
+    - Single huge eye must be visible.
+    - Ten yellow pillars are fingers of hands.
+    - Colors yellow-brown and ancient stone gray.
+    background_prompt: '{color_palette},{terrain_prompt},{sky_prompt},{atmosphere_prompt},{style_keywords},cinematic scale,xianxia giant awakening'

@@ -1,0 +1,990 @@
+{
+  "episode": 12,
+  "title": "Beast Lair · Seven-Leaf Yin Blood Ganoderma",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第12集:妖兽巢穴·七叶阴血芝。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wilderness_sky",
+      "duration": 4,
+      "description": "数道遁光飞向妖兽巢穴方向,金玉宗修士在前,韩立在后。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Fly to Lair",
+      "camera": "Aerial Tracking",
+      "visual": {
+        "composition": "Several beams of light streaking toward the beast lair, Gold Jade Sect cultivators leading, Han Li following",
+        "environment": "",
+        "character_pose": "Cultivators on flying swords, Han Li in protective bubble",
+        "fx": "Glowing trails",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Multiple beams of light race toward the beast lair, cultivators on swords leading with Han Li in a protective light bubble trailing.",
+      "narration": "数道遁光飞向妖兽巢穴方向,金玉宗修士在前,韩立在后。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "beast_lair_entrance",
+      "duration": 4,
+      "description": "众人降落在一处隐蔽山洞前,秦师兄观察四周情况。",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "Land at Cave",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "The group lands before a hidden cave entrance as Senior Brother Qin surveys the surroundings",
+        "environment": "",
+        "character_pose": "Cultivators scanning, Han Li observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The cultivators land before a concealed cave mouth, Senior Brother Qin carefully inspecting the area.",
+      "narration": "众人降落在一处隐蔽山洞前,秦师兄观察四周情况。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "beast_lair_entrance",
+      "duration": 4,
+      "description": "秦师兄向韩立说明,洞穴深处有金行禁制守护七叶阴血芝。",
+      "mood": "Explanatory",
+      "lighting": "Daylight",
+      "action": "Explain the Mission",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Senior Brother Qin explains to Han Li that a metal-element restriction guards the Seven-Leaf Yin Blood Ganoderma deep in the cave",
+        "environment": "",
+        "character_pose": "Qin gesturing, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qin explains that a metal-element barrier protects the Seven-Leaf Yin Blood Ganoderma in the cave depths.",
+      "narration": "秦师兄向韩立说明,洞穴深处有金行禁制守护七叶阴血芝。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "beast_lair_entrance",
+      "duration": 4,
+      "description": "众人悄然进入洞穴,韩立凭借炼体士体魄走在最前。",
+      "mood": "Tense",
+      "lighting": "Dim Cave",
+      "action": "Enter Cave",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "The group stealthily enters the cave, Han Li leading with his body cultivator physique",
+        "environment": "",
+        "character_pose": "Han Li moving carefully, others following",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The team slips into the cave silently, Han Li taking the lead with his refined body cultivator form.",
+      "narration": "众人悄然进入洞穴,韩立凭借炼体士体魄走在最前。",
+      "face_style_auto": {
+        "expression": "Attentive",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "洞穴深处出现金色光幕,正是金行禁制。",
+      "mood": "Revealing",
+      "lighting": "Golden Glow",
+      "action": "Reveal Restriction",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Deep in the cave a golden light barrier appears, the metal-element restriction",
+        "environment": "",
+        "character_pose": "Group stopping before barrier",
+        "fx": "Golden shimmering barrier",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A golden light barrier shimmers ahead in the cave depths, marking the metal-element restriction.",
+      "narration": "洞穴深处出现金色光幕，正是金行禁制，守护着宝物。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Glow",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "韩立观察禁制,凭借阵法造诣,迅速找出薄弱点。",
+      "mood": "Analytical",
+      "lighting": "Golden Glow",
+      "action": "Analyze Restriction",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li studies the restriction and quickly identifies weak points using his array expertise",
+        "environment": "",
+        "character_pose": "Han Li examining barrier carefully",
+        "fx": "Golden light patterns",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li observes the restriction barrier and rapidly locates weak points through his array mastery.",
+      "narration": "韩立观察禁制,凭借阵法造诣,迅速找出薄弱点。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Golden Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "韩立双拳金光闪烁,对准禁制薄弱处轰击。",
+      "mood": "Powerful",
+      "lighting": "Golden Glow",
+      "action": "Strike Restriction",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li's fists blaze with golden light as he strikes the restriction's weak point",
+        "environment": "",
+        "character_pose": "Han Li punching, golden aura",
+        "fx": "Golden light explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li's golden-lit fists hammer the barrier's weak point with explosive force.",
+      "narration": "韩立双拳金光闪烁，对准禁制薄弱处轰击，全力破阵。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "金行禁制被破除,光幕碎裂消散,露出深处的七叶阴血芝。",
+      "mood": "Triumphant",
+      "lighting": "Natural Cave",
+      "action": "Break Through",
+      "camera": "Reveal Shot",
+      "visual": {
+        "composition": "The metal restriction shatters and disperses, revealing the Seven-Leaf Yin Blood Ganoderma in the depths",
+        "environment": "",
+        "character_pose": "Barrier dissolving, spiritual herb visible",
+        "fx": "Golden fragments, glowing herb",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The golden barrier cracks apart and fades, exposing the Seven-Leaf Yin Blood Ganoderma glowing in the cave depths.",
+      "narration": "金行禁制被破除,光幕碎裂消散,露出深处的七叶阴血芝。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Natural Cave",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "韩立快步上前,小心翼翼摘取七叶阴血芝。",
+      "mood": "Careful",
+      "lighting": "Natural Cave",
+      "action": "Harvest Herb",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li strides forward and carefully harvests the Seven-Leaf Yin Blood Ganoderma",
+        "environment": "",
+        "character_pose": "Han Li picking the herb delicately",
+        "fx": "Herb glowing softly",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li steps forward and delicately plucks the Seven-Leaf Yin Blood Ganoderma.",
+      "narration": "韩立快步上前，小心翼翼摘取七叶阴血芝，动作谨慎。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Natural Cave",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "洞穴深处传来妖兽怒吼,守护妖兽被惊动。",
+      "mood": "Alarmed",
+      "lighting": "Dim Cave",
+      "action": "Beast Awakens",
+      "camera": "Deep Cave Shot",
+      "visual": {
+        "composition": "Deep roars echo from the cave depths as the guardian beasts awaken",
+        "environment": "",
+        "character_pose": "Group turning toward sounds",
+        "fx": "Sound waves, shadows moving",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Furious roars echo from the cave depths as the guardian beasts stir to alert.",
+      "narration": "洞穴深处传来妖兽怒吼，守护妖兽被惊动，即将赶来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Natural Cave",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "秦师兄等人立即布阵,准备阻拦守护妖兽。",
+      "mood": "Urgent",
+      "lighting": "Spell Light",
+      "action": "Prepare Formation",
+      "camera": "Wide Action",
+      "visual": {
+        "composition": "Senior Brother Qin and the others immediately set up an array formation to block the guardian beasts",
+        "environment": "",
+        "character_pose": "Cultivators casting spells, arrays forming",
+        "fx": "Spell circles, light barriers",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Senior Brother Qin's group rapidly deploys a defensive formation to hold back the guardian beasts.",
+      "narration": "秦师兄等人立即布阵，准备阻拦守护妖兽，为韩立争取时间。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Dim Cave",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "beast_lair_interior",
+      "duration": 4,
+      "description": "韩立将七叶阴血芝交给秦师兄,众人快速撤离。",
+      "mood": "Swift",
+      "lighting": "Dim Cave",
+      "action": "Hand Over Herb",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li hands the Seven-Leaf Yin Blood Ganoderma to Senior Brother Qin as the group quickly withdraws",
+        "environment": "",
+        "character_pose": "Han Li passing herb, Qin receiving",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li delivers the herb to Senior Brother Qin and the team hastily retreats.",
+      "narration": "韩立将七叶阴血芝交给秦师兄,众人快速撤离。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Spell Light",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "beast_lair_exit",
+      "duration": 4,
+      "description": "众人冲出洞穴,守护妖兽被法阵阻挡,无法追出。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Escape Cave",
+      "camera": "Dynamic Exit",
+      "visual": {
+        "composition": "The group bursts from the cave as the guardian beasts are blocked by the formation, unable to pursue",
+        "environment": "",
+        "character_pose": "Group running out, beasts trapped behind barrier",
+        "fx": "Light barrier, roaring beasts",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The team escapes the cave while guardian beasts are held back by the spell formation, roaring in frustration.",
+      "narration": "众人冲出洞穴,守护妖兽被法阵阻挡,无法追出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "wilderness_sky",
+      "duration": 4,
+      "description": "众人御器返回营地,秦师兄满脸喜色。",
+      "mood": "Triumphant",
+      "lighting": "Daylight",
+      "action": "Return Journey",
+      "camera": "Aerial Tracking",
+      "visual": {
+        "composition": "The group flies back to camp on magical tools, Senior Brother Qin beaming with joy",
+        "environment": "",
+        "character_pose": "Cultivators on swords, Qin smiling",
+        "fx": "Flying trails",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The cultivators soar back to camp on flying swords, Senior Brother Qin's face alight with success.",
+      "narration": "众人御器返回营地，秦师兄满脸喜色，任务圆满完成。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "营地中,秦师兄向韩立递交九玄明玉潭保举文书。",
+      "mood": "Formal",
+      "lighting": "Lamplight",
+      "action": "Present Document",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "In the camp, Senior Brother Qin presents Han Li with the recommendation document for the Jiuxuan Bright Jade Pool",
+        "environment": "",
+        "character_pose": "Qin handing scroll, Han Li receiving",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qin hands Han Li the official recommendation letter for the Jiuxuan Bright Jade Pool.",
+      "narration": "营地中,秦师兄向韩立递交九玄明玉潭保举文书。",
+      "face_style_auto": {
+        "expression": "Happy",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "秦师兄等人收回灵心佩,向韩立告辞,准备返回宗门。",
+      "mood": "Parting",
+      "lighting": "Lamplight",
+      "action": "Farewell",
+      "camera": "Group Shot",
+      "visual": {
+        "composition": "Senior Brother Qin and the others reclaim their Spirit Heart Tokens, bid farewell to Han Li, and prepare to return to their sect",
+        "environment": "",
+        "character_pose": "Group clasping hands, departing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The cultivators retrieve their tokens, exchange farewells with Han Li, and prepare to journey back to their sect.",
+      "narration": "秦师兄等人收回灵心佩,向韩立告辞,准备返回宗门。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "韩立独自留在营地,查看保举文书,心中盘算下一步计划。",
+      "mood": "Contemplative",
+      "lighting": "Moonlight",
+      "action": "Plan Next Step",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Han Li remains alone in the camp, reviewing the recommendation document and planning his next move",
+        "environment": "",
+        "character_pose": "Han Li seated, examining scroll",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Alone in the camp, Han Li studies the recommendation letter and contemplates his next steps.",
+      "narration": "韩立独自留在营地,查看保举文书,心中盘算下一步计划。",
+      "face_style_auto": {
+        "expression": "Polite",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "韩立决定不再返回天东商号,而是前往虞阳城。",
+      "mood": "Resolved",
+      "lighting": "Moonlight",
+      "action": "Decide to Leave",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li decides not to return to the Tian Dong Trading Company, but instead head for Yu Yang City",
+        "environment": "",
+        "character_pose": "Han Li standing, determined",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li resolves to skip returning to Tian Dong Trading Company and instead travel to Yu Yang City.",
+      "narration": "韩立决定不再返回天东商号,而是前往虞阳城。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "wilderness_dawn",
+      "duration": 4,
+      "description": "次日清晨,韩立独自离开营地,向虞阳城方向走去。",
+      "mood": "Departing",
+      "lighting": "Dawn",
+      "action": "Leave Camp",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "At dawn the next day, Han Li leaves the camp alone, heading toward Yu Yang City",
+        "environment": "",
+        "character_pose": "Han Li walking away, back view",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At dawn, Han Li departs the camp alone, walking toward the direction of Yu Yang City.",
+      "narration": "次日清晨,韩立独自离开营地,向虞阳城方向走去。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Cool Dawn",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wilderness_dawn",
+      "duration": 4,
+      "description": "韩立身影渐渐消失在荒野中,踏上新的旅程。",
+      "mood": "Epic",
+      "lighting": "Dawn",
+      "action": "Fade Away",
+      "camera": "Long Shot",
+      "visual": {
+        "composition": "Han Li's figure gradually fades into the wilderness, embarking on a new journey",
+        "environment": "",
+        "character_pose": "Distant silhouette",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li's silhouette recedes into the wilderness as he begins his new journey.",
+      "narration": "韩立身影渐渐消失在荒野中,踏上新的旅程。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cool Dawn",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立独自在荒野中前行,翻山越岭前往虞阳城。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Travel Through Wilderness",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li walking alone through wilderness, crossing mountains toward Yu Yang City",
+        "environment": "",
+        "character_pose": "Han Li walking steadily",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li travels alone through wilderness, crossing mountains and valleys toward Yu Yang City.",
+      "narration": "韩立独自在荒野中前行,翻山越岭前往虞阳城。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立在一处隐蔽山洞中巩固金刚诀第五层境界。",
+      "mood": "Meditative",
+      "lighting": "Cave Dim",
+      "action": "Cultivate Fifth Layer",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Han Li meditating in a hidden cave, consolidating the fifth layer of Vajra Art",
+        "environment": "",
+        "character_pose": "Han Li cross-legged, golden aura",
+        "fx": "Subtle golden glow",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li sits meditating in a hidden cave, golden aura surrounding him as he consolidates the fifth layer.",
+      "narration": "韩立在一处隐蔽山洞中巩固金刚诀第五层境界。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cave Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "数头妖兽突然从洞外冲入,发动偷袭。",
+      "mood": "Sudden Attack",
+      "lighting": "Cave Dim",
+      "action": "Beast Ambush",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Several beasts suddenly burst into the cave, launching a surprise attack",
+        "environment": "",
+        "character_pose": "Beasts lunging, Han Li startled",
+        "fx": "Shadows, claws",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Multiple beasts suddenly rush into the cave, launching a surprise ambush on Han Li.",
+      "narration": "数头妖兽突然从洞外冲入,发动偷袭。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Cave Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立被迫中断修炼,与妖兽激战。",
+      "mood": "Intense",
+      "lighting": "Cave Dim",
+      "action": "Battle Beasts",
+      "camera": "Action Wide Shot",
+      "visual": {
+        "composition": "Han Li forced to interrupt cultivation, fighting beasts fiercely",
+        "environment": "",
+        "character_pose": "Han Li in combat stance, golden fists",
+        "fx": "Golden light flashes, beast shadows",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li interrupts his cultivation to battle the beasts, golden fists striking in the dim cave.",
+      "narration": "韩立被迫中断修炼,与妖兽激战。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cave Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立击毙妖兽,但金刚诀反噬发作,修为大降。",
+      "mood": "Crisis",
+      "lighting": "Cave Dim",
+      "action": "Kill Beasts",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li slays the beasts but Vajra Art backlash triggers, cultivation plummeting",
+        "environment": "",
+        "character_pose": "Han Li collapsing, golden aura unstable",
+        "fx": "Unstable golden light, internal conflict",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After slaying the beasts, Han Li collapses as Vajra Art backlash sets in, his cultivation dropping dangerously.",
+      "narration": "韩立击毙妖兽,但金刚诀反噬发作,修为大降。",
+      "face_style_auto": {
+        "expression": "Pain",
+        "lighting": "Cave Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_026.png"
+    },
+    {
+      "id": 26,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立眼看修为要跌回第四层,千钧一发之际,范胖子出现。",
+      "mood": "Critical",
+      "lighting": "Daylight",
+      "action": "Fan Pang Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li's cultivation about to fall to fourth layer when Fan Pang appears at the critical moment",
+        "environment": "",
+        "character_pose": "Han Li struggling, Fan Pang approaching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At the critical moment when Han Li's cultivation is about to drop, Fan Pang appears on the path.",
+      "narration": "韩立眼看修为要跌回第四层,千钧一发之际,范胖子出现。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_027.png"
+    },
+    {
+      "id": 27,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "范胖子见韩立情况危急,拿出珍稀丹药救助。",
+      "mood": "Helpful",
+      "lighting": "Daylight",
+      "action": "Administer Pill",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fan Pang sees Han Li in critical condition and produces a rare pill to save him",
+        "environment": "",
+        "character_pose": "Fan Pang holding pill, Han Li receiving",
+        "fx": "Glowing pill",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang notices Han Li's critical state and offers a rare medicinal pill to save him.",
+      "narration": "范胖子见韩立情况危急,拿出珍稀丹药救助。",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_028.png"
+    },
+    {
+      "id": 28,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立服下丹药,修为逐渐稳定,感激范胖子救命之恩。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Recover",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li takes the pill, his cultivation gradually stabilizing, grateful for Fan Pang's rescue",
+        "environment": "",
+        "character_pose": "Han Li recovering, Fan Pang watching",
+        "fx": "Stabilizing golden aura",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li swallows the pill and his cultivation stabilizes, expressing gratitude to Fan Pang.",
+      "narration": "韩立服下丹药,修为逐渐稳定,感激范胖子救命之恩。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_029.png"
+    },
+    {
+      "id": 29,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "范胖子自我介绍,是虞阳城小商人,邀请韩立同行。",
+      "mood": "Friendly",
+      "lighting": "Daylight",
+      "action": "Introduce Self",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Fan Pang introduces himself as a small merchant from Yu Yang City, inviting Han Li to travel together",
+        "environment": "",
+        "character_pose": "Fan Pang gesturing, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang introduces himself as a Yu Yang City merchant and invites Han Li to accompany him.",
+      "narration": "范胖子自我介绍,是虞阳城小商人,邀请韩立同行。",
+      "face_style_auto": {
+        "expression": "Friendly",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_030.png"
+    },
+    {
+      "id": 30,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立答应同行,两人一同前往虞阳城。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Travel Together",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li agrees and the two travel together toward Yu Yang City",
+        "environment": "",
+        "character_pose": "Two men walking side by side",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li agrees and the two men journey together toward Yu Yang City.",
+      "narration": "韩立答应同行,两人一同前往虞阳城。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_031.png"
+    },
+    {
+      "id": 31,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "数日后,虞阳城出现在前方,城墙雄伟壮观。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "See City",
+      "camera": "Telephoto Shot",
+      "visual": {
+        "composition": "Days later, Yu Yang City appears ahead, walls majestic and imposing",
+        "environment": "",
+        "character_pose": "Two figures looking at distant city",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Days later, Yu Yang City's majestic walls come into view on the horizon.",
+      "narration": "数日后,虞阳城出现在前方,城墙雄伟壮观。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_032.png"
+    },
+    {
+      "id": 32,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "两人进入虞阳城,韩立决定暂时留在虞阳城。",
+      "mood": "Resolved",
+      "lighting": "Daylight",
+      "action": "Enter City",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The two enter Yu Yang City, Han Li decides to stay temporarily",
+        "environment": "",
+        "character_pose": "Two men entering city gates",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The two enter Yu Yang City, and Han Li resolves to remain temporarily.",
+      "narration": "两人进入虞阳城,韩立决定暂时留在虞阳城。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_033.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,时光流转,虞阳城景象变化,四十年光阴流逝。",
+      "mood": "Time Passage",
+      "lighting": "Soft",
+      "action": "Time Jump",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Time passage montage, Yu Yang City changing over forty years",
+        "environment": "Time-lapse of city, seasons changing",
+        "character_pose": "",
+        "fx": "Time flowing, four decades passing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, time-lapse montage showing Yu Yang City over forty years, spiritual particles drifting, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "时光流转,四十年光阴悄然逝去。下一集再见。我是云卷仙音,原著作者忘语。第13集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep12_full/scene_034.png"
+    }
+  ]
+}

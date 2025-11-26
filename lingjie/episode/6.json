@@ -1,0 +1,646 @@
+{
+  "episode": 6,
+  "title": "Ruyun Inn · Vajra Trial",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky veiled in clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第6集:如云客栈·金刚试锋。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "韩立推门入书铺,目光一扫挤满卷轴与木架。",
+      "mood": "Curious",
+      "lighting": "Dim Interior",
+      "action": "Enter Bookshop",
+      "camera": "Low-Angle Push-In",
+      "visual": {
+        "composition": "Han Li pushes open the bookshop door and sweeps his gaze over shelves crammed with scrolls",
+        "environment": "Dusty bookshop interior",
+        "character_pose": "Han Li stepping through the doorway",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li steps into the cramped bookshop, eyes roaming across rows of scroll-laden shelves.",
+      "narration": "他潜入偏僻书铺，盯上介绍灵界的典籍，准备了解这个新世界。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm Lantern Light",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_002.png",
+      "scene_profile": "anyuan_market"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "韩立抱出厚书与地图,以一块灵石付款,老板欣喜若狂。",
+      "mood": "Transactional",
+      "lighting": "Warm Interior",
+      "action": "Pay with Spirit Stone",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Han Li cradles thick tomes and a map, handing over a spirit stone while the shopkeeper beams",
+        "environment": "",
+        "character_pose": "Han Li presenting the books and map",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li carries out heavy books and a map, pays with a single spirit stone, and the shopkeeper lights up with joy.",
+      "narration": "灵石出手，书店掌柜连声道谢，奉上地图，交易顺利完成。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Warm Lantern Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_003.png",
+      "scene_profile": "anyuan_market"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "他在酒楼角落摊开书卷,边吃粗菜边飞快翻阅。",
+      "mood": "Studious",
+      "lighting": "Warm Tavern Light",
+      "action": "Read in Inn Corner",
+      "camera": "Over-the-Shoulder",
+      "visual": {
+        "composition": "He spreads out the scrolls in a tavern corner, flipping pages quickly while eating simple dishes",
+        "environment": "Tavern corner table",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "In a tavern corner he opens the scrolls, skimming them rapidly between bites of coarse food.",
+      "narration": "酒楼角落里，他一边夹菜一边翻厚卷，仔细研读典籍内容。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm Lantern Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_004.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "书页浮现三皇与七妖领地图,韩立神色震动。",
+      "mood": "Awed",
+      "lighting": "Booklight Glow",
+      "action": "Visualize Map",
+      "camera": "Map Insert",
+      "visual": {
+        "composition": "The page conjures a map of the Three Sovereigns and Seven Demon Territories while Han Li looks shaken",
+        "environment": "",
+        "character_pose": "Han Li reacting in shock",
+        "fx": "Glowing map emerging from the pages",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A glowing map of the Three Sovereigns and Seven Demon Domains rises from the page, startling Han Li.",
+      "narration": "他才知天元境只是三皇之一,七妖地同样环伺。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_005.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "关于仙阵阵眼的段落在眼前滚动,韩立在心中推演。",
+      "mood": "Intrigued",
+      "lighting": "Page Glow",
+      "action": "Study Formation",
+      "camera": "Text Close-Up",
+      "visual": {
+        "composition": "Paragraphs about immortal array cores scroll past as Han Li rehearses deductions in his mind",
+        "environment": "",
+        "character_pose": "Han Li lost in calculations",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Lines describing the immortal array nodes glide before him while he silently deduces their workings.",
+      "narration": "真仙阵笼罩三境七地,他暗想自己落点何以精准。",
+      "face_style_auto": {
+        "expression": "Astonished",
+        "lighting": "Candle Glow",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_006.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "讲述兽潮的插图铺满桌面,狼影与蛇群叠映。",
+      "mood": "Ominous",
+      "lighting": "Cool Tone",
+      "action": "Study Beast Tide",
+      "camera": "Overhead Layout",
+      "visual": {
+        "composition": "Illustrations of the beast tides cover the table, wolf shadows overlapping with coiling serpents",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Diagrams of the beast tides spread across the tabletop, wolf silhouettes layered over masses of snakes.",
+      "narration": "书中详解狼潮蛇潮,他推断安远城危险不小。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Warm Glow",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_007.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "韩立放下酒杯,想到三百年一遇的小天劫,眉头深锁。",
+      "mood": "Concerned",
+      "lighting": "Dim Tavern",
+      "action": "Contemplate Tribulation",
+      "camera": "Tight Close-Up",
+      "visual": {
+        "composition": "Han Li sets down his wine cup, brows knotted at the thought of the once-in-three-centuries minor tribulation",
+        "environment": "",
+        "character_pose": "Han Li lowering the cup",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li lowers his cup, frowning deeply as he recalls the minor heavenly tribulation that comes once every three centuries.",
+      "narration": "想到化神天劫可能提前降临,他愈发心急。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Cold Light",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_008.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "他在脑海中勾勒金刚诀七层,最终锁定以肉身破禁之策。",
+      "mood": "Resolute",
+      "lighting": "Inner Glow",
+      "action": "Resolve to Train",
+      "camera": "Abstract Interior",
+      "visual": {
+        "composition": "Within his mind he sketches the seven layers of the Vajra Art, settling on smashing the seal with sheer flesh",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "He envisions the seven tiers of the Vajra Art and decides the only path is to break the seal with his body.",
+      "narration": "他决定把金刚诀苦修至大成,再谈恢复法力。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Moody",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_009.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "在巷口他双掌一合,把厚厚书籍碾成漫天纸屑。",
+      "mood": "Decisive",
+      "lighting": "Daylit Alley",
+      "action": "Destroy Books",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "At the alley mouth he claps his palms and grinds the thick volumes into a storm of paper scraps",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At the alley entrance he brings both palms together, crushing the heavy books into a cloud of paper shreds.",
+      "narration": "典籍使命已完，他直接拍碎以免留痕，确保不露踪迹。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Inner Glow",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_010.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "铁匠铺内红火闪耀,韩立递出地蛟筋,指点加工。",
+      "mood": "Focused",
+      "lighting": "Forge Glow",
+      "action": "Commission Weapon",
+      "camera": "Three-Person Medium",
+      "visual": {
+        "composition": "Inside the forge, red fire blooms as Han Li hands over the earth flood-dragon tendon and explains the build",
+        "environment": "",
+        "character_pose": "Han Li presenting the tendon",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Within the glowing smithy, Han Li passes the earth flood-dragon sinew to the smiths and outlines the refinement.",
+      "narration": "他托匠人按图打造随身绞索,灵石先行付清。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_011.png",
+      "scene_profile": "anyuan_market"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "韩立拦下私人兽车,银锭抛出,车夫犹豫后应允。",
+      "mood": "Urgent",
+      "lighting": "Daylit Street",
+      "action": "Hire Beast Cart",
+      "camera": "Street Medium Shot",
+      "visual": {
+        "composition": "Han Li flags down a private beast cart, tosses a silver ingot, and the driver relents",
+        "environment": "",
+        "character_pose": "Han Li signaling the cart",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Han Li intercepts a private beast cart, flips a silver ingot, and the hesitant driver finally agrees.",
+      "narration": "他用银锭租下私家兽车,直奔如云客栈。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_012.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "抵达客栈门前,韩立甩给小厮碎银,让其指路。",
+      "mood": "Pragmatic",
+      "lighting": "Courtyard Daylight",
+      "action": "Tip the Servant",
+      "camera": "Frontal Medium Shot",
+      "visual": {
+        "composition": "Arriving at the inn gate, Han Li flicks silver shards to the servant boy to lead the way",
+        "environment": "",
+        "character_pose": "Han Li tossing the tip",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At the inn entrance, Han Li tosses a bit of silver to the runner and has him guide the route.",
+      "narration": "小厮得了赏钱,主动领他去西院找商号同伴。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.79
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_013.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "罗姓骑士迎面而来,热情拉他去见方夫人。",
+      "mood": "Friendly",
+      "lighting": "Daylit Corridor",
+      "action": "Greet Luo",
+      "camera": "Walking Medium Shot",
+      "visual": {
+        "composition": "The Luo clansman rider strides up warmly and pulls him along to meet Madam Fang",
+        "environment": "",
+        "character_pose": "Knight approaching head-on",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A Luo-named rider greets him with enthusiasm and drags him toward Madam Fang's quarters.",
+      "narration": "小七笑嘻嘻地现身,说夫人正等他过去。",
+      "face_style_auto": {
+        "expression": "Polite",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_014.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "院门前两名魁梧侍卫冷眼打量,气势逼人。",
+      "mood": "Tense",
+      "lighting": "Courtyard Daylight",
+      "action": "Face the Guards",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "Two burly guards stand before the courtyard gate, sizing him up with icy stares",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two hulking guards at the courtyard gate glare coldly, their presence oppressive.",
+      "narration": "守门大汉目光如刀,先冷嘲他年纪太轻。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_015.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "对方伸手试力,韩立随意一甩便把大汉抛飞。",
+      "mood": "Impactful",
+      "lighting": "Courtyard Daylight",
+      "action": "Toss the Guard",
+      "camera": "Dynamic Side Shot",
+      "visual": {
+        "composition": "When the guard reaches out to test him, Han Li casually flicks his arm and throws the big man",
+        "environment": "",
+        "character_pose": "Han Li flinging the guard aside",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The guard grabs for a test, but Han Li gives a light swing and sends the burly man flying.",
+      "narration": "巨力喷发,试探的侍卫被他轻描淡写地甩了出去。",
+      "face_style_auto": {
+        "expression": "Unimpressed",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_016.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "第二名侍卫接住同伴也被震退,最终抱拳让路。",
+      "mood": "Respectful",
+      "lighting": "Courtyard Daylight",
+      "action": "Gain Entry",
+      "camera": "Tracking Medium Shot",
+      "visual": {
+        "composition": "The second guard catches his comrade yet is forced back, then clasps his fists and steps aside",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Another guard catches the flying man, staggers from the force, and finally bows aside to open the path.",
+      "narration": "两人这才恭敬让道,承认他货真价实。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_017.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "屋内方夫人端坐主位,潘青与金玉宗三名筑基在侧。",
+      "mood": "Formal",
+      "lighting": "Soft Interior",
+      "action": "Enter Meeting",
+      "camera": "Room Wide Shot",
+      "visual": {
+        "composition": "Inside, Madam Fang sits at the head seat with Pan Qing and three Jin Yuzong foundation disciples beside her",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Madam Fang sits at the main seat with Pan Qing and three Jin Yuzong cultivators arrayed at her sides.",
+      "narration": "方夫人与潘青及三位金玉宗弟子早已等候。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_018.png",
+      "scene_profile": "ruyun_inn"
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "锦袍修士寒暄后,暗中探问他是否天生神力,韩立淡淡应对。",
+      "mood": "Probing",
+      "lighting": "Dim Interior",
+      "action": "Answer Questions",
+      "camera": "Table Medium Shot",
+      "visual": {
+        "composition": "After pleasantries the brocaded cultivator discreetly asks if he was born with divine strength while Han Li answers placidly",
+        "environment": "",
+        "character_pose": "Han Li responding mildly",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The robed cultivator makes small talk then quietly probes whether Han Li is innately powerful; Han Li replies casually.",
+      "narration": "锦袍修士探口风,他只笑言天生力大,不露来历。",
+      "face_style_auto": {
+        "expression": "Composed",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_019.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "方夫人宣布让韩立担任护卫副首,协助张奎迎战兽潮。",
+      "mood": "Resolute",
+      "lighting": "Bright Interior",
+      "action": "Accept Assignment",
+      "camera": "Medium Close-Up",
+      "visual": {
+        "composition": "Madam Fang declares Han Li the deputy chief guard to aid Zhang Kui against the beast tide",
+        "environment": "",
+        "character_pose": "Han Li acknowledging the appointment",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Madam Fang names Han Li the deputy guard commander to stand with Zhang Kui against the beast tide.",
+      "narration": "她当场任命他为护卫副首,叮嘱蓄力以待大兽潮。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_020.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "韩立离去后,屋内众人低声密议,要借他金刚之体争夺某物,他却全然不知。",
+      "mood": "Scheming",
+      "lighting": "Shadowed Interior",
+      "action": "Plot in Secret",
+      "camera": "Overhead Wide",
+      "visual": {
+        "composition": "After Han Li leaves, the group inside leans together whispering",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Once Han Li departs, the room gathers in hushed discussion about using his Vajra body to seize a prize unbeknownst to him.",
+      "narration": "他前脚离开,方夫人与金玉宗却谋划借他护送夺宝。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_021.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night as spiritual light falls from the sky",
+        "environment": "Night sky, immortal city outline, drifting light motes",
+        "character_pose": "",
+        "fx": "Falling spiritual particles and fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual motes drifting down, calm mysterious mood, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第7集即将开始。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Low Light",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep6_full/scene_022.png"
+    }
+  ]
+}

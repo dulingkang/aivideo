@@ -1,0 +1,626 @@
+{
+  "episode": 4,
+  "title": "Sand Worm Siege.Serpent Demon Ambush",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal sky with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening,misty immortal sky with a golden scroll unfurling,drifting spiritual particles,wide establishing shot,cinematic lighting,4K",
+      "narration": "我是云卷仙音,欢迎回来。第4集:沙虫围袭·蛇妖突袭。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "巨龟车队在青罗沙漠中央急速收拢,数十辆龟车结成同心防线。",
+      "mood": "Tense",
+      "lighting": "Blinding Sunlight",
+      "action": "Form Defensive Line",
+      "camera": "Aerial Orbit Pullback",
+      "visual": {
+        "composition": "The giant tortoise convoy rapidly closes in at the heart of the Qingluo Desert,forming concentric defenses",
+        "environment": "Rapid convergence in the heart of the Qingluo Desert",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "A giant tortoise convoy rapidly closes ranks in the Qingluo Desert,dozens of tortoise carts forming concentric defensive rings",
+      "narration": "张奎一声令下，商队迅速集结，准备迎击沙虫兽群。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "五六十名巨狼骑士聚集在外圈,长枪狼牙棒列阵,蓝衫柳儿与血虎并肩。",
+      "mood": "Ready",
+      "lighting": "Daylight",
+      "action": "Forming Ranks",
+      "camera": "Medium Tracking Along the Line",
+      "visual": {
+        "composition": "Five to six dozen giant wolf riders gather on the outer ring,spears and wolf-fang maces arrayed",
+        "environment": "",
+        "character_pose": "Riders clustered along the outer perimeter",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Five to six dozen giant wolf riders mass on the outer ring,spears and wolf-fang maces arrayed,the blue-robed Liu'er standing beside the blood tiger",
+      "narration": "巨狼骑士成行列阵,柳儿立在血色猛虎旁,沉声指挥护卫撤回外圈。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "张奎吞下碧绿丹丸,身上黄光炸开,皮肤长出细密黄毛,瞳孔化为碧绿。",
+      "mood": "Fierce",
+      "lighting": "Backlit Glare",
+      "action": "Ingest Elixir and Transform",
+      "camera": "Transforming Close-up",
+      "visual": {
+        "composition": "Zhang Kui swallows a jade-green pill as yellow light erupts from his body",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui swallows a jade-green pill,golden light detonates across him,fine yellow fur sprouts on his skin,pupils turning emerald",
+      "narration": "疤面大汉仰头吞下碧绿丹，身上黄光乍现，力量暴涨。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "张奎一磕狼腹,率先冲入黄尘,与骑士群组成黄雾洪流。",
+      "mood": "Aggressive",
+      "lighting": "Dusty Sunlight",
+      "action": "Charge Into the Dust",
+      "camera": "Wide Low-Angle Follow",
+      "visual": {
+        "composition": "Zhang Kui heels his wolf,dives first into the yellow dust with the riders forming a swirling sand torrent",
+        "environment": "",
+        "character_pose": "Cavalry merging into a yellow mist torrent",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui spurs his giant wolf,charges into the yellow dust,the riders merging into a surging sand-haze torrent",
+      "narration": "他脚下一磕巨狼腹，率先冲入黄尘，带领骑士迎敌。",
+      "face_style_auto": {
+        "expression": "Wild",
+        "lighting": "Dramatic Glow",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "车队弓弩齐射,箭雨穿透沙幕,远景呈半透明光轨。",
+      "mood": "Focused",
+      "lighting": "Daylight",
+      "action": "Volley Fire",
+      "camera": "Low-Angle Moving Profile",
+      "visual": {
+        "composition": "The convoy's bows and crossbows loose in unison,arrow rain piercing the sand curtain with translucent trails",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The convoy unleashes a synchronized bow and crossbow volley,arrows slicing through the sand veil and leaving translucent trails",
+      "narration": "一声令下，车队弓弩齐发，箭雨如潮射向沙虫。",
+      "face_style_auto": {
+        "expression": "Exhilarated",
+        "lighting": "Dramatic Dust",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "第一批沙虫兽破尘而出,扁平身躯、巨口肉须凶猛扑击。",
+      "mood": "Threatening",
+      "lighting": "Dust-filtered",
+      "action": "Reveal the Monsters",
+      "camera": "Wide Reveal Push-in",
+      "visual": {
+        "composition": "The first sand worms burst through the dust,flat bodies and fanged maws lunging ferociously",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The leading sand worms tear out of the dust,flattened bodies with gaping maws and whipping tendrils lunging to attack",
+      "narration": "黄尘翻滚,数条丈许长的沙虫扑出,扁平巨口咆哮,肉须乱舞。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "龟背守卫高举刀盾,合力劈落扑来的巨虫。",
+      "mood": "Ferocious",
+      "lighting": "Daylight",
+      "action": "Hold the Bulwark",
+      "camera": "Over-the-Shoulder Combat",
+      "visual": {
+        "composition": "Tortoise-back guards raise blades and shields,hacking down the lunging worms together",
+        "environment": "Guards on the tortoise shell lifting blades and shields",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Guards atop the tortoise shell raise blades and shields,cleaving down the charging giant worms in unison",
+      "narration": "守卫们刀光连闪,将跃上的虫兽硬生生劈落,龟背震动连连。",
+      "face_style_auto": {
+        "expression": "Grim",
+        "lighting": "Dramatic Dust",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "随着虫群增多,守卫出现伤亡,血迹溅满龟壳。",
+      "mood": "Dire",
+      "lighting": "Dusty Crimson",
+      "action": "Sustain Losses",
+      "camera": "Wide Tracking Overhead",
+      "visual": {
+        "composition": "As the swarm thickens,guards fall and blood spatters across the tortoise shell",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "As the worm tide grows,guards fall wounded,blood splashing across the tortoise shell",
+      "narration": "虫潮如海,守卫终有失手,断臂残肢抛飞,龟壳被鲜血染红。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "韩立稳立龟背,神色从容,心中评估自身护身底牌。",
+      "mood": "Calm Under Pressure",
+      "lighting": "Daylight",
+      "action": "Inner Monologue",
+      "camera": "Medium-to-Close Facial Shot",
+      "visual": {
+        "composition": "Han Li stands steady on the tortoise shell,composed as he reviews his defensive trump cards",
+        "environment": "Tortoise shell",
+        "character_pose": "Composed expression",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stands firm atop the tortoise shell,face composed while he sizes up his protective trump cards",
+      "narration": "韩立心念电转，快速思索对策，考虑如何应对眼前危机。",
+      "face_style_auto": {
+        "expression": "Agonized",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "香儿、筌儿、白衫少女抱旗现身龟背后方,决定布阵援助。",
+      "mood": "Resolute",
+      "lighting": "Daylight",
+      "action": "Resolve to Cast Formation",
+      "camera": "Three-Shot Medium",
+      "visual": {
+        "composition": "Xiang'er,Quan'er,and the white-robed girl appear behind the tortoise shell holding flags,choosing to deploy a formation",
+        "environment": "Rear section of the tortoise shell",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Xiang'er,Quan'er,and the white-robed maiden arrive behind the tortoise shell holding flags,determined to support with a formation",
+      "narration": "香儿沉声安抚筌儿,三女各持小旗奔来,决意以阵法支撑护卫。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "三人摊出锦帕拼成阵图,白光线条在龟壳上亮起。",
+      "mood": "Ritualistic",
+      "lighting": "Radiant Glow",
+      "action": "Assemble the Formation",
+      "camera": "Top-Down Macro",
+      "visual": {
+        "composition": "The trio spreads brocade cloths to form a formation diagram,white lines lighting up across the shell",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three girls unfurl brocade cloths into a formation map,white light tracing across the tortoise shell",
+      "narration": "锦帕一铺,阵纹互锁,淡白光芒自龟壳蔓延开来。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "三面小旗插入阵图,白光冲起,护卫们体力瞬间回涌。",
+      "mood": "Hopeful",
+      "lighting": "Radiant",
+      "action": "Activate the Formation",
+      "camera": "Spellwave Wide Shot",
+      "visual": {
+        "composition": "Three small flags slot into the formation,white light surges upward and the guards regain stamina",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three small flags pierce the diagram,white light erupts upward and the guards' strength surges back",
+      "narration": "白光一荡,守卫疲态尽褪,挥刀如风,小回春阵让局势短暂逆转。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "韩立观察阵法,心中认出人界魔宗精元阵的简化,露出冷笑。",
+      "mood": "Wry",
+      "lighting": "Daylight",
+      "action": "Analyze the Spell",
+      "camera": "Side-Angle Facial Close-Up",
+      "visual": {
+        "composition": "Han Li studies the formation,recognizing a simplified human-realm demon sect Jingyuan array",
+        "environment": "",
+        "character_pose": "Han Li observing the formation",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li examines the formation,recognizing it as a simplified Jingyuan Array from the human realm demon sect and letting a cold smile show",
+      "narration": "韩立摸下巴轻笑，所谓小回春阵，不过是低阶恢复法阵而已。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "突然沙面炸裂,人首蛇身妖兽破土而出,乱发飞舞。",
+      "mood": "Shocked",
+      "lighting": "Explosive Dustlight",
+      "action": "Monster Appears",
+      "camera": "Low-Angle Eruption",
+      "visual": {
+        "composition": "The sand surface explodes as a human-headed serpent-bodied demon bursts out,hair whipping wildly",
+        "environment": "",
+        "character_pose": "",
+        "fx": "Shattering burst",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The sands rupture as a human-headed,serpent-bodied demoness erupts upward,wild hair flaring",
+      "narration": "巨响掀飞沙浪,人首蛇身妖妇破土而出,焦黄乱发狂舞。",
+      "face_style_auto": {
+        "expression": "Knowing",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "蛇妖挥出三道黑芒,撞上三女撑起的灵霞光幕。",
+      "mood": "Perilous",
+      "lighting": "High-Contrast Glow",
+      "action": "Defend Against Strike",
+      "camera": "Front-Facing Medium",
+      "visual": {
+        "composition": "The serpent demon lashes out with three black beams colliding against the spiritual haze barrier the trio holds",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The serpent demon hurls three streaks of black light that slam into the radiant barrier upheld by the three women",
+      "narration": "黑芒尖啸撞上灵霞，两者碰撞爆发出刺眼光芒，冲击波扩散开来。",
+      "face_style_auto": {
+        "expression": "Roaring",
+        "lighting": "Dramatic Dust",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "筌儿脱离光幕在空中失衡,韩立抛出石块击偏骨矛。",
+      "mood": "Heroic",
+      "lighting": "Moonlit",
+      "action": "Stone Rescue",
+      "camera": "Split-Focus Action",
+      "visual": {
+        "composition": "Quan'er tumbles outside the barrier midair while Han Li throws a stone to deflect the bone spear",
+        "environment": "Midair imbalance",
+        "character_pose": "Han Li hurling a stone to knock aside the bone spear",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Quan'er loses balance outside the barrier,Han Li whips a stone that knocks the bone spear off course",
+      "narration": "石影破空,一声闷响,骨矛被硬生生撞偏,筌儿惊魂未定落回龟背。",
+      "face_style_auto": {
+        "expression": "Tense",
+        "lighting": "Dramatic Glow",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "蛇妖暴怒,临走前掷出骨矛,韩立被击飞砸入货柜。",
+      "mood": "Impact",
+      "lighting": "Dust-Lit Flash",
+      "action": "Han Li Struck",
+      "camera": "Slow-Motion Impact",
+      "visual": {
+        "composition": "The enraged serpent demon hurls a bone spear while retreating,blasting Han Li into a cargo crate",
+        "environment": "",
+        "character_pose": "Han Li sent flying into the crate",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The serpent demon,furious,flings a bone spear while departing,blasting Han Li into the cargo chest",
+      "narration": "乌光命中,韩立被掀飞十余丈,砸进兵刃货柜,铁器哗啦一片。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "筌儿等三女冲上龟背查看,南歧子飘至注入灵力,韩立苦笑回应。",
+      "mood": "Worried",
+      "lighting": "Daylight",
+      "action": "Check Injuries",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "Quan'er and the other two rush onto the tortoise shell while Nanqizi drifts in to channel spiritual power",
+        "environment": "Inspection atop the tortoise shell",
+        "character_pose": "Han Li responds with a wry smile during the examination",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Quan'er and the other girls dash up the tortoise shell to check on him as Nanqizi floats over to pour in spiritual power,Han Li answering with a wry smile",
+      "narration": "三女惊呼奔至，急忙查看韩立伤势，眼中满是担忧之色。",
+      "face_style_auto": {
+        "expression": "Pained",
+        "lighting": "Dramatic Flash",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "张奎率剩余骑士拖着重伤返队,将金黄母虫头颅掷在地上。",
+      "mood": "Triumphant",
+      "lighting": "Dusk",
+      "action": "Proclaim Victory",
+      "camera": "Return Tracking Wide Shot",
+      "visual": {
+        "composition": "Zhang Kui leads the surviving riders back,dragging their injuries while tossing the golden mother worm's head to the ground",
+        "environment": "",
+        "character_pose": "Cavalry hauling their wounds back to camp",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui returns with the remaining riders,battered and bleeding,hurling the golden mother worm's severed head onto the ground",
+      "narration": "三十余骑浑身伤痕归来,张奎把巨虫首级抛地,欢呼声在防线内炸开",
+      "face_style_auto": {
+        "expression": "Wry Smile",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "车队暂驻半日,埋葬亡者、修补龟车,韩立被重新安置在车厢静养。",
+      "mood": "Somber",
+      "lighting": "Sunset",
+      "action": "Aftermath Care",
+      "camera": "Montage Wide",
+      "visual": {
+        "composition": "The convoy halts for half a day,burying the dead and repairing tortoise carts",
+        "environment": "Wagon interior for convalescence",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The convoy pauses for half a day to bury the fallen,mend tortoise carts,and resettle Han Li inside a carriage to recuperate",
+      "narration": "商队驻扎半日，休整队伍，补充物资，准备继续前行。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Warm Dusk",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Nighttime silhouette of an immortal city with spiritual light cascading from the sky",
+        "environment": "Night sky,immortal city silhouette,drifting spiritual particles",
+        "character_pose": "",
+        "fx": "Falling motes of spiritual light with a fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending,night sky over an immortal city silhouette,spiritual particles drifting down,calm and mystical mood,wide shot,cinematic lighting,4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第5集即将开始。",
+      "face_style_auto": {
+        "expression": "Weary",
+        "lighting": "Soft Sunset",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep4_full/scene_022.png"
+    }
+  ]
+}

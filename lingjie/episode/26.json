@@ -1,0 +1,652 @@
+{
+  "episode": 26,
+  "title": "Heavenly Heart Pill · Transaction Completion",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第26集:天心丹·交易完成。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹略一犹豫后,纤手一翻转,手中多出一碧绿瓷瓶,冷静地说道:'我用一瓶天心丹和道友换下银芯石怎么样?'",
+      "mood": "Serious",
+      "lighting": "Interior Dim",
+      "action": "Offer Heavenly Heart Pill",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Miss Lü hesitates slightly, flips delicate hand, produces jade-green porcelain bottle, calmly says: 'What if I exchange a bottle of Heavenly Heart Pill for Silver Core Stone?'",
+        "environment": "",
+        "character_pose": "Woman holding bottle, serious",
+        "fx": "Green glow from bottle",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü hesitates slightly, flips delicate hand, produces jade-green porcelain bottle, calmly says: 'What if I exchange a bottle of Heavenly Heart Pill for Silver Core Stone?'",
+      "narration": "吕师妹略一犹豫后，纤手一翻转，手中多出一碧绿瓷瓶，冷静地说道:'我用一瓶天心丹和道友换下银芯石怎么样?'",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹解释道天心丹可以让神念临时增长,弥补炼体士神念不足的缺陷,在突破瓶颈时大有好处。",
+      "mood": "Explanatory",
+      "lighting": "Interior Dim",
+      "action": "Explain Pill Effects",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Miss Lü explains Heavenly Heart Pill can temporarily increase spirit sense, compensate body cultivator's spirit sense deficiency, very helpful for breaking bottlenecks",
+        "environment": "",
+        "character_pose": "Woman explaining, others listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü explains Heavenly Heart Pill can temporarily increase spirit sense, compensate body cultivator's spirit sense deficiency, very helpful for breaking bottlenecks.",
+      "narration": "吕师妹解释道天心丹可以让神念临时增长，弥补炼体士神念不足，在突破瓶颈时大有好处。",
+      "face_style_auto": {
+        "expression": "Helpful",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄见到此幕,立刻大惊阻止道:'天心丹?吕师妹这可是黄粱前辈的独门秘药,换取这么区区一块银芯石,太浪费了。'",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "Try to Stop",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Senior Brother Qian sees this, shocked, tries to stop: 'Heavenly Heart Pill? Miss Lü, this is Huangliang Spirit Lord's unique secret medicine, too wasteful for mere Silver Core Stone!'",
+        "environment": "",
+        "character_pose": "Young man shocked, trying to stop",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian sees this, shocked, tries to stop: 'Heavenly Heart Pill? Miss Lü, this is Huangliang Spirit Lord's unique secret medicine, too wasteful for mere Silver Core Stone!'",
+      "narration": "钱师兄见到此幕，立刻大惊阻止道:'天心丹?吕师妹这可是黄粱前辈的独门秘药，太浪费了。'",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老闻言也有些动容,田兴却似乎从未听过此丹药名字,有些茫然的样子。",
+      "mood": "Impressed",
+      "lighting": "Interior Dim",
+      "action": "Reactions",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Xu Lao also moved by mention, Tian Xing seems never heard of this pill name, looks confused",
+        "environment": "",
+        "character_pose": "Old man impressed, Tian Xing confused",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao also moved by mention, Tian Xing seems never heard of this pill name, looks confused.",
+      "narration": "胥老闻言也有些动容,田兴却似乎从未听过此丹药名字,有些茫然的样子。",
+      "face_style_auto": {
+        "expression": "Confused",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立心中一动,脱口问道:'临时增加神念,对修士也有作用吗?'",
+      "mood": "Interested",
+      "lighting": "Interior Dim",
+      "action": "Ask About Effects",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li's heart moves, asks suddenly: 'Temporarily increase spirit sense, does it work for cultivators too?'",
+        "environment": "",
+        "character_pose": "Han Li interested, asking",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart moves, asks suddenly: 'Temporarily increase spirit sense, does it work for cultivators too?'",
+      "narration": "韩立心中一动,脱口问道:'临时增加神念,对修士也有作用吗?'",
+      "face_style_auto": {
+        "expression": "Interested",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹闻言有些意外,略微不解地回道:'修士原本的神念就够强大,效果自然微乎其微了。'",
+      "mood": "Explanatory",
+      "lighting": "Interior Dim",
+      "action": "Explain Limitations",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Miss Lü somewhat surprised by question, slightly puzzled replies: 'Cultivators' spirit sense is already strong enough, effect naturally minimal.'",
+        "environment": "",
+        "character_pose": "Woman explaining, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü somewhat surprised by question, slightly puzzled replies: 'Cultivators' spirit sense is already strong enough, effect naturally minimal.'",
+      "narration": "吕师妹闻言有些意外,略微不解地回道:'修士原本的神念就够强大,效果自然微乎其微了。'",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立还是摇摇头,平静说道:'若是这样的话,吕道友收起此瓶吧,在下不会交换的。'",
+      "mood": "Resolute",
+      "lighting": "Interior Dim",
+      "action": "Refuse Exchange",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li still shakes head, calmly says: 'If so, Miss Lü, put away the bottle, I won't exchange.'",
+        "environment": "",
+        "character_pose": "Han Li firm, woman disappointed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li still shakes head, calmly says: 'If so, Miss Lü, put away the bottle, I won't exchange.'",
+      "narration": "韩立还是摇摇头,平静说道:'若是这样的话,吕道友收起此瓶吧,在下不会交换的。'",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "这次吕师妹的面色也有些难看了,胥老则一脸的愕然,不敢相信韩立会为了一块灵具材料拒绝这等好处。",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "Reactions to Refusal",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This time Miss Lü's face also darkens, Xu Lao looks astonished, can't believe Han Li would reject such benefit for mere artifact material",
+        "environment": "",
+        "character_pose": "Woman disappointed, old man shocked",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This time Miss Lü's face also darkens, Xu Lao looks astonished, can't believe Han Li would reject such benefit for mere artifact material.",
+      "narration": "这次吕师妹的面色也有些难看了,胥老则一脸的愕然,不敢相信韩立会为了一块灵具材料拒绝这等好处。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "就在老者惊疑之际,韩立却已经淡淡地询问起两件东西的价格来。",
+      "mood": "Businesslike",
+      "lighting": "Interior Dim",
+      "action": "Ask Price",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "While old man is still shocked, Han Li already calmly asks about prices of two items",
+        "environment": "",
+        "character_pose": "Han Li asking, shopkeeper responding",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "While old man is still shocked, Han Li already calmly asks about prices of two items.",
+      "narration": "就在老者惊疑之际,韩立却已经淡淡地询问起两件东西的价格来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老心有忌惮之下,倒也没有狮子大开口,但仍然说出了一个对普通修士来说仍是天价的数目。",
+      "mood": "Reasonable",
+      "lighting": "Interior Dim",
+      "action": "Quote Price",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Xu Lao, being cautious, doesn't overprice, but still names a price that's astronomical for ordinary cultivators",
+        "environment": "",
+        "character_pose": "Shopkeeper quoting, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao, being cautious, doesn't overprice, but still names a price that's astronomical for ordinary cultivators.",
+      "narration": "胥老心有忌惮之下,倒也没有狮子大开口,但仍然说出了一个对普通修士来说仍是天价的数目。",
+      "face_style_auto": {
+        "expression": "Reasonable",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立听了点点头,手掌一翻转,多出了一枚储物镯出来。",
+      "mood": "Prepared",
+      "lighting": "Interior Dim",
+      "action": "Take Out Storage Bracelet",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li nods after hearing, flips palm, produces a storage bracelet",
+        "environment": "",
+        "character_pose": "Han Li holding storage bracelet",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li nods after hearing, flips palm, produces a storage bracelet.",
+      "narration": "韩立听了点点头,手掌一翻转,多出了一枚储物镯出来。",
+      "face_style_auto": {
+        "expression": "Prepared",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立另一只手上的灵戒在镯上只是一划,一堆高阶灵石掉了出来,足够付两件物品绰绰有余了。",
+      "mood": "Wealthy",
+      "lighting": "Interior Dim",
+      "action": "Take Out Spirit Stones",
+      "camera": "Close-Up Hands",
+      "visual": {
+        "composition": "Han Li's spirit ring on other hand just touches bracelet, pile of high-grade spirit stones falls out, more than enough for both items",
+        "environment": "",
+        "character_pose": "Han Li's hands, spirit stones visible",
+        "fx": "Spirit stones glowing",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's spirit ring on other hand just touches bracelet, pile of high-grade spirit stones falls out, more than enough for both items.",
+      "narration": "韩立另一只手上的灵戒在镯上只是一划,一堆高阶灵石掉了出来,足够付两件物品绰绰有余了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "胥老二话不说,同样用手上的储物镯将灵石一收,这场交易就算完成了。",
+      "mood": "Completed",
+      "lighting": "Interior Dim",
+      "action": "Complete Transaction",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Xu Lao says nothing, uses storage bracelet to collect spirit stones, transaction completed",
+        "environment": "",
+        "character_pose": "Shopkeeper collecting stones, Han Li holding boxes",
+        "fx": "Spirit stones disappearing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xu Lao says nothing, uses storage bracelet to collect spirit stones, transaction completed.",
+      "narration": "胥老二话不说,同样用手上的储物镯将灵石一收,这场交易就算完成了。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "韩立将锦盒一收,就直接冲门外而去,田兴也心惊胆战之下,急忙跟了出去。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Leave Shop",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li puts away boxes, directly heads toward door, Tian Xing, terrified, hurriedly follows",
+        "environment": "",
+        "character_pose": "Han Li walking, Tian Xing following nervously",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li puts away boxes, directly heads toward door, Tian Xing, terrified, hurriedly follows.",
+      "narration": "韩立将锦盒一收,就直接冲门外而去,田兴也心惊胆战之下,急忙跟了出去。",
+      "face_style_auto": {
+        "expression": "Nervous",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄面色阴晴了好一会儿,在心中拿不定韩立真实身份之前,没有阻拦韩立的离去。",
+      "mood": "Hesitant",
+      "lighting": "Interior Dim",
+      "action": "Decide Not to Stop",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Senior Brother Qian's face changes color for a while, before determining Han Li's true identity, doesn't stop Han Li from leaving",
+        "environment": "",
+        "character_pose": "Young man hesitant, conflicted",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian's face changes color for a while, before determining Han Li's true identity, doesn't stop Han Li from leaving.",
+      "narration": "钱师兄面色阴晴了好一会儿,在心中拿不定韩立真实身份之前,没有阻拦韩立的离去。",
+      "face_style_auto": {
+        "expression": "Hesitant",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "钱师兄心中暗暗决定,回去后就马上派人调查这人的身份,看看对方到底什么来历。",
+      "mood": "Determined",
+      "lighting": "Interior Dim",
+      "action": "Decide to Investigate",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Senior Brother Qian secretly decides to send people to investigate this person's identity after returning, see what background he has",
+        "environment": "",
+        "character_pose": "Young man determined, scheming",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qian secretly decides to send people to investigate this person's identity after returning, see what background he has.",
+      "narration": "钱师兄心中暗暗决定,回去后就马上派人调查这人的身份,看看对方到底什么来历。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "吕师妹注视着韩立的背影,嘴唇微咬了一下,心中同样觉得郁闷异常。",
+      "mood": "Frustrated",
+      "lighting": "Interior Dim",
+      "action": "Watch Han Li Leave",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Miss Lü watches Han Li's back, bites lip slightly, feels extremely frustrated",
+        "environment": "",
+        "character_pose": "Woman watching, frustrated",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miss Lü watches Han Li's back, bites lip slightly, feels extremely frustrated.",
+      "narration": "吕师妹注视着韩立的背影,嘴唇微咬了一下,心中同样觉得郁闷异常。",
+      "face_style_auto": {
+        "expression": "Frustrated",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "走到店铺外的韩立,心情却很不错,对到手的两种材料非常的满意。",
+      "mood": "Satisfied",
+      "lighting": "Daylight",
+      "action": "Feel Satisfied",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li outside shop, mood very good, very satisfied with obtained materials",
+        "environment": "",
+        "character_pose": "Han Li walking, satisfied",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li outside shop, mood very good, very satisfied with obtained materials.",
+      "narration": "走到店铺外的韩立,心情却很不错,对到手的两种材料非常的满意。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "其实这两种材料中,还是那块灰色的石头价值更高一些,因为那是一种灵具材料的变异材料,非常的罕见。",
+      "mood": "Thoughtful",
+      "lighting": "Daylight",
+      "action": "Reflect on Value",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Actually between the two materials, the gray stone is more valuable, because it's a variant material of artifact material, extremely rare",
+        "environment": "",
+        "character_pose": "Han Li thinking, holding boxes",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Actually between the two materials, the gray stone is more valuable, because it's a variant material of artifact material, extremely rare.",
+      "narration": "其实这两种材料中,还是那块灰色的石头价值更高一些,因为那是一种灵具材料的变异材料,非常的罕见。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "要不是韩立曾在虞阳城中将藏书看了个七七八八,恐怕还无法想起此物,但对韩立这个异类来说,这种材料却是妙用无穷。",
+      "mood": "Appreciative",
+      "lighting": "Daylight",
+      "action": "Value Material",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "If not for Han Li reading most books in Yu Yang City, might not remember this item, but for someone like Han Li, this material has endless uses",
+        "environment": "",
+        "character_pose": "Han Li appreciating material",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "If not for Han Li reading most books in Yu Yang City, might not remember this item, but for someone like Han Li, this material has endless uses.",
+      "narration": "要不是韩立曾在虞阳城中将藏书看了个七七八八,恐怕还无法想起此物,但对韩立这个异类来说,这种材料却是妙用无穷。",
+      "face_style_auto": {
+        "expression": "Appreciative",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第27集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep26_full/scene_022.png"
+    }
+  ]
+}
+

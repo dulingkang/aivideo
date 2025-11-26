@@ -1,0 +1,615 @@
+{
+  "episode": 43,
+  "title": "Thumb Regenerated · Giant Stands Up",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第43集:拇指重生·巨人站起。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "灰线锋利之极,巨掌只是一颤,拇指就已经无声无息的掉落而下,巨人一声痛苦的惨叫,大手下意议的一下收回。",
+      "mood": "Painful",
+      "lighting": "Yellow Light",
+      "action": "Thumb Cut Off",
+      "camera": "Close-Up Hand",
+      "visual": {
+        "composition": "Gray line extremely sharp, giant palm just trembles, thumb silently falls, giant painful scream, huge hand immediately withdraws",
+        "environment": "Giant's hand, thumb being cut",
+        "character_pose": "Giant screaming, hand withdrawing",
+        "fx": "Gray line cutting, thumb falling, pain",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Gray line extremely sharp, giant palm just trembles, thumb silently falls, giant painful scream, huge hand immediately withdraws.",
+      "narration": "灰线锋利之极,巨掌只是一颤,拇指就已经无声无息的掉落而下,巨人一声痛苦的惨叫。",
+      "face_style_auto": {
+        "expression": "Painful",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "巨人额头上的独目睁得滚圆,并泛出了一根根粗大血丝,它死死的盯住了寰姓少年,丑陋的面孔上开始浮现出了狂怒之色。",
+      "mood": "Furious",
+      "lighting": "Red Light",
+      "action": "Giant Enraged",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Giant's single eye on forehead opens wide, appears thick blood vessels, it stares at Huan youth, ugly face begins showing fury",
+        "environment": "Giant's face, enraged",
+        "character_pose": "Giant's eye bloodshot, furious expression",
+        "fx": "Red blood vessels in eye, fury expression",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Giant's single eye on forehead opens wide, appears thick blood vessels, it stares at Huan youth, ugly face begins showing fury.",
+      "narration": "巨人额头上的独目睁得滚圆,并泛出了一根根粗大血丝,它死死的盯住了寰姓少年。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "少年斩出了那一刀后,灰色长刃一闪后溃灭不见,同时脸色一下苍白起来,仿佛这一刀极其损耗他的元气。",
+      "mood": "Exhausted",
+      "lighting": "Gray Light",
+      "action": "Blade Disappears",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Youth slashed that blade, gray long blade flashes then disappears, face suddenly turns pale, as if this slash extremely exhausting his vitality",
+        "environment": "Sky above, Huan Cangqi exhausted",
+        "character_pose": "Huan Cangqi pale, tired",
+        "fx": "Gray blade disappearing, pale face",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Youth slashed that blade, gray long blade flashes then disappears, face suddenly turns pale, as if this slash extremely exhausting his vitality.",
+      "narration": "少年斩出了那一刀后,灰色长刃一闪后溃灭不见,同时脸色一下苍白起来。",
+      "face_style_auto": {
+        "expression": "Exhausted",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但是未等他说完此话,巨人手掌上伤口处,突然泛起一层绿芒,在绿光中,无数血丝肉芽疯狂长出,转眼间,一个完好无损的拇指就重生出来了。",
+      "mood": "Regenerating",
+      "lighting": "Green Light",
+      "action": "Thumb Regenerates",
+      "camera": "Close-Up Hand",
+      "visual": {
+        "composition": "But before he finishes speaking, giant palm's wound suddenly appears green light, in green light, countless blood vessels and flesh buds wildly grow, in a blink, intact thumb regenerates",
+        "environment": "Giant's hand, regenerating",
+        "character_pose": "Thumb regenerating, green light",
+        "fx": "Green light, flesh buds growing, thumb regenerating",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "But before he finishes speaking, giant palm's wound suddenly appears green light, in green light, countless blood vessels and flesh buds wildly grow, in a blink, intact thumb regenerates.",
+      "narration": "但是未等他说完此话,巨人手掌上伤口处,突然泛起一层绿芒,拇指就重生出来了。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随之这根拇指灵活的动了几下,看来真的毫无问题,寰姓少年先是一怔,随即倒吸了一口凉气,不灭之体,黄粱灵君也瞳孔一缩,喃喃了一句。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Immortal Body",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Then this thumb flexibly moves several times, seems really no problem, Huan youth first stunned, then gasps, immortal body, Huangliang Spirit Lord also pupils contract, mutters",
+        "environment": "Sky above, two shocked",
+        "character_pose": "Huan Cangqi shocked, Huangliang realizing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Then this thumb flexibly moves several times, seems really no problem, Huan youth first stunned, then gasps, immortal body, Huangliang Spirit Lord also pupils contract, mutters.",
+      "narration": "随之这根拇指灵活的动了几下,看来真的毫无问题,寰姓少年先是一怔,随即倒吸了一口凉气。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这时,巨人两只大手猛然一拍两侧地面,在轰隆隆声中,整个混沌谷都一阵巨颤,巨人身形一下投高了倍许,终于整个人从土中站立了起来。",
+      "mood": "Powerful",
+      "lighting": "Yellow Light",
+      "action": "Giant Stands Up",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "At this time, giant's two huge hands suddenly slap both sides of ground, in rumbling sound, entire Chaos Valley trembles, giant's body suddenly grows double height, finally whole person stands up from ground",
+        "environment": "Giant standing up, ground shaking",
+        "character_pose": "Giant fully standing, massive",
+        "fx": "Ground shaking, giant rising, rumbling",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At this time, giant's two huge hands suddenly slap both sides of ground, in rumbling sound, entire Chaos Valley trembles, giant's body suddenly grows double height, finally whole person stands up from ground.",
+      "narration": "这时,巨人两只大手猛然一拍两侧地面,整个混沌谷都一阵巨颤,巨人终于从土中站立了起来。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "让黄粱灵君人妖二人面色难看的是,巨人方一站起,就蓦然从身下的泥土中,又单手一把抓出了一只黑黝黝的石棒,此棒实在大得出奇。",
+      "mood": "Alarming",
+      "lighting": "Yellow Light",
+      "action": "Giant Gets Weapon",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Making Huangliang Spirit Lord and demon two people's faces ugly is, giant just stands, suddenly from ground below, single hand grabs black stone rod, this rod extremely large",
+        "environment": "Giant with stone rod",
+        "character_pose": "Giant holding massive stone rod",
+        "fx": "Stone rod appearing, ground breaking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Making Huangliang Spirit Lord and demon two people's faces ugly is, giant just stands, suddenly from ground below, single hand grabs black stone rod, this rod extremely large.",
+      "narration": "让黄粱灵君人妖二人面色难看的是,巨人方一站起,就蓦然从身下的泥土中抓出了一只石棒。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "长度几乎有巨人的一半高,而从表面泛起的丝丝青光看,石棒还是用传闻中的青灵砂炼制而成,这种珍稀材料的重量比相同体积的精铁,还沉上一筹的。",
+      "mood": "Formidable",
+      "lighting": "Green Light",
+      "action": "Examine Weapon",
+      "camera": "Close-Up Weapon",
+      "visual": {
+        "composition": "Length almost half of giant's height, from surface appearing green light threads, stone rod made from legendary cyan spirit sand, this rare material's weight heavier than same volume refined iron",
+        "environment": "Stone rod detail, green light",
+        "character_pose": "Stone rod with green light threads",
+        "fx": "Green light threads on rod, heavy material",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Length almost half of giant's height, from surface appearing green light threads, stone rod made from legendary cyan spirit sand, this rare material's weight heavier than same volume refined iron.",
+      "narration": "长度几乎有巨人的一半高,从表面泛起的丝丝青光看,石棒是用青灵砂炼制而成。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Green Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "如此恐怖的武器砸将下来,就算并非什么灵器法宝,恐怕炼虚中期也绝没有几人敢硬接此东西的,竟然有武器,看来真麻烦了,不出全力,不行了,黄粱灵君脸上肌肉抽搐了一下。",
+      "mood": "Worried",
+      "lighting": "Spirit Light",
+      "action": "Realize Seriousness",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Such terrifying weapon smashing down, even if not spirit tool, probably Void Refinement mid-level few dare block this thing, actually has weapon, seems really trouble, must use full power, Huangliang Spirit Lord's face muscles twitch",
+        "environment": "Sky above, Huangliang worried",
+        "character_pose": "Huangliang twitching, worried",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Such terrifying weapon smashing down, even if not spirit tool, probably Void Refinement mid-level few dare block this thing, actually has weapon, seems really trouble, must use full power, Huangliang Spirit Lord's face muscles twitch.",
+      "narration": "如此恐怖的武器砸将下来,恐怕炼虚中期也绝没有几人敢硬接,黄粱灵君脸上肌肉抽搐了一下。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "不用道友说,寰某也清楚的很,动手吧,决不能放此凶物离开此地,寰姓少年面无表情的说道,接着张口一声低鸣,几乎马上,半空中彩霞一闪,浮现出一只拳头大飞蛾来。",
+      "mood": "Decisive",
+      "lighting": "Colorful Light",
+      "action": "Summon Spirit Moth",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "No need to say, I also know clearly, act now, cannot let this monster leave here, Huan youth expressionless says, then opens mouth low cry, almost immediately, colorful light flashes in mid-air, appears fist-sized moth",
+        "environment": "Sky above, moth appearing",
+        "character_pose": "Huan Cangqi summoning, moth appearing",
+        "fx": "Colorful light, moth appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "No need to say, I also know clearly, act now, cannot let this monster leave here, Huan youth expressionless says, then opens mouth low cry, almost immediately, colorful light flashes in mid-air, appears fist-sized moth.",
+      "narration": "不用道友说,寰某也清楚的很,动手吧,决不能放此凶物离开此地,半空中浮现出一只飞蛾来。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "正是寰天奇的灵虫,那只成熟体的幻焰蛾,此飞蛾身形一颤,就在艳丽的霞光中瞬间狂张起来,一下化为了丈许大小,而少年则身形微微一低。",
+      "mood": "Transforming",
+      "lighting": "Colorful Light",
+      "action": "Moth Expands",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "It's Huan Tianqi's spirit insect, that mature Illusion Flame Moth, this moth body trembles, in gorgeous light instantly expands, transforms to zhang size, youth body slightly lowers",
+        "environment": "Sky above, moth expanding",
+        "character_pose": "Moth expanding, youth preparing",
+        "fx": "Colorful light, moth expanding",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "It's Huan Tianqi's spirit insect, that mature Illusion Flame Moth, this moth body trembles, in gorgeous light instantly expands, transforms to zhang size, youth body slightly lowers.",
+      "narration": "正是寰天奇的灵虫,那只成熟体的幻焰蛾,此飞蛾身形一颤,就在霞光中瞬间狂张起来。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "身上生出数寸长的黄色兽毛,同时身形狂涨,嘴巴鼻子开始兽化狰狞了起来,转眼间,他竟化为了半兽半人的半妖,一旁的黄粱灵君则盘膝坐下。",
+      "mood": "Beast Transforming",
+      "lighting": "Yellow Light",
+      "action": "Transform to Half-Beast",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Body grows several inch long yellow beast fur, at same time body wildly expands, mouth nose begin beast transformation, in a blink, transforms to half-beast half-human, Huangliang Spirit Lord beside sits cross-legged",
+        "environment": "Sky above, both transforming",
+        "character_pose": "Huan Cangqi half-beast, Huangliang sitting",
+        "fx": "Yellow fur appearing, beast transformation",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Body grows several inch long yellow beast fur, at same time body wildly expands, mouth nose begin beast transformation, in a blink, transforms to half-beast half-human, Huangliang Spirit Lord beside sits cross-legged.",
+      "narration": "身上生出数寸长的黄色兽毛,同时身形狂涨,嘴巴鼻子开始兽化,转眼间化为半兽半人的半妖。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "单手一拍自己天灵盖,一股黄色霞光从头顶冒出,托着一个半尺大的元婴,此元婴面容相貌和黄粱灵君一般无二,身穿一件银灿灿战甲。",
+      "mood": "Summoning",
+      "lighting": "Golden Light",
+      "action": "Summon Nascent Soul",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Single hand slaps own crown, yellow light emerges from head, supports half chi large nascent soul, this nascent soul's face identical to Huangliang Spirit Lord, wears silver shining armor",
+        "environment": "Sky above, nascent soul appearing",
+        "character_pose": "Nascent soul with silver armor",
+        "fx": "Yellow light, silver armor, nascent soul",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Single hand slaps own crown, yellow light emerges from head, supports half chi large nascent soul, this nascent soul's face identical to Huangliang Spirit Lord, wears silver shining armor.",
+      "narration": "单手一拍自己天灵盖,一股黄色霞光从头顶冒出,托着一个半尺大的元婴,身穿银灿灿战甲。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一手持着一口绿色小剑,一手抓着一颗白玉大印,整个元婴几乎和真人一般无二了,再无任何虚幻的感觉,元婴蓦然睁开了双目。",
+      "mood": "Powerful",
+      "lighting": "Golden Light",
+      "action": "Nascent Soul Awakens",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "One hand holds green small sword, other hand grasps white jade large seal, entire nascent soul almost like real person, no illusion feeling, nascent soul suddenly opens eyes",
+        "environment": "Nascent soul, awakening",
+        "character_pose": "Nascent soul with weapons, opening eyes",
+        "fx": "Green sword, white jade seal, opening eyes",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One hand holds green small sword, other hand grasps white jade large seal, entire nascent soul almost like real person, no illusion feeling, nascent soul suddenly opens eyes.",
+      "narration": "一手持着一口绿色小剑,一手抓着一颗白玉大印,整个元婴几乎和真人一般无二了,元婴蓦然睁开了双目。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "手一扬,那颗大印脱手祭了出去,化为了亩许之大,在霞光万道中直奔巨人头颅狠狠砸下,而半妖化的寰天奇,骤然间化为一道流光射出。",
+      "mood": "Attacking",
+      "lighting": "Golden Light",
+      "action": "Launch Attacks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Hand raises, that large seal flies out, transforms to mu size, in ten thousand light rays directly smashes at giant's head, half-beast Huan Tianqi suddenly transforms to light stream shoots",
+        "environment": "Sky above, attacks launching",
+        "character_pose": "Seal smashing down, light stream shooting",
+        "fx": "Large seal, light rays, light stream",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Hand raises, that large seal flies out, transforms to mu size, in ten thousand light rays directly smashes at giant's head, half-beast Huan Tianqi suddenly transforms to light stream shoots.",
+      "narration": "手一扬,那颗大印脱手祭了出去,化为了亩许之大,在霞光万道中直奔巨人头颅狠狠砸下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "同时双手握爪,蓦然幻化出一片模糊的虚空抓出,一道道晶莹爪芒仿若实质的凭空浮现,在撕裂空间的异样声响中,密密麻麻的向巨人切割而去。",
+      "mood": "Powerful",
+      "lighting": "Crystal Light",
+      "action": "Claw Strikes",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "At same time hands form claws, suddenly creates blurry void claws, crystal claw rays like substance appear from void, in space-tearing sound, densely cut toward giant",
+        "environment": "Sky above, claw rays cutting",
+        "character_pose": "Claw rays cutting, space tearing",
+        "fx": "Crystal claw rays, space tearing, cutting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "At same time hands form claws, suddenly creates blurry void claws, crystal claw rays like substance appear from void, in space-tearing sound, densely cut toward giant.",
+      "narration": "同时双手握爪,蓦然幻化出一片模糊的虚空抓出,一道道晶莹爪芒凭空浮现,向巨人切割而去。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Crystal Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "巨人暴怒的吼声未停,独目开始放出一道道赤红光柱,同时单手一轮石棒,对准头顶落下的大印就是狠狠一击,另一只手,则往地面山虚空一抓。",
+      "mood": "Counterattacking",
+      "lighting": "Red and Yellow Light",
+      "action": "Giant Counterattacks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Giant's furious roar doesn't stop, single eye begins releasing red light pillars, at same time single hand swings stone rod, toward falling seal above fiercely strikes, other hand grabs at ground void",
+        "environment": "Giant attacking, multiple actions",
+        "character_pose": "Giant roaring, red light pillars, striking with rod",
+        "fx": "Red light pillars, stone rod striking, ground grabbing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Giant's furious roar doesn't stop, single eye begins releasing red light pillars, at same time single hand swings stone rod, toward falling seal above fiercely strikes, other hand grabs at ground void.",
+      "narration": "巨人暴怒的吼声未停,独目开始放出一道道赤红光柱,同时单手一轮石棒,对准大印就是狠狠一击。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Red and Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一大块泥土凭空摄到了手中,黄芒闪动后,化为一颗直径数丈的巨石,接着手一动,长石就带着呼啸之声,对准对面的黄粱灵君投了出去。",
+      "mood": "Throwing",
+      "lighting": "Yellow Light",
+      "action": "Throw Rock",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Large piece of earth grabbed from void into hand, yellow light flashes, transforms to several zhang diameter huge rock, then hand moves, huge rock with whistling sound, toward Huangliang Spirit Lord opposite throws",
+        "environment": "Sky above, rock flying",
+        "character_pose": "Giant throwing rock",
+        "fx": "Yellow light, rock transforming, flying",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Large piece of earth grabbed from void into hand, yellow light flashes, transforms to several zhang diameter huge rock, then hand moves, huge rock with whistling sound, toward Huangliang Spirit Lord opposite throws.",
+      "narration": "一大块泥土凭空摄到了手中,黄芒闪动后,化为一颗直径数丈的巨石,对准黄粱灵君投了出去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这时爪芒和血红光柱碰触到了一起,发出了轰隆隆的爆裂声,又一声惊天动地的巨响后,铁棒硬生生砸到了巨印上,大战正式开始了。",
+      "mood": "Explosive",
+      "lighting": "Mixed Lighting",
+      "action": "Battle Begins",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "At this time claw rays and blood red light pillars collide, make rumbling explosion sounds, another earth-shaking loud sound, stone rod hard hits giant seal, great battle officially begins",
+        "environment": "Sky above, massive battle",
+        "character_pose": "Explosions, collisions, battle starting",
+        "fx": "Explosions, collisions, rumbling, battle",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this time claw rays and blood red light pillars collide, make rumbling explosion sounds, another earth-shaking loud sound, stone rod hard hits giant seal, great battle officially begins.",
+      "narration": "这时爪芒和血红光柱碰触到了一起,发出了轰隆隆的爆裂声,大战正式开始了。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_020.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第44集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep43_full/scene_021.png"
+    }
+  ]
+}
+

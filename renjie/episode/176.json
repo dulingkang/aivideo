@@ -1,0 +1,839 @@
+{
+  "episode": 176,
+  "title": "妖神金像 · 背叛与对峙",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕“上一回 · 破禁与卷轴”，背景为玉矶阁二层入口。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll unfurling above jade pavilion staircase",
+        "environment": "Jade pavilion interior with upper floor entrance",
+        "character_pose": "",
+        "fx": "Floating golden particles",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia title card, golden scroll over jade pavilion staircase, cinematic lighting",
+      "narration": "我是云卷仙音，第176集《妖神金像》敬请诸位观赏。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "众人进入二层，一股檀香之气扑面而来，众人抬头看向角落。",
+      "mood": "Mysterious",
+      "lighting": "Soft interior",
+      "action": "Entering second floor",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Cultivators ascending staircase into second floor",
+        "environment": "Jade pavilion second floor with incense smoke",
+        "character_pose": "Looking around curiously",
+        "fx": "Incense smoke drifting",
+        "motion": {
+          "type": "dolly",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivators entering second floor of jade pavilion, incense smoke visible",
+      "narration": "众人进入二层，一股檀香之气扑面而来，众人抬头看向角落。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "角落处供奉着神龛，神龛中放有三头六臂的独角妖神金像，面目狰狞。",
+      "mood": "Shocking",
+      "lighting": "Golden glow",
+      "action": "Discovering shrine",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Three-headed six-armed demon god statue in shrine",
+        "environment": "Corner shrine with incense burner",
+        "character_pose": "",
+        "fx": "Golden light from statue",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "close-up of three-headed six-armed demon god statue in shrine, golden glow",
+      "narration": "角落处供奉着神龛，神龛中放有三头六臂独角妖神金像，面目狰狞。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "神龛前有火红小炉鼎，鼎内冒出袅袅白雾，檀香之气从中而来。",
+      "mood": "Mysterious",
+      "lighting": "Warm glow",
+      "action": "Observing incense",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Red incense burner with white smoke rising",
+        "environment": "Before shrine",
+        "character_pose": "",
+        "fx": "White smoke curling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "red incense burner with white smoke rising before demon god shrine",
+      "narration": "神龛前有火红小炉鼎，鼎内冒出袅袅白雾，檀香之气从中而来。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "南陇侯等人大吃一惊，没想到苍坤上人竟会供奉妖神。",
+      "mood": "Surprised",
+      "lighting": "Soft interior",
+      "action": "Reacting",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Cultivators showing shocked expressions",
+        "environment": "Second floor interior",
+        "character_pose": "Various surprised poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators showing shocked expressions at demon god shrine",
+      "narration": "南陇侯等人大吃一惊，没想到苍坤上人竟会在此供奉妖神。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "韩立看到三头六臂神像，心跳加速，神像与梵圣真片上的妖兽一模一样。",
+      "mood": "Excited",
+      "lighting": "Golden glow",
+      "action": "Recognizing",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li's face showing recognition, statue in background",
+        "environment": "Shrine area",
+        "character_pose": "Eyes wide, hand on chest",
+        "fx": "Golden light reflecting",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of cultivator recognizing statue, excited expression, golden glow",
+      "narration": "韩立看到三头六臂神像，心跳加速，神像与梵圣真片妖兽一模一样。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Golden",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "韩立不及多想，目光转向二层其他角落，打量周围环境。",
+      "mood": "Alert",
+      "lighting": "Soft interior",
+      "action": "Scanning",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li looking around second floor",
+        "environment": "Second floor interior",
+        "character_pose": "Head turning, eyes scanning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator scanning second floor interior, alert expression",
+      "narration": "韩立不及多想，目光转向二层其他角落，打量周围环境。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "神龛左侧有书桌木椅，右侧有蓝濛濛的寒玉床，床上有三个玉盒。",
+      "mood": "Curious",
+      "lighting": "Cool glow",
+      "action": "Observing",
+      "camera": "Wide pan",
+      "visual": {
+        "composition": "Study desk on left, blue jade bed with three boxes on right",
+        "environment": "Second floor interior",
+        "character_pose": "",
+        "fx": "Blue mist from jade bed",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide pan of second floor showing study desk and blue jade bed with boxes",
+      "narration": "神龛左侧有书桌木椅，右侧有蓝濛濛的寒玉床，床上有三个玉盒。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "白衫老者身形一闪，忽然到了寒玉床跟前，伸手就抓向其中一个玉盒。",
+      "mood": "Tense",
+      "lighting": "Cool glow",
+      "action": "Reaching for box",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder reaching for jade box on blue bed",
+        "environment": "Blue jade bed area",
+        "character_pose": "Hand outstretched",
+        "fx": "Blue mist swirling",
+        "motion": {
+          "type": "snap",
+          "speed": "fast"
+        }
+      },
+      "prompt": "elder cultivator reaching for jade box on blue jade bed, tense moment",
+      "narration": "白衫老者身形一闪，忽然到了寒玉床跟前，伸手抓向其中一个玉盒。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "王天古也到了玉床跟前，随手弹出一道黑芒，直射向老者手背。",
+      "mood": "Confrontational",
+      "lighting": "Dark",
+      "action": "Intercepting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Black light streak intercepting elder's hand",
+        "environment": "Blue jade bed area",
+        "character_pose": "Two figures facing each other",
+        "fx": "Black energy streak",
+        "motion": {
+          "type": "snap",
+          "speed": "fast"
+        }
+      },
+      "prompt": "black energy streak intercepting elder's hand reaching for box, confrontation",
+      "narration": "王天古也到了玉床跟前，随手弹出一道黑芒，直射向老者手背。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "云姓老者手腕一缩，避过偷袭，惊怒之下恶狠狠地盯着王天古。",
+      "mood": "Angry",
+      "lighting": "Harsh",
+      "action": "Reacting",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Elder's angry face glaring at opponent",
+        "environment": "Blue jade bed area",
+        "character_pose": "Hand retracted, eyes glaring",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of angry elder glaring at opponent after dodging attack",
+      "narration": "云姓老者手腕一缩，避过偷袭，惊怒之下恶狠狠地盯着王天古。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "王天古不动声色，询问云姓老者是否只要盒中之物，放弃其他挑选权。",
+      "mood": "Calculating",
+      "lighting": "Neutral",
+      "action": "Questioning",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Two cultivators facing each other, one calm one angry",
+        "environment": "Second floor interior",
+        "character_pose": "One questioning, one defensive",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators in tense conversation, one calm one defensive",
+      "narration": "王天古不动声色，询问云姓老者是否只要盒中之物，放弃其他权利。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "云姓老者恢复冷静，表示盒中之物要先看看再说，不能盲目挑选。",
+      "mood": "Defensive",
+      "lighting": "Soft",
+      "action": "Responding",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder speaking defensively",
+        "environment": "Second floor interior",
+        "character_pose": "Hands gesturing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "elder cultivator speaking defensively, explaining his position",
+      "narration": "云姓老者恢复冷静，表示盒中之物要先看看再说，不能盲目挑选。",
+      "face_style_auto": {
+        "expression": "Defensive",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "王天古指出若挑完三个玉盒，这里的东西就不够众人平分了。",
+      "mood": "Reasoning",
+      "lighting": "Neutral",
+      "action": "Arguing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Cultivator pointing out problem with distribution",
+        "environment": "Second floor interior",
+        "character_pose": "Hand pointing at boxes",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator reasoning about treasure distribution, pointing at boxes",
+      "narration": "王天古指出若挑完三个玉盒，这里的东西就不够众人平分了。",
+      "face_style_auto": {
+        "expression": "Reasoning",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "南陇侯几步上前与老者并肩，目光扫过鬼灵门三人，神情阴森。",
+      "mood": "Threatening",
+      "lighting": "Harsh",
+      "action": "Standing together",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Two elders standing together, facing opponents",
+        "environment": "Second floor interior",
+        "character_pose": "Side by side, defensive stance",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two elders standing together defensively, facing opponents",
+      "narration": "南陇侯几步上前与老者并肩，目光扫过鬼灵门三人，神情阴森。",
+      "face_style_auto": {
+        "expression": "Threatening",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "王天古表示玉盒中可能是苍坤上人的功法和坠魔谷秘密，不能先查看。",
+      "mood": "Insistent",
+      "lighting": "Neutral",
+      "action": "Explaining",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Cultivator explaining importance of jade boxes",
+        "environment": "Second floor interior",
+        "character_pose": "Hands gesturing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator explaining why boxes cannot be opened first",
+      "narration": "王天古表示玉盒中可能是苍坤上人功法与坠魔谷秘密，不能先查看。",
+      "face_style_auto": {
+        "expression": "Insistent",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "云姓老者一扳面孔，冷冷表示当初众人答应他们优先挑选宝物。",
+      "mood": "Cold",
+      "lighting": "Cool",
+      "action": "Insisting",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Elder's cold face speaking firmly",
+        "environment": "Second floor interior",
+        "character_pose": "Stiff posture",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of elder's cold face speaking firmly",
+      "narration": "云姓老者一扳面孔，冷冷表示当初众人答应他们优先挑选宝物。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "老妇人出人意料地开口相帮，建议南陇侯挑选寒玉床等其他宝物。",
+      "mood": "Mediating",
+      "lighting": "Soft",
+      "action": "Suggesting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elderly woman speaking, suggesting alternative",
+        "environment": "Second floor interior",
+        "character_pose": "Hand pointing at jade bed",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "elderly woman suggesting alternative treasure selection",
+      "narration": "老妇人出人意料地开口相帮，建议南陇侯挑选寒玉床等其他宝物。",
+      "face_style_auto": {
+        "expression": "Mediating",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "南陇侯神色更显阴沉，猛然上前一步，放出冲天气势逼退王天古和老妇人。",
+      "mood": "Powerful",
+      "lighting": "Intense",
+      "action": "Releasing pressure",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader releasing powerful aura, opponents stepping back",
+        "environment": "Second floor interior",
+        "character_pose": "Standing tall, aura radiating",
+        "fx": "Pressure waves",
+        "motion": {
+          "type": "burst"
+        }
+      },
+      "prompt": "powerful cultivator releasing aura, opponents stepping back",
+      "narration": "南陇侯神色更显阴沉，猛然上前一步，放出冲天气势逼退对手。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Intense",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "南陇侯扫视其他人，询问还有谁觉得王天古所言有道理。",
+      "mood": "Challenging",
+      "lighting": "Harsh",
+      "action": "Challenging",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Leader scanning group with challenging gaze",
+        "environment": "Second floor interior",
+        "character_pose": "Head turning, eyes scanning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "speed": "slow"
+        }
+      },
+      "prompt": "leader challenging group, scanning faces",
+      "narration": "南陇侯扫视其他人，询问还有谁觉得王天古所言有道理。",
+      "face_style_auto": {
+        "expression": "Challenging",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "黑脸修士沉默后开口，表示王天古所言有道理，不能一口残汤都不留。",
+      "mood": "Supporting",
+      "lighting": "Neutral",
+      "action": "Speaking up",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Black-faced cultivator speaking up",
+        "environment": "Second floor interior",
+        "character_pose": "Hands folded, serious expression",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "black-faced cultivator speaking up in support",
+      "narration": "黑脸修士沉默后开口，表示王天古所言有道理，不能残汤都不留。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "尤姓修士迟疑后也悄然站立到王天古身后，众人分成两团对峙。",
+      "mood": "Tense",
+      "lighting": "Harsh",
+      "action": "Forming sides",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Two groups forming, facing each other",
+        "environment": "Second floor interior",
+        "character_pose": "Two opposing groups",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "wide shot of two groups forming opposing sides",
+      "narration": "尤姓修士迟疑后也悄然站立到王天古身后，众人分成两团对峙。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "南陇侯和云姓老者面色大变，没想到这么多人早已连成一气。",
+      "mood": "Shocked",
+      "lighting": "Harsh",
+      "action": "Reacting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Two elders showing shocked expressions",
+        "environment": "Second floor interior",
+        "character_pose": "Faces showing surprise",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two elders showing shocked expressions at betrayal",
+      "narration": "南陇侯和云姓老者面色大变，没想到这么多人早已连成一气。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "南陇侯恢复镇定，询问他们何时商量好的，这一路上应该没机会。",
+      "mood": "Questioning",
+      "lighting": "Harsh",
+      "action": "Questioning",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader questioning opponents calmly",
+        "environment": "Second floor interior",
+        "character_pose": "Hands behind back, questioning pose",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "leader questioning opponents about their conspiracy",
+      "narration": "南陇侯恢复镇定，询问他们何时商量好的，这一路上应该没机会。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Harsh",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "王天古若无其事地表示，他们在出发前另行小聚，商量应对之策。",
+      "mood": "Calm",
+      "lighting": "Neutral",
+      "action": "Explaining",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Cultivator explaining calmly",
+        "environment": "Second floor interior",
+        "character_pose": "Relaxed posture",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator explaining conspiracy calmly",
+      "narration": "王天古若无其事地表示，他们在出发前另行小聚，商量应对之策。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "南陇侯目光落到韩立身上，口气凝重地询问韩立是否也如此想。",
+      "mood": "Tense",
+      "lighting": "Focused",
+      "action": "Questioning",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Leader looking at Han Li, asking question",
+        "environment": "Second floor interior",
+        "character_pose": "Leader pointing, Han Li neutral",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "leader asking Han Li for his position, tense moment",
+      "narration": "南陇侯目光落到韩立身上，口气凝重地询问韩立是否也如此想。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Focused",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "韩立没有马上回答，只是微一偏头，淡然地观察王天古等人的表情。",
+      "mood": "Observant",
+      "lighting": "Neutral",
+      "action": "Observing",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li's face observing others calmly",
+        "environment": "Second floor interior",
+        "character_pose": "Head tilted, eyes scanning",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Han Li observing others calmly",
+      "narration": "韩立没有马上回答，只是微一偏头，淡然地观察王天古等人的表情。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "王天古对韩立平和地笑了笑，竟一丝担心之色都没有流露。",
+      "mood": "Confident",
+      "lighting": "Neutral",
+      "action": "Smiling",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Cultivator smiling confidently at Han Li",
+        "environment": "Second floor interior",
+        "character_pose": "Calm smile",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of cultivator smiling confidently",
+      "narration": "王天古对韩立平和地笑了笑，竟一丝担心之色都没有流露。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "韩立心中咯噔一下，隐隐觉得有些不对劲，警惕心大起。",
+      "mood": "Alert",
+      "lighting": "Subtle",
+      "action": "Becoming alert",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li's face showing alertness",
+        "environment": "Second floor interior",
+        "character_pose": "Eyes narrowing slightly",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of Han Li showing alertness, eyes narrowing",
+      "narration": "韩立心中咯噔一下，隐隐觉得有些不对劲，警惕心大起。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Subtle",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "韩立看似随意地走动几步，让自己离两伙人都稍远一些，才轻笑回应。",
+      "mood": "Cautious",
+      "lighting": "Neutral",
+      "action": "Positioning",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li moving to neutral position",
+        "environment": "Second floor interior",
+        "character_pose": "Walking casually",
+        "fx": "",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator moving to neutral position between two groups",
+      "narration": "韩立看似随意地走动几步，让自己离两伙人都稍远，才轻笑回应。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "韩立表示无论讨论出什么结果，他都不会反对，采取中立态度。",
+      "mood": "Neutral",
+      "lighting": "Soft",
+      "action": "Declaring neutrality",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li speaking neutrally to both groups",
+        "environment": "Second floor interior",
+        "character_pose": "Hands spread, neutral stance",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator declaring neutrality to both groups",
+      "narration": "韩立表示无论讨论出什么结果，他都不会反对，采取中立态度。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "片尾画面定格在两伙人对峙的场景，气氛紧张一触即发。",
+      "mood": "Tense",
+      "lighting": "Harsh",
+      "action": "End teaser",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Two groups facing each other in tense standoff",
+        "environment": "Second floor interior",
+        "character_pose": "Silhouettes in confrontation",
+        "fx": "Dark shadows",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "wide shot of two groups in tense standoff, second floor interior, dark shadows",
+      "narration": "我是云卷仙音，下集看白衫老者突然背叛，偷袭南陇侯，大战一触即发。",
+      "face_style_auto": null,
+      "image_path": ""
+    }
+  ]
+}

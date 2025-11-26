@@ -1,0 +1,442 @@
+{
+  "episode": 53,
+  "title": "Hundred Years Pass · Merchant Caravan Arrives",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第53集:百年已过·商队抵达。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "百余年时间对灵界的凡人来说,代表了一生的大半已经过去了。但是对法力高深的修仙者来说,却只不过是生命的一瞬间光景。",
+      "mood": "Philosophical",
+      "lighting": "Soft Time Passage",
+      "action": "Time Passage",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Hundred plus years time for Spirit Realm mortals, represents most of life passed, but for high cultivation immortal cultivators, just moment of life",
+        "environment": "Mountain landscape, time passing visualization",
+        "character_pose": "",
+        "fx": "Time passage, seasons changing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Hundred plus years time for Spirit Realm mortals, represents most of life passed, but for high cultivation immortal cultivators, just moment of life.",
+      "narration": "百余年时间对凡人来说是一生的大半,但对修仙者来说只是一瞬间光景。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Time Passage",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "百余年后的一日,巨山一切依旧,但却有一队骑着巨狼的全副武装骑士,护送着数辆精美异常的兽车,从山脚下徐徐经过。",
+      "mood": "Calm Arrival",
+      "lighting": "Natural Light",
+      "action": "Caravan Arrives",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Hundred plus years later one day, giant mountain everything same, but team riding giant wolves fully armed knights, escorting several exquisite beast carriages, slowly pass mountain foot",
+        "environment": "Mountain foot, caravan with giant wolves",
+        "character_pose": "Knights on wolves, carriages",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Hundred plus years later one day, giant mountain everything same, but team riding giant wolves fully armed knights, escorting several exquisite beast carriages, slowly pass mountain foot.",
+      "narration": "百余年后的一日,巨山一切依旧,但却有一队骑着巨狼的骑士护送兽车从山脚下经过。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "其中一辆兽车上坐着三人,一名头发灰白的老者,一名虎头虎脑的六七岁男童,以及一名年纪相仿的纤弱女童。",
+      "mood": "Peaceful",
+      "lighting": "Natural Light",
+      "action": "Three People in Carriage",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "One beast carriage sits three people, gray-haired old man, six seven year old boy, similar age delicate girl",
+        "environment": "Inside beast carriage",
+        "character_pose": "Old man, boy, girl sitting",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "One beast carriage sits three people, gray-haired old man, six seven year old boy, similar age delicate girl.",
+      "narration": "其中一辆兽车上坐着三人,一名头发灰白的老者,一名六七岁男童,以及一名纤弱女童。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "那老者额头满是皱纹,但脖颈之下的肌肤,却仿佛年轻人一般的光泽弹性十足,而一对裸露在袖袍外的双手,却又仿佛老树枯藤般的干瘪异常。",
+      "mood": "Mysterious",
+      "lighting": "Natural Light",
+      "action": "Strange Appearance",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "That old man forehead full of wrinkles, but neck down skin, like young person's luster elastic, but pair exposed hands outside sleeves, like old tree withered vines dry",
+        "environment": "Inside carriage, old man's appearance",
+        "character_pose": "Old man with strange appearance",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "That old man forehead full of wrinkles, but neck down skin, like young person's luster elastic, but pair exposed hands outside sleeves, like old tree withered vines dry.",
+      "narration": "那老者额头满是皱纹,但脖颈之下的肌肤却仿佛年轻人一般的光泽弹性十足。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "但诡异的是,老者十指上的指甲不但数寸之长,看起来锋利异常,而且还泛动着淡淡的红光,显得神秘万分。",
+      "mood": "Mysterious",
+      "lighting": "Red and Natural Light",
+      "action": "Red Nails",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "But strange is, old man ten fingers nails not only several inches long, looks extremely sharp, and also glows faint red light, seems mysterious",
+        "environment": "Inside carriage, close-up of nails",
+        "character_pose": "Old man's hands with red nails",
+        "fx": "Faint red glow on nails",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But strange is, old man ten fingers nails not only several inches long, looks extremely sharp, and also glows faint red light, seems mysterious.",
+      "narration": "但诡异的是,老者十指上的指甲不但数寸之长,而且还泛动着淡淡的红光,显得神秘。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Red and Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "对面那对男女幼童,眼也不眨的盯着指甲上的红光,大惑好奇的样子。",
+      "mood": "Curious",
+      "lighting": "Natural Light",
+      "action": "Children Watching",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Opposite that pair boy girl children, eyes not blinking stare at nails' red light, very curious",
+        "environment": "Inside carriage, children watching",
+        "character_pose": "Children staring curiously",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Opposite that pair boy girl children, eyes not blinking stare at nails' red light, very curious.",
+      "narration": "对面那对男女幼童,眼也不眨的盯着指甲上的红光,大惑好奇的样子。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "老者也没有丝毫掩饰指甲上异样的意思,只是望着这一对童子,微笑不语。",
+      "mood": "Gentle",
+      "lighting": "Natural Light",
+      "action": "Old Man Smiles",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Old man also no intention hiding nails' strangeness, just looks at this pair children, smiles silently",
+        "environment": "Inside carriage, old man and children",
+        "character_pose": "Old man smiling at children",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Old man also no intention hiding nails' strangeness, just looks at this pair children, smiles silently.",
+      "narration": "老者也没有丝毫掩饰指甲上异样的意思,只是望着这一对童子,微笑不语。",
+      "face_style_auto": {
+        "expression": "Gentle",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "忽然窗口外一阵兽蹄声传来,接着一个男子声音在兽车外蓦然响起,启禀火老,前边派去开路人已经回来了,穿云山方圆千里的所有兽群和妖兽,都已经清剿干净了。",
+      "mood": "Report",
+      "lighting": "Natural Light",
+      "action": "Report to Fire Elder",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Suddenly window outside beast hoof sounds come, then man's voice outside carriage suddenly sounds, reporting Fire Elder, scouts ahead returned, all beast groups and demon beasts within thousand li of Chuan Yun Mountain, all cleared",
+        "environment": "Outside carriage, knight reporting",
+        "character_pose": "Knight on wolf reporting",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Suddenly window outside beast hoof sounds come, then man's voice outside carriage suddenly sounds, reporting Fire Elder, scouts ahead returned, all beast groups and demon beasts within thousand li of Chuan Yun Mountain, all cleared.",
+      "narration": "忽然窗口外一阵兽蹄声传来,一个男子声音报告火老,前边开路人已经回来了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "嗯,做的不错。如此一来,本商号又开启了一条新商路,十余年内,不会有太大问题的。老者神色一动,单手一抬,将窗帘缓缓拉开了。",
+      "mood": "Satisfied",
+      "lighting": "Natural Light",
+      "action": "Opens Curtain",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Hmm, done well, this way our merchant house opened new trade route, ten plus years won't have big problems, old man expression moves, single hand raises, slowly opens curtain",
+        "environment": "Inside carriage, old man opening curtain",
+        "character_pose": "Old man satisfied, opening curtain",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Hmm, done well, this way our merchant house opened new trade route, ten plus years won't have big problems, old man expression moves, single hand raises, slowly opens curtain.",
+      "narration": "嗯,做的不错,如此一来本商号又开启了一条新商路,十余年内不会有太大问题。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "只见一名身材魁梧的中年骑士,骑着一头毛发雪白的变异巨狼,正面带恭敬的跟在兽车旁边。",
+      "mood": "Respectful",
+      "lighting": "Natural Light",
+      "action": "Knight on White Wolf",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "See burly middle-aged knight, riding snow-white mutated giant wolf, respectfully follows beast carriage side",
+        "environment": "Outside carriage, knight on white wolf",
+        "character_pose": "Knight respectfully following",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "See burly middle-aged knight, riding snow-white mutated giant wolf, respectfully follows beast carriage side.",
+      "narration": "只见一名身材魁梧的中年骑士,骑着一头毛发雪白的变异巨狼,正面带恭敬的跟在兽车旁边。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "不过,你真能肯定此山中一只妖兽都不剩了。要是有擅长隐匿的妖兽躲藏得够巧妙,妖气并未被发现,也是正常之事。老者望了骑士一眼,口气忽然一变的严肃起来。",
+      "mood": "Serious",
+      "lighting": "Natural Light",
+      "action": "Questions Seriously",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "However, you really sure this mountain no demon beasts left, if good at hiding demon beasts hide cleverly, demon aura not discovered, also normal, old man looks at knight, tone suddenly becomes serious",
+        "environment": "Outside carriage, old man questioning",
+        "character_pose": "Old man serious, questioning knight",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "However, you really sure this mountain no demon beasts left, if good at hiding demon beasts hide cleverly, demon aura not discovered, also normal, old man looks at knight, tone suddenly becomes serious.",
+      "narration": "不过,你真能肯定此山中一只妖兽都不剩了,要是有擅长隐匿的妖兽躲藏得够巧妙呢。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "这个应该不会的,除了妖气外,晚辈还请了几位仙师特别用神念扫视了整座大山,的确再没有妖兽存在此山中了。骑士脸色微微一变,但马上肯定的回道。",
+      "mood": "Reassuring",
+      "lighting": "Natural Light",
+      "action": "Knight Assures",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This shouldn't be, besides demon aura, junior also invited several immortal masters especially used divine sense scanned entire mountain, indeed no more demon beasts in this mountain, knight face slightly changes, but immediately confirms",
+        "environment": "Outside carriage, knight assuring",
+        "character_pose": "Knight confidently replying",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "This shouldn't be, besides demon aura, junior also invited several immortal masters especially used divine sense scanned entire mountain, indeed no more demon beasts in this mountain, knight face slightly changes, but immediately confirms.",
+      "narration": "这个应该不会的,晚辈还请了几位仙师特别用神念扫视了整座大山,的确再没有妖兽了。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "哦,这样的话,看来真没有问题了。请的那几名修士虽然不过是结丹期修为,但是此山也不可能有太高阶的妖兽存在。就这样吧,继续前进。老者满意的点点头,随口称赞了一句,就想将手上的窗帘放下。",
+      "mood": "Satisfied",
+      "lighting": "Natural Light",
+      "action": "Decides to Continue",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Oh, this way, seems really no problem, those invited cultivators though only Core Formation cultivation, but this mountain also can't have too high level demon beasts, continue forward, old man satisfied nods, casually praises, wants to put down curtain",
+        "environment": "Inside carriage, old man satisfied",
+        "character_pose": "Old man nodding, about to close curtain",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Oh, this way, seems really no problem, those invited cultivators though only Core Formation cultivation, but this mountain also can't have too high level demon beasts, continue forward, old man satisfied nods, casually praises, wants to put down curtain.",
+      "narration": "哦,这样的话看来真没有问题了,请的那几名修士虽然不过是结丹期修为,但应该足够。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "但就在此时,空中异变突起。突然一声天崩地裂般的巨响从远处高空传来,接着轰隆隆之声连绵不断,附近空中骤然间阴云密布,呼啸之声随之滚滚而来,整个天空一下变得阴沉异常。",
+      "mood": "Sudden Change",
+      "lighting": "Dark and Dramatic",
+      "action": "Sky Changes Dramatically",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "But just at this time, sky sudden change, suddenly heaven collapsing earth splitting loud sound from distant sky, then rumbling sounds continuous, nearby sky suddenly dark clouds dense, howling sounds rolling, entire sky becomes extremely dark",
+        "environment": "Sky above mountain, dark clouds forming",
+        "character_pose": "",
+        "fx": "Dark clouds, thunder, dramatic sky",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But just at this time, sky sudden change, suddenly heaven collapsing earth splitting loud sound from distant sky, then rumbling sounds continuous, nearby sky suddenly dark clouds dense, howling sounds rolling, entire sky becomes extremely dark.",
+      "narration": "但就在此时,空中异变突起,突然一声天崩地裂般的巨响从远处高空传来,阴云密布。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dark and Dramatic",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_015.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第54集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep53_full/scene_016.png"
+    }
+  ]
+}
+

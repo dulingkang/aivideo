@@ -1,0 +1,680 @@
+{
+  "episode": 28,
+  "title": "Entering Primitive Forest · Beginning of Slaughter",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第28集:进入原始密林·杀戮开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立无法判断各处情况,只好随意挑选了一个方向而行,开始数日中除了一些偶尔蹦出的小兽和一些蛇虫外,并未有任何异常。",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "Choose Direction",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li unable to judge situations, picks random direction, first few days only occasional small beasts and snakes, nothing unusual",
+        "environment": "",
+        "character_pose": "Han Li walking carefully",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li unable to judge situations, picks random direction, first few days only occasional small beasts and snakes, nothing unusual.",
+      "narration": "韩立无法判断各处情况，只好随意挑选了一个方向而行，开始数日中除了一些小兽和蛇虫外，并未有任何异常。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "五日后,韩立面前出现了一眼无法望到头的原始密林,树木全都三四十丈之高。",
+      "mood": "Awed",
+      "lighting": "Forest Shade",
+      "action": "See Primitive Forest",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Five days later, endless primitive forest appears before Han Li, trees all thirty to forty zhang tall",
+        "environment": "",
+        "character_pose": "Han Li looking at massive forest",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Five days later, endless primitive forest appears before Han Li, trees all thirty to forty zhang tall.",
+      "narration": "五日后，韩立面前出现了一眼无法望到头的原始密林，树木全都三四十丈之高。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Forest Shade",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "密林枝叶肥大,幽暗阴凉,不时能从里面隐隐听到一些低沉兽吼声。",
+      "mood": "Dangerous",
+      "lighting": "Dark Forest",
+      "action": "Hear Beast Roars",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Forest with large leaves, dark and cool, can faintly hear low beast roars from within",
+        "environment": "",
+        "character_pose": "Dark forest, beast sounds",
+        "fx": "Beast roars in distance",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Forest with large leaves, dark and cool, can faintly hear low beast roars from within.",
+      "narration": "密林枝叶肥大,幽暗阴凉,不时能从里面隐隐听到一些低沉兽吼声。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立双目微眯地看了一会儿,蓦然抬腿走进了其中,几个晃动后,身形就消失在高大树木之后。",
+      "mood": "Resolved",
+      "lighting": "Dark Forest",
+      "action": "Enter Forest",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li narrows eyes and watches, suddenly steps into forest, after several movements, figure disappears behind tall trees",
+        "environment": "",
+        "character_pose": "Han Li entering forest",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li narrows eyes and watches, suddenly steps into forest, after several movements, figure disappears behind tall trees.",
+      "narration": "韩立双目微眯地看了一会儿，蓦然抬腿走进了其中，几个晃动后，身形消失在高大树木之后。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立施展罗烟步,即使森林中藤蔓遍地,灌木成群,他仍然犹如鬼魅,仿佛成了无形之体一般在里面行进自如。",
+      "mood": "Graceful",
+      "lighting": "Dark Forest",
+      "action": "Move Like Ghost",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li uses Mist Step, even with vines everywhere and bushes, moves like ghost, seems intangible, travels freely",
+        "environment": "",
+        "character_pose": "Han Li moving through forest like ghost",
+        "fx": "Mist trail",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li uses Mist Step, even with vines everywhere and bushes, moves like ghost, seems intangible, travels freely.",
+      "narration": "韩立施展罗烟步,即使森林中藤蔓遍地,灌木成群,他仍然犹如鬼魅,仿佛成了无形之体一般在里面行进自如。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "忽然行进中的韩立,银光一闪,一道银线激射而出,围着附近一颗数丈粗的大树一绕,又飞射而回。",
+      "mood": "Fast",
+      "lighting": "Dark Forest",
+      "action": "Attack with Silver Wire",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Suddenly moving Han Li, silver light flashes, silver line shoots out, wraps around thick tree, flies back",
+        "environment": "",
+        "character_pose": "Han Li throwing silver wire",
+        "fx": "Silver light, wire flying",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Suddenly moving Han Li, silver light flashes, silver line shoots out, wraps around thick tree, flies back.",
+      "narration": "忽然行进中的韩立,银光一闪,一道银线激射而出,围着附近一颗数丈粗的大树一绕,又飞射而回。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "一声凄厉的吼叫从树后爆发而出,接着腥风一起,一头头上生有独角、两丈来高的黄色巨熊从树后一闪而出。",
+      "mood": "Fierce",
+      "lighting": "Dark Forest",
+      "action": "Yellow Bear Appears",
+      "camera": "Dynamic Reveal",
+      "visual": {
+        "composition": "Miserable roar from behind tree, stench wind rises, yellow giant bear with single horn, two zhang tall, flashes from behind tree",
+        "environment": "",
+        "character_pose": "Giant bear roaring, emerging",
+        "fx": "Bear roar, wind",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Miserable roar from behind tree, stench wind rises, yellow giant bear with single horn, two zhang tall, flashes from behind tree.",
+      "narration": "一声凄厉的吼叫从树后爆发而出,接着腥风一起,一头头上生有独角、两丈来高的黄色巨熊从树后一闪而出。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄色巨熊在吼声中狠狠扑向不远处的韩立,但韩立身形连晃几下,就到了数丈外,对这只巨熊视若无睹。",
+      "mood": "Calm",
+      "lighting": "Dark Forest",
+      "action": "Dodge Bear",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Yellow giant bear roars and fiercely pounces toward Han Li, but Han Li moves several times, reaches several zhang away, ignores bear",
+        "environment": "",
+        "character_pose": "Bear pouncing, Han Li dodging",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow giant bear roars and fiercely pounces toward Han Li, but Han Li moves several times, reaches several zhang away, ignores bear.",
+      "narration": "黄色巨熊在吼声中狠狠扑向不远处的韩立,但韩立身形连晃几下,就到了数丈外,对这只巨熊视若无睹。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "噗通一声,巨熊方扑出几步,就鲜血激射,整个身子从腰部一下分成了两截。",
+      "mood": "Brutal",
+      "lighting": "Dark Forest",
+      "action": "Bear Cut in Half",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Thud sound, giant bear just pounces a few steps, blood sprays, entire body splits into two from waist",
+        "environment": "",
+        "character_pose": "Bear cut in half, blood spraying",
+        "fx": "Blood spray, cut effect",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Thud sound, giant bear just pounces a few steps, blood sprays, entire body splits into two from waist.",
+      "narration": "噗通一声,巨熊方扑出几步,就鲜血激射,整个身子从腰部一下分成了两截。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "身后的那颗巨树也发出一声闷响,树干一分二,上半截直接倒落而下,正好将巨熊的尸体掩盖住了。",
+      "mood": "Powerful",
+      "lighting": "Dark Forest",
+      "action": "Tree Falls",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "The giant tree behind also makes dull sound, trunk splits in two, upper half falls down, covering bear corpse",
+        "environment": "",
+        "character_pose": "Tree falling, covering bear",
+        "fx": "Tree falling",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The giant tree behind also makes dull sound, trunk splits in two, upper half falls down, covering bear corpse.",
+      "narration": "身后的那颗巨树也发出一声闷响,树干一分二,上半截直接倒落而下,正好将巨熊的尸体掩盖住了。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立一出手,竟然同时斩断了巨树和斩杀了巨熊,地蛟筋所化银线太过锋利,直到现在才显现出一切来。",
+      "mood": "Impressive",
+      "lighting": "Dark Forest",
+      "action": "Realize Sharpness",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Han Li's single strike simultaneously cut giant tree and killed giant bear, Earth Dragon Tendon silver wire too sharp, only now showing all effects",
+        "environment": "",
+        "character_pose": "Han Li looking at result",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's single strike simultaneously cut giant tree and killed giant bear, Earth Dragon Tendon silver wire too sharp, only now showing all effects.",
+      "narration": "韩立一出手,竟然同时斩断了巨树和斩杀了巨熊,地蛟筋所化银线太过锋利,直到现在才显现出一切来。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "这时的韩立,早已在闪动中再次消失在了密林之中,于是韩立在落日之墓中的杀戮之行,才真正的开始。",
+      "mood": "Resolved",
+      "lighting": "Dark Forest",
+      "action": "Continue Journey",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "By now Han Li has already disappeared into dense forest again, thus Han Li's slaughter journey in Sunset Tomb truly begins",
+        "environment": "",
+        "character_pose": "Han Li disappearing into forest",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "By now Han Li has already disappeared into dense forest again, thus Han Li's slaughter journey in Sunset Tomb truly begins.",
+      "narration": "这时的韩立,早已在闪动中再次消失在了密林之中,于是韩立在落日之墓中的杀戮之行,才真正的开始。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "三个月后,在一片陌生山脉的深处传来一连串巨响,尖鸣声和嘶吼声交织成一片。",
+      "mood": "Intense",
+      "lighting": "Daylight",
+      "action": "Battle Sounds",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Three months later, series of loud sounds from deep in unfamiliar mountain range, sharp cries and roars interweaving",
+        "environment": "",
+        "character_pose": "Distant battle visible",
+        "fx": "Battle sounds, explosions",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Three months later, series of loud sounds from deep in unfamiliar mountain range, sharp cries and roars interweaving.",
+      "narration": "三个月后,在一片陌生山脉的深处传来一连串巨响,尖鸣声和嘶吼声交织成一片。",
+      "face_style_auto": {
+        "expression": "Intense",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "轰的一声巨响后,一切又再次的安静下来。",
+      "mood": "Calm After Storm",
+      "lighting": "Daylight",
+      "action": "Silence Returns",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "After thunderous boom, everything becomes quiet again",
+        "environment": "",
+        "character_pose": "Quiet landscape after battle",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After thunderous boom, everything becomes quiet again.",
+      "narration": "轰的一声巨响后,一切又再次的安静下来。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立双手倒背地站在一个离地十余丈高的横木上,神色平静异常,在他四周,一群青色猿猴的尸体横七竖八地躺了一地。",
+      "mood": "Triumphant",
+      "lighting": "Daylight",
+      "action": "After Battle",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Han Li stands on horizontal branch ten zhang high, hands behind back, expression calm, around him green ape corpses scattered everywhere",
+        "environment": "",
+        "character_pose": "Han Li standing, ape corpses around",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stands on horizontal branch ten zhang high, hands behind back, expression calm, around him green ape corpses scattered everywhere.",
+      "narration": "韩立双手倒背地站在一个离地十余丈高的横木上,神色平静异常,在他四周,一群青色猿猴的尸体横七竖八地躺了一地。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "这些猿猴一个个膀大腰圆,身上猿毛粗硬之极,同时口中露出两根数寸长獠牙,让它们的面孔狰狞异常。",
+      "mood": "Brutal",
+      "lighting": "Daylight",
+      "action": "See Ape Corpses",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "These apes all broad-shouldered, extremely coarse fur, two-inch fangs showing, making faces extremely fierce",
+        "environment": "",
+        "character_pose": "Ape corpses visible",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "These apes all broad-shouldered, extremely coarse fur, two-inch fangs showing, making faces extremely fierce.",
+      "narration": "这些猿猴一个个膀大腰圆,身上猿毛粗硬之极,同时口中露出两根数寸长獠牙,让它们的面孔狰狞异常。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "最让人心惊的,却是十余丈外的一颗粗大树干上,一只浑身红毛、生有一大两小三颗头颅的巨大妖猴,被一杆黑色长枪从心脏处洞穿而过,硬生生钉在了那里。",
+      "mood": "Shocking",
+      "lighting": "Daylight",
+      "action": "See Pinned Demon Ape",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Most shocking, on thick trunk ten zhang away, red-furred giant demon ape with one large and two small heads, pierced through heart by black spear, nailed to tree",
+        "environment": "",
+        "character_pose": "Demon ape pinned to tree",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Most shocking, on thick trunk ten zhang away, red-furred giant demon ape with one large and two small heads, pierced through heart by black spear, nailed to tree.",
+      "narration": "最让人心惊的,却是十余丈外的一颗粗大树干上,一只浑身红毛、生有一大两小三颗头颅的巨大妖猴,被一杆黑色长枪从心脏处洞穿而过,硬生生钉在了那里。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "巨猿七窍流血,浑身伤痕累累,刚刚一命呜呼的样子。",
+      "mood": "Brutal",
+      "lighting": "Daylight",
+      "action": "Examine Corpse",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Giant ape bleeding from seven orifices, covered in wounds, just died",
+        "environment": "",
+        "character_pose": "Dead ape visible",
+        "fx": "Blood",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Giant ape bleeding from seven orifices, covered in wounds, just died.",
+      "narration": "巨猿七窍流血,浑身伤痕累累,刚刚一命呜呼的样子。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立仔细打量着巨猿尸体一会儿,口中喃喃地说道:'才不过走到这里,就碰到了结丹期妖兽。落日之墓,果然名不虚传!'",
+      "mood": "Reflective",
+      "lighting": "Daylight",
+      "action": "Reflect on Battle",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li examines giant ape corpse, mutters: 'Just reached here, already met Core Formation beast. Sunset Tomb, truly worthy of reputation!'",
+        "environment": "",
+        "character_pose": "Han Li examining, thoughtful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li examines giant ape corpse, mutters: 'Just reached here, already met Core Formation beast. Sunset Tomb, truly worthy of reputation!'",
+      "narration": "韩立仔细打量着巨猿尸体一会儿,口中喃喃地说道:'才不过走到这里,就碰到了结丹期妖兽。落日之墓,果然名不虚传!'",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立抬手虚空一抓,手指上灵戒青光一闪,黑枪从树干上一颤,就自行拔出的倒射而回,巨猿尸体也一下从树干上坠落而下。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "Retrieve Spear",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li reaches out, spirit ring on finger flashes green, black spear trembles on trunk, pulls itself out and flies back, giant ape corpse falls from trunk",
+        "environment": "",
+        "character_pose": "Han Li retrieving spear",
+        "fx": "Green light, spear flying",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li reaches out, spirit ring on finger flashes green, black spear trembles on trunk, pulls itself out and flies back, giant ape corpse falls from trunk.",
+      "narration": "韩立抬手虚空一抓,手指上灵戒青光一闪,黑枪从树干上一颤,就自行拔出的倒射而回,巨猿尸体也一下从树干上坠落而下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立单手抓住了长枪,随即身形一动,就化为一道虚影的直接没入了密林深处,一时间,这里再次寂静无声起来。",
+      "mood": "Mysterious",
+      "lighting": "Dark Forest",
+      "action": "Leave Scene",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li catches spear with one hand, body moves, becomes shadow, directly enters deep forest, place becomes silent again",
+        "environment": "",
+        "character_pose": "Han Li disappearing into forest",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li catches spear with one hand, body moves, becomes shadow, directly enters deep forest, place becomes silent again.",
+      "narration": "韩立单手抓住了长枪,随即身形一动,就化为一道虚影的直接没入了密林深处,一时间,这里再次寂静无声起来。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Dark Forest",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_022.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第29集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep28_full/scene_023.png"
+    }
+  ]
+}
+

@@ -1,0 +1,782 @@
+{
+  "episode": 35,
+  "title": "Three Races Battle · Hidden Scheme",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第35集:三族大战·隐藏计谋。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年眼珠滴溜溜一转,神色一变大叫一声,不对,五行灵族中少了水族的人,他们正在拖延时间。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Discover Scheme",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huan youth's eyes roll, expression changes, shouts no, Five Elements spirits missing water clan people, they're stalling for time",
+        "environment": "Demon mist area",
+        "character_pose": "Huan youth realizing, alarmed",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth's eyes roll, expression changes, shouts no, Five Elements spirits missing water clan people, they're stalling for time.",
+      "narration": "寰姓少年眼珠一转神色一变大叫,不对,五行灵族中少了水族的人。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君赫然醒悟过来,面色铁青把手一挥,胸前光镜一闪,一道道金色光柱再次喷出。",
+      "mood": "Urgent",
+      "lighting": "Spirit Light",
+      "action": "Attack Again",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord suddenly realizes, face iron-gray, waves hand, chest mirror flashes, golden beams shoot out again",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang attacking, urgent",
+        "fx": "Golden beams, mirror light",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord suddenly realizes, face iron-gray, waves hand, chest mirror flashes, golden beams shoot out again.",
+      "narration": "黄粱灵君赫然醒悟,面色铁青把手一挥,金色光柱再次喷出。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年自然同样施法一催,再次放出妖风出来,灰色风蛟再次扑向血河。",
+      "mood": "Powerful",
+      "lighting": "Demonic Mist",
+      "action": "Attack Together",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Huan youth naturally also activates spell, releases demon wind again, gray wind dragon rushes at blood river again",
+        "environment": "Sky above valley",
+        "character_pose": "Wind dragon attacking",
+        "fx": "Gray wind, wind dragon",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huan youth naturally also activates spell, releases demon wind again, gray wind dragon rushes at blood river again.",
+      "narration": "寰姓少年同样施法一催,再次放出妖风,灰色风蛟再次扑向血河。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "身后的其他妖修和人族也纷纷在宫装少妇和蓝城主等人带领下,朝对面灵族攻去。",
+      "mood": "Charging",
+      "lighting": "Mixed Lighting",
+      "action": "All Attack",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Other demon cultivators and humans behind also led by palace-dressed woman and City Lord Lan, attack opposite spirits",
+        "environment": "Valley entrance, battle area",
+        "character_pose": "Many forces charging",
+        "fx": "Mixed attacks, light and demon qi",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Other demon cultivators and humans behind also led by palace-dressed woman and City Lord Lan, attack opposite spirits.",
+      "narration": "身后的其他妖修和人族也纷纷在宫装少妇和蓝城主带领下,朝对面灵族攻去。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "对面灵族也毫不畏惧,火光剑气纵横交错下,那些石人和绿色木鸟再次从谷中涌出。",
+      "mood": "Fierce",
+      "lighting": "Spirit Light",
+      "action": "Spirits Counterattack",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Opposite spirits also fearless, fire and sword light crisscross, stone giants and green wooden birds surge from valley again",
+        "environment": "Valley entrance, spirit side",
+        "character_pose": "Spirit puppets charging out",
+        "fx": "Fire light, sword light, puppets",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Opposite spirits also fearless, fire and sword light crisscross, stone giants and green wooden birds surge from valley again.",
+      "narration": "对面灵族也毫不畏惧,火光剑气纵横交错,石人和木鸟再次从谷中涌出。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "木鸟双翅一挥,密密麻麻的绿色箭矢激射而出,石人两手一抬,水缸大的黄色光球砸向对面。",
+      "mood": "Intense",
+      "lighting": "Spirit Light",
+      "action": "Puppets Attack",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Wooden birds flap wings, dense green arrows shoot out, stone giants raise hands, yellow light balls size of water jars smash opposite",
+        "environment": "Valley entrance, battlefield",
+        "character_pose": "Puppets attacking",
+        "fx": "Green arrows, yellow light balls",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Wooden birds flap wings, dense green arrows shoot out, stone giants raise hands, yellow light balls size of water jars smash opposite.",
+      "narration": "木鸟双翅一挥,密密麻麻的绿色箭矢激射而出,石人投出黄色光球。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "顿时双方打得不可开交,高空中血河灰风金光交织一起,地下爆裂声火光光霞轰隆不断。",
+      "mood": "Chaotic",
+      "lighting": "Mixed Lighting",
+      "action": "Full Battle",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Both sides fight intensely, high above blood river gray wind golden light interweave, ground explosions fire light roar continuously",
+        "environment": "Valley entrance, full battlefield",
+        "character_pose": "Massive battle scene",
+        "fx": "Blood river, wind, light, explosions everywhere",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Both sides fight intensely, high above blood river gray wind golden light interweave, ground explosions fire light roar continuously.",
+      "narration": "顿时双方打得不可开交,高空中血河灰风金光交织,地下爆裂声不断。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "一道蓝虹一闪,一口巨大光剑浮现而出,一斩而下,十余只巨大石人都在蓝色光芒中一斩而灭。",
+      "mood": "Powerful",
+      "lighting": "Blue Light",
+      "action": "Blue Sword Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Blue rainbow flashes, huge light sword appears, slashes down, over ten stone giants all destroyed in blue light",
+        "environment": "Battlefield",
+        "character_pose": "Blue sword slashing, stone giants destroyed",
+        "fx": "Blue light, sword slash, destruction",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Blue rainbow flashes, huge light sword appears, slashes down, over ten stone giants all destroyed in blue light.",
+      "narration": "一道蓝虹一闪,巨大光剑浮现而出,一斩而下,十余只石人一斩而灭。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "灵族方面则火光大起,浮现一只赤红大手,朝人妖方面一抓而下,数名修士被抓化为灰烬。",
+      "mood": "Devastating",
+      "lighting": "Red Fire",
+      "action": "Fire Hand Attacks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Spirit side fire light rises, huge red hand appears, grabs toward human and demon side, several cultivators caught and turn to ashes",
+        "environment": "Battlefield",
+        "character_pose": "Red fire hand grabbing, cultivators destroyed",
+        "fx": "Red fire, huge hand, destruction",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Spirit side fire light rises, huge red hand appears, grabs toward human and demon side, several cultivators caught and turn to ashes.",
+      "narration": "灵族方面火光大起,浮现赤红大手,一抓而下,数名修士被抓化为灰烬。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Fire",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "一人见此大怒,两手一掐诀,身形狂涨起来,一下化为身高十余丈巨人,挥动黝黑铁拳。",
+      "mood": "Powerful",
+      "lighting": "Mixed Lighting",
+      "action": "Giant Transformation",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "One person sees this furious, hands form seals, body expands wildly, transforms into giant over ten zhang tall, swings black iron fists",
+        "environment": "Battlefield",
+        "character_pose": "Human transforming into giant",
+        "fx": "Body expanding, transformation",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One person sees this furious, hands form seals, body expands wildly, transforms into giant over ten zhang tall, swings black iron fists.",
+      "narration": "一人见此大怒,两手一掐诀,身形狂涨,化为身高十余丈巨人挥动铁拳。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "正是身为顶阶炼体士的靳姓大汉,施展秘传炼体术,巨大化身体,毫不客气攻向灵族。",
+      "mood": "Fierce",
+      "lighting": "Mixed Lighting",
+      "action": "Giant Attacks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "It's top-level body cultivator Jin, using secret body technique, giant body, attacks spirits without mercy",
+        "environment": "Battlefield",
+        "character_pose": "Giant attacking spirits",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "It's top-level body cultivator Jin, using secret body technique, giant body, attacks spirits without mercy.",
+      "narration": "正是顶阶炼体士靳姓大汉,施展秘传炼体术,巨大化身体攻向灵族。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "数股黑色巨蟒般的拳风从拳上狂涌而出,所过之处凄厉破空声大起,灵族不得不退避三分。",
+      "mood": "Powerful",
+      "lighting": "Mixed Lighting",
+      "action": "Punch Wind Attacks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Several black python-like fist winds rush from fists, wherever passes sharp breaking air sounds, spirits must retreat",
+        "environment": "Battlefield",
+        "character_pose": "Fist winds attacking, spirits retreating",
+        "fx": "Black fist winds, sound waves",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Several black python-like fist winds rush from fists, wherever passes sharp breaking air sounds, spirits must retreat.",
+      "narration": "数股黑色巨蟒般的拳风从拳上狂涌而出,所过之处凄厉破空声大起。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "同样一声大喝从灵族方面传出,一道银色人影蓦然膨胀变大,体形比黑色巨人还大一号。",
+      "mood": "Counterattack",
+      "lighting": "Spirit Light",
+      "action": "Silver Giant Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Same loud shout from spirit side, silver figure suddenly expands, body size larger than black giant",
+        "environment": "Battlefield, spirit side",
+        "character_pose": "Silver giant transforming",
+        "fx": "Silver light, body expanding",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Same loud shout from spirit side, silver figure suddenly expands, body size larger than black giant.",
+      "narration": "同样一声大喝从灵族方面传出,银色人影蓦然膨胀,体形比黑色巨人还大。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "正是那位叫铁刃的金灵族之人,地面巨颤几下,银色人影几个大步过去,冲到了黑色巨人跟前。",
+      "mood": "Confrontational",
+      "lighting": "Spirit Light",
+      "action": "Approach Enemy",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "It's that Metal Spirit clan person called Tie Ren, ground trembles, silver figure takes several huge steps, reaches black giant",
+        "environment": "Battlefield",
+        "character_pose": "Silver giant approaching black giant",
+        "fx": "Ground shaking, footsteps",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "It's that Metal Spirit clan person called Tie Ren, ground trembles, silver figure takes several huge steps, reaches black giant.",
+      "narration": "正是金灵族之人铁刃,地面巨颤,银色人影大步过去,冲到黑色巨人跟前。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "两只硕大的银灿灿拳头狂击而出,黑色巨人也不甘示弱,同样的挥拳相向,双方对轰。",
+      "mood": "Intense",
+      "lighting": "Mixed Lighting",
+      "action": "Giant Fight",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Two huge silver fists wildly strike out, black giant also unwilling to lose, same punches, both sides collide",
+        "environment": "Battlefield",
+        "character_pose": "Two giants fighting, fists colliding",
+        "fx": "Fist collision, shock waves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two huge silver fists wildly strike out, black giant also unwilling to lose, same punches, both sides collide.",
+      "narration": "两只硕大的银灿灿拳头狂击而出,黑色巨人也不甘示弱挥拳相向。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "砰砰的晴天霹雳之声顿时大响起来,离得稍近些的人妖两族闻听此声,俱都震得两耳嗡鸣不已。",
+      "mood": "Deafening",
+      "lighting": "Mixed Lighting",
+      "action": "Thunderous Impact",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Boom boom thunderous sounds immediately roar, humans and demons nearby hear this, all ears ringing",
+        "environment": "Battlefield",
+        "character_pose": "Forces covering ears, shocked",
+        "fx": "Sound waves, shock waves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Boom boom thunderous sounds immediately roar, humans and demons nearby hear this, all ears ringing.",
+      "narration": "砰砰的晴天霹雳之声顿时大响,离得稍近的人妖两族俱都震得两耳嗡鸣。",
+      "face_style_auto": {
+        "expression": "Pain",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "大骇之下,纷纷远离两个巨人的战斗之所,不敢靠近分毫,生怕被波及。",
+      "mood": "Retreating",
+      "lighting": "Mixed Lighting",
+      "action": "Flee from Giants",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Greatly frightened, all flee far from two giants' battle area, dare not approach, afraid of being affected",
+        "environment": "Battlefield, retreating forces",
+        "character_pose": "Forces fleeing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Greatly frightened, all flee far from two giants' battle area, dare not approach, afraid of being affected.",
+      "narration": "大骇之下,纷纷远离两个巨人的战斗之所,不敢靠近分毫。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "其余的灵族和高阶的妖修也纷纷各显神通,一时间战场火光剑气法宝灵具纵横交错。",
+      "mood": "Chaotic",
+      "lighting": "Mixed Lighting",
+      "action": "All Out Battle",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Other spirits and high-level demon cultivators also display abilities, battlefield fire light sword qi treasures artifacts crisscross",
+        "environment": "Full battlefield",
+        "character_pose": "Multiple fighters using abilities",
+        "fx": "Fire, sword light, treasures, artifacts",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Other spirits and high-level demon cultivators also display abilities, battlefield fire light sword qi treasures artifacts crisscross.",
+      "narration": "其余的灵族和高阶妖修也纷纷各显神通,战场火光剑气法宝纵横交错。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "突然一只黑色火凤从妖兽群中飞射而出,黑色火焰一卷之下,百余只木鸟全都化为灰烬。",
+      "mood": "Powerful",
+      "lighting": "Black Fire",
+      "action": "Black Phoenix Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Suddenly black fire phoenix shoots from demon beast group, black flames roll, over a hundred wooden birds all turn to ash",
+        "environment": "Battlefield, sky",
+        "character_pose": "Black phoenix attacking, wooden birds destroyed",
+        "fx": "Black fire, phoenix, destruction",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Suddenly black fire phoenix shoots from demon beast group, black flames roll, over a hundred wooden birds all turn to ash.",
+      "narration": "突然一只黑色火凤从妖兽群中飞射而出,黑色火焰一卷,百余只木鸟化为灰烬。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Black Fire",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黑凤身形一晃,蓦然在虚空中消失不见,但下一刻在一声凤鸣中,出现在混沌谷入口处。",
+      "mood": "Mysterious",
+      "lighting": "Black Fire",
+      "action": "Teleport",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Black phoenix body flickers, suddenly disappears in void, but next moment in phoenix cry, appears at Chaos Valley entrance",
+        "environment": "Valley entrance, sky",
+        "character_pose": "Black phoenix appearing",
+        "fx": "Black fire, teleportation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Black phoenix body flickers, suddenly disappears in void, but next moment in phoenix cry, appears at Chaos Valley entrance.",
+      "narration": "黑凤身形一晃,蓦然在虚空中消失,下一刻在凤鸣中出现在谷口处。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Black Fire",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黑焰翻滚之下,化为宫装少妇,这位黑凤族的化神妖修,头也不回立刻黑光一闪遁入谷中。",
+      "mood": "Swift",
+      "lighting": "Black Fire",
+      "action": "Enter Valley",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Black flames roll, transforms into palace-dressed woman, this Black Phoenix clan Deity Transformation demon cultivator, without looking back immediately black light flashes, enters valley",
+        "environment": "Valley entrance",
+        "character_pose": "Woman transforming, entering valley",
+        "fx": "Black fire, transformation, entrance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Black flames roll, transforms into palace-dressed woman, this Black Phoenix clan Deity Transformation demon cultivator, without looking back immediately black light flashes, enters valley.",
+      "narration": "黑焰翻滚化为宫装少妇,黑凤族化神妖修,头也不回立刻遁入谷中。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Black Fire",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "蓝城主见到此幕心中大急,深吸一口气下,身前盘旋的七口蓝灿灿飞剑,对准石人不惜法力的狂劈。",
+      "mood": "Urgent",
+      "lighting": "Spirit Light",
+      "action": "Urgent Attack",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan sees this, very anxious, takes deep breath, seven blue glowing flying swords before him, toward stone giants without sparing mana, wildly slash",
+        "environment": "Battlefield",
+        "character_pose": "City Lord Lan attacking urgently",
+        "fx": "Blue swords, slashing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "City Lord Lan sees this, very anxious, takes deep breath, seven blue glowing flying swords before him, toward stone giants without sparing mana, wildly slash.",
+      "narration": "蓝城主见到此幕心中大急,七口蓝灿灿飞剑对准石人不惜法力的狂劈。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "硬生生也杀出了一条通道,同样化为一道蓝虹的激射进了混沌谷中,紧随黑凤族少妇而入。",
+      "mood": "Determined",
+      "lighting": "Blue Light",
+      "action": "Force Entry",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Forcibly kills a path, also transforms into blue rainbow, shoots into Chaos Valley, follows Black Phoenix woman",
+        "environment": "Valley entrance",
+        "character_pose": "Blue rainbow entering valley",
+        "fx": "Blue rainbow, entrance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Forcibly kills a path, also transforms into blue rainbow, shoots into Chaos Valley, follows Black Phoenix woman.",
+      "narration": "硬生生也杀出了一条通道,同样化为蓝虹的激射进了混沌谷中。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "附近的其他七八名人妖两族之人,发现了此良机,同样趁机各自驱使遁光的紧随进入了谷中。",
+      "mood": "Opportunistic",
+      "lighting": "Mixed Lighting",
+      "action": "Follow Into Valley",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Nearby other seven or eight human and demon people, discover this opportunity, also take chance to drive escape lights, follow into valley",
+        "environment": "Valley entrance",
+        "character_pose": "Multiple people entering valley",
+        "fx": "Flying lights, entrance",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Nearby other seven or eight human and demon people, discover this opportunity, also take chance to drive escape lights, follow into valley.",
+      "narration": "附近的其他七八名人妖两族之人,发现了此良机,趁机紧随进入了谷中。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "最后进入谷中的,却是一道红光包裹的青年,竟然正是韩立,不知为何原本毫无法力的他,竟然驱使着火灵气遁速极快。",
+      "mood": "Mysterious",
+      "lighting": "Red Light",
+      "action": "Han Li Enters",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Last to enter valley is red light wrapped youth, actually Han Li, somehow originally without mana, actually drives fire qi very fast",
+        "environment": "Valley entrance",
+        "character_pose": "Han Li in red light, entering",
+        "fx": "Red fire light, fast entry",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Last to enter valley is red light wrapped youth, actually Han Li, somehow originally without mana, actually drives fire qi very fast.",
+      "narration": "最后进入谷中的是一道红光包裹的青年,正是韩立,驱使着火灵气遁速极快。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_026.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第36集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep35_full/scene_027.png"
+    }
+  ]
+}
+

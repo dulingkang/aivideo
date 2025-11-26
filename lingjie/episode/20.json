@@ -1,0 +1,581 @@
+{
+  "episode": 20,
+  "title": "Meeting the Beast Again · Spirit Clan Pursuit",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": "Slow camera drift showcasing the immortal realm"
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第20集:再见小兽·灵族追击。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      }
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立大喝一声,手中长枪猛然刺出,一只带翅飞狼被扎了个透心凉,从空中坠落。",
+      "mood": "Fierce",
+      "lighting": "Daylight",
+      "action": "Kill Flying Wolf",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li shouts, thrusts spear, pierces a winged flying wolf through the heart, it falls from sky",
+        "environment": "",
+        "character_pose": "Han Li thrusting spear",
+        "fx": "Blood spray",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Han Li shouts, thrusts spear, pierces a winged flying wolf through the heart, it falls from sky.",
+      "narration": "韩立大喝一声,手中长枪猛然刺出,一只带翅飞狼被扎了个透心凉,从空中坠落。",
+      "face_style_auto": {
+        "expression": "Fierce",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "空中还有七八头飞狼,数十道风刃密密麻麻罩向韩立,韩立将长枪化为乌芒投出。",
+      "mood": "Intense",
+      "lighting": "Daylight",
+      "action": "Attack Multiple Wolves",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Seven or eight flying wolves in sky, countless wind blades attack Han Li, he throws spear as black light",
+        "environment": "",
+        "character_pose": "Han Li throwing spear, wind blades attacking",
+        "fx": "Wind blades, black light",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Seven or eight flying wolves in sky, countless wind blades attack Han Li, he throws spear as black light.",
+      "narration": "空中还有七八头飞狼，数十道风刃密密麻麻罩向韩立，长枪化为乌芒投出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.91
+      }
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "长枪如闪电般洞穿飞狼身躯,韩立遥遥一点,长枪拐弯又射向另一只飞狼。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "Spear Pierces Wolves",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Spear pierces flying wolf like lightning, Han Li points remotely, spear turns and shoots another wolf",
+        "environment": "",
+        "character_pose": "Spear flying, wolves falling",
+        "fx": "Lightning-fast spear",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Spear pierces flying wolf like lightning, Han Li points remotely, spear turns and shoots another wolf.",
+      "narration": "长枪如闪电般洞穿飞狼身躯，韩立遥遥一点，长枪拐弯射向另一只飞狼。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "密密麻麻的风刃斩在韩立身上,韩立金光一闪,硬接了下来,连毫毛都未损伤一根。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "Withstand Attacks",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Countless wind blades strike Han Li, golden light flashes, he withstands all, unharmed",
+        "environment": "",
+        "character_pose": "Han Li standing, golden glow",
+        "fx": "Wind blades, golden glow",
+        "motion": "Close-up"
+      },
+      "prompt": "Countless wind blades strike Han Li, golden light flashes, he withstands all, unharmed.",
+      "narration": "密密麻麻的风刃斩在韩立身上,韩立金光一闪,硬接了下来,连毫毛都未损伤一根。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.92
+      }
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立驱动长枪将剩下的飞狼全部剿灭,抬手一招,长枪呼啸飞回手中。",
+      "mood": "Triumphant",
+      "lighting": "Daylight",
+      "action": "Complete Victory",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li drives spear to eliminate remaining flying wolves, raises hand, spear flies back",
+        "environment": "",
+        "character_pose": "Han Li catching spear",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Han Li drives spear to eliminate remaining flying wolves, raises hand, spear flies back.",
+      "narration": "韩立驱动长枪将剩下的飞狼全部剿灭,抬手一招,长枪呼啸飞回手中。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立发现长枪末端灵石光芒黯淡,更换了新的灵石,然后走向大树下的一株银色灵芝。",
+      "mood": "Practical",
+      "lighting": "Daylight",
+      "action": "Replace Crystals",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li finds spear crystals dim, replaces with new crystals, walks to silver ganoderma under tree",
+        "environment": "",
+        "character_pose": "Han Li replacing crystals, then examining ganoderma",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "Han Li finds spear crystals dim, replaces with new crystals, walks to silver ganoderma under tree.",
+      "narration": "韩立发现灵石黯淡,更换新灵石后走向大树下的银色灵芝。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      }
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立认出这是太乙银精芝,服食后可以生出银精鳞片,专辟刀枪水火,但对现在的他有些鸡肋。",
+      "mood": "Reflective",
+      "lighting": "Daylight",
+      "action": "Identify Herb",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Han Li recognizes this is Taiyi Silver Essence Ganoderma, eats it to grow silver scales, immune to weapons and elements, but useless to him now",
+        "environment": "",
+        "character_pose": "Han Li examining ganoderma",
+        "fx": "Silver glow",
+        "motion": "Close-up"
+      },
+      "prompt": "Han Li recognizes this is Taiyi Silver Essence Ganoderma, eats it to grow silver scales, immune to weapons and elements, but useless to him now.",
+      "narration": "韩立认出这是太乙银精芝,可生银精鳞片辟水火,但对现在的他有些鸡肋。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      }
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立将灵芝收起,正要离开时,突然从灌木中传出一声轻响,一只黄影闪现在十余丈外。",
+      "mood": "Surprised",
+      "lighting": "Daylight",
+      "action": "Beast Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li stores ganoderma, about to leave when a yellow shadow flashes from bushes",
+        "environment": "",
+        "character_pose": "Han Li turning, yellow shadow appearing",
+        "fx": "",
+        "motion": "Wide reveal"
+      },
+      "prompt": "Han Li stores ganoderma, about to leave when a yellow shadow flashes from bushes.",
+      "narration": "韩立将灵芝收起,正要离开时,突然从灌木中传出一声轻响,一只黄影闪现在十余丈外。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立一看清楚黄影真面目,露出了惊喜交加的神色,竟是那只曾经给他带来顿悟之机的小兽。",
+      "mood": "Excited",
+      "lighting": "Daylight",
+      "action": "Recognize Beast",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li sees yellow shadow clearly, shows surprise and joy, it's the small beast that gave him enlightenment",
+        "environment": "",
+        "character_pose": "Han Li excited, small beast visible",
+        "fx": "",
+        "motion": "Close-up face"
+      },
+      "prompt": "Han Li sees yellow shadow clearly, shows surprise and joy, it's the small beast that gave him enlightenment.",
+      "narration": "韩立看清黄影真面目,露出了惊喜交加的神色,竟是那只曾经给他带来顿悟之机的小兽。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "小兽神色慌张,皮毛脏乱,一副狼狈不堪的样子,看见韩立后一怔,马上向另一边激射而去。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Beast Flees",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Small beast looks panicked, fur dirty and messy, sees Han Li, immediately shoots away",
+        "environment": "",
+        "character_pose": "Small beast fleeing",
+        "fx": "",
+        "motion": "Tracking shot"
+      },
+      "prompt": "Small beast looks panicked, fur dirty and messy, sees Han Li, immediately shoots away.",
+      "narration": "小兽神色慌张皮毛脏乱,看见韩立后一怔,马上向另一边激射而去。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.88
+      }
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立好不容易见到此兽,那肯轻易放走,袖袍一抖,一条银索飞射而出,直往小兽身上缠去。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Capture Beast",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li won't let beast go easily, sleeves shake, silver rope shoots out to wrap around beast",
+        "environment": "",
+        "character_pose": "Han Li throwing rope, beast dodging",
+        "fx": "Silver rope",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Han Li won't let beast go easily, sleeves shake, silver rope shoots out to wrap around beast.",
+      "narration": "韩立不愿放走此兽,袖袍一抖,银索飞射而出,直往小兽身上缠去。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "突然附近空中白芒一闪,一口白色小剑从虚空中激射而出,化为一道白虹拦住小兽去路。",
+      "mood": "Alarmed",
+      "lighting": "Spirit Light",
+      "action": "Spirit Sword Appears",
+      "camera": "Reveal Shot",
+      "visual": {
+        "composition": "Suddenly white light flashes in air, a white small sword shoots from void, becomes white rainbow blocking beast",
+        "environment": "",
+        "character_pose": "White sword appearing, beast stopped",
+        "fx": "White light, sword transformation",
+        "motion": "Reveal shot"
+      },
+      "prompt": "Suddenly white light flashes in air, a white small sword shoots from void, becomes white rainbow blocking beast.",
+      "narration": "突然附近空中白芒一闪,一口白色小剑从虚空中激射而出,化为白虹拦住小兽去路。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.91
+      }
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "白光大放,小剑化为一名身穿白袍的数寸小人,脸色苍白异常,冷冷盯着小兽不语。",
+      "mood": "Threatening",
+      "lighting": "Spirit Light",
+      "action": "Spirit Being Revealed",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "White light expands, small sword transforms into white-robed inch-tall person, pale face, coldly staring at beast",
+        "environment": "",
+        "character_pose": "White-robed spirit person, beast crouched",
+        "fx": "White transformation",
+        "motion": "Close-up"
+      },
+      "prompt": "White light expands, small sword transforms into white-robed inch-tall person, pale face, coldly staring at beast.",
+      "narration": "白光大放,小剑化为一名身穿白袍的数寸小人,脸色苍白异常,冷冷盯着小兽不语。",
+      "face_style_auto": {
+        "expression": "Threatened",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.92
+      }
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "小兽一见此小人,顿时一个激灵身躯一扭,四肢落地,兽毛倒竖,一副如临大敌的样子。",
+      "mood": "Terrified",
+      "lighting": "Daylight",
+      "action": "Beast Reacts",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Small beast sees spirit person, body twists, lands on four legs, fur standing on end, looks terrified",
+        "environment": "",
+        "character_pose": "Beast crouched defensively",
+        "fx": "",
+        "motion": "Close-up"
+      },
+      "prompt": "Small beast sees spirit person, body twists, lands on four legs, fur standing on end, looks terrified.",
+      "narration": "小兽一见此小人,顿时一个激灵身躯一扭,四肢落地,兽毛倒竖,一副如临大敌的样子。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立一见小人,失声叫出灵族,随即想也不想,身形一动化为虚影,朝身后倒射出去。",
+      "mood": "Alarmed",
+      "lighting": "Daylight",
+      "action": "Retreat",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li sees spirit person, exclaims Spirit Clan, immediately moves as shadow, retreats backward",
+        "environment": "",
+        "character_pose": "Han Li retreating quickly",
+        "fx": "",
+        "motion": "Tracking shot"
+      },
+      "prompt": "Han Li sees spirit person, exclaims Spirit Clan, immediately moves as shadow, retreats backward.",
+      "narration": "韩立一见小人,失声叫出灵族,随即想也不想,身形一动化为虚影,朝身后倒射出去。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.91
+      }
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "白色小人发现韩立是炼体士后,鼻中发出不屑的冷哼,五指一张,冲韩立这边连弹数下。",
+      "mood": "Contemptuous",
+      "lighting": "Spirit Light",
+      "action": "Attack Han Li",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "White spirit person finds Han Li is body cultivator, snorts disdainfully, spreads fingers, flicks toward Han Li",
+        "environment": "",
+        "character_pose": "Spirit person attacking",
+        "fx": "",
+        "motion": "Medium shot"
+      },
+      "prompt": "White spirit person finds Han Li is body cultivator, snorts disdainfully, spreads fingers, flicks toward Han Li.",
+      "narration": "白色小人发现韩立是炼体士后,鼻中发出不屑的冷哼,五指一张,冲韩立这边连弹数下。",
+      "face_style_auto": {
+        "expression": "Contemptuous",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      }
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "五道白色剑丝一闪即逝射出,韩立心中大凛,单手往身后一抓,黑色长枪出现在手中。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Prepare Defense",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Five white sword threads flash out, Han Li alarmed, grabs black spear from behind",
+        "environment": "",
+        "character_pose": "Han Li grabbing spear, sword threads coming",
+        "fx": "White sword threads",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Five white sword threads flash out, Han Li alarmed, grabs black spear from behind.",
+      "narration": "五道白色剑丝射出,韩立心中大凛,单手往后一抓,黑色长枪出现在手。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.92
+      }
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立大喝一声,全身力气灌注枪中,猛然一抖枪杆,一团黑芒爆裂开来挡在身前。",
+      "mood": "Powerful",
+      "lighting": "Daylight",
+      "action": "Defend Against Swords",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li shouts, pours all strength into spear, shakes shaft, black light explodes blocking front",
+        "environment": "",
+        "character_pose": "Han Li blocking, black light",
+        "fx": "Black light explosion",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Han Li shouts, pours all strength into spear, shakes shaft, black light explodes blocking front.",
+      "narration": "韩立大喝一声,全身力气灌注枪中,猛然一抖枪杆,一团黑芒爆裂开来挡在身前。",
+      "face_style_auto": {
+        "expression": "Intense",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.93
+      }
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "五道剑丝撞进黑芒中,黑芒被轻易撕裂,长枪寸寸裂开,韩立身上战甲化雾迎向剑丝。",
+      "mood": "Desperate",
+      "lighting": "Daylight",
+      "action": "Desperate Defense",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Five sword threads hit black light, black light torn apart, spear cracks, Han Li's armor turns to mist",
+        "environment": "",
+        "character_pose": "Han Li defending desperately",
+        "fx": "Black light torn, mist forming",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Five sword threads hit black light, black light torn apart, spear cracks, Han Li's armor turns to mist.",
+      "narration": "五道剑丝撞进黑芒,黑芒被撕裂,长枪寸寸裂开,战甲化雾迎向剑丝。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.94
+      }
+    },
+    {
+      "id": 20,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "韩立两拳击出金色拳风,趁灰云困住剑丝的时机,身形鬼魅般连晃几下,遁出二十余丈。",
+      "mood": "Escaping",
+      "lighting": "Daylight",
+      "action": "Escape",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Han Li punches with golden fist wind, while gray mist traps sword threads, moves like ghost, escapes twenty zhang",
+        "environment": "",
+        "character_pose": "Han Li escaping quickly",
+        "fx": "Golden fist wind, gray mist",
+        "motion": "Dynamic action"
+      },
+      "prompt": "Han Li punches with golden fist wind, while gray mist traps sword threads, moves like ghost, escapes twenty zhang.",
+      "narration": "韩立击出金色拳风,趁灰云困住剑丝,身形鬼魅般连晃,遁出二十余丈。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.92
+      }
+    },
+    {
+      "id": 21,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "小兽趁此机会化为数十只虚影向四面八方逃窜,白色小人顾不得韩立,化为银虹追击小兽。",
+      "mood": "Chase",
+      "lighting": "Daylight",
+      "action": "Pursue Beast",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Small beast seizes chance, becomes dozens of shadows fleeing in all directions, white spirit pursues as silver rainbow",
+        "environment": "",
+        "character_pose": "Beast fleeing, spirit pursuing",
+        "fx": "Multiple shadows, silver rainbow",
+        "motion": "Tracking shot"
+      },
+      "prompt": "Small beast seizes chance, becomes dozens of shadows fleeing in all directions, white spirit pursues as silver rainbow.",
+      "narration": "小兽化为数十只虚影四面逃窜,白色小人化为银虹追击而去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.9
+      }
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": "Static framing, gradual fade"
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第21集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.8
+      }
+    }
+  ]
+}
+
+

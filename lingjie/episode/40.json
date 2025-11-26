@@ -1,0 +1,496 @@
+{
+  "episode": 40,
+  "title": "Ancient Giant Awakens · World Shaking",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第40集:上古巨人苏醒·天地震动。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "以水潭为中心的近千丈地面发出天崩地裂般的一声巨响,同时崩裂了开来,水潭底部的那个巨大眼珠一眨之下,原本悬浮在水潭上空的那颗落日晶急坠而下。",
+      "mood": "Cataclysmic",
+      "lighting": "Mixed Lighting",
+      "action": "Ground Breaks",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Nearly thousand zhang ground centered on pool makes earth-shattering roar, simultaneously breaks apart, huge eye at pool bottom blinks, Setting Sun Crystal suspended above pool rushes down",
+        "environment": "Scorching Light Pool, ground breaking",
+        "character_pose": "Ground breaking, crystal falling",
+        "fx": "Ground breaking, crystal falling, earth shaking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Nearly thousand zhang ground centered on pool makes earth-shattering roar, simultaneously breaks apart, huge eye at pool bottom blinks, Setting Sun Crystal suspended above pool rushes down.",
+      "narration": "以水潭为中心的近千丈地面发出天崩地裂般的巨响,同时崩裂了开来,落日晶急坠而下。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "落日晶一闪后没入了眼珠中,接着一个仿若山岳的巨大东西,从地面下缓缓坐了起来,韩立从高处瞧得一清二楚。",
+      "mood": "Revealing",
+      "lighting": "Yellow Light",
+      "action": "Giant Sits Up",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Setting Sun Crystal flashes then enters eye, then mountain-like huge thing slowly sits up from ground, Han Li sees clearly from above",
+        "environment": "Ground breaking, giant rising",
+        "character_pose": "Giant sitting up, Han Li watching from above",
+        "fx": "Giant rising, ground breaking",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Setting Sun Crystal flashes then enters eye, then mountain-like huge thing slowly sits up from ground, Han Li sees clearly from above.",
+      "narration": "落日晶一闪后没入了眼珠中,接着一个仿若山岳的巨大东西,从地面下缓缓坐了起来。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "巨物身高数百丈,大半身体上遍布了灰黄色的泥土,两只手臂冲空中抬起,竟是一只体形大得难以置信的巨人生灵。",
+      "mood": "Massive",
+      "lighting": "Yellow Light",
+      "action": "Giant Revealed",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Giant thing height hundreds of zhang, most body covered in gray-yellow mud, two arms lift toward sky, actually unimaginably large giant being",
+        "environment": "Giant emerging, massive size",
+        "character_pose": "Giant sitting up, arms raised",
+        "fx": "Massive giant, mud falling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Giant thing height hundreds of zhang, most body covered in gray-yellow mud, two arms lift toward sky, actually unimaginably large giant being.",
+      "narration": "巨物身高数百丈,大半身体上遍布了灰黄色的泥土,两只手臂冲空中抬起。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "要不是韩立曾经在人界见到罗睺和游天鲲鹏这等逆天级的妖灵,恐怕绝难以相信,世间竟然存在这般大的生灵。",
+      "mood": "Amazed",
+      "lighting": "Mixed Lighting",
+      "action": "Compare Size",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "If Han Li hadn't seen Luohou and Roaming Sky Kunpeng such heaven-defying demon spirits in human realm, probably couldn't believe such large beings exist in world",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li amazed, comparing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "If Han Li hadn't seen Luohou and Roaming Sky Kunpeng such heaven-defying demon spirits in human realm, probably couldn't believe such large beings exist in world.",
+      "narration": "要不是韩立曾经见过罗睺和游天鲲鹏这等逆天级的妖灵,恐怕绝难以相信世间存在这般大的生灵。",
+      "face_style_auto": {
+        "expression": "Amazed",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "巨人腰间围着一块不知何种材质的兽皮外,仿佛山峰的头颅竟在额头处进去一大块,在其最凹陷之处,竟只有一颗硕大的眼睛。",
+      "mood": "Detailed",
+      "lighting": "Yellow Light",
+      "action": "Observe Giant Details",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Giant waist wrapped in unknown material beast hide, mountain-like head actually concave at forehead, at deepest depression, only one huge eye",
+        "environment": "Giant's head, detailed view",
+        "character_pose": "Giant's head with single eye",
+        "fx": "Giant head detail, single huge eye",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Giant waist wrapped in unknown material beast hide, mountain-like head actually concave at forehead, at deepest depression, only one huge eye.",
+      "narration": "巨人腰间围着一块兽皮外,仿佛山峰的头颅在额头处进去一大块,只有一颗硕大的眼睛。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "而炙光潭则是巨人眼珠凹进之处,形成的一大片积水之地,除此之外,巨人还有一个丑陋异常的扁平鼻子,一张咧到腮帮后的细长大嘴。",
+      "mood": "Detailed",
+      "lighting": "Yellow Light",
+      "action": "Observe More Details",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Scorching Light Pool is depression where giant eye is, formed large pool area, besides this, giant has extremely ugly flat nose, long thin mouth stretched to cheeks",
+        "environment": "Giant's face, detailed features",
+        "character_pose": "Giant's face with ugly features",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Scorching Light Pool is depression where giant eye is, formed large pool area, besides this, giant has extremely ugly flat nose, long thin mouth stretched to cheeks.",
+      "narration": "而炙光潭则是巨人眼珠凹进之处,形成的一大片积水之地,巨人还有一个丑陋异常的扁平鼻子。",
+      "face_style_auto": {
+        "expression": "Disgusted",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "嘴唇微张间,隐约可见白森的锋利牙齿,巨人并未完全站起,只是上半身从地下坐起来,下半截身体仍然深埋地下的样子。",
+      "mood": "Formidable",
+      "lighting": "Yellow Light",
+      "action": "Giant Partially Risen",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Lips slightly open, faintly visible white sharp teeth, giant not fully standing, only upper body sits up from ground, lower half still buried deep",
+        "environment": "Giant partially risen",
+        "character_pose": "Giant sitting up, lower half buried",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Lips slightly open, faintly visible white sharp teeth, giant not fully standing, only upper body sits up from ground, lower half still buried deep.",
+      "narration": "嘴唇微张间,隐约可见白森的锋利牙齿,巨人并未完全站起,只是上半身从地下坐起来。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "它独目盯着身前蚂蚁般存在的宫装少妇四妖,脸上丝毫表情没有,宫装少妇此刻彻底看清楚了独目巨人的形貌,花容失色的叫道。",
+      "mood": "Terrifying",
+      "lighting": "Yellow Light",
+      "action": "Giant Stares",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Its single eye stares at ant-like palace-dressed woman and four demons before it, face shows no expression, palace-dressed woman now completely sees one-eyed giant's form, face turns pale and shouts",
+        "environment": "Giant staring down, forces below",
+        "character_pose": "Giant staring, woman terrified",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Its single eye stares at ant-like palace-dressed woman and four demons before it, face shows no expression, palace-dressed woman now completely sees one-eyed giant's form, face turns pale and shouts.",
+      "narration": "它独目盯着身前蚂蚁般存在的宫装少妇四妖,脸上丝毫表情没有,少妇花容失色的叫道。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "宫装少妇叫道,不可能,是上古巨人,快跑,这种东西,我们对付不了,它终于知道蓝城主为何连那头陀的生死都不过问,直接退走了。",
+      "mood": "Panic",
+      "lighting": "Yellow Light",
+      "action": "Recognize and Panic",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman shouts, impossible, ancient giant, run quickly, we cannot handle this thing, finally understands why City Lord Lan didn't care about head monk's life, directly retreated",
+        "environment": "Pool edge, woman panicking",
+        "character_pose": "Woman shouting, panicking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Palace-dressed woman shouts, impossible, ancient giant, run quickly, we cannot handle this thing, finally understands why City Lord Lan didn't care about head monk's life, directly retreated.",
+      "narration": "宫装少妇叫道,不可能,是上古巨人,快跑,这种东西,我们对付不了。",
+      "face_style_auto": {
+        "expression": "Panicked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "少妇再没有任何迟疑,两手掐诀一催,身上红色光罩滴溜溜的一阵急转,整个人化为一道黑虹,也向谷口方向激射而去。",
+      "mood": "Fleeing",
+      "lighting": "Black Light",
+      "action": "Woman Flees",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Woman without any hesitation, hands form seals and activate, red light shield on body spins rapidly, whole person transforms into black rainbow, also shoots toward valley entrance",
+        "environment": "Chaos Valley, fleeing",
+        "character_pose": "Woman fleeing as black rainbow",
+        "fx": "Red light shield, black rainbow, fleeing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Woman without any hesitation, hands form seals and activate, red light shield on body spins rapidly, whole person transforms into black rainbow, also shoots toward valley entrance.",
+      "narration": "少妇再没有任何迟疑,两手掐诀一催,身上红色光罩急转,整个人化为黑虹激射而去。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Black Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "那三名黑瘦青年一见少妇都跑了,互望一眼后,银光一散的也化为三道遁光,紧追少妇而去,只剩下韩立一人,还在高空中缓慢飘荡着。",
+      "mood": "Abandoned",
+      "lighting": "Mixed Lighting",
+      "action": "Others Flee",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Three black thin youths see woman fleeing, look at each other, silver light disperses, also transform into three escape lights, closely follow woman, only Han Li left, still slowly floating high above",
+        "environment": "Sky above pool, forces fleeing",
+        "character_pose": "Three youths fleeing, Han Li alone",
+        "fx": "Silver light, escape lights, fleeing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Three black thin youths see woman fleeing, look at each other, silver light disperses, also transform into three escape lights, closely follow woman, only Han Li left, still slowly floating high above.",
+      "narration": "那三名黑瘦青年一见少妇都跑了,银光一散的也化为三道遁光,紧追少妇而去。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立从高处瞧着下方的独目巨人,心中震撼不已,这上古巨人的出现,完全打乱了他的计划,但同时也意味着神血可能就在附近。",
+      "mood": "Contemplative",
+      "lighting": "Mixed Lighting",
+      "action": "Contemplate Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li from above watches one-eyed giant below, heart shaken, ancient giant's appearance completely disrupts his plan, but also means divine blood might be nearby",
+        "environment": "Sky above, Han Li thinking",
+        "character_pose": "Han Li contemplating, watching giant",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li from above watches one-eyed giant below, heart shaken, ancient giant's appearance completely disrupts his plan, but also means divine blood might be nearby.",
+      "narration": "韩立从高处瞧着下方的独目巨人,心中震撼不已,上古巨人的出现完全打乱了他的计划。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立决定继续隐匿身形,观察情况,看看这上古巨人到底会如何行动,然后再决定下一步的计划。",
+      "mood": "Cautious",
+      "lighting": "Mixed Lighting",
+      "action": "Decide to Observe",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li decides to continue hiding, observe situation, see how this ancient giant will act, then decide next plan",
+        "environment": "Sky above, Han Li invisible",
+        "character_pose": "Han Li determined, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li decides to continue hiding, observe situation, see how this ancient giant will act, then decide next plan.",
+      "narration": "韩立决定继续隐匿身形,观察情况,看看这上古巨人到底会如何行动。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "独目巨人缓缓转动头颅,巨大的独眼扫视着周围,似乎在寻找着什么,地面依然在震动,显示巨人可能还在继续苏醒。",
+      "mood": "Searching",
+      "lighting": "Yellow Light",
+      "action": "Giant Looks Around",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "One-eyed giant slowly turns head, huge single eye scans surroundings, seems searching for something, ground still shaking, shows giant possibly still awakening",
+        "environment": "Giant looking around, ground shaking",
+        "character_pose": "Giant turning head, searching",
+        "fx": "Ground shaking, giant moving",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "One-eyed giant slowly turns head, huge single eye scans surroundings, seems searching for something, ground still shaking, shows giant possibly still awakening.",
+      "narration": "独目巨人缓缓转动头颅,巨大的独眼扫视着周围,似乎在寻找着什么。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立在高空中静静地观察着,等待着,他知道接下来的情况会更加复杂,必须保持冷静,才能找到夺取神血的机会。",
+      "mood": "Patient",
+      "lighting": "Mixed Lighting",
+      "action": "Wait and Observe",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li high above quietly observes, waits, knows upcoming situation will be more complex, must stay calm to find opportunity to grab divine blood",
+        "environment": "Sky above, Han Li invisible",
+        "character_pose": "Han Li patient, observing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li high above quietly observes, waits, knows upcoming situation will be more complex, must stay calm to find opportunity to grab divine blood.",
+      "narration": "韩立在高空中静静地观察着,等待着,他知道接下来的情况会更加复杂。",
+      "face_style_auto": {
+        "expression": "Patient",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_016.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第41集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep40_full/scene_017.png"
+    }
+  ]
+}
+
+

@@ -1,0 +1,491 @@
+{
+  "episode": 49,
+  "title": "Silver Firebird Blocks · Search for Han Li",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第49集:银焰火鸟阻·搜寻韩立。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但就如此,这一人一妖还不忘趁机对旭天落井下石一回,寰天奇袖袍一抖,一股灰色妖风滚滚而出,而黄粱灵君则单手冲飓风一扬,顿时一道黄色光柱一闪即逝的射出。",
+      "mood": "Scheming",
+      "lighting": "Gray and Yellow Light",
+      "action": "Attack Trapped Xutian",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "But even so, this human and demon don't forget to add insult to injury to Xutian, Huan Tianqi sleeves shake, gray demon wind rolls out, Huangliang Spirit Lord single hand toward hurricane raises, yellow light pillar flashes and shoots",
+        "environment": "Valley entrance, two attacking trapped Xutian",
+        "character_pose": "Huan Cangqi and Huangliang attacking",
+        "fx": "Gray wind, yellow light pillar, attacking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But even so, this human and demon don't forget to add insult to injury to Xutian, Huan Tianqi sleeves shake, gray demon wind rolls out, Huangliang Spirit Lord single hand toward hurricane raises, yellow light pillar flashes and shoots.",
+      "narration": "这一人一妖还不忘趁机对旭天落井下石一回,寰天奇和黄粱灵君同时发动攻击。",
+      "face_style_auto": {
+        "expression": "Scheming",
+        "lighting": "Gray and Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "两者攻击一没入飓风中,顿时轰隆隆的爆裂声大作,里面马上传出了旭天惊怒异常的大吼,看来吃了一个小亏,并一时无法马上脱困出来了,这一人一妖却相视一笑,遁光闪动后,也到了谷口上空。",
+      "mood": "Satisfied",
+      "lighting": "Mixed Lighting",
+      "action": "Xutian Trapped",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Two attacks enter hurricane, immediately rumbling explosions loud, inside immediately transmits Xutian's shocked and angry roar, seems took a loss, temporarily cannot escape, this human and demon but smile at each other, escape light flashes, also arrive at valley entrance above",
+        "environment": "Valley entrance, two satisfied",
+        "character_pose": "Two smiling, Xutian trapped",
+        "fx": "Explosions in hurricane, Xutian roaring",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two attacks enter hurricane, immediately rumbling explosions loud, inside immediately transmits Xutian's shocked and angry roar, seems took a loss, temporarily cannot escape, this human and demon but smile at each other, escape light flashes, also arrive at valley entrance above.",
+      "narration": "两者攻击一没入飓风中,顿时爆裂声大作,里面传出了旭天惊怒异常的大吼。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这时韩立所化遁光,因为灭仙珠略一阻挡,已经在天边变得模糊异常了,二人却毫不在意,正要信心十足的再催动秘术追赶时,忽然谷口一侧的石壁上噗噗两声传来。",
+      "mood": "Alert",
+      "lighting": "Silver Light",
+      "action": "Silver Fire Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "At this time Han Li's escape light, because Immortal Slayer Beads slightly blocking, already becomes blurry at horizon, two people but don't care, about to confidently activate secret technique to pursue, suddenly valley entrance side stone wall poof poof two sounds come",
+        "environment": "Valley entrance, silver fire appearing",
+        "character_pose": "Two preparing, silver fire appearing",
+        "fx": "Silver fire appearing from wall",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this time Han Li's escape light, because Immortal Slayer Beads slightly blocking, already becomes blurry at horizon, two people but don't care, about to confidently activate secret technique to pursue, suddenly valley entrance side stone wall poof poof two sounds come.",
+      "narration": "二人正要信心十足的再催动秘术追赶时,忽然谷口一侧的石壁上传来异响。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "在银光闪动中,两道银色火柱狂喷而出,直奔二人狂卷而去,因为谷口并不宽广,再加火柱喷射速度惊人异常,银色火焰瞬息就到了他们身前处。",
+      "mood": "Urgent",
+      "lighting": "Silver Light",
+      "action": "Silver Fire Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "In silver light flashing, two silver fire pillars wildly spray out, directly roll toward two people, because valley entrance not wide, plus fire pillars spray speed shocking, silver flames instantly reach their front",
+        "environment": "Valley entrance, silver fire attacking",
+        "character_pose": "Two facing silver fire pillars",
+        "fx": "Silver fire pillars, attacking fast",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "In silver light flashing, two silver fire pillars wildly spray out, directly roll toward two people, because valley entrance not wide, plus fire pillars spray speed shocking, silver flames instantly reach their front.",
+      "narration": "在银光闪动中,两道银色火柱狂喷而出,直奔二人狂卷而去,瞬息就到了身前。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君心中一惊,不及多想的单手猛然虚空一劈,一道黄色剑气就一斩而出,想将火柱就此劈开,但是剑气方一接触银焰,竟腾地一下自行燃烧起来,眨眼间就被银焰化为了乌有。",
+      "mood": "Ineffective",
+      "lighting": "Yellow and Silver Light",
+      "action": "Sword Qi Burns",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's heart startles, without thinking single hand suddenly void slashes, yellow sword qi slashes out, wants to split fire pillars, but sword qi just contacts silver flame, actually ignites itself, in blink burned by silver flame to nothing",
+        "environment": "Sky above, sword qi burning",
+        "character_pose": "Huangliang attacking, sword qi burning",
+        "fx": "Yellow sword qi, silver flame, burning",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's heart startles, without thinking single hand suddenly void slashes, yellow sword qi slashes out, wants to split fire pillars, but sword qi just contacts silver flame, actually ignites itself, in blink burned by silver flame to nothing.",
+      "narration": "黄粱灵君单手猛然虚空一劈,一道黄色剑气斩出,但剑气一接触银焰就自行燃烧起来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow and Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "银色火柱大盛之下,更加气势汹汹的扑来,尚未真扑到身上,一股炙热高温,就先就让这位人族修士一阵的口干舌燥,黄粱灵君见此,却脸色蓦然大变,脱口的失声道,灭灵白骨火。",
+      "mood": "Recognizing",
+      "lighting": "Silver Light",
+      "action": "Recognize Fire",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Silver fire pillars greatly flourishing, more fiercely pounce, before really hitting body, scorching high temperature, first makes this human cultivator dry mouth, Huangliang Spirit Lord sees this, face suddenly changes greatly, exclaims, Extinguishing Spirit White Bone Fire",
+        "environment": "Sky above, silver fire approaching",
+        "character_pose": "Huangliang recognizing, shocked",
+        "fx": "Silver fire, high temperature, approaching",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Silver fire pillars greatly flourishing, more fiercely pounce, before really hitting body, scorching high temperature, first makes this human cultivator dry mouth, Huangliang Spirit Lord sees this, face suddenly changes greatly, exclaims, Extinguishing Spirit White Bone Fire.",
+      "narration": "银色火柱大盛之下,更加气势汹汹的扑来,黄粱灵君脸色蓦然大变,失声道灭灵白骨火。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随后如见蛇蝎的两手一掐诀,身形骤然间从原地消失不见,银色火柱一下卷到了空处,另一边的寰天奇,情形也差不多,他一口妖风吹出后,同样被那银色火焰一下吞噬的干净。",
+      "mood": "Fleeing",
+      "lighting": "Silver Light",
+      "action": "Both Flee",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Then like seeing snake and scorpion two hands form seals, body suddenly disappears from place, silver fire pillars roll to empty space, Huan Tianqi other side, situation similar, he spits demon wind, also instantly swallowed by silver flame clean",
+        "environment": "Sky above, both fleeing",
+        "character_pose": "Huangliang disappearing, Huan Cangqi dodging",
+        "fx": "Silver fire, both fleeing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Then like seeing snake and scorpion two hands form seals, body suddenly disappears from place, silver fire pillars roll to empty space, Huan Tianqi other side, situation similar, he spits demon wind, also instantly swallowed by silver flame clean.",
+      "narration": "随后如见蛇蝎的两手一掐诀,身形骤然间从原地消失不见,银色火柱卷到了空处。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "其骇然的身形连晃数下,带着一连串的残影连变动了数个方位,才摆脱那银焰的追击,不对,不是天灵白骨火,白骨火虽然是银色的,但充满了邪气,只有白骨老祖一人能掌控的,绝不可能外传他人的。",
+      "mood": "Realizing",
+      "lighting": "Silver Light",
+      "action": "Escape and Deny",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "His horrified body sways several times, with series of afterimages changes several positions, finally escapes silver flame pursuit, wrong, not Extinguishing Spirit White Bone Fire, white bone fire though silver, full of evil, only White Bone Ancestor can control, impossible to pass to others",
+        "environment": "Sky above, Huan Cangqi escaping",
+        "character_pose": "Huan Cangqi escaping, denying",
+        "fx": "Silver flame, afterimages, escaping",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "His horrified body sways several times, with series of afterimages changes several positions, finally escapes silver flame pursuit, wrong, not Extinguishing Spirit White Bone Fire, white bone fire though silver, full of evil, only White Bone Ancestor can control, impossible to pass to others.",
+      "narration": "其骇然的身形连晃数下,带着一连串的残影连变动了数个方位,才摆脱银焰追击。",
+      "face_style_auto": {
+        "expression": "Horrified",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰天奇方一在黄粱灵君身旁站稳身形,却脸色难看的一口否认道,对面两股银色火柱却往中间一聚,形成了一颗直径丈许的巨大火球,然后火球略一收缩变形,一只银色火鸟就优雅之极的显现而出。",
+      "mood": "Revealing",
+      "lighting": "Silver Light",
+      "action": "Firebird Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Huan Tianqi just stabilizes beside Huangliang Spirit Lord, but face ugly denies, opposite two silver fire pillars gather toward middle, form huge fire ball zhang diameter, then fire ball slightly contracts transforms, silver firebird elegantly appears",
+        "environment": "Sky above, firebird appearing",
+        "character_pose": "Two shocked, firebird appearing",
+        "fx": "Silver fire pillars, fireball, firebird transforming",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan Tianqi just stabilizes beside Huangliang Spirit Lord, but face ugly denies, opposite two silver fire pillars gather toward middle, form huge fire ball zhang diameter, then fire ball slightly contracts transforms, silver firebird elegantly appears.",
+      "narration": "对面两股银色火柱却往中间一聚,形成了一颗巨大的火球,一只银色火鸟优雅显现而出。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "火灵,见到此幕,一人一妖看见火鸟,却又怔住了,但是银色火鸟冷冷的望了二人一眼,双翅只是轻轻一扇,银光闪动间,无数拳头大的火球就在附近浮现而出。",
+      "mood": "Preparing",
+      "lighting": "Silver Light",
+      "action": "Firebird Prepares Attack",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fire spirit, seeing this, human and demon see firebird, again stunned, but silver firebird coldly looks at two people, wings just lightly flap, silver light flashes, countless fist-sized fireballs appear nearby",
+        "environment": "Sky above, firebird flapping wings",
+        "character_pose": "Firebird flapping, fireballs appearing",
+        "fx": "Silver light, firebird, fireballs appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Fire spirit, seeing this, human and demon see firebird, again stunned, but silver firebird coldly looks at two people, wings just lightly flap, silver light flashes, countless fist-sized fireballs appear nearby.",
+      "narration": "一人一妖看见火鸟,却又怔住了,银色火鸟冷冷的望了二人一眼,双翅轻轻一扇。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一声清鸣后,火球就全都一颤激射而出,密密麻麻的将人妖二人全都罩在了攻击范围之内,黄粱灵君听闻不是灭灵白骨火,心中顿时放了大半,再见这些火球后,一声冷哼,手一扬,一面八卦镜顿时狂涨的浮在了身前。",
+      "mood": "Defensive",
+      "lighting": "Silver and Golden Light",
+      "action": "Prepare Defenses",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "After clear chirp, fireballs all tremble and shoot out, densely covers human and demon two people in attack range, Huangliang Spirit Lord hears not Extinguishing Spirit White Bone Fire, heart immediately relaxes, sees these fireballs, snorts coldly, hand raises, Eight Trigrams mirror instantly expands floats before body",
+        "environment": "Sky above, fireballs attacking, mirror defending",
+        "character_pose": "Fireballs attacking, Huangliang with mirror",
+        "fx": "Silver fireballs, golden mirror, defending",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "After clear chirp, fireballs all tremble and shoot out, densely covers human and demon two people in attack range, Huangliang Spirit Lord hears not Extinguishing Spirit White Bone Fire, heart immediately relaxes, sees these fireballs, snorts coldly, hand raises, Eight Trigrams mirror instantly expands floats before body.",
+      "narration": "一声清鸣后,火球就全都一颤激射而出,密密麻麻的将人妖二人全都罩在攻击范围内。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Silver and Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "另一边的寰天奇则单手一翻转,灰色电光再次在手中浮现而出,二人虽然未弄清楚这银色火焰的真面目,但却再也没有轻视之意,打算全力应对了,但就此时,激射到途中的漫天火球,银光大放,突然随之一颤的全凭空消失了。",
+      "mood": "Puzzled",
+      "lighting": "Silver Light",
+      "action": "Fireballs Disappear",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Huan Tianqi other side single hand flips, gray lightning again appears in hand, two people though haven't clarified silver flame's true nature, but no longer have contempt, plan to fully respond, but at this time, fireballs shooting mid-way, silver light brightens, suddenly all disappear from void",
+        "environment": "Sky above, fireballs disappearing",
+        "character_pose": "Two prepared, fireballs disappearing",
+        "fx": "Silver light, fireballs disappearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Tianqi other side single hand flips, gray lightning again appears in hand, two people though haven't clarified silver flame's true nature, but no longer have contempt, plan to fully respond, but at this time, fireballs shooting mid-way, silver light brightens, suddenly all disappear from void.",
+      "narration": "二人打算全力应对了,但激射到途中的漫天火球,突然随之一颤的全凭空消失了。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "要不是那铺天盖地而来的高温仍在附近空间存在,这些火球就仿佛从未出现过一般,黄粱灵君一怔,不禁双目一眯的望向了那只银色火鸟,结果方一瞅去,就听到砰的一声轻响,火鸟竟自行爆裂开来,四散的银焰就像那些火球一般,诡异的一下在空中消失了。",
+      "mood": "Mysterious",
+      "lighting": "Silver Light",
+      "action": "Firebird Explodes",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "If not for overwhelming high temperature still exists in nearby space, these fireballs seem never appeared, Huangliang Spirit Lord stunned, cannot help squints eyes looks at that silver firebird, result just looks, hears bang sound, firebird actually self-explodes, scattered silver flames like those fireballs, eerily disappear in air",
+        "environment": "Sky above, firebird exploding",
+        "character_pose": "Firebird exploding, disappearing",
+        "fx": "Silver flames, exploding, disappearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "If not for overwhelming high temperature still exists in nearby space, these fireballs seem never appeared, Huangliang Spirit Lord stunned, cannot help squints eyes looks at that silver firebird, result just looks, hears bang sound, firebird actually self-explodes, scattered silver flames like those fireballs, eerily disappear in air.",
+      "narration": "黄粱灵君一怔,不禁双目一眯的望向了那只银色火鸟,火鸟竟自行爆裂开来消失了。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君脸色一下阴沉下来,转首看了一眼寰天奇,这位琼鼠族的长老,面容同样好看不到哪里去,有些铁青,此火即使不是灭灵白骨火,恐怕也非同小可,那名人族修士是何来历,在人族不应该这般默默无名吧。",
+      "mood": "Serious",
+      "lighting": "Mixed Lighting",
+      "action": "Discuss Origin",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's face darkens, turns head looks at Huan Tianqi, this Plum Mouse clan elder, face also not good, somewhat livid, this fire even if not Extinguishing Spirit White Bone Fire, probably also extraordinary, that human cultivator what origin, in humans shouldn't be so unknown",
+        "environment": "Sky above, two discussing",
+        "character_pose": "Two serious, discussing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's face darkens, turns head looks at Huan Tianqi, this Plum Mouse clan elder, face also not good, somewhat livid, this fire even if not Extinguishing Spirit White Bone Fire, probably also extraordinary, that human cultivator what origin, in humans shouldn't be so unknown.",
+      "narration": "黄粱灵君脸色一下阴沉下来,转首看了一眼寰天奇,此火即使不是灭灵白骨火,恐怕也非同小可。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "二人虽然未弄清楚这银色火焰的真面目,但却再也没有轻视之意,于是下面,二人均都在空中闭上了双目,强大之极的神念缓缓放了出去,但是片刻工夫,二人的脸色一下变得精彩万分,似乎有些惊疑,又有些难以置信的模样。",
+      "mood": "Searching",
+      "lighting": "Mixed Lighting",
+      "action": "Search with Divine Sense",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Two people though haven't clarified silver flame's true nature, but no longer have contempt, so below, two people both close eyes in air, extremely powerful divine sense slowly releases, but moments later, two people's faces become colorful, seems somewhat shocked, somewhat unbelievable",
+        "environment": "Sky above, two searching",
+        "character_pose": "Two closing eyes, searching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Two people though haven't clarified silver flame's true nature, but no longer have contempt, so below, two people both close eyes in air, extremely powerful divine sense slowly releases, but moments later, two people's faces become colorful, seems somewhat shocked, somewhat unbelievable.",
+      "narration": "二人均都在空中闭上了双目,强大之极的神念缓缓放了出去,但脸色变得精彩万分。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_016.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第50集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep49_full/scene_017.png"
+    }
+  ]
+}
+

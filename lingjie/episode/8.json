@@ -1,0 +1,652 @@
+{
+  "episode": 8,
+  "title": "Crimson Pythons Besiege · Leopard Raptors Appear",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effects",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, drifting spiritual particles, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第8集:赤蟒围城·豹禽现身。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "七轮弯月升起,青狼尸体铺满城下,狼嚎渐远。",
+      "mood": "Somber",
+      "lighting": "Moonlit",
+      "action": "Wolf Pack Retreats",
+      "camera": "Moonlit Wide Shot",
+      "visual": {
+        "composition": "Seven crescent moons rise above wolf corpses blanketing the base of the wall while howls fade",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Seven crescent moons ascend over the wall as azure wolf bodies carpet the ground and distant howls fade.",
+      "narration": "夜色下狼群哀鸣撤离,第一日攻势暂告一段落。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "士兵筋疲力尽瘫坐,肖军官阻止他们倒头睡去。",
+      "mood": "Strict",
+      "lighting": "Torchlight",
+      "action": "Keep Alert",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "Exhausted soldiers slump down while Officer Xiao stops them from collapsing into sleep",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Spent soldiers sag where they sit as Officer Xiao barks at them to stay upright and vigilant.",
+      "narration": "他命众人站好阵脚，等换防后再休息，保持警惕。",
+      "face_style_auto": {
+        "expression": "Grave",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "张奎感谢韩立救下指挥官,满身血迹仍神情敬服。",
+      "mood": "Grateful",
+      "lighting": "Moonlit",
+      "action": "Offer Thanks",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Bloodstained Zhang Kui thanks Han Li for saving the commander, awe etched across his face",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui, still spattered with blood, bows his head to Han Li for rescuing the commander.",
+      "narration": "张奎坦言若无韩立,此段守军怕已全灭。",
+      "face_style_auto": {
+        "expression": "Authoritative",
+        "lighting": "Warm Torchlight",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "张奎暗示韩立金刚诀不止第三层,话锋戛然而止。",
+      "mood": "Hinting",
+      "lighting": "Torchlight",
+      "action": "Subtle Remark",
+      "camera": "Upward Close-Up",
+      "visual": {
+        "composition": "Zhang Kui hints that Han Li's Vajra Art surpasses the third layer before cutting himself off",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Zhang Kui drops a remark about Han Li's Vajra Art being beyond the third layer, then stops mid-sentence.",
+      "narration": "他似有所指,笑言韩立前途远大便离开。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "新兵轮换上墙,天东商号众人卸下甲胄,顺梯而下。",
+      "mood": "Relieved",
+      "lighting": "Pre-Dawn",
+      "action": "Troops Rotate",
+      "camera": "Stairwell Wide Shot",
+      "visual": {
+        "composition": "Fresh soldiers take the wall as the Tiandong caravan removes armor and descends the ladder",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "New troops climb up to relieve the line while the Tiandong guards strip armor and shuffle down the stairs.",
+      "narration": "换防到来,大家拖着疲惫身躯离开城墙。",
+      "face_style_auto": {
+        "expression": "Knowing",
+        "lighting": "Warm Torchlight",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "石屋里护卫倒头大睡,韩立安静端坐调息。",
+      "mood": "Calm",
+      "lighting": "Lamp Glow",
+      "action": "Meditate",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Guards collapse into sleep inside the stone room while Han Li sits quietly regulating his breath",
+        "environment": "",
+        "character_pose": "Han Li seated in meditation",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Inside the stone quarters the guards drop asleep as Han Li remains seated and calm, cycling his breathing.",
+      "narration": "同伴熟睡，他仍闭目参悟金刚诀，继续修炼不辍。",
+      "face_style_auto": {
+        "expression": "Weary",
+        "lighting": "Soft Dim Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "钟鸣再起,第二日厮杀声从远方滚滚传来。",
+      "mood": "Foreboding",
+      "lighting": "Daylight",
+      "action": "Hear Battle",
+      "camera": "Exterior Establishing",
+      "visual": {
+        "composition": "The bells ring again as the roar of second-day battle rolls in from afar",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The bells sound once more and the clamour of the second day's fighting rumbles from the distant walls.",
+      "narration": "第二日清晨钟鼓齐鸣,城头再度传来杀声。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Soft Warm Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "傍晚换防士兵满身毒疮归来,哀声诉说新变异狼。",
+      "mood": "Grim",
+      "lighting": "Sunset",
+      "action": "Deliver Report",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "Relief soldiers return at dusk covered in poisonous sores, lamenting a new mutant wolf",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "At dusk the relieved soldiers stagger back covered in toxic sores, crying about a new venomous wolf mutation.",
+      "narration": "他们口中提及射毒小狼,让所有人心惊。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "韩立静立门口,看见大批伤兵抬入石屋仍面无波澜。",
+      "mood": "Detached",
+      "lighting": "Dusk",
+      "action": "Observe Casualties",
+      "camera": "Side Medium Shot",
+      "visual": {
+        "composition": "Han Li stands quietly at the doorway, unfazed as wounded are carried into the stone hut",
+        "environment": "",
+        "character_pose": "Han Li standing at the entrance",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li stands at the doorway, expression unchanged while waves of injured men are borne inside.",
+      "narration": "再惨烈的消息也未动摇他,只回房继续静坐。",
+      "face_style_auto": {
+        "expression": "Pained",
+        "lighting": "Warm Sunset",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "第三日拂晓,银甲统领召集精锐于广场集合。",
+      "mood": "Solemn",
+      "lighting": "Dawn",
+      "action": "Assemble Elites",
+      "camera": "Plaza Wide Shot",
+      "visual": {
+        "composition": "At daybreak on the third day the silver-armored commander gathers the elite in the plaza",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Third-day dawn: the silver-armored commander calls the picked troops to assemble on the plaza.",
+      "narration": "统领宣布赤蟒防线告急,命他们火速支援。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Torchlight",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "兽车纵横驰骋,狻狼骑士护送队伍穿城而行。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Ride to the Front",
+      "camera": "Low-Angle Tracking Shot",
+      "visual": {
+        "composition": "Beast carts speed through the streets while the suanni wolf riders escort the column",
+        "environment": "",
+        "character_pose": "Cavalry escorting the convoy",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Beast-drawn wagons thunder across the city as wolf riders flank the team en route to the front.",
+      "narration": "队伍穿过空旷街巷,直奔城另一端。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "抵达北墙,城楼毁损残破,地面一片漆黑。",
+      "mood": "Shocked",
+      "lighting": "Daylight",
+      "action": "Witness Devastation",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Upon reaching the north wall they see shattered battlements and ground stained pitch black",
+        "environment": "Blackened ground",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "They reach the north battlement to find the parapets ruined and the earth charred jet black.",
+      "narration": "众人望着被毒雾腐蚀的垛口,尽皆色变。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "大胡子军官讲述飞蛇喷毒,地面仍散发腐臭。",
+      "mood": "Informative",
+      "lighting": "Daylight",
+      "action": "Explain Threat",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "The bearded officer describes the venom-spitting flying serpents as the ground still reeks",
+        "environment": "Ground still reeking with corrosion",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A bearded officer recounts how flying snakes spewed poison, the earth still exuding foul fumes.",
+      "narration": "他说飞蛇一次毒雾便要休养,但破坏力惊人。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "众人感叹赤蟒凶猛,又问修士缘何不露面。",
+      "mood": "Anxious",
+      "lighting": "Daylight",
+      "action": "Discuss Strategy",
+      "camera": "Medium Close-Up",
+      "visual": {
+        "composition": "The guards lament the ferocity of the scarlet pythons and wonder why cultivators remain unseen",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "They marvel at the crimson pythons' savagery and question why the cultivators have yet to appear.",
+      "narration": "有人忧心修士不出手,大胡子提醒豹禽未现。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "怪异鸣叫自远空传来,所有炼体士握紧兵器。",
+      "mood": "Ominous",
+      "lighting": "Daylight",
+      "action": "Hear the Call",
+      "camera": "Sky Wide Shot",
+      "visual": {
+        "composition": "Strange cries echo from the far sky and every body cultivator grips their weapon",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "An eerie screech rolls across the sky, prompting every body-tempering warrior to tighten their grip.",
+      "narration": "豹禽鸣声震得气血翻滚,人人面色大变。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "城中心飞出上百道遁光,修士御器升空迎敌。",
+      "mood": "Heroic",
+      "lighting": "Daylight",
+      "action": "Cultivators Launch",
+      "camera": "Aerial Follow",
+      "visual": {
+        "composition": "Hundreds of escape lights burst from the city center as cultivators ride their artifacts skyward",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Over a hundred streaks of light launch from the city core, cultivators ascending on artifacts to meet the foe.",
+      "narration": "筑基修士总算御器而出,空中对上豹禽群。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "豹禽喷出绿雾,修士以符雷火术迎击,双方僵持。",
+      "mood": "Intense",
+      "lighting": "Daylight",
+      "action": "Aerial Battle",
+      "camera": "Dynamic Wide Shot",
+      "visual": {
+        "composition": "Leopard raptors spray green mists while cultivators answer with talisman thunderfire, locked in stalemate",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Leopard aviary beasts spew viridian fog as the cultivators counter with talismanic thunderfire, the aerial duel deadlocked.",
+      "narration": "空战胶着,妖羽与灵器互射,迟迟难分胜负。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "地面赤蟒连成巨弩般弹射上墙,士兵举盾严防。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Pythons Launch",
+      "camera": "Low-Angle Action Shot",
+      "visual": {
+        "composition": "Scarlet pythons braid together like a giant crossbow and fling themselves up the wall as soldiers raise shields",
+        "environment": "Linked crimson pythons launching upward",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Crimson pythons lash together and catapult up the battlements while soldiers brace behind shields.",
+      "narration": "十余条赤蟒互咬成弓,弹射上墙发动猛攻。",
+      "face_style_auto": {
+        "expression": "Stern",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "巨弩怒射丈许铁箭,将多段蟒蛇贯穿摔落。",
+      "mood": "Triumphant",
+      "lighting": "Daylight",
+      "action": "Fire Ballista",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "Great ballistae hurl yard-long iron bolts that skewer chains of pythons and hurl them down",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Massive ballistae spit yard-long iron bolts, pinning linked pythons and flinging them from the wall.",
+      "narration": "巨弩火力全开,连结的蟒蛇被贯穿摔回城下。",
+      "face_style_auto": {
+        "expression": "Resolute",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "一条变异巨蟒混入城头,韩立闪身挥刀将其斩首。",
+      "mood": "Decisive",
+      "lighting": "Daylight",
+      "action": "Slay Mutant Python",
+      "camera": "Dynamic Close-Up",
+      "visual": {
+        "composition": "A mutant giant python slips onto the rampart and Han Li flashes forward to sever its head",
+        "environment": "",
+        "character_pose": "Han Li lunging with blade",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A mutant giant python breaches the wall only for Han Li to dart in and behead it with a single slash.",
+      "narration": "巨蟒冲入阵中,韩立冷刀一闪,蟒首化作血雾。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night as spiritual light rains from the sky",
+        "environment": "Night sky, immortal city outline, drifting spirit motes",
+        "character_pose": "",
+        "fx": "Falling spiritual particles with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第9集即将开始。",
+      "face_style_auto": {
+        "expression": "Ferocious",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep8_full/scene_022.png"
+    }
+  ]
+}

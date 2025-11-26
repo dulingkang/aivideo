@@ -1,0 +1,784 @@
+{
+  "episode": 175,
+  "title": "破禁与卷轴 · 玉矶阁",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕“上一回 · 太妙玄禁”，背景为蓝翠晶壁大厅。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll unfurling above glowing crystal hall",
+        "environment": "Blue-green jade-like walls with ambient light",
+        "character_pose": "",
+        "fx": "Floating golden particles",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia title card, golden scroll over glowing crystal hall, cinematic lighting",
+      "narration": "我是云卷仙音，第175集《破禁与卷轴》敬请诸位观赏。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "韩立站在晶墙前，瞳孔深处蓝芒闪动，用明清灵目仔细观察晶墙深处。",
+      "mood": "Focused",
+      "lighting": "Cool glow",
+      "action": "Examining wall",
+      "camera": "Close-up eyes",
+      "visual": {
+        "composition": "Han Li's eyes with blue glow reflected in crystal surface",
+        "environment": "Glowing blue-green wall",
+        "character_pose": "Hands behind back, intense gaze",
+        "fx": "Blue light rays from pupils",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of cultivator's eyes with blue glow examining crystal wall, focused expression",
+      "narration": "韩立站在晶墙前，瞳孔深处蓝芒闪动，用明清灵目探查禁制结构。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "韩立观察半刻钟后，目中蓝光消失，从储物袋中取出十几杆颜色各异的阵旗。",
+      "mood": "Prepared",
+      "lighting": "Ambient glow",
+      "action": "Taking out materials",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li holding array of colorful flags floating before him",
+        "environment": "Crystal hall with others watching",
+        "character_pose": "Hands raised, flags orbiting",
+        "fx": "Colorful flag auras",
+        "motion": {
+          "type": "orbit",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator holding colorful array flags floating in air, preparing to set up formation",
+      "narration": "观察半刻钟后，韩立目中蓝光消失，从储物袋中取出十几杆阵旗。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "白衫老者惊讶询问韩立是否精通阵法，韩立淡然回应只是略懂一二。",
+      "mood": "Surprised",
+      "lighting": "Soft glow",
+      "action": "Questioning",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Elder asking Han Li with flags in background",
+        "environment": "Crystal hall",
+        "character_pose": "Elder gesturing, Han Li calm",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators conversing in crystal hall, one surprised, one calm",
+      "narration": "白衫老者惊讶询问韩立是否精通阵法，韩立淡然回应只是略懂一二。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "韩立张口喷出青色精气，阵旗浮空对准晶墙表面，开始排列法阵。",
+      "mood": "Concentrated",
+      "lighting": "Azure glow",
+      "action": "Arranging formation",
+      "camera": "Medium wide",
+      "visual": {
+        "composition": "Colorful flags arranging into complex pattern before wall",
+        "environment": "Glowing crystal hall",
+        "character_pose": "Han Li weaving hand seals",
+        "fx": "Interconnecting light threads",
+        "motion": {
+          "type": "orbit",
+          "speed": "medium"
+        }
+      },
+      "prompt": "colorful flags arranging into complex formation pattern before crystal wall, mystical",
+      "narration": "韩立张口喷出青色精气，阵旗浮空对准晶墙，开始排列法阵。",
+      "face_style_auto": {
+        "expression": "Concentrated",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "阵旗排列成古怪阵列，韩立打出法诀，光丝将阵旗联结成法阵。",
+      "mood": "Mystic",
+      "lighting": "Colorful glow",
+      "action": "Forming array",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Flags connected by glowing threads forming intricate pattern",
+        "environment": "Crystal wall backdrop",
+        "character_pose": "",
+        "fx": "Interweaving light threads",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "close-up of flags connected by glowing threads forming mystical array pattern",
+      "narration": "阵旗排列成古怪阵列，韩立打出法诀，光丝将阵旗联结成法阵。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "韩立全身冒出刺目白光，众人被闪得闭眼，法阵已嵌入晶墙之中。",
+      "mood": "Surprising",
+      "lighting": "Bright flash",
+      "action": "Embedding formation",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Bright flash as formation merges into crystal wall",
+        "environment": "Crystal hall with figures shielding eyes",
+        "character_pose": "Hands over eyes",
+        "fx": "White flash, formation sinking into wall",
+        "motion": {
+          "type": "flash"
+        }
+      },
+      "prompt": "bright flash as formation merges into crystal wall, cultivators shielding eyes",
+      "narration": "韩立全身冒出刺目白光，众人被闪得闭眼，法阵已嵌入晶墙之中。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "南陇侯与白衫老者看到法阵嵌入晶墙，面露大喜之色对韩立信心大增。",
+      "mood": "Hopeful",
+      "lighting": "Soft glow",
+      "action": "Reacting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Two elders smiling with formation visible in wall",
+        "environment": "Crystal hall",
+        "character_pose": "Nodding approvingly",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two elders smiling approvingly at formation embedded in crystal wall",
+      "narration": "南陇侯与白衫老者看到法阵嵌入晶墙，面露大喜，对韩立信心大增。",
+      "face_style_auto": {
+        "expression": "Happy",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "韩立双手按在晶墙表面，十指放出淡青色光华，法阵中心爆发五色霞光。",
+      "mood": "Powerful",
+      "lighting": "Colorful glow",
+      "action": "Activating formation",
+      "camera": "Close-up hands",
+      "visual": {
+        "composition": "Hands on wall with colorful light radiating from formation center",
+        "environment": "Glowing crystal wall",
+        "character_pose": "Hands pressed against surface",
+        "fx": "Five-colored light expanding",
+        "motion": {
+          "type": "pulse"
+        }
+      },
+      "prompt": "close-up of hands on crystal wall with colorful light radiating from formation",
+      "narration": "韩立双手按在晶墙表面，十指放出淡青色光华，法阵中心五色霞光。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Colorful",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "韩立走到另一面晶墙，同样布下法阵并嵌入其中，众人啧啧称奇。",
+      "mood": "Impressed",
+      "lighting": "Ambient glow",
+      "action": "Repeating process",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li moving to next wall, others watching in amazement",
+        "environment": "Crystal hall with multiple glowing formations",
+        "character_pose": "Han Li working, others observing",
+        "fx": "Multiple formations glowing",
+        "motion": {
+          "type": "tracking",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivator setting up formation on another wall while others watch amazed",
+      "narration": "韩立走到另一面晶墙，同样布下法阵并嵌入其中，众人啧啧称奇。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "韩立用半个时辰在四面墙壁都布下法阵，众人耐心等待毫无急躁。",
+      "mood": "Patient",
+      "lighting": "Soft glow",
+      "action": "Completing setup",
+      "camera": "Wide pan",
+      "visual": {
+        "composition": "Four walls each with glowing formation embedded",
+        "environment": "Crystal hall from center",
+        "character_pose": "Figures waiting patiently",
+        "fx": "Four formations pulsing in sync",
+        "motion": {
+          "type": "pan",
+          "direction": "360",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide pan of crystal hall showing four glowing formations on each wall",
+      "narration": "韩立用半个时辰在四面墙壁都布下法阵，众人耐心等待毫无急躁。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "韩立走到大厅中央，亮出碧绿色阵盘，向阵盘打出复杂法诀。",
+      "mood": "Final",
+      "lighting": "Green glow",
+      "action": "Activating control",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Han Li holding glowing green control disk in center",
+        "environment": "Crystal hall center",
+        "character_pose": "Hands holding disk, fingers weaving",
+        "fx": "Green light pulsing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator holding glowing green control disk in center of crystal hall",
+      "narration": "韩立走到大厅中央，亮出碧绿色阵盘，向阵盘打出复杂法诀。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Green",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "阵盘与四面晶墙中霞光同时闪烁，节奏从杂乱到统一，犹如一体。",
+      "mood": "Synchronized",
+      "lighting": "Pulsing colors",
+      "action": "Synchronizing",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "All formations pulsing in perfect sync with control disk",
+        "environment": "Crystal hall with unified light",
+        "character_pose": "",
+        "fx": "Synchronized light pulses",
+        "motion": {
+          "type": "pulse",
+          "speed": "medium"
+        }
+      },
+      "prompt": "wide shot of crystal hall with all formations pulsing in perfect synchronization",
+      "narration": "阵盘与四面晶墙中霞光同时闪烁，节奏从杂乱到统一，犹如一体。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "韩立低头低沉吐出一个“破”字，霞光高涨发出刺耳嗡鸣声。",
+      "mood": "Climactic",
+      "lighting": "Intense glow",
+      "action": "Breaking formation",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Han Li's face with intense light behind, mouth forming word",
+        "environment": "Brightening crystal hall",
+        "character_pose": "Head lowered, determined",
+        "fx": "Expanding light waves",
+        "motion": {
+          "type": "push_in",
+          "speed": "fast"
+        }
+      },
+      "prompt": "close-up of cultivator speaking command word as light intensifies behind",
+      "narration": "韩立低头低沉吐出一个破字，霞光高涨发出刺耳嗡鸣，如万鸟齐鸣。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Intense",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "轰隆巨响中霞光溃散，晶墙消失露出普通青石墙壁，石门显现。",
+      "mood": "Revealing",
+      "lighting": "Transition",
+      "action": "Breaking through",
+      "camera": "Wide reveal",
+      "visual": {
+        "composition": "Crystal walls dissolving to reveal stone walls with massive door",
+        "environment": "Hall transforming",
+        "character_pose": "",
+        "fx": "Light explosion, walls transforming",
+        "motion": {
+          "type": "expand"
+        }
+      },
+      "prompt": "crystal walls dissolving to reveal stone walls with massive door, dramatic reveal",
+      "narration": "轰隆巨响中霞光溃散，晶墙消失露出普通青石墙壁，石门显现。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "南陇侯大喜称赞韩立阵法造诣，承诺让韩立优先挑选一件宝物。",
+      "mood": "Celebratory",
+      "lighting": "Warm glow",
+      "action": "Praising",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader praising Han Li with others applauding",
+        "environment": "Stone hall with door visible",
+        "character_pose": "Hands clasped, smiling",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "leader praising cultivator with others applauding in stone hall",
+      "narration": "南陇侯大喜称赞韩立阵法造诣，承诺让韩立优先挑选一件宝物。",
+      "face_style_auto": {
+        "expression": "Happy",
+        "lighting": "Warm",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "南陇侯长袖轻拂石门，大门朝内敞开，众人跟随进入门内。",
+      "mood": "Anticipatory",
+      "lighting": "Soft interior",
+      "action": "Entering",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Massive door opening inward revealing interior",
+        "environment": "Stone doorway",
+        "character_pose": "Figures entering",
+        "fx": "Light spilling from inside",
+        "motion": {
+          "type": "dolly",
+          "speed": "slow"
+        }
+      },
+      "prompt": "massive stone door opening inward as cultivators enter, light spilling out",
+      "narration": "南陇侯长袖轻拂石门，大门朝内敞开，众人跟随进入门内。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "门后是更大的大厅，中央矗立一座白玉雕刻的精美阁楼，门上写着“玉矶阁”。",
+      "mood": "Awe",
+      "lighting": "Ethereal",
+      "action": "Revealing treasure",
+      "camera": "Wide establishing",
+      "visual": {
+        "composition": "Jade-white pavilion in center of vast hall",
+        "environment": "Spacious stone hall",
+        "character_pose": "",
+        "fx": "Soft jade glow, floating particles",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide shot of jade-white pavilion in center of vast stone hall, ethereal lighting",
+      "narration": "门后是更大的大厅，中央矗立一座白玉阁楼，门上写着玉矶阁三字。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "玉矶阁前有张陈旧供桌，上面供奉着一副银白色卷轴，银光闪闪。",
+      "mood": "Mysterious",
+      "lighting": "Silver glow",
+      "action": "Observing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Old altar table with glowing silver scroll",
+        "environment": "Before jade pavilion",
+        "character_pose": "",
+        "fx": "Silver light emanating",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "old altar table with glowing silver scroll before jade pavilion, mysterious",
+      "narration": "玉矶阁前有张陈旧供桌，上面供奉着一副银白色卷轴，银光闪闪。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "白衫老者谨慎上前，喷出白霞卷起卷轴，画轴展开露出儒生背影图。",
+      "mood": "Cautious",
+      "lighting": "Soft glow",
+      "action": "Opening scroll",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Elder using white mist to unroll scroll revealing scholar figure",
+        "environment": "Before altar",
+        "character_pose": "Hands gesturing, scroll floating",
+        "fx": "White mist, scroll unrolling",
+        "motion": {
+          "type": "unroll"
+        }
+      },
+      "prompt": "elder using white mist to unroll scroll revealing scholar silhouette",
+      "narration": "白衫老者谨慎上前，喷出白霞卷起卷轴，画轴展开露出儒生背影图。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "冷面修士询问这是否是苍坤上人，王天古目光闪动意有所指。",
+      "mood": "Curious",
+      "lighting": "Neutral",
+      "action": "Questioning",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Group discussing scroll with suspicious glances",
+        "environment": "Before jade pavilion",
+        "character_pose": "Various questioning poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators discussing scroll with suspicious expressions",
+      "narration": "冷面修士询问这是否是苍坤上人，王天古目光闪动意有所指。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "白衫老者打出红色法诀试探画轴，银光大放后恢复原样，并无异常。",
+      "mood": "Testing",
+      "lighting": "Silver flash",
+      "action": "Testing artifact",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Red spells hitting scroll causing silver flash",
+        "environment": "Floating scroll",
+        "character_pose": "",
+        "fx": "Red and silver light clash",
+        "motion": {
+          "type": "flash"
+        }
+      },
+      "prompt": "close-up of red spells hitting silver scroll causing flash, testing artifact",
+      "narration": "白衫老者打出红色法诀试探画轴，银光大放后恢复原样，并无异常。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "南陇侯建议暂且收起卷轴，等找到其他宝物后再做归属，众人同意。",
+      "mood": "Agreeable",
+      "lighting": "Soft",
+      "action": "Deciding",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Leader addressing group with scroll being put away",
+        "environment": "Before jade pavilion",
+        "character_pose": "Nodding in agreement",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators agreeing to leader's suggestion about scroll",
+      "narration": "南陇侯建议暂且收起卷轴，等找到其他宝物后再做归属，众人同意。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "一行人绕过供桌来到阁楼前，南陇侯迫不及待推开阁门。",
+      "mood": "Eager",
+      "lighting": "Bright interior",
+      "action": "Opening door",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Group approaching jade pavilion door, leader pushing it open",
+        "environment": "Jade pavilion entrance",
+        "character_pose": "Leader reaching forward",
+        "fx": "Light spilling from inside",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "group approaching jade pavilion as leader pushes door open, light spilling out",
+      "narration": "一行人绕过供桌来到阁楼前，南陇侯迫不及待推开阁门。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "耀眼的灵光迎面射来，阁楼一层内三个乌木架子上摆满了宝物。",
+      "mood": "Amazed",
+      "lighting": "Brilliant",
+      "action": "Revealing treasures",
+      "camera": "Wide interior",
+      "visual": {
+        "composition": "Three shelves filled with glowing treasures in jade pavilion",
+        "environment": "Jade pavilion interior",
+        "character_pose": "",
+        "fx": "Radiant light from treasures",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "wide shot of jade pavilion interior with three shelves full of glowing treasures",
+      "narration": "耀眼的灵光迎面射来，阁楼一层内三个乌木架子上摆满了宝物。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "第一排是十六件古宝法宝，第二排是稀有材料，第三排是丹药小瓶。",
+      "mood": "Greedy",
+      "lighting": "Treasure glow",
+      "action": "Cataloging",
+      "camera": "Pan across shelves",
+      "visual": {
+        "composition": "Three rows of treasures: weapons, materials, pills",
+        "environment": "Jade pavilion interior",
+        "character_pose": "",
+        "fx": "Various colored glows",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "pan across three shelves showing weapons, materials, and pills with various glows",
+      "narration": "第一排是十六件古宝法宝，第二排是稀有材料，第三排是丹药小瓶。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "众人按捺心中火热，缓缓走进阁楼，开始打量这些宝物。",
+      "mood": "Restrained",
+      "lighting": "Treasure glow",
+      "action": "Entering carefully",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Cultivators entering pavilion cautiously, eyes scanning treasures",
+        "environment": "Jade pavilion interior",
+        "character_pose": "Walking slowly, eyes wide",
+        "fx": "",
+        "motion": {
+          "type": "dolly",
+          "speed": "slow"
+        }
+      },
+      "prompt": "cultivators entering jade pavilion cautiously, eyes scanning treasures",
+      "narration": "众人按捺心中火热，缓缓走进阁楼，开始打量这些宝物。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "南陇侯代表众人检验宝物，其他人看似和气地议论宝物的来历和用途。",
+      "mood": "Calculating",
+      "lighting": "Treasure glow",
+      "action": "Examining",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Leader examining treasures while others discuss",
+        "environment": "Jade pavilion interior",
+        "character_pose": "Various examining poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators examining treasures while leader inspects, calculating expressions",
+      "narration": "南陇侯代表众人检验宝物，其他人看似和气地议论宝物的来历用途。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "韩立走到窗口观察阴凝草，燕如嫣上前搭话，韩立冷淡回应并提醒她与王蝉的关系。",
+      "mood": "Tense",
+      "lighting": "Soft interior",
+      "action": "Conversation",
+      "camera": "Two-shot",
+      "visual": {
+        "composition": "Han Li examining plant, Yan Ruyan approaching from behind",
+        "environment": "Jade pavilion window",
+        "character_pose": "Han Li focused, Yan Ruyan hesitant",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "two cultivators conversing near window, one examining plant, one approaching",
+      "narration": "韩立走到窗口观察阴凝草，燕如嫣上前搭话，韩立冷淡回应提醒。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "南陇侯说明分配规则，众人开始分配宝物，韩立得到一件竹筒古宝。",
+      "mood": "Focused",
+      "lighting": "Treasure glow",
+      "action": "Distributing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader explaining distribution rules, cultivators selecting treasures",
+        "environment": "Jade pavilion interior",
+        "character_pose": "Various selecting poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivators distributing treasures according to rules, focused expressions",
+      "narration": "南陇侯说明分配规则，众人开始分配宝物，韩立得到一件竹筒古宝。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "一层宝物分配完毕，众人搜索无果后，准备前往二层继续寻宝。",
+      "mood": "Anticipatory",
+      "lighting": "Soft interior",
+      "action": "Preparing to ascend",
+      "camera": "Medium group",
+      "visual": {
+        "composition": "Group preparing to go upstairs, some looking at staircase",
+        "environment": "Jade pavilion interior",
+        "character_pose": "Various preparing poses",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "group of cultivators preparing to ascend staircase in jade pavilion",
+      "narration": "一层宝物分配完毕，众人搜索无果后，准备前往二层继续寻宝。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "片尾画面定格在众人走向楼梯的背影，二层入口隐约可见。",
+      "mood": "Anticipatory",
+      "lighting": "Soft interior",
+      "action": "End teaser",
+      "camera": "Rear medium",
+      "visual": {
+        "composition": "Back view of cultivators approaching staircase",
+        "environment": "Jade pavilion interior with upper floor visible",
+        "character_pose": "Silhouettes against light",
+        "fx": "Soft glow from above",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "rear view of cultivators approaching staircase in jade pavilion, upper floor glowing",
+      "narration": "我是云卷仙音，下集看众人进入二层，发现苍坤上人供奉的妖神金像。",
+      "face_style_auto": null,
+      "image_path": ""
+    }
+  ]
+}

@@ -1,0 +1,757 @@
+{
+  "episode": 39,
+  "title": "Head Monk Devoured · Ten Pillars Emerge",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第39集:头陀被吞·十柱现世。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "一声娇叱后,少妇身形滴溜溜一转,就化为一团黑色火凤向那物激射而去,三名黑瘦青年则蓦然往中间一凑,化为一道粗大银光也紧跟而去。",
+      "mood": "Rushing",
+      "lighting": "Golden Light",
+      "action": "Rush for Treasure",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "After sharp cry, woman's body spins, transforms into black fire phoenix rushes at treasure, three black thin youths suddenly merge together, transform into thick silver light also follow",
+        "environment": "Scorching Light Pool, forces rushing",
+        "character_pose": "Woman as phoenix, youths as silver light, rushing",
+        "fx": "Black phoenix, silver light, rushing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "After sharp cry, woman's body spins, transforms into black fire phoenix rushes at treasure, three black thin youths suddenly merge together, transform into thick silver light also follow.",
+      "narration": "一声娇叱后,少妇化为一团黑色火凤向那物激射而去,三名黑瘦青年化为银光紧跟。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主不知什么原因,竟一脸踌躇的待在原地并没有出手,隐藏在高空中的韩立,目光闪动几下,也未有任何行动。",
+      "mood": "Hesitant",
+      "lighting": "Mixed Lighting",
+      "action": "Hold Back",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "City Lord Lan for some reason, actually hesitating stays in place doesn't act, Han Li hiding high above, eyes flash several times, also no action",
+        "environment": "Scorching Light Pool, forces hesitating",
+        "character_pose": "City Lord Lan hesitating, Han Li hidden watching",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "City Lord Lan for some reason, actually hesitating stays in place doesn't act, Han Li hiding high above, eyes flash several times, also no action.",
+      "narration": "蓝城主不知什么原因,竟一脸踌躇的待在原地并没有出手,韩立也未有任何行动。",
+      "face_style_auto": {
+        "expression": "Hesitant",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "韩立此行目标很简单,就是为神血而来,其他东西再珍贵,也不会冒然出手,暴露行迹的。",
+      "mood": "Focused",
+      "lighting": "Mixed Lighting",
+      "action": "Stay Focused",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's goal simple, just for divine blood, other things no matter how precious, won't rashly act, expose tracks",
+        "environment": "Sky above pool, Han Li invisible",
+        "character_pose": "Han Li focused, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's goal simple, just for divine blood, other things no matter how precious, won't rashly act, expose tracks.",
+      "narration": "韩立此行目标很简单,就是为神血而来,其他东西再珍贵,也不会冒然出手。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "少妇等妖修的动作,明显比头陀慢了一拍,头陀所化白虹眼见就要一头扎进白光之中,将落阳晶一下卷走。",
+      "mood": "Nearing Success",
+      "lighting": "Golden Light",
+      "action": "Approach Treasure",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Woman and demon cultivators' actions, clearly slower than head monk, head monk's white rainbow about to dive into white light, grab Setting Sun Crystal",
+        "environment": "Sky above pool, approaching light ball",
+        "character_pose": "White rainbow approaching, others following",
+        "fx": "White rainbow, golden light ball",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Woman and demon cultivators' actions, clearly slower than head monk, head monk's white rainbow about to dive into white light, grab Setting Sun Crystal.",
+      "narration": "少妇等妖修的动作,明显比头陀慢了一拍,头陀所化白虹眼见就要扎进白光之中。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "就在这一刹那的工夫,异变突起,一股巨大无形吸力突然出现在了光球四周,让头陀身形一凝。",
+      "mood": "Sudden Change",
+      "lighting": "Golden Light",
+      "action": "Sudden Pull",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "At this instant, sudden change, huge invisible suction suddenly appears around light ball, makes head monk's body freeze",
+        "environment": "Sky above pool, light ball area",
+        "character_pose": "Head monk frozen, pulled",
+        "fx": "Invisible suction force, light ball",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this instant, sudden change, huge invisible suction suddenly appears around light ball, makes head monk's body freeze.",
+      "narration": "就在这一刹那的工夫,异变突起,一股巨大无形吸力突然出现在光球四周。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "尚未等他大惊的急忙调动法力抵抗时,衣衫上又浮现几个诡异的银色符咒,随之头陀身躯一颤,就被一下吸入了沸腾的潭水中,不见了踪影。",
+      "mood": "Devouring",
+      "lighting": "Silver Light",
+      "action": "Head Monk Devoured",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Before he can shock and urgently mobilize mana to resist, clothes appear with several strange silver runes, then head monk's body trembles, instantly sucked into boiling pool water, disappears",
+        "environment": "Pool surface, head monk being sucked",
+        "character_pose": "Head monk being pulled down, silver runes on clothes",
+        "fx": "Silver runes, suction, disappearing into pool",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Before he can shock and urgently mobilize mana to resist, clothes appear with several strange silver runes, then head monk's body trembles, instantly sucked into boiling pool water, disappears.",
+      "narration": "尚未等他大惊的急忙调动法力抵抗时,衣衫上浮现银色符咒,头陀就被吸入沸腾潭水中。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "只剩下光球在空中悬浮不动着,同样激射过来的少妇和那三名黑瘦青年,自然吓了一大跳,急忙一个盘旋的遁光倒射而回。",
+      "mood": "Panic",
+      "lighting": "Golden Light",
+      "action": "Retreat in Panic",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Only light ball left floating in air, woman and three black thin youths rushing over, naturally shocked, urgently turn and retreat backward",
+        "environment": "Sky above pool, forces retreating",
+        "character_pose": "Forces retreating in panic",
+        "fx": "Golden light ball, retreating forces",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Only light ball left floating in air, woman and three black thin youths rushing over, naturally shocked, urgently turn and retreat backward.",
+      "narration": "只剩下光球在空中悬浮不动着,少妇和三名黑瘦青年吓了一大跳,急忙倒射而回。",
+      "face_style_auto": {
+        "expression": "Panicked",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "少妇和三名黑瘦青年一口气飞回到水潭边上,才用骇然的目光重新望向水潭,一旁的蓝城主此时却似乎看出了什么,脸色唰的一下,变得难看异常起来。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Danger",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Woman and three black thin youths fly back to pool edge, look at pool with horrified gaze, City Lord Lan beside seems to understand something, face suddenly becomes extremely ugly",
+        "environment": "Scorching Light Pool edge",
+        "character_pose": "Forces horrified, City Lord Lan alarmed",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman and three black thin youths fly back to pool edge, look at pool with horrified gaze, City Lord Lan beside seems to understand something, face suddenly becomes extremely ugly.",
+      "narration": "少妇和三名黑瘦青年飞回到水潭边上,才用骇然的目光重新望向水潭,蓝城主脸色变得难看。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "就在这时,又一阵轰隆隆声在水潭另一边上传来,接着竟然又是五根一般无二的黄色柱子冒了出来。",
+      "mood": "Escalating",
+      "lighting": "Yellow Light",
+      "action": "More Pillars Emerge",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "At this moment, another rumbling sound comes from other side of pool, then five more identical yellow pillars emerge",
+        "environment": "Scorching Light Pool, more pillars emerging",
+        "character_pose": "Five more pillars emerging",
+        "fx": "Ground breaking, yellow pillars emerging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this moment, another rumbling sound comes from other side of pool, then five more identical yellow pillars emerge.",
+      "narration": "就在这时,又一阵轰隆隆声在水潭另一边上传来,接着又是五根黄色柱子冒了出来。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随之,仿佛雷鸣般的吼声,从水潭中开始传出,并且越来越大,越来越响,潭水和十根黄柱就在吼声中,颤抖得越发剧烈。",
+      "mood": "Terrifying",
+      "lighting": "Yellow Light",
+      "action": "Thunderous Roar",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Following, thunderous roar sounds begin from pool, growing louder and louder, pool water and ten yellow pillars tremble more violently in roar",
+        "environment": "Scorching Light Pool, roaring",
+        "character_pose": "Pool and pillars shaking, roaring",
+        "fx": "Thunderous roar, shaking ground, trembling pillars",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Following, thunderous roar sounds begin from pool, growing louder and louder, pool water and ten yellow pillars tremble more violently in roar.",
+      "narration": "随之,仿佛雷鸣般的吼声从水潭中开始传出,潭水和十根黄柱就在吼声中颤抖得越发剧烈。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "zhiguang_pool_transformation",
+      "duration": 4,
+      "description": "蓝城主突然一转身,化为一道蓝虹直往谷口方向激射而走,几个闪动间,就消失在了浓浓的迷雾中。",
+      "mood": "Fleeing",
+      "lighting": "Blue Light",
+      "action": "City Lord Flees",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "City Lord Lan suddenly turns, transforms into blue rainbow rushes toward valley entrance direction, several flashes, disappears in thick mist",
+        "environment": "Chaos Valley, fleeing",
+        "character_pose": "City Lord Lan fleeing as blue rainbow",
+        "fx": "Blue rainbow, fleeing, disappearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "City Lord Lan suddenly turns, transforms into blue rainbow rushes toward valley entrance direction, several flashes, disappears in thick mist.",
+      "narration": "蓝城主突然一转身,化为一道蓝虹直往谷口方向激射而走,几个闪动间消失在迷雾中。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "蓝城主这个举动,让韩立和宫装少妇均都一怔,只是韩立眉头一皱下,身形开始往高空飘荡而去。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "React to Fleeing",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "City Lord Lan's action makes Han Li and palace-dressed woman both stunned, only Han Li frowns, body begins floating higher",
+        "environment": "Scorching Light Pool, forces reacting",
+        "character_pose": "Han Li floating higher, woman stunned",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "City Lord Lan's action makes Han Li and palace-dressed woman both stunned, only Han Li frowns, body begins floating higher.",
+      "narration": "蓝城主这个举动,让韩立和宫装少妇均都一怔,只是韩立眉头一皱,身形开始往高空飘荡。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "宫装少妇和那三名黑瘦青年互望了一眼后,还是神情凝重的没有离开原地,结果水潭中的潭水,开始极速旋转起来。",
+      "mood": "Deciding",
+      "lighting": "Mixed Lighting",
+      "action": "Stay or Leave",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman and three black thin youths look at each other, still look grave and don't leave, then pool water begins rapidly rotating",
+        "environment": "Scorching Light Pool, pool rotating",
+        "character_pose": "Forces deciding, pool rotating",
+        "fx": "Pool water rotating",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Palace-dressed woman and three black thin youths look at each other, still look grave and don't leave, then pool water begins rapidly rotating.",
+      "narration": "宫装少妇和三名黑瘦青年互望了一眼后,还是神情凝重的没有离开原地,水潭开始旋转。",
+      "face_style_auto": {
+        "expression": "Grave",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "转眼间形成了一个巨大漩涡,而与此同时,十根柱子同时从半截处往下一凹,然后再同时往上一托,一下又拔高了十几丈。",
+      "mood": "Escalating",
+      "lighting": "Yellow Light",
+      "action": "Pillars Grow Higher",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "In a blink forms huge whirlpool, at same time, ten pillars simultaneously from middle part concave down, then together push up, suddenly grow dozens of zhang higher",
+        "environment": "Scorching Light Pool, pillars growing",
+        "character_pose": "Pillars moving, growing higher",
+        "fx": "Whirlpool, pillars moving and growing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In a blink forms huge whirlpool, at same time, ten pillars simultaneously from middle part concave down, then together push up, suddenly grow dozens of zhang higher.",
+      "narration": "转眼间形成了一个巨大漩涡,十根柱子同时往下一凹,然后再往上托,又拔高了十几丈。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "与此同时,地面开裂,泥土翻滚,两个庞然大物从水潭两边破土而出,正往高处飞去的韩立,正好向下瞅了一眼。",
+      "mood": "Revealing",
+      "lighting": "Yellow Light",
+      "action": "Giant Hands Emerge",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "At same time, ground cracks, earth rolls, two huge things emerge from pool sides, Han Li flying higher, happens to look down",
+        "environment": "Scorching Light Pool, ground cracking",
+        "character_pose": "Han Li looking down, huge things emerging",
+        "fx": "Ground cracking, huge hands emerging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At same time, ground cracks, earth rolls, two huge things emerge from pool sides, Han Li flying higher, happens to look down.",
+      "narration": "与此同时,地面开裂,泥土翻滚,两个庞然大物从水潭两边破土而出,韩立向下瞅了一眼。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一看清楚两物的真面目后,韩立顿时目瞪口呆了,居高临下的他发现水潭两侧冒出的巨物,竟然是两只淡黄的巨大手掌。",
+      "mood": "Shocked",
+      "lighting": "Yellow Light",
+      "action": "Realize Are Hands",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Seeing two things clearly, Han Li stunned, from above discovers huge things emerging from pool sides are actually two pale yellow huge hands",
+        "environment": "Scorching Light Pool, huge hands visible",
+        "character_pose": "Han Li shocked, realizing",
+        "fx": "Huge yellow hands emerging",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Seeing two things clearly, Han Li stunned, from above discovers huge things emerging from pool sides are actually two pale yellow huge hands.",
+      "narration": "一看清楚两物的真面目后,韩立顿时目瞪口呆了,发现水潭两侧冒出的巨物是两只巨大手掌。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "十根柱子只不过是手掌上的十根粗大手指而已,现在这一对手掌,正慢慢的从土里向上伸出。",
+      "mood": "Realizing",
+      "lighting": "Yellow Light",
+      "action": "Hands Rising",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Ten pillars are just ten thick fingers on hands, now this pair of hands slowly rising from ground",
+        "environment": "Scorching Light Pool, hands rising",
+        "character_pose": "Huge hands with fingers rising",
+        "fx": "Huge hands rising from ground",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Ten pillars are just ten thick fingers on hands, now this pair of hands slowly rising from ground.",
+      "narration": "十根柱子只不过是手掌上的十根粗大手指而已,这一对手掌正慢慢的从土里向上伸出。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "那口三四十丈大炙光潭,不知何时潭水消失得无影无踪了,变得深邃异常,而潭底中心处异芒一闪,显露出一只两丈大的巨大眼珠。",
+      "mood": "Revealing",
+      "lighting": "Giant Eye",
+      "action": "Giant Eye Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "That thirty to forty zhang large Scorching Light Pool, pool water disappeared completely, becomes extremely deep, pool bottom center flashes, reveals huge eye two zhang large",
+        "environment": "Scorching Light Pool bottom, giant eye",
+        "character_pose": "Giant eye appearing",
+        "fx": "Pool water gone, giant eye glowing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "That thirty to forty zhang large Scorching Light Pool, pool water disappeared completely, becomes extremely deep, pool bottom center flashes, reveals huge eye two zhang large.",
+      "narration": "那口三四十丈大炙光潭,不知何时潭水消失得无影无踪了,潭底中心处显露出一只巨大眼珠。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Giant Eye",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "此眼珠缓缓转动几下,放出了森然的冷光,看到此幕,韩立一个激灵,蓦然想起了灵界中的一个大名鼎鼎的种族。",
+      "mood": "Recognizing",
+      "lighting": "Giant Eye",
+      "action": "Recognize Race",
+      "camera": "Close-Up Eye",
+      "visual": {
+        "composition": "This eye slowly turns several times, emits cold light, seeing this, Han Li shudders, suddenly remembers a famous race in spirit realm",
+        "environment": "Pool bottom, giant eye",
+        "character_pose": "Giant eye turning, Han Li recognizing",
+        "fx": "Giant eye turning, cold light",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "This eye slowly turns several times, emits cold light, seeing this, Han Li shudders, suddenly remembers a famous race in spirit realm.",
+      "narration": "此眼珠缓缓转动几下,放出了森然的冷光,看到此幕,韩立蓦然想起了灵界中的大名鼎鼎的种族。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Giant Eye",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立面色唰的一下,有些发白了,他不加思索下,遁速一下加快了倍许,直往高空而去,只是使用了太一化清符后,实在无法飞遁得太快。",
+      "mood": "Urgent",
+      "lighting": "Mixed Lighting",
+      "action": "Flee Urgently",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li's face suddenly turns pale, without thinking, escape speed doubles, straight toward high sky, but after using Taiyi Huaqing Talisman, really cannot fly too fast",
+        "environment": "Sky above pool, Han Li fleeing",
+        "character_pose": "Han Li fleeing upward, pale",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Han Li's face suddenly turns pale, without thinking, escape speed doubles, straight toward high sky, but after using Taiyi Huaqing Talisman, really cannot fly too fast.",
+      "narration": "韩立面色唰的一下,有些发白了,他不加思索下,遁速加快了倍许,直往高空而去。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "宫装少妇和那三名狼族的黑瘦青年,虽然还没有发现这一切,但同样察觉到了一种莫名的危险,少妇口中一声冷哼。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "Sense Danger",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Palace-dressed woman and three wolf clan black thin youths, though haven't discovered this, also sense unknown danger, woman snorts coldly",
+        "environment": "Scorching Light Pool edge",
+        "character_pose": "Forces alert, woman sensing danger",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Palace-dressed woman and three wolf clan black thin youths, though haven't discovered this, also sense unknown danger, woman snorts coldly.",
+      "narration": "宫装少妇和三名狼族的黑瘦青年,虽然还没有发现这一切,但同样察觉到莫名的危险。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "少妇张口一喷,一块赤红的锦帕喷出体外,再一扬手,一道丈许大青光蛟龙般射出,围绕其盘旋飞舞,竟是一口神妙异常的青色飞刀。",
+      "mood": "Preparing",
+      "lighting": "Red and Green Light",
+      "action": "Prepare Defenses",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Woman opens mouth, spits red brocade handkerchief out, raises hand, zhang-sized green light dragon shoots out, circles around her, actually a magical green flying knife",
+        "environment": "Pool edge, woman preparing",
+        "character_pose": "Woman preparing defenses, flying knife circling",
+        "fx": "Red handkerchief, green flying knife, light",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Woman opens mouth, spits red brocade handkerchief out, raises hand, zhang-sized green light dragon shoots out, circles around her, actually a magical green flying knife.",
+      "narration": "少妇张口一喷,一块赤红的锦帕喷出体外,再一扬手,一道丈许大青光蛟龙般射出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red and Green Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "锦帕则滴溜溜的在头顶一转,立即化为一块红濛濛的光罩,将少妇护在了其内,那三名青年则同时两手掐诀,身上放出淡银色光芒。",
+      "mood": "Defensive",
+      "lighting": "Red and Silver Light",
+      "action": "Activate Defenses",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Brocade handkerchief spins above head, immediately transforms into red light shield, protects woman inside, three youths simultaneously form seals, bodies emit pale silver light",
+        "environment": "Pool edge, forces defending",
+        "character_pose": "Woman protected, youths activating silver light",
+        "fx": "Red light shield, silver light",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Brocade handkerchief spins above head, immediately transforms into red light shield, protects woman inside, three youths simultaneously form seals, bodies emit pale silver light.",
+      "narration": "锦帕在头顶一转,立即化为红濛濛的光罩,将少妇护在其内,三名青年身上放出淡银色光芒。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red and Silver Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随之三团光芒融合一体,化为一团大银团,将三人同时淹没进了其中,方一做好防护,未等这四名高阶妖修,另行再施展什么神通。",
+      "mood": "Prepared",
+      "lighting": "Silver Light",
+      "action": "Merge Defenses",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Then three light masses merge into one, transform into large silver mass, submerge three people inside, just made defenses, before these four high-level demon cultivators use more abilities",
+        "environment": "Pool edge, silver light mass",
+        "character_pose": "Three youths merged in silver light",
+        "fx": "Silver light mass, merging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Then three light masses merge into one, transform into large silver mass, submerge three people inside, just made defenses, before these four high-level demon cultivators use more abilities.",
+      "narration": "随之三团光芒融合一体,化为一团大银团,将三人同时淹没进了其中,方一做好防护。",
+      "face_style_auto": {
+        "expression": "Prepared",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第40集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep39_full/scene_026.png"
+    }
+  ]
+}
+
+

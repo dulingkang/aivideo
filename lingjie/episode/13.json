@@ -1,0 +1,353 @@
+{
+  "episode": 13,
+  "title": "Yu Yang City · Forty Years Later",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第13集:虞阳城中·四十年光阴。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "虞阳城四十年光阴悄然逝去,韩立已在城中生活多年。",
+      "mood": "Time Passage",
+      "lighting": "Daylight",
+      "action": "Forty Years Later",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Forty years have passed in Yu Yang City, Han Li has lived in the city for many years",
+        "environment": "Yu Yang City, time-lapse montage",
+        "character_pose": "City changing over time",
+        "fx": "Time passing, seasons changing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Forty years have passed in Yu Yang City, showing the city's changing appearance over time.",
+      "narration": "虞阳城四十年光阴悄然逝去,韩立已在城中生活多年。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "隆兴拍卖行大厅中,范胖子来回走动,一脸焦虑。",
+      "mood": "Anxious",
+      "lighting": "Interior Warm",
+      "action": "Fan Pang Waiting",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "In the Longxing Auction House hall, Fan Pang paces back and forth, looking anxious",
+        "environment": "Luxurious auction house interior",
+        "character_pose": "Fan Pang pacing, worried expression",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Inside the Longxing Auction House, Fan Pang paces anxiously in the hall, waiting.",
+      "narration": "隆兴拍卖行大厅中,范胖子来回走动,一脸焦虑。",
+      "face_style_auto": {
+        "expression": "Anxious",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "范胖子不时望向门口,焦急等待韩大师到来。",
+      "mood": "Waiting",
+      "lighting": "Interior Warm",
+      "action": "Look at Door",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Fan Pang frequently glances toward the door, anxiously waiting for Master Han to arrive",
+        "environment": "Auction house hall, door in background",
+        "character_pose": "Fan Pang looking toward door",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang keeps looking toward the entrance, anxiously awaiting Master Han's arrival.",
+      "narration": "范胖子不时望向门口,焦急等待韩大师到来。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "范胖子命下人到门口查看,韩大师是否到达。",
+      "mood": "Urgent",
+      "lighting": "Interior Warm",
+      "action": "Send Servant",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fan Pang orders a servant to check the door for Master Han's arrival",
+        "environment": "Auction house hall",
+        "character_pose": "Fan Pang gesturing, servant responding",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang sends a servant to check if Master Han has arrived.",
+      "narration": "范胖子命下人到门口查看,韩大师是否到达。",
+      "face_style_auto": {
+        "expression": "Anxious",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立缓步走进拍卖行,范胖子见后大喜,连忙迎上。",
+      "mood": "Relieved",
+      "lighting": "Interior Warm",
+      "action": "Han Li Arrives",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li enters the auction house slowly, Fan Pang sees him and joyfully rushes forward",
+        "environment": "Auction house entrance",
+        "character_pose": "Han Li entering, Fan Pang welcoming",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li enters the auction house, and Fan Pang joyfully welcomes him.",
+      "narration": "韩立缓步走进拍卖行,范胖子见后大喜,连忙迎上。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "范胖子向韩立说明,拍卖行需要新的灵具,希望韩大师能帮忙。",
+      "mood": "Requesting",
+      "lighting": "Interior Warm",
+      "action": "Request Artifacts",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Fan Pang explains to Han Li that the auction house needs new artifacts and hopes Master Han can help",
+        "environment": "Auction house hall",
+        "character_pose": "Fan Pang speaking, Han Li listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Fan Pang explains to Han Li that the auction house needs new spiritual artifacts.",
+      "narration": "范胖子向韩立说明,拍卖行需要新的灵具,希望韩大师能帮忙。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立点头应允,说明当年若非范胖子相助,自己修为早已跌落。",
+      "mood": "Grateful",
+      "lighting": "Interior Warm",
+      "action": "Express Gratitude",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li nods in agreement, saying that if not for Fan Pang's help years ago, his cultivation would have dropped",
+        "environment": "Auction house hall",
+        "character_pose": "Han Li speaking, Fan Pang listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li agrees and expresses gratitude for Fan Pang's help years ago.",
+      "narration": "韩立点头应允,说明当年若非范胖子相助,自己修为早已跌落。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立说明这四十年来,自己一直在暗中帮助范胖子发展拍卖行。",
+      "mood": "Revealing",
+      "lighting": "Interior Warm",
+      "action": "Reveal Help",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li explains that for the past forty years, he has been secretly helping Fan Pang develop the auction house",
+        "environment": "Auction house hall",
+        "character_pose": "Han Li speaking, Fan Pang surprised",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li reveals that he has been secretly helping Fan Pang's auction house for the past forty years.",
+      "narration": "韩立说明这四十年来,自己一直在暗中帮助范胖子发展拍卖行。",
+      "face_style_auto": {
+        "expression": "Modest",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "隆兴拍卖行已成为虞阳城知名拍卖行,范胖子地位也水涨船高。",
+      "mood": "Prosperous",
+      "lighting": "Interior Warm",
+      "action": "Show Success",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Longxing Auction House has become famous in Yu Yang City, Fan Pang's status has risen accordingly",
+        "environment": "Luxurious auction house, bustling activity",
+        "character_pose": "Auction house interior, prosperous scene",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Longxing Auction House has become a well-known auction house in Yu Yang City.",
+      "narration": "隆兴拍卖行已成为虞阳城知名拍卖行,范胖子地位也水涨船高。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Interior Warm",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立在虞阳城一待就是数十年,隐姓埋名潜心修炼金刚诀。",
+      "mood": "Peaceful",
+      "lighting": "Moonlight",
+      "action": "Cultivate in City",
+      "camera": "Montage",
+      "visual": {
+        "composition": "Han Li has stayed in Yu Yang City for decades, hiding his identity and quietly cultivating Vajra Art",
+        "environment": "Yu Yang City at night, time passing",
+        "character_pose": "Han Li meditating, city scenes changing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li has lived in Yu Yang City for decades, quietly cultivating Vajra Art while hiding his identity.",
+      "narration": "韩立在虞阳城一待就是数十年,隐姓埋名潜心修炼金刚诀。",
+      "face_style_auto": {
+        "expression": "Content",
+        "lighting": "Moonlight",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_011.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第14集即将开始。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep13_full/scene_022.png"
+    }
+  ]

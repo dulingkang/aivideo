@@ -1,0 +1,650 @@
+{
+  "episode": 7,
+  "title": "Beast Tide Looms · Azure Wolves' First Assault",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky veiled in clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第7集:兽潮将临·青狼初攻。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "方夫人与金玉宗修士密谈如何借韩立夺取秘宝。",
+      "mood": "Scheming",
+      "lighting": "Soft Interior",
+      "action": "Plot Strategy",
+      "camera": "Tabletop Wide Shot",
+      "visual": {
+        "composition": "Madam Fang confers in whispers with the Jin Yuzong cultivators on using Han Li to steal the treasure",
+        "environment": "",
+        "character_pose": "Conspirators leaning in close",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Madam Fang and the Jin Yuzong cultivators whisper about leveraging Han Li to seize the secret treasure.",
+      "narration": "方夫人与秦师兄定下借韩立出城的计划。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "秦师兄承诺事成后帮助潘青结丹,众人笑语掩饰心机。",
+      "mood": "Tense",
+      "lighting": "Soft Interior",
+      "action": "Seal the Pact",
+      "camera": "Three-Person Medium Shot",
+      "visual": {
+        "composition": "Senior Brother Qin promises to help Pan Qing form a core once the deed is done while everyone smiles to hide their schemes",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Senior Brother Qin vows to help Pan Qing form a core after success, their laughter barely masking ulterior motives.",
+      "narration": "秦师兄允诺助潘青冲关,密谋告一段落。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Glow",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "韩立离开小院,对暗流一无所知,只想着修炼。",
+      "mood": "Unaware",
+      "lighting": "Dusk Courtyard",
+      "action": "Leave the Courtyard",
+      "camera": "Tracking Medium Shot",
+      "visual": {
+        "composition": "Han Li steps out of the small courtyard, oblivious to the undercurrents and focused only on training",
+        "environment": "",
+        "character_pose": "Han Li walking away from the courtyard",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li leaves the courtyard, unaware of the scheming and thinking only of cultivation.",
+      "narration": "韩立只觉得闲，回房准备静修，对暗流一无所知。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "张奎宣布任命,韩立凭空举起巨石以示威信。",
+      "mood": "Impressive",
+      "lighting": "Daylight",
+      "action": "Display Strength",
+      "camera": "Crowd Wide Shot",
+      "visual": {
+        "composition": "As Zhang Kui announces the appointment, Han Li hoists a massive stone effortlessly to win trust",
+        "environment": "",
+        "character_pose": "Han Li lifting the boulder",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui proclaims the command and Han Li lifts a huge stone out of thin air to prove himself.",
+      "narration": "护卫们见韩立单臂擎石,立刻闭口服从。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Soft Evening",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "韩立独居厢房内研究金刚诀第五层,书卷堆满桌案。",
+      "mood": "Studious",
+      "lighting": "Dim Interior",
+      "action": "Study the Manual",
+      "camera": "Over-the-Shoulder Close-Up",
+      "visual": {
+        "composition": "Han Li studies the fifth layer of the Vajra Art alone in his chamber, scrolls piled across the desk",
+        "environment": "",
+        "character_pose": "Han Li poring over scrolls",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li pores over the fifth layer of the Vajra Art inside his room, the desk heaped with scrolls.",
+      "narration": "他反覆推演灵气灌体之术,为苦修做准备。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "第三日清晨,韩立悄然走出客栈,独自消失在街巷。",
+      "mood": "Mysterious",
+      "lighting": "Dawn",
+      "action": "Depart Secretly",
+      "camera": "Long Alley Shot",
+      "visual": {
+        "composition": "On the third morning Han Li slips out of the inn and vanishes alone into the alleys",
+        "environment": "",
+        "character_pose": "Han Li quietly exiting",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At dawn on the third day, Han Li quietly leaves the inn and disappears into the streets alone.",
+      "narration": "第三日他无声离城,半日后才悄然返回。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "第七日清晨巨钟齐鸣,震得客栈微微颤动。",
+      "mood": "Alarmed",
+      "lighting": "Daylit Interior",
+      "action": "Hear the Alarm",
+      "camera": "Interior Reaction Shot",
+      "visual": {
+        "composition": "On the seventh morning the great bells thunder, making the inn tremble",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At dawn on the seventh day giant bells erupt, the inn shuddering under the alarm.",
+      "narration": "巨钟与号角齐发,韩立睁眼知兽潮临近。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "西院护卫慌乱披甲,张奎怒声压住喧嚣。",
+      "mood": "Commanding",
+      "lighting": "Courtyard Daylight",
+      "action": "Steady the Troops",
+      "camera": "Courtyard Wide Shot",
+      "visual": {
+        "composition": "Guards in the west courtyard scramble into armor while Zhang Kui's roar stills the noise",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "In the west courtyard guards rush to don armor until Zhang Kui's shout crushes the commotion.",
+      "narration": "张奎训斥众人,让护卫回屋养精蓄锐。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "街道兽车狂奔,骑士沿途广播戒严命令。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Impose Lockdown",
+      "camera": "Street Tracking Shot",
+      "visual": {
+        "composition": "Beast carts thunder through the streets as riders broadcast martial-law orders",
+        "environment": "City streets with racing carts",
+        "character_pose": "Riders shouting commands",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Beast-drawn carts race down the avenues while riders shout martial law orders to the people.",
+      "narration": "全城戒严令传遍街巷,百姓匆匆躲入宅内。",
+      "face_style_auto": {
+        "expression": "Stern",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "城主立于高塔窗口听取情报,神色阴沉。",
+      "mood": "Grim",
+      "lighting": "Daylit Interior",
+      "action": "Receive Reports",
+      "camera": "Side Medium Shot",
+      "visual": {
+        "composition": "The city lord stands at the tower window listening to intelligence, face dark and severe",
+        "environment": "",
+        "character_pose": "Somber city lord at the window",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The city lord stands at a high tower window hearing the report, expression heavy.",
+      "narration": "城主得知青狼、赤蟒、豹禽三族齐至,愈发忧心。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "韩立与张奎登上南墙,远眺数十里外的青色狼海。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "Observe Wolf Horde",
+      "camera": "Telephoto",
+      "visual": {
+        "composition": "Han Li and Zhang Kui climb the south wall, staring at the turquoise sea of wolves dozens of miles away",
+        "environment": "",
+        "character_pose": "Han Li and Zhang Kui on the rampart",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li and Zhang Kui stand atop the south wall, gazing at the blue wolf sea stretching for tens of miles.",
+      "narration": "狼群如青海铺天盖地,韩立首次目睹兽潮阵势。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "张奎提及银狼,韩立心中暗想到昔日银月。",
+      "mood": "Thoughtful",
+      "lighting": "Daylight",
+      "action": "Discuss Silver Wolf",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "When Zhang Kui mentions the silver wolves, Han Li secretly recalls Silver Moon",
+        "environment": "",
+        "character_pose": "Han Li lost in thought",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Zhang Kui speaks of the silver wolves, and Han Li silently thinks of Silver Moon from the past.",
+      "narration": "听闻银狼之名,他心头一震,却只能先放下。",
+      "face_style_auto": {
+        "expression": "Grave",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "张奎说明变异兽的危险,韩立估算数量更添凝重。",
+      "mood": "Concerned",
+      "lighting": "Daylight",
+      "action": "Assess the Threat",
+      "camera": "Medium Close-Up",
+      "visual": {
+        "composition": "Zhang Kui describes the danger of mutant beasts while Han Li tallies numbers, growing heavier",
+        "environment": "",
+        "character_pose": "Han Li calculating grimly",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui details the mutant beasts' threat and Han Li's count only deepens his concern.",
+      "narration": "千匹狼就有一头变异,他暗自估算后也觉棘手。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "二人转至北墙,望见赤蟒海翻滚如血浪。",
+      "mood": "Ominous",
+      "lighting": "Daylight",
+      "action": "Observe Serpents",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "They shift to the north wall and see the crimson sea of pythons rolling like blood waves",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "They move to the north wall to witness the red python ocean surging like a tide of blood.",
+      "narration": "赤蟒数量更甚,巨蟒盘踞让人背脊发凉。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "ruyun_inn",
+      "duration": 4,
+      "description": "回到客栈,征召命令传至,护卫们迅速整装。",
+      "mood": "Resolute",
+      "lighting": "Daylit Interior",
+      "action": "Receive Orders",
+      "camera": "Courtyard Medium Shot",
+      "visual": {
+        "composition": "Back at the inn, the conscription order arrives and the guards gear up at once",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Returning to the inn, the summons reaches them and the guards swiftly suit up.",
+      "narration": "命令到达,天东商号全队立刻集结待命。",
+      "face_style_auto": {
+        "expression": "Severe",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "天东商号二百余人列队行军,狻狼骑士尤为醒目。",
+      "mood": "Majestic",
+      "lighting": "Daylight",
+      "action": "March Out",
+      "camera": "Low-Angle Tracking Shot",
+      "visual": {
+        "composition": "Over two hundred members of the Tiandong caravan march in formation, the suanni wolf riders standing out",
+        "environment": "",
+        "character_pose": "Prominent wolf-mounted riders",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "More than two hundred from the Tiandong caravan march in ranks, the wolf-mounted cavalry strikingly visible.",
+      "narration": "他们穿行城中,引得其他队伍纷纷侧目。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "城墙下的广场上,数万人待命,银甲统领指挥整备。",
+      "mood": "Grand",
+      "lighting": "Daylight",
+      "action": "Mass Assembly",
+      "camera": "Aerial Overlook",
+      "visual": {
+        "composition": "Tens of thousands await orders on the plaza beneath the walls while a silver-armored commander directs preparations",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "On the square below the walls, tens of thousands stand by as the silver-armored commander orchestrates the formation.",
+      "narration": "广场上军民云集,银甲统领与儒僧商议调度。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "anyuan_city",
+      "duration": 4,
+      "description": "武器与盔甲从龟车上源源卸下,分发给青壮。",
+      "mood": "Busy",
+      "lighting": "Daylight",
+      "action": "Distribute Arms",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "Weapons and armor stream off the tortoise carts and are handed to the militia youths",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Weapons and armor pour off the tortoise carts and are quickly distributed to the able-bodied.",
+      "narration": "龟车上兵器如山,普通青壮匆忙披挂待命。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "狼啸与蟒鸣遥遥传来,空中修士御剑通报前线。",
+      "mood": "Tense",
+      "lighting": "Daylight",
+      "action": "Sound the Alarm",
+      "camera": "Wall Wide Shot",
+      "visual": {
+        "composition": "Wolf howls and python cries carry from afar while cultivators on swords relay the news overhead",
+        "environment": "Sword-riding messengers high above",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "up",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Howls and hisses roll in the distance as airborne cultivators relay alerts atop their swords.",
+      "narration": "铜锣齐鸣,御剑修士高空传声提醒兽群开动。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "anyuan_wall",
+      "duration": 4,
+      "description": "青狼开始攀墙,变异巨狼冲入阵列,韩立出手救下指挥官。",
+      "mood": "Fierce",
+      "lighting": "Dusk",
+      "action": "Battle Clash",
+      "camera": "Dynamic Close-Up",
+      "visual": {
+        "composition": "Azure wolves scale the walls as a mutant giant wolf crashes into the line and Han Li intervenes",
+        "environment": "",
+        "character_pose": "Han Li rescuing the commander",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Azure wolves swarm up the wall, a mutant giant wolf smashes into the ranks, and Han Li leaps in to save the commander.",
+      "narration": "妖狼突袭指挥官,韩立金光一闪将其退走。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath nightfall as spiritual lights rain from the sky",
+        "environment": "Night sky, city outline, drifting spirit motes",
+        "character_pose": "",
+        "fx": "Falling spiritual particles with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles descending, calm mysterious mood, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第8集即将开始。",
+      "face_style_auto": {
+        "expression": "Ferocious",
+        "lighting": "Dramatic Dusk",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep7_full/scene_022.png"
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+[
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": false,
+        "has_object": true,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "",
+        "composition": "Immortal realm sky veiled in clouds,golden scroll unfurling",
+        "camera": "Static shot",
+        "action": "Title reveal"
+      },
+      "prompt_text": "Xianxia opening,mist-shrouded immortal sky,golden scroll unfurling,spirit particles drifting,wide cinematic shot,film-grade lighting,4K"
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "golden scroll": 0.902191698551178
+      },
+      "primary_element": "golden scroll"
+    },
+    "comparison": {
+      "matches": [
+        "物体存在：卷轴"
+      ],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 0,
+    "image_path": "./outputs/images/test_optimized/scene_001.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "static",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Motionless,feeling the heat",
+        "composition": "Han Li lying on gray-green sand",
+        "camera": "Top-down wide shot",
+        "action": "Lying motionless"
+      },
+      "prompt_text": "Han Li lying on gray-green sand,motionless,feeling the ground's dry heat."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "golden scroll": 0.39538589119911194,
+        "desert background": 0.47020992636680603
+      },
+      "primary_element": "desert background"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [
+        "角色未检测到"
+      ],
+      "extra": []
+    },
+    "suggestions": [
+      "⚠ 角色缺失：prompt中描述了角色但图像中未检测到。建议检查prompt中角色描述的权重和位置"
+    ],
+    "scene_id": 1,
+    "image_path": "./outputs/images/test_optimized/scene_002.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": false,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "",
+        "composition": "Three dazzling suns and four faint lunar phantoms in the sky",
+        "camera": "Sky pan",
+        "action": "Observing the sky"
+      },
+      "prompt_text": "Three dazzling suns and four hazy lunar silhouettes appear in the sky."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "sky background": 0.9578285813331604
+      },
+      "primary_element": "sky background"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 2,
+    "image_path": "./outputs/images/test_optimized/scene_003.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": false,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "moderate",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Unpleasant expression",
+        "composition": "Han Li recalls the spatial node ordeal,his expression darkens",
+        "camera": "Close-up on face",
+        "action": "Recalling"
+      },
+      "prompt_text": "Han Li recalls the spatial-node ordeal,his expression turning grim."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "character facing camera": 0.3272254168987274,
+        "character side view": 0.1812243014574051,
+        "close-up shot": 0.3520694673061371
+      },
+      "primary_element": "close-up shot"
+    },
+    "comparison": {
+      "matches": [
+        "角色存在"
+      ],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 3,
+    "image_path": "./outputs/images/test_optimized/scene_004.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": false,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Wracked by the restriction's pain",
+        "composition": "Han Li recalls separation from Ice Phoenix",
+        "camera": "Medium shot",
+        "action": "Enduring pain"
+      },
+      "prompt_text": "Han Li recalls being separated from Ice Phoenix and the agony of the restriction flaring up."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "character facing camera": 0.13627788424491882,
+        "character side view": 0.49897274374961853,
+        "character with action": 0.27017706632614136
+      },
+      "primary_element": "character side view"
+    },
+    "comparison": {
+      "matches": [
+        "角色存在"
+      ],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 4,
+    "image_path": "./outputs/images/test_optimized/scene_005.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": false,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Performing the Nascent Soul Void method",
+        "composition": "Han Li uses Nascent Soul Void method,energy flowing",
+        "camera": "Energy close-up",
+        "action": "Casting spell"
+      },
+      "prompt_text": "Han Li uses the Nascent Soul Void method,channeling its vast essence into his flesh."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "character side view": 0.1265869438648224,
+        "golden scroll": 0.3755296468734741,
+        "character with action": 0.2322298288345337
+      },
+      "primary_element": "golden scroll"
+    },
+    "comparison": {
+      "matches": [
+        "角色存在"
+      ],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 5,
+    "image_path": "./outputs/images/test_optimized/scene_006.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "moderate",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Straining to tilt head",
+        "composition": "Han Li strains to tilt his head,sees endless gray-green gravel",
+        "camera": "Wide pan",
+        "action": "Turning head"
+      },
+      "prompt_text": "Han Li strains to tilt his head,revealing an endless expanse of gray-green gravel."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "desert background": 0.8488099575042725
+      },
+      "primary_element": "desert background"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [
+        "角色未检测到"
+      ],
+      "extra": []
+    },
+    "suggestions": [
+      "⚠ 角色缺失：prompt中描述了角色但图像中未检测到。建议检查prompt中角色描述的权重和位置"
+    ],
+    "scene_id": 6,
+    "image_path": "./outputs/images/test_optimized/scene_007.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": false,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "",
+        "composition": "Suns reduce from three to two to one,sky darkening",
+        "camera": "Sky time-lapse",
+        "action": "Watching sunset"
+      },
+      "prompt_text": "The suns dwindle from three to two to one as the sky begins to dim."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "golden scroll": 0.9931459426879883
+      },
+      "primary_element": "golden scroll"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 7,
+    "image_path": "./outputs/images/test_optimized/scene_008.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": true,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "Eyes wide,staring",
+        "composition": "Han Li's eyes widen,staring upward",
+        "camera": "Extreme eye close-up",
+        "action": "Focusing gaze"
+      },
+      "prompt_text": "Han Li's eyes widen,faint blue flickers in his pupils as he stares into the sky."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "close-up shot": 0.8809977769851685
+      },
+      "primary_element": "close-up shot"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [
+        "角色未检测到"
+      ],
+      "extra": []
+    },
+    "suggestions": [
+      "⚠ 角色缺失：prompt中描述了角色但图像中未检测到。建议检查prompt中角色描述的权重和位置"
+    ],
+    "scene_id": 8,
+    "image_path": "./outputs/images/test_optimized/scene_009.png"
+  },
+  {
+    "prompt_analysis": {
+      "elements": {
+        "has_character": false,
+        "has_object": false,
+        "has_environment": true,
+        "viewpoint": "unknown",
+        "shot_type": "unknown",
+        "action_type": "unknown",
+        "facing_direction": "unknown"
+      },
+      "expected": {
+        "character_pose": "",
+        "composition": "Over twenty black dots appear in the sky,diving down",
+        "camera": "Sky to ground",
+        "action": "Sensing threat"
+      },
+      "prompt_text": "Shrill screeches echo as over twenty black dots dive from the sky."
+    },
+    "image_analysis": {
+      "dimensions": {
+        "width": 1536,
+        "height": 864
+      },
+      "aspect_ratio": 1.7777777777777777,
+      "detected_elements": {
+        "sky background": 0.15936829149723053,
+        "character with action": 0.1550769954919815,
+        "static character": 0.4138163924217224
+      },
+      "primary_element": "static character"
+    },
+    "comparison": {
+      "matches": [],
+      "mismatches": [],
+      "missing": [],
+      "extra": []
+    },
+    "suggestions": [],
+    "scene_id": 9,
+    "image_path": "./outputs/images/test_optimized/scene_010.png"
+  }
+]

@@ -1,0 +1,798 @@
+{
+  "episode": 50,
+  "title": "Divine Sense Search Failed · Han Li Hides",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第50集:神念搜寻失败·韩立隐藏。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "怎么可能,那人灵力气息消失了,一点痕迹都没有留下。",
+      "mood": "Shocked",
+      "lighting": "Mixed Lighting",
+      "action": "Shocked Discovery",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Huangliang Spirit Lord suddenly opens eyes, full face shocked, how possible, that person's spiritual power aura disappeared, no trace left",
+        "environment": "Sky above, two searching",
+        "character_pose": "Huangliang shocked, eyes wide",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord suddenly opens eyes, full face shocked, how possible, that person's spiritual power aura disappeared, no trace left.",
+      "narration": "黄粱灵君蓦然睁开双目,满脸的震惊,那人灵力气息消失了,一点痕迹都没有。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "我也没有找到那人。这种情况,要么对方修为远超我等,要么就是这人施展什么独特秘术,可以将气息遮蔽的连我们的神念都无法探查到分毫。否则,哪怕他已经陨落掉了,气息短时间内也不会散的如此彻底。",
+      "mood": "Analyzing",
+      "lighting": "Mixed Lighting",
+      "action": "Analyze Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan Cangqi also mutters, I also didn't find that person, this situation, either opponent's cultivation far exceeds us, or this person uses unique secret technique, can hide aura so our divine sense cannot detect at all, otherwise even if he died, aura wouldn't disperse so completely in short time",
+        "environment": "Sky above, two analyzing",
+        "character_pose": "Huan Cangqi analyzing, thoughtful",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Cangqi also mutters, I also didn't find that person, this situation, either opponent's cultivation far exceeds us, or this person uses unique secret technique, can hide aura so our divine sense cannot detect at all, otherwise even if he died, aura wouldn't disperse so completely in short time.",
+      "narration": "寰天奇也喃喃道,我也没有找到那人,要么对方修为远超我等,要么就是施展独特秘术。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "那肯定是第二个原因了!别忘了,先前此人曾经潜藏在附近,我们却丝毫都没发现。看来这人真是精通某种极其厉害的隐匿神通。",
+      "mood": "Realizing",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Hidden Ability",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's eyebrows wrinkle into a ball, definitely second reason, don't forget, previously this person hid nearby, we didn't discover at all, seems this person really masters extremely powerful concealment divine ability",
+        "environment": "Sky above, two discussing",
+        "character_pose": "Huangliang frowning, realizing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's eyebrows wrinkle into a ball, definitely second reason, don't forget, previously this person hid nearby, we didn't discover at all, seems this person really masters extremely powerful concealment divine ability.",
+      "narration": "那肯定是第二个原因了,先前此人曾经潜藏在附近,我们却丝毫都没发现。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这可麻烦大了!有这等通,我等岂不是根本无法找到此人了。",
+      "mood": "Worried",
+      "lighting": "Mixed Lighting",
+      "action": "Worry About Difficulty",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Huan Cangqi's mouth corner can't help twitching, this trouble big, with such ability, wouldn't we be unable to find this person at all",
+        "environment": "Sky above, two worried",
+        "character_pose": "Huan Cangqi worried, mouth twitching",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Cangqi's mouth corner can't help twitching, this trouble big, with such ability, wouldn't we be unable to find this person at all.",
+      "narration": "寰天奇嘴角不禁抽搐一下,这可麻烦大了,有这等通,我等根本无法找到此人。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "这可不一定,我等还有机会的。那人隐匿起来了,肯定无法再施展先前那种遁术逃出多远了,就在数千里之内的样子。我们只要发动人手,将这些区域全部控制住。一点点的寻觅,并且用你幻焰蛾的千蛾之术协助寻找。我就不信他还真能藏到哪里去。",
+      "mood": "Determined",
+      "lighting": "Mixed Lighting",
+      "action": "Plan Search Strategy",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's eyes cold light flashes, not necessarily, we still have chance, that person concealed, definitely can't use previous escape technique far, within few thousand li, we just mobilize people, control all these areas, search bit by bit, use your Illusion Flame Moth's Thousand Moth Technique to assist, I don't believe he can really hide",
+        "environment": "Sky above, two planning",
+        "character_pose": "Huangliang determined, planning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's eyes cold light flashes, not necessarily, we still have chance, that person concealed, definitely can't use previous escape technique far, within few thousand li, we just mobilize people, control all these areas, search bit by bit, use your Illusion Flame Moth's Thousand Moth Technique to assist, I don't believe he can really hide.",
+      "narration": "这可不一定,我等还有机会的,那人隐匿起来了,肯定就在数千里之内。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "千蛾之术!这可有些损耗幻焰蛾的精元。算了,为此动用一下此术,应该还算值得的。不过,那块落日晶……",
+      "mood": "Hesitant",
+      "lighting": "Mixed Lighting",
+      "action": "Mention Sunset Crystal",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan Cangqi somewhat reluctant nods, Thousand Moth Technique, this somewhat depletes Illusion Flame Moth's essence, forget it, worth using for this, but that Sunset Crystal",
+        "environment": "Sky above, two discussing",
+        "character_pose": "Huan Cangqi hesitant, mentioning treasure",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Cangqi somewhat reluctant nods, Thousand Moth Technique, this somewhat depletes Illusion Flame Moth's essence, forget it, worth using for this, but that Sunset Crystal.",
+      "narration": "千蛾之术,这可有些损耗幻焰蛾的精元,不过那块落日晶。",
+      "face_style_auto": {
+        "expression": "Hesitant",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "嘿嘿,只要能寻回灵族之物,落日晶在下一定双手奉上。就算追不回的,在下也会分给寰兄一半此晶。",
+      "mood": "Assuring",
+      "lighting": "Mixed Lighting",
+      "action": "Promise Reward",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord seems decided, hehe, as long as can recover spirit race item, Sunset Crystal I will present with both hands, even if can't recover, I will give Huan brother half this crystal",
+        "environment": "Sky above, two discussing",
+        "character_pose": "Huangliang assuring, promising",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord seems decided, hehe, as long as can recover spirit race item, Sunset Crystal I will present with both hands, even if can't recover, I will give Huan brother half this crystal.",
+      "narration": "只要能寻回灵族之物,落日晶在下一定双手奉上,就算追不回的也会分给寰兄一半。",
+      "face_style_auto": {
+        "expression": "Assuring",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "好,有道友这话就行了,我这就将……",
+      "mood": "Agreeing",
+      "lighting": "Mixed Lighting",
+      "action": "Agree to Help",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan Cangqi slightly smiles, good, with daoist friend this word enough, I will",
+        "environment": "Sky above, two agreeing",
+        "character_pose": "Huan Cangqi agreeing, about to act",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Cangqi slightly smiles, good, with daoist friend this word enough, I will.",
+      "narration": "好,有道友这话就行了,我这就将幻焰蛾召唤出来。",
+      "face_style_auto": {
+        "expression": "Agreeing",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "忽然二人身后处一声长啸传出,接着仿佛天崩地裂的一声巨响,一股惊人灵波随之在后面冲天而起。",
+      "mood": "Alert",
+      "lighting": "Red and Mixed Light",
+      "action": "Xutian Breaks Free",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Suddenly behind two people long roar comes out, then like heaven collapsing earth splitting loud sound, shocking spiritual wave rushes skyward behind",
+        "environment": "Valley entrance, spiritual wave rising",
+        "character_pose": "Two turning around, shocked",
+        "fx": "Spiritual wave, red light, explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Suddenly behind two people long roar comes out, then like heaven collapsing earth splitting loud sound, shocking spiritual wave rushes skyward behind.",
+      "narration": "忽然二人身后处一声长啸传出,接着仿佛天崩地裂的一声巨响,一股惊人灵波冲天而起。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Red and Mixed Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一人一妖心中一凛,当即一回身望去。就见身后不远的飓风此刻已经消失了,但在原来的地方却有一朵十余丈大血莲滴溜溜的转个不停,在莲花中心处,旭天正面沉似水的望着二人,隐有凶光闪动。",
+      "mood": "Threatening",
+      "lighting": "Red Light",
+      "action": "Xutian on Blood Lotus",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Human and demon's hearts startle, immediately turn around look, see behind not far hurricane now disappeared, but in original place a dozen zhang large blood lotus spinning, in lotus center Xutian with face dark as water looks at two people, hidden fierce light flashing",
+        "environment": "Valley entrance, blood lotus appearing",
+        "character_pose": "Xutian on lotus, two turning around",
+        "fx": "Blood lotus, red light, fierce atmosphere",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Human and demon's hearts startle, immediately turn around look, see behind not far hurricane now disappeared, but in original place a dozen zhang large blood lotus spinning, in lotus center Xutian with face dark as water looks at two people, hidden fierce light flashing.",
+      "narration": "一人一妖心中一凛,当即一回身望去,就见身后有一朵十余丈大血莲,旭天正望着二人。",
+      "face_style_auto": {
+        "expression": "Threatening",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "显然此位对二人刚才的落井下石举动,洞悉的一清二楚。",
+      "mood": "Angry",
+      "lighting": "Red Light",
+      "action": "Xutian Knows Betrayal",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Obviously this one clearly sees through two people's previous adding insult to injury action, understands completely",
+        "environment": "Blood lotus, Xutian's face",
+        "character_pose": "Xutian angry, knowing betrayal",
+        "fx": "Red light, fierce atmosphere",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Obviously this one clearly sees through two people's previous adding insult to injury action, understands completely.",
+      "narration": "显然此位对二人刚才的落井下石举动,洞悉的一清二楚,眼中隐有凶光闪动。",
+      "face_style_auto": {
+        "expression": "Angry",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "旭天道友,你还想和我二人动手吗?那个骗了你东西的家伙,可是不知道躲到什么地方去了,我三人再耽搁一会儿,这人说不定就真的跑掉了。",
+      "mood": "Reasoning",
+      "lighting": "Mixed Lighting",
+      "action": "Reason with Xutian",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan Cangqi not fearful at all, instead calmly says, Xutian daoist friend, you still want to fight us two, that person who tricked you, doesn't know where hiding, we three delay more, this person might really escape",
+        "environment": "Sky above, three facing each other",
+        "character_pose": "Huan Cangqi reasoning, Xutian listening",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huan Cangqi not fearful at all, instead calmly says, Xutian daoist friend, you still want to fight us two, that person who tricked you, doesn't know where hiding, we three delay more, this person might really escape.",
+      "narration": "寰天奇淡淡说道,旭天道友,你还想和我二人动手吗,那个骗了你东西的家伙可能跑掉了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "哼,此事本尊不会就这么算了的,以后有机会,在下一定再领教二位的神通。",
+      "mood": "Threatening",
+      "lighting": "Red Light",
+      "action": "Xutian Threatens",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Xutian looks around, doesn't find Han Li's figure, then glares at two people, coldly says, hum, this matter I won't let go, later have chance, I will definitely learn your divine abilities",
+        "environment": "Blood lotus, Xutian's face",
+        "character_pose": "Xutian threatening, glaring",
+        "fx": "Red light, threatening atmosphere",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xutian looks around, doesn't find Han Li's figure, then glares at two people, coldly says, hum, this matter I won't let go, later have chance, I will definitely learn your divine abilities.",
+      "narration": "哼,此事本尊不会就这么算了的,以后有机会,在下一定再领教二位的神通。",
+      "face_style_auto": {
+        "expression": "Threatening",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随后,他足下血莲的莲瓣突然间合拢到了一起。此莲就载着旭天,一声呼啸的往谷外激射而去。没有多久,踪影全无了。",
+      "mood": "Departing",
+      "lighting": "Red Light",
+      "action": "Xutian Leaves",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Then his foot blood lotus petals suddenly close together, this lotus carries Xutian, with sound rushes toward valley exit, not long after, figure completely gone",
+        "environment": "Valley entrance, blood lotus leaving",
+        "character_pose": "Blood lotus leaving, Xutian inside",
+        "fx": "Red light, lotus flying away",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Then his foot blood lotus petals suddenly close together, this lotus carries Xutian, with sound rushes toward valley exit, not long after, figure completely gone.",
+      "narration": "随后,他足下血莲的莲瓣突然间合拢,载着旭天一声呼啸的往谷外激射而去。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君二人对于这位灵族玄灵的威胁之言,毫不在意。别说此地是人妖两族的地盘,灵族根本不可能在此久待,就算真的再对上对方,他们二人联手也稳占上风的。",
+      "mood": "Confident",
+      "lighting": "Mixed Lighting",
+      "action": "Unconcerned About Threat",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord two people for this spirit race profound spirit's threat words, don't care at all, this place is human demon two races' territory, spirit race impossible to stay long, even if really face opponent again, two people combined stable advantage",
+        "environment": "Sky above, two confident",
+        "character_pose": "Two unconcerned, confident",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord two people for this spirit race profound spirit's threat words, don't care at all, this place is human demon two races' territory, spirit race impossible to stay long, even if really face opponent again, two people combined stable advantage.",
+      "narration": "黄粱灵君二人对于灵族玄灵的威胁之言毫不在意,他们二人联手也稳占上风。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "故而这两位再稍微商量了一会儿后,就分头行事。他们准备召集人手,彻底封锁住数千里的大片区域,一定要将那浑水摸鱼的小子给搜出来。",
+      "mood": "Determined",
+      "lighting": "Mixed Lighting",
+      "action": "Plan Search",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "So these two slightly discuss more, then split up, they prepare to gather people, completely seal off several thousand li large area, must search out that mixed water catching fish fellow",
+        "environment": "Sky above, two planning",
+        "character_pose": "Two determined, planning",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "So these two slightly discuss more, then split up, they prepare to gather people, completely seal off several thousand li large area, must search out that mixed water catching fish fellow.",
+      "narration": "这两位再稍微商量了一会儿后,就分头行事,准备召集人手彻底封锁住数千里区域。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "这时,韩立已经身处二千里之外的一个小山脚下,脸上容颜大变,成了一名三缕长髯的中年人,身形也矮了数寸下去。",
+      "mood": "Disguised",
+      "lighting": "Natural Light",
+      "action": "Changed Appearance",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "At this time, Han Li already at two thousand li away small mountain foot, face greatly changed, became middle-aged man with three wisps long beard, body also shorter few inches",
+        "environment": "Mountain foot, natural landscape",
+        "character_pose": "Han Li disguised, sitting on rock",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this time, Han Li already at two thousand li away small mountain foot, face greatly changed, became middle-aged man with three wisps long beard, body also shorter few inches.",
+      "narration": "这时,韩立已经身处二千里之外的一个小山脚下,脸上容颜大变,成了一名中年人了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "此刻的他身上灵气全无,重新变回了一名再普通不过的炼体士,并且双目微闭的盘坐在一块青石上,脸上丝毫表情没有。",
+      "mood": "Hidden",
+      "lighting": "Natural Light",
+      "action": "Sitting Meditatively",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "At this moment his body has no spiritual power at all, again became ordinary body cultivator, eyes slightly closed cross-legged sitting on blue rock, face no expression",
+        "environment": "Mountain foot, rock, natural setting",
+        "character_pose": "Han Li meditating, no spiritual power",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "At this moment his body has no spiritual power at all, again became ordinary body cultivator, eyes slightly closed cross-legged sitting on blue rock, face no expression.",
+      "narration": "此刻的他身上灵气全无,重新变回了一名普通炼体士,双目微闭盘坐在青石上。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "过了一会儿,韩立忽然睁开了双目,嘴角带起一丝笑意,喃喃了一句,总算将体内的最后一丝火灵气也散尽了,除非他们亲自到跟前盘查,否则绝对无法辨认出的。",
+      "mood": "Satisfied",
+      "lighting": "Natural Light",
+      "action": "Opens Eyes Satisfied",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "After a while, Han Li suddenly opens eyes, mouth corner brings slight smile, mutters, finally scattered last trace fire spiritual power from body, unless they personally check face to face, otherwise absolutely cannot recognize",
+        "environment": "Mountain foot, rock",
+        "character_pose": "Han Li opening eyes, smiling",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After a while, Han Li suddenly opens eyes, mouth corner brings slight smile, mutters, finally scattered last trace fire spiritual power from body, unless they personally check face to face, otherwise absolutely cannot recognize.",
+      "narration": "韩立忽然睁开了双目,嘴角带起一丝笑意,总算将体内的最后一丝火灵气也散尽了。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "不过即使如此,韩立也没有现在就动身离开的意思。如今正是风头上的时候,即使他已经变化了相貌和气息,也不愿冒什么风险的。",
+      "mood": "Cautious",
+      "lighting": "Natural Light",
+      "action": "Decides to Stay",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "But even so, Han Li doesn't intend to leave now, now is peak of danger, even though already changed appearance and aura, doesn't want to take risks",
+        "environment": "Mountain foot, natural setting",
+        "character_pose": "Han Li thinking, cautious",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But even so, Han Li doesn't intend to leave now, now is peak of danger, even though already changed appearance and aura, doesn't want to take risks.",
+      "narration": "不过即使如此,韩立也没有现在就动身离开的意思,如今正是风头上的时候。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "于是他从青石上一跃而下,几个跳跃后向山上飞纵而去。",
+      "mood": "Moving",
+      "lighting": "Natural Light",
+      "action": "Jumps Up Mountain",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "So he jumps down from blue rock, several leaps later toward mountain flies",
+        "environment": "Mountain slope, natural landscape",
+        "character_pose": "Han Li jumping, climbing mountain",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "medium"
+        }
+      },
+      "prompt": "So he jumps down from blue rock, several leaps later toward mountain flies.",
+      "narration": "于是他从青石上一跃而下,几个跳跃后向山上飞纵而去,寻找隐藏地点。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "不久后,他就到了一块被无数藤蔓和灌木遮蔽的严严实实的山崖前。韩立四下打量了几眼,满意的点点头,随即深吸了口气,两只拳头蓦然金光灿灿,对准身前的石壁连环击出。",
+      "mood": "Preparing",
+      "lighting": "Natural Light",
+      "action": "Prepares to Punch Cave",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Not long after, arrives at cliff completely covered by countless vines and bushes, Han Li looks around several times, satisfied nods, then takes deep breath, two fists suddenly golden brilliant, toward stone wall continuously punches",
+        "environment": "Cliff covered with vines, stone wall",
+        "character_pose": "Han Li preparing, fists golden",
+        "fx": "Golden light on fists",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Not long after, arrives at cliff completely covered by countless vines and bushes, Han Li looks around several times, satisfied nods, then takes deep breath, two fists suddenly golden brilliant, toward stone wall continuously punches.",
+      "narration": "不久后,他就到了一块被无数藤蔓和灌木遮蔽的山崖前,两只拳头蓦然金光灿灿。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "轰隆隆的巨响接连传出后,一个数丈深的石洞,顿时浮现而出。他身形一晃,人就诡异的一下闪入其中。",
+      "mood": "Action",
+      "lighting": "Dark with Light",
+      "action": "Cave Created, Enters",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "After rumbling loud sounds continuously come out, several zhang deep stone cave suddenly appears, his body sways, person eerily flashes inside",
+        "environment": "Stone cave entrance, dark interior",
+        "character_pose": "Han Li entering cave, fast movement",
+        "fx": "Dust, stone fragments",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "After rumbling loud sounds continuously come out, several zhang deep stone cave suddenly appears, his body sways, person eerily flashes inside.",
+      "narration": "轰隆隆的巨响接连传出后,一个数丈深的石洞浮现而出,他身形一晃闪入其中。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Dark with Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "然后对着洞口处,反手又一拳击在洞顶上。顿时一堆碎石掉落而下,一下就将洞口堵死了。石洞立刻变得一片乌黑起来。",
+      "mood": "Sealing",
+      "lighting": "Dark",
+      "action": "Seals Cave Entrance",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Then toward cave entrance, backhand another punch hits cave top, immediately pile of broken stones falls down, instantly blocks cave entrance, stone cave immediately becomes pitch black",
+        "environment": "Cave interior, entrance being sealed",
+        "character_pose": "Han Li punching, stones falling",
+        "fx": "Stones falling, darkness",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Then toward cave entrance, backhand another punch hits cave top, immediately pile of broken stones falls down, instantly blocks cave entrance, stone cave immediately becomes pitch black.",
+      "narration": "然后对着洞口处,反手又一拳击在洞顶上,顿时一堆碎石掉落将洞口堵死了。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_025.png"
+    },
+    {
+      "id": 25,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "韩立却毫不在意,手掌一翻,一颗早就准备好的月光石出现在了手中。他抓起此石往洞顶上轻轻一拍,顿时在巨力之下,月光石轻易的嵌入了洞顶处。在淡淡莹光之下,石洞中顿时清晰了大半。",
+      "mood": "Illuminated",
+      "lighting": "Soft Moonlight",
+      "action": "Places Moonlight Stone",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li doesn't care at all, palm flips, moonstone already prepared appears in hand, he grabs stone toward cave top lightly pats, instantly under great force moonstone easily embeds in cave top, under faint glow, cave immediately clear most",
+        "environment": "Cave interior, moonstone illuminating",
+        "character_pose": "Han Li placing moonstone, cave lighting up",
+        "fx": "Soft moonlight glow",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li doesn't care at all, palm flips, moonstone already prepared appears in hand, he grabs stone toward cave top lightly pats, instantly under great force moonstone easily embeds in cave top, under faint glow, cave immediately clear most.",
+      "narration": "韩立手掌一翻,一颗月光石出现在了手中,轻轻一拍嵌入了洞顶处,石洞顿时清晰了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_026.png"
+    },
+    {
+      "id": 26,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "不久后,一道道神念从韩立所在小山上一波波扫过,韩立身上丝毫灵气没有,自然都一扫而过了,丝毫没有注意到他的存在。",
+      "mood": "Hidden",
+      "lighting": "Soft Moonlight",
+      "action": "Divine Sense Scans Pass",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Not long after, streams of divine sense from Han Li's small mountain wave after wave sweep, Han Li's body has no spiritual power at all, naturally all sweep past, didn't notice his existence at all",
+        "environment": "Cave interior, divine sense waves passing",
+        "character_pose": "Han Li sitting calmly, divine sense passing",
+        "fx": "Divine sense waves, passing through",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Not long after, streams of divine sense from Han Li's small mountain wave after wave sweep, Han Li's body has no spiritual power at all, naturally all sweep past, didn't notice his existence at all.",
+      "narration": "不久后,一道道神念从韩立所在小山上一波波扫过,却没有注意到他的存在。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft Moonlight",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_027.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第51集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep50_full/scene_028.png"
+    }
+  ]
+}

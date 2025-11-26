@@ -1,0 +1,645 @@
+{
+  "episode": 45,
+  "title": "Final Attack · Giant Defeated",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第45集:最后攻击·巨人败亡。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄粱灵君元婴身上黄光大放,手中绿色小剑蓦然自行飞了出去,绿光一闪,小剑就化为一头鹰首马身,生有一对青色羽翅的古怪灵兽,大口一张的狠狠扑向巨人。",
+      "mood": "Powerful",
+      "lighting": "Green and Yellow Light",
+      "action": "Launch Final Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Huangliang Spirit Lord's nascent soul body shines with yellow light, green small sword in hand suddenly flies out, green light flashes, sword transforms into eagle head horse body, strange spirit beast with cyan wings, opens mouth fiercely pounces at giant",
+        "environment": "Sky above, transforming beast",
+        "character_pose": "Nascent soul attacking, beast transforming",
+        "fx": "Yellow light, green sword transforming, beast pouncing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord's nascent soul body shines with yellow light, green small sword in hand suddenly flies out, green light flashes, sword transforms into eagle head horse body, strange spirit beast with cyan wings, opens mouth fiercely pounces at giant.",
+      "narration": "黄粱灵君元婴身上黄光大放,手中绿色小剑蓦然自行飞了出去,化为一头鹰首马身的古怪灵兽。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Green and Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随之他又冲空中一直翻滚不停的白色大印,凝重的一点指,大印一击之后,猛然一颤的没有再落下,反而滴溜溜的急转不停,化为一团白濛濛虚影。",
+      "mood": "Powerful",
+      "lighting": "White Light",
+      "action": "Activate Seal",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Then he points at white large seal constantly rolling in air, seriously points, seal after one strike, suddenly trembles doesn't fall, instead spins rapidly, transforms into white misty shadow",
+        "environment": "Sky above, seal transforming",
+        "character_pose": "Nascent soul pointing, seal spinning",
+        "fx": "White seal spinning, transforming",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Then he points at white large seal constantly rolling in air, seriously points, seal after one strike, suddenly trembles doesn't fall, instead spins rapidly, transforms into white misty shadow.",
+      "narration": "随之他又冲空中一直翻滚不停的白色大印,凝重的一点指,大印滴溜溜的急转不停。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "White Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "顿时附近空中浮现无数道颜色各异的丝丝霞光,齐往大印中聚集而去,让其体积在以惊人的速度迅速膨胀着,几个呼吸之间的工夫,大印就已经是原先的数倍大小。",
+      "mood": "Expanding",
+      "lighting": "Colorful Light",
+      "action": "Seal Expands",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Immediately nearby air appears countless colorful light threads, all gather toward large seal, making volume expand at shocking speed, in several breaths, seal already several times original size",
+        "environment": "Sky above, seal expanding",
+        "character_pose": "Seal expanding, colorful lights gathering",
+        "fx": "Colorful light threads, seal expanding",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Immediately nearby air appears countless colorful light threads, all gather toward large seal, making volume expand at shocking speed, in several breaths, seal already several times original size.",
+      "narration": "顿时附近空中浮现无数道颜色各异的丝丝霞光,齐往大印中聚集而去,大印迅速膨胀着。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "将小半天空都遮蔽在了其下,声势惊人异常,寰天奇遁光一敛,身形在巨人数十丈外也停下了下来,两手一抬,两团灰色电光同时浮现而出。",
+      "mood": "Preparing",
+      "lighting": "Gray Light",
+      "action": "Prepare Attack",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Covers small half of sky below, momentum shocking, Huan Tianqi's escape light stops, body stops dozens of zhang from giant, two hands lift, two gray lightning masses simultaneously appear",
+        "environment": "Sky above, Huan Cangqi preparing",
+        "character_pose": "Huan Cangqi with gray lightning, preparing",
+        "fx": "Large seal covering sky, gray lightning appearing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Covers small half of sky below, momentum shocking, Huan Tianqi's escape light stops, body stops dozens of zhang from giant, two hands lift, two gray lightning masses simultaneously appear.",
+      "narration": "将小半天空都遮蔽在了其下,声势惊人异常,寰天奇遁光一敛,两手一抬,两团灰色电光同时浮现。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "接着一合之下轰隆隆的闷雷声滚滚传来,一道数丈长的灰色巨刃浮现而出,虽然看似同一种神通,但此刃比起先前的长刀明显威力不可同日而语。",
+      "mood": "Powerful",
+      "lighting": "Gray Light",
+      "action": "Form Giant Blade",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Then merge together, rumbling thunder sounds roll, several zhang long gray giant blade appears, though seems same technique, this blade clearly more powerful than previous long knife",
+        "environment": "Sky above, giant blade forming",
+        "character_pose": "Giant gray blade, powerful",
+        "fx": "Thunder sounds, gray blade forming, expanding",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Then merge together, rumbling thunder sounds roll, several zhang long gray giant blade appears, though seems same technique, this blade clearly more powerful than previous long knife.",
+      "narration": "接着一合之下轰隆隆的闷雷声滚滚传来,一道数丈长的灰色巨刃浮现而出,威力不可同日而语。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gray Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰天奇半妖化的瞳孔冷冷盯着巨人一眼,突然抬手冲一直悬浮在空中不动的巨蛾一招手,顿时此蛾双翅一展,化为一道彩光飞射而下,最后竟然一下没入巨刃中不见了。",
+      "mood": "Merging",
+      "lighting": "Colorful Light",
+      "action": "Moth Merges",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Huan Tianqi's half-beast pupils coldly stare at giant, suddenly raises hand beckons giant moth suspended motionless in air, immediately moth wings spread, transforms into colorful light shoots down, actually enters giant blade and disappears",
+        "environment": "Sky above, moth merging",
+        "character_pose": "Huan Cangqi beckoning, moth merging into blade",
+        "fx": "Colorful light, moth transforming, merging",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huan Tianqi's half-beast pupils coldly stare at giant, suddenly raises hand beckons giant moth suspended motionless in air, immediately moth wings spread, transforms into colorful light shoots down, actually enters giant blade and disappears.",
+      "narration": "寰天奇半妖化的瞳孔冷冷盯着巨人一眼,突然抬手冲巨蛾一招手,此蛾化为彩光没入巨刃中。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随后,巨刃蓦然放出了冷森的霞光,他双手持刃对准巨人腰部,缓缓一斩,一道艳丽细线,一闪即逝的连绵斩出,巨人虽然灵智不高,但在黄梁灵君二人郑重的攻击之下,也感受到了危机。",
+      "mood": "Lethal",
+      "lighting": "Colorful Light",
+      "action": "Slash at Giant",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Then giant blade suddenly emits cold colorful light, he holds blade with both hands aims at giant's waist, slowly slashes, gorgeous thin line flashes continuously, giant though low intelligence, under Huangliang Spirit Lord two people's serious attacks, also senses crisis",
+        "environment": "Sky above, blade slashing",
+        "character_pose": "Huan Cangqi slashing, colorful line cutting",
+        "fx": "Colorful light, thin line slashing, cutting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Then giant blade suddenly emits cold colorful light, he holds blade with both hands aims at giant's waist, slowly slashes, gorgeous thin line flashes continuously, giant though low intelligence, under Huangliang Spirit Lord two people's serious attacks, also senses crisis.",
+      "narration": "随后,巨刃蓦然放出了冷森的霞光,他双手持刃对准巨人腰部,缓缓一斩,一道艳丽细线斩出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "它仰天一声长吼,独目猛然白光一闪,一颗白晶晶的圆球喷射而出,化为一团白光,正好抵住了扑上来的鹰首马身怪兽,接着血光一现,一道仿若实质的晶光又从瞳孔激射而出。",
+      "mood": "Defensive",
+      "lighting": "White and Red Light",
+      "action": "Giant Defends",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "It raises head long roar, single eye suddenly white light flashes, white crystal ball sprays out, transforms into white light mass, just blocks pouncing eagle head horse body monster, then red light appears, crystal light like substance shoots from pupil",
+        "environment": "Giant defending, multiple attacks",
+        "character_pose": "Giant roaring, white ball blocking, red crystal shooting",
+        "fx": "White ball, red crystal light, blocking and shooting",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "It raises head long roar, single eye suddenly white light flashes, white crystal ball sprays out, transforms into white light mass, just blocks pouncing eagle head horse body monster, then red light appears, crystal light like substance shoots from pupil.",
+      "narration": "它仰天一声长吼,独目猛然白光一闪,一颗白晶晶的圆球喷射而出,正好抵住了怪兽。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "White and Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "正好和那根横着斩来的艳丽细线,交织碰撞到了一起,诡异的一幕出现了,两根细线笔直交叉的接触之后,异芒交织闪烁,但整个过程始终无声无息,一时僵持不下起来。",
+      "mood": "Stalemate",
+      "lighting": "Colorful Light",
+      "action": "Lines Collide",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Just meets that horizontally slashing gorgeous thin line, interweave and collide, strange scene appears, two thin lines straight cross contact, strange light interweaves and flashes, but entire process silent, temporarily stalemate",
+        "environment": "Sky above, lines colliding",
+        "character_pose": "Two lines crossing, stalemate",
+        "fx": "Colorful lights interweaving, silent collision",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Just meets that horizontally slashing gorgeous thin line, interweave and collide, strange scene appears, two thin lines straight cross contact, strange light interweaves and flashes, but entire process silent, temporarily stalemate.",
+      "narration": "正好和那根横着斩来的艳丽细线,交织碰撞到了一起,两根细线笔直交叉接触,一时僵持不下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "面对头顶上的白色大印,巨人身形滴溜溜一转,石棒幻化出小山般虚影后,夹带着一股恶风,直奔黄粱灵君投了过来,接着它两手一握拳,肌肤下蹦出一根根蚯蚓般的粗大血管。",
+      "mood": "Desperate",
+      "lighting": "Yellow Light",
+      "action": "Giant Last Resistance",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Facing white large seal above head, giant body spins, stone rod transforms into hill-like shadow, carrying evil wind, directly throws at Huangliang Spirit Lord, then two hands clench fists, thick blood vessels like earthworms appear under skin",
+        "environment": "Giant resisting, throwing rod, clenching fists",
+        "character_pose": "Giant spinning, throwing rod, blood vessels bulging",
+        "fx": "Hill-like shadow, evil wind, blood vessels",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Facing white large seal above head, giant body spins, stone rod transforms into hill-like shadow, carrying evil wind, directly throws at Huangliang Spirit Lord, then two hands clench fists, thick blood vessels like earthworms appear under skin.",
+      "narration": "面对头顶上的白色大印,巨人身形滴溜溜一转,石棒幻化出小山般虚影后,直奔黄粱灵君投了过来。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "对准空中的大印就是狠狠一击,它竟凭一身神力,赤手空拳的要击落头顶的大印,天崩地裂般的一声巨响传来,大印一颤之下放出骄阳般的光芒。",
+      "mood": "Explosive",
+      "lighting": "Bright Light",
+      "action": "Giant Punches Seal",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Aims at large seal in air fiercely strikes, it actually relies on divine power, bare-handed wants to knock down large seal above head, earth-shattering loud sound, seal trembles and emits sun-like radiance",
+        "environment": "Giant punching seal, explosion",
+        "character_pose": "Giant punching upward, seal shaking",
+        "fx": "Explosion, sun-like radiance, shaking",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Aims at large seal in air fiercely strikes, it actually relies on divine power, bare-handed wants to knock down large seal above head, earth-shattering loud sound, seal trembles and emits sun-like radiance.",
+      "narration": "对准空中的大印就是狠狠一击,它竟凭一身神力,赤手空拳的要击落头顶的大印,天崩地裂般的一声巨响传来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Bright Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "让空中注视这一切的韩立,也不禁双目一眯,闭上了双目,随即感到一股冲天的气浪直卷而来,附近空气一阵激荡后,韩立整个身躯一晃,就要被卷走的样子。",
+      "mood": "Shaken",
+      "lighting": "Mixed Lighting",
+      "action": "Han Li Shaken",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Makes Han Li watching in air also squint eyes, closes eyes, immediately feels soaring air wave rolls over, nearby air shakes, Han Li's whole body shakes, about to be blown away",
+        "environment": "Sky above, Han Li shaken",
+        "character_pose": "Han Li closing eyes, body shaking",
+        "fx": "Air wave, shaking, blown",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Makes Han Li watching in air also squint eyes, closes eyes, immediately feels soaring air wave rolls over, nearby air shakes, Han Li's whole body shakes, about to be blown away.",
+      "narration": "让空中注视这一切的韩立,也不禁双目一眯,闭上了双目,随即感到一股冲天的气浪直卷而来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立心中一惊,不加思索下,体内法力略一流转,身形就此稳稳不动起来,当他再次睁开双目,望向下方后,人却一呆,只见下方不知何时的升起了一股黄濛濛的土云。",
+      "mood": "Surprised",
+      "lighting": "Yellow Light",
+      "action": "Discover Yellow Cloud",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li's heart startles, without thinking, internal mana slightly flows, body stabilizes, when opens eyes again, looks down, stunned, sees yellow misty earth cloud risen below",
+        "environment": "Sky above, yellow cloud below",
+        "character_pose": "Han Li stabilizing, discovering cloud",
+        "fx": "Yellow earth cloud, rising",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart startles, without thinking, internal mana slightly flows, body stabilizes, when opens eyes again, looks down, stunned, sees yellow misty earth cloud risen below.",
+      "narration": "韩立心中一惊,体内法力略一流转,身形就此稳稳不动起来,只见下方升起了一股黄濛濛的土云。",
+      "face_style_auto": {
+        "expression": "Surprised",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "将争斗的三方全都遮蔽进了里面,韩立略一犹豫,神念缓缓的放出,探进了土云中,里面正传出独目巨人的怒吼,和寰姓妖修的狂笑之声,并不时掺杂着阵阵的爆裂之音。",
+      "mood": "Chaotic",
+      "lighting": "Yellow Light",
+      "action": "Senses Chaos in Cloud",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Covers all three fighting sides inside, Han Li slightly hesitates, divine sense slowly releases, probes into earth cloud, inside transmits one-eyed giant's roar, and Huan demon cultivator's wild laughter, occasionally mixed with explosion sounds",
+        "environment": "Yellow cloud, chaos inside",
+        "character_pose": "Han Li sensing, chaos in cloud",
+        "fx": "Yellow cloud, roars, explosions",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Covers all three fighting sides inside, Han Li slightly hesitates, divine sense slowly releases, probes into earth cloud, inside transmits one-eyed giant's roar, and Huan demon cultivator's wild laughter, occasionally mixed with explosion sounds.",
+      "narration": "将争斗的三方全都遮蔽进了里面,里面正传出独目巨人的怒吼,和寰姓妖修的狂笑之声。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄色土云也翻滚不定,隐含呼啸声,倒是那黄粱灵君自始至终都没有任何声音发出,不知是施法到了关键时候,无法分心,还是已经胸有成竹,不屑再说什么。",
+      "mood": "Suspenseful",
+      "lighting": "Yellow Light",
+      "action": "Cloud Rolling",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Yellow earth cloud also rolls unsteadily, contains whistling sounds, but Huangliang Spirit Lord from beginning to end makes no sound, unknown if casting at key moment, cannot divide attention, or already confident,不屑再说什么",
+        "environment": "Yellow cloud rolling, silence",
+        "character_pose": "Cloud rolling, silent battle",
+        "fx": "Rolling cloud, whistling sounds",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Yellow earth cloud also rolls unsteadily, contains whistling sounds, but Huangliang Spirit Lord from beginning to end makes no sound, unknown if casting at key moment, cannot divide attention, or already confident.",
+      "narration": "黄色土云也翻滚不定,隐含呼啸声,倒是那黄粱灵君自始至终都没有任何声音发出。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立心中一动,朝原来那道同样潜伏附近的黑影望去,结果脸色微变,那疑似旭天的黑影,竟不知何时的消失不见了,韩立目光闪动几下,朝那朵昏沉沉的黄云瞅了一眼。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "Discover Xutian Gone",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li's heart moves, looks toward that shadow originally hiding nearby, face slightly changes, that suspected Xutian shadow, actually disappeared, Han Li's eyes flash several times, glances at that gloomy yellow cloud",
+        "environment": "Sky above, Han Li alert",
+        "character_pose": "Han Li discovering, alert",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's heart moves, looks toward that shadow originally hiding nearby, face slightly changes, that suspected Xutian shadow, actually disappeared, Han Li's eyes flash several times, glances at that gloomy yellow cloud.",
+      "narration": "韩立心中一动,朝原来那道黑影望去,结果脸色微变,那疑似旭天的黑影,竟不知何时的消失不见了。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "脸上现出若有所思之色,一声直透云霄的惨声从昏沉沉的黄云中传出,接着轰隆一声,什么东西重重的摔倒在地,让地面都颤抖了几下,随之里面一切声音都戛然而止。",
+      "mood": "Decisive",
+      "lighting": "Yellow Light",
+      "action": "Giant Falls",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Face shows thoughtful expression, piercing scream comes from gloomy yellow cloud, then boom sound, something heavily falls to ground, makes ground tremble several times, then all sounds inside suddenly stop",
+        "environment": "Yellow cloud, giant falling",
+        "character_pose": "Cloud, silence after fall",
+        "fx": "Scream, fall, ground shaking, silence",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Face shows thoughtful expression, piercing scream comes from gloomy yellow cloud, then boom sound, something heavily falls to ground, makes ground tremble several times, then all sounds inside suddenly stop.",
+      "narration": "脸上现出若有所思之色,一声直透云霄的惨声从黄云中传出,接着轰隆一声,什么东西重重的摔倒在地。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "韩立目中异色一闪,两手一掐诀,整个人就向下方无声无息的沉了下去,几乎与此同时,黄云中蓦然传出寰天奇得意的大笑,幸亏这个蠢物灵智不高,否则我等还真无法这么快就结果了它。",
+      "mood": "Moving",
+      "lighting": "Mixed Lighting",
+      "action": "Han Li Descends",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li's eyes flash strange light, two hands form seals, whole person silently sinks downward, almost at same time, Huan Tianqi's proud laughter suddenly comes from yellow cloud, fortunately this fool intelligence low, otherwise we really cannot finish it so quickly",
+        "environment": "Han Li descending, laughter in cloud",
+        "character_pose": "Han Li descending, alert",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li's eyes flash strange light, two hands form seals, whole person silently sinks downward, almost at same time, Huan Tianqi's proud laughter suddenly comes from yellow cloud, fortunately this fool intelligence low, otherwise we really cannot finish it so quickly.",
+      "narration": "韩立目中异色一闪,两手一掐诀,整个人就向下方无声无息的沉了下去,黄云中传出寰天奇得意的大笑。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "灵族叛逆肯定被吞噬了,我来切开的他的身体,看看那灵族叛逆到底带来的何物,竟然不惜万里的跑到此地来,黄粱灵君说,哦,那就有劳寰兄了,这块落阳晶也已经被我镇压住了。",
+      "mood": "Victorious",
+      "lighting": "Mixed Lighting",
+      "action": "Discuss Next Steps",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Spirit traitor definitely devoured, I'll cut open its body, see what spirit traitor brought, actually came thousands of li to here, Huangliang Spirit Lord says, oh, then trouble Fellow Daoist Huan, this Setting Sun Crystal also already suppressed by me",
+        "environment": "Yellow cloud, discussion",
+        "character_pose": "Discussion, planning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Spirit traitor definitely devoured, I'll cut open its body, see what spirit traitor brought, actually came thousands of li to here, Huangliang Spirit Lord says, oh, then trouble Fellow Daoist Huan, this Setting Sun Crystal also already suppressed by me.",
+      "narration": "灵族叛逆肯定被吞噬了,我来切开的他的身体,看看那灵族叛逆到底带来的何物,这块落阳晶也已经被我镇压住了。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "黄云终于渐渐散去,显露出了云中的一切,只见独目巨人已经遍体伤痕的躺在腥绿的血泊中,一只手和一只脚都掉落在躯体一旁,似乎是被硬生生斩断掉的,而巨大头颅已经变得稀巴烂。",
+      "mood": "Revealing",
+      "lighting": "Yellow Light",
+      "action": "Giant Corpse Revealed",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Yellow cloud finally gradually disperses, reveals everything inside, sees one-eyed giant already covered in wounds lying in stinking green blood pool, one hand and one foot fallen beside body, seem cut off, huge head already smashed",
+        "environment": "Giant corpse, defeated",
+        "character_pose": "Dead giant, dismembered",
+        "fx": "Cloud dispersing, dead giant revealed",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Yellow cloud finally gradually disperses, reveals everything inside, sees one-eyed giant already covered in wounds lying in stinking green blood pool, one hand and one foot fallen beside body, seem cut off, huge head already smashed.",
+      "narration": "黄云终于渐渐散去,显露出了云中的一切,独目巨人已经遍体伤痕的躺在腥绿的血泊中。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第46集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep45_full/scene_022.png"
+    }
+  ]
+}
+

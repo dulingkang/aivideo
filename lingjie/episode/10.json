@@ -1,0 +1,645 @@
+{
+  "episode": 10,
+  "title": "Camp Conspiracy · Black Phoenix Pursuit",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal sky with a golden scroll unfurling",
+        "environment": "Immortal realm firmament shrouded in clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effects",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, misty immortal sky with a golden scroll unfurling, drifting spiritual motes, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第10集:营地密谋·黑凤追踪。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "方夫人木屋内众人落座,韩立抱着熟睡女童进门。",
+      "mood": "Calm",
+      "lighting": "Lamplight",
+      "action": "Return to Camp",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Inside Madam Fang’s cabin the group sits as Han Li enters carrying the sleeping girl",
+        "environment": "",
+        "character_pose": "Han Li holding the sleeping child",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Inside Madam Fang’s cabin the others sit while Han Li walks in cradling the sleeping girl.",
+      "narration": "韩立携女童回营,方夫人、秦师兄等人齐聚木屋。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "方夫人与秦师兄讨论四波兽潮来历,眉头紧锁。",
+      "mood": "Wary",
+      "lighting": "Lamplight",
+      "action": "Speculate",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Madam Fang and Senior Brother Qin discuss the origin of the four beast tides with furrowed brows",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Madam Fang and Senior Brother Qin trade theories about the four waves of beast tides, both visibly tense.",
+      "narration": "二人皆疑此次兽潮背后另有高阶妖兽操纵，事有蹊跷。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "韩立听闻三境修士如云,微感震撼。",
+      "mood": "Contemplative",
+      "lighting": "Lamplight",
+      "action": "Process the News",
+      "camera": "Upward Close-Up",
+      "visual": {
+        "composition": "Han Li hears there are countless cultivators in the three realms and looks slightly shaken",
+        "environment": "",
+        "character_pose": "Han Li absorbing the information",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li listens to tales of cities teeming with cultivators and can’t help feeling awed.",
+      "narration": "听闻大城日有百万修士往来，他也暗自咋舌，大为震撼。",
+      "face_style_auto": {
+        "expression": "Concerned",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "赵府老管家与婢女奔入屋内,黛儿惊喜扑入怀中。",
+      "mood": "Reunion",
+      "lighting": "Lamplight",
+      "action": "Family Reunion",
+      "camera": "Action Medium Shot",
+      "visual": {
+        "composition": "The Zhao estate steward and maid rush in as Dai’er leaps into their arms",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The old steward and maid from the Zhao household dash inside, Dai’er squealing as she leaps into their embrace.",
+      "narration": "老管家带婢女赶到,黛儿含泪投怀,众人皆松气。",
+      "face_style_auto": {
+        "expression": "Pensive",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "方夫人与秦师兄向韩立说明七叶阴血芝的计划。",
+      "mood": "Serious",
+      "lighting": "Lamplight",
+      "action": "Explain the Mission",
+      "camera": "Table Medium Shot",
+      "visual": {
+        "composition": "Madam Fang and Senior Brother Qin outline the Seven-Leaf Yin Blood Ganoderma plan to Han Li",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Madam Fang and Senior Brother Qin brief Han Li on the scheme to seize the Seven-Leaf Yin Blood Ganoderma.",
+      "narration": "他们坦陈妖兽巢穴藏有阴血芝,需韩立破除金行禁制。",
+      "face_style_auto": {
+        "expression": "Joyful",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "秦师兄提出九玄明玉潭作为报酬,韩立沉吟。",
+      "mood": "Tempting",
+      "lighting": "Lamplight",
+      "action": "Offer Reward",
+      "camera": "Two-Person Close-Up",
+      "visual": {
+        "composition": "Senior Brother Qin mentions the Jiuxuan Bright Jade Pool as payment while Han Li ponders",
+        "environment": "",
+        "character_pose": "Han Li hesitating",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Senior Brother Qin offers the Jiuxuan Bright Jade Pool as payment, leaving Han Li thoughtful.",
+      "narration": "九玄明玉潭可助炼体突破,让韩立不得不心动。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "秦师兄等人交出灵心佩作保证,韩立接过查看。",
+      "mood": "Trusting",
+      "lighting": "Lamplight",
+      "action": "Exchange Tokens",
+      "camera": "Hand Close-Up",
+      "visual": {
+        "composition": "Senior Brother Qin and the others hand over Spirit Heart Tokens while Han Li inspects them",
+        "environment": "",
+        "character_pose": "Han Li examining the tokens",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "They place the Spirit Heart Tokens on the table and Han Li picks them up to inspect.",
+      "narration": "四枚灵心佩摆在案上,他确定其内含魂力,终于点头。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "众人散去后,韩立独坐小屋,思量金刚诀突破。",
+      "mood": "Reflective",
+      "lighting": "Moonlight",
+      "action": "Meditate",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "After the others depart, Han Li sits alone in the hut contemplating his next Vajra breakthrough",
+        "environment": "",
+        "character_pose": "Han Li seated alone",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After everyone leaves, Han Li sits alone in the cabin pondering how to advance the Vajra Art.",
+      "narration": "夜深人静,他端详玉佩,暗估九玄明玉潭的价值。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Warm Soft Light",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "第二日傍晚营地骚动,赵城主惊鸿一瞥现身。",
+      "mood": "Surprised",
+      "lighting": "Sunset",
+      "action": "Warlord Arrives",
+      "camera": "Plaza Wide Shot",
+      "visual": {
+        "composition": "The camp stirs at dusk on the second day as City Lord Zhao makes a fleeting appearance",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At sunset on the second day the camp erupts as City Lord Zhao appears in a flash.",
+      "narration": "营地传出赵城主归来的消息,引得众人纷纷围观。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Warm Sunset",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "赵城主与黛儿拜别众人,韩立静观。",
+      "mood": "Tender",
+      "lighting": "Sunset",
+      "action": "Bid Farewell",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "City Lord Zhao and Dai’er bow to everyone in farewell while Han Li watches quietly",
+        "environment": "",
+        "character_pose": "Han Li observing silently",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Zhao and Dai’er take their leave while Han Li observes in silence.",
+      "narration": "赵城主当面道谢,还送上金刚诀线索,准备启程离开。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Warm Sunset",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "韩立接过短剑信物,神情凝重。",
+      "mood": "Resolved",
+      "lighting": "Sunset",
+      "action": "Accept Token",
+      "camera": "Object Close-Up",
+      "visual": {
+        "composition": "Han Li receives the short-sword token with a solemn expression",
+        "environment": "",
+        "character_pose": "Han Li holding the short sword",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li takes the short-sword keepsake, his face grave.",
+      "narration": "得知可求取金刚诀六层心得,他郑重收下短剑。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Warm Sunset",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "狻狼突然狂跳,赵城主腿部黑芒一闪镇住。",
+      "mood": "Suspicious",
+      "lighting": "Dusk",
+      "action": "Restrain the Wolf",
+      "camera": "Dynamic Close-Up",
+      "visual": {
+        "composition": "The suanni wolf suddenly leaps wildly until black light flashes from the city lord’s leg to subdue it",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The suanni wolf erupts into a frenzy, only to be suppressed by a black gleam from Zhao City Lord’s leg.",
+      "narration": "座狼突暴走,他以诡异黑芒压制,韩立暗自心惊。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Warm Sunset",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "赵城主队伍消失在夜色,韩立凝望沉思。",
+      "mood": "Uneasy",
+      "lighting": "Night",
+      "action": "Watch Them Depart",
+      "camera": "Long Shot",
+      "visual": {
+        "composition": "City Lord Zhao’s group vanishes into the night as Han Li gazes after them thoughtfully",
+        "environment": "",
+        "character_pose": "Han Li staring into the distance",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Zhao’s retinue disappears into the night while Han Li watches, deep in thought.",
+      "narration": "他目送队伍远去，隐约察觉赵城主气息诡异，心生疑虑。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Cold Night",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "tianyuan_refuge_camp",
+      "duration": 4,
+      "description": "韩立独自离开营地,夜色中身形忽隐忽现。",
+      "mood": "Secretive",
+      "lighting": "Night",
+      "action": "Slip Away",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li leaves camp alone, his silhouette flickering in and out of the night",
+        "environment": "",
+        "character_pose": "Han Li sneaking away",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li departs the camp in secret, his figure phasing in and out of the moonlight.",
+      "narration": "他暗叹一声，决意亲自查清真相，悄然遁去追踪。",
+      "face_style_auto": {
+        "expression": "Skeptical",
+        "lighting": "Cold Night",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "赵城主等人骑乘狻狼狂奔,韩立远远跟随。",
+      "mood": "Pursuit",
+      "lighting": "Moonlight",
+      "action": "Trail Them",
+      "camera": "Aerial Tracking Shot",
+      "visual": {
+        "composition": "City Lord Zhao and his men race on suanni wolves across the wasteland while Han Li tails them from afar",
+        "environment": "",
+        "character_pose": "Han Li shadowing at a distance",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Zhao’s group rides their suanni wolves at full tilt while Han Li follows from far behind.",
+      "narration": "荒野之上，狻狼狂奔，韩立默默吊在远处，保持距离。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "赵城主抵达土丘停下,众人困惑环顾。",
+      "mood": "Uneasy",
+      "lighting": "Moonlight",
+      "action": "Pause at the Hill",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "Zhao City Lord halts atop a mound while his followers glance around in confusion",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Zhao City Lord reins in at a low hill, leaving his men puzzled as they look around.",
+      "narration": "深入百里，他忽然勒住坐骑，手下面面相觑，不明所以。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "土丘裂开巨口,狻狼与骑士被吞噬。",
+      "mood": "Shocking",
+      "lighting": "Moonlight",
+      "action": "Triggered Trap",
+      "camera": "Low Angle",
+      "visual": {
+        "composition": "The hill splits into a massive maw that devours a suanni and rider",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "The mound yawns open like a giant mouth, swallowing rider and wolf alike.",
+      "narration": "突然地面崩裂，一骑连人带狼瞬间没入深坑，惨遭不测。",
+      "face_style_auto": {
+        "expression": "Confused",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "赵城主冷笑施展妖异手法,其余护卫惨遭近身击杀。",
+      "mood": "Betrayal",
+      "lighting": "Moonlight",
+      "action": "Slaughter Followers",
+      "camera": "Dynamic Action Shot",
+      "visual": {
+        "composition": "City Lord Zhao smirks and unleashes eerie arts, cutting down the remaining guards at close range",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "City Lord Zhao sneers and employs sinister techniques, butchering the rest of his escorts up close.",
+      "narration": "紫袍大汉脸露阴厉，一出手便把心腹屠戮殆尽，心狠手辣。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "韩立隐藏暗处,目光冰冷注视异变。",
+      "mood": "Alert",
+      "lighting": "Moonlight",
+      "action": "Observe",
+      "camera": "Over-the-Shoulder",
+      "visual": {
+        "composition": "Han Li hides in the shadows, eyes cold as he watches the bizarre transformation",
+        "environment": "",
+        "character_pose": "Han Li concealed, observing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li stays hidden, gazing icily at the unfolding treachery.",
+      "narration": "暗处的韩立冷眼旁观，心知此人绝非本尊，定是假冒。",
+      "face_style_auto": {
+        "expression": "Pitiless",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wasteland_night",
+      "duration": 4,
+      "description": "土丘下冥雾翻涌,未知妖邪苏醒。",
+      "mood": "Ominous",
+      "lighting": "Moonlight",
+      "action": "Reveal the Threat",
+      "camera": "Low-Angle Wide Shot",
+      "visual": {
+        "composition": "Under the mound, ghostly mist surges as an unknown evil awakens",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Beneath the hill, nether mist churns and some unknown fiend begins to stir.",
+      "narration": "深坑冥雾翻滚，似有更大阴谋在夜色中浮现，暗藏杀机。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night as spiritual light rains down",
+        "environment": "Night sky, immortal city outline, drifting spirit particles",
+        "character_pose": "",
+        "fx": "Spiritual motes falling with a fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious mood, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第11集即将开始。",
+      "face_style_auto": {
+        "expression": "Foreboding",
+        "lighting": "Cold Moonlight",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep10_full/scene_022.png"
+    }
+  ]
+}

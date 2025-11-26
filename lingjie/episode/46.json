@@ -1,0 +1,499 @@
+{
+  "episode": 46,
+  "title": "Divine Blood Bottle · Sudden Ambush",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第46集:神血小瓶·突遭偷袭。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰天奇已经解除了半妖化,恢复了人类的相貌,除了面色苍白此外,并未有何损伤的样子,他此刻正指挥一口淡白色的飞刀,在切开巨人奇大无比的小腹。",
+      "mood": "Focused",
+      "lighting": "Mixed Lighting",
+      "action": "Cut Open Giant",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huan Tianqi already removed half-beast transformation, restored human appearance, except pale face, no damage, currently directing pale white flying knife, cutting open giant's huge belly",
+        "environment": "Giant corpse, cutting",
+        "character_pose": "Huan Cangqi directing knife, cutting",
+        "fx": "Flying knife, cutting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan Tianqi already removed half-beast transformation, restored human appearance, except pale face, no damage, currently directing pale white flying knife, cutting open giant's huge belly.",
+      "narration": "寰天奇已经解除了半妖化,恢复了人类的相貌,他此刻正指挥一口淡白色的飞刀,在切开巨人的小腹。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "而在尸体另一端,黄粱灵君单手把玩这一颗白濛濛的晶球,脸上带着淡淡的笑容,晶球赫然正是先前那颗体积不小的落阳晶,只是此刻不知被黄粱灵君加持了什么法术,变得如此小巧起来。",
+      "mood": "Satisfied",
+      "lighting": "Spirit Light",
+      "action": "Play with Crystal",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "At corpse's other end, Huangliang Spirit Lord single hand plays with white misty crystal ball, face with faint smile, crystal ball exactly that previously large Setting Sun Crystal, just now unknown what spell Huangliang added, became so small",
+        "environment": "Giant corpse, Huangliang nearby",
+        "character_pose": "Huangliang with crystal ball, satisfied",
+        "fx": "Crystal ball, shrinking spell",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At corpse's other end, Huangliang Spirit Lord single hand plays with white misty crystal ball, face with faint smile, crystal ball exactly that previously large Setting Sun Crystal, just now unknown what spell Huangliang added, became so small.",
+      "narration": "而在尸体另一端,黄粱灵君单手把玩这一颗白濛濛的晶球,脸上带着淡淡的笑容,晶球正是落阳晶。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "噗嗤一声,寰天奇的飞刀在划开巨人某个部位后,顿时从中间掉出了一堆东西来,其他东西都已经黯淡无光,唯有一个淡蓝色的玉碗,和一只晶莹鲜红的小瓶,还在泛着丝丝灵光。",
+      "mood": "Discovering",
+      "lighting": "Blue and Red Light",
+      "action": "Find Divine Blood",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Puff sound, Huan Tianqi's flying knife after cutting open giant's certain part, suddenly drops pile of things from middle, other things all dim, only pale blue jade bowl, and crystal bright red small bottle, still emitting spirit light threads",
+        "environment": "Giant belly, items falling",
+        "character_pose": "Items falling, jade bowl and bottle glowing",
+        "fx": "Blue and red light, items glowing",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Puff sound, Huan Tianqi's flying knife after cutting open giant's certain part, suddenly drops pile of things from middle, other things all dim, only pale blue jade bowl, and crystal bright red small bottle, still emitting spirit light threads.",
+      "narration": "噗嗤一声,寰天奇的飞刀在划开巨人某个部位后,顿时从中间掉出了一堆东西来,唯有一个淡蓝色的玉碗和一只鲜红的小瓶还在泛着灵光。",
+      "face_style_auto": {
+        "expression": "Excited",
+        "lighting": "Blue and Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "那只玉碗形成一层淡淡的蓝光,正好将小瓶罩在其中的样子,寰天奇目光一扫,片刻后认出了蓝色玉碗是器灵族的器物本体,但这个玉碗上灵性尽失,显然这名灵族陨落掉了。",
+      "mood": "Understanding",
+      "lighting": "Blue Light",
+      "action": "Recognize Artifact",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "That jade bowl forms layer of faint blue light, just covers small bottle inside, Huan Tianqi's eyes sweep, after moment recognizes blue jade bowl is spirit artifact race's artifact body, but this jade bowl spirit essence lost, obviously this spirit race member died",
+        "environment": "Jade bowl and bottle, examining",
+        "character_pose": "Huan Cangqi recognizing, understanding",
+        "fx": "Blue light, bowl protecting bottle",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "That jade bowl forms layer of faint blue light, just covers small bottle inside, Huan Tianqi's eyes sweep, after moment recognizes blue jade bowl is spirit artifact race's artifact body, but this jade bowl spirit essence lost, obviously this spirit race member died.",
+      "narration": "那只玉碗形成一层淡淡的蓝光,正好将小瓶罩在其中,寰天奇认出蓝色玉碗是器灵族的器物本体。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Blue Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "即使自身陨落掉,也要苦苦不舍护住的东西,十有八九就是他们要寻找的那物了,当寰天奇面带喜色的向小瓶抓去时,远处的黄粱灵君猛然面色大变的大喝一声,小心。",
+      "mood": "Warning",
+      "lighting": "Mixed Lighting",
+      "action": "Warning Shout",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Even though died, still desperately protects this thing, nine out of ten it's what they're looking for, when Huan Tianqi with happy expression reaches for small bottle, distant Huangliang Spirit Lord suddenly face changes greatly, shouts, careful",
+        "environment": "Wide shot, warning",
+        "character_pose": "Huan Cangqi reaching, Huangliang warning",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Even though died, still desperately protects this thing, nine out of ten it's what they're looking for, when Huan Tianqi with happy expression reaches for small bottle, distant Huangliang Spirit Lord suddenly face changes greatly, shouts, careful.",
+      "narration": "即使自身陨落掉,也要苦苦不舍护住的东西,十有八九就是他们要寻找的那物了,黄粱灵君大喝一声小心。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "寰天奇是何等存在,几乎在黄梁灵君提醒的同时,神念也已经感应到了一缕寒芒正向自己背后隐匿之极的袭来,他惊怒之下,不及多想的单足猛然一踩地面,整个人仿佛弩箭般的一下朝空中弹射而起。",
+      "mood": "Reacting",
+      "lighting": "Red Light",
+      "action": "Dodge Attack",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Huan Tianqi what existence, almost at Huangliang Spirit Lord's warning same time, divine sense already senses cold light extremely hidden attacking from behind, shocked and angry, without thinking single foot suddenly stamps ground, whole person like crossbow arrow instantly shoots upward",
+        "environment": "Ground, Huan Cangqi dodging",
+        "character_pose": "Huan Cangqi dodging upward, alert",
+        "fx": "Red light attacking, dodging upward",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huan Tianqi what existence, almost at Huangliang Spirit Lord's warning same time, divine sense already senses cold light extremely hidden attacking from behind, shocked and angry, without thinking single foot suddenly stamps ground, whole person like crossbow arrow instantly shoots upward.",
+      "narration": "寰天奇是何等存在,几乎在黄梁灵君提醒的同时,神念也已经感应到了一缕寒芒正向自己背后袭来。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一道血光几乎擦着其双足一闪而过,接着一道尺许大人影蓦然在附近闪现,身形一晃,一把向那只小瓶扑去,你敢,黄粱灵君怒喝一声,十指飞快的冲此人影接连弹出。",
+      "mood": "Attacking",
+      "lighting": "Red Light",
+      "action": "Xutian Ambushes",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Red light almost brushes his feet flashes past, then chi-sized figure suddenly flashes nearby, body flickers, grabs toward that small bottle pounces, how dare you, Huangliang Spirit Lord angrily shouts, ten fingers rapidly shoot toward this figure continuously",
+        "environment": "Ground, ambush happening",
+        "character_pose": "Xutian grabbing bottle, Huangliang attacking",
+        "fx": "Red light, fingers shooting, pouncing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Red light almost brushes his feet flashes past, then chi-sized figure suddenly flashes nearby, body flickers, grabs toward that small bottle pounces, how dare you, Huangliang Spirit Lord angrily shouts, ten fingers rapidly shoot toward this figure continuously.",
+      "narration": "一道血光几乎擦着其双足一闪而过,接着一道尺许大人影蓦然在附近闪现,一把向那只小瓶扑去。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "破空声大作,十余道黄色剑气席卷而去,但明显晚了一步的样子,人影发出一声得意的大笑后,一把将那小瓶吸到了手中,然后身形一晃,就化为一团血云奔空中遁走。",
+      "mood": "Fleeing",
+      "lighting": "Red Light",
+      "action": "Grab and Flee",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Air-breaking sounds loud, over ten yellow sword qi sweep over, but clearly late step, figure emits proud laughter, grabs that small bottle into hand, then body flickers, transforms into blood cloud rushes toward sky escapes",
+        "environment": "Sky above, fleeing",
+        "character_pose": "Xutian grabbing bottle, transforming to cloud",
+        "fx": "Yellow sword qi, red cloud, fleeing",
+        "motion": {
+          "type": "pan",
+          "direction": "bottom_to_top",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Air-breaking sounds loud, over ten yellow sword qi sweep over, but clearly late step, figure emits proud laughter, grabs that small bottle into hand, then body flickers, transforms into blood cloud rushes toward sky escapes.",
+      "narration": "破空声大作,十余道黄色剑气席卷而去,但明显晚了一步,人影一把将那小瓶吸到了手中,化为一团血云遁走。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "旭天,原来是你,你往哪儿走,堪堪躲过拦腰一斩的寰天奇,在低空一个盘旋,正好看清楚了偷袭自己之人,当即暴怒起来,神念一催,突然在血云上空间波动一起,一只丈许大巨蛾一下浮现而出。",
+      "mood": "Pursuing",
+      "lighting": "Colorful Light",
+      "action": "Summon Moth",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Xutian, so it's you, where are you going, just dodged waist slash Huan Tianqi, in low air circles, just sees clearly person who ambushed him, immediately furious, divine sense activates, suddenly space above blood cloud ripples, zhang-sized giant moth suddenly appears",
+        "environment": "Sky above, moth appearing",
+        "character_pose": "Huan Cangqi furious, moth appearing",
+        "fx": "Space rippling, giant moth appearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xutian, so it's you, where are you going, just dodged waist slash Huan Tianqi, in low air circles, just sees clearly person who ambushed him, immediately furious, divine sense activates, suddenly space above blood cloud ripples, zhang-sized giant moth suddenly appears.",
+      "narration": "旭天,原来是你,你往哪儿走,寰天奇看清楚了偷袭自己之人,当即暴怒起来,一只巨蛾浮现而出。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "碧绿妖目一闪,就二话不说的对准下方双翅一扇,一股七色彩雾直奔血云罩下,血云对这艳丽之极的雾气竟然敬畏异常,不敢硬接的一顿,就兜了一个圈子的想从一侧而逃。",
+      "mood": "Trapped",
+      "lighting": "Colorful Light",
+      "action": "Colorful Mist Traps",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Jade green demon eyes flash, without a word aims at below wings flap, seven-color mist directly covers blood cloud, blood cloud actually fears this extremely colorful mist, dares not block, pauses, circles trying to escape from side",
+        "environment": "Sky above, mist trapping cloud",
+        "character_pose": "Moth flapping, mist covering, cloud dodging",
+        "fx": "Seven-color mist, blood cloud dodging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Jade green demon eyes flash, without a word aims at below wings flap, seven-color mist directly covers blood cloud, blood cloud actually fears this extremely colorful mist, dares not block, pauses, circles trying to escape from side.",
+      "narration": "碧绿妖目一闪,就二话不说的对准下方双翅一扇,一股七色彩雾直奔血云罩下,血云不敢硬接。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Colorful Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "但就这略一耽搁,在黄梁灵君催使下,十几道黄色剑气就已经气势汹汹的射到跟前,他本人也化为一道黄虹直奔这里激射而来,血云中的旭天,不禁心中一凛。",
+      "mood": "Cornered",
+      "lighting": "Yellow Light",
+      "action": "Surrounded",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "But just this slight delay, under Huangliang Spirit Lord's control, dozen yellow sword qi already fiercely shoot to front, he himself also transforms into yellow rainbow directly rushes here, Xutian in blood cloud, cannot help heart shudders",
+        "environment": "Sky above, surrounded",
+        "character_pose": "Yellow sword qi attacking, rainbow approaching, cloud cornered",
+        "fx": "Yellow sword qi, yellow rainbow, blood cloud",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But just this slight delay, under Huangliang Spirit Lord's control, dozen yellow sword qi already fiercely shoot to front, he himself also transforms into yellow rainbow directly rushes here, Xutian in blood cloud, cannot help heart shudders.",
+      "narration": "但就这略一耽搁,十几道黄色剑气就已经气势汹汹的射到跟前,他本人也化为一道黄虹激射而来。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Yellow Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "就在这时,忽然他耳中传来了一个熟悉异常的话语声,旭天大人,快将神血给我,我用隐匿遁术先将此宝送走,一听此声音,旭天先是一愣,随即大喜,潜藏在一边之人,果然是噬炎。",
+      "mood": "Relieved",
+      "lighting": "Mixed Lighting",
+      "action": "Han Li's Voice",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "At this time, suddenly familiar voice comes to his ears, Xutian Lord, quickly give divine blood to me, I'll use hidden escape technique first send this treasure away, hearing this voice, Xutian first stunned, then overjoyed, person hiding aside, indeed Shiyan",
+        "environment": "Sky above, Xutian hearing voice",
+        "character_pose": "Xutian relieved, hearing familiar voice",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "At this time, suddenly familiar voice comes to his ears, Xutian Lord, quickly give divine blood to me, I'll use hidden escape technique first send this treasure away, hearing this voice, Xutian first stunned, then overjoyed, person hiding aside, indeed Shiyan.",
+      "narration": "就在这时,忽然他耳中传来了一个熟悉异常的话语声,旭天大人,快将神血给我,潜藏在一边之人,果然是噬炎。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "先前旭天虽然因为某种天赋神通,看破了这位同族的一点点行迹,但是心中也只是有些嘀咕而已,并不敢十分的肯定,现在一听这熟悉的声音,这位玄灵再无怀疑了。",
+      "mood": "Trusting",
+      "lighting": "Mixed Lighting",
+      "action": "Confirm Identity",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Previously Xutian though because some innate ability, saw through this clansman's slight traces, but heart only somewhat doubtful, not very certain, now hearing this familiar voice, this Xuangling no longer doubts",
+        "environment": "Xutian thinking, trusting",
+        "character_pose": "Xutian confirming, trusting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Previously Xutian though because some innate ability, saw through this clansman's slight traces, but heart only somewhat doubtful, not very certain, now hearing this familiar voice, this Xuangling no longer doubts.",
+      "narration": "先前旭天虽然看破了这位同族的一点点行迹,但是心中也只是有些嘀咕而已,现在一听这熟悉的声音,再无怀疑了。",
+      "face_style_auto": {
+        "expression": "Trusting",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一只手对准剑气五指一展的一挡,另一只手灵光一现,小瓶诡异的浮现而出,他随之手腕一抖,血色小瓶就直奔那声音发出的虚空处激射出去,只见血云一阵翻滚,瞬间凝聚成一朵血莲。",
+      "mood": "Handing Over",
+      "lighting": "Red Light",
+      "action": "Throw Bottle",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "One hand toward sword qi five fingers spread blocks, other hand spirit light flashes, small bottle eerily appears, then wrist shakes, blood-colored small bottle directly shoots toward void where voice comes from, sees blood cloud rolls, instantly condenses into blood lotus",
+        "environment": "Sky above, bottle flying",
+        "character_pose": "Xutian blocking, throwing bottle",
+        "fx": "Red light, bottle flying, blood lotus forming",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "One hand toward sword qi five fingers spread blocks, other hand spirit light flashes, small bottle eerily appears, then wrist shakes, blood-colored small bottle directly shoots toward void where voice comes from, sees blood cloud rolls, instantly condenses into blood lotus.",
+      "narration": "一只手对准剑气五指一展的一挡,另一只手灵光一现,小瓶诡异的浮现而出,血色小瓶就直奔那声音发出的虚空处激射出去。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "滴溜溜一转身,就将十余道剑光全都吸入了其中,而小瓶一下射出了十余丈去,一闪之后就在虚空中消失不见了,这一幕让飞射而来的寰天奇一愣,但随即大怒的一张口。",
+      "mood": "Shocked",
+      "lighting": "Red Light",
+      "action": "Bottle Disappears",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Spins around, absorbs dozen sword qi all inside, small bottle shoots out dozen zhang, flashes then disappears in void, this scene makes Huan Tianqi rushing over stunned, but immediately furious opens mouth",
+        "environment": "Sky above, bottle disappearing",
+        "character_pose": "Bottle disappearing, Huan Cangqi furious",
+        "fx": "Blood lotus absorbing, bottle disappearing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Spins around, absorbs dozen sword qi all inside, small bottle shoots out dozen zhang, flashes then disappears in void, this scene makes Huan Tianqi rushing over stunned, but immediately furious opens mouth.",
+      "narration": "滴溜溜一转身,就将十余道剑光全都吸入了其中,而小瓶一下射出了十余丈去,一闪之后就在虚空中消失不见了。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_016.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第47集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep46_full/scene_017.png"
+    }
+  ]
+}
+

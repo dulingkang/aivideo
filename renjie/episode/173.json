@@ -1,0 +1,761 @@
+{
+  "episode": 173,
+  "title": "血虹争锋 · 御风车",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "片头卷轴翻开，字幕提示“上一回 · 荒地凶险”，背景转入草原与荒地交界。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll above wasteland meeting green prairie",
+        "environment": "Transition between dust storm sky and emerald grassland",
+        "character_pose": "",
+        "fx": "Gold particles drifting, light rays",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "xianxia title card, golden scroll opening over wasteland meeting prairie, cinematic lighting",
+      "narration": "我是云卷仙音，第173集《血虹争锋》敬请诸位观赏见证。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "九道遁光逼近草原边缘，画面展现远方初现的绿色地带。",
+      "mood": "Hopeful",
+      "lighting": "Daylight",
+      "action": "Approaching horizon",
+      "camera": "Aerial wide",
+      "visual": {
+        "composition": "Nine streaks over yellow wasteland with green line ahead",
+        "environment": "Dusty sky transitioning to prairie horizon",
+        "character_pose": "Small figures in formation",
+        "fx": "Heat haze, drifting dust",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "aerial shot of cultivators nearing green horizon beyond wasteland, cinematic hopeful mood",
+      "narration": "远处绿带初现，众人暗松一口气，却仍不敢停半步，只催遁光向前。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 3,
+      "description": "背后尘浪翻涌，白光爆鸣声从黄沙中疾速逼近。",
+      "mood": "Tense",
+      "lighting": "Dusty daylight",
+      "action": "Hearing threat",
+      "camera": "Rear tracking",
+      "visual": {
+        "composition": "Dust plume with white light streak emerging",
+        "environment": "Yellow sky full of flying sand",
+        "character_pose": "",
+        "fx": "Shockwave ripples",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "rear tracking shot of dust plume with piercing white light chasing, tense atmosphere",
+      "narration": "尖厉爆鸣自背后狂卷，黄尘中白光逼近，仿佛撕裂耳膜般震耳欲聋。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "白衫老者停下凝望，指出来者乃慕兰御风车。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "Warning",
+      "camera": "Medium close-up",
+      "visual": {
+        "composition": "Elder pointing backward, dust cloud behind",
+        "environment": "Sky above wasteland",
+        "character_pose": "Hand raised in warning",
+        "fx": "Dust motes",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "medium close-up of elder cultivator warning about approaching threat, dusty backdrop",
+      "narration": "白衫老者低喝御风车来袭，提醒车中必藏数位同阶法士强者。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "南陇侯掏出定星盘，抛出玉简安排三日后的集合坐标。",
+      "mood": "Urgent",
+      "lighting": "Daylight",
+      "action": "Issuing orders",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Leader handing glowing jade slips mid-air",
+        "environment": "Hazy sky over wasteland",
+        "character_pose": "Figures reaching for slips",
+        "fx": "Rune-lit compass disk",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator leader distributing glowing jade slips mid-air, urgent planning scene",
+      "narration": "南陇侯亮出定星盘，掷玉简叮嘱三日后按址再会，切勿延误。",
+      "face_style_auto": {
+            "expression": "Determined",
+            "lighting": "Neutral",
+            "detail": "Natural",
+            "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "九人同时变换遁光，各自冲向不同方向拉开距离。",
+      "mood": "Dynamic",
+      "lighting": "Daylight",
+      "action": "Splitting up",
+      "camera": "Aerial 360 pan",
+      "visual": {
+        "composition": "Multiple light trails diverging from central point",
+        "environment": "Dusty wasteland sky",
+        "character_pose": "Silhouettes streaking away",
+        "fx": "Colored light trails",
+        "motion": {
+          "type": "pan",
+          "speed": "medium"
+        }
+      },
+      "prompt": "aerial shot of cultivators splitting in different directions with colored trails, dynamic energy",
+      "narration": "众人领命四散，金白黑虹交织撕开尘幕朝不同方位蜿蜒遁逃。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "韩立披上血色披风，血虹遁光一闪冲向草原深处。",
+      "mood": "Resolute",
+      "lighting": "Bright daylight",
+      "action": "Accelerating",
+      "camera": "Three-quarter tracking",
+      "visual": {
+        "composition": "Han Li wrapped in crimson cloak becoming streak",
+        "environment": "Sky transitioning to green land",
+        "character_pose": "Forward-leaning flight",
+        "fx": "Crimson aura, spark trails",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Han Li in crimson cloak forming blood-red streak flying toward prairie, fast tracking shot",
+      "narration": "韩立披上血色披风，化作血虹直指草原最浓绿意，疾驰不休向南。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 7,
+      "duration": 3,
+      "description": "御风车细节特写，骨白车厢与暗红木翅震动卷起雷光符纹。",
+      "mood": "Foreboding",
+      "lighting": "High contrast",
+      "action": "Detail reveal",
+      "camera": "Orbit close-up",
+      "visual": {
+        "composition": "Bone chariot body with wooden wings and glowing runes",
+        "environment": "Dust-laden sky",
+        "character_pose": "",
+        "fx": "Crackling lightning etchings",
+        "motion": {
+          "type": "orbit",
+          "speed": "medium"
+        }
+      },
+      "prompt": "close orbit shot of bone wind chariot with carved runes and wooden wings beating, ominous energy",
+      "narration": "镜头贴近御风车骨白车厢，暗红木翅振鸣牵出密集雷纹光耀惊心。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "御风车停驻，高空四名法士化作不同色彩的遁光分散而去。",
+      "mood": "Strategic",
+      "lighting": "Daylight",
+      "action": "Deploying pursuers",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Chariot releasing four auric silhouettes",
+        "environment": "Upper air above wasteland",
+        "character_pose": "Figures stepping out on wings",
+        "fx": "Colored aura trails",
+        "motion": {
+          "type": "split",
+          "speed": "fast"
+        }
+      },
+      "prompt": "wind chariot releasing four robed figures in colored auras, wide aerial view, strategic feel",
+      "narration": "御风车骤停，四名法士化作白绿蓝黑遁光分头追击撕裂尘幕而去。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 9,
+      "duration": 3,
+      "description": "车身再次掉头，锁定韩立方向重新爆发光芒。",
+      "mood": "Menacing",
+      "lighting": "Harsh daylight",
+      "action": "Retargeting",
+      "camera": "Low angle tracking",
+      "visual": {
+        "composition": "Chariot banking sharply with light flares",
+        "environment": "Dust-split sky",
+        "character_pose": "",
+        "fx": "Sonic ripples",
+        "motion": {
+          "type": "tracking",
+          "speed": "fast"
+        }
+      },
+      "prompt": "low angle shot of magical chariot banking and emitting bright light, targeting mood",
+      "narration": "短暂商议后车身掉头，杀意再度锁定韩立方向，毫不掩饰直逼而来。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "血虹与白光疾驰穿入草原上空，音爆撕开云层。",
+      "mood": "Intense",
+      "lighting": "Vivid daylight",
+      "action": "High-speed chase",
+      "camera": "Long-lens tracking",
+      "visual": {
+        "composition": "Two streaks over green prairie waves",
+        "environment": "Expansive grassland sky",
+        "character_pose": "",
+        "fx": "Sonic boom shockwaves",
+        "motion": {
+          "type": "tracking",
+          "speed": "very_fast"
+        }
+      },
+      "prompt": "long-lens shot of two light trails racing over prairie, sonic booms tearing clouds",
+      "narration": "两团光束穿入草海，血虹领跑白光紧咬掀起音爆犹如雷霆轰鸣。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "韩立停在半空布置剑阵，青色剑光铺展成鱼鳞。",
+      "mood": "Calculating",
+      "lighting": "Cool daylight",
+      "action": "Preparing formation",
+      "camera": "Medium wide",
+      "visual": {
+        "composition": "Han Li surrounded by layered sword lights",
+        "environment": "Sky above prairie clouds",
+        "character_pose": "Hands weaving seals",
+        "fx": "Sword gleams forming lattice",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "cultivator hovering mid-air arranging azure sword formation, fish-scale pattern around him",
+      "narration": "韩立骤停于半空，袖口洒出剑光铺展成鱼鳞剑幕森然列阵护身。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 12,
+      "duration": 3,
+      "description": "噬金虫云环绕韩立，化作三色护甲贴身缠绕。",
+      "mood": "Dominant",
+      "lighting": "Azure glow",
+      "action": "Activating armor",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Swirling insect cloud forming armor on body",
+        "environment": "Sky with swirling dust",
+        "character_pose": "Body upright, aura flaring",
+        "fx": "Tri-colored glows",
+        "motion": {
+          "type": "spiral"
+        }
+      },
+      "prompt": "close shot of insect cloud forming protective armor around cultivator, tri-colored glow",
+      "narration": "噬金虫云旋绕凝甲，三色光层贴体犹如战甲寒意逼人守候。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "韩立祭出银钟与剑光，同时朝御风车轰去。",
+      "mood": "Aggressive",
+      "lighting": "Mixed cool",
+      "action": "Launching attack",
+      "camera": "Dynamic tracking",
+      "visual": {
+        "composition": "Silver bell above, sword wave below heading toward chariot",
+        "environment": "Sky with dust remnants",
+        "character_pose": "Han Li gesturing forward",
+        "fx": "Energy trails, shockwaves",
+        "motion": {
+          "type": "arc",
+          "speed": "fast"
+        }
+      },
+      "prompt": "dynamic shot of silver bell and azure sword wave racing toward magical chariot, intense action",
+      "narration": "韩立双指一弹，银钟青虹并起直扑御风车势若惊涛狂啸。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "穆姓法士现身，托着蓝色宝珠撑起光幕抵挡。",
+      "mood": "Confident",
+      "lighting": "Blue glow",
+      "action": "Defending",
+      "camera": "Low angle",
+      "visual": {
+        "composition": "Elder floating above chariot with blue sphere overhead",
+        "environment": "Bright sky with energy waves",
+        "character_pose": "Hand raised, aura swirling",
+        "fx": "Blue barrier shimmering",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "low-angle shot of elder cultivator holding glowing blue orb projecting barrier, confident stance",
+      "narration": "车顶蓝光隆起，穆姓法士托珠立于白光上空稳守如山岳。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cool",
+        "detail": "Stylized",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "穆上师开口试探，韩立淡然回应。",
+      "mood": "Calculating",
+      "lighting": "Neutral daylight",
+      "action": "Dialogue",
+      "camera": "Shot-reverse",
+      "visual": {
+        "composition": "Two figures facing mid-air with speech gestures",
+        "environment": "Sky dotted with energy motes",
+        "character_pose": "Mouths moving, hand gestures",
+        "fx": "Subtle aura fluctuations",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "shot-reverse-shot of two airborne cultivators exchanging words, tension visible",
+      "narration": "他开口欲谈，语气阴寒，仍试图探知韩立缘由，以便布阵揣测。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "韩立发动剑阵，青色巨剑自阵中劈向蓝幕与巨蟒。",
+      "mood": "Determined",
+      "lighting": "Azure glow",
+      "action": "Heavy strike",
+      "camera": "Dynamic low angle",
+      "visual": {
+        "composition": "Massive sword descending with trails",
+        "environment": "Sky filled with energy clouds",
+        "character_pose": "",
+        "fx": "Sword aura shockwaves",
+        "motion": {
+          "type": "downward",
+          "speed": "fast"
+        }
+      },
+      "prompt": "dramatic shot of giant azure sword descending toward glowing barrier and serpent, intense energy",
+      "narration": "韩立淡笑拒绝，剑阵凝出百丈巨剑劈向光幕与蓝蟒杀机直露。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "蓝色丝网扩张，将巨剑困在其中。",
+      "mood": "Strategic",
+      "lighting": "Blue haze",
+      "action": "Trapping",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Web-like barrier wrapping sword",
+        "environment": "Blue-tinted energy field",
+        "character_pose": "",
+        "fx": "Runes pulsing on strands",
+        "motion": {
+          "type": "contract"
+        }
+      },
+      "prompt": "close shot of glowing blue energy web constricting massive sword, runes pulsing",
+      "narration": "湛蓝丝网骤展封锁巨剑，网纹闪烁将剑锋层层缠死暂遏锋芒。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "穆上师放出漫天冰晶，箭雨般扑向韩立与虫罩。",
+      "mood": "Menacing",
+      "lighting": "Cold blue",
+      "action": "Casting spell",
+      "camera": "Wide overhead",
+      "visual": {
+        "composition": "Countless ice shards raining down",
+        "environment": "Sky swirling with snow-like motes",
+        "character_pose": "Elder gesturing downward",
+        "fx": "Frost trails",
+        "motion": {
+          "type": "downward",
+          "speed": "fast"
+        }
+      },
+      "prompt": "wide shot of cultivator unleashing blizzard of crystalline shards at opponent, cold palette",
+      "narration": "穆上师骤施冰晶术，寒晶似箭雨倾泻直扑虫罩与韩立劲寒透骨。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "花篮古宝化白雾吸收冰晶，虫罩亮起挡下攻击。",
+      "mood": "Calm",
+      "lighting": "Soft white",
+      "action": "Neutralizing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "White mist swirl absorbing shards around glowing barrier",
+        "environment": "Mid-air battlefield",
+        "character_pose": "",
+        "fx": "Mist tendrils, shattering ice",
+        "motion": {
+          "type": "swirl"
+        }
+      },
+      "prompt": "magical white mist devouring ice shards around protective barrier, serene yet powerful",
+      "narration": "花篮古宝化白雾吞晶，虫罩复原只余冷雾在光膜间游走，若无其事。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "银钟震鸣，青虹趁机脱困再砸向穆上师。",
+      "mood": "Dominant",
+      "lighting": "Vibrant",
+      "action": "Breaking free",
+      "camera": "Dynamic tracking",
+      "visual": {
+        "composition": "Silver shockwave shattering web while sword surges",
+        "environment": "Blue fragments flying",
+        "character_pose": "",
+        "fx": "Concentric sound waves",
+        "motion": {
+          "type": "surge",
+          "speed": "fast"
+        }
+      },
+      "prompt": "dynamic shot of silver bell's shockwave shattering energy web as azure sword surges free",
+      "narration": "银钟轰鸣荡碎蓝网，青虹再脱困劈向法士头顶，威势滔天逼近。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 21,
+      "duration": 4,
+      "description": "韩立掌心显现湛蓝冰花，寒焰翻腾。",
+      "mood": "Intense",
+      "lighting": "Icy glow",
+      "action": "Revealing trump card",
+      "camera": "Extreme close-up",
+      "visual": {
+        "composition": "Hand holding intricate blue ice flower emitting flame",
+        "environment": "Darkened backdrop for contrast",
+        "character_pose": "Hand extended forward",
+        "fx": "Blue flame petals",
+        "motion": {
+          "type": "pulse"
+        }
+      },
+      "prompt": "extreme close-up of hand holding glowing blue ice flower emitting cold flame, dramatic lighting",
+      "narration": "韩立掌托湛蓝冰花，乾蓝冰焰翻腾令穆上师心生寒意难掩惧色。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 22,
+      "duration": 4,
+      "description": "穆上师召出黑色巨峰，山体暴涨压下。",
+      "mood": "Overwhelming",
+      "lighting": "Dark",
+      "action": "Summoning weapon",
+      "camera": "Low angle wide",
+      "visual": {
+        "composition": "Massive black mountain forming above chariot",
+        "environment": "Clouds swirling under heavy shadow",
+        "character_pose": "Elder gesturing upward",
+        "fx": "Black aura, falling debris",
+        "motion": {
+          "type": "descend",
+          "speed": "medium"
+        }
+      },
+      "prompt": "low angle shot of black magical mountain manifesting overhead, oppressive and heavy",
+      "narration": "穆上师怒祭黑色巨峰，山体涨至百丈，重压如坠陨星直逼而下。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 23,
+      "duration": 4,
+      "description": "韩立展开风雷翅，瞬移躲开巨峰重击。",
+      "mood": "Agile",
+      "lighting": "Electric",
+      "action": "Evasion",
+      "camera": "Tracking shot",
+      "visual": {
+        "composition": "Lightning wings flashing as figure blurs away from falling mountain",
+        "environment": "Sky split by lightning arcs",
+        "character_pose": "Body angled mid-shift",
+        "fx": "Silver sparks, afterimages",
+        "motion": {
+          "type": "blink"
+        }
+      },
+      "prompt": "lightning-clad cultivator blinking away from descending black mountain, energetic shot",
+      "narration": "韩立背生风雷翅，银电一闪瞬移避开重压，稳立远处残光未散，令人心惊。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 24,
+      "duration": 4,
+      "description": "韩立心生杀机，冰焰化火团压向穆上师，剑钟再度夹击。",
+      "mood": "Fierce",
+      "lighting": "Mixed cool",
+      "action": "Coordinated strike",
+      "camera": "Three-quarter shot",
+      "visual": {
+        "composition": "Blue flame sphere leading sword wave and silver bell toward elder",
+        "environment": "Sky swirling with clouds",
+        "character_pose": "Han Li gesturing commands",
+        "fx": "Trails of flame and light",
+        "motion": {
+          "type": "converge",
+          "speed": "fast"
+        }
+      },
+      "prompt": "three-quarter view of cultivator sending blue flame sphere with sword wave and silver bell converging on foe",
+      "narration": "他心念杀机，冰焰凝成火团扑向老者同时剑钟再成夹击逼迫命门。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 25,
+      "duration": 4,
+      "description": "穆上师祭出四面冰盾与光幕勉强撑住攻势。",
+      "mood": "Strained",
+      "lighting": "Blue-white",
+      "action": "Defensive casting",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "Elder encased by layered translucent shields",
+        "environment": "Mid-air lit by impacts",
+        "character_pose": "Hands weaving seals quickly",
+        "fx": "Cracking shields, sparks",
+        "motion": {
+          "type": "vibrate"
+        }
+      },
+      "prompt": "cultivator surrounded by multiple translucent ice shields shaking under assault, tense scene",
+      "narration": "穆上师口吐四面冰盾，护身光幕叠加勉强撑住青剑与银波险象环生。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 26,
+      "duration": 4,
+      "description": "韩立放出青冥针，冰盾被冻结成碎屑。",
+      "mood": "Decisive",
+      "lighting": "Cool flash",
+      "action": "Unleashing hidden weapon",
+      "camera": "Close-up action",
+      "visual": {
+        "composition": "Needle-like streaks piercing shields turning them to ice shards",
+        "environment": "Blue-lit mid-air",
+        "character_pose": "",
+        "fx": "Freezing effect, cracking sounds",
+        "motion": {
+          "type": "burst"
+        }
+      },
+      "prompt": "close action shot of numerous needles piercing magical shields, freezing and shattering them",
+      "narration": "韩立袖中青冥针爆射，冰盾被齐齐冻结化作碎屑飘散震慑满场。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 27,
+      "duration": 4,
+      "description": "黑色巨峰再次笼罩剑钟，穆上师同时操控御风车准备逃离。",
+      "mood": "Desperate",
+      "lighting": "Dark blue",
+      "action": "Suppressing and preparing escape",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Black mountain aura covering weapons while chariot shrinks",
+        "environment": "Sky with swirling clouds",
+        "character_pose": "Elder chanting hastily",
+        "fx": "Heavy black aura, shrinking chariot",
+        "motion": {
+          "type": "compress"
+        }
+      },
+      "prompt": "wide shot of dark mountain aura suppressing weapons as magical chariot reshapes for escape",
+      "narration": "穆上师再催黑峰罩落，禁锢青剑银钟同时操控御风车准备遁走。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 28,
+      "duration": 4,
+      "description": "韩立以风雷翅瞬移到车侧，冰焰手掌直探向穆上师。",
+      "mood": "Swift",
+      "lighting": "Electric blue",
+      "action": "Close assault",
+      "camera": "Dynamic close",
+      "visual": {
+        "composition": "Blurred figure appearing beside chariot with glowing hand",
+        "environment": "Lightning-split air",
+        "character_pose": "Arm thrust forward",
+        "fx": "Blue flames, sparks",
+        "motion": {
+          "type": "flash"
+        }
+      },
+      "prompt": "dynamic close shot of cultivator flashing beside chariot with hand wrapped in blue flame reaching forward",
+      "narration": "韩立雷光一闪现身车侧，乾蓝冰焰包裹手掌直探向老者胸膛要害。",
+      "face_style_auto": {
+        "expression": "Intense",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 29,
+      "duration": 4,
+      "description": "冰焰瞬间封住穆上师半身，丹阳真火艰难抵抗。",
+      "mood": "Critical",
+      "lighting": "Blue-white",
+      "action": "Freezing enemy",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "Elder partially encased in blue ice, small red flame at chest",
+        "environment": "Interior of chariot glowing",
+        "character_pose": "Body stiffening",
+        "fx": "Crystalline spread, steam",
+        "motion": {
+          "type": "creep"
+        }
+      },
+      "prompt": "close shot of enemy being encased in blue ice flames while small red fire struggles, dramatic lighting",
+      "narration": "冰焰瞬间封住半身，穆上师仅靠丹阳真火苦撑眼看魂飞魄散。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 30,
+      "duration": 4,
+      "description": "元婴遁出抱走宝珠逃向远空，韩立拎起躯壳冷眼以待。",
+      "mood": "Foreboding",
+      "lighting": "Dusk glow",
+      "action": "Aftermath",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Small blue light fleeing while Han Li holds frozen body mid-air",
+        "environment": "Prairie sky darkening",
+        "character_pose": "Han Li clutching corpse, looking into distance",
+        "fx": "Trailing light from nascent soul",
+        "motion": {
+          "type": "tracking",
+          "speed": "medium"
+        }
+      },
+      "prompt": "wide shot of nascent soul fleeing as cultivator holds frozen corpse, dramatic dusk sky",
+      "narration": "绝境之下元婴遁出抱走宝珠，躯壳坠落韩立冷眸锁定远空再谋追击。",
+      "face_style_auto": {
+        "expression": "Cold",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": ""
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "片尾画面：暮色笼罩草原，远空仍可见逃遁的蓝色光点。",
+      "mood": "Foreboding",
+      "lighting": "Dusk",
+      "action": "End teaser",
+      "camera": "Wide establishing",
+      "visual": {
+        "composition": "Prairie dusk with faint blue streak in sky",
+        "environment": "Rolling grass with long shadows",
+        "character_pose": "",
+        "fx": "Lingering dust sparks",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "dusk prairie landscape with faint blue light streak escaping in sky, ominous ending shot",
+      "narration": "我是云卷仙音，下集即将揭晓追击善后，敬请期待。",
+      "face_style_auto": null,
+      "image_path": ""
+    }
+  ]
+}
+

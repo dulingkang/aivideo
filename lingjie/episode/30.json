@@ -1,0 +1,686 @@
+{
+  "episode": 30,
+  "title": "Secret Discussion · Phantom Moth",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第30集:秘议·幻焰蛾。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "绿裙女子森然说道,一定要在人族接应之前找到叛逆夺回神血。",
+      "mood": "Serious",
+      "lighting": "Spirit Light",
+      "action": "Emphasize Mission",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Green-dressed woman says seriously, must find traitor and recover divine blood before humans respond",
+        "environment": "",
+        "character_pose": "Woman serious, old man listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Green-dressed woman says seriously, must find traitor and recover divine blood before humans respond.",
+      "narration": "绿裙女子说道,必须在人族接应之前找到叛逆夺回神血。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "黄石公说道,叛逆已被打成重伤,还被下了感应标记,只要守住人族出口就逃不掉。",
+      "mood": "Confident",
+      "lighting": "Spirit Light",
+      "action": "Explain Situation",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huang Shigong says traitor is already heavily injured and marked, just guard human exit to catch him",
+        "environment": "",
+        "character_pose": "Old man confident, woman agreeing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huang Shigong says traitor is already heavily injured and marked, just guard human exit to catch him.",
+      "narration": "黄石公说道,叛逆已重伤并被标记,守住人族出口就逃不掉。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "sunset_tomb_forest",
+      "duration": 4,
+      "description": "两名灵族低声商量一番后,灵光闪动,再次没入树木中不见了踪影。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Disappear",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Two spirit beings discuss in low voices, spirit light flashes, disappear into trees again",
+        "environment": "",
+        "character_pose": "Small figures disappearing into trees",
+        "fx": "Spirit light fading, transformation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two spirit beings discuss in low voices, spirit light flashes, disappear into trees again.",
+      "narration": "两名灵族低声商量后,灵光闪动,再次没入树木中消失不见。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "同一时间,落日城中的一间密室中,数名气度不凡之人围着一张石桌团坐。",
+      "mood": "Serious",
+      "lighting": "Interior Dim",
+      "action": "Secret Meeting",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Same time, in Sunset City secret chamber, several distinguished figures sit around stone table",
+        "environment": "",
+        "character_pose": "Multiple figures sitting around table",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Same time, in Sunset City secret chamber, several distinguished figures sit around stone table.",
+      "narration": "同一时间,落日城密室中,数名气度不凡之人围坐石桌商议。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "一名头陀对白袍中年人问道,那名灵族之人被困在落日之墓中,等着他们前去相救?",
+      "mood": "Inquiring",
+      "lighting": "Interior Dim",
+      "action": "Ask About Spirit",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Head monk asks white-robed middle-aged man, is that spirit person trapped in Sunset Tomb waiting for rescue",
+        "environment": "",
+        "character_pose": "Head monk asking, white-robed man listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Head monk asks white-robed middle-aged man, is that spirit person trapped in Sunset Tomb waiting for rescue.",
+      "narration": "头陀问道,灵族之人被困在落日之墓中,等着他们前去相救。",
+      "face_style_auto": {
+        "expression": "Inquiring",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "蓝城主缓缓说道,对方在逃亡途中被灵族追兵击成重伤,无法直接到落日城,需要接应。",
+      "mood": "Serious",
+      "lighting": "Interior Dim",
+      "action": "Explain Situation",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan says calmly, the other was heavily injured by spirit pursuers during escape, can't reach Sunset City directly, needs rescue",
+        "environment": "",
+        "character_pose": "City Lord Lan explaining, others listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan says calmly, the other was heavily injured by spirit pursuers during escape, can't reach Sunset City directly, needs rescue.",
+      "narration": "蓝城主说道,对方被灵族追兵击成重伤,无法直接到城,需要接应。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "黑肤大汉开口问道,那名灵族人身上带着何物,竟然连黄粱前辈都被请出了山。",
+      "mood": "Curious",
+      "lighting": "Interior Dim",
+      "action": "Ask About Treasure",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Black-skinned giant asks, what treasure does spirit person carry that even Huangliang Spirit Lord was invited",
+        "environment": "",
+        "character_pose": "Giant asking, others listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Black-skinned giant asks, what treasure does spirit person carry that even Huangliang Spirit Lord was invited.",
+      "narration": "黑肤大汉问道,灵族人身上带着何物,竟连黄粱前辈都被请出。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "一名身穿宽大黄袍,面色异常苍白的男子淡淡说道,他并非被请来,而是自己出府走走赶上了此事。",
+      "mood": "Calm",
+      "lighting": "Interior Dim",
+      "action": "Huangliang Speaks",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Man in wide yellow robe with extremely pale face says calmly, he wasn't invited but came out for walk and encountered this",
+        "environment": "",
+        "character_pose": "Huangliang Spirit Lord speaking, others respectful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Man in wide yellow robe with extremely pale face says calmly, he wasn't invited but came out for walk and encountered this.",
+      "narration": "黄袍男子淡淡说道,他并非被请来,而是自己出府走走赶上了此事。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "蓝城主苦笑一声,他也不清楚灵族那人带来了何物,但收到的命令是圣皇宫传出来的。",
+      "mood": "Serious",
+      "lighting": "Interior Dim",
+      "action": "Reveal Command Source",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan smiles bitterly, he doesn't know what spirit person brought, but command came from Saint Emperor Palace",
+        "environment": "",
+        "character_pose": "City Lord Lan serious, others shocked",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan smiles bitterly, he doesn't know what spirit person brought, but command came from Saint Emperor Palace.",
+      "narration": "蓝城主苦笑,不清楚灵族那人带来何物,但命令来自圣皇宫。",
+      "face_style_auto": {
+        "expression": "Serious",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "头陀和大汉闻听此言都是一惊,圣皇宫的命令意味着此事是圣皇亲自关注的。",
+      "mood": "Shocked",
+      "lighting": "Interior Dim",
+      "action": "React to Saint Emperor",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Head monk and giant are both shocked, Saint Emperor Palace command means Saint Emperor personally concerned",
+        "environment": "",
+        "character_pose": "All shocked, respectful",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Head monk and giant are both shocked, Saint Emperor Palace command means Saint Emperor personally concerned.",
+      "narration": "头陀和大汉闻听此言都是一惊,此事是圣皇亲自关注的。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "就在蓝城主想说出灵族之人的藏身之地时,忽然黄粱真君单手向密室的一面墙壁上一抓。",
+      "mood": "Alert",
+      "lighting": "Interior Dim",
+      "action": "Detect Intruder",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Just as City Lord Lan wants to reveal spirit person's hiding place, Huangliang Venerable suddenly grabs at chamber wall with one hand",
+        "environment": "",
+        "character_pose": "Huangliang alert, grabbing at wall",
+        "fx": "",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Just as City Lord Lan wants to reveal spirit person's hiding place, Huangliang Venerable suddenly grabs at chamber wall with one hand.",
+      "narration": "就在蓝城主想说出藏身之地时,黄粱真君突然向墙壁一抓。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "轰的一声,一只黄色晶手在墙前浮现而出,一把抓下,灰光一闪,什么东西被抓出。",
+      "mood": "Powerful",
+      "lighting": "Spirit Light",
+      "action": "Catch Intruder",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Boom sound, yellow crystal hand appears before wall, grabs down, gray light flashes, something caught",
+        "environment": "",
+        "character_pose": "Crystal hand grabbing, gray light visible",
+        "fx": "Yellow crystal hand, gray light",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Boom sound, yellow crystal hand appears before wall, grabs down, gray light flashes, something caught.",
+      "narration": "黄色晶手浮现而出,一把抓下,灰光一闪,什么东西被抓出。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "噗嗤一声,那东西在晶手中爆裂开来,化为无数根灰丝,密密麻麻朝四面八方激射而去。",
+      "mood": "Explosive",
+      "lighting": "Spirit Light",
+      "action": "Explode",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Puff sound, thing explodes in crystal hand, becomes countless gray threads shooting in all directions",
+        "environment": "",
+        "character_pose": "Gray threads exploding outward",
+        "fx": "Gray threads, explosion",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Puff sound, thing explodes in crystal hand, becomes countless gray threads shooting in all directions.",
+      "narration": "那东西在晶手中爆裂,化为无数灰丝,密密麻麻朝四面八方激射。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "黄粱灵君失声叫道:'不好,万魂丝!'随即袖袍一挥,大片黄霞翻滚而出,淹没了身形。",
+      "mood": "Urgent",
+      "lighting": "Spirit Light",
+      "action": "Defend",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Huangliang Spirit Lord exclaims: 'Bad, Ten Thousand Soul Threads!' Sleeves wave, yellow mist rolls out, covers figure",
+        "environment": "",
+        "character_pose": "Huangliang defending, yellow mist covering",
+        "fx": "Yellow mist, gray threads",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord exclaims: 'Bad, Ten Thousand Soul Threads!' Sleeves wave, yellow mist rolls out, covers figure.",
+      "narration": "黄粱灵君失声叫道是万魂丝，随即黄霞翻滚而出，急忙防御。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "其他人也全都大惊失色,头陀急忙将佛珠化为一团团黑云护住全身,黑肤大汉取出一面黝黑铁盾挡在身前。",
+      "mood": "Defensive",
+      "lighting": "Spirit Light",
+      "action": "All Defend",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Others also shocked, head monk quickly turns prayer beads into black clouds protecting body, giant takes out black iron shield",
+        "environment": "",
+        "character_pose": "All defending, shields and clouds visible",
+        "fx": "Black clouds, shield, gray threads",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Others also shocked, head monk quickly turns prayer beads into black clouds protecting body, giant takes out black iron shield.",
+      "narration": "其他人也大惊失色,头陀佛珠化黑云护体,大汉取出铁盾挡在身前。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "漫天灰丝在众人防御之前灵光一闪,全都变淡消失不见了,所有人都不禁怔住了。",
+      "mood": "Shocked",
+      "lighting": "Spirit Light",
+      "action": "Threads Disappear",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Countless gray threads flash before everyone's defense, all fade and disappear, everyone stunned",
+        "environment": "",
+        "character_pose": "All shocked, threads disappearing",
+        "fx": "Gray threads fading",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Countless gray threads flash before everyone's defense, all fade and disappear, everyone stunned.",
+      "narration": "漫天灰丝在防御前灵光一闪,全都变淡消失,所有人都不禁怔住。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "黄粱灵君最先反应过来,抬手一招,黄色晶手飞射过来,只见晶手表面多出一些银色粉末。",
+      "mood": "Observant",
+      "lighting": "Spirit Light",
+      "action": "Examine Powder",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Huangliang Spirit Lord reacts first, raises hand, yellow crystal hand flies over, sees silver powder on surface",
+        "environment": "",
+        "character_pose": "Huangliang examining powder",
+        "fx": "Silver powder glowing",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord reacts first, raises hand, yellow crystal hand flies over, sees silver powder on surface.",
+      "narration": "黄粱灵君抬手一招,黄色晶手飞回,只见表面多出一些银色粉末。",
+      "face_style_auto": {
+        "expression": "Observant",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "黄粱灵君说道,是成熟体的幻焰蛾分身,有一缕分神借机逃遁掉了,其本体一定就在落日城附近。",
+      "mood": "Realizing",
+      "lighting": "Interior Dim",
+      "action": "Identify Moth",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord says, it's mature Phantom Flame Moth clone, a wisp of soul escaped, true body must be near Sunset City",
+        "environment": "",
+        "character_pose": "Huangliang explaining, others listening",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord says, it's mature Phantom Flame Moth clone, a wisp of soul escaped, true body must be near Sunset City.",
+      "narration": "黄粱灵君说道,是成熟体幻焰蛾分身,有一缕分神逃遁,本体就在附近。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "sunset_city",
+      "duration": 4,
+      "description": "蓝城主脸色变得难看之极,说道明天就出发,决不能让妖族之人抢先了。",
+      "mood": "Urgent",
+      "lighting": "Interior Dim",
+      "action": "Decide to Act",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "City Lord Lan's face becomes extremely ugly, says will depart tomorrow, must not let demon race people get ahead",
+        "environment": "",
+        "character_pose": "City Lord Lan urgent, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "City Lord Lan's face becomes extremely ugly, says will depart tomorrow, must not let demon race people get ahead.",
+      "narration": "蓝城主脸色难看,说明天就出发,决不能让妖族之人抢先。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Interior Dim",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "一个时辰后,离落日城百里之外的一座无名小山的山腰处,一名容貌清秀的少年盘坐在山石上。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "Young Man Appears",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "One hour later, on mountainside of unnamed small hill a hundred li from Sunset City, handsome young man sits on rock",
+        "environment": "",
+        "character_pose": "Young man meditating on rock",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One hour later, on mountainside of unnamed small hill a hundred li from Sunset City, handsome young man sits on rock.",
+      "narration": "一个时辰后,离落日城百里外的无名小山,清秀少年盘坐山石上。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "在其头顶上,却有一只拳头大小的彩色飞蛾,双翅轻轻扇动着,散发着艳丽异常的点点灵光。",
+      "mood": "Mysterious",
+      "lighting": "Daylight",
+      "action": "See Moth",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Above his head, colorful moth size of fist, wings flapping gently, emitting brilliant spirit light",
+        "environment": "",
+        "character_pose": "Moth above young man",
+        "fx": "Colorful spirit light from moth",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Above his head, colorful moth size of fist, wings flapping gently, emitting brilliant spirit light.",
+      "narration": "头顶上一只拳头大小的彩色飞蛾,双翅轻扇,散发着艳丽的灵光。",
+      "face_style_auto": {
+        "expression": "Mysterious",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_022.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第31集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep30_full/scene_023.png"
+    }
+  ]
+}
+

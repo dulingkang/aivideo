@@ -1,0 +1,766 @@
+{
+  "episode": 34,
+  "title": "Blood River Divine Power · Xutian Xuangling",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第34集:血河神通·旭天玄灵。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "士气一涨之下,妖气霞光毫不迟疑滚滚追去,将后面百余只逃得稍慢的木石傀儡一卷而碎。",
+      "mood": "Charging",
+      "lighting": "Mixed Lighting",
+      "action": "Pursue",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Morale rises, demon qi and light clouds roll forward without hesitation, sweep away over a hundred slower wooden and stone puppets",
+        "environment": "Valley entrance, pursuing forces",
+        "character_pose": "Forces charging, puppets being destroyed",
+        "fx": "Demon qi, light clouds, puppets breaking",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Morale rises, demon qi and light clouds roll forward without hesitation, sweep away over a hundred slower wooden and stone puppets.",
+      "narration": "士气一涨之下,妖气霞光滚滚追去,将百余只逃得稍慢的傀儡一卷而碎。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "眨眼间部分人妖就已经冲入了谷口中,竟真的丝毫抵挡没有,灵族不战而退。",
+      "mood": "Victorious",
+      "lighting": "Daylight",
+      "action": "Enter Valley",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "In a blink, some humans and demons already charge into valley entrance, truly no resistance at all, spirits retreat without fighting",
+        "environment": "Valley entrance",
+        "character_pose": "Forces charging into valley",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In a blink, some humans and demons already charge into valley entrance, truly no resistance at all, spirits retreat without fighting.",
+      "narration": "眨眼间部分人妖就已冲入谷口,竟真的丝毫抵挡没有,灵族不战而退。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年和黄粱灵君见到此幕不禁露出一丝惊疑,他们当年可都亲自和灵族大战过。",
+      "mood": "Suspicious",
+      "lighting": "Mixed Lighting",
+      "action": "Realize Problem",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth and Huangliang Spirit Lord see this, show suspicion, they both personally fought spirits before",
+        "environment": "Jade boat and demon mist",
+        "character_pose": "Two leaders suspicious, watching",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth and Huangliang Spirit Lord see this, show suspicion, they both personally fought spirits before.",
+      "narration": "寰姓少年和黄粱灵君见到此幕不禁露出一丝惊疑,他们当年都曾与灵族大战。",
+      "face_style_auto": {
+        "expression": "Suspicious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年脸色一沉,转首对黄粱灵君飞快说道,不行,让他们快些停下,有些不对劲。",
+      "mood": "Urgent",
+      "lighting": "Mixed Lighting",
+      "action": "Warn Danger",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth's face darkens, turns to Huangliang Spirit Lord quickly says, no, make them stop quickly, something's wrong",
+        "environment": "Jade boat and demon mist",
+        "character_pose": "Huan youth urgent, warning",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Huan youth's face darkens, turns to Huangliang Spirit Lord quickly says, no, make them stop quickly, something's wrong.",
+      "narration": "寰姓少年脸色一沉,转首对黄粱灵君说道,不行,让他们快些停下,有些不对劲。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君点头说,的确有问题,深吸一口气就发出长啸,召回前方之人。",
+      "mood": "Urgent",
+      "lighting": "Spirit Light",
+      "action": "Recall Forces",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord nods says indeed problem, takes deep breath and sends long howl, recalls forward forces",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang howling, recalling",
+        "fx": "Sound waves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord nods says indeed problem, takes deep breath and sends long howl, recalls forward forces.",
+      "narration": "黄粱灵君点头说确实有问题,深吸一口气发出长啸,召回前方之人。",
+      "face_style_auto": {
+        "expression": "Urgent",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "但就在这时,在谷口正上方,一片血光诡异的浮现,接着雷鸣声一起,凝聚成数十丈大的血莲。",
+      "mood": "Ominous",
+      "lighting": "Blood Red",
+      "action": "Blood Lotus Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "But at this moment, above valley entrance, blood light eerily appears, then thunder sounds, condenses into blood lotus dozens of zhang large",
+        "environment": "Above valley entrance, sky",
+        "character_pose": "Blood lotus appearing",
+        "fx": "Blood light, thunder, blood lotus forming",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "But at this moment, above valley entrance, blood light eerily appears, then thunder sounds, condenses into blood lotus dozens of zhang large.",
+      "narration": "但就在这时,谷口正上方血光诡异浮现,雷鸣声一起,凝聚成数十丈大的血莲。",
+      "face_style_auto": {
+        "expression": "Alarmed",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "莲瓣鲜红似血,血气扑鼻,在半空中滴溜溜的飞快转动着,散发着恐怖威压。",
+      "mood": "Terrifying",
+      "lighting": "Blood Red",
+      "action": "Blood Lotus Rotates",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Lotus petals blood red, blood qi pungent, spinning rapidly in midair, emitting terrifying pressure",
+        "environment": "Sky above valley",
+        "character_pose": "Blood lotus rotating",
+        "fx": "Blood light, spinning lotus, pressure waves",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Lotus petals blood red, blood qi pungent, spinning rapidly in midair, emitting terrifying pressure.",
+      "narration": "莲瓣鲜红似血,血气扑鼻,在半空中飞快转动,散发着恐怖威压。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年一见血莲马上失声叫道,不好,是旭天玄灵,黄粱灵君同样大吃一惊。",
+      "mood": "Shocked",
+      "lighting": "Blood Red",
+      "action": "Recognize Xutian",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth sees blood lotus, immediately exclaims bad, it's Xutian Xuangling, Huangliang Spirit Lord also shocked",
+        "environment": "Jade boat and demon mist",
+        "character_pose": "Both shocked, alarmed",
+        "fx": "Blood light reflecting",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huan youth sees blood lotus, immediately exclaims bad, it's Xutian Xuangling, Huangliang Spirit Lord also shocked.",
+      "narration": "寰姓少年一见血莲马上失声叫道,不好,是旭天玄灵,黄粱灵君同样大吃一惊。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "尚未等两人出手相救,血色莲花蓦然化为一道泼天血河,从空中直冲而下。",
+      "mood": "Devastating",
+      "lighting": "Blood Red",
+      "action": "Blood River Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Before two can act to save, blood lotus suddenly transforms into vast blood river, rushes down from sky",
+        "environment": "Sky above valley entrance",
+        "character_pose": "Blood river descending",
+        "fx": "Blood river, rushing down",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Before two can act to save, blood lotus suddenly transforms into vast blood river, rushes down from sky.",
+      "narration": "尚未等两人出手相救,血色莲花蓦然化为泼天血河,从空中直冲而下。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "血水所过之处,无论人妖全都一冲而灭,化为股股青烟消失得无影无踪。",
+      "mood": "Devastating",
+      "lighting": "Blood Red",
+      "action": "Blood River Devours",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Where blood water passes, all humans and demons swept away, turn into streams of green smoke, vanish completely",
+        "environment": "Valley entrance, blood river area",
+        "character_pose": "People and demons being devoured",
+        "fx": "Blood water, green smoke, dissolution",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Where blood water passes, all humans and demons swept away, turn into streams of green smoke, vanish completely.",
+      "narration": "血水所过之处,无论人妖全都一冲而灭,化为股股青烟消失得无影无踪。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "无论护身妖气还是防御法宝,全都不能抵挡此血水分毫,瞬间被吞噬。",
+      "mood": "Unstoppable",
+      "lighting": "Blood Red",
+      "action": "No Defense Works",
+      "camera": "Close-Up Details",
+      "visual": {
+        "composition": "Whether protective demon qi or defensive magic treasures, all cannot resist blood water in slightest, instantly devoured",
+        "environment": "Valley entrance, blood river area",
+        "character_pose": "Defenses failing, being devoured",
+        "fx": "Blood water breaking through defenses",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Whether protective demon qi or defensive magic treasures, all cannot resist blood water in slightest, instantly devoured.",
+      "narration": "无论护身妖气还是防御法宝,全都不能抵挡此血水分毫,瞬间被吞噬。",
+      "face_style_auto": {
+        "expression": "Desperate",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "转眼间人妖两族只剩下未冲进谷中的一小半,侥幸未死之人全都面色煞白。",
+      "mood": "Devastated",
+      "lighting": "Blood Red",
+      "action": "Heavy Losses",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "In a blink, human and demon races only small half left that didn't charge into valley, lucky survivors all pale-faced",
+        "environment": "Valley entrance, survivors",
+        "character_pose": "Survivors pale, shocked",
+        "fx": "Blood light, devastation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "In a blink, human and demon races only small half left that didn't charge into valley, lucky survivors all pale-faced.",
+      "narration": "转眼间人妖两族只剩下未冲进谷中的一小半,侥幸未死之人全都面色煞白。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "侥幸未死之人对血水如见毒蝎,不等黄粱灵君出声招呼,纷纷倒射逃回。",
+      "mood": "Panic",
+      "lighting": "Blood Red",
+      "action": "Flee in Panic",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Lucky survivors treat blood water like poisonous scorpion, without waiting for Huangliang Spirit Lord's call, all retreat backward",
+        "environment": "Valley entrance, retreating forces",
+        "character_pose": "Forces retreating in panic",
+        "fx": "Blood light, fleeing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Lucky survivors treat blood water like poisonous scorpion, without waiting for Huangliang Spirit Lord's call, all retreat backward.",
+      "narration": "侥幸未死之人对血水如见毒蝎,不等黄粱灵君招呼,纷纷倒射逃回。",
+      "face_style_auto": {
+        "expression": "Panicked",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "那条血河吞噬了如此多人妖后,似乎仍不满足,一卷之下冲出了谷口,直奔逃窜人妖追去。",
+      "mood": "Relentless",
+      "lighting": "Blood Red",
+      "action": "Blood River Pursues",
+      "camera": "Wide Tracking Shot",
+      "visual": {
+        "composition": "That blood river devours so many humans and demons, seems still not satisfied, rolls out of valley entrance, chases fleeing humans and demons",
+        "environment": "Valley entrance, pursuing blood river",
+        "character_pose": "Blood river chasing, forces fleeing",
+        "fx": "Blood river, pursuing",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "That blood river devours so many humans and demons, seems still not satisfied, rolls out of valley entrance, chases fleeing humans and demons.",
+      "narration": "那条血河吞噬了如此多人妖后,似乎仍不满足,一卷之下冲出谷口追去。",
+      "face_style_auto": {
+        "expression": "Relentless",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "寰姓少年和黄粱灵君哪还能坐视不理,当即大怒的一同出手,准备阻止血河。",
+      "mood": "Furious",
+      "lighting": "Mixed Lighting",
+      "action": "Intervene",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Huan youth and Huangliang Spirit Lord cannot sit idly by, immediately furious, act together to stop blood river",
+        "environment": "Jade boat and demon mist",
+        "character_pose": "Both preparing to attack",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Huan youth and Huangliang Spirit Lord cannot sit idly by, immediately furious, act together to stop blood river.",
+      "narration": "寰姓少年和黄粱灵君哪还能坐视不理,当即大怒的一同出手阻止血河。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "少年一张口,一股灰色妖风狂扑而出,一个打滚后化为一条灰色风蛟,直扑血河。",
+      "mood": "Powerful",
+      "lighting": "Demonic Mist",
+      "action": "Wind Dragon Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Youth opens mouth, gray demon wind rushes out, rolls into gray wind dragon, rushes at blood river",
+        "environment": "Sky above valley",
+        "character_pose": "Wind dragon attacking blood river",
+        "fx": "Gray wind, wind dragon, blood river",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Youth opens mouth, gray demon wind rushes out, rolls into gray wind dragon, rushes at blood river.",
+      "narration": "少年张口一股灰色妖风狂扑而出,化为灰色风蛟,直扑血河。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Demonic Mist",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君一声冷哼,袖袍一抖,一面金黄色八卦镜浮现胸前,两手一掐诀。",
+      "mood": "Powerful",
+      "lighting": "Spirit Light",
+      "action": "Activate Mirror",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord snorts coldly, sleeves shake, golden Eight Trigrams mirror appears at chest, hands form seals",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang activating mirror",
+        "fx": "Golden mirror, forming seals",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord snorts coldly, sleeves shake, golden Eight Trigrams mirror appears at chest, hands form seals.",
+      "narration": "黄粱灵君一声冷哼,袖袍一抖,金黄色八卦镜浮现胸前,两手一掐诀。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "噗嗤一声后,一道粗若碗口的金色光柱从镜中喷射而出,直射血河前端。",
+      "mood": "Powerful",
+      "lighting": "Golden Light",
+      "action": "Gold Beam Attacks",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "Puff sound, thick golden beam like bowl diameter shoots from mirror, hits blood river front",
+        "environment": "Sky above valley",
+        "character_pose": "Golden beam shooting",
+        "fx": "Golden beam, blood river collision",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Puff sound, thick golden beam like bowl diameter shoots from mirror, hits blood river front.",
+      "narration": "噗嗤一声后,一道粗若碗口的金色光柱从镜中喷射而出,直射血河前端。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "轰隆隆一阵巨响,风龙和光柱迎头击在血河前端,发出惊人爆裂声,总算将血水势头一阻。",
+      "mood": "Collision",
+      "lighting": "Mixed Lighting",
+      "action": "Forces Collide",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Roaring sounds, wind dragon and light beam hit blood river front, emit explosive sounds, finally stop blood water momentum",
+        "environment": "Sky above valley entrance",
+        "character_pose": "Wind dragon, golden beam, blood river colliding",
+        "fx": "Explosion, wind, light, blood mixing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Roaring sounds, wind dragon and light beam hit blood river front, emit explosive sounds, finally stop blood water momentum.",
+      "narration": "轰隆隆巨响,风龙和光柱迎头击在血河前端,总算将血水势头一阻。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "血河倒流而回,蓦然凝聚成一朵血色莲花,人影一闪,一名身穿皂青长袍的灵族男子站立其上。",
+      "mood": "Revealing",
+      "lighting": "Blood Red",
+      "action": "Xutian Appears",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Blood river flows back, suddenly condenses into blood lotus, figure flashes, spirit man in dark blue robe stands on it",
+        "environment": "Sky above valley",
+        "character_pose": "Xutian standing on blood lotus",
+        "fx": "Blood lotus, transformation",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Blood river flows back, suddenly condenses into blood lotus, figure flashes, spirit man in dark blue robe stands on it.",
+      "narration": "血河倒流而回,蓦然凝聚成血色莲花,身穿皂青长袍的灵族男子站立其上。",
+      "face_style_auto": {
+        "expression": "Formidable",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_021.png"
+    },
+    {
+      "id": 21,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "正是那位器灵族的旭天,双目犀利异常,哈哈大笑着说没想到这等偏远之地也能碰到同阶存在。",
+      "mood": "Confident",
+      "lighting": "Blood Red",
+      "action": "Xutian Speaks",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "It's that Spirit Artifact race's Xutian, eyes extremely sharp, laughs loudly saying didn't expect to meet same level in this remote place",
+        "environment": "Sky above valley",
+        "character_pose": "Xutian laughing confidently",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "It's that Spirit Artifact race's Xutian, eyes extremely sharp, laughs loudly saying didn't expect to meet same level in this remote place.",
+      "narration": "正是器灵族的旭天,双目犀利异常,大笑说没想到偏远之地也能碰到同阶存在。",
+      "face_style_auto": {
+        "expression": "Confident",
+        "lighting": "Blood Red",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_022.png"
+    },
+    {
+      "id": 22,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "一见对方收了法术,寰姓少年和黄粱灵君互望一眼,也将神通暂时一收。",
+      "mood": "Cautious",
+      "lighting": "Mixed Lighting",
+      "action": "Cease Fire",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Seeing opponent retracted spells, Huan youth and Huangliang Spirit Lord look at each other, also temporarily retract abilities",
+        "environment": "Jade boat and demon mist",
+        "character_pose": "Two leaders looking at each other, cautious",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Seeing opponent retracted spells, Huan youth and Huangliang Spirit Lord look at each other, also temporarily retract abilities.",
+      "narration": "一见对方收了法术,寰姓少年和黄粱灵君互望一眼,也将神通暂时一收。",
+      "face_style_auto": {
+        "expression": "Cautious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_023.png"
+    },
+    {
+      "id": 23,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君目光一扫,一见人族之人只剩下百余人稀疏逃回,不禁大怒喝斥。",
+      "mood": "Furious",
+      "lighting": "Spirit Light",
+      "action": "Anger at Losses",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord glances, sees human side only has sparse hundred-plus people escaping back, furious scolding",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang furious, scolding",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord glances, sees human side only has sparse hundred-plus people escaping back, furious scolding.",
+      "narration": "黄粱灵君目光一扫,见人族只剩下百余人稀疏逃回,不禁大怒喝斥。",
+      "face_style_auto": {
+        "expression": "Furious",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_024.png"
+    },
+    {
+      "id": 24,
+      "scene_profile": "chaos_valley_entrance",
+      "duration": 4,
+      "description": "黄粱灵君说旭天身为玄灵竟敢肆无忌惮对晚辈出手,就不怕他们也同样对灵族如此做吗。",
+      "mood": "Accusing",
+      "lighting": "Spirit Light",
+      "action": "Accuse",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord says Xutian as Xuangling dares indiscriminately attack juniors, aren't afraid they'll do same to spirits",
+        "environment": "Jade boat",
+        "character_pose": "Huangliang accusing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord says Xutian as Xuangling dares indiscriminately attack juniors, aren't afraid they'll do same to spirits.",
+      "narration": "黄粱灵君说旭天身为玄灵竟敢肆无忌惮对晚辈出手,不怕他们同样如此做。",
+      "face_style_auto": {
+        "expression": "Accusing",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_025.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第35集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep34_full/scene_026.png"
+    }
+  ]
+}
+

@@ -1,0 +1,646 @@
+{
+  "episode": 5,
+  "title": "Prairie Vigil · First Glimpse of Anyuan",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky veiled in clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and scroll unfurl effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第5集:草原戒备·安远初见。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "车队冲出沙漠,前方展现无尽灰青草原,所有龟车迅速排成纵列。",
+      "mood": "Solemn",
+      "lighting": "Daylight",
+      "action": "Enter the Prairie",
+      "camera": "Aerial Push-In",
+      "visual": {
+        "composition": "The convoy bursts from the desert as endless gray-green prairie stretches ahead",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The convoy bursts free of the desert into endless ashen grasslands, tortoise carts snapping into tight columns.",
+      "narration": "龟车冲出沙线,面对无边草原时立刻收紧阵形。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_002.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "车厢内四女望向草海,面色紧绷,韩立注意到她们的沉默。",
+      "mood": "Tense",
+      "lighting": "Dim Interior",
+      "action": "Observe Anxiety",
+      "camera": "Carriage Medium Shot",
+      "visual": {
+        "composition": "Inside the carriage, four women stare toward the grass sea with taut expressions",
+        "environment": "Carriage interior overlooking the prairie",
+        "character_pose": "Han Li notices their silence",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Inside the carriage, four women watch the grass sea with tight faces while Han Li notes their silence.",
+      "narration": "草海一现,四名侍女立刻噤声,神情比沙漠时更紧。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Soft Interior",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_003.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "筌儿挪到韩立身旁,小声讲述方夫人与天东商号的来历。",
+      "mood": "Informative",
+      "lighting": "Soft Interior",
+      "action": "Share Background",
+      "camera": "Two-Shot Close-Up",
+      "visual": {
+        "composition": "Quan'er slips beside Han Li, whispering about Madam Fang and the Tiandong firm",
+        "environment": "",
+        "character_pose": "Han Li listening at close range",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Quan'er edges next to Han Li and softly recounts Madam Fang's past with the Tiandong trading house.",
+      "narration": "筌儿趁行程絮叨方夫人身世,韩立静听不多言。",
+      "face_style_auto": {
+        "expression": "Worried",
+        "lighting": "Soft Interior",
+        "detail": "Natural",
+        "strength": 0.81
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_004.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "少女谈到商号主人只是凡人,却能掌控三大商号局面。",
+      "mood": "Curious",
+      "lighting": "Dim Interior",
+      "action": "Remark on Mystery",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "The girls remark that the caravan master is mortal yet controls three major trading houses",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "They marvel that the caravan's master is merely mortal while commanding three great firms.",
+      "narration": "她们感叹商号主竟是凡人,韩立暗自记下疑点。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Soft Interior",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_005.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "草原上空两名修士轮流巡视,灵光划过天空,让守卫更加紧张。",
+      "mood": "Vigilant",
+      "lighting": "Bright Daylight",
+      "action": "Aerial Patrol",
+      "camera": "Low-Angle Follow",
+      "visual": {
+        "composition": "Two cultivators circle over the prairie in relay, streaks of spiritual light carving the sky",
+        "environment": "Open sky with patrolling cultivators",
+        "character_pose": "",
+        "fx": "Spiritual light trails flashing overhead",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Two cultivators patrol above the prairie, spiritual light streaking across the sky and heightening the guards' tension.",
+      "narration": "岣嵝山修士隔阵便出，灵光在空中盘旋警戒，防备妖兽突袭。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_006.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "半月后车队冲出草原,前方丘陵出现,所有人长舒一口气。",
+      "mood": "Relieved",
+      "lighting": "Daylight",
+      "action": "Leave the Prairie",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "After half a month the convoy bursts out of the prairie as low hills rise ahead",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Half a month later, the convoy clears the prairie and distant hills appear, prompting a shared sigh of relief.",
+      "narration": "越过丘陵线的一刻，车队上下都悄悄松气，终于脱离险境。",
+      "face_style_auto": {
+        "expression": "Stern",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_007.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "香儿拍着胸口感叹躲过草原狼兽,柳儿谈起即将到来的兽潮。",
+      "mood": "Worried",
+      "lighting": "Daylit Interior",
+      "action": "Discuss Beast Tide",
+      "camera": "Three-Quarter Medium Shot",
+      "visual": {
+        "composition": "Xiang'er pats her chest in relief over escaping prairie wolves while Liu'er mentions the imminent beast tide",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Xiang'er pats her chest over dodging prairie wolf packs as Liu'er brings up the beast tide that still awaits.",
+      "narration": "香儿心有余悸,柳儿却提醒真正的兽潮还在前方。",
+      "face_style_auto": {
+        "expression": "Relieved",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.82
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_008.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 8,
+      "duration": 4,
+      "description": "筌儿聊到安远城高价订购灵具以备兽潮,白衫少女仍旧困惑。",
+      "mood": "Pensive",
+      "lighting": "Dim Interior",
+      "action": "Contemplate Orders",
+      "camera": "Group Medium Shot",
+      "visual": {
+        "composition": "Quan'er explains that Anyuan City is buying spirit tools at high prices to prepare for the beast tide, while the white-robed girl still looks confused",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Quan'er talks about Anyuan City paying dearly for spirit gear to prepare for the beast tide, yet the white-robed girl remains perplexed.",
+      "narration": "她们猜测小城何以豪购灵具,答案仍不得而知。",
+      "face_style_auto": {
+        "expression": "Anxious",
+        "lighting": "Soft Interior",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_009.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 9,
+      "duration": 4,
+      "description": "韩立闭目调息,却暗暗记下“兽潮”“蝎潮”的关联。",
+      "mood": "Contemplative",
+      "lighting": "Soft Interior",
+      "action": "Meditative Reflection",
+      "camera": "Profile Close-Up",
+      "visual": {
+        "composition": "Han Li sits with eyes closed, quietly noting the link between the beast tide and the scorpion tide",
+        "environment": "",
+        "character_pose": "Han Li meditating with eyes shut",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li meditates with eyes closed while secretly committing the connection between the beast and scorpion tides to memory.",
+      "narration": "韩立表面静坐，心里却把兽潮话题牢牢记下，暗自思索对策。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Soft Interior",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_010.png",
+      "scene_profile": "tianyuan_prairie"
+    },
+    {
+      "id": 10,
+      "duration": 4,
+      "description": "数日后,高耸石城出现在远方,城墙刻满陌生符纹。",
+      "mood": "Awed",
+      "lighting": "Daylight",
+      "action": "First Sight of City",
+      "camera": "Telephoto Push-In",
+      "visual": {
+        "composition": "Days later, a towering stone city appears ahead, its walls etched with unfamiliar sigils",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Several days on, a massive stone city rises in the distance, walls carved with unknown runes.",
+      "narration": "安远城墙高逾三十丈，符纹环绕，远望如铁岭，气势恢宏。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_011.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 11,
+      "duration": 4,
+      "description": "城楼兵士操控巨弩,弩箭闪烁白光,对车队高度戒备。",
+      "mood": "Alert",
+      "lighting": "Daylight",
+      "action": "City Defenses Ready",
+      "camera": "Low-Angle Wall Shot",
+      "visual": {
+        "composition": "Soldiers atop the walls man giant crossbows, white-lit bolts aimed warily at the convoy",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Wall guards operate massive crossbows whose bolts glimmer white, keeping the convoy under tight watch.",
+      "narration": "巨弩横列,白光闪烁,城卫对任何接近者都严阵以待。",
+      "face_style_auto": {
+        "expression": "Awestruck",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_012.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 12,
+      "duration": 4,
+      "description": "张奎骑狼到门前,抛出金黄令牌,赵统领示意开启城门。",
+      "mood": "Formal",
+      "lighting": "Daylight",
+      "action": "Present Token",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Zhang Kui rides his wolf to the gate, tossing a golden token as Commander Zhao signals for the doors to open",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Zhang Kui arrives on his wolf, flips a golden token, and Commander Zhao gestures for the gates to open.",
+      "narration": "张奎亮出令牌,赵统领核对后命人放行但要彻查。",
+      "face_style_auto": {
+        "expression": "Severe",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_013.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 13,
+      "duration": 4,
+      "description": "白袍儒生与青袈裟僧人施法,青霞与黄光依次扫过龟车与骑士。",
+      "mood": "Mystical",
+      "lighting": "Sunlit Glow",
+      "action": "Arcane Scan",
+      "camera": "Spell-Sweep Wide Shot",
+      "visual": {
+        "composition": "A scholar in white robes and a monk in cyan kasaya cast spells, blue haze and yellow light sweeping over the carts and riders",
+        "environment": "",
+        "character_pose": "Riders standing for inspection",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "A white-robed scholar and a monk in cyan robes cast spells, blue radiance and golden light scanning each tortoise cart and rider.",
+      "narration": "修士轮番放出青霞黄光,把三十余车逐一检视。",
+      "face_style_auto": {
+        "expression": "Authoritative",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_014.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 14,
+      "duration": 4,
+      "description": "检查完成,城门徐开,士兵列队让出通道。",
+      "mood": "Orderly",
+      "lighting": "Daylight",
+      "action": "Gate Opens",
+      "camera": "Symmetrical Wide Shot",
+      "visual": {
+        "composition": "After the inspection the gates ease open while soldiers line up to clear a path",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "With checks complete, the gates open slowly and armored soldiers form ranks to create a corridor.",
+      "narration": "青霞散去后，大门轧然开启，甲士分列两旁，迎接车队入城。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_015.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 15,
+      "duration": 4,
+      "description": "城内街道人群拥挤,多数凡人背刀持枪,神色凝重。",
+      "mood": "Crowded",
+      "lighting": "Daylight",
+      "action": "Enter the City",
+      "camera": "Street Tracking Shot",
+      "visual": {
+        "composition": "City streets are jammed with mortals carrying blades and spears, every face solemn",
+        "environment": "Packed marketplace streets",
+        "character_pose": "Citizens wearing heavy expressions",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Inside the city, crowded streets of armed commoners move past the convoy, each bearing a grave expression.",
+      "narration": "街道被背刀百姓塞满,人人脸色沉重,城中气氛压抑。",
+      "face_style_auto": {
+        "expression": "Neutral",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_016.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 16,
+      "duration": 4,
+      "description": "龟车在戒备仓库前停靠,侍卫与官员开始点收兵器与灵具。",
+      "mood": "Procedural",
+      "lighting": "Afternoon",
+      "action": "Deliver Cargo",
+      "camera": "Loading Bay Wide Shot",
+      "visual": {
+        "composition": "Tortoise carts dock before the guarded warehouse while guards and officials inventory weapons and spirit gear",
+        "environment": "",
+        "character_pose": "",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "The tortoise carts stop outside the secured depot as guards and clerks begin counting weapons and spirit tools.",
+      "narration": "货物逐箱交接，张奎办完手续后才真正松懈，任务终于完成。",
+      "face_style_auto": {
+        "expression": "Solemn",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_017.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 17,
+      "duration": 4,
+      "description": "韩立提出想独自在城中转转,张奎点头但郑重交代注意安全。",
+      "mood": "Cautious",
+      "lighting": "Daylight",
+      "action": "Request Leave",
+      "camera": "Two-Shot Medium",
+      "visual": {
+        "composition": "Han Li asks to wander the city alone while Zhang Kui nods and solemnly cautions him",
+        "environment": "",
+        "character_pose": "Han Li requesting permission",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "medium"
+        }
+      },
+      "prompt": "Han Li asks to explore the city on his own, and Zhang Kui agrees but warns him to stay alert.",
+      "narration": "韩立告辞去逛城,张奎虽准许仍再三叮嘱勿久留。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_018.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 18,
+      "duration": 4,
+      "description": "韩立独行街头,仰望天空七轮白日,暗自感叹灵界灵气浓郁却无法吸纳。",
+      "mood": "Yearning",
+      "lighting": "Daylight",
+      "action": "Walk the City",
+      "camera": "Low-Angle Follow",
+      "visual": {
+        "composition": "Han Li walks alone through the streets, gazing up at seven blazing suns",
+        "environment": "Spirit-rich skies with seven suns he cannot draw from",
+        "character_pose": "Han Li moving alone through the city",
+        "fx": "Dense spiritual qi that remains inaccessible",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li walks the city alone, looking up at seven white suns and lamenting that he cannot absorb the realm's abundant qi.",
+      "narration": "他行走街巷,望着七轮白日,只恨体内禁制难吸灵气。",
+      "face_style_auto": {
+        "expression": "Respectful",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_019.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 19,
+      "duration": 4,
+      "description": "在兵器铺内把玩虬龙索,店伙计殷勤介绍,韩立显露炼体士气度。",
+      "mood": "Curious",
+      "lighting": "Warm Interior",
+      "action": "Inspect Weapon",
+      "camera": "Shop Medium Shot",
+      "visual": {
+        "composition": "Inside the weapon shop he plays with a coiled dragon rope while the clerk enthusiastically explains",
+        "environment": "",
+        "character_pose": "Han Li revealing the bearing of a body cultivator",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "In the armory shop Han Li tests the curled dragon rope as the clerk eagerly touts it, showing his body-cultivator poise.",
+      "narration": "他随手抖直虬龙索,伙计立刻看出是真正的炼体士。",
+      "face_style_auto": {
+        "expression": "Pensive",
+        "lighting": "Bright Neutral",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_020.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 20,
+      "duration": 4,
+      "description": "韩立跟随两名陌生炼体士到僻巷,试验地蛟筋并爽快付出灵石。",
+      "mood": "Transactional",
+      "lighting": "Alleyway Hues",
+      "action": "Purchase Materials",
+      "camera": "Three-Quarter Angle",
+      "visual": {
+        "composition": "Han Li follows two unfamiliar body cultivators into a secluded alley, tests the earth flood-dragon tendon, and pays without hesitation",
+        "environment": "",
+        "character_pose": "Han Li walking with the strangers into the alley",
+        "fx": "",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li trails two unknown body cultivators into a hidden lane, tests the earth flood-dragon sinew, and hands over spirit stones readily.",
+      "narration": "他试过地蛟筋后痛快掏出灵石,换来随身暗器的好材料。",
+      "face_style_auto": {
+        "expression": "Appraising",
+        "lighting": "Warm Lantern Light",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_021.png",
+      "scene_profile": "anyuan_city"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Nighttime silhouette of the immortal city as spiritual light rains from the sky",
+        "environment": "Night sky, immortal city outline, drifting spirit motes",
+        "character_pose": "",
+        "fx": "Falling spirit particles with a fade-out effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette beneath the night sky, spiritual particles drifting down, calm mystical mood, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第6集即将开始。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Soft Shadows",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep5_full/scene_022.png"
+    }
+  ]
+}

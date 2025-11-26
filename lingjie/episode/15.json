@@ -1,0 +1,647 @@
+{
+  "episode": 15,
+  "title": "Bright Jade Pool · Sixth Layer Breakthrough",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音,欢迎回来。第15集:九玄明玉潭·六层突破。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立进入九玄明玉潭,潭水深处散发不可思议的力量。",
+      "mood": "Mysterious",
+      "lighting": "Spirit Light",
+      "action": "Enter Pool",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "Han Li enters Jiuxuan Bright Jade Pool, deep waters radiating incredible power",
+        "environment": "",
+        "character_pose": "Han Li stepping into glowing pool",
+        "fx": "Mysterious pool glow, spirit energy",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li steps into Jiuxuan Bright Jade Pool, the deep waters radiating extraordinary power.",
+      "narration": "韩立进入九玄明玉潭,潭水深处散发不可思议的力量。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "潭水深处具有古怪力量,刺激全身,助炼体士突破瓶颈。",
+      "mood": "Powerful",
+      "lighting": "Spirit Light",
+      "action": "Pool Power",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Deep pool waters have strange power, stimulating the whole body, helping body cultivators break bottlenecks",
+        "environment": "",
+        "character_pose": "Han Li in pool, energy flowing",
+        "fx": "Spirit energy streams, body enhancement",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The pool's deep waters contain strange power, stimulating the entire body to help cultivators break bottlenecks.",
+      "narration": "潭水深处具有古怪力量,刺激全身,助炼体士突破瓶颈。",
+      "face_style_auto": {
+        "expression": "Awed",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立浸泡在潭水中,全身被不可思议之力刺激。",
+      "mood": "Intense",
+      "lighting": "Spirit Light",
+      "action": "Soak in Pool",
+      "camera": "Close-Up Body",
+      "visual": {
+        "composition": "Han Li soaks in the pool, his entire body stimulated by incredible power",
+        "environment": "",
+        "character_pose": "Han Li in pool, energy flowing through body",
+        "fx": "Spirit energy streams, golden aura",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li immerses himself in the pool, his body stimulated by incredible power.",
+      "narration": "韩立浸泡在潭水中,全身被不可思议之力刺激。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "潭水之力冲击第六层瓶颈,韩立全力冲击。",
+      "mood": "Intense",
+      "lighting": "Spirit Light",
+      "action": "Break Bottleneck",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Pool power impacts the sixth layer bottleneck, Han Li attacks it with full force",
+        "environment": "",
+        "character_pose": "Han Li focused, golden aura intensifying",
+        "fx": "Golden light explosion, energy surge",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Pool power strikes the sixth layer bottleneck as Han Li charges forward with all his might.",
+      "narration": "潭水之力冲击第六层瓶颈,韩立全力冲击。",
+      "face_style_auto": {
+        "expression": "Straining",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "瓶颈被破除,韩立成功突破到第六层。",
+      "mood": "Triumphant",
+      "lighting": "Spirit Light",
+      "action": "Breakthrough Success",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Bottleneck breaks, Han Li successfully advances to the sixth layer",
+        "environment": "",
+        "character_pose": "Han Li rising from pool, golden aura blazing",
+        "fx": "Golden light explosion, breakthrough success",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The bottleneck shatters and Han Li successfully breaks through to the sixth layer.",
+      "narration": "瓶颈被破除,韩立成功突破到第六层。",
+      "face_style_auto": {
+        "expression": "Intense",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "借助潭水之力,韩立在数日内突破瓶颈,省却十余年苦修。",
+      "mood": "Successful",
+      "lighting": "Spirit Light",
+      "action": "Save Years",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "With pool power, Han Li breaks through in days, saving over a decade of cultivation",
+        "environment": "",
+        "character_pose": "Han Li standing, aura stable",
+        "fx": "Stable golden aura",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Aided by pool power, Han Li breaks through in mere days, saving over a decade of cultivation.",
+      "narration": "借助潭水之力,韩立在数日内突破瓶颈,省却十余年苦修。",
+      "face_style_auto": {
+        "expression": "Triumphant",
+        "lighting": "Spirit Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立向秦师兄道谢,准备离开金玉宗。",
+      "mood": "Grateful",
+      "lighting": "Daylight",
+      "action": "Thank and Depart",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li thanks Senior Brother Qin and prepares to leave Gold Jade Sect",
+        "environment": "",
+        "character_pose": "Han Li thanking, Qin accepting",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li expresses gratitude to Senior Brother Qin and prepares to depart.",
+      "narration": "韩立向秦师兄道谢,准备离开金玉宗。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立离开金玉宗,返回虞阳城继续潜修。",
+      "mood": "Determined",
+      "lighting": "Daylight",
+      "action": "Return to City",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li leaves Gold Jade Sect, returning to Yu Yang City to continue cultivation",
+        "environment": "",
+        "character_pose": "Han Li walking away",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li departs Gold Jade Sect, returning to Yu Yang City to continue his cultivation.",
+      "narration": "韩立离开金玉宗,返回虞阳城继续潜修。",
+      "face_style_auto": {
+        "expression": "Grateful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立回到虞阳城,继续炼制灵具,帮助范胖子发展拍卖行。",
+      "mood": "Peaceful",
+      "lighting": "Forge Glow",
+      "action": "Continue Crafting",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li returns to Yu Yang City, continuing to craft artifacts and help Fan Pang develop the auction house",
+        "environment": "",
+        "character_pose": "Han Li at forge, crafting",
+        "fx": "Forge fire, glowing artifacts",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li returns to Yu Yang City, continuing to craft artifacts and support Fan Pang's business.",
+      "narration": "韩立回到虞阳城,继续炼制灵具,帮助范胖子发展拍卖行。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立潜心修炼金刚诀第六层,修炼速度远超预期。",
+      "mood": "Serene",
+      "lighting": "Interior Soft",
+      "action": "Cultivate Sixth Layer",
+      "camera": "Interior Medium Shot",
+      "visual": {
+        "composition": "Han Li diligently cultivates the sixth layer of Vajra Art, progress far exceeding expectations",
+        "environment": "",
+        "character_pose": "Han Li meditating, golden aura",
+        "fx": "Stable golden glow",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li cultivates the sixth layer of Vajra Art, his progress far beyond what he anticipated.",
+      "narration": "韩立潜心修炼金刚诀第六层,修炼速度远超预期。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Forge Glow",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "时间流逝,韩立在虞阳城潜修二十余年。",
+      "mood": "Peaceful",
+      "lighting": "Moonlight",
+      "action": "Time Passes",
+      "camera": "Montage",
+      "visual": {
+        "composition": "Time flows as Han Li quietly cultivates in Yu Yang City for over twenty years",
+        "environment": "",
+        "character_pose": "Han Li meditating, scenes changing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Time flows as Han Li cultivates quietly in Yu Yang City for over twenty years.",
+      "narration": "时间流逝,韩立在虞阳城潜修二十余年。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立金刚诀第六层修炼至大成,开始面临第七层瓶颈。",
+      "mood": "Challenging",
+      "lighting": "Interior Soft",
+      "action": "Face Seventh Layer Bottleneck",
+      "camera": "Close-Up Face",
+      "visual": {
+        "composition": "Han Li reaches perfection in the sixth layer, now facing the seventh layer bottleneck",
+        "environment": "",
+        "character_pose": "Han Li in meditation, golden aura fluctuating",
+        "fx": "Unstable golden light",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li achieves sixth layer perfection but now confronts the seventh layer bottleneck.",
+      "narration": "韩立金刚诀第六层修炼至大成,开始面临第七层瓶颈。",
+      "face_style_auto": {
+        "expression": "Serene",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "第七层瓶颈是最后一层,不能再呆在城中苦修。",
+      "mood": "Resolved",
+      "lighting": "Interior Soft",
+      "action": "Decide to Leave",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "The seventh layer bottleneck is the final one, can no longer stay in the city to cultivate",
+        "environment": "",
+        "character_pose": "Han Li thinking, determined",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "The seventh layer bottleneck is the final one, requiring departure from the city.",
+      "narration": "第七层瓶颈是最后一层,不能再呆在城中苦修。",
+      "face_style_auto": {
+        "expression": "Contemplative",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_014.png"
+    },
+    {
+      "id": 14,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立决定用炼体士常用方法:深入危险荒野,击杀强大妖兽冲击瓶颈。",
+      "mood": "Decisive",
+      "lighting": "Interior Soft",
+      "action": "Plan Journey",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li decides to use the common method: venture into dangerous wilderness, kill powerful beasts to impact bottleneck",
+        "environment": "",
+        "character_pose": "Han Li standing, resolved",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li resolves to use the common body cultivator method: venture into dangerous wilderness to kill powerful beasts.",
+      "narration": "韩立决定用炼体士常用方法:深入危险荒野,击杀强大妖兽冲击瓶颈。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.88
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_015.png"
+    },
+    {
+      "id": 15,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立准备将埋藏在青罗沙漠的宝物带走,以现在炼体术足以自保。",
+      "mood": "Prepared",
+      "lighting": "Interior Soft",
+      "action": "Prepare Journey",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li prepares to retrieve treasures buried in Qingluo Desert, his current body cultivation sufficient for self-protection",
+        "environment": "",
+        "character_pose": "Han Li preparing, focused",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li prepares to retrieve treasures buried in Qingluo Desert, his body cultivation now sufficient for protection.",
+      "narration": "韩立准备将埋藏在青罗沙漠的宝物带走,以现在炼体术足以自保。",
+      "face_style_auto": {
+        "expression": "Resolved",
+        "lighting": "Warm Interior",
+        "detail": "Natural",
+        "strength": 0.87
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_016.png"
+    },
+    {
+      "id": 16,
+      "scene_profile": "yu_yang_city",
+      "duration": 4,
+      "description": "韩立向范胖子告别,离开虞阳城,踏上新的旅程。",
+      "mood": "Parting",
+      "lighting": "Daylight",
+      "action": "Farewell",
+      "camera": "Medium Two-Shot",
+      "visual": {
+        "composition": "Han Li bids farewell to Fan Pang, leaving Yu Yang City to begin a new journey",
+        "environment": "",
+        "character_pose": "Han Li and Fan Pang, farewell gesture",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li takes leave of Fan Pang, departing Yu Yang City to begin a new journey.",
+      "narration": "韩立向范胖子告别,离开虞阳城,踏上新的旅程。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_017.png"
+    },
+    {
+      "id": 17,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立离开虞阳城,直奔安远城废墟方向。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Travel to Ruins",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "Han Li leaves Yu Yang City, heading directly toward Anyuan City ruins",
+        "environment": "",
+        "character_pose": "Han Li walking, back view",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li departs Yu Yang City, heading straight toward Anyuan City ruins.",
+      "narration": "韩立离开虞阳城,直奔安远城废墟方向。",
+      "face_style_auto": {
+        "expression": "Polite",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.85
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_018.png"
+    },
+    {
+      "id": 18,
+      "scene_profile": "wilderness_path",
+      "duration": 4,
+      "description": "韩立步行如飞,大半年后回到安远城废墟附近。",
+      "mood": "Journeying",
+      "lighting": "Daylight",
+      "action": "Travel Long Distance",
+      "camera": "Montage",
+      "visual": {
+        "composition": "Han Li walks as fast as flying, returning near Anyuan City ruins after over half a year",
+        "environment": "",
+        "character_pose": "Han Li traveling, landscapes changing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li travels at incredible speed, reaching near Anyuan City ruins after over half a year.",
+      "narration": "韩立步行如飞,大半年后回到安远城废墟附近。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_019.png"
+    },
+    {
+      "id": 19,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "安远城废墟仍然一眼望不到尽头,蒙上一层厚厚的尘土。",
+      "mood": "Desolate",
+      "lighting": "Daylight",
+      "action": "See Ruins",
+      "camera": "Wide Establishing",
+      "visual": {
+        "composition": "Anyuan City ruins still stretch endlessly, covered in thick dust",
+        "environment": "",
+        "character_pose": "Han Li looking at ruins",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Anyuan City ruins stretch endlessly, covered in a thick layer of dust.",
+      "narration": "安远城废墟仍然一眼望不到尽头,蒙上一层厚厚的尘土。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.86
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_020.png"
+    },
+    {
+      "id": 20,
+      "scene_profile": "ruined_anyuan_city",
+      "duration": 4,
+      "description": "韩立在废墟处稍休息,心中思量金刚诀第七层瓶颈。",
+      "mood": "Contemplative",
+      "lighting": "Daylight",
+      "action": "Rest and Think",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li rests briefly at the ruins, contemplating the seventh layer bottleneck",
+        "environment": "",
+        "character_pose": "Han Li seated, thinking",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Han Li rests briefly at the ruins, pondering the seventh layer bottleneck.",
+      "narration": "韩立在废墟处稍休息,心中思量金刚诀第七层瓶颈。",
+      "face_style_auto": {
+        "expression": "Reflective",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_021.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第16集即将开始。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Bright Normal",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep15_full/scene_022.png"
+    }
+  ]

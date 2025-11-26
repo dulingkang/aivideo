@@ -1,0 +1,393 @@
+{
+  "episode": 55,
+  "title": "Lightning Strikes Mountain · Han Li Appears",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第55集:雷电劈山·韩立现身。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "现在空中飓风已经越来越大,整座巨山方圆敌百里内全都是狂风大作,同时乌云压顶之下,让普通人甚至在平地上都无法站稳。",
+      "mood": "Intense",
+      "lighting": "Dark and Stormy",
+      "action": "Hurricane Intensifies",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Now sky hurricanes already larger, entire giant mountain area hundreds li all strong winds, simultaneously dark clouds pressing down, makes ordinary people even on flat ground cannot stand",
+        "environment": "Mountain area, intense hurricane",
+        "character_pose": "",
+        "fx": "Strong winds, dark clouds, people struggling",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Now sky hurricanes already larger, entire giant mountain area hundreds li all strong winds, simultaneously dark clouds pressing down, makes ordinary people even on flat ground cannot stand.",
+      "narration": "现在空中飓风已经越来越大,整座巨山方圆数百里内全都是狂风大作,乌云压顶。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark and Stormy",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "如此一来,火老稍一沉吟下,干脆命令所有车队暂时盘成一圈,静等那位不知名的修士度劫结束,再行前进。",
+      "mood": "Decisive",
+      "lighting": "Dark",
+      "action": "Orders Caravan to Wait",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This way, Fire Elder slightly thinks, simply orders all caravans temporarily form circle, quietly wait for that unknown cultivator's tribulation to end, then proceed",
+        "environment": "Outside carriage, Fire Elder commanding",
+        "character_pose": "Fire Elder decisive, commanding",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "This way, Fire Elder slightly thinks, simply orders all caravans temporarily form circle, quietly wait for that unknown cultivator's tribulation to end, then proceed.",
+      "narration": "如此一来,火老稍一沉吟下,干脆命令所有车队暂时盘成一圈,静等修士度劫结束。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "远处空中一声声的雷鸣传来,接着金银色雷弧蓦然间大作,在一阵乌云翻滚中,一根根电弧挨个从空中坠下,开始还是一根根的,但是转眼间就密密麻麻,如同暴雨一般倾盆而下。",
+      "mood": "Dramatic",
+      "lighting": "Dark with Gold and Silver Lightning",
+      "action": "Lightning Rain Descends",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Distant sky sounds of thunder come, then gold-silver electric arcs suddenly greatly flourish, in dark clouds rolling, electric arcs one by one fall from sky, start one by one, but instantly dense, like rainstorm pouring down",
+        "environment": "Mountain peak, lightning rain descending",
+        "character_pose": "",
+        "fx": "Dense gold-silver lightning, like rain",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Distant sky sounds of thunder come, then gold-silver electric arcs suddenly greatly flourish, in dark clouds rolling, electric arcs one by one fall from sky, start one by one, but instantly dense, like rainstorm pouring down.",
+      "narration": "远处空中一声声的雷鸣传来,接着金银色雷弧蓦然间大作,一根根电弧如同暴雨般倾盆而下。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with Gold and Silver Lightning",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "duration": 4,
+      "description": "诡异的一幕出现了,银色电弧击在山顶处纷纷爆裂开来,化为团团刺目银光,将巨山顶部轻易削去了一大截。",
+      "mood": "Destructive",
+      "lighting": "Silver Light",
+      "action": "Silver Lightning Destroys Peak",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Strange scene appears, silver electric arcs strike mountain peak all explode, become dazzling silver light, easily shave off large section of giant mountain peak",
+        "environment": "Mountain peak, silver lightning destroying",
+        "character_pose": "",
+        "fx": "Silver lightning exploding, mountain peak being destroyed",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Strange scene appears, silver electric arcs strike mountain peak all explode, become dazzling silver light, easily shave off large section of giant mountain peak.",
+      "narration": "诡异的一幕出现了,银色电弧击在山顶处纷纷爆裂开来,将巨山顶部轻易削去了一大截。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Silver Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "而那些金色电弧一接触山顶,则诡异的一闪没入,犹如无形之物一般。随即山腹中也马上霹雳声大响,沉闷爆裂声似乎犹比山顶处的天雷还狂暴几分的样子。",
+      "mood": "Mysterious",
+      "lighting": "Gold Light",
+      "action": "Gold Lightning Penetrates",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "And those gold electric arcs contact mountain peak, strangely flash and penetrate, like intangible things, immediately mountain belly also loud thunder sounds, deep explosions seem even more violent than peak's heavenly thunder",
+        "environment": "Mountain, gold lightning penetrating",
+        "character_pose": "",
+        "fx": "Gold lightning penetrating, explosions inside mountain",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "And those gold electric arcs contact mountain peak, strangely flash and penetrate, like intangible things, immediately mountain belly also loud thunder sounds, deep explosions seem even more violent than peak's heavenly thunder.",
+      "narration": "而那些金色电弧一接触山顶,则诡异的一闪没入,犹如无形之物一般,山腹中也马上霹雳声大响。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Gold Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "这一幕,让远远注视这天劫的火老以及几名结丹修士都是一惊。那些金色电弧到底是何种天雷,那些山石不能阻挡分毫,竟直冲受劫之人而去的样子。这种诡异情形,似乎只有大天劫的紫金天雷才会出现的。",
+      "mood": "Shocked",
+      "lighting": "Dark",
+      "action": "Fire Elder Shocked",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "This scene makes far watching tribulation's Fire Elder and several Core Formation cultivators all shocked, those gold electric arcs what kind heavenly thunder, those mountain rocks cannot block at all, directly rush toward tribulation person, this strange situation, seems only great tribulation's purple-gold heavenly thunder would appear",
+        "environment": "Outside carriage, Fire Elder and cultivators shocked",
+        "character_pose": "Fire Elder and cultivators shocked, watching",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "This scene makes far watching tribulation's Fire Elder and several Core Formation cultivators all shocked, those gold electric arcs what kind heavenly thunder, those mountain rocks cannot block at all, directly rush toward tribulation person, this strange situation, seems only great tribulation's purple-gold heavenly thunder would appear.",
+      "narration": "这一幕让远远注视这天劫的火老以及几名结丹修士都是一惊,金色电弧竟直冲受劫之人而去。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "duration": 4,
+      "description": "难道真是某种从未出现过的大天劫种类？",
+      "mood": "Questioning",
+      "lighting": "Dark",
+      "action": "Questions Tribulation Type",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Could it really be some never appeared great tribulation type",
+        "environment": "Outside carriage, people questioning",
+        "character_pose": "People questioning, puzzled",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Could it really be some never appeared great tribulation type.",
+      "narration": "难道真是某种从未出现过的大天劫种类,这种诡异情形让人疑惑不解。",
+      "face_style_auto": {
+        "expression": "Puzzled",
+        "lighting": "Dark",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "就在这些人心中都有些嘀咕之际,一团刺目青光从山腹中激射而出,一晃之下竟出现在了山腰附近的半空中,里面隐隐有道人影。",
+      "mood": "Revealing",
+      "lighting": "Cyan Light",
+      "action": "Han Li Appears",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Just as these people all muttering, ball of dazzling cyan light shoots from mountain belly, flashes and appears in mid-air near mountainside, inside vaguely person figure",
+        "environment": "Mountain side, cyan light appearing",
+        "character_pose": "Han Li in cyan light",
+        "fx": "Cyan light, person figure inside",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Just as these people all muttering, ball of dazzling cyan light shoots from mountain belly, flashes and appears in mid-air near mountainside, inside vaguely person figure.",
+      "narration": "就在这些人心中都有些嘀咕之际,一团刺目青光从山腹中激射而出,里面隐隐有道人影。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cyan Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "火老等人见此,自然知道那青光中人影肯定就是度劫的大神通修士。就是不知道,这人是被那些金色天雷逼的无法在山腹中躲避,只好遁出了山体外,还是觉得在空旷之处,更好施展手段应付天劫之威的。",
+      "mood": "Realizing",
+      "lighting": "Dark with Cyan Light",
+      "action": "Realizes It's Han Li",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Fire Elder and others see this, naturally know that cyan light person figure definitely is undergoing tribulation's great divine ability cultivator, just don't know, this person forced by those gold heavenly thunder cannot hide in mountain belly, had to escape outside, or feels in open place, better use methods to handle tribulation's power",
+        "environment": "Outside carriage, people realizing",
+        "character_pose": "Fire Elder and others watching, realizing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Fire Elder and others see this, naturally know that cyan light person figure definitely is undergoing tribulation's great divine ability cultivator, just don't know, this person forced by those gold heavenly thunder cannot hide in mountain belly, had to escape outside, or feels in open place, better use methods to handle tribulation's power.",
+      "narration": "火老等人见此,自然知道那青光中人影肯定就是度劫的大神通修士,正在应对天劫。",
+      "face_style_auto": {
+        "expression": "Realizing",
+        "lighting": "Dark with Cyan Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "顿时那些原本狂劈巨山的金银两色电弧,仿佛通灵般的方向一变,紧追青光的狂击而下。",
+      "mood": "Pursuing",
+      "lighting": "Gold, Silver and Cyan Light",
+      "action": "Lightning Chases Han Li",
+      "camera": "Dynamic Shot",
+      "visual": {
+        "composition": "Immediately those originally wildly striking giant mountain's gold-silver two-color electric arcs, like sentient direction changes, closely chase cyan light wildly strike down",
+        "environment": "Sky above mountain, lightning chasing",
+        "character_pose": "Han Li in cyan light, lightning chasing",
+        "fx": "Gold-silver lightning chasing cyan light",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Immediately those originally wildly striking giant mountain's gold-silver two-color electric arcs, like sentient direction changes, closely chase cyan light wildly strike down.",
+      "narration": "顿时那些原本狂劈巨山的金银两色电弧,仿佛通灵般的方向一变,紧追青光的狂击而下。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Gold, Silver and Cyan Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "一声长啸声从青光中传出,接着人影头顶突然青光一闪,一只巨鼎浮现而出,一晃下鼎盖打开。",
+      "mood": "Defensive",
+      "lighting": "Cyan Light",
+      "action": "Giant Cauldron Appears",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Long roar sound comes from cyan light, then person figure's head suddenly cyan light flashes, giant cauldron appears, flashes and cauldron lid opens",
+        "environment": "Sky above mountain, giant cauldron appearing",
+        "character_pose": "Han Li with cauldron above head",
+        "fx": "Giant cauldron, cyan light, lid opening",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Long roar sound comes from cyan light, then person figure's head suddenly cyan light flashes, giant cauldron appears, flashes and cauldron lid opens.",
+      "narration": "一声长啸声从青光中传出,接着人影头顶突然青光一闪,一只巨鼎浮现而出,鼎盖打开。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Cyan Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "密密麻麻的青丝从里面飞出射而出,漫天飞舞之下,竟将小半天空都遮蔽住了。",
+      "mood": "Expanding",
+      "lighting": "Cyan Light",
+      "action": "Cyan Threads Spread",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Dense cyan threads fly out from inside, all over sky dancing, actually covers small half of sky",
+        "environment": "Sky above mountain, cyan threads spreading",
+        "character_pose": "Cyan threads spreading across sky",
+        "fx": "Dense cyan threads, covering sky",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Dense cyan threads fly out from inside, all over sky dancing, actually covers small half of sky.",
+      "narration": "密密麻麻的青丝从里面飞出,漫天飞舞之下,竟将小半天空都遮蔽住了,气势惊人。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Cyan Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_013.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第56集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep55_full/scene_014.png"
+    }
+  ]
+}
+

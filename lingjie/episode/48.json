@@ -1,0 +1,350 @@
+{
+  "episode": 48,
+  "title": "Blood Shadow Escape · Silver Firebird",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第48集:血影遁逃·银焰火鸟。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "有此一耽搁时间,血雾中韩立突然身形一模糊,整个人蓦然化为一道血光从血雾中激射而出,一颤之下,就不可思议的出现在了数百里外,化为了一个黑点。",
+      "mood": "Escaping",
+      "lighting": "Red Light",
+      "action": "Blood Shadow Escape",
+      "camera": "Dynamic Action",
+      "visual": {
+        "composition": "With this delay, Han Li in blood mist suddenly body blurs, whole person suddenly transforms into blood light shoots from blood mist, trembles, incredibly appears hundreds of li away, becomes black dot",
+        "environment": "Sky above, blood light escaping",
+        "character_pose": "Han Li transforming to blood light, escaping",
+        "fx": "Blood light, teleporting, escaping",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "With this delay, Han Li in blood mist suddenly body blurs, whole person suddenly transforms into blood light shoots from blood mist, trembles, incredibly appears hundreds of li away, becomes black dot.",
+      "narration": "血雾中韩立突然身形一模糊,整个人蓦然化为一道血光从血雾中激射而出,出现在数百里外。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "而那些飞剑和身前的黑色小山,也一同的凭空消失了,这正是韩立保命的遁术血影遁,以其化神期的修为和现在的强横肉身,此遁术自然越发神妙的不可思议。",
+      "mood": "Mysterious",
+      "lighting": "Mixed Lighting",
+      "action": "Treasures Disappear",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Those flying swords and black small mountain before body, also together disappear from void, this is Han Li's life-saving escape technique Blood Shadow Escape, with his Deity Transformation cultivation and strong body, this technique naturally more mysterious",
+        "environment": "Sky above, treasures disappearing",
+        "character_pose": "Han Li gone, treasures disappearing",
+        "fx": "Treasures disappearing, escaping",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Those flying swords and black small mountain before body, also together disappear from void, this is Han Li's life-saving escape technique Blood Shadow Escape, with his Deity Transformation cultivation and strong body, this technique naturally more mysterious.",
+      "narration": "那些飞剑和身前的黑色小山,也一同的凭空消失了,这正是韩立保命的遁术血影遁。",
+      "face_style_auto": {
+        "expression": "Thoughtful",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "几个闪动后,遁光在天边消失的无影无踪,这一下,不仅黄粱灵君,就连远处正在争斗不已的旭天和寰天奇也不禁怔住了,但随即三人一声怒喝,几乎同时的一掐诀。",
+      "mood": "Shocked",
+      "lighting": "Mixed Lighting",
+      "action": "Three Shocked",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Several flashes, escape light disappears at horizon, this makes not only Huangliang Spirit Lord, even distant fighting Xutian and Huan Tianqi also stunned, but immediately three angry shouts, almost simultaneously form seals",
+        "environment": "Sky above, three shocked",
+        "character_pose": "Three stunned, then forming seals",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Several flashes, escape light disappears at horizon, this makes not only Huangliang Spirit Lord, even distant fighting Xutian and Huan Tianqi also stunned, but immediately three angry shouts, almost simultaneously form seals.",
+      "narration": "几个闪动后,遁光在天边消失的无影无踪,黄粱灵君和旭天寰天奇也不禁怔住了。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "蓦然化为三道十余丈长的惊虹,尾随狂追而去,同样几个连闪后,也在天边不见了踪影,看遁光速度竟然似乎不下于血影遁多少的样子。",
+      "mood": "Pursuing",
+      "lighting": "Mixed Lighting",
+      "action": "Three Pursue",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Suddenly transform into three dozen zhang long rainbows, closely pursue behind, similarly several flashes, also disappear at horizon, escape speed seems not inferior to Blood Shadow Escape",
+        "environment": "Sky above, three pursuing",
+        "character_pose": "Three rainbows pursuing",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "Suddenly transform into three dozen zhang long rainbows, closely pursue behind, similarly several flashes, also disappear at horizon, escape speed seems not inferior to Blood Shadow Escape.",
+      "narration": "蓦然化为三道十余丈长的惊虹,尾随狂追而去,看遁光速度不下于血影遁多少。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "以血影遁速度,韩立几个呼吸之间的工夫,就已经到了谷口处,以他现在的修为,原本因为此遁术过于霸道,在结丹元婴时无法掌控方向和速度的弊端,在化神后自然而然的解决了。",
+      "mood": "Fast",
+      "lighting": "Red Light",
+      "action": "Reach Valley Entrance",
+      "camera": "Tracking Shot",
+      "visual": {
+        "composition": "With Blood Shadow Escape speed, Han Li in several breaths reaches valley entrance, with his current cultivation, originally because this technique too domineering, in Core Formation and Nascent Soul cannot control direction and speed, at Deity Transformation naturally solved",
+        "environment": "Valley entrance, Han Li arriving",
+        "character_pose": "Han Li arriving at valley entrance",
+        "fx": "Blood light, fast moving",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "fast"
+        }
+      },
+      "prompt": "With Blood Shadow Escape speed, Han Li in several breaths reaches valley entrance, with his current cultivation, originally because this technique too domineering, in Core Formation and Nascent Soul cannot control direction and speed, at Deity Transformation naturally solved.",
+      "narration": "以血影遁速度,韩立几个呼吸之间的工夫,就已经到了谷口处。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "故而韩立一边瞬息百里的飞遁着,一边神念同时向后扫去,结果发现了黄粱灵君三人所化遁光并没有真被甩开多远,在身后竟然紧追不舍,心中不禁大凛。",
+      "mood": "Alert",
+      "lighting": "Mixed Lighting",
+      "action": "Sense Pursuers",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "So Han Li while flying hundreds of li instantly, simultaneously divine sense sweeps backward, discovers Huangliang Spirit Lord three people's escape lights not really shaken off, behind closely pursuing, heart cannot help shudders",
+        "environment": "Sky above, Han Li sensing",
+        "character_pose": "Han Li alert, sensing pursuers",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "So Han Li while flying hundreds of li instantly, simultaneously divine sense sweeps backward, discovers Huangliang Spirit Lord three people's escape lights not really shaken off, behind closely pursuing, heart cannot help shudders.",
+      "narration": "韩立一边瞬息百里的飞遁着,一边神念向后扫去,发现三人紧追不舍。",
+      "face_style_auto": {
+        "expression": "Alert",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "既然面对的是炼虚期修士,韩立也没寄希望真可以单凭血影遁就这般简单的逃掉,身处血光中的他,单手一翻转,蓦然多出了红黑两颗闪动神秘符文的圆珠,毫不迟疑的向身后一抛。",
+      "mood": "Preparing",
+      "lighting": "Red and Black Light",
+      "action": "Prepare Immortal Slayer Beads",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Since facing Void Refinement cultivators, Han Li doesn't hope can simply escape just with Blood Shadow Escape, in blood light he single hand flips, suddenly appears red black two beads flashing mysterious runes, without hesitation throws behind",
+        "environment": "Sky above, Han Li preparing beads",
+        "character_pose": "Han Li with beads, preparing",
+        "fx": "Red and black beads, mysterious runes",
+        "motion": {
+          "type": "push_in",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Since facing Void Refinement cultivators, Han Li doesn't hope can simply escape just with Blood Shadow Escape, in blood light he single hand flips, suddenly appears red black two beads flashing mysterious runes, without hesitation throws behind.",
+      "narration": "身处血光中的他,单手一翻转,蓦然多出了红黑两颗闪动神秘符文的圆珠。",
+      "face_style_auto": {
+        "expression": "Focused",
+        "lighting": "Red and Black Light",
+        "detail": "Natural",
+        "strength": 0.9
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "随即两手掐诀下,口中暗暗的念动有词起来,这时,他所驾驭的血光一闪的掠过了混沌谷的谷口,后面三人急追之下也同样接近了这里,两颗圆珠滴溜溜一转,嗡鸣声一起后,一声惊天动地的巨响传来。",
+      "mood": "Explosive",
+      "lighting": "Red and Black Light",
+      "action": "Beads Explode",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Then two hands form seals, mouth silently mutters incantations, at this time, blood light he controls flashes past Chaos Valley entrance, three behind urgently pursuing also approach here, two beads spin, buzzing sounds, earth-shattering loud sound comes",
+        "environment": "Valley entrance, beads exploding",
+        "character_pose": "Beads spinning, exploding",
+        "fx": "Beads spinning, buzzing, explosion",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Then two hands form seals, mouth silently mutters incantations, at this time, blood light he controls flashes past Chaos Valley entrance, three behind urgently pursuing also approach here, two beads spin, buzzing sounds, earth-shattering loud sound comes.",
+      "narration": "两颗圆珠滴溜溜一转,嗡鸣声一起后,一声惊天动地的巨响传来。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Red and Black Light",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "一红一黑,两轮直径十丈的骄阳在虚空中闪现而出,一股肉眼可见的气波疯狂四散开来,刹那间形成了一股狂猛无比的飓风,将方圆数里内的一切都席卷而进。",
+      "mood": "Devastating",
+      "lighting": "Red and Black Light",
+      "action": "Sun Explosions",
+      "camera": "Wide Reveal",
+      "visual": {
+        "composition": "One red one black, two suns ten zhang diameter appear in void, visible air waves wildly spread, instantly forms violent hurricane, sweeps everything within several li radius",
+        "environment": "Valley entrance, dual suns, hurricane",
+        "character_pose": "Two suns, hurricane forming",
+        "fx": "Red and black suns, hurricane, devastation",
+        "motion": {
+          "type": "pull_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "One red one black, two suns ten zhang diameter appear in void, visible air waves wildly spread, instantly forms violent hurricane, sweeps everything within several li radius.",
+      "narration": "一红一黑,两轮直径十丈的骄阳在虚空中闪现而出,形成狂猛的飓风。",
+      "face_style_auto": {
+        "expression": "Terrified",
+        "lighting": "Red and Black Light",
+        "detail": "Natural",
+        "strength": 0.92
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "scene_profile": "giant_awakening",
+      "duration": 4,
+      "description": "后面紧追韩立的三人,以那旭天法力最为高深,追的也最靠前一些,再加上以秘术催动遁光追得过快,一下就被飓风卷入了其中,倒是稍落后的黄粱灵君二人,因为距离稍远,顿时一惊的遁光方向一变。",
+      "mood": "Chaotic",
+      "lighting": "Mixed Lighting",
+      "action": "Xutian Caught in Hurricane",
+      "camera": "Wide Action Shot",
+      "visual": {
+        "composition": "Three closely pursuing Han Li, Xutian highest cultivation, pursues most forward, plus secret technique drives escape light too fast, instantly caught in hurricane, but slightly behind Huangliang Spirit Lord two people, because distance farther, immediately shocked escape light direction changes",
+        "environment": "Valley entrance, hurricane catching pursuers",
+        "character_pose": "Xutian caught, two dodging",
+        "fx": "Hurricane, catching, dodging",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Three closely pursuing Han Li, Xutian highest cultivation, pursues most forward, plus secret technique drives escape light too fast, instantly caught in hurricane, but slightly behind Huangliang Spirit Lord two people, because distance farther, immediately shocked escape light direction changes.",
+      "narration": "后面紧追的三人,旭天法力最为高深,追得最靠前,一下就被飓风卷入了其中。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.91
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_011.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第49集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep48_full/scene_012.png"
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "episode": 52,
+  "title": "Leaves Cave · Divine Blood Story Spreads",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "画面淡入,展现云雾缭绕的仙域上空,金色卷轴在空中展开,光芒闪动,背景音乐渐起。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Title Reveal",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Misty immortal skies with a golden scroll unfurling",
+        "environment": "Immortal realm sky filled with swirling clouds and golden light",
+        "character_pose": "",
+        "fx": "Golden radiance and unfolding scroll effect",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia opening, mist-wreathed immortal sky with a golden scroll unfurling, spiritual particles drifting, wide shot, cinematic lighting, 4K",
+      "narration": "我是云卷仙音，欢迎回来。第52集:离开山洞·神血之事流传。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.84
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_001.png"
+    },
+    {
+      "id": 1,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "韩立在洞窟中一感应到此变化,心中一喜。但又等了数月后,才在某日双目一睁,一拳击碎洞口碎石,人才缓缓走了出来。",
+      "mood": "Decisive",
+      "lighting": "Natural Light",
+      "action": "Breaks Out of Cave",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Han Li in cave senses this change, heart happy, but waits another few months, then one day eyes open, one punch shatters cave entrance rubble, person slowly walks out",
+        "environment": "Cave entrance, natural light",
+        "character_pose": "Han Li breaking out, walking out",
+        "fx": "Rubble falling, dust",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Han Li in cave senses this change, heart happy, but waits another few months, then one day eyes open, one punch shatters cave entrance rubble, person slowly walks out.",
+      "narration": "韩立在洞窟中一感应到此变化,心中一喜,但又等了数月后才在某日一拳击碎洞口碎石。",
+      "face_style_auto": {
+        "expression": "Decisive",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_002.png"
+    },
+    {
+      "id": 2,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "他看了看附近一切,并未任何异样变化后,当即嘿嘿一笑的袖袍一甩,大步流星的直奔山下而去。",
+      "mood": "Satisfied",
+      "lighting": "Natural Light",
+      "action": "Leaves Mountain",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "He looks around nearby everything, no abnormal changes, immediately hehe smiles sleeve flicks, strides directly down mountain",
+        "environment": "Mountain path, natural landscape",
+        "character_pose": "Han Li walking down, satisfied",
+        "fx": "",
+        "motion": {
+          "type": "pan",
+          "direction": "top_to_bottom",
+          "speed": "medium"
+        }
+      },
+      "prompt": "He looks around nearby everything, no abnormal changes, immediately hehe smiles sleeve flicks, strides directly down mountain.",
+      "narration": "他看了看附近一切,并未任何异样变化后,当即嘿嘿一笑,大步流星的直奔山下而去。",
+      "face_style_auto": {
+        "expression": "Satisfied",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_003.png"
+    },
+    {
+      "id": 3,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "不久,他身形就在山林中消失的无影无踪。",
+      "mood": "Hidden",
+      "lighting": "Natural Light",
+      "action": "Disappears into Forest",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Not long, his figure in forest disappears without trace",
+        "environment": "Forest, natural landscape",
+        "character_pose": "Han Li disappearing into forest",
+        "fx": "",
+        "motion": {
+          "type": "fade_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "Not long, his figure in forest disappears without trace.",
+      "narration": "不久,他身形就在山林中消失的无影无踪,彻底摆脱了追踪。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_004.png"
+    },
+    {
+      "id": 4,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "一年后,落日之城较近一座小城中,到来了一名面孔陌生的青年炼体士。他匆匆的采购了一批东西后,就扬长而去,不知所踪了。",
+      "mood": "Mysterious",
+      "lighting": "City Light",
+      "action": "Han Li in City",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "One year later, near Sunset City small city, arrives unfamiliar young body cultivator, he hurriedly purchases batch things, then leaves, whereabouts unknown",
+        "environment": "Small city, shops, streets",
+        "character_pose": "Han Li disguised as young body cultivator, shopping",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "One year later, near Sunset City small city, arrives unfamiliar young body cultivator, he hurriedly purchases batch things, then leaves, whereabouts unknown.",
+      "narration": "一年后,落日之城较近一座小城中,到来了一名面孔陌生的青年炼体士,匆匆采购后离开。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "City Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_005.png"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "因为最终没有追回东西,故而有关神血的事情还是渐渐流传了开来。",
+      "mood": "Rumors Spreading",
+      "lighting": "Mixed Lighting",
+      "action": "Rumors Spread",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Because ultimately didn't recover things, so about divine blood matters gradually spread",
+        "environment": "Various locations, people talking",
+        "character_pose": "Various people discussing",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Because ultimately didn't recover things, so about divine blood matters gradually spread.",
+      "narration": "因为最终没有追回东西,故而有关神血的事情还是渐渐流传了开来,引发轰动。",
+      "face_style_auto": {
+        "expression": "Curious",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_006.png"
+    },
+    {
+      "id": 6,
+      "duration": 4,
+      "description": "再加上当时参加过三族大战的一些修士和炼体士也逐渐证明了此事,此事着实一连轰动了数年。",
+      "mood": "Confirmed and Shocking",
+      "lighting": "Mixed Lighting",
+      "action": "Story Confirmed",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Plus at that time participated in three races battle some cultivators and body cultivators gradually proved this matter, this matter really shocked for years",
+        "environment": "Various locations, witnesses confirming",
+        "character_pose": "Witnesses confirming story",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Plus at that time participated in three races battle some cultivators and body cultivators gradually proved this matter, this matter really shocked for years.",
+      "narration": "再加上参加过三族大战的修士和炼体士逐渐证明了此事,此事着实一连轰动了数年。",
+      "face_style_auto": {
+        "expression": "Shocked",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_007.png"
+    },
+    {
+      "id": 7,
+      "character_profile": "huangliang_lingjun",
+      "duration": 4,
+      "description": "黄粱灵君等炼虚级出手的情况下,东西还让一名区区化神修士夺取了,自然让人啧啧称奇不已。",
+      "mood": "Amazed",
+      "lighting": "Mixed Lighting",
+      "action": "People Amazed",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord and other Refining Void level took action, thing still let mere Deity Transformation cultivator snatch, naturally makes people marvel",
+        "environment": "Various locations, amazed people",
+        "character_pose": "People discussing, amazed",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord and other Refining Void level took action, thing still let mere Deity Transformation cultivator snatch, naturally makes people marvel.",
+      "narration": "黄粱灵君等炼虚级出手的情况下,东西还让一名区区化神修士夺取了,自然让人称奇不已。",
+      "face_style_auto": {
+        "expression": "Amazed",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_008.png"
+    },
+    {
+      "id": 8,
+      "character_profile": "huangliang_lingjun",
+      "duration": 4,
+      "description": "黄粱灵君仍有些不甘心,在回到落日城后,仍一连好几年的追查此事,对于夺宝修士身份也下了一番心思的去寻找。",
+      "mood": "Persistent",
+      "lighting": "Mixed Lighting",
+      "action": "Huangliang Searches",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Huangliang Spirit Lord still somewhat unwilling, after returning to Sunset City, still several years investigating this matter, for treasure snatcher's identity also put effort searching",
+        "environment": "Sunset City, investigation scene",
+        "character_pose": "Huangliang investigating, persistent",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Huangliang Spirit Lord still somewhat unwilling, after returning to Sunset City, still several years investigating this matter, for treasure snatcher's identity also put effort searching.",
+      "narration": "黄粱灵君仍有些不甘心,在回到落日城后,仍一连好几年的追查此事,寻找夺宝修士身份。",
+      "face_style_auto": {
+        "expression": "Persistent",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_009.png"
+    },
+    {
+      "id": 9,
+      "character_profile": "huangliang_lingjun",
+      "duration": 4,
+      "description": "结果让他无奈之极,夺宝之人显露的几种神通,个个都非同小可,但却仿佛是从石头中蹦出来的一般,竟然丝毫线索没有。",
+      "mood": "Frustrated",
+      "lighting": "Mixed Lighting",
+      "action": "No Clues Found",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Result makes him extremely helpless, treasure snatcher revealed several divine abilities, each extraordinary, but seems like jumped out from stone, actually no clues at all",
+        "environment": "Sunset City, Huangliang frustrated",
+        "character_pose": "Huangliang frustrated, no clues",
+        "fx": "",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Result makes him extremely helpless, treasure snatcher revealed several divine abilities, each extraordinary, but seems like jumped out from stone, actually no clues at all.",
+      "narration": "结果让他无奈之极,夺宝之人显露的几种神通都非同小可,但却丝毫线索没有。",
+      "face_style_auto": {
+        "expression": "Frustrated",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_010.png"
+    },
+    {
+      "id": 10,
+      "character_profile": "huangliang_lingjun",
+      "duration": 4,
+      "description": "再过一两年后,黄粱灵君离开了落日城,和那寰天奇相约去了蛮荒世界,就没人再关注此话题,神血之事就这般不了了之了。",
+      "mood": "Forgotten",
+      "lighting": "Mixed Lighting",
+      "action": "Story Forgotten",
+      "camera": "Wide Shot",
+      "visual": {
+        "composition": "After another one two years, Huangliang Spirit Lord leaves Sunset City, with Huan Tianqi goes to barbarian wilderness, no one pays attention to this topic, divine blood matter just fades away",
+        "environment": "Sunset City, Huangliang leaving",
+        "character_pose": "Huangliang leaving, story fading",
+        "fx": "",
+        "motion": {
+          "type": "fade_out",
+          "speed": "slow"
+        }
+      },
+      "prompt": "After another one two years, Huangliang Spirit Lord leaves Sunset City, with Huan Tianqi goes to barbarian wilderness, no one pays attention to this topic, divine blood matter just fades away.",
+      "narration": "再过一两年后,黄粱灵君离开了落日城,和寰天奇相约去了蛮荒世界,神血之事不了了之。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Mixed Lighting",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_011.png"
+    },
+    {
+      "id": 11,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "数年后,在远离人烟的一处高大巍峨巨山的山腹中,一个四周漆黑如墨的空间中,一个人影静静的盘坐里面,身上金光微微闪动着不停。",
+      "mood": "Cultivating",
+      "lighting": "Dark with Golden Light",
+      "action": "Han Li Cultivating",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Several years later, in remote towering mountain's belly, space pitch black, person figure quietly sits inside, body golden light slightly flashing continuously",
+        "environment": "Dark cave in mountain, golden light",
+        "character_pose": "Han Li sitting, golden light flashing",
+        "fx": "Golden light pulsing",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Several years later, in remote towering mountain's belly, space pitch black, person figure quietly sits inside, body golden light slightly flashing continuously.",
+      "narration": "数年后,在远离人烟的一处高大巍峨巨山的山腹中,一个人影静静的盘坐里面,身上金光闪烁。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_012.png"
+    },
+    {
+      "id": 12,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "在人影一旁却放着一个血红小瓶,横躺在地上,仿佛里面已经空空如也了。",
+      "mood": "Empty",
+      "lighting": "Dark with Golden Light",
+      "action": "Empty Blood Vial",
+      "camera": "Close-Up",
+      "visual": {
+        "composition": "Beside person figure lies blood red small bottle, lying on ground, seems inside already empty",
+        "environment": "Dark cave, empty bottle",
+        "character_pose": "Empty bottle on ground",
+        "fx": "Empty bottle, no glow",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Beside person figure lies blood red small bottle, lying on ground, seems inside already empty.",
+      "narration": "在人影一旁却放着一个血红小瓶,横躺在地上,仿佛里面已经空空如也了。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_013.png"
+    },
+    {
+      "id": 13,
+      "character_profile": "han_li",
+      "duration": 4,
+      "description": "盘坐人影却只是动也不动,要不是轻轻起伏的胸脯,就仿佛泥雕一般。",
+      "mood": "Still",
+      "lighting": "Dark with Golden Light",
+      "action": "Still as Statue",
+      "camera": "Medium Shot",
+      "visual": {
+        "composition": "Sitting person figure just doesn't move, if not for gently rising falling chest, seems like mud statue",
+        "environment": "Dark cave, still figure",
+        "character_pose": "Han Li still, only chest moving",
+        "fx": "Golden light, very still",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Sitting person figure just doesn't move, if not for gently rising falling chest, seems like mud statue.",
+      "narration": "盘坐人影却只是动也不动,要不是轻轻起伏的胸脯,就仿佛泥雕一般。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Dark with Golden Light",
+        "detail": "Natural",
+        "strength": 0.89
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_014.png"
+    },
+    {
+      "id": 999,
+      "duration": 3,
+      "description": "画面淡出,夜色下的仙城剪影,天空洒落灵光,画面逐渐变暗。",
+      "mood": "Calm",
+      "lighting": "Soft",
+      "action": "Closing Tableau",
+      "camera": "Static Shot",
+      "visual": {
+        "composition": "Silhouette of the immortal city beneath night, spiritual light raining from the heavens",
+        "environment": "Night sky, city silhouette, floating light particles",
+        "character_pose": "",
+        "fx": "Falling spiritual motes with fade-out",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "Xianxia ending, immortal city silhouette under the night sky, spiritual particles drifting down, calm mysterious atmosphere, wide shot, cinematic lighting, 4K",
+      "narration": "下一集再见。我是云卷仙音,原著作者忘语。第53集即将开始。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Soft",
+        "detail": "Natural",
+        "strength": 0.83
+      },
+      "image_path": "outputs/images/lingjie_ep52_full/scene_015.png"
+    }
+  ]
+}
+
