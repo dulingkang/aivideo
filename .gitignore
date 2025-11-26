@@ -205,3 +205,96 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ============================================
+# 项目特定忽略规则
+# ============================================
+
+# 大文件和媒体文件
+*.mp4
+*.mp3
+*.wav
+*.avi
+*.mov
+*.mkv
+*.flv
+*.webm
+
+# 图像文件（保留小图标和示例图，忽略大图）
+*.png
+*.jpg
+*.jpeg
+!**/assets/*.png
+!**/assets/*.jpg
+!**/examples/*.png
+!**/examples/*.jpg
+!**/README*.png
+!**/README*.jpg
+
+# 模型文件
+*.safetensors
+*.ckpt
+*.bin
+*.pth
+*.pt
+*.onnx
+*.h5
+*.pkl
+*.pb
+
+# 索引和数据库文件
+*.faiss
+*.index
+*.db
+*.sqlite
+*.sqlite3
+
+# 输出和临时目录
+outputs/
+temp/
+processed/
+*.work/
+*_work/
+
+# 模型目录（大文件）
+models/
+checkpoints/
+pretrained_models/
+
+# 缓存和临时文件
+.cache/
+*.cache
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+logs/
+
+# 子模块（通过git submodule管理）
+# CosyVoice/  # 将作为submodule
+# InstantID/  # 将作为submodule
+
+# 数据文件
+*.csv
+*.tsv
+*.parquet
+*.feather
+
+# 压缩文件
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# 大文本文件（小说等）
+*.txt
+!requirements*.txt
+!README*.txt
+!LICENSE*.txt
+!CHANGELOG*.txt
+!CONTRIBUTING*.txt

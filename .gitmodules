@@ -1,0 +1,6 @@
+[submodule "CosyVoice"]
+	path = CosyVoice
+	url = https://github.com/FunAudioLLM/CosyVoice.git
+[submodule "InstantID"]
+	path = InstantID
+	url = git@github.com:instantX-research/InstantID.git
