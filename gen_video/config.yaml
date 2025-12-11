@@ -121,6 +121,58 @@ video:
         negative_keywords: ["modern", "realistic", "photorealistic"]
     # 默认风格（如果脚本中未指定style，使用此风格）
     default_style: realistic  # 可选: scientific, commercial, dramatic, realistic, xianxia
+  
+  # CogVideoX配置（量产产线，快速批量生成）
+  cogvideox:
+    # 模型路径（本地路径或HuggingFace模型ID）
+    # 推荐模型：THUDM/CogVideoX-5b-I2V（图生视频）
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/CogVideoX-5b
+    # 或使用HuggingFace自动下载: THUDM/CogVideoX-5b-I2V
+    # 帧数（CogVideoX推荐：49-81帧，必须是vae_scale_factor_temporal的倍数）
+    # 注意：CogVideoX实际生成帧数 = num_frames + 1（因为第一帧是条件帧）
+    num_frames: 81  # 推荐81帧（约5秒@16fps）
+    fps: 16  # CogVideoX推荐帧率：16fps
+    # 分辨率（CogVideoX推荐：1360x768或更高）
+    width: 1360  # 推荐分辨率
+    height: 768  # 推荐分辨率（确保是8的倍数）
+    num_inference_steps: 50  # 推理步数（CogVideoX推荐50步）
+    guidance_scale: 6.0  # 引导尺度（CogVideoX推荐6.0）
+    # 是否启用动态CFG（use_dynamic_cfg，推荐启用）
+    use_dynamic_cfg: true  # 启用动态CFG，质量更好
+    # 显存优化
+    enable_model_cpu_offload: true  # 启用CPU offload以降低显存占用
+    enable_tiling: true  # 启用VAE tiling以降低显存占用
+    # Prompt配置（CogVideoX对prompt要求不如HunyuanVideo严格，但详细prompt效果更好）
+    prompt: ""  # 视频生成提示词（留空则自动从场景信息构建）
+    negative_prompt: "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes"  # 负面提示词
+    # 显存限制（类似HunyuanVideo）
+    max_memory_fraction: 0.3  # 限制本进程最多使用30%的GPU显存（CogVideoX比HunyuanVideo更轻量）
+  
+  # 模型路由配置（自动选择模型）
+  model_routing:
+    # 场景类型到模型的映射
+    scene_type_mapping:
+      government: hunyuanvideo  # 政府/科普 → 高端产线
+      enterprise: hunyuanvideo  # 企业广告 → 高端产线
+      scientific: hunyuanvideo  # 科普教育 → 高端产线
+      premium: hunyuanvideo  # 高端场景 → 高端产线
+      novel: cogvideox  # 小说推文 → 量产产线
+      drama: cogvideox  # 短剧 → 量产产线
+      daily: cogvideox  # 日常运营 → 量产产线
+      social: cogvideox  # 社交媒体 → 量产产线
+      general: cogvideox  # 通用场景 → 量产产线（默认）
+    # 用户等级到模型的映射
+    user_tier_mapping:
+      free: cogvideox  # 免费用户 → 量产产线
+      basic: cogvideox  # 基础用户 → 量产产线
+      professional: cogvideox  # 专业用户 → 量产产线
+      enterprise: hunyuanvideo  # 企业用户 → 高端产线
+      premium: hunyuanvideo  # 高级用户 → 高端产线
+    # 显存阈值（GB）
+    memory_threshold:
+      hunyuanvideo: 20  # HunyuanVideo需要至少20GB可用显存
+      cogvideox: 12  # CogVideoX需要至少12GB可用显存
+  
   # 生成帧数
   # 关键优化：num_frames 必须 = duration * fps，否则会导致运动不连贯
   # 例如：duration=5s, fps=24 → num_frames=120

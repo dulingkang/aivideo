@@ -27,6 +27,7 @@ try:
     from deforum_camera_motion import DeforumCameraMotion
     from svd_parameter_generator import SVDParameterGenerator
     from scene_type_classifier import SceneTypeClassifier
+    from utils.model_router import ModelRouter
 except ImportError:
     # 如果导入失败，创建占位类
     class SceneMotionAnalyzer:
@@ -64,6 +65,7 @@ class VideoGenerator:
         # 模型相关
         self.pipeline = None
         self.hunyuanvideo_pipeline = None  # HunyuanVideo pipeline
+        self.cogvideox_pipeline = None  # CogVideoX pipeline
         self.model_loaded = False
         
         # RIFE 插帧相关
@@ -90,6 +92,19 @@ class VideoGenerator:
                 print("  ✓ HunyuanVideo pipeline已卸载")
             except Exception as e:
                 print(f"  ⚠ 卸载HunyuanVideo pipeline失败: {e}")
+        
+        # 卸载CogVideoX pipeline
+        if self.cogvideox_pipeline is not None:
+            try:
+                # 尝试调用unload方法（如果存在）
+                if hasattr(self.cogvideox_pipeline, 'unload'):
+                    self.cogvideox_pipeline.unload()
+                # 删除引用
+                del self.cogvideox_pipeline
+                self.cogvideox_pipeline = None
+                print("  ✓ CogVideoX pipeline已卸载")
+            except Exception as e:
+                print(f"  ⚠ 卸载CogVideoX pipeline失败: {e}")
         
         # 卸载SVD/AnimateDiff pipeline
         if self.pipeline is not None:
@@ -443,6 +458,87 @@ class VideoGenerator:
             traceback.print_exc()
             raise
     
+    def _load_cogvideox_model(self, model_path: str):
+        """加载CogVideoX模型（图生视频）"""
+        import torch
+        from pathlib import Path
+        
+        print(f"  加载CogVideoX模型: {model_path}")
+        
+        try:
+            from diffusers import CogVideoXImageToVideoPipeline
+            from diffusers.utils import export_to_video
+            
+            # 获取CogVideoX配置
+            cogvideox_config = self.video_config.get('cogvideox', {})
+            
+            # 使用低显存模式加载模型（避免一次性分配）
+            print("  ℹ 使用低显存模式加载模型（避免一次性分配）...")
+            # 临时隐藏GPU，强制在CPU上加载模型
+            import os
+            original_cuda_visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES", None)
+            os.environ["CUDA_VISIBLE_DEVICES"] = ""
+            
+            try:
+                # 判断是HuggingFace模型ID还是本地路径
+                is_hf_model_id = not Path(model_path).exists() and "/" in str(model_path)
+                
+                if is_hf_model_id:
+                    print(f"  ℹ 使用HuggingFace模型: {model_path}")
+                    print(f"  ℹ 将自动下载所有必需组件...")
+                
+                # 加载CogVideoX pipeline
+                self.cogvideox_pipeline = CogVideoXImageToVideoPipeline.from_pretrained(
+                    model_path,
+                    torch_dtype=torch.float16,
+                    low_cpu_mem_usage=True,  # 降低CPU内存使用
+                    device_map="cpu"  # 强制在CPU上加载
+                )
+                print("  ✓ CogVideoX pipeline已加载到CPU")
+            finally:
+                # 恢复CUDA_VISIBLE_DEVICES
+                if original_cuda_visible_devices is not None:
+                    os.environ["CUDA_VISIBLE_DEVICES"] = original_cuda_visible_devices
+                else:
+                    del os.environ["CUDA_VISIBLE_DEVICES"]
+            
+            # 显存优化：设置显存限制
+            if torch.cuda.is_available():
+                max_memory_fraction = cogvideox_config.get('max_memory_fraction', 0.3)
+                torch.cuda.set_per_process_memory_fraction(max_memory_fraction, device=0)
+                print(f"  ✓ 已设置显存限制: {max_memory_fraction * 100}%")
+            
+            # 显存优化：启用CPU offload（如果配置启用）
+            if cogvideox_config.get('enable_model_cpu_offload', True):
+                try:
+                    self.cogvideox_pipeline.enable_model_cpu_offload()
+                    print("  ✓ 已启用CPU offload（降低显存占用）")
+                except Exception as e:
+                    print(f"  ⚠ 启用CPU offload失败: {e}")
+            else:
+                # 移动到GPU
+                if torch.cuda.is_available():
+                    self.cogvideox_pipeline = self.cogvideox_pipeline.to("cuda")
+                    print("  ✓ 模型已加载到GPU")
+            
+            # 显存优化：启用VAE tiling（如果配置启用）
+            if cogvideox_config.get('enable_tiling', True):
+                try:
+                    if hasattr(self.cogvideox_pipeline, 'vae') and self.cogvideox_pipeline.vae is not None:
+                        if hasattr(self.cogvideox_pipeline.vae, 'enable_tiling'):
+                            self.cogvideox_pipeline.vae.enable_tiling()
+                            print("  ✓ 已启用VAE tiling（降低VAE解码时的显存占用）")
+                except Exception as e:
+                    print(f"  ⚠ 启用VAE tiling失败: {e}")
+            
+            print("  ✓ CogVideoX模型加载成功")
+            
+        except Exception as e:
+            print(f"  ✗ CogVideoX模型加载失败: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
+    
     def _load_animatediff_model(self, model_path: str):
         """加载AnimateDiff模型（文生视频）"""
         import torch
@@ -756,8 +852,47 @@ class VideoGenerator:
         # ========== 4. 生成视频 ==========
         model_type = self.video_config.get('model_type', 'svd-xt')
         
+        # 如果配置了模型路由，根据场景自动选择模型
+        if model_type == 'auto' and self.model_router is not None:
+            # 使用模型路由器自动选择
+            user_tier = scene.get('user_tier', 'basic') if scene else 'basic'
+            selected_model = self.model_router.select_model(
+                scene=scene,
+                user_tier=user_tier,
+                force_model=None,
+                available_memory=None  # 自动检测
+            )
+            print(f"  ℹ 模型路由选择: {selected_model}")
+            model_type = selected_model
+        
+        # 如果使用CogVideoX，使用CogVideoX生成
+        if model_type == 'cogvideox':
+            # 获取CogVideoX配置
+            cogvideox_config = self.video_config.get('cogvideox', {})
+            # 获取CogVideoX特定的参数
+            cogvideox_num_frames = num_frames if num_frames else cogvideox_config.get('num_frames', 81)
+            cogvideox_fps = fps if fps else cogvideox_config.get('fps', 16)
+            
+            # 构建prompt和negative_prompt
+            prompt = ""
+            negative_prompt = cogvideox_config.get('negative_prompt', '')
+            if scene:
+                # 从scene中提取prompt信息
+                from diffusers.utils import load_image
+                image = load_image(image_path)
+                prompt = self._build_detailed_prompt(image_path, image, scene)
+            
+            return self._generate_video_cogvideox(
+                image_path=image_path,
+                output_path=output_path,
+                prompt=prompt,
+                negative_prompt=negative_prompt,
+                num_frames=cogvideox_num_frames,
+                fps=cogvideox_fps,
+                scene=scene,
+            )
         # 如果使用HunyuanVideo，使用HunyuanVideo生成
-        if model_type == 'hunyuanvideo':
+        elif model_type == 'hunyuanvideo':
             # 从scene中提取prompt（如果有）
             video_prompt = ""
             video_negative_prompt = ""
@@ -1940,6 +2075,165 @@ class VideoGenerator:
                 torch.cuda.empty_cache()
                 gc.collect()
             print(f"  ✗ HunyuanVideo视频生成失败: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
+    
+    def _generate_video_cogvideox(
+        self,
+        image_path: str,
+        output_path: str,
+        prompt: str = "",
+        negative_prompt: str = "",
+        num_frames: int = 81,
+        fps: int = 16,
+        scene: Optional[Dict[str, Any]] = None,
+    ) -> str:
+        """使用CogVideoX生成视频（图生视频）"""
+        print(f"  使用CogVideoX生成视频")
+        print(f"    参数: num_frames={num_frames}, fps={fps}")
+        
+        if not self.model_loaded or self.cogvideox_pipeline is None:
+            self.load_model()
+        
+        # 生成前清理显存
+        import torch
+        import gc
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            gc.collect()
+        
+        # 加载图像
+        from diffusers.utils import load_image
+        image = load_image(image_path)
+        
+        # 获取CogVideoX配置
+        cogvideox_config = self.video_config.get('cogvideox', {})
+        width = cogvideox_config.get('width', self.video_config.get('width', 1360))
+        height = cogvideox_config.get('height', self.video_config.get('height', 768))
+        num_inference_steps = cogvideox_config.get('num_inference_steps', 50)
+        guidance_scale = cogvideox_config.get('guidance_scale', 6.0)
+        use_dynamic_cfg = cogvideox_config.get('use_dynamic_cfg', True)
+        
+        # 获取prompt和negative_prompt（优先使用传入的参数，否则从配置读取）
+        config_prompt = cogvideox_config.get('prompt', '')
+        config_negative_prompt = cogvideox_config.get('negative_prompt', '')
+        
+        # 构建详细的prompt（如果传入的prompt为空）
+        if not prompt:
+            if config_prompt:
+                prompt = config_prompt
+            else:
+                # 从图片路径提取信息，构建基础prompt
+                prompt = self._build_detailed_prompt(image_path, image, scene)
+        
+        # 如果prompt仍然为空或太简单，使用默认值
+        if not prompt or len(prompt) < 20:
+            prompt = "high quality video, smooth motion, cinematic, natural movement, stable camera"
+        
+        # 如果传入的negative_prompt为空，使用配置中的negative_prompt
+        if not negative_prompt and config_negative_prompt:
+            negative_prompt = config_negative_prompt
+        # 如果仍然为空，使用默认值
+        if not negative_prompt:
+            negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes"
+        
+        print(f"    Prompt: {prompt[:150]}{'...' if len(prompt) > 150 else ''}")
+        print(f"    Negative Prompt: {negative_prompt[:100]}{'...' if len(negative_prompt) > 100 else ''}")
+        
+        # 调整图像大小（如果需要）
+        if image.size != (width, height):
+            image = image.resize((width, height), Image.Resampling.LANCZOS)
+            print(f"  ℹ 图像已调整: {image.size}")
+        
+        # 生成视频前清理显存
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            gc.collect()
+            allocated_before = torch.cuda.memory_allocated() / 1024**3
+            print(f"  ℹ 生成前显存占用: {allocated_before:.2f}GB")
+        
+        print(f"  开始生成视频（CogVideoX）...")
+        try:
+            generator = torch.Generator(device="cuda" if torch.cuda.is_available() else "cpu")
+            generator.manual_seed(42)
+            
+            # 调用CogVideoX pipeline
+            result = self.cogvideox_pipeline(
+                image=image,
+                prompt=prompt,
+                negative_prompt=negative_prompt,
+                num_inference_steps=num_inference_steps,
+                num_frames=num_frames,
+                guidance_scale=guidance_scale,
+                use_dynamic_cfg=use_dynamic_cfg,
+                generator=generator,
+            )
+            
+            # 提取frames（CogVideoX返回CogVideoXPipelineOutput）
+            if hasattr(result, 'frames'):
+                frames = result.frames
+            elif isinstance(result, (list, tuple)) and len(result) > 0:
+                frames = result[0]
+            else:
+                frames = result
+            
+            # 转换frames为numpy数组列表
+            import numpy as np
+            video_frames = []
+            
+            if isinstance(frames, torch.Tensor):
+                frames_np = frames.cpu().numpy()
+                del frames
+                frames = frames_np
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+            
+            if isinstance(frames, np.ndarray):
+                if len(frames.shape) == 5:
+                    frames = frames[0]
+                if len(frames.shape) == 4:
+                    for i in range(frames.shape[0]):
+                        video_frames.append(frames[i])
+                else:
+                    video_frames = [frames]
+            elif isinstance(frames, (list, tuple)):
+                for f in frames:
+                    if isinstance(f, torch.Tensor):
+                        f_np = f.cpu().numpy()
+                        del f
+                        video_frames.append(f_np)
+                    elif isinstance(f, np.ndarray):
+                        video_frames.append(f)
+                    else:
+                        # 假设是PIL Image
+                        video_frames.append(np.array(f))
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+            else:
+                # 假设是PIL Image
+                video_frames = [np.array(frames)]
+            
+            if not video_frames:
+                raise ValueError("生成的视频帧为空")
+            
+            print(f"  ✓ 生成完成，共 {len(video_frames)} 帧")
+            
+            # 导出视频
+            from diffusers.utils import export_to_video
+            export_to_video(video_frames, output_path, fps=fps)
+            print(f"  ✓ 视频已保存: {output_path}")
+            
+            # 清理显存
+            del video_frames, frames, result
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                gc.collect()
+            
+            return output_path
+            
+        except Exception as e:
+            print(f"  ✗ CogVideoX视频生成失败: {e}")
             import traceback
             traceback.print_exc()
             raise
