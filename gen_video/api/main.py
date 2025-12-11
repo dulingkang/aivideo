@@ -10,6 +10,16 @@ from pydantic import BaseModel, Field, validator
 from typing import Optional, List, Dict, Any
 import uuid
 from datetime import datetime
+from pathlib import Path
+
+# 导入任务队列
+try:
+    from .tasks import generate_image_task, generate_video_task, get_task_status
+except ImportError:
+    # 如果导入失败，使用相对导入（开发模式）
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from tasks import generate_image_task, generate_video_task, get_task_status
 
 app = FastAPI(
     title="AI Video Generation Platform",
@@ -43,7 +53,7 @@ class ImageRequest(BaseModel):
     character_id: Optional[str] = Field(None, description="角色ID")
     scene_config: Optional[Dict[str, Any]] = Field(None, description="场景配置")
     style: Optional[str] = Field("xianxia", description="风格")
-    output_format: str = Field("png", regex="^(png|jpg|jpeg)$", description="输出格式")
+    output_format: str = Field("png", pattern="^(png|jpg|jpeg)$", description="输出格式")
     
     @validator('width', 'height')
     def validate_resolution(cls, v):
@@ -62,7 +72,7 @@ class VideoRequest(BaseModel):
     """视频生成请求"""
     scenes: List[VideoScene] = Field(..., min_items=1, max_items=100, description="场景列表")
     video_config: Optional[Dict[str, Any]] = Field(None, description="视频配置")
-    output_format: str = Field("mp4", regex="^(mp4|avi|mov)$", description="输出格式")
+    output_format: str = Field("mp4", pattern="^(mp4|avi|mov)$", description="输出格式")
 
 class TaskResponse(BaseModel):
     """任务响应"""
@@ -113,18 +123,48 @@ async def generate_image(
     - **scene_config**: 场景配置（相机、光照、情绪等）
     """
     task_id = str(uuid.uuid4())
+    user_id = current_user.get("user_id", "default")
     
-    # TODO: 将任务加入队列
-    # task_queue.enqueue(generate_image_task, task_id, request.dict(), current_user['user_id'])
+    # 准备任务参数
+    task_kwargs = {
+        "width": request.width,
+        "height": request.height,
+        "num_inference_steps": request.num_inference_steps,
+        "guidance_scale": request.guidance_scale,
+        "seed": request.seed,
+        "character_id": request.character_id,
+        "scene_config": request.scene_config,
+        "style": request.style,
+        "negative_prompt": request.negative_prompt,
+        "output_format": request.output_format,
+    }
     
-    # 估算时间（简化版）
-    estimated_time = 30  # 秒
+    # 配置文件路径
+    config_path = str(Path(__file__).parent.parent / "config.yaml")
     
-    return TaskResponse(
-        task_id=task_id,
-        status="queued",
-        estimated_time=estimated_time
-    )
+    # 将任务加入Celery队列
+    try:
+        task = generate_image_task.delay(
+            task_id=task_id,
+            prompt=request.prompt,
+            user_id=user_id,
+            config_path=config_path,
+            **task_kwargs
+        )
+        
+        # 估算时间（根据参数调整）
+        estimated_time = 30 + (request.num_inference_steps - 40) * 0.5  # 基础30秒 + 步数差异
+        
+        return TaskResponse(
+            task_id=task_id,
+            status="queued",
+            estimated_time=int(estimated_time)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"任务提交失败: {str(e)}"
+        )
 
 @app.post("/api/v1/videos/generate", response_model=TaskResponse)
 async def generate_video(
@@ -138,20 +178,40 @@ async def generate_video(
     - **video_config**: 视频配置（fps、分辨率、是否超分等）
     """
     task_id = str(uuid.uuid4())
+    user_id = current_user.get("user_id", "default")
     
-    # TODO: 将任务加入队列
-    # task_queue.enqueue(generate_video_task, task_id, request.dict(), current_user['user_id'])
+    # 准备场景数据
+    scenes_data = [scene.dict() for scene in request.scenes]
     
-    # 估算时间（简化版）
-    num_scenes = len(request.scenes)
-    total_duration = sum(s.duration for s in request.scenes)
-    estimated_time = int(num_scenes * 30 + total_duration * 10)  # 粗略估算
+    # 配置文件路径
+    config_path = str(Path(__file__).parent.parent / "config.yaml")
     
-    return TaskResponse(
-        task_id=task_id,
-        status="queued",
-        estimated_time=estimated_time
-    )
+    # 将任务加入Celery队列
+    try:
+        task = generate_video_task.delay(
+            task_id=task_id,
+            scenes=scenes_data,
+            user_id=user_id,
+            config_path=config_path,
+            video_config=request.video_config,
+            output_format=request.output_format
+        )
+        
+        # 估算时间
+        num_scenes = len(request.scenes)
+        total_duration = sum(s.duration for s in request.scenes)
+        estimated_time = int(num_scenes * 30 + total_duration * 10)  # 粗略估算
+        
+        return TaskResponse(
+            task_id=task_id,
+            status="queued",
+            estimated_time=estimated_time
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"任务提交失败: {str(e)}"
+        )
 
 @app.get("/api/v1/tasks/{task_id}", response_model=TaskStatus)
 async def get_task_status(
@@ -159,18 +219,26 @@ async def get_task_status(
     current_user: dict = Depends(get_current_user)
 ):
     """查询任务状态"""
-    # TODO: 从数据库查询任务状态
-    # task = task_db.get_task(task_id, current_user['user_id'])
+    # 从任务状态存储查询
+    task_info = get_task_status(task_id)
     
-    # 模拟数据
+    if task_info is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"任务 {task_id} 未找到"
+        )
+    
+    # 验证任务属于当前用户（简化版，后续应该从数据库验证）
+    # TODO: 添加用户验证逻辑
+    
     return TaskStatus(
-        task_id=task_id,
-        status="processing",
-        progress=45,
-        result=None,
-        error=None,
-        created_at=datetime.now(),
-        updated_at=datetime.now()
+        task_id=task_info.get("task_id", task_id),
+        status=task_info.get("status", "unknown"),
+        progress=task_info.get("progress", 0),
+        result=task_info.get("result"),
+        error=task_info.get("error"),
+        created_at=task_info.get("created_at", datetime.now()),
+        updated_at=task_info.get("updated_at", datetime.now())
     )
 
 @app.get("/api/v1/health")

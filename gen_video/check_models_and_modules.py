@@ -9,9 +9,22 @@ import sys
 from pathlib import Path
 import yaml
 
-def check_file_exists(path, name):
+def resolve_path(path_str, base_dir=None):
+    """解析路径（支持相对路径和绝对路径）"""
+    path_obj = Path(path_str)
+    if path_obj.is_absolute():
+        return path_obj
+    else:
+        # 相对路径，需要基于base_dir或当前工作目录
+        if base_dir:
+            return base_dir / path_obj
+        else:
+            # 默认基于gen_video目录
+            return Path(__file__).parent / path_obj
+
+def check_file_exists(path, name, base_dir=None):
     """检查文件或目录是否存在"""
-    path_obj = Path(path)
+    path_obj = resolve_path(path, base_dir)
     if path_obj.exists():
         if path_obj.is_file():
             size = path_obj.stat().st_size / (1024 * 1024)  # MB
@@ -19,13 +32,23 @@ def check_file_exists(path, name):
         else:
             return True, f"✓ {name}: 目录存在"
     else:
-        return False, f"✗ {name}: 缺失 ({path})"
+        # 如果是参考图像，尝试查找替代文件名
+        if '参考图像' in name or 'face_image' in str(path).lower():
+            # 尝试查找 hanli_mid.png 或其他常见名称
+            parent_dir = path_obj.parent
+            if parent_dir.exists():
+                alternatives = ['hanli_mid.png', 'character_mid.png', 'face.png', 'reference.png']
+                for alt in alternatives:
+                    alt_path = parent_dir / alt
+                    if alt_path.exists():
+                        return True, f"✓ {name}: 存在（使用替代文件 {alt}）"
+        return False, f"✗ {name}: 缺失 ({path_obj})"
 
-def check_model_file(path, name, required_files=None):
+def check_model_file(path, name, required_files=None, base_dir=None):
     """检查模型文件是否存在"""
-    path_obj = Path(path)
+    path_obj = resolve_path(path, base_dir)
     if not path_obj.exists():
-        return False, f"✗ {name}: 目录不存在 ({path})"
+        return False, f"✗ {name}: 目录不存在 ({path_obj})"
     
     if required_files:
         missing = []
@@ -63,6 +86,9 @@ def main():
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     
+    # 设置基础目录（gen_video目录）
+    base_dir = Path(__file__).parent
+    
     missing_items = []
     all_items = []
     
@@ -77,7 +103,7 @@ def main():
         # SDXL 基础模型
         sdxl_path = instantid_config.get('model_path', 'models/sdxl-base')
         ok, msg = check_model_file(sdxl_path, "SDXL 基础模型", 
-                                   ['model_index.json', 'unet/diffusion_pytorch_model.safetensors'])
+                                   ['model_index.json', 'unet/diffusion_pytorch_model.safetensors'], base_dir)
         all_items.append(msg)
         if not ok:
             missing_items.append(("SDXL 基础模型", sdxl_path))
@@ -85,14 +111,14 @@ def main():
         # InstantID ControlNet
         controlnet_path = instantid_config.get('controlnet_path', 'models/instantid/ControlNet')
         ok, msg = check_model_file(controlnet_path, "InstantID ControlNet",
-                                  ['ControlNetModel/diffusion_pytorch_model.safetensors'])
+                                  ['ControlNetModel/diffusion_pytorch_model.safetensors'], base_dir)
         all_items.append(msg)
         if not ok:
             missing_items.append(("InstantID ControlNet", controlnet_path))
         
         # InstantID IP-Adapter
         ip_adapter_path = instantid_config.get('ip_adapter_path', 'models/instantid/ip-adapter')
-        ok, msg = check_file_exists(f"{ip_adapter_path}/ip-adapter.bin", "InstantID IP-Adapter")
+        ok, msg = check_file_exists(f"{ip_adapter_path}/ip-adapter.bin", "InstantID IP-Adapter", base_dir)
         all_items.append(msg)
         if not ok:
             missing_items.append(("InstantID IP-Adapter", ip_adapter_path))
@@ -100,7 +126,7 @@ def main():
         # 面部参考图像
         face_image_path = instantid_config.get('face_image_path', '')
         if face_image_path:
-            ok, msg = check_file_exists(face_image_path, "面部参考图像")
+            ok, msg = check_file_exists(face_image_path, "面部参考图像", base_dir)
             all_items.append(msg)
             if not ok:
                 missing_items.append(("面部参考图像", face_image_path))
@@ -110,7 +136,7 @@ def main():
     if lora_config.get('enabled', False):
         lora_path = lora_config.get('weights_path', '')
         if lora_path:
-            ok, msg = check_file_exists(lora_path, "LoRA 权重")
+            ok, msg = check_file_exists(lora_path, "LoRA 权重", base_dir)
             all_items.append(msg)
             if not ok:
                 missing_items.append(("LoRA 权重", lora_path))
@@ -119,7 +145,7 @@ def main():
     print("\n【视频生成模型】")
     video_config = config.get('video', {})
     svd_path = video_config.get('model_path', 'models/svd')
-    ok, msg = check_model_file(svd_path, "SVD 模型", ['model_index.json'])
+    ok, msg = check_model_file(svd_path, "SVD 模型", ['model_index.json'], base_dir)
     all_items.append(msg)
     if not ok:
         missing_items.append(("SVD 模型", svd_path))
@@ -155,7 +181,7 @@ def main():
         # 检查参考音频
         prompt_speech = cosyvoice_config.get('prompt_speech', '')
         if prompt_speech:
-            ok, msg = check_file_exists(prompt_speech, "CosyVoice 参考音频")
+            ok, msg = check_file_exists(prompt_speech, "CosyVoice 参考音频", base_dir)
             all_items.append(msg)
             if not ok:
                 missing_items.append(("CosyVoice 参考音频", prompt_speech))
@@ -166,7 +192,7 @@ def main():
     model_size = subtitle_config.get('model_size', 'medium')
     model_dir = subtitle_config.get('model_dir', f'models/faster-whisper-{model_size}')
     ok, msg = check_model_file(model_dir, f"Whisper {model_size}",
-                               ['model.bin', 'config.json'])
+                               ['model.bin', 'config.json'], base_dir)
     all_items.append(msg)
     if not ok:
         missing_items.append((f"Whisper {model_size}", model_dir))
@@ -176,7 +202,7 @@ def main():
     postprocess_config = config.get('postprocess', {})
     if postprocess_config.get('enabled', False):
         realesrgan_path = postprocess_config.get('model_path', 'models/realesrgan/RealESRGAN_x4plus_anime_6B.pth')
-        ok, msg = check_file_exists(realesrgan_path, "Real-ESRGAN 模型")
+        ok, msg = check_file_exists(realesrgan_path, "Real-ESRGAN 模型", base_dir)
         all_items.append(msg)
         if not ok:
             missing_items.append(("Real-ESRGAN 模型", realesrgan_path))
@@ -190,7 +216,7 @@ def main():
         for track_name, track_config in tracks.items():
             bgm_path = track_config.get('path', '')
             if bgm_path:
-                ok, msg = check_file_exists(bgm_path, f"背景音乐 ({track_name})")
+                ok, msg = check_file_exists(bgm_path, f"背景音乐 ({track_name})", base_dir)
                 all_items.append(msg)
                 if not ok:
                     missing_items.append((f"背景音乐 ({track_name})", bgm_path))

@@ -165,16 +165,63 @@ class PromptBuilder:
             if any(kw in lowered for kw in ["full", "全身"]):
                 shot_type_for_prompt["is_full_body"] = True
         
-        # ========== 第一部分：仙侠风格（最高优先级，放在最前面）==========
+        # ========== 第一部分：风格标签（根据任务类型决定）==========
+        # 检查是否是科普视频（通过 script_data 或 scene 中的 category 判断）
+        is_kepu_video = False
+        
+        # 方法1: 通过 script_data 判断
+        if script_data:
+            category = script_data.get('category', '')
+            topic = script_data.get('topic', '')
+            # 检查 category 是否是科普类别
+            if category and category in ['universe', 'quantum', 'earth', 'energy', 'city', 'biology', 'ai']:
+                is_kepu_video = True
+            # 检查 topic 是否包含科普关键词
+            elif topic and any(kw in topic.lower() for kw in ['科普', '科学', '宇宙', '量子', '地球', '能源', '城市', '生物', '人工智能']):
+                is_kepu_video = True
+        
+        # 方法2: 通过 scene 判断
+        if not is_kepu_video and scene:
+            # 检查 scene 中是否有科普相关的标记
+            scene_category = scene.get('category', '')
+            if scene_category in ['universe', 'quantum', 'earth', 'energy', 'city', 'biology', 'ai']:
+                is_kepu_video = True
+            # 检查 prompt 中是否包含科普关键词
+            scene_prompt = scene.get('prompt', '').lower()
+            if any(kw in scene_prompt for kw in ['space', 'scientific', 'quantum', 'earth', 'energy', 'city', 'biology', 'ai', '科普', '科学', '宇宙', '量子', '地球', '能源', '城市', '生物', '人工智能', 'astronaut', 'space station', 'planet', 'satellite', 'nebula', 'black hole', 'mars', 'solar system']):
+                is_kepu_video = True
+        
+        # 方法3: 通过 task_type 判断（如果 scene 中有 task_type 字段）
+        if not is_kepu_video and scene:
+            task_type = scene.get('task_type', '')
+            if task_type == 'scene':
+                # 场景生成通常是科普背景，但需要进一步确认
+                # 如果 prompt 中没有明确的仙侠关键词，则认为是科普
+                scene_prompt_lower = scene.get('prompt', '').lower()
+                has_xianxia_keywords = any(kw in scene_prompt_lower for kw in ['xianxia', 'fantasy', '仙侠', '修仙', 'cultivator', 'han li', '韩立'])
+                if not has_xianxia_keywords:
+                    is_kepu_video = True
+        
         use_chinese_prompt = not self.ascii_only_prompt
         
+        # 初始化 xianxia_style（用于后续代码）
         if use_chinese_prompt:
             xianxia_style = "仙侠风格"
         else:
             xianxia_style = "xianxia fantasy"
         
-        priority_parts.append(xianxia_style)
-        print(f"  ✓ 仙侠风格（最高优先级）: {xianxia_style}")
+        if is_kepu_video:
+            # 科普视频：不添加仙侠风格，使用科学/专业风格
+            if use_chinese_prompt:
+                style_tag = "写实风格, 专业摄影, 高质量, 详细, 真实感"
+            else:
+                style_tag = "photorealistic, professional photography, scientific style, high quality, detailed, realistic"
+            priority_parts.append(style_tag)
+            print(f"  ✓ 科普视频风格: {style_tag}")
+        else:
+            # 默认：仙侠风格（用于凡人修仙传等）
+            priority_parts.append(xianxia_style)
+            print(f"  ✓ 仙侠风格（最高优先级）: {xianxia_style}")
         
         # ========== 基于意图分析添加主要实体（智能综合权重调整）==========
         if intent['primary_entity']:
@@ -314,9 +361,9 @@ class PromptBuilder:
             # 用户反馈：场景5和7生成了多个人物，在所有人物场景都添加单人约束
             # 在角色描述之前添加单人约束，确保最高优先级
             if self.ascii_only_prompt:
-                priority_parts.insert(0, "(single person, lone figure, only one character, one person only, sole character, single individual:2.0)")
+                priority_parts.insert(0, "(single person:2.0)")
             else:
-                priority_parts.insert(0, "(单人，独行，只有一个角色，仅一人，唯一角色，单独个体:2.0)")
+                priority_parts.insert(0, "(单人:2.0)")
             print(f"  ✓ 人物场景：在prompt最前面添加单人约束（权重2.0，防止多个人物）")
             # 识别场景中的所有角色
             if self._identify_characters:
@@ -562,13 +609,49 @@ class PromptBuilder:
                 priority_parts.append(f"({environment_visual}:1.4)")
                 print(f"  ✓ 使用 visual.environment（完整版）: {environment_visual}")
         
+        # ========== 添加原始场景 prompt（关键信息，优先处理）==========
+        # 对于科普视频，场景的原始 prompt 是最重要的，应该在风格之后立即添加
+        # 注意：prompt_text 在第 461 行已定义
+        if prompt_text and not use_chinese:
+            # 检查是否已经包含在 priority_parts 中（避免重复）
+            prompt_already_included = any(
+                prompt_text.lower() in part.lower() or 
+                part.lower() in prompt_text.lower() or
+                any(keyword in part.lower() for keyword in prompt_text.lower().split()[:3])  # 检查前3个关键词
+                for part in priority_parts
+            )
+            if not prompt_already_included:
+                # 将原始场景 prompt 添加到优先级部分（在风格之后，背景之前）
+                # 对于科普视频，这是最核心的内容
+                # 找到风格标签的位置，在其后插入
+                insert_pos = len(priority_parts)
+                for i, part in enumerate(priority_parts):
+                    if "scientific" in part.lower() or "科学" in part or "xianxia" in part.lower() or "仙侠" in part:
+                        insert_pos = i + 1
+                        break
+                priority_parts.insert(insert_pos, prompt_text)
+                print(f"  ✓ 添加原始场景 prompt（核心内容，位置{insert_pos}）: {prompt_text[:80]}...")
+        
+        # ========== 添加场景背景描述（确保有背景，即使有角色）==========
+        # 对于科普视频，即使有角色，也需要场景背景
         scene_bg_compact = self._build_scene_background_prompt_compact(scene, script_data)
         if scene_bg_compact:
-            # 将背景描述添加到priority_parts的开头（在角色之后），确保高优先级
-            # 但不要放在最前面，因为角色描述应该在第一位
-            insert_pos = 1 if include_character and priority_parts else 0
+            # 将背景描述添加到priority_parts（在角色和风格之后，原始场景prompt之前）
+            # 确保场景背景被包含，即使有角色
+            insert_pos = len(priority_parts)
+            # 找到原始场景prompt的位置，在其前插入
+            for i, part in enumerate(priority_parts):
+                if prompt_text and prompt_text.lower() in part.lower():
+                    insert_pos = i
+                    break
+            # 如果没找到原始场景prompt，插入到风格之后
+            if insert_pos == len(priority_parts):
+                for i, part in enumerate(priority_parts):
+                    if "scientific" in part.lower() or "科学" in part or "photorealistic" in part.lower():
+                        insert_pos = i + 1
+                        break
             priority_parts.insert(insert_pos, scene_bg_compact)
-            print(f"  ✓ 应用场景背景模板（精简版）: {scene_bg_compact}")
+            print(f"  ✓ 应用场景背景模板（精简版，位置{insert_pos}，确保有背景）: {scene_bg_compact}")
         
         # ========== 第五部分：动作描述（智能综合权重调整）==========
         # 使用综合权重调整后的动作权重
@@ -708,16 +791,26 @@ class PromptBuilder:
             if expression:
                 secondary_parts.append(f"({expression} expression:1.0)")
         
-        # 其他风格标签（国风动漫风格）
-        if not self.ascii_only_prompt:
-            secondary_parts.append("中国动画风格")
-            secondary_parts.append("古代中国奇幻")
-            secondary_parts.append("电影级光影")
+        # 其他风格标签（根据视频类型）
+        if is_kepu_video:
+            # 科普视频：强调真实感和专业摄影，不添加动画风格
+            if not self.ascii_only_prompt:
+                secondary_parts.append("电影级光影")
+                secondary_parts.append("4k高清")
+            else:
+                secondary_parts.append("cinematic lighting")
+                secondary_parts.append("4k")
         else:
-            secondary_parts.append("Chinese animation style")
-            secondary_parts.append("ancient Chinese fantasy")
-            secondary_parts.append("cinematic lighting")
-        secondary_parts.append("4k")
+            # 仙侠视频：国风动漫风格
+            if not self.ascii_only_prompt:
+                secondary_parts.append("中国动画风格")
+                secondary_parts.append("古代中国奇幻")
+                secondary_parts.append("电影级光影")
+            else:
+                secondary_parts.append("Chinese animation style")
+                secondary_parts.append("ancient Chinese fantasy")
+                secondary_parts.append("cinematic lighting")
+            secondary_parts.append("4k")
         
         # 合并：只使用优先部分，确保关键信息在前 77 tokens 内
         # 使用更准确的 token 估算（考虑括号和权重标记）
@@ -726,11 +819,12 @@ class PromptBuilder:
         # 尝试使用CLIP tokenizer进行准确计算，如果不可用则使用保守估算
         estimated_tokens = self.token_estimator.estimate(priority_prompt)
         
-        # 如果估算超过 70 tokens（留出安全边界，确保不超过77），使用智能优化
-        if estimated_tokens > 70:
+        # 如果估算超过 60 tokens（留出安全边界，确保不超过77），使用智能优化
+        # 从70降低到60，因为实际tokenizer计算可能比估算值高，需要更多安全边界
+        if estimated_tokens > 60:
             # 尝试使用智能优化（基于语义重要性）
             print(f"  🧠 Prompt 过长 ({estimated_tokens} tokens)，尝试智能优化...")
-            optimized_parts = self.optimizer.optimize(priority_parts, max_tokens=70)
+            optimized_parts = self.optimizer.optimize(priority_parts, max_tokens=60)
             if len(optimized_parts) < len(priority_parts):
                 priority_parts = optimized_parts
                 priority_prompt = ", ".join(filter(None, priority_parts))
@@ -740,8 +834,8 @@ class PromptBuilder:
                 # 如果智能优化没有效果，使用传统精简方法
                 print(f"  ⚠ 智能优化未达到预期，使用传统精简方法...")
 
-        # 确保仙侠风格描述不会被优化阶段剔除
-        if not any(self._has_xianxia_keyword(part) for part in priority_parts):
+        # 确保仙侠风格描述不会被优化阶段剔除（仅对非科普视频）
+        if not is_kepu_video and not any(self._has_xianxia_keyword(part) for part in priority_parts):
             priority_parts.insert(0, xianxia_style)
             priority_prompt = ", ".join(filter(None, priority_parts))
             estimated_tokens = self.token_estimator.estimate(priority_prompt)
@@ -876,6 +970,12 @@ class PromptBuilder:
     
     def _get_character_profile(self, character_id: str = "hanli") -> Dict[str, Any]:
         """获取角色模板"""
+        # 处理科普主持人的映射
+        if character_id in ["kepu_gege", "科普哥哥"]:
+            character_id = "kepu_gege"
+        elif character_id in ["weilai_jiejie", "未来姐姐"]:
+            character_id = "weilai_jiejie"
+        
         return self.character_profiles.get(character_id, {})
     
     def _get_scene_profile(
@@ -883,8 +983,20 @@ class PromptBuilder:
         scene_name: str = None,
         episode: int = None,
         profile_key: str = None,
+        is_kepu_video: bool = False,
     ) -> Dict[str, Any]:
-        """根据场景 key、名称或集数获取场景模板"""
+        """根据场景 key、名称或集数获取场景模板
+        
+        Args:
+            scene_name: 场景名称
+            episode: 集数
+            profile_key: 场景模板 key
+            is_kepu_video: 是否为科普视频（科普视频不使用场景模板）
+        """
+        # 科普视频不使用场景模板，直接返回空字典
+        if is_kepu_video:
+            return {}
+        
         # 1. 若显式指定模板 key，直接精确匹配
         if profile_key:
             profile = self.scene_profiles.get(profile_key)
@@ -1308,85 +1420,84 @@ class PromptBuilder:
         use_chinese = not self.ascii_only_prompt
         parts = []
         
-        # 0. 身份和性别（最高优先级，从 identity 字段提取，必须包含）
+        # 0. 身份和性别（精简版，避免与single person重复）
+        # 注意：如果已经有single person约束，就不需要再强调male/man（避免重复）
+        # 对于科普主持人，性别信息已经在角色名称中体现，不需要额外添加
         identity = profile.get("identity", "")
         character_id = profile.get("character_id", "").lower() or profile.get("id", "").lower()
+        character_name = str(profile.get("character_name", "")).lower()
         
-        # 对于韩立，默认是男性（如果identity中没有明确说明）
-        if "hanli" in character_id or "han li" in character_id or "韩立" in str(profile.get("character_name", "")):
-            if not identity or ("male" not in identity.lower() and "女" not in identity and "female" not in identity.lower()):
-                if use_chinese:
-                    parts.append("(男性，男:2.0)")
-                else:
-                    parts.append("(male, man:2.0)")
-            else:
-                identity_lower = identity.lower()
-                if "male" in identity_lower or "男" in identity:
-                    if use_chinese:
-                        parts.append("(男性，男:2.0)")
-                    else:
-                        parts.append("(male, man:2.0)")
-                elif "female" in identity_lower or "女" in identity:
-                    if use_chinese:
-                        parts.append("(女性，女:2.0)")
-                    else:
-                        parts.append("(female, woman:2.0)")
+        # 对于科普主持人，不添加性别标记（角色名称已体现）
+        if "kepu" in character_id or "weilai" in character_id or "科普" in character_name or "未来" in character_name:
+            # 科普主持人不需要额外性别标记
+            pass
         elif identity:
+            # 其他角色：只使用一个词，避免重复
             identity_lower = identity.lower()
             if "male" in identity_lower or "男" in identity:
                 if use_chinese:
-                    parts.append("(男性，男:2.0)")
+                    parts.append("(男性:1.5)")
                 else:
-                    parts.append("(male, man:2.0)")
+                    parts.append("(male:1.5)")
             elif "female" in identity_lower or "女" in identity:
                 if use_chinese:
-                    parts.append("(女性，女:2.0)")
+                    parts.append("(女性:1.5)")
                 else:
-                    parts.append("(female, woman:2.0)")
+                    parts.append("(female:1.5)")
         
         # 1. 角色名称（必须包含，确保角色识别）
         character_name = profile.get("character_name", "")
         if character_name:
             parts.append(character_name)
         
-        # 2. 发型描述（提高权重，确保不被优化掉）
+        # 2. 发型描述（精简版，只保留核心描述）
         hair = profile.get("hair", {})
         if hair.get("prompt_keywords"):
-            parts.append(hair["prompt_keywords"])
-        elif hair.get("style") and hair.get("color"):
-            parts.append(f"({hair['color']} {hair['style']}:1.8)")  # 从1.7提高到1.8，确保不被优化掉
-        else:
-            # 对于韩立，默认添加黑色长发
-            if "hanli" in character_id or "han li" in character_id or "韩立" in character_name:
-                if use_chinese:
-                    parts.append("(黑色长发:1.8)")
-                else:
-                    parts.append("(long black hair:1.8)")
+            # 大幅简化：只提取第一个核心描述
+            import re
+            hair_keywords = hair["prompt_keywords"]
+            matches = re.findall(r'\(([^)]+)\)', hair_keywords)
+            if matches:
+                # 只使用第一个描述，简化权重
+                core_desc = matches[0].split(':')[0].strip()
+                parts.append(f"({core_desc}:1.5)")
+            else:
+                # 如果没有括号，简化权重
+                hair_keywords = re.sub(r':\d+\.\d+', ':1.5', hair_keywords)
+                parts.append(hair_keywords)
+        elif hair.get("style"):
+            # 只使用style，不添加color（减少token）
+            parts.append(f"({hair.get('style')}:1.5)")
         
-        # 3. 服饰描述（提高权重，确保不被优化掉，必须包含修仙风格）
+        # 3. 服饰描述（精简版，只保留核心描述）
         clothes = profile.get("clothes", {})
         if clothes.get("prompt_keywords"):
-            parts.append(clothes["prompt_keywords"])
-        elif clothes.get("style") and clothes.get("color"):
-            parts.append(f"({clothes['color']} {clothes['style']}:1.8)")  # 从1.7提高到1.8，确保不被优化掉
-        else:
-            # 对于韩立，默认添加深绿道袍和修仙风格
-            if "hanli" in character_id or "han li" in character_id or "韩立" in character_name:
-                if use_chinese:
-                    parts.append("(深绿道袍，修仙服饰:1.8)")
-                else:
-                    parts.append("(dark green robe, xianxia cultivator robe:1.8)")
-        
-        # 4. 修仙气质特征（必须包含，确保修仙风格）
-        if "hanli" in character_id or "han li" in character_id or "韩立" in character_name or "xianxia" in str(profile.get("world", "")).lower():
-            if use_chinese:
-                parts.append("(修仙者，仙侠气质:1.5)")
+            # 大幅简化：只提取第一个核心描述
+            import re
+            clothes_keywords = clothes["prompt_keywords"]
+            matches = re.findall(r'\(([^)]+)\)', clothes_keywords)
+            if matches:
+                # 只使用第一个描述（最重要的），进一步精简：只保留前3个关键词
+                core_desc = matches[0].split(':')[0].strip()
+                core_words = core_desc.split(',')[:3]
+                parts.append(f"({', '.join(core_words)}:1.6)")
             else:
-                parts.append("(xianxia cultivator, immortal cultivator aura:1.5)")
+                # 如果没有括号，简化权重，只保留前50个字符
+                clothes_keywords = re.sub(r':\d+\.\d+', ':1.6', clothes_keywords)
+                if len(clothes_keywords) > 50:
+                    clothes_keywords = clothes_keywords[:50] + "..."
+                parts.append(clothes_keywords)
+        elif clothes.get("style"):
+            # 只使用style，不添加color（减少token）
+            parts.append(f"({clothes.get('style')}:1.6)")
         
-        # 5. 面部特征
+        # 4. 面部特征（精简版，只保留前2个关键词）
         if profile.get("face_keywords"):
-            parts.append(f"({profile['face_keywords']}:1.3)")
+            face_keywords = profile["face_keywords"]
+            # 大幅简化：只保留前2个关键词
+            face_parts = [p.strip() for p in face_keywords.split(",")][:2]
+            if face_parts:
+                parts.append(f"({', '.join(face_parts)}:1.3)")
         
         # 6. 身体特征（根据镜头类型）
         body = profile.get("body", {})
@@ -1480,7 +1591,18 @@ class PromptBuilder:
         if not episode and script_data:
             episode = script_data.get("episode")
         
-        profile = self._get_scene_profile(scene_name, episode, profile_key=profile_key)
+        # 检查是否为科普视频（科普视频不使用场景模板）
+        is_kepu_video = False
+        if script_data:
+            category = script_data.get("category", "")
+            if category in ["universe", "quantum", "earth", "energy", "city", "biology", "ai"]:
+                is_kepu_video = True
+        
+        profile = self._get_scene_profile(scene_name, episode, profile_key=profile_key, is_kepu_video=is_kepu_video)
+        
+        # 如果是科普视频，不使用场景模板，直接返回空字符串
+        if is_kepu_video:
+            return ""
         
         parts = []
         
@@ -1543,6 +1665,17 @@ class PromptBuilder:
     
     def _build_scene_background_prompt(self, scene: Dict[str, Any], script_data: Dict[str, Any] = None) -> str:
         """根据场景模板构建背景描述 prompt"""
+        # 检查是否为科普视频（科普视频不使用场景模板）
+        is_kepu_video = False
+        if script_data:
+            category = script_data.get("category", "")
+            if category in ["universe", "quantum", "earth", "energy", "city", "biology", "ai"]:
+                is_kepu_video = True
+        
+        # 如果是科普视频，直接返回空字符串
+        if is_kepu_video:
+            return ""
+        
         profile_key = scene.get("scene_profile") or scene.get("scene_template") or scene.get("scene_key")
         scene_name = scene.get("scene_name") or scene.get("title", "")
         if not scene_name and script_data:
@@ -1552,7 +1685,7 @@ class PromptBuilder:
         if not episode and script_data:
             episode = script_data.get("episode")
         
-        profile = self._get_scene_profile(scene_name, episode, profile_key=profile_key)
+        profile = self._get_scene_profile(scene_name, episode, profile_key=profile_key, is_kepu_video=is_kepu_video)
         if not profile:
             return ""
         

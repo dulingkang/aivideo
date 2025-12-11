@@ -80,7 +80,58 @@ class TTSGenerator:
             raise
     
     def load_cosyvoice(self):
-        """加载 CosyVoice 模型（从 GitHub 仓库，根据官方 README）"""
+        """加载 CosyVoice 模型（从 GitHub 仓库，根据官方 README）
+        
+        支持两种模式：
+        1. 直接导入模式（默认）：在当前环境中直接导入 CosyVoice
+        2. 子进程模式：在独立环境中通过子进程调用 CosyVoice（避免 transformers 版本冲突）
+        """
+        cosyvoice_config = self.tts_config.get("cosyvoice", {})
+        use_subprocess = cosyvoice_config.get("use_subprocess", False)
+        
+        if use_subprocess:
+            # 子进程模式：不加载模型，只检查配置
+            subprocess_python = cosyvoice_config.get("subprocess_python")
+            subprocess_script = cosyvoice_config.get("subprocess_script")
+            
+            if not subprocess_python:
+                raise ValueError("子进程模式需要配置 subprocess_python（CosyVoice 环境的 Python 路径）")
+            if not subprocess_script:
+                # 默认使用工具目录中的包装器
+                subprocess_script = str(Path(__file__).parent / "tools" / "cosyvoice_subprocess_wrapper.py")
+            
+            subprocess_script_path = Path(subprocess_script)
+            if not subprocess_script_path.is_absolute():
+                subprocess_script_path = Path(__file__).parent.parent / subprocess_script_path
+            
+            if not subprocess_script_path.exists():
+                raise FileNotFoundError(f"CosyVoice 子进程脚本不存在: {subprocess_script_path}")
+            
+            if not Path(subprocess_python).exists():
+                raise FileNotFoundError(f"CosyVoice 环境 Python 不存在: {subprocess_python}")
+            
+            self.cosyvoice_subprocess_python = subprocess_python
+            self.cosyvoice_subprocess_script = str(subprocess_script_path)
+            self.cosyvoice_use_subprocess = True
+            
+            # 子进程模式不需要加载模型
+            self.cosyvoice = None
+            self.use_cosyvoice2 = cosyvoice_config.get("use_cosyvoice2", True)
+            self.cosyvoice_sample_rate = cosyvoice_config.get("sample_rate", 24000)
+            self.cosyvoice_prompt_speech = cosyvoice_config.get("prompt_speech")
+            self.cosyvoice_prompt_text = cosyvoice_config.get("prompt_text", "希望你以后能够做的比我还好呦。")
+            self.cosyvoice_mode = cosyvoice_config.get("mode", "zero_shot")
+            self.cosyvoice_instruction = cosyvoice_config.get("instruction", "用专业、清晰、亲切的科普解说风格")
+            self.cosyvoice_text_frontend = cosyvoice_config.get("text_frontend", True)
+            self.cosyvoice_stream = cosyvoice_config.get("stream", False)
+            
+            self.synthesize_func = self.synthesize_cosyvoice_subprocess
+            print(f"✓ CosyVoice 子进程模式已启用")
+            print(f"  Python: {subprocess_python}")
+            print(f"  脚本: {subprocess_script_path}")
+            return
+        
+        # 直接导入模式（原有逻辑）
         try:
             # 根据 GitHub README，需要添加路径
             import sys
@@ -182,6 +233,8 @@ class TTSGenerator:
             self.cosyvoice_prompt_speech = cosyvoice_config.get("prompt_speech")  # 默认 prompt_speech 路径
             self.cosyvoice_prompt_text = cosyvoice_config.get("prompt_text", "希望你以后能够做的比我还好呦。")
             self.cosyvoice_mode = cosyvoice_config.get("mode", "zero_shot")
+            self.cosyvoice_instruction = cosyvoice_config.get("instruction", "用专业、清晰、亲切的科普解说风格")  # 用于 instruct2 模式
+            self.cosyvoice_text_frontend = cosyvoice_config.get("text_frontend", True)  # 文本前端处理，默认启用
             
             self.synthesize_func = self.synthesize_cosyvoice
             print("✓ CosyVoice 加载成功")
@@ -296,60 +349,147 @@ class TTSGenerator:
 
     def _load_prompt_speech(self, prompt_path: Path):
         """
-        加载参考音频（支持多种格式）
+        加载参考音频（直接使用 CosyVoice 的 load_wav，避免格式转换问题）
         
         Args:
-            prompt_path: 音频文件路径
+            prompt_path: 音频文件路径（必须是16kHz WAV格式）
             
         Returns:
             prompt_speech_16k: 16kHz 单声道音频张量
         """
         from cosyvoice.utils.file_utils import load_wav
         
-        if prompt_path.suffix.lower() == '.wav':
-            # WAV 格式，直接使用 load_wav（官方推荐方式）
+        # 直接使用 CosyVoice 的 load_wav 方法，它会自动处理格式转换
+        # load_wav 使用 torchaudio.load，会自动转换为单声道并重采样到目标采样率
+        # 避免通过 librosa 重新处理导致的问题
+        try:
             prompt_speech_16k = load_wav(str(prompt_path), 16000)
-            print(f"  加载 prompt_speech: {prompt_path} (使用 load_wav, 16kHz)")
-        else:
-            # 非 WAV 格式（MP3, FLAC 等），先转换为 WAV，再使用 load_wav（确保格式完全一致）
-            # 这样可以确保与官方用法完全一致，避免格式问题
-            try:
-                import librosa
-                import soundfile as sf
-                import tempfile
-                import os
+            print(f"  加载 prompt_speech: {prompt_path.name} (直接使用 load_wav, 16kHz)")
+            
+            # 详细检查音频属性
+            if hasattr(prompt_speech_16k, 'shape'):
+                duration = prompt_speech_16k.shape[-1] / 16000
+                print(f"  音频时长: {duration:.2f} 秒, 形状: {prompt_speech_16k.shape}")
+                print(f"  数据类型: {prompt_speech_16k.dtype}")
                 
-                # 加载音频并转换为 16kHz 单声道
-                # librosa.load 默认返回归一化的音频（[-1, 1] 范围）
-                audio, sr = librosa.load(str(prompt_path), sr=16000, mono=True)
-                
-                # 确保数值范围正确（librosa 默认返回 [-1, 1]，但需要检查）
-                max_val = abs(audio).max()
-                if max_val > 1.0:
-                    audio = audio / max_val
-                    print(f"  归一化音频数值范围到 [-1, 1]")
-                
-                # 临时保存为 WAV，使用 PCM_16 格式（与官方 load_wav 期望的格式一致）
-                with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as tmp_file:
-                    tmp_wav_path = tmp_file.name
-                
-                # 使用 PCM_16 格式保存，soundfile 会自动将 [-1, 1] 范围的浮点数转换为 16-bit 整数
-                sf.write(tmp_wav_path, audio, 16000, subtype='PCM_16')
-                
-                # 使用官方的 load_wav 方法加载（确保格式完全一致）
-                prompt_speech_16k = load_wav(tmp_wav_path, 16000)
-                
-                # 清理临时文件
-                os.unlink(tmp_wav_path)
-                
-                print(f"  加载 prompt_speech: {prompt_path} (转换为 WAV 后使用 load_wav, 16kHz)")
-            except ImportError:
-                raise ValueError(f"不支持 {prompt_path.suffix} 格式，请安装 librosa 和 soundfile，或转换为 WAV 格式")
-            except Exception as e:
-                raise ValueError(f"无法加载音频文件 {prompt_path}: {e}")
-        
-        return prompt_speech_16k
+                    # 检查音频数值范围
+                if hasattr(prompt_speech_16k, 'min') and hasattr(prompt_speech_16k, 'max'):
+                    min_val = prompt_speech_16k.min().item()
+                    max_val = prompt_speech_16k.max().item()
+                    mean_val = prompt_speech_16k.mean().item()
+                    std_val = prompt_speech_16k.std().item()
+                    print(f"  数值范围: [{min_val:.4f}, {max_val:.4f}]")
+                    print(f"  平均值: {mean_val:.4f}, 标准差: {std_val:.4f}")
+                    
+                    # 检查是否有异常值
+                    # 重要：不进行任何音频处理（归一化、去除DC偏移等），保持原始音频
+                    # 如果以前没有处理，现在处理可能导致模型生成异常（20秒问题）
+                    abs_max = max(abs(min_val), abs(max_val))
+                    if max_val > 1.0 or min_val < -1.0:
+                        print(f"  ⚠️  警告: 音频数值超出正常范围 [-1, 1] (范围: [{min_val:.4f}, {max_val:.4f}])")
+                        print(f"  ℹ️  不进行归一化处理（避免影响模型生成，保持原始音频）")
+                    elif abs_max > 0.8:
+                        print(f"  ℹ️  音频数值接近边界 (最大值: {max_val:.4f})，但不进行处理（避免影响模型生成）")
+                    else:
+                        print(f"  ℹ️  音频数值在正常范围内，不进行任何处理（保持原始音频）")
+                    # 注意：去除DC偏移可能影响模型生成，如果以前没有去除，现在去除可能导致问题
+                    # 暂时禁用去除DC偏移，避免影响模型
+                    if abs(mean_val) > 0.1:
+                        print(f"  ⚠️  警告: 音频平均值偏离0，可能存在DC偏移 (平均值: {mean_val:.4f})")
+                        print(f"  ℹ️  不进行去除DC偏移处理（避免影响模型生成）")
+                        # 暂时不去除DC偏移，避免影响模型
+                        # prompt_speech_16k = prompt_speech_16k - mean_val
+                        # print(f"  ✓ 已去除DC偏移")
+                        # new_mean = prompt_speech_16k.mean().item()
+                        # print(f"    去除DC偏移后平均值: {new_mean:.4f}")
+                    if std_val < 0.01:
+                        print(f"  ⚠️  警告: 音频标准差太小，可能音量过低或静音")
+                    elif std_val > 0.5:
+                        print(f"  ⚠️  警告: 音频标准差太大，可能音量过高或失真")
+            
+            return prompt_speech_16k
+        except Exception as e:
+            print(f"  ✗ 加载音频失败: {e}")
+            import traceback
+            traceback.print_exc()
+            raise ValueError(f"无法加载音频文件 {prompt_path}: {e}")
 
+    def synthesize_cosyvoice_subprocess(self, text: str, output_path: str, **kwargs):
+        """使用子进程模式调用 CosyVoice（避免 transformers 版本冲突）"""
+        import subprocess
+        
+        # 准备参数
+        prompt_speech = kwargs.get("prompt_speech") or self.cosyvoice_prompt_speech
+        prompt_text = kwargs.get("prompt_text") or self.cosyvoice_prompt_text
+        mode = kwargs.get("mode") or self.cosyvoice_mode
+        instruction = kwargs.get("instruction") or self.cosyvoice_instruction
+        text_frontend = kwargs.get("text_frontend", self.cosyvoice_text_frontend)
+        seed = kwargs.get("seed") or self.seed
+        
+        # 构建命令
+        cmd = [
+            self.cosyvoice_subprocess_python,
+            self.cosyvoice_subprocess_script,
+            "--text", text,
+            "--output", str(output_path),
+            "--mode", mode,
+            "--text-frontend", str(text_frontend)
+        ]
+        
+        # 添加可选参数
+        if prompt_speech:
+            # 确保路径是绝对路径
+            prompt_speech_path = Path(prompt_speech)
+            if not prompt_speech_path.is_absolute():
+                config_dir = Path(self.config_path).parent if hasattr(self, 'config_path') else Path.cwd()
+                prompt_speech_path = config_dir / prompt_speech_path
+            cmd.extend(["--prompt-speech", str(prompt_speech_path)])
+        if prompt_text:
+            cmd.extend(["--prompt-text", prompt_text])
+        if instruction:
+            cmd.extend(["--instruction", instruction])
+        if seed is not None:
+            cmd.extend(["--seed", str(seed)])
+        
+        # 执行子进程
+        print(f"调用 CosyVoice 子进程...")
+        temp_config_path = None
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                check=True,
+                cwd=str(Path(__file__).parent.parent)  # 在项目根目录执行
+            )
+            if result.stdout:
+                print(result.stdout)
+            if result.stderr:
+                print(result.stderr)
+            print(f"✓ 语音已保存: {output_path}")
+        except subprocess.CalledProcessError as e:
+            # 获取完整的错误信息
+            error_msg = ""
+            if e.stderr:
+                error_msg += f"STDERR:\n{e.stderr}\n"
+            if e.stdout:
+                error_msg += f"STDOUT:\n{e.stdout}\n"
+            if not error_msg:
+                error_msg = str(e)
+            
+            print(f"❌ CosyVoice 子进程失败 (退出码: {e.returncode}):")
+            print(f"  命令: {' '.join(cmd[:8])}...")
+            print(f"  完整错误信息:")
+            print(error_msg)
+            raise RuntimeError(f"CosyVoice 子进程生成失败 (退出码: {e.returncode}): {error_msg}") from e
+        finally:
+            # 清理临时配置文件
+            if temp_config_path and Path(temp_config_path).exists():
+                try:
+                    Path(temp_config_path).unlink()
+                except Exception:
+                    pass
+    
     def synthesize_cosyvoice(self, text: str, output_path: str, **kwargs):
         """使用 CosyVoice 合成语音（根据 GitHub README API）"""
         import torchaudio
@@ -382,23 +522,23 @@ class TTSGenerator:
                 # 支持：inference_zero_shot, inference_instruct2, inference_cross_lingual
                 
                 # 获取模式参数
-                mode = kwargs.get("mode", "zero_shot")  # zero_shot, instruct2, cross_lingual
-                instruction = kwargs.get("instruction", "")  # 用于 instruct2
+                mode = kwargs.get("mode", self.cosyvoice_mode)  # zero_shot, instruct2, cross_lingual
+                instruction = kwargs.get("instruction", self.cosyvoice_instruction)  # 用于 instruct2，优先使用 kwargs，其次使用配置中的默认值
                 
                 if mode == "zero_shot":
                     # zero_shot 模式（需要 prompt_speech）
                     if prompt_speech is None:
                         raise ValueError("CosyVoice2 zero_shot 模式需要 prompt_speech 参数")
                     
-                    if isinstance(prompt_speech, str):
+                    if isinstance(prompt_speech, (str, Path)):
                         # 支持多种音频格式（WAV, MP3, FLAC 等）
-                        prompt_path = Path(prompt_speech)
+                        prompt_path = Path(prompt_speech) if isinstance(prompt_speech, str) else prompt_speech
                         if not prompt_path.is_absolute():
                             # 相对路径，尝试从配置目录或当前目录查找
                             config_dir = Path(self.config_path).parent if hasattr(self, 'config_path') else Path.cwd()
-                            prompt_path = config_dir / prompt_speech
+                            prompt_path = config_dir / prompt_path
                             if not prompt_path.exists():
-                                prompt_path = Path.cwd() / prompt_speech
+                                prompt_path = Path.cwd() / prompt_path
                         
                         if not prompt_path.exists():
                             raise FileNotFoundError(f"prompt_speech 文件不存在: {prompt_speech}")
@@ -406,12 +546,13 @@ class TTSGenerator:
                         # 使用统一的音频加载方法
                         prompt_speech_16k = self._load_prompt_speech(prompt_path)
                     else:
+                        # 如果 prompt_speech 已经是音频张量，直接使用
                         prompt_speech_16k = prompt_speech
                     
-                    # 按照官方用法：inference_zero_shot(text, prompt_text, prompt_speech_16k, stream=False, text_frontend=False)
-                    # 注意：对于中文文本，建议使用 text_frontend=True 进行文本规范化处理
-                    # text_frontend=False 可能导致中文文本无法正确识别，输出乱码或英文
-                    text_frontend = kwargs.get("text_frontend", True)  # 默认 True，启用中文文本规范化
+                    # 完全按照 GitHub 官方示例的调用方式
+                    # 官方示例：cosyvoice.inference_zero_shot(text, prompt_text, prompt_speech_16k, stream=False)
+                    # 注意：官方示例中不传递 text_frontend 和 speed 参数，使用 API 默认值
+                    # API 默认值：text_frontend=True, speed=1.0
                     
                     # 设置随机种子（如果配置了 seed，确保生成结果可复现）
                     if self.seed is not None:
@@ -422,12 +563,13 @@ class TTSGenerator:
                             # 如果无法导入 CosyVoice 的 set_all_random_seed，使用通用的种子设置
                             self.apply_seed()
                     
+                    # 完全按照官方示例：不传递 text_frontend 和 speed，使用 API 默认值
                     for i, result in enumerate(self.cosyvoice.inference_zero_shot(
                         text,
                         prompt_text if prompt_text else "希望你以后能够做的比我还好呦。",  # 默认 prompt_text
                         prompt_speech_16k,
-                        stream=self.cosyvoice_stream,
-                        text_frontend=text_frontend
+                        stream=False  # 按照官方示例使用 stream=False
+                        # 不传递 text_frontend 和 speed，使用 API 默认值（text_frontend=True, speed=1.0）
                     )):
                         if isinstance(result, dict) and 'tts_speech' in result:
                             audio_chunks.append(result['tts_speech'])
@@ -460,7 +602,8 @@ class TTSGenerator:
                     
                     # 按照官方用法：inference_instruct2(text, instruction, prompt_speech_16k, stream=False, text_frontend=False)
                     # 对于中文文本，建议使用 text_frontend=True 进行文本规范化处理
-                    text_frontend = kwargs.get("text_frontend", True)  # 默认 True，启用中文文本规范化
+                    # 但如果生成的声音是"wuluwulu"，可以尝试禁用 text_frontend
+                    text_frontend = kwargs.get("text_frontend", self.cosyvoice_text_frontend)  # 优先使用 kwargs，其次使用配置中的默认值
                     
                     # 设置随机种子（如果配置了 seed，确保生成结果可复现）
                     if self.seed is not None:

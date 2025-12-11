@@ -151,14 +151,14 @@ class SceneMotionAnalyzer:
                     # 根据镜头运动类型调整运动参数，确保镜头移动明显
                     if motion_type in ["pan", "tilt", "dolly", "orbit"]:
                         result["motion_intensity"] = "moderate"
-                        result["motion_bucket_id_override"] = 1.8  # 降低到1.8，减少闪动，保持移动明显
-                        result["noise_aug_strength_override"] = 0.0003  # 保持0.0003，减少闪动
-                        print(f"  ℹ 检测到镜头运动（{motion_type}），使用SVD并设置运动参数（motion_bucket_id=1.8，减少闪动）")
+                        result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                        result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                        print(f"  ℹ 检测到镜头运动（{motion_type}），使用中等运动参数（motion_bucket_id=1.6）")
                     elif motion_type == "zoom":
                         result["motion_intensity"] = "moderate"
-                        result["motion_bucket_id_override"] = 1.7  # 缩放运动可以更低，减少闪动
-                        result["noise_aug_strength_override"] = 0.0003
-                        print(f"  ℹ 检测到镜头缩放（{motion_type}），使用SVD并设置运动参数（motion_bucket_id=1.7，减少闪动）")
+                        result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                        result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                        print(f"  ℹ 检测到镜头缩放（{motion_type}），使用中等运动参数（motion_bucket_id=1.6）")
         
         # 如果motion字段没有指定，从camera字段推断
         if result["camera_motion_type"] == "static":
@@ -168,9 +168,9 @@ class SceneMotionAnalyzer:
                     if motion_type != "static":
                         result["use_svd"] = True  # 有镜头运动，必须使用SVD
                         result["motion_intensity"] = "moderate"
-                        result["motion_bucket_id_override"] = 2.0
-                        result["noise_aug_strength_override"] = 0.0003
-                        print(f"  ℹ 从camera字段推断镜头运动（{motion_type}），使用SVD并设置运动参数")
+                        result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                        result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                        print(f"  ℹ 从camera字段推断镜头运动（{motion_type}），使用中等运动参数（motion_bucket_id=1.6）")
                     break
         
         # 从description推断镜头运动（如果还没有检测到）
@@ -180,81 +180,91 @@ class SceneMotionAnalyzer:
                 result["camera_motion_direction"] = "in"
                 result["use_svd"] = True
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8
-                result["noise_aug_strength_override"] = 0.0003
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
             elif "淡出" in description or "fade out" in all_text:
                 result["camera_motion_type"] = "zoom"
                 result["camera_motion_direction"] = "out"
                 result["use_svd"] = True
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8
-                result["noise_aug_strength_override"] = 0.0003
+                result["motion_bucket_id_override"] = None
+                result["noise_aug_strength_override"] = None
             elif "推进" in description or "push" in all_text or "推近" in description:
                 result["camera_motion_type"] = "zoom"
                 result["camera_motion_direction"] = "in"
                 result["use_svd"] = True
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8
-                result["noise_aug_strength_override"] = 0.0003
+                result["motion_bucket_id_override"] = None
+                result["noise_aug_strength_override"] = None
             elif "拉远" in description or "pull" in all_text or "拉镜" in description:
                 result["camera_motion_type"] = "zoom"
                 result["camera_motion_direction"] = "out"
                 result["use_svd"] = True
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8
-                result["noise_aug_strength_override"] = 0.0003
+                result["motion_bucket_id_override"] = None
+                result["noise_aug_strength_override"] = None
             elif "横移" in description or "pan" in all_text or "平移" in description:
                 result["camera_motion_type"] = "pan"
                 result["camera_motion_direction"] = "left_to_right"
                 result["use_svd"] = True
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 2.0
-                result["noise_aug_strength_override"] = 0.0003
+                result["motion_bucket_id_override"] = None
+                result["noise_aug_strength_override"] = None
         
         # ========== 3. 检测运动强度 ==========
         if result["has_object_motion"]:
             # 根据物体运动类型确定强度
             if result["object_motion_type"] in ["unfurling", "opening", "spreading"]:
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8  # 降低到1.8，减少闪动，保持运动明显
-                result["noise_aug_strength_override"] = 0.0003  # 降低到0.0003，减少闪动，保持流畅
-                print(f"  ℹ 物体展开运动，设置运动参数（motion_bucket_id=1.8, noise_aug_strength=0.0003，减少闪动）")
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                print(f"  ℹ 物体展开运动，使用中等运动参数（motion_bucket_id=1.6, noise_aug_strength=0.0003）")
             elif result["object_motion_type"] in ["shimmering", "particles", "floating"]:
                 result["motion_intensity"] = "gentle"
-                result["motion_bucket_id_override"] = 1.5  # 轻微运动
-                result["noise_aug_strength_override"] = 0.00025  # SVD-XT
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.4）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.00025）
+                print(f"  ℹ 检测到轻微物体运动（{result['object_motion_type']}），使用轻微运动参数（motion_bucket_id=1.4）")
             elif result["object_motion_type"] in ["rotating", "rising", "falling"]:
                 result["motion_intensity"] = "moderate"
-                result["motion_bucket_id_override"] = 1.8  # 降低到1.8，减少闪动
-                result["noise_aug_strength_override"] = 0.0003  # 降低到0.0003，减少闪动，保持流畅
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
         else:
             # 检查人物动作（根据动作类型调整参数，使动作更自然）
-            if any(keyword in all_text for keyword in self.dynamic_keywords):
+            # 注意：如果已经检测到镜头运动，不要覆盖motion_intensity
+            if result.get("camera_motion_type") != "static" and result.get("motion_intensity"):
+                # 已经检测到镜头运动并设置了motion_intensity，跳过人物动作检测
+                pass
+            elif any(keyword in all_text for keyword in self.dynamic_keywords):
                 # 明显动作（如攻击、奔跑、跳跃）：使用较高运动参数，确保动作明显
                 result["motion_intensity"] = "dynamic"
                 result["use_svd"] = True
-                result["motion_bucket_id_override"] = 2.5  # 较高运动（SVD-XT最大2，但可以接近）
-                result["noise_aug_strength_override"] = 0.0004  # 稍高噪声，增加动作自然度
-                print(f"  ℹ 检测到明显人物动作，使用较高运动参数（motion_bucket_id=2.5）")
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.8）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                print(f"  ℹ 检测到明显人物动作，使用明显运动参数（motion_bucket_id=1.8）")
             elif any(keyword in all_text for keyword in self.moderate_action_keywords):
-                # 中等动作（如转头、抬手、吸气）：使用中等运动参数，确保动作自然流畅，减少闪动
+                # 中等动作（如转头、抬手、吸气）：使用中等运动参数
                 result["motion_intensity"] = "moderate"
                 result["use_svd"] = True
-                result["motion_bucket_id_override"] = 1.8  # 降低到1.8，减少闪动，保持动作明显
-                result["noise_aug_strength_override"] = 0.0003  # 降低到0.0003，减少闪动，保持流畅
-                print(f"  ℹ 检测到中等人物动作，使用中等运动参数（motion_bucket_id=1.8, noise_aug_strength=0.0003，减少闪动）")
+                result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.6）
+                result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.0003）
+                print(f"  ℹ 检测到中等人物动作，使用中等运动参数（motion_bucket_id=1.6）")
             elif any(keyword in all_text for keyword in self.static_keywords):
                 # 完全静态：使用静态图像动画
                 result["motion_intensity"] = "static"
                 result["use_svd"] = False
                 print(f"  ℹ 检测到完全静态场景，使用静态图像动画")
             else:
-                # 默认情况（可能有轻微动作，如表情变化、微动）：使用轻微运动参数，但确保有自然微动
-                result["motion_intensity"] = "gentle"
-                result["use_svd"] = True
-                result["motion_bucket_id_override"] = 1.8  # 轻微运动，但比完全静态稍高，确保有自然微动
-                result["noise_aug_strength_override"] = 0.0003  # 稍高噪声，增加自然度和流畅度
-                print(f"  ℹ 检测到轻微动作或默认场景，使用轻微运动参数（motion_bucket_id=1.8, noise_aug_strength=0.0003）")
+                # 默认情况（可能有轻微动作，如表情变化、微动）：使用轻微运动参数
+                # 但如果已经检测到镜头运动，保持moderate
+                if result.get("camera_motion_type") != "static":
+                    # 已经有镜头运动，保持moderate
+                    pass
+                else:
+                    result["motion_intensity"] = "gentle"
+                    result["use_svd"] = True
+                    result["motion_bucket_id_override"] = None  # 不覆盖，使用运动强度参数（1.4）
+                    result["noise_aug_strength_override"] = None  # 不覆盖，使用运动强度参数（0.00025）
+                    print(f"  ℹ 检测到轻微动作或默认场景，使用轻微运动参数（motion_bucket_id=1.4, noise_aug_strength=0.00025）")
         
         # ========== 4. 生成推荐的motion字段 ==========
         if result["camera_motion_type"] != "static":

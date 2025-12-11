@@ -568,11 +568,91 @@ class PromptOptimizer:
             if i not in used_indices:
                 processed_parts.append(part)
         
+        # 第二步半：检测重复的关键词（如"scroll"、"Three dazzling suns"）
+        # 先检测并合并包含相同核心关键词的部分
+        keyword_groups = {}  # 关键词 -> [parts]
+        for part in processed_parts:
+            text_lower = part["text"].lower()
+            # 提取核心关键词（名词、主要物体等）
+            words = re.findall(r'\b[a-z]+(?:\s+[a-z]+)*\b', text_lower)
+            if words:
+                # 取前2-3个词作为核心关键词（如"golden scroll", "three dazzling suns"）
+                core_keyword = ' '.join(words[:3]) if len(words) >= 3 else words[0]
+                # 也检查单个关键词（如"scroll"）
+                single_keyword = words[0] if words else None
+                
+                # 检查是否与其他部分共享核心关键词
+                found_group = False
+                for keyword, group_parts in keyword_groups.items():
+                    if core_keyword in keyword or keyword in core_keyword or \
+                       (single_keyword and (single_keyword in keyword or keyword in single_keyword)):
+                        keyword_groups[keyword].append(part)
+                        found_group = True
+                        break
+                
+                if not found_group:
+                    # 创建新的关键词组
+                    keyword_groups[core_keyword] = [part]
+        
+        # 合并包含相同关键词的部分
+        merged_parts = []
+        for keyword, group_parts in keyword_groups.items():
+            if len(group_parts) > 1:
+                # 多个部分包含相同关键词，合并它们
+                max_weight = 1.0
+                min_index = float('inf')
+                merged_text_parts = []
+                
+                for part in group_parts:
+                    weight_match = re.search(r':(\d+\.?\d*)', part["text"])
+                    if weight_match:
+                        weight = float(weight_match.group(1))
+                        if weight > max_weight:
+                            max_weight = weight
+                    if part["index"] < min_index:
+                        min_index = part["index"]
+                    
+                    # 提取文本内容（去除权重）
+                    text_content = re.sub(r':\d+\.?\d*\)?$', '', part["text"])
+                    text_content = re.sub(r'^\(|\)$', '', text_content).strip()
+                    merged_text_parts.append(text_content)
+                
+                # 合并文本，去重
+                unique_parts = []
+                seen_words = set()
+                for text_part in merged_text_parts:
+                    words_in_part = set(text_part.lower().split())
+                    # 如果这个部分包含新词汇，添加它
+                    if not words_in_part.issubset(seen_words):
+                        unique_parts.append(text_part)
+                        seen_words.update(words_in_part)
+                
+                # 创建合并后的描述
+                merged_content = ', '.join(unique_parts)
+                merged_text = f"({merged_content}:{max_weight:.1f})"
+                
+                merged_part = {
+                    "text": merged_text,
+                    "type": group_parts[0]["type"],
+                    "analysis": group_parts[0]["analysis"].copy(),
+                    "index": min_index
+                }
+                merged_part["analysis"]["token_count"] = self.token_estimator.estimate(merged_text)
+                merged_parts.append(merged_part)
+                
+                removed_count = len(group_parts) - 1
+                print(f"  ✓ 合并 {len(group_parts)} 个包含相同关键词的部分（关键词: {keyword[:30]}...），移除 {removed_count} 个重复项")
+            else:
+                # 只有一个部分，直接保留
+                merged_parts.append(group_parts[0])
+        
         # 第三步：检测完全重复的描述（相同或几乎相同的文本）
+        # 使用merged_parts（如果存在）或processed_parts
+        parts_for_final_check = merged_parts if merged_parts else processed_parts
         final_parts = []
         seen_texts = {}  # 存储规范化文本 -> (part, index_in_final_parts)
         
-        for part in processed_parts:
+        for part in parts_for_final_check:
             # 规范化文本（去除权重，用于比较）
             text_normalized = re.sub(r':\d+\.?\d*', '', part["text"]).lower().strip()
             text_normalized = re.sub(r'[()]', '', text_normalized)
@@ -616,8 +696,9 @@ class PromptOptimizer:
                 final_parts.append(part)
                 seen_texts[text_normalized] = (part, len(final_parts) - 1)
         
-        if len(final_parts) < len(processed_parts):
-            removed = len(processed_parts) - len(final_parts)
+        # 计算移除数量
+        if len(final_parts) < len(parts_for_final_check):
+            removed = len(parts_for_final_check) - len(final_parts)
             print(f"  ✓ 移除 {removed} 个完全重复的描述")
         
         return final_parts

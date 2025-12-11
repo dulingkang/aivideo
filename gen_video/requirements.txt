@@ -27,6 +27,8 @@ modelscope>=1.9.0  # 用于下载 CosyVoice 模型
 ffmpeg-python>=0.2.0
 imageio>=2.31.0
 imageio-ffmpeg>=0.4.9
+# RIFE 视频插帧（提升视频流畅度）
+rife-ncnn-python>=1.0.0  # 可选：如果安装失败，可以使用官方实现
 
 # 音频处理（TTS）
 chattts>=0.3.0

@@ -26,12 +26,21 @@ class TokenEstimator:
         """加载CLIPTokenizer（如果可用）"""
         try:
             from transformers import CLIPTokenizer
-            # 使用SDXL常用的tokenizer路径
-            self._clip_tokenizer = CLIPTokenizer.from_pretrained(
-                "stabilityai/stable-diffusion-xl-base-1.0",
-                subfolder="tokenizer"
-            )
-            print(f"  ✓ CLIPTokenizer 加载成功，使用准确计算")
+            # 优先使用SDXL实际使用的CLIP-L/14 tokenizer
+            # SDXL使用两个tokenizer：CLIP-L/14（主要）和CLIP-G（辅助）
+            # 我们使用CLIP-L/14，这是实际限制77 tokens的tokenizer
+            try:
+                # 尝试从本地SDXL模型加载
+                self._clip_tokenizer = CLIPTokenizer.from_pretrained(
+                    "stabilityai/stable-diffusion-xl-base-1.0",
+                    subfolder="tokenizer"
+                )
+            except Exception:
+                # 如果本地加载失败，尝试使用CLIP-L/14（SDXL实际使用的）
+                self._clip_tokenizer = CLIPTokenizer.from_pretrained(
+                    "openai/clip-vit-large-patch14"
+                )
+            print(f"  ✓ CLIPTokenizer 加载成功，使用准确计算（SDXL CLIP-L/14）")
         except Exception as e:
             print(f"  ⚠ 无法加载 CLIPTokenizer，使用保守估算: {e}")
             self._clip_tokenizer = None
@@ -122,6 +131,14 @@ class TokenEstimator:
             safety_multiplier = 1.25
         
         return int(estimated * safety_multiplier)
+
+
+
+
+
+
+
+
 
 
 
