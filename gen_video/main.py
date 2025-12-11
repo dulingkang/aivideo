@@ -708,11 +708,15 @@ class AIVideoPipeline:
                 "id": scene.get("id"),
                 "scene_number": scene.get("scene_number"),
                 "narration": scene.get("narration", ""),  # 只使用当前场景的旁白
+                "description": scene.get("description") or scene.get("prompt", ""),  # 添加description字段
                 "duration": scene.get("duration"),
-                "visual": scene.get("visual"),
+                "visual": scene.get("visual"),  # 包含style和composition
+                "style": scene.get("style"),  # 场景级别的style（如果visual中没有）
                 "face_style_auto": scene.get("face_style_auto"),
                 "action": scene.get("action"),  # 添加 action 字段，用于检测静态动作（如 lying_still）
                 "camera": scene.get("camera"),  # 添加 camera 字段，用于视频生成
+                "camera_motion": scene.get("camera_motion"),  # 添加 camera_motion 字段
+                "motion_intensity": scene.get("motion_intensity"),  # 添加 motion_intensity 字段
                 "mood": scene.get("mood"),  # 添加 mood 字段
                 "lighting": scene.get("lighting"),  # 添加 lighting 字段
             }

@@ -15,11 +15,112 @@ paths:
 
 # 视频生成配置
 video:
-  # 使用模型：svd, svd-xt, svd-image-to-video
-  model_type: svd-xt
+  # 使用模型：svd, svd-xt, svd-image-to-video, animatediff, hunyuanvideo
+  # 注意：animatediff在diffusers中不稳定（绿色竖条问题），建议使用svd-xt
+  # hunyuanvideo: 高质量视频生成，适合高端场景（需要18-24GB显存）
+  model_type: svd-xt  # 已切换回svd-xt（AnimateDiff有绿色竖条问题）
   # 模型路径（从HuggingFace下载后放在model_dir中）
   # 注意：svd-image-to-video 模型实际在 svd 目录中（svd_xt_image_decoder.safetensors）
   model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/svd
+  
+  # HunyuanVideo配置（高端视频生成）
+  hunyuanvideo:
+    # 使用版本：true=1.5版本（推荐，更轻量质量更好），false=原版
+    # 注意：代码会自动从model_index.json检测版本，这里可以保持默认
+    use_v15: true  # 使用1.5版本（推荐）
+    # 模型路径（如果本地已有，使用本地路径；否则会从HuggingFace下载）
+    # 1.5版本（推荐）：
+    #   - tencent/HunyuanVideo-1.5（官方版本，推荐）
+    #   - hunyuanvideo-community/HunyuanVideo-1.5-480p_i2v（diffusers格式，图生视频）
+    # 原版：hunyuanvideo-community/HunyuanVideo-I2V（图生视频）
+    # 推荐使用diffusers格式模型（完整pipeline，包含所有组件）
+    # 分辨率选择：
+    #   - 480p模型：适合640×480或更低分辨率，速度快，显存占用少
+    #   - 720p模型：适合960×720或1280×720，质量更高，细节更清晰（推荐用于1280×768）
+    # 使用本地已下载的模型
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/HunyuanVideo-1.5-Diffusers-480p_i2v  # 本地720p图生视频模型
+    # 或使用HuggingFace自动下载: hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_i2v
+    # 其他可选模型：
+    #   - hunyuanvideo-community/HunyuanVideo-1.5-480p_i2v（480p图生视频，适合640×480，速度快）
+    #   - hunyuanvideo-community/HunyuanVideo-1.5-720p_i2v（720p图生视频，适合1280×720，高质量）✅ 当前使用
+    #   - hunyuanvideo-community/HunyuanVideo-1.5-480p_t2v（480p文生视频）
+    #   - hunyuanvideo-community/HunyuanVideo-1.5-480p_i2v_distilled（蒸馏版，更快）
+    transformer_subfolder: null  # diffusers格式模型不需要指定transformer_subfolder
+    num_frames: 24  # 帧数（降低帧数以减少生成时的显存占用，attention计算需要大量显存，先降低到15帧测试）
+    # 注意：HunyuanVideo 1.5实际生成的帧数可能少于请求的帧数（约45-60帧）
+    # 系统会自动使用插帧补充到目标帧数，确保视频时长达到预期
+    # 建议：
+    #   - 120帧：目标5秒（实际生成45帧+插帧=120帧）
+    #   - 80帧：目标3.3秒（实际生成45帧+插帧=80帧）
+    #   - 60帧：目标2.5秒（实际生成45帧+插帧=60帧）
+    fps: 24
+    width: 640  # 分辨率（降低分辨率以减少生成时的显存占用，attention计算需要大量显存）
+    height: 480  # 分辨率（确保是8的倍数）
+    num_inference_steps: 30  # 推理步数（20步约14分钟，30步约21分钟，50步约34分钟）
+    force_cpu_offload: true  # 强制启用CPU offload以降低显存占用
+    # 步数建议：
+    #   - 20步：快速测试，质量可接受（推荐用于测试）
+    #   - 30步：平衡质量和速度（推荐用于生产）
+    #   - 50步：最高质量，但速度慢（仅用于最终输出）
+    guidance_scale: 7.5  # 引导尺度
+    # Prompt配置（用于引导视频生成，虽然图生视频主要基于图片，但prompt可以帮助控制运动、风格等）
+    # 重要：HunyuanVideo需要详细的prompt，描述图片内容和期望的运动方式
+    # 参考官方示例格式：
+    # "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. 
+    # The fluffy-furred feline gazes directly at the camera with a relaxed expression. 
+    # Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, 
+    # and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, 
+    # as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's 
+    # intricate details and the refreshing atmosphere of the seaside."
+    prompt: ""  # 视频生成提示词，详细描述图片内容、主体、背景、细节和期望的运动方式（留空则自动从场景信息构建）
+    # 如果留空，系统会自动从scene信息构建详细prompt，包括：
+    #   - 风格描述（style）
+    #   - 主体描述（description/prompt）
+    #   - 视觉构图（visual.composition）
+    #   - 运动强度（motion_intensity: dynamic/moderate/gentle）
+    #   - 镜头运动（camera_motion.type: pan/zoom/dolly/static）
+    # 示例（手动指定）：
+    #   - "Cinematic style, a peaceful mountain landscape with snow-capped peaks. The alpine meadow features wildflowers swaying gently in the breeze. Clear blue sky with white clouds forms the background. The scene captures the serene atmosphere of nature. Smooth camera movement, gentle motion, natural movement, stable camera. High quality, cinematic, detailed."
+    negative_prompt: "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes"  # 负面提示词，避免不想要的元素
+    # 显存限制（类似JAX的显存限制，防止一次性分配完显存）
+    max_memory_fraction: 0.4  # 限制本进程最多使用40%的GPU显存（0.4 = 40%），防止一次性分配完
+    # 注意：如果其他进程占用较多显存，可以降低此值（如0.3或0.25）
+    # 但如果显存充足，可以提高此值（如0.5）以获得更好的性能
+    # 建议值：
+    #   - 0.2 (20%): 非常保守，适合有其他进程占用显存时
+    #   - 0.3 (30%): 推荐，平衡显存使用和性能
+    #   - 0.5 (50%): 如果GPU显存充足且没有其他进程
+    attention_slice_size: 1  # attention切片大小，1=最省显存但最慢，"max"=平衡显存和速度
+    # 风格配置（可在前端和脚本中覆盖）
+    # 支持多种风格类型，每种风格包含关键词和描述
+    style_templates:
+      # 科普/教育风格（政府/教育赛道）
+      scientific:
+        keywords: ["realistic", "scientific", "educational", "professional", "cinematic"]
+        description: "realistic scientific visualization style"
+        negative_keywords: ["cartoon", "anime", "fantasy", "illustration"]
+      # 产品广告风格（电商赛道）
+      commercial:
+        keywords: ["professional", "commercial", "product photography", "clean", "modern", "high quality"]
+        description: "professional commercial product photography style"
+        negative_keywords: ["low quality", "blurry", "amateur"]
+      # 戏剧/情感风格（短剧推文）
+      dramatic:
+        keywords: ["cinematic", "dramatic", "emotional", "realistic", "film noir", "atmospheric"]
+        description: "cinematic dramatic storytelling style"
+        negative_keywords: ["cartoon", "anime", "unrealistic"]
+      # 写实风格（通用）
+      realistic:
+        keywords: ["realistic", "photorealistic", "professional", "high quality", "detailed"]
+        description: "realistic professional photography style"
+        negative_keywords: ["cartoon", "anime", "illustration", "unrealistic"]
+      # 仙侠风格（保留兼容性，但建议使用realistic）
+      xianxia:
+        keywords: ["Chinese animation style", "ancient Chinese fantasy", "xianxia", "cinematic"]
+        description: "Chinese animation fantasy style"
+        negative_keywords: ["modern", "realistic", "photorealistic"]
+    # 默认风格（如果脚本中未指定style，使用此风格）
+    default_style: realistic  # 可选: scientific, commercial, dramatic, realistic, xianxia
   # 生成帧数
   # 关键优化：num_frames 必须 = duration * fps，否则会导致运动不连贯
   # 例如：duration=5s, fps=24 → num_frames=120
@@ -63,12 +164,24 @@ video:
   # 内存优化：限制最大时长和帧数，避免OOM
   max_duration: 16.0  # 最大视频时长（秒），超过此值会被截断
   max_frames: 384  # 最大帧数（约16秒@24fps），超过此值会被截断
+  
+  # 视频插帧配置（提升视频流畅度）
+  # 原理：先生成关键帧（减少帧数，提高速度），然后使用插帧到目标帧数
+  # 优势：生成速度提升 30%+，流畅度提升 50%+
+  # 支持多种插帧方法（按优先级）：
+  # 1. 官方 RIFE 实现（需要手动安装：git clone https://github.com/hzwer/arXiv2020-RIFE.git）
+  # 2. OpenCV 光流插帧（自动使用，无需额外安装）
+  # 3. 简单线性插值（降级方案，自动使用）
+  rife:
+    enabled: true  # 是否启用插帧
+    interpolation_scale: 2.0  # 插帧倍数（例如：生成60帧，插到120帧）
+    # 注意：系统会自动选择可用的插帧方法，无需手动配置
 
 # 图像生成配置
-# 支持两种模式：sdxl（旧方案）和 instantid（新方案 1080P）
+# 支持多种模式：sdxl（旧方案）、instantid（新方案 1080P）、多模型组合（推荐）
 image:
-  # 生成引擎：sdxl 或 instantid
-  engine: instantid  # 可选：sdxl, instantid
+  # 生成引擎：sdxl, instantid, auto（自动选择，推荐）
+  engine: auto  # 可选：sdxl, instantid, auto（自动根据任务类型选择）
   device: cuda
   mixed_precision: fp16  # fp16 或 fp8（需要 PyTorch 2.5+ 和 CUDA 12.1+）
   enable_cpu_offload: false
@@ -90,6 +203,39 @@ image:
     # 使用 LoRA 时 IP-Adapter 权重乘数（避免与 LoRA 冲突）
     # 组合B：此参数不适用（禁用额外的 IP-Adapter）
     ip_adapter_scale_multiplier: 0.6  # 保留兼容性，但组合B不使用额外的 IP-Adapter
+    # 风格 LoRA（可选）
+    style_lora:
+      enabled: true
+      weights_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/lora/anime_style/pytorch_lora_weights.safetensors
+      adapter_name: anime_style
+      alpha: 1.0  # 风格权重，可根据需要调整
+      force_cpu: false
+  
+  # 镜头控制配置
+  camera:
+    # 是否允许特写场景（close-up）
+    # true: 允许特写，不自动转换为中景
+    # false: 自动将特写转换为中景（默认，更稳定，避免身体变形）
+    allow_close_up: false  # 默认false，如需特写可设为true
+  
+  # 场景参考图像选择配置（从原始素材中自动选择匹配的参考图像）
+  scene_reference:
+    # 是否启用场景参考图像选择
+    enabled: true  # 设置为true启用，从processed目录中自动选择匹配的参考图像
+    # FAISS索引路径（用于向量检索）
+    index_path: processed/global_index.faiss
+    # 索引元数据路径
+    metadata_path: processed/index_metadata.json
+    # keyframes基础目录
+    keyframes_base: processed
+    # 返回top k个最相关的参考图像
+    top_k: 3  # 选择3个最相关的参考图像
+    # 检索方法：vector（向量检索）、keyword（关键词检索）、hybrid（混合检索，推荐）
+    method: hybrid  # 推荐使用hybrid，结合语义和关键词匹配
+    # IP-Adapter权重（使用场景参考图像时的权重）
+    weight: 0.56  # 场景参考图像权重，0.6表示中等强度
+    # 是否使用场景参考图像作为img2img输入（推荐启用，效果更好）
+    use_as_img2img: true  # 启用后，场景参考图像将作为img2img的init_image，更好地保持结构和风格
   
   # InstantID 配置（1080P 方案）
   instantid:
@@ -105,11 +251,11 @@ image:
     # InstantID ControlNet 路径
     controlnet_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/instantid/ControlNet
     # IP-Adapter 路径
-    ip_adapter_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/instantid/ip-adapter
+    ip_adapter_path: /vepfs-dev/shawn/vid/fanren/InstantID/checkpoints
     # 面部参考图像路径（用于特征缓存）
-    # 建议使用正脸照片（如 韩立_face.png），效果更好
-    # 如果是目录，会优先查找 韩立_face.png、face.png 等正脸照片
-    face_image_path: /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/韩立_mid.png
+    # 建议使用正脸照片（如 character_face.png），效果更好
+    # 如果是目录，会优先查找 character_face.png、face.png 等正脸照片
+    face_image_path: /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/character_mid.png
     # 分辨率：使用 1536x864 更稳定，避免身体拉伸（推荐方案）
     # 之后可用 RealESRGAN 放大到 1080P
     # 注意：分辨率必须是 8 的倍数（SDXL 要求）
@@ -155,6 +301,118 @@ image:
     face_kps_scale: 0.70  # 组合B优化：保持0.70，与LoRA平衡，避免畸变
     face_kps_offset_y: 0  # 可微调关键点在竖向的位置（像素）
   
+  # 多模型组合配置（推荐方案）
+  # 针对科普视频流水线 + 政府单场景的最优组合
+  model_selection:
+    # 人物生成（主持人）- 使用 Flux.1 + FaceID（最稳）
+    character:
+      engine: flux-instantid  # Flux.1 + InstantID/FaceID
+      # Flux.1 模型配置（用于主持人脸）
+      flux1_model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/flux1-dev
+      flux1_base_model: black-forest-labs/FLUX.1-dev
+      # InstantID 配置（复用现有配置）
+      instantid_path: /vepfs-dev/shawn/vid/fanren/InstantID/checkpoints
+      controlnet_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/instantid/ControlNet
+      face_image_path: /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/kupu_gege.png
+      # LoRA 配置（用于固定人设）
+      lora:
+        enabled: true
+        weights_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/lora/kepu_gege/pytorch_lora_weights.safetensors
+        adapter_name: kepu_gege
+        alpha: 1.3  # 提高LoRA权重以增强人脸相似度（仅使用LoRA时建议1.2-1.5）
+      # 生成参数
+      width: 1536
+      height: 864
+      num_inference_steps: 28  # 优化：从40降到28，速度提升约30%，质量几乎无损失（Flux模型在28步已足够）
+      guidance_scale: 7.5
+      quantization: fp16
+    
+    # 场景生成（科普背景）
+    scene:
+      # 优先级列表（按顺序尝试）
+      engines:
+        - flux2              # 优先：科学背景图（冲击力强）、太空/粒子/量子类（效果爆炸）
+        - flux1              # 备选：实验室/医学（更干净自然）
+        - hunyuan-dit        # 备选：中文场景
+        - kolors             # 备选：真实感场景（真人质感强，中文 prompt 理解优秀）
+        - realistic-vision   # 备选：真实感场景（如果 Kolors 不可用）
+        - sd3-turbo         # 批量：高速备选图
+      
+      # Flux.2 配置（科学背景图、太空/粒子/量子类，冲击力强）
+      flux2:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/flux2-dev
+        base_model: black-forest-labs/FLUX.1-schnell  # 注意：Flux.2 的模型ID需要确认
+        width: 1536
+        height: 864
+        num_inference_steps: 28
+        guidance_scale: 7.0
+        quantization: bfloat16
+        device_map: cuda
+      
+      # Flux.1 配置（实验室/医学场景，更干净自然）
+      flux1:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/flux1-dev
+        base_model: black-forest-labs/FLUX.1-dev
+        width: 1536
+        height: 864
+        num_inference_steps: 28
+        guidance_scale: 7.0
+        quantization: bfloat16
+        device_map: cuda
+      
+      # Hunyuan-DiT 配置（中文理解最强）
+      hunyuan_dit:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/hunyuan-dit
+        base_model: Tencent-Hunyuan/HunyuanDiT
+        width: 1536
+        height: 864
+        num_inference_steps: 50
+        guidance_scale: 7.5
+        # 中文提示词优化
+        chinese_optimization: true
+        quantization: fp16
+      
+      # Kolors 配置（真实感和稳定性，快手可图团队开发）
+      # 使用 Kolors-IP-Adapter-FaceID-Plus 版本（可直接用 diffusers 加载）
+      # HuggingFace: https://huggingface.co/Kwai-Kolors/Kolors-IP-Adapter-FaceID-Plus
+      # 特点: 真人质感强、肤色真实、五官清晰、光影自然、色彩稳定，不会脏、中文 prompt 理解优秀
+      kolors:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/kolors
+        base_model: Kwai-Kolors/Kolors-IP-Adapter-FaceID-Plus
+        width: 1536
+        height: 864
+        num_inference_steps: 40
+        guidance_scale: 7.0
+        # 真实感增强
+        realism_boost: true
+        # 量化类型：bfloat16（推荐，质量好）或 float16
+        quantization: bfloat16  # 使用 bfloat16 以获得更好的质量
+        # 设备映射：cuda（GPU）或 cpu
+        device_map: cuda
+      
+      # Realistic Vision 配置（备选方案，如果 Kolors 不可用）
+      realistic_vision:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/realistic-vision
+        base_model: SG161222/Realistic_Vision_V5.1_noVAE
+        width: 1536
+        height: 864
+        num_inference_steps: 40
+        guidance_scale: 7.0
+        quantization: fp16
+      
+      # SD3.5 Large Turbo 配置（极速批量生成）
+      sd3_turbo:
+        model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/sd3-turbo
+        base_model: calcuis/sd3.5-large-turbo  # 使用 SD3.5 Large Turbo
+        width: 1024
+        height: 1024
+        num_inference_steps: 4  # Turbo 模式，步数少但速度快
+        guidance_scale: 1.0    # Turbo 模式，低引导
+        # 批量生成模式
+        batch_mode: true
+        batch_size: 4  # 一次生成4张备选图
+        quantization: fp16
+  
   # SDXL 配置（旧方案，保留兼容）
   sdxl:
     model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/sdxl-base
@@ -163,9 +421,9 @@ image:
     height: 720
     use_img2img: true  # 启用img2img，用于场景连贯性（相邻场景使用前一个场景作为参考）
     use_ip_adapter: true
-    img2img_strength: 0.18
+    img2img_strength: 0.3  # 降低默认值，避免参考图过度覆盖（人物场景会自动降到0.28）
     reference_image_dir: 
-      /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/韩立_1024
+      /vepfs-dev/shawn/vid/fanren/gen_video/reference_image/character_1024
     reference_image_pattern: '*.png'
     face_reference_dir: 
       /vepfs-dev/shawn/vid/fanren/gen_video/reference_image_dir/faces
@@ -182,10 +440,14 @@ image:
       face_reference_only: true
   
   # 通用提示词配置（两种引擎共用）
-  character_prompt: Han Li, calm cultivator, lean and strong physique, flowing light-colored robe with golden trim, calm focused eyes, natural skin tone, gentle breeze on fabric, heroic and relaxed posture, small figure in medium shot
-  environment_prompt: (extreme wide shot:2.0), (ultra long shot:1.8), xianxia world desert oasis, vast sand dunes, distant stone peaks, drifting spiritual mist, golden sunset rays, cinematic scale, character occupies one-fifth of frame
-  base_style_prompt: photorealistic, hyperrealistic, cinematic lighting, volumetric light rays, detailed skin pores, natural hands, accurate anatomy, realistic fabric drape, 4k, cinematic color grading, sharp focus
-  negative_prompt: low quality, blurry, noise, overexposed, underexposed, deformed, distorted, mutated hands, deformed hands, extra fingers, missing fingers, fused fingers, bad anatomy, cartoon, anime, illustration, flat shading, cg, watermark, indoor, city, forest, mountains, night, text, logo, compression artifacts, oversized character, oversized subject, huge figure, camera shake, unstable camera, floating, drifting, unstable motion, inconsistent action, discontinuous action, jitter, flicker, unstable frame, fast movement, rapid action, sudden movement, broken frame, frame jump, inconsistent background, changing background, background jump, scene jump, style drift, style inconsistency, unstable environment, changing scene, motorcycle, bicycle, car, vehicle, modern transportation, modern technology, electronic products, appliances, modern architecture, skyscraper, modern city, modern architectural style, modern clothing, modern decoration, modern fashion, phone, computer, TV, camera, modern weapons, guns, firearms, modern equipment, horse, (multiple people:1.5), (two people:1.5), (crowd:1.5), (group of people:1.5), (extra person:1.5), (duplicate character:1.5), (second person:1.5), (additional figure:1.5), (cloned person:1.5), (duplicate person:1.5), (identical person:1.5), (twin character:1.5), (repeated character:1.5), (second identical figure:1.5), (duplicate figure:1.5), (mirrored person:1.5), (copy of person:1.5), (same person twice:1.5), (two same people:1.5), (two identical people:1.5)
+  # 注意：这些是默认提示词，实际使用时应该根据场景描述动态生成
+  # character_prompt: 角色描述（根据场景中的角色信息动态生成）
+  # environment_prompt: 环境描述（根据场景描述动态生成）
+  # base_style_prompt: 基础风格提示词（可根据配置选择不同风格）
+  character_prompt: ""  # 留空，由代码根据场景动态生成
+  environment_prompt: ""  # 留空，由代码根据场景动态生成
+  base_style_prompt: "anime style, 3D rendered anime, detailed character, cinematic lighting, 4k, sharp focus"  # 通用动漫风格
+  negative_prompt: low quality, blurry, noise, overexposed, underexposed, deformed, distorted, mutated hands, deformed hands, extra fingers, missing fingers, fused fingers, bad anatomy, photorealistic, hyperrealistic, realistic, real photo, photograph, western style, european style, modern style, watermark, indoor, city, forest, mountains, night, text, logo, compression artifacts, oversized character, oversized subject, huge figure, camera shake, unstable camera, floating, drifting, unstable motion, inconsistent action, discontinuous action, jitter, flicker, unstable frame, fast movement, rapid action, sudden movement, broken frame, frame jump, inconsistent background, changing background, background jump, scene jump, style drift, style inconsistency, unstable environment, changing scene, motorcycle, bicycle, car, vehicle, modern transportation, modern technology, electronic products, appliances, modern architecture, skyscraper, modern city, modern architectural style, modern clothing, modern decoration, modern fashion, phone, computer, TV, camera, modern weapons, guns, firearms, modern equipment, horse, (multiple people:1.5), (two people:1.5), (crowd:1.5), (group of people:1.5), (extra person:1.5), (duplicate character:1.5), (second person:1.5), (additional figure:1.5), (cloned person:1.5), (duplicate person:1.5), (identical person:1.5), (twin character:1.5), (repeated character:1.5), (second identical figure:1.5), (duplicate figure:1.5), (mirrored person:1.5), (copy of person:1.5), (same person twice:1.5), (two same people:1.5), (two identical people:1.5)
   ascii_only_prompt: true
 
 # 配音配置
@@ -222,22 +484,45 @@ tts:
     # 注意: 模型名称需要与下载脚本中的映射一致
     model_name: CosyVoice2-0.5B
     # 模型路径（如果本地已有，通常下载到 CosyVoice/pretrained_models/ 目录）
-    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/cosyvoice
+    model_path: /vepfs-dev/shawn/vid/fanren/CosyVoice/pretrained_models/CosyVoice2-0.5B
     # 是否使用 CosyVoice2（True 使用 CosyVoice2，False 使用 CosyVoice）
     use_cosyvoice2: true
     # 默认情感风格（如果 auto_emotion=false）
     # CosyVoice2: 使用 zero_shot 模式时需要 prompt_speech
     # CosyVoice: 使用 SFT 模式，speaker 可选：中文女、中文男等
-    default_emotion: 中文女  # CosyVoice2 使用 zero_shot，CosyVoice 使用 SFT speaker
+    default_emotion: 中文  # CosyVoice2 使用 zero_shot，CosyVoice 使用 SFT speaker
+    
+    # 双环境配置（解决 transformers 版本冲突）
+    # 如果 use_subprocess=true，CosyVoice 将在独立环境中运行（避免 transformers 版本冲突）
+    use_subprocess: true  # 是否使用子进程模式（推荐：true，避免版本冲突）
+    subprocess_python: /vepfs-dev/shawn/venv/cosyvoice/bin/python  # CosyVoice 环境的 Python 路径
+    subprocess_script: /vepfs-dev/shawn/vid/fanren/gen_video/tools/cosyvoice_subprocess_wrapper.py  # 子进程包装器脚本路径
+    
     # CosyVoice2 zero_shot 模式配置（按照官方用法）
     # prompt_speech: 用于 zero_shot 的参考音频文件路径（16kHz WAV 格式）
-    # 已准备：女性知性解说风格的参考音频
-    prompt_speech: /vepfs-dev/shawn/vid/fanren/gen_video/assets/prompts/zero_shot_prompt.wav
+    # 排查问题：暂时切换回之前正常工作的配置进行对比测试
+    # 如果这个配置正常，说明问题在于 haoran 音频或 prompt_text 不匹配
+    prompt_speech: /vepfs-dev/shawn/vid/fanren/gen_video/assets/prompts/haoran_prompt_5s.wav
     # prompt_text: 用于 zero_shot 的参考文本（对应参考音频的文本内容）
-    # 注意：这个文本应该与 prompt_speech 音频文件中的实际内容对应
-    prompt_text: "大家好，我是云卷仙音。今天我们要继续讲述凡人修仙传的故事。在这个故事中，韩立经历了无数的挑战和机遇。"  # 默认 prompt_text（可根据实际音频内容修改）
+    # 注意：这个文本应该与 prompt_speech 音频文件中的实际内容精确匹配
+    # 重要：prompt_text 必须与音频中的实际内容完全一致，包括标点符号，否则会导致声音质量差
+    # 这是之前正常工作的配置（给凡人修仙传配音时使用的）
+    # 关键发现：prompt_text 必须与 prompt_speech 音频内容完全匹配
+    # 音频识别结果：'大家好，我是云卷仙音，今天我们要继续讲述凡人修仙转的故事，在这个故事中，韩立经历了无数的挑' (42字符)
+    # 使用完整的音频内容作为 prompt_text，确保完全匹配
+    prompt_text: "欢迎来到本期知识探索，我们将继续介绍黑洞的基本概念"  # 匹配完整音频内容（42字符，确保与音频完全匹配）
+    # text_frontend: 是否启用文本前端处理（True=启用，False=禁用）
+    # 官方 README 提示：如果要复现演示页面结果，应该使用 text_frontend=False
+    # 但官方 API 默认值是 text_frontend=True
+    # 测试：使用 text_frontend=False 看是否能解决生成时长异常问题
+    text_frontend: false  # 使用 False 以匹配官方演示页面结果
     # mode: CosyVoice2 使用模式（zero_shot, instruct2, cross_lingual）
-    mode: zero_shot  # 默认使用 zero_shot 模式（女性知性解说风格）
+    # zero_shot: 需要 prompt_text 和 prompt_speech 精确匹配（prompt_text 必须与音频内容完全一致）
+    # instruct2: 可以使用指令文本，更灵活，不要求精确匹配
+    mode: zero_shot  # 使用 zero_shot 模式，需要 prompt_text 与音频内容完全匹配
+    # instruct2 模式的指令文本（当 mode=instruct2 时使用）
+    # 描述声音风格和特点，不需要与音频内容匹配
+    instruction: "用专业、清晰、亲切的科普解说风格，语速适中，吐字清晰"  # 用于 instruct2 模式
   
   # ChatTTS 配置（旧方案，保留兼容）
   chattts:
@@ -388,16 +673,16 @@ composition:
     # Real-ESRGAN 超分模型配置
     # 根据 分析chatgpt.md 建议，使用 RealESRGAN（x2）进行超分
     # 
-    # 模型选择（针对《凡人修仙传》等3D渲染动漫）：
+    # 模型选择（针对3D渲染动漫）：
     # 方案1: RealESRGAN_x2plus.pth (推荐，速度最快，适合1080P视频)
     #   - x2模型，速度比x4快约4倍（0.3帧/秒 → 1.2帧/秒）
     #   - 适合从576P超分到1080P（需要2倍放大）
     #   - 质量略低于x4，但对解说视频足够
     #   - 下载地址: https://github.com/xinntao/Real-ESRGAN/releases
     # 
-    # 方案2: RealESRGAN_x4plus_anime_6B.pth (当前使用，质量更好但较慢)
+    # 方案2: RealESRGAN_x4plus_anime_6B.pth (备选，质量更好但较慢)
     #   - 针对动漫优化，保留动漫风格
-    #   - 适合3D渲染动漫，如《凡人修仙传》
+    #   - 适合3D渲染动漫
     #   - 模型更小(6B)，但速度较慢（约0.3帧/秒）
     # 
     # 方案3: RealESRGAN_x4plus.pth (备选，如果方案1效果不理想)
