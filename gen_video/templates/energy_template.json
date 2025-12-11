@@ -1,0 +1,49 @@
+{
+  "title": "工业能源科普视频",
+  "topic": "工业能源",
+  "category": "energy",
+  "duration": 60,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来聊聊能源的未来。",
+    "scene": {
+      "prompt": "modern wind farm, clean energy technology, industrial landscape, professional photography, cinematic lighting",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "清洁能源是未来发展的方向，太阳能、风能等可再生能源正在改变我们的能源结构，为可持续发展提供动力。",
+      "scene": {
+        "prompt": "solar panel array, clean energy technology, modern industrial, professional photography",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "智能电网技术让能源分配更加高效，通过数字化管理，我们可以更好地利用各种能源，减少浪费，保护环境。",
+      "scene": {
+        "prompt": "smart grid visualization, digital technology, modern illustration",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "modern wind farm, clean energy technology, industrial landscape, professional photography, cinematic lighting",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "能源", "环保", "技术"],
+    "difficulty": "初级"
+  }
+}
+

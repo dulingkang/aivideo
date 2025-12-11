@@ -1,0 +1,276 @@
+{
+  "total_frames": 30,
+  "source": "processed/keyframes",
+  "frames": [
+    {
+      "index": 1,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/keyframes/episode_170_clean-Scene-085_middle.jpg",
+      "original_name": "episode_170_clean-Scene-085_middle.jpg",
+      "new_name": "style_ref_001.jpg",
+      "episode": "episode_170",
+      "scene": "085",
+      "position": "middle"
+    },
+    {
+      "index": 2,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/keyframes/episode_170_clean-Scene-036_middle.jpg",
+      "original_name": "episode_170_clean-Scene-036_middle.jpg",
+      "new_name": "style_ref_002.jpg",
+      "episode": "episode_170",
+      "scene": "036",
+      "position": "middle"
+    },
+    {
+      "index": 3,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/keyframes/episode_170_clean-Scene-198_middle.jpg",
+      "original_name": "episode_170_clean-Scene-198_middle.jpg",
+      "new_name": "style_ref_003.jpg",
+      "episode": "episode_170",
+      "scene": "198",
+      "position": "middle"
+    },
+    {
+      "index": 4,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_171/keyframes/episode_171_clean-Scene-013_middle.jpg",
+      "original_name": "episode_171_clean-Scene-013_middle.jpg",
+      "new_name": "style_ref_004.jpg",
+      "episode": "episode_171",
+      "scene": "013",
+      "position": "middle"
+    },
+    {
+      "index": 5,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_171/keyframes/episode_171_clean-Scene-001_middle.jpg",
+      "original_name": "episode_171_clean-Scene-001_middle.jpg",
+      "new_name": "style_ref_005.jpg",
+      "episode": "episode_171",
+      "scene": "001",
+      "position": "middle"
+    },
+    {
+      "index": 6,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_171/keyframes/episode_171_clean-Scene-012_middle.jpg",
+      "original_name": "episode_171_clean-Scene-012_middle.jpg",
+      "new_name": "style_ref_006.jpg",
+      "episode": "episode_171",
+      "scene": "012",
+      "position": "middle"
+    },
+    {
+      "index": 7,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_158/keyframes/episode_158_clean-Scene-201_middle.jpg",
+      "original_name": "episode_158_clean-Scene-201_middle.jpg",
+      "new_name": "style_ref_007.jpg",
+      "episode": "episode_158",
+      "scene": "201",
+      "position": "middle"
+    },
+    {
+      "index": 8,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_158/keyframes/episode_158_clean-Scene-223_middle.jpg",
+      "original_name": "episode_158_clean-Scene-223_middle.jpg",
+      "new_name": "style_ref_008.jpg",
+      "episode": "episode_158",
+      "scene": "223",
+      "position": "middle"
+    },
+    {
+      "index": 9,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_158/keyframes/episode_158_clean-Scene-134_middle.jpg",
+      "original_name": "episode_158_clean-Scene-134_middle.jpg",
+      "new_name": "style_ref_009.jpg",
+      "episode": "episode_158",
+      "scene": "134",
+      "position": "middle"
+    },
+    {
+      "index": 10,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_165/keyframes/episode_165_clean-Scene-193_middle.jpg",
+      "original_name": "episode_165_clean-Scene-193_middle.jpg",
+      "new_name": "style_ref_010.jpg",
+      "episode": "episode_165",
+      "scene": "193",
+      "position": "middle"
+    },
+    {
+      "index": 11,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_165/keyframes/episode_165_clean-Scene-205_middle.jpg",
+      "original_name": "episode_165_clean-Scene-205_middle.jpg",
+      "new_name": "style_ref_011.jpg",
+      "episode": "episode_165",
+      "scene": "205",
+      "position": "middle"
+    },
+    {
+      "index": 12,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_165/keyframes/episode_165_clean-Scene-106_middle.jpg",
+      "original_name": "episode_165_clean-Scene-106_middle.jpg",
+      "new_name": "style_ref_012.jpg",
+      "episode": "episode_165",
+      "scene": "106",
+      "position": "middle"
+    },
+    {
+      "index": 13,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_151/keyframes/episode_151_clean-Scene-121_middle.jpg",
+      "original_name": "episode_151_clean-Scene-121_middle.jpg",
+      "new_name": "style_ref_013.jpg",
+      "episode": "episode_151",
+      "scene": "121",
+      "position": "middle"
+    },
+    {
+      "index": 14,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_151/keyframes/episode_151_clean-Scene-028_middle.jpg",
+      "original_name": "episode_151_clean-Scene-028_middle.jpg",
+      "new_name": "style_ref_014.jpg",
+      "episode": "episode_151",
+      "scene": "028",
+      "position": "middle"
+    },
+    {
+      "index": 15,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_151/keyframes/episode_151_clean-Scene-133_middle.jpg",
+      "original_name": "episode_151_clean-Scene-133_middle.jpg",
+      "new_name": "style_ref_015.jpg",
+      "episode": "episode_151",
+      "scene": "133",
+      "position": "middle"
+    },
+    {
+      "index": 16,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_147/keyframes/episode_147_clean-Scene-083_middle.jpg",
+      "original_name": "episode_147_clean-Scene-083_middle.jpg",
+      "new_name": "style_ref_016.jpg",
+      "episode": "episode_147",
+      "scene": "083",
+      "position": "middle"
+    },
+    {
+      "index": 17,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_147/keyframes/episode_147_clean-Scene-170_middle.jpg",
+      "original_name": "episode_147_clean-Scene-170_middle.jpg",
+      "new_name": "style_ref_017.jpg",
+      "episode": "episode_147",
+      "scene": "170",
+      "position": "middle"
+    },
+    {
+      "index": 18,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_147/keyframes/episode_147_clean-Scene-068_middle.jpg",
+      "original_name": "episode_147_clean-Scene-068_middle.jpg",
+      "new_name": "style_ref_018.jpg",
+      "episode": "episode_147",
+      "scene": "068",
+      "position": "middle"
+    },
+    {
+      "index": 19,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_144/keyframes/episode_144_clean-Scene-116_middle.jpg",
+      "original_name": "episode_144_clean-Scene-116_middle.jpg",
+      "new_name": "style_ref_019.jpg",
+      "episode": "episode_144",
+      "scene": "116",
+      "position": "middle"
+    },
+    {
+      "index": 20,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_144/keyframes/episode_144_clean-Scene-179_middle.jpg",
+      "original_name": "episode_144_clean-Scene-179_middle.jpg",
+      "new_name": "style_ref_020.jpg",
+      "episode": "episode_144",
+      "scene": "179",
+      "position": "middle"
+    },
+    {
+      "index": 21,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_144/keyframes/episode_144_clean-Scene-100_middle.jpg",
+      "original_name": "episode_144_clean-Scene-100_middle.jpg",
+      "new_name": "style_ref_021.jpg",
+      "episode": "episode_144",
+      "scene": "100",
+      "position": "middle"
+    },
+    {
+      "index": 22,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_150/keyframes/episode_150_clean-Scene-094_middle.jpg",
+      "original_name": "episode_150_clean-Scene-094_middle.jpg",
+      "new_name": "style_ref_022.jpg",
+      "episode": "episode_150",
+      "scene": "094",
+      "position": "middle"
+    },
+    {
+      "index": 23,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_150/keyframes/episode_150_clean-Scene-163_middle.jpg",
+      "original_name": "episode_150_clean-Scene-163_middle.jpg",
+      "new_name": "style_ref_023.jpg",
+      "episode": "episode_150",
+      "scene": "163",
+      "position": "middle"
+    },
+    {
+      "index": 24,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_150/keyframes/episode_150_clean-Scene-004_middle.jpg",
+      "original_name": "episode_150_clean-Scene-004_middle.jpg",
+      "new_name": "style_ref_024.jpg",
+      "episode": "episode_150",
+      "scene": "004",
+      "position": "middle"
+    },
+    {
+      "index": 25,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_149/keyframes/episode_149_clean-Scene-192_middle.jpg",
+      "original_name": "episode_149_clean-Scene-192_middle.jpg",
+      "new_name": "style_ref_025.jpg",
+      "episode": "episode_149",
+      "scene": "192",
+      "position": "middle"
+    },
+    {
+      "index": 26,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_149/keyframes/episode_149_clean-Scene-082_middle.jpg",
+      "original_name": "episode_149_clean-Scene-082_middle.jpg",
+      "new_name": "style_ref_026.jpg",
+      "episode": "episode_149",
+      "scene": "082",
+      "position": "middle"
+    },
+    {
+      "index": 27,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_142/keyframes/episode_142_clean-Scene-024_middle.jpg",
+      "original_name": "episode_142_clean-Scene-024_middle.jpg",
+      "new_name": "style_ref_027.jpg",
+      "episode": "episode_142",
+      "scene": "024",
+      "position": "middle"
+    },
+    {
+      "index": 28,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_142/keyframes/episode_142_clean-Scene-081_middle.jpg",
+      "original_name": "episode_142_clean-Scene-081_middle.jpg",
+      "new_name": "style_ref_028.jpg",
+      "episode": "episode_142",
+      "scene": "081",
+      "position": "middle"
+    },
+    {
+      "index": 29,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_162/keyframes/episode_162_clean-Scene-032_middle.jpg",
+      "original_name": "episode_162_clean-Scene-032_middle.jpg",
+      "new_name": "style_ref_029.jpg",
+      "episode": "episode_162",
+      "scene": "032",
+      "position": "middle"
+    },
+    {
+      "index": 30,
+      "original_path": "/vepfs-dev/shawn/vid/fanren/processed/episode_162/keyframes/episode_162_clean-Scene-016_middle.jpg",
+      "original_name": "episode_162_clean-Scene-016_middle.jpg",
+      "new_name": "style_ref_030.jpg",
+      "episode": "episode_162",
+      "scene": "016",
+      "position": "middle"
+    }
+  ]
+}

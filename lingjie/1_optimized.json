@@ -27,7 +27,7 @@
         "detail": "Natural",
         "strength": 0.82
       },
-      "image_path": "outputs/images/test_optimized/scene_001.png"
+      "image_path": "outputs/images/output/scene_001.png"
     },
     {
       "id": 1,
@@ -56,7 +56,7 @@
         "detail": "Natural",
         "strength": 0.83
       },
-      "image_path": "outputs/images/test_optimized/scene_002.png"
+      "image_path": "outputs/images/output/scene_002.png"
     },
     {
       "id": 2,
@@ -85,7 +85,7 @@
         "detail": "Natural",
         "strength": 0.84
       },
-      "image_path": "outputs/images/test_optimized/scene_003.png"
+      "image_path": "outputs/images/output/scene_003.png"
     },
     {
       "id": 3,
@@ -113,7 +113,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_004.png"
+      "image_path": "outputs/images/output/scene_004.png"
     },
     {
       "id": 4,
@@ -142,7 +142,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_005.png"
+      "image_path": "outputs/images/output/scene_005.png"
     },
     {
       "id": 5,
@@ -170,7 +170,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_006.png"
+      "image_path": "outputs/images/output/scene_006.png"
     },
     {
       "id": 6,
@@ -199,7 +199,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_007.png"
+      "image_path": "outputs/images/output/scene_007.png"
     },
     {
       "id": 7,
@@ -226,7 +226,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_008.png"
+      "image_path": "outputs/images/output/scene_008.png"
     },
     {
       "id": 8,
@@ -254,7 +254,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_009.png"
+      "image_path": "outputs/images/output/scene_009.png"
     },
     {
       "id": 9,
@@ -281,7 +281,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_010.png"
+      "image_path": "outputs/images/output/scene_010.png"
     },
     {
       "id": 10,
@@ -309,7 +309,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_011.png"
+      "image_path": "outputs/images/output/scene_011.png"
     },
     {
       "id": 11,
@@ -336,7 +336,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_012.png"
+      "image_path": "outputs/images/output/scene_012.png"
     },
     {
       "id": 12,
@@ -364,7 +364,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_013.png"
+      "image_path": "outputs/images/output/scene_013.png"
     },
     {
       "id": 13,
@@ -393,7 +393,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_014.png"
+      "image_path": "outputs/images/output/scene_014.png"
     },
     {
       "id": 14,
@@ -420,7 +420,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_015.png"
+      "image_path": "outputs/images/output/scene_015.png"
     },
     {
       "id": 15,
@@ -449,7 +449,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_016.png"
+      "image_path": "outputs/images/output/scene_016.png"
     },
     {
       "id": 16,
@@ -478,7 +478,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_017.png"
+      "image_path": "outputs/images/output/scene_017.png"
     },
     {
       "id": 17,
@@ -505,7 +505,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_018.png"
+      "image_path": "outputs/images/output/scene_018.png"
     },
     {
       "id": 18,
@@ -533,7 +533,7 @@
         "detail": "Natural",
         "strength": 0.85
       },
-      "image_path": "outputs/images/test_optimized/scene_019.png"
+      "image_path": "outputs/images/output/scene_019.png"
     },
     {
       "id": 19,
@@ -560,7 +560,7 @@
         "detail": "Natural",
         "strength": 0.84
       },
-      "image_path": "outputs/images/test_optimized/scene_020.png"
+      "image_path": "outputs/images/output/scene_020.png"
     },
     {
       "id": 20,
@@ -589,7 +589,7 @@
         "detail": "Natural",
         "strength": 0.83
       },
-      "image_path": "outputs/images/test_optimized/scene_021.png"
+      "image_path": "outputs/images/output/scene_021.png"
     },
     {
       "id": 999,
@@ -616,8 +616,7 @@
         "detail": "Natural",
         "strength": 0.82
       },
-      "image_path": "outputs/images/test_optimized/scene_022.png"
+      "image_path": "outputs/images/output/scene_022.png"
     }
   ]
 }
-

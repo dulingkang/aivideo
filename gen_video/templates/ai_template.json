@@ -1,0 +1,49 @@
+{
+  "title": "人工智能科普视频",
+  "topic": "人工智能",
+  "category": "ai",
+  "duration": 60,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来聊聊人工智能。",
+    "scene": {
+      "prompt": "artificial intelligence visualization, neural network, modern technology, abstract scientific illustration",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "人工智能正在改变我们的生活，从语音助手到自动驾驶，AI技术让机器能够像人类一样思考和决策。",
+      "scene": {
+        "prompt": "neural network visualization, glowing nodes and connections, modern technology illustration",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "深度学习是AI的核心技术，通过模拟人脑神经网络，计算机可以学习和识别复杂的模式，实现智能化的功能。",
+      "scene": {
+        "prompt": "machine learning data flow, modern visualization, professional illustration",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "artificial intelligence visualization, neural network, modern technology, abstract scientific illustration",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "人工智能", "AI", "技术"],
+    "difficulty": "初级"
+  }
+}
+

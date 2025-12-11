@@ -1,0 +1,192 @@
+{
+  "episode": "test",
+  "title": "通用测试场景集",
+  "scenes": [
+    {
+      "id": 0,
+      "duration": 3,
+      "description": "金色卷轴在天空中缓缓展开，闪烁着灵光，这是片头场景。",
+      "mood": "Epic",
+      "lighting": "Soft glow",
+      "action": "Title reveal",
+      "camera": "Static wide",
+      "visual": {
+        "composition": "Golden scroll unfurling prominently in sky, golden light, spirit particles",
+        "environment": "Sky with clouds",
+        "character_pose": "",
+        "fx": "Golden light, scroll-unfurling effect, spirit particles floating",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "fantasy title card, golden scroll unfurling prominently above sky, soft golden glow, cinematic wide shot, no weapons, no tools",
+      "narration": "这是测试场景一，金色卷轴展开。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 1,
+      "duration": 4,
+      "description": "主角站在山林中，正面面对镜头，神情平静，观察四周环境。",
+      "mood": "Calm",
+      "lighting": "Natural daylight",
+      "action": "Observing",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "main character medium shot, standing in forest, front view, facing camera, calm expression, clearly visible",
+        "environment": "Mountain forest with ancient trees",
+        "character_pose": "Standing upright, front view, facing camera, calm expression, natural body proportions",
+        "fx": "Sunlight filtering through leaves",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "main character medium shot, fantasy character, standing in mountain forest, front view, facing camera, calm expression, natural daylight, cinematic, facing camera, front view, face forward, character facing viewer, frontal view",
+      "narration": "这是测试场景二，主角正面中景。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 2,
+      "duration": 4,
+      "description": "远景镜头，城市轮廓在天边显现，云雾缭绕，没有人物。",
+      "mood": "Mysterious",
+      "lighting": "Sunset",
+      "action": "City reveal",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "City silhouette on horizon, misty clouds, ancient architecture",
+        "environment": "Distant horizon with clouds and mountains",
+        "character_pose": "",
+        "fx": "Mist drifting, sunset glow",
+        "motion": {
+          "type": "pan",
+          "direction": "right_to_left",
+          "speed": "slow"
+        }
+      },
+      "prompt": "fantasy, distant city silhouette on horizon, misty clouds, sunset glow, cinematic wide shot, no people, no characters, city silhouette",
+      "narration": "这是测试场景三，远眺城市。",
+      "face_style_auto": null,
+      "image_path": ""
+    },
+    {
+      "id": 3,
+      "duration": 4,
+      "description": "主角近景特写，正面看向镜头，眼神坚定，背景虚化。",
+      "mood": "Determined",
+      "lighting": "Rim light",
+      "action": "Close-up",
+      "camera": "Close-up",
+      "visual": {
+        "composition": "main character close-up, front view, facing camera, determined expression, shallow depth of field",
+        "environment": "Blurred background",
+        "character_pose": "Facing camera, front view, determined expression, natural body proportions",
+        "fx": "Rim lighting on face",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "main character close-up portrait, fantasy character, front view, facing camera, determined expression, rim lighting, cinematic, shallow depth of field, facing camera, front view, face forward, character facing viewer, frontal view",
+      "narration": "这是测试场景四，主角近景特写。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Rim",
+        "detail": "High",
+        "strength": 0.85
+      },
+      "image_path": ""
+    },
+    {
+      "id": 4,
+      "duration": 5,
+      "description": "主角施展技能，能量从手中激射而出，面向镜头，动作清晰。",
+      "mood": "Dynamic",
+      "lighting": "Cool rim light",
+      "action": "Casting skill",
+      "camera": "Medium shot",
+      "visual": {
+        "composition": "main character medium shot, casting skill, front view, energy streaks shooting forward",
+        "environment": "Battlefield with energy effects",
+        "character_pose": "Facing camera, front view, casting gesture, determined expression",
+        "fx": "Energy streaks shooting out, energy waves, particle effects",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "main character medium shot, fantasy character, casting skill, front view, facing camera, energy streaks shooting forward, cool rim lighting, cinematic action shot, facing camera, front view, face forward, character facing viewer, frontal view",
+      "narration": "这是测试场景五，主角施展技能。",
+      "face_style_auto": {
+        "expression": "Determined",
+        "lighting": "Cool",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "description": "远景镜头，主角站在山峰之巅，面向镜头，身影在夕阳中显得渺小但坚定。",
+      "mood": "Epic",
+      "lighting": "Sunset",
+      "action": "Standing on peak",
+      "camera": "Wide shot",
+      "visual": {
+        "composition": "Wide shot, main character standing on mountain peak, single person, front view, facing camera, sunset backdrop",
+        "environment": "Mountain peak with sunset sky",
+        "character_pose": "Standing on peak, single person, front view, facing camera, facing viewer",
+        "fx": "Sunset glow, wind effects",
+        "motion": {
+          "type": "static"
+        }
+      },
+      "prompt": "fantasy, wide shot, main character standing on mountain peak, single person, front view, facing camera, sunset sky backdrop, epic cinematic, facing camera, front view, face forward, character facing viewer, frontal view",
+      "narration": "这是测试场景六，主角站在山峰之巅。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Sunset",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    },
+    {
+      "id": 6,
+      "duration": 3,
+      "description": "主角躺在沙地上，一动不动，正面向上，感受地面升腾的燥热。",
+      "mood": "Calm",
+      "lighting": "Natural daylight",
+      "action": "Lying motionless",
+      "camera": "Top-down wide shot",
+      "visual": {
+        "composition": "main character lying on sand, motionless, facing upward, front view, calm expression",
+        "environment": "Sandy ground with heat waves",
+        "character_pose": "Lying flat on back, motionless, facing upward, front view",
+        "fx": "Heat waves rising",
+        "motion": {
+          "type": "pan",
+          "direction": "left_to_right",
+          "speed": "slow"
+        }
+      },
+      "prompt": "main character lying on sandy ground, motionless, facing upward, front view, calm expression, fantasy, natural daylight, cinematic, facing camera, front view, face forward, character facing viewer, frontal view",
+      "narration": "这是测试场景七，主角躺在沙地上。",
+      "face_style_auto": {
+        "expression": "Calm",
+        "lighting": "Natural",
+        "detail": "Natural",
+        "strength": 0.8
+      },
+      "image_path": ""
+    }
+  ]
+}
+

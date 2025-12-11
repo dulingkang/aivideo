@@ -1,0 +1,385 @@
+# 科普知识库
+# 用于快速生成科普视频的选题库
+
+kepu_topics:
+  # 宇宙航天类
+  - category: "宇宙航天"
+    topics:
+      - title: "什么是黑洞？"
+        keywords: ["黑洞", "引力", "事件视界", "奇点"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍黑洞的基本概念、形成原理和特征"
+        
+      - title: "火星探索的意义"
+        keywords: ["火星", "探索", "太空", "生命"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解火星探索的科学价值和未来展望"
+        
+      - title: "国际空间站的作用"
+        keywords: ["空间站", "太空", "科学实验", "国际合作"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍国际空间站的科学研究和国际合作意义"
+    
+      - title: "太阳系的八大行星"
+        keywords: ["太阳系", "行星", "天文", "宇宙"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍太阳系八大行星的特点和运行规律"
+        
+      - title: "月球的形成与影响"
+        keywords: ["月球", "地球", "潮汐", "天文"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "初级"
+        duration: 60
+        description: "讲解月球的形成过程和它对地球的影响"
+        
+      - title: "恒星的生命周期"
+        keywords: ["恒星", "星体", "宇宙", "天文"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍恒星从诞生到死亡的完整生命周期"
+        
+      - title: "暗物质与暗能量"
+        keywords: ["暗物质", "暗能量", "宇宙", "物理"]
+        script_template: "universe_template.json"
+        scene_type: "universe"
+        difficulty: "高级"
+        duration: 120
+        description: "探索宇宙中神秘的暗物质和暗能量"
+    
+  # 量子科学类
+  - category: "量子科学"
+    topics:
+      - title: "量子纠缠是什么？"
+        keywords: ["量子", "纠缠", "叠加态", "量子力学"]
+        script_template: "quantum_template.json"
+        scene_type: "quantum"
+        difficulty: "中级"
+        duration: 90
+        description: "通俗易懂地解释量子纠缠现象"
+        
+      - title: "量子计算机的原理"
+        keywords: ["量子计算机", "量子比特", "量子算法", "计算"]
+        script_template: "quantum_template.json"
+        scene_type: "quantum"
+        difficulty: "高级"
+        duration: 120
+        description: "介绍量子计算机的工作原理和优势"
+        
+      - title: "量子通信的安全性"
+        keywords: ["量子通信", "量子密钥", "加密", "安全"]
+        script_template: "quantum_template.json"
+        scene_type: "quantum"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解量子通信的安全原理和应用前景"
+        
+      - title: "量子叠加态的原理"
+        keywords: ["量子叠加", "量子态", "量子力学", "物理"]
+        script_template: "quantum_template.json"
+        scene_type: "quantum"
+        difficulty: "中级"
+        duration: 90
+        description: "解释量子叠加态的概念和科学意义"
+        
+      - title: "量子隧穿效应"
+        keywords: ["量子隧穿", "量子效应", "物理", "科学"]
+        script_template: "quantum_template.json"
+        scene_type: "quantum"
+        difficulty: "高级"
+        duration: 120
+        description: "介绍量子隧穿效应的原理和应用"
+    
+  # 地球科学类
+  - category: "地球科学"
+    topics:
+      - title: "地球内部结构"
+        keywords: ["地球", "地壳", "地幔", "地核", "结构"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍地球的内部结构和各层特点"
+        
+      - title: "板块运动与地震"
+        keywords: ["板块", "地震", "地壳运动", "地质"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "中级"
+        duration: 90
+        description: "解释板块运动原理和地震形成机制"
+        
+      - title: "气候变化的原因"
+        keywords: ["气候", "温室效应", "全球变暖", "环境"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "中级"
+        duration: 90
+        description: "分析气候变化的科学原因和影响"
+        
+      - title: "海洋环流系统"
+        keywords: ["海洋", "环流", "洋流", "气候"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍海洋环流系统对全球气候的影响"
+        
+      - title: "火山喷发的机制"
+        keywords: ["火山", "地质", "地壳", "自然灾害"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "中级"
+        duration: 90
+        description: "解释火山喷发的形成机制和预警方法"
+        
+      - title: "大气层的结构"
+        keywords: ["大气层", "地球", "环境", "科学"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍地球大气层的分层结构和功能"
+        
+      - title: "水循环的过程"
+        keywords: ["水循环", "水资源", "环境", "生态"]
+        script_template: "earth_template.json"
+        scene_type: "earth"
+        difficulty: "初级"
+        duration: 60
+        description: "讲解地球上水循环的完整过程"
+    
+  # 工业能源类
+  - category: "工业能源"
+    topics:
+      - title: "清洁能源的优势"
+        keywords: ["清洁能源", "太阳能", "风能", "环保"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍清洁能源的种类和优势"
+        
+      - title: "核能发电的原理"
+        keywords: ["核能", "核电站", "核反应", "能源"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解核能发电的工作原理和安全措施"
+        
+      - title: "智能电网的作用"
+        keywords: ["智能电网", "电力", "能源管理", "技术"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍智能电网的技术特点和应用价值"
+        
+      - title: "氢能源的发展前景"
+        keywords: ["氢能源", "清洁能源", "新能源", "环保"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍氢能源技术的优势和发展前景"
+        
+      - title: "储能技术的重要性"
+        keywords: ["储能", "电池", "能源", "技术"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解储能技术在能源转型中的重要作用"
+        
+      - title: "地热能的利用"
+        keywords: ["地热能", "可再生能源", "能源", "环保"]
+        script_template: "energy_template.json"
+        scene_type: "energy"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍地热能的形成原理和利用方式"
+    
+  # 城市治理类
+  - category: "城市治理"
+    topics:
+      - title: "智慧城市的概念"
+        keywords: ["智慧城市", "数字化", "城市管理", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "初级"
+        duration: 60
+        description: "介绍智慧城市的基本概念和特点"
+        
+      - title: "数字孪生城市"
+        keywords: ["数字孪生", "虚拟城市", "数字化", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解数字孪生城市的技术原理和应用"
+        
+      - title: "智能交通系统"
+        keywords: ["智能交通", "交通管理", "城市交通", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍智能交通系统的技术特点和作用"
+        
+      - title: "城市环境监测技术"
+        keywords: ["环境监测", "空气质量", "城市", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍城市环境监测的技术手段和应用"
+        
+      - title: "智慧社区的建设"
+        keywords: ["智慧社区", "物联网", "城市", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "初级"
+        duration: 60
+        description: "讲解智慧社区的技术特点和发展趋势"
+        
+      - title: "城市应急管理系统"
+        keywords: ["应急管理", "城市安全", "灾害", "技术"]
+        script_template: "city_template.json"
+        scene_type: "city"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍城市应急管理系统的技术架构"
+    
+  # 生物科学类
+  - category: "生物科学"
+    topics:
+      - title: "DNA的结构与功能"
+        keywords: ["DNA", "基因", "遗传", "生物"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍DNA的结构和遗传功能"
+        
+      - title: "免疫系统的工作原理"
+        keywords: ["免疫", "抗体", "病毒", "健康"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解免疫系统如何保护人体健康"
+        
+      - title: "基因编辑技术"
+        keywords: ["基因编辑", "CRISPR", "生物技术", "医学"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "高级"
+        duration: 120
+        description: "介绍基因编辑技术的原理和应用前景"
+        
+      - title: "细胞分裂的过程"
+        keywords: ["细胞分裂", "有丝分裂", "生物", "生命"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解细胞分裂的详细过程和意义"
+        
+      - title: "神经系统的结构"
+        keywords: ["神经系统", "大脑", "神经元", "生物"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍人体神经系统的结构和功能"
+        
+      - title: "光合作用的原理"
+        keywords: ["光合作用", "植物", "生物", "生态"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "解释光合作用的科学原理和重要性"
+        
+      - title: "病毒的结构与传播"
+        keywords: ["病毒", "微生物", "健康", "生物"]
+        script_template: "biology_template.json"
+        scene_type: "biology"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍病毒的基本结构和传播机制"
+    
+  # 人工智能类
+  - category: "人工智能"
+    topics:
+      - title: "什么是人工智能？"
+        keywords: ["人工智能", "AI", "机器学习", "技术"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "初级"
+        duration: 60
+        description: "通俗易懂地介绍人工智能的基本概念"
+        
+      - title: "深度学习的工作原理"
+        keywords: ["深度学习", "神经网络", "机器学习", "AI"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解深度学习的基本原理和应用"
+        
+      - title: "AI在医疗中的应用"
+        keywords: ["AI", "医疗", "诊断", "技术"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍人工智能在医疗领域的应用案例"
+        
+      - title: "计算机视觉技术"
+        keywords: ["计算机视觉", "图像识别", "AI", "技术"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍计算机视觉技术的原理和应用"
+        
+      - title: "自然语言处理"
+        keywords: ["自然语言处理", "NLP", "AI", "技术"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "讲解自然语言处理技术的工作原理"
+        
+      - title: "机器人技术的发展"
+        keywords: ["机器人", "自动化", "AI", "技术"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "介绍机器人技术的发展历程和应用前景"
+        
+      - title: "AI伦理与责任"
+        keywords: ["AI伦理", "人工智能", "责任", "社会"]
+        script_template: "ai_template.json"
+        scene_type: "ai"
+        difficulty: "中级"
+        duration: 90
+        description: "探讨人工智能发展中的伦理问题和责任"
+

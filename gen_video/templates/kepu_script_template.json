@@ -1,0 +1,49 @@
+{
+  "title": "科普视频标题",
+  "topic": "科普主题分类",
+  "category": "universe|quantum|earth|energy|city|biology|ai",
+  "duration": 60,
+  "ip_character": "kepu_gege|weilai_jiejie",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来聊聊[主题]。",
+    "scene": {
+      "prompt": "开场场景提示词（从kepu_scenes.yaml中选择）",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "知识点1讲解（15-20秒）",
+      "scene": {
+        "prompt": "场景1提示词（从kepu_scenes.yaml中选择）",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "知识点2讲解（15-20秒）",
+      "scene": {
+        "prompt": "场景2提示词（从kepu_scenes.yaml中选择）",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "结尾场景提示词（从kepu_scenes.yaml中选择）",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin|weixin|learning_power",
+    "tags": ["科普", "科学", "教育"],
+    "difficulty": "初级|中级|高级"
+  }
+}
+

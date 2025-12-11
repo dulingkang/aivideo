@@ -1,0 +1,58 @@
+{
+  "title": "生物科学科普视频",
+  "topic": "生物科学",
+  "category": "biology",
+  "duration": 90,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来探索生命的奥秘。",
+    "scene": {
+      "prompt": "scientific illustration of biological structure, educational diagram, professional medical illustration",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "DNA是生命的密码，它携带着遗传信息，决定了生物体的所有特征，了解DNA有助于我们理解生命的本质。",
+      "scene": {
+        "prompt": "DNA double helix structure, scientific illustration, educational diagram",
+        "duration": 20,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "细胞是生命的基本单位，每个细胞都像一个精密的工厂，执行着各种复杂的生命活动。",
+      "scene": {
+        "prompt": "cell structure cross-section, scientific diagram, educational illustration",
+        "duration": 20,
+        "type": "content"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "免疫系统是我们身体的守护者，它能够识别并清除入侵的病原体，保护我们的健康。",
+      "scene": {
+        "prompt": "immune system cells, white blood cells, scientific illustration, educational",
+        "duration": 20,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "scientific illustration of biological structure, educational diagram, professional medical illustration",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "生物", "生命科学", "医学"],
+    "difficulty": "中级"
+  }
+}
+

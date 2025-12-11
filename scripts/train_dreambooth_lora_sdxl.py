@@ -777,7 +777,13 @@ class DreamBoothDataset(Dataset):
             if not self.instance_data_root.exists():
                 raise ValueError("Instance images root doesn't exists.")
 
-            instance_images = [Image.open(path) for path in list(Path(instance_data_root).iterdir())]
+            # 只读取图像文件，忽略其他文件（如metadata.json）
+            image_extensions = {'.jpg', '.jpeg', '.png', '.bmp', '.webp'}
+            image_paths = [
+                path for path in Path(instance_data_root).iterdir()
+                if path.is_file() and path.suffix.lower() in image_extensions
+            ]
+            instance_images = [Image.open(path) for path in image_paths]
             self.custom_instance_prompts = None
 
         self.instance_images = []

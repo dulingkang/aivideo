@@ -1,0 +1,164 @@
+# 科普场景提示词库
+# 用于国家科普短视频的场景生成
+
+kepu_scenes:
+  # 宇宙航天类
+  universe:
+    name: "宇宙航天"
+    base_prompt: "space station interior, futuristic technology, scientific equipment, professional photography, cinematic lighting"
+    negative_prompt: "fantasy, anime, cartoon, unrealistic, blurry, low quality"
+    style_tags: ["scientific", "futuristic", "professional", "educational"]
+    examples:
+      - "space station interior, astronauts working, scientific instruments, modern technology"
+      - "planet Earth from space, blue and white atmosphere, scientific visualization"
+      - "rocket launch, fire and smoke, modern space technology, professional photography"
+      - "nebula and stars, deep space, scientific illustration style"
+      - "satellite in orbit, Earth in background, space technology, professional photography"
+      - "black hole visualization, event horizon, gravitational lensing, scientific illustration"
+      - "Mars surface, red planet landscape, rover exploration, scientific photography"
+      - "solar system planets alignment, educational diagram, scientific illustration"
+      - "space telescope observing distant galaxies, deep space, professional photography"
+      - "lunar surface, moon landing site, space exploration, scientific photography"
+      - "asteroid belt visualization, space rocks, scientific illustration"
+      - "spacewalk scene, astronaut in space suit, Earth in background, professional photography"
+    
+  # 量子科学类
+  quantum:
+    name: "量子科学"
+    base_prompt: "abstract quantum field visualization, glowing particles, scientific diagram style, modern illustration"
+    negative_prompt: "realistic photograph, blurry, low quality, fantasy, cartoon"
+    style_tags: ["abstract", "scientific", "diagram", "educational"]
+    examples:
+      - "quantum entanglement visualization, glowing particles connected, abstract scientific illustration"
+      - "neural network structure, glowing nodes and connections, modern scientific diagram"
+      - "quantum computer visualization, abstract technology, scientific illustration"
+      - "atomic structure, electrons orbiting, scientific diagram style"
+      - "data flow visualization, glowing streams, modern technology illustration"
+      - "quantum superposition visualization, wave-particle duality, abstract scientific diagram"
+      - "quantum teleportation diagram, information transfer, scientific illustration"
+      - "quantum cryptography visualization, secure communication, abstract technology"
+      - "quantum field theory visualization, particle interactions, scientific diagram"
+      - "quantum measurement effect, observer effect, abstract scientific illustration"
+      - "quantum computing qubits, quantum gates, modern technology diagram"
+      - "quantum interference pattern, wave function, scientific visualization"
+    
+  # 地球科学类
+  earth:
+    name: "地球科学"
+    base_prompt: "cross-section of Earth, geological layers, scientific illustration style, educational diagram"
+    negative_prompt: "fantasy, unrealistic, cartoon, blurry, low quality"
+    style_tags: ["scientific", "educational", "illustration", "geological"]
+    examples:
+      - "cross-section of Earth showing core, mantle, crust, scientific illustration"
+      - "tectonic plates movement, geological visualization, scientific diagram"
+      - "climate change visualization, Earth with temperature data, scientific illustration"
+      - "ocean currents visualization, scientific diagram style, educational"
+      - "volcano cross-section, geological layers, scientific illustration"
+      - "earthquake epicenter visualization, seismic waves, scientific diagram"
+      - "magnetic field lines around Earth, geomagnetic field, scientific illustration"
+      - "atmospheric layers, troposphere stratosphere, educational diagram"
+      - "water cycle diagram, evaporation condensation, scientific illustration"
+      - "carbon cycle visualization, environmental science, educational diagram"
+      - "glacier melting visualization, climate impact, scientific photography"
+      - "mineral formation process, geological time, scientific illustration"
+    
+  # 工业能源类
+  energy:
+    name: "工业能源"
+    base_prompt: "modern wind farm, clean energy technology, industrial landscape, professional photography, cinematic lighting"
+    negative_prompt: "pollution, dirty, old technology, blurry, low quality"
+    style_tags: ["modern", "clean", "professional", "industrial"]
+    examples:
+      - "modern wind farm, white turbines on green field, blue sky, professional photography"
+      - "solar panel array, clean energy technology, modern industrial, professional photography"
+      - "nuclear power plant exterior, modern architecture, professional photography"
+      - "smart grid visualization, digital technology, modern illustration"
+      - "electric vehicle charging station, modern technology, professional photography"
+      - "hydroelectric dam, clean energy generation, modern infrastructure, professional photography"
+      - "geothermal power plant, renewable energy, modern technology, professional photography"
+      - "energy storage facility, battery technology, modern industrial, professional photography"
+      - "power transmission lines, electrical grid, modern infrastructure, professional photography"
+      - "energy efficiency visualization, smart home technology, modern illustration"
+      - "carbon capture technology, environmental protection, modern industrial, professional photography"
+      - "hydrogen fuel cell technology, clean energy, modern technology, professional photography"
+    
+  # 城市治理类
+  city:
+    name: "城市治理"
+    base_prompt: "smart city overview, digital twin visualization, urban planning, aerial view, professional photography"
+    negative_prompt: "chaos, disorder, old city, pollution, blurry, low quality"
+    style_tags: ["modern", "smart", "organized", "urban"]
+    examples:
+      - "smart city aerial view, modern buildings, digital technology overlay, professional photography"
+      - "traffic management system, digital visualization, modern technology, professional photography"
+      - "environmental monitoring station, modern technology, professional photography"
+      - "digital twin city visualization, 3D model, modern illustration"
+      - "smart grid in city, modern infrastructure, professional photography"
+      - "smart street lighting system, IoT sensors, modern urban technology, professional photography"
+      - "urban planning visualization, city development, modern architecture, professional photography"
+      - "waste management system, smart recycling, modern city infrastructure, professional photography"
+      - "public safety monitoring, smart surveillance, modern technology, professional photography"
+      - "urban green space, sustainable city design, modern architecture, professional photography"
+      - "smart parking system, digital technology, modern urban infrastructure, professional photography"
+      - "city data center, smart city operations, modern technology, professional photography"
+    
+  # 生物科学类
+  biology:
+    name: "生物科学"
+    base_prompt: "scientific illustration of biological structure, educational diagram, professional medical illustration"
+    negative_prompt: "fantasy, unrealistic, cartoon, blurry, low quality"
+    style_tags: ["scientific", "educational", "medical", "biological"]
+    examples:
+      - "DNA double helix structure, scientific illustration, educational diagram"
+      - "cell structure cross-section, scientific diagram, educational illustration"
+      - "human brain anatomy, scientific illustration, educational diagram"
+      - "virus structure visualization, scientific illustration, educational"
+      - "protein structure, molecular visualization, scientific diagram"
+      - "cell division process, mitosis visualization, scientific diagram, educational"
+      - "immune system cells, white blood cells, scientific illustration, educational"
+      - "neuron structure, brain cells, scientific diagram, educational illustration"
+      - "genetic code visualization, DNA sequence, scientific illustration"
+      - "enzyme action mechanism, biochemical process, scientific diagram"
+      - "photosynthesis process, plant biology, scientific illustration, educational"
+      - "human organ systems, anatomy diagram, scientific illustration, educational"
+    
+  # 人工智能类
+  ai:
+    name: "人工智能"
+    base_prompt: "artificial intelligence visualization, neural network, modern technology, abstract scientific illustration"
+    negative_prompt: "fantasy, unrealistic, cartoon, blurry, low quality"
+    style_tags: ["modern", "technology", "abstract", "scientific"]
+    examples:
+      - "neural network visualization, glowing nodes and connections, modern technology illustration"
+      - "AI brain visualization, abstract technology, scientific illustration"
+      - "machine learning data flow, modern visualization, professional illustration"
+      - "robotic arm in laboratory, modern technology, professional photography"
+      - "AI chip visualization, modern technology, scientific illustration"
+      - "computer vision system, image recognition, modern technology, professional photography"
+      - "natural language processing visualization, text analysis, modern technology illustration"
+      - "autonomous vehicle technology, self-driving car, modern technology, professional photography"
+      - "AI medical diagnosis system, healthcare technology, modern medical equipment, professional photography"
+      - "reinforcement learning diagram, AI training process, modern technology illustration"
+      - "AI ethics visualization, responsible AI, modern technology, professional illustration"
+      - "edge computing with AI, IoT devices, modern technology, professional photography"
+
+# 通用科普风格配置
+kepu_style:
+  # 科普视频通用风格
+  base_style: "professional, educational, scientific, clear, modern"
+  
+  # 通用负面提示词
+  common_negative: "fantasy, anime, cartoon, unrealistic, blurry, low quality, distorted, deformed"
+  
+  # 镜头类型
+  camera_shots:
+    wide: "wide shot, aerial view, overview"
+    medium: "medium shot, professional framing"
+    close: "close-up, detailed view"
+  
+  # 光照类型
+  lighting:
+    natural: "natural lighting, soft shadows"
+    studio: "studio lighting, professional photography"
+    cinematic: "cinematic lighting, dramatic shadows"
+

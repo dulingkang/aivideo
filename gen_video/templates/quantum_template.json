@@ -1,0 +1,58 @@
+{
+  "title": "量子科学科普视频",
+  "topic": "量子科学",
+  "category": "quantum",
+  "duration": 90,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来探索量子世界的奇妙。",
+    "scene": {
+      "prompt": "abstract quantum field visualization, glowing particles, scientific diagram style, modern illustration",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "量子世界是一个微观的奇妙领域，在这里，粒子的行为与我们日常经验完全不同，展现出令人惊叹的量子特性。",
+      "scene": {
+        "prompt": "quantum entanglement visualization, glowing particles connected, abstract scientific illustration",
+        "duration": 20,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "量子纠缠是量子力学中最神秘的现象之一，两个粒子即使相隔遥远，也能瞬间相互影响，这种联系超越了我们对时空的认知。",
+      "scene": {
+        "prompt": "quantum superposition visualization, wave-particle duality, abstract scientific diagram",
+        "duration": 20,
+        "type": "content"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "量子技术正在改变我们的世界，从量子计算到量子通信，这些前沿技术将为我们带来革命性的突破。",
+      "scene": {
+        "prompt": "quantum computer visualization, abstract technology, scientific illustration",
+        "duration": 20,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "abstract quantum field visualization, glowing particles, scientific diagram style, modern illustration",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "量子", "科学", "物理"],
+    "difficulty": "中级"
+  }
+}
+

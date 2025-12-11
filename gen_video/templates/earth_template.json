@@ -1,0 +1,49 @@
+{
+  "title": "地球科学科普视频",
+  "topic": "地球科学",
+  "category": "earth",
+  "duration": 60,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来了解我们赖以生存的地球。",
+    "scene": {
+      "prompt": "cross-section of Earth, geological layers, scientific illustration style, educational diagram",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "地球是我们唯一的家园，它有着复杂的内部结构和丰富的地质活动，了解地球有助于我们更好地保护环境。",
+      "scene": {
+        "prompt": "cross-section of Earth showing core, mantle, crust, scientific illustration",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "板块运动塑造了地球的表面，形成了山脉、海洋和大陆，这种持续的地质活动影响着我们的生活。",
+      "scene": {
+        "prompt": "tectonic plates movement, geological visualization, scientific diagram",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "cross-section of Earth, geological layers, scientific illustration style, educational diagram",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "地球", "地质", "环境"],
+    "difficulty": "初级"
+  }
+}
+

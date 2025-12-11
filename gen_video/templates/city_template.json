@@ -1,0 +1,49 @@
+{
+  "title": "城市治理科普视频",
+  "topic": "城市治理",
+  "category": "city",
+  "duration": 60,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来探索智慧城市的奥秘。",
+    "scene": {
+      "prompt": "smart city overview, digital twin visualization, urban planning, aerial view, professional photography",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "智慧城市利用大数据、物联网等先进技术，让城市管理更加智能高效，提升居民的生活质量。",
+      "scene": {
+        "prompt": "smart city aerial view, modern buildings, digital technology overlay, professional photography",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "数字孪生技术让我们可以在虚拟世界中模拟和优化城市运行，为城市规划和管理提供科学依据。",
+      "scene": {
+        "prompt": "digital twin city visualization, 3D model, modern illustration",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "smart city overview, digital twin visualization, urban planning, aerial view, professional photography",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "城市", "智慧城市", "技术"],
+    "difficulty": "初级"
+  }
+}
+

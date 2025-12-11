@@ -1,0 +1,49 @@
+{
+  "title": "宇宙航天科普视频",
+  "topic": "宇宙航天",
+  "category": "universe",
+  "duration": 60,
+  "ip_character": "kepu_gege",
+  "opening": {
+    "narration": "大家好，我是科普哥哥。今天我们来聊聊宇宙的奥秘。",
+    "scene": {
+      "prompt": "space station interior, futuristic technology, scientific equipment, professional photography, cinematic lighting",
+      "duration": 12,
+      "type": "opening"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "宇宙是一个充满未知的广阔空间，从我们熟悉的地球到遥远的星系，每一个角落都隐藏着科学的秘密。",
+      "scene": {
+        "prompt": "planet Earth from space, blue and white atmosphere, scientific visualization",
+        "duration": 18,
+        "type": "content"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "通过先进的太空探索技术，我们正在逐步揭开宇宙的神秘面纱，每一次发现都让我们对宇宙有了更深入的理解。",
+      "scene": {
+        "prompt": "satellite in orbit, Earth in background, space technology, professional photography",
+        "duration": 18,
+        "type": "content"
+      }
+    }
+  ],
+  "ending": {
+    "narration": "今天的科普就到这里，我们下期再见！",
+    "scene": {
+      "prompt": "space station interior, futuristic technology, scientific equipment, professional photography, cinematic lighting",
+      "duration": 12,
+      "type": "ending"
+    }
+  },
+  "metadata": {
+    "target_platform": "douyin",
+    "tags": ["科普", "宇宙", "航天", "科学"],
+    "difficulty": "初级"
+  }
+}
+
