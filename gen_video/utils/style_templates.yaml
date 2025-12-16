@@ -1,0 +1,99 @@
+# 风格模板配置文件
+# 支持在线编辑和版本管理
+
+xianxia_v2:
+  template_id: xianxia_v2
+  pre_prompt: "ethereal, mist, soft rim light, flowing cloth, cinematic composition"
+  post_prompt: "film grain low, 35mm lens, shallow depth of field"
+  negative_list:
+    - "oversaturated"
+    - "watermark"
+    - "disfigured hands"
+    - "modern elements"
+    - "anachronistic"
+  preferred_camera:
+    shot: "medium"
+    motion: "slow"
+    lens: "35mm"
+    dof: "shallow"
+
+novel:
+  template_id: novel
+  pre_prompt: "cinematic scene, dramatic backlight, film texture"
+  post_prompt: "35mm lens, shallow depth of field, cinematic color grading"
+  negative_list:
+    - "modern elements"
+    - "anachronistic"
+    - "low quality"
+    - "blurry"
+  preferred_camera:
+    shot: "wide"
+    motion: "dolly_in"
+    lens: "35mm"
+
+drama:
+  template_id: drama
+  pre_prompt: "cinematic scene, dramatic storytelling, high contrast"
+  post_prompt: "film texture, professional color grading"
+  negative_list:
+    - "static"
+    - "boring"
+    - "lifeless"
+    - "low quality"
+  preferred_camera:
+    shot: "medium"
+    motion: "pan"
+    lens: "50mm"
+
+scientific:
+  template_id: scientific
+  pre_prompt: "high-tech scientific visualization, clean lighting, realistic details"
+  post_prompt: "professional documentary look, authoritative tone"
+  negative_list:
+    - "unrealistic physics"
+    - "impossible phenomena"
+    - "cartoon style"
+  preferred_camera:
+    shot: "medium"
+    motion: "static"
+    lens: "50mm"
+
+government:
+  template_id: government
+  pre_prompt: "professional government presentation style, clean lighting"
+  post_prompt: "authoritative tone, high-quality visualization"
+  negative_list:
+    - "unprofessional"
+    - "casual"
+    - "informal"
+  preferred_camera:
+    shot: "medium"
+    motion: "static"
+    lens: "50mm"
+
+enterprise:
+  template_id: enterprise
+  pre_prompt: "professional corporate style, modern aesthetic"
+  post_prompt: "sophisticated tone, clean composition"
+  negative_list:
+    - "casual"
+    - "unprofessional"
+    - "low quality"
+  preferred_camera:
+    shot: "medium"
+    motion: "static"
+    lens: "35mm"
+
+general:
+  template_id: general
+  pre_prompt: "high quality, cinematic, detailed"
+  post_prompt: "professional, photorealistic"
+  negative_list:
+    - "low quality"
+    - "blurry"
+    - "distorted"
+  preferred_camera:
+    shot: "medium"
+    motion: "static"
+    lens: "35mm"
+

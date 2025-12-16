@@ -1,0 +1,1414 @@
+{
+  "episode": 1,
+  "title": "Strange Land.First Entry into the Spirit Realm",
+  "scenes": [
+    {
+      "scene_id": 0,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 3.0,
+      "target_fps": 24,
+      "scene_role": "opening",
+      "scene_type": "novel",
+      "intent": {
+        "type": "title_reveal",
+        "emotion": "serene",
+        "tension_level": "low",
+        "narrative_function": "setup"
+      },
+      "visual_constraints": {
+        "environment": "Sky of the immortal realm,mist-wreathed,golden radiance",
+        "time_of_day": "day",
+        "weather": "mist",
+        "location_type": "outdoor",
+        "elements": [
+          "golden_scroll"
+        ],
+        "color_palette": "cool_with_gold",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "我是云卷仙音，欢迎回来。第一集《陌生之地·初入灵界》。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_001.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "镜头淡入，云雾笼罩的仙域天空中金色卷轴舒展开来并闪烁灵光。"
+    },
+    {
+      "scene_id": 1,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "tense",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Gray-green desert floor",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "top_down",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "low",
+        "body_coverage": "full_body",
+        "pose": "lying_motionless",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_002.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。"
+    },
+    {
+      "scene_id": 2,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "mysterious",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Three brilliant suns,four hazy moon silhouettes",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_003.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。"
+    },
+    {
+      "scene_id": 3,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "flashback",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_in",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "recalling",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "每当想起空间节点发生的一切，韩立的脸色就会暗沉下来，心底泛起寒意。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_004.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立回想空间节点的遭遇，面色渐渐阴沉。"
+    },
+    {
+      "scene_id": 4,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "sad",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "mid",
+        "body_coverage": "half_body",
+        "pose": "enduring_pain",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "被迫与冰凤分开后，二人互下的禁制再度作祟。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "sad",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_005.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "他忆起与冰凤分离以及禁制爆发时的剧痛。"
+    },
+    {
+      "scene_id": 5,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "conflict",
+        "emotion": "neutral",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_out",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "casting_spell",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "他运转元婴虚化之法，硬生生将滚滚精元送入躯体每一处。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "neutral",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_006.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立施展元婴虚化之法，将庞大的元婴精元灌注全身。"
+    },
+    {
+      "scene_id": 6,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "serene",
+        "tension_level": "low",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Endless gray-green gravel plain",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "low",
+        "body_coverage": "full_body",
+        "pose": "turning_head",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "好不容易偏动头颅，映入眼帘的仍是无边无际的青灰沙砾。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_007.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "他费力偏过头，只见一望无际的青灰砂砾。"
+    },
+    {
+      "scene_id": 7,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "mysterious",
+        "tension_level": "low",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Sky darkening,suns diminishing from three to one",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "头顶的三轮烈日渐渐化作两轮，最终只剩下一轮，天色随之黯淡。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_008.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "三颗太阳缩成两颗，最终只剩一颗，天空渐渐暗下。"
+    },
+    {
+      "scene_id": 8,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "alert",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "High sky",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "extreme_close",
+        "angle": "eye_level",
+        "movement": "dolly_out",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "focusing_gaze",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "韩立非但没有闭眼，反而睁得更大，眼中泛起淡蓝光芒。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "alert",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_009.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立睁大双眼盯着高空，瞳孔里隐隐闪烁蓝芒。"
+    },
+    {
+      "scene_id": 9,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Sky,black dots emerging",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "附近上空响起凄厉尖鸣，一个个黑影相继扑向沙海。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_010.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "刺耳尖鸣划破长空，二十多颗黑点从天俯冲而下。"
+    },
+    {
+      "scene_id": 10,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "alert",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Eagle-headed bat-bodied black birds",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_out",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "identifying_foe",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "每一只都是鹰首蝠身的黑色怪鸟，足有四五尺长。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "alert",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_011.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "他看清那些是鹰首蝠身的黑色怪鸟，狰狞可怖。"
+    },
+    {
+      "scene_id": 11,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Thirty-plus zhang above ground",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "low_angle",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "mid",
+        "body_coverage": "half_body",
+        "pose": "preparing_defense",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "它们速度极快，眨眼间便压到离地三十多丈的低空。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_012.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "怪鸟疾冲到离地三十余丈处，目标正对准韩立。"
+    },
+    {
+      "scene_id": 12,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "neutral",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_out",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "gathering_sand",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "他眼中寒芒一闪，微微侧首。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "neutral",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_013.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立头颅一偏，胸膛一瘪，吸起一团沙砾。"
+    },
+    {
+      "scene_id": 13,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "conflict",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Birds now ten-plus zhang away",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "那团沙砾在嘴边滴溜溜旋转，却始终不曾落下。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_014.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "沙砾在他唇边呼啸旋转，怪鸟逼近到十余丈。"
+    },
+    {
+      "scene_id": 14,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "conflict",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "mid",
+        "body_coverage": "half_body",
+        "pose": "launching_attack",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "韩立胸膛猛然鼓起，口中喷出白蒙蒙的狂风。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_015.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "他胸膛鼓起，喷出劲风，将沙砾化作青芒激射。"
+    },
+    {
+      "scene_id": 15,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "conflict",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "漫天青光砸在当头几只怪鸟身上，发出低沉闷响。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_016.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "青芒击中怪鸟，发出金属摩擦般的惨叫。"
+    },
+    {
+      "scene_id": 16,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "让人惊愕的是，剩余怪鸟一见同伴受创便蜂拥而上撕扯。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_017.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "剩下的怪鸟扑向受伤的同类，将其撕裂吞噬。"
+    },
+    {
+      "scene_id": 17,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "mysterious",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Sky,last sun fading,seven crescents soon to appear",
+        "time_of_day": "night",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "dramatic_contrast",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "不知过了多久，天上最后的太阳也慢慢暗去。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_018.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "最后一轮太阳渐渐黯淡，形态变化，七枚弯月即将出现。"
+    },
+    {
+      "scene_id": 18,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "alert",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Distant horizon",
+        "time_of_day": "night",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_out",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "hearing_sound",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "dramatic_contrast",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "忽然韩立神情骤变，脸上浮现惊疑。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "alert",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_019.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "远处传来轰隆声，韩立神色一变。"
+    },
+    {
+      "scene_id": 19,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "mysterious",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Above him",
+        "time_of_day": "night",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "low_angle",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "mid",
+        "body_coverage": "half_body",
+        "pose": "observing_bird",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "dramatic_contrast",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "一只浑身赤红的拳头大小怪鸟诡异地出现在他上空盘旋。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_020.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "一只拳头大小的赤红小鸟悬在头顶盘旋不去。"
+    },
+    {
+      "scene_id": 20,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Distant horizon",
+        "time_of_day": "night",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "dramatic_contrast",
+        "motion_intensity": "moderate",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "不多时大地微微颤动，远处出现几名骑着怪兽的骑士。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_021.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "地面轻轻震动，几名骑乘怪兽的骑士出现在远方。"
+    },
+    {
+      "scene_id": 999,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 3.0,
+      "target_fps": 24,
+      "scene_role": "ending",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "serene",
+        "tension_level": "low",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Night sky,city silhouette,drifting spirit particles",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [
+          "spirit_particles"
+        ],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "下集再见。我是云卷仙音，第二集的故事即将开始。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/test_optimized/scene_022.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "画面淡出，夜色下的仙城剪影与灵光缓缓下落。"
+    }
+  ]
+}
