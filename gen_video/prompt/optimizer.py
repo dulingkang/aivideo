@@ -2,11 +2,21 @@
 Prompt优化器
 
 负责智能优化Prompt，基于语义重要性保留关键信息，确保不超过token限制。
+
+架构升级：
+- 支持新的三层架构（语义层 + 策略层 + 渲染层）
+- 保留旧的字符串方法作为兼容层
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from .token_estimator import TokenEstimator
 from .parser import PromptParser
+from .semantic import PromptNode, PromptAST
+from .ast_builder import ASTBuilder
+from .policy import PolicyEngine
+from .enhancer import SemanticEnhancer
+from .renderer import PromptRenderer
+from .semantic_patterns import get_pattern_registry
 
 
 class PromptOptimizer:
@@ -24,14 +34,31 @@ class PromptOptimizer:
         self.token_estimator = token_estimator
         self.parser = parser
         self.ascii_only_prompt = ascii_only_prompt
+        
+        # 初始化语义模式注册表
+        self.pattern_registry = get_pattern_registry()
+        
+        # 初始化三层架构组件
+        self.ast_builder = ASTBuilder(token_estimator=token_estimator, pattern_registry=self.pattern_registry)
+        self.policy_engine = PolicyEngine()
+        self.semantic_enhancer = SemanticEnhancer()
+        self.renderer = PromptRenderer(token_estimator=token_estimator)
     
-    def optimize(self, parts: List[str], max_tokens: int = 70) -> List[str]:
+    def optimize(
+        self, 
+        parts: List[str], 
+        max_tokens: int = 70,
+        model_type: str = "default",
+        use_ast: bool = True
+    ) -> List[str]:
         """
         智能优化 prompt，基于语义重要性保留关键信息
         
         Args:
             parts: prompt 部分列表
             max_tokens: 最大 token 数
+            model_type: 模型类型（instantid, flux, hunyuanvideo, sdxl）
+            use_ast: 是否使用新的 AST 架构（默认 True）
         
         Returns:
             优化后的 prompt 部分列表
@@ -39,6 +66,49 @@ class PromptOptimizer:
         if not parts:
             return []
         
+        # ⚡ 新架构：使用 AST + 策略 + 渲染
+        if use_ast:
+            return self._optimize_with_ast(parts, max_tokens, model_type)
+        
+        # 旧架构：保持向后兼容
+        return self._optimize_legacy(parts, max_tokens)
+    
+    def _optimize_with_ast(
+        self, 
+        parts: List[str], 
+        max_tokens: int,
+        model_type: str
+    ) -> List[str]:
+        """
+        使用 AST 架构优化（新方法）
+        
+        流程：
+        1. 字符串 → AST（语义层）
+        2. 语义增强（语义层）
+        3. 策略应用（策略层）
+        4. AST → 字符串（渲染层）
+        """
+        # 1. 解析为 AST
+        ast = self.ast_builder.parse_parts(parts)
+        
+        # 2. 语义增强
+        ast = self.semantic_enhancer.enhance_ast(ast)
+        
+        # 3. 应用策略（模型感知）
+        ast = self.policy_engine.apply_policy(ast, model_type)
+        
+        # 4. 渲染为字符串
+        final_prompt = self.renderer.render(ast, max_tokens)
+        
+        # 5. 分割为 parts（保持接口兼容）
+        # 注意：这里简化处理，实际可以返回单个字符串或parts列表
+        # 为了兼容，我们分割为parts
+        return [p.strip() for p in final_prompt.split(",") if p.strip()]
+    
+    def _optimize_legacy(self, parts: List[str], max_tokens: int) -> List[str]:
+        """
+        旧架构优化方法（保持向后兼容）
+        """
         # 1. 分析每个部分的重要性
         analyzed_parts = []
         for i, part in enumerate(parts):
@@ -95,76 +165,24 @@ class PromptOptimizer:
         return optimized_parts
     
     def _infer_part_type(self, part: str) -> str:
-        """推断prompt部分的类型"""
-        part_lower = part.lower()
+        """
+        推断prompt部分的类型（使用语义模式注册表）
         
-        # 最高优先级：检测单人约束（必须保留，不能被优化掉）
-        if any(kw in part_lower for kw in [
-            "single person", "lone figure", "only one character", "one person only", 
-            "sole character", "single individual", "单人", "独行", "只有一个角色", 
-            "仅一人", "唯一角色", "单独个体"
-        ]):
-            return "constraint"  # 约束条件，最高优先级，必须保留
+        ⚡ 不再硬编码词语，而是使用可配置的语义模式
         
-        # 优先检测关键场景信息（composition, fx, environment）
-        # 这些信息对场景表现至关重要，不应该被优化掉
-        # 重要：区分真正的composition描述（包含动作和场景）和简单的标记（如male, female）
-        # 真正的composition描述通常包含：动作动词、场景描述、角色动作等
-        has_action_verb = any(kw in part_lower for kw in [
-            "uses", "method", "flowing", "essence", "energy", "performing", "casting",
-            "strains", "tilt", "sees", "revealing", "showing", "lying", "lying on",
-            "recalls", "tilts", "dive", "hovers", "expands", "changes", "recognizing",
-            "躺", "看见", "转头", "回忆", "使用", "施展", "俯冲", "盘旋", "扩张", "变化"
-        ])
-        has_scene_description = any(kw in part_lower for kw in [
-            "on", "above", "below", "in", "at", "with", "sees", "revealing", "showing",
-            "在", "上", "下", "中", "看到", "展现"
-        ])
-        is_simple_marker = part_lower.strip().startswith("(male") or part_lower.strip().startswith("(female") or \
-                          part_lower.strip().startswith("(facing") or len(part.split()) <= 3
+        Args:
+            part: prompt部分字符串
+            
+        Returns:
+            推断出的类型
+        """
+        # 提取纯内容（移除权重标记）
+        import re
+        content = re.sub(r'^\(|\)$', '', part)
+        content = re.sub(r':\d+\.?\d*\)?$', '', content).strip()
         
-        if (has_action_verb or has_scene_description or "composition" in part_lower or "nascent soul" in part_lower) and not is_simple_marker:
-            return "composition"  # 构图描述，包含动作和场景主体
-        elif any(kw in part_lower for kw in [
-            "essence", "energy flow", "spiritual light", "glow", "fx", "effect",
-            "flooding", "visible", "flow", "light", "particles"
-        ]):
-            return "fx"  # 特效，包含能量、光效等关键视觉元素
-        elif any(kw in part_lower for kw in [
-            "environment", "desert", "chamber", "sky", "background", "gravel", "plain",
-            "环境", "沙漠", "天空", "遗迹", "背景"
-        ]):
-            return "environment"  # 环境描述，包含背景和氛围
-        elif any(kw in part_lower or kw in part for kw in ["xianxia", "chinese fantasy", "仙侠", "修仙", "古风"]):
-            return "style"
-        # 优先检测角色描述（包含服饰、发型、修仙气质等关键信息）
-        # 角色描述通常包含：角色名称、发型、服饰、修仙气质等
-        has_character_keywords = any(kw in part_lower or kw in part for kw in [
-            "han li", "long black hair", "dark green", "deep cyan", "cultivator robe", 
-            "xianxia cultivator", "immortal cultivator", "黑色长发", "深绿", "道袍", "修仙", 
-            "角色", "robe", "cultivator", "tied long black hair", "forehead bangs"
-        ])
-        # 检查是否包含多个角色特征（说明是完整的角色描述）
-        has_multiple_character_features = (
-            sum(1 for kw in ["hair", "robe", "cultivator", "长发", "道袍", "修仙"] if kw in part_lower) >= 2
-        )
-        
-        if has_character_keywords or has_multiple_character_features:
-            return "character"
-        elif part_lower.strip().startswith("(male") or part_lower.strip().startswith("(female"):
-            # 简单的性别标记，也是角色描述的一部分
-            return "character"
-        elif any(kw in part_lower or kw in part for kw in [
-            "lying", "躺", "卧", "动作", "姿势", "description", "韩立", "han li",
-            "沙地", "地面", "感受", "一动不动", "青灰色"
-        ]):
-            return "action"
-        elif any(kw in part_lower or kw in part for kw in ["camera", "shot", "镜头", "俯视", "远景", "中景", "facing camera", "front view"]):
-            return "camera"
-        elif any(kw in part_lower or kw in part for kw in ["consistent", "same", "背景一致"]):
-            return "background"
-        else:
-            return "other"
+        # 使用语义模式注册表进行类型推断
+        return self.pattern_registry.infer_type(content)
     
     def _analyze_importance(self, part: str, part_type: str) -> Dict[str, Any]:
         """
@@ -867,6 +885,35 @@ class PromptOptimizer:
             return new_text
         
         return text
+    
+    def enhance_prompt_part(self, part: str, part_type: str) -> str:
+        """
+        通用的prompt部分增强方法（兼容层）
+        
+        ⚡ 新架构：使用 AST + 语义增强器，而不是字符串操作
+        
+        Args:
+            part: prompt部分文本
+            part_type: 部分类型
+            
+        Returns:
+            增强后的prompt部分文本
+        """
+        if not part:
+            return part
+        
+        # ⚡ 使用 AST 架构进行增强
+        # 1. 解析为 AST
+        node = self.ast_builder.parse_part(part, index=0)
+        node.type = part_type  # 使用传入的类型
+        
+        # 2. 创建临时 AST 进行增强
+        temp_ast = PromptAST([node])
+        temp_ast = self.semantic_enhancer.enhance_ast(temp_ast)
+        
+        # 3. 返回增强后的节点字符串
+        enhanced_node = temp_ast.nodes[0]
+        return enhanced_node.to_string(include_weight=True)
 
 
 

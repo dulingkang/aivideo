@@ -9,12 +9,12 @@ echo "=========================================="
 
 # 配置
 # 推荐使用diffusers格式模型（完整pipeline，包含所有组件）
-MODEL_NAME="zai-org/CogVideoX-5b"  # 720p图生视频（推荐）
+MODEL_NAME="hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-480p_i2v_step_distilled"  # 720p图生视频（推荐）
 # 其他可选版本：
 # - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-480p_i2v（480p图生视频，速度快）
 # - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_i2v_distilled（720p蒸馏版，更快）
 # - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_t2v（720p文生视频）
-LOCAL_DIR="/vepfs-dev/shawn/vid/fanren/gen_video/models/CogVideoX-5b"
+LOCAL_DIR="/vepfs-dev/shawn/vid/fanren/gen_video/models/HunyuanVideo-1.5-Diffusers-480p_i2v_step_distilled"
 VENV_PATH="/vepfs-dev/shawn/venv/py312/bin/activate"
 
 # 创建目录

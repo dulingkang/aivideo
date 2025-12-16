@@ -332,7 +332,12 @@ class AIVideoPipeline:
                 import traceback
                 traceback.print_exc()
                 # 如果合并失败，使用第一个分段音频作为备用
-                audio_path = audio_paths[0] if audio_paths else None
+                if audio_paths:
+                    # 确保使用绝对路径
+                    audio_path = os.path.abspath(audio_paths[0]) if os.path.exists(audio_paths[0]) else audio_paths[0]
+                    print(f"  ℹ 使用第一个分段音频作为备用: {audio_path}")
+                else:
+                    audio_path = None
         
         # 生成字幕（基于完整音频，使用精确的音频时长列表确保对齐）
         if audio_path and len(scene_texts) > 0:
@@ -502,7 +507,9 @@ class AIVideoPipeline:
         try:
             from opening_ending_generator import OpeningEndingGenerator
             
-            generator = OpeningEndingGenerator("config.yaml")
+            # 使用正确的配置文件路径（相对于gen_video目录）
+            config_path = Path(__file__).parent / "config.yaml"
+            generator = OpeningEndingGenerator(str(config_path))
             
             episode = script.get("episode")
             title = script.get("title", "")
@@ -653,6 +660,89 @@ class AIVideoPipeline:
         else:
             print("  ⚠ 未生成新图像（可能全部存在或生成失败）")
 
+        # 图像生成完成后，彻底清理GPU显存，卸载图像生成器模型
+        if self.image_generator is not None:
+            print("\n=== 彻底清理图像生成器显存 ===")
+            import torch
+            import gc
+            try:
+                # 显示清理前的显存状态
+                if torch.cuda.is_available():
+                    allocated_before = torch.cuda.memory_allocated() / 1024**3
+                    reserved_before = torch.cuda.memory_reserved() / 1024**3
+                    print(f"  清理前显存: 已分配={allocated_before:.2f}GB, 已保留={reserved_before:.2f}GB")
+                
+                # 清理所有可能的pipeline（包括InstantID、Flux等）
+                pipeline_attrs = ['pipeline', 'flux_pipeline', 'flux1_pipeline', 'flux2_pipeline', 
+                                 'hunyuan_dit_pipeline', 'kolors_pipeline', 'sd3_turbo_pipeline',
+                                 'instantid_pipeline', 'sdxl_pipeline']
+                
+                for attr in pipeline_attrs:
+                    if hasattr(self.image_generator, attr):
+                        pipeline = getattr(self.image_generator, attr)
+                        if pipeline is not None:
+                            try:
+                                # 方法1: 尝试使用enable_model_cpu_offload（如果支持）
+                                if hasattr(pipeline, 'enable_model_cpu_offload'):
+                                    try:
+                                        pipeline.enable_model_cpu_offload()
+                                        print(f"  ✓ {attr} 已使用CPU offload卸载")
+                                    except:
+                                        pass
+                                
+                                # 方法2: 尝试将所有组件移到CPU（更彻底）
+                                components = ['unet', 'vae', 'text_encoder', 'text_encoder_2', 
+                                            'image_encoder', 'controlnet', 'image_proj_model']
+                                for comp_name in components:
+                                    if hasattr(pipeline, comp_name):
+                                        comp = getattr(pipeline, comp_name)
+                                        if comp is not None:
+                                            try:
+                                                if hasattr(comp, 'to'):
+                                                    comp.to('cpu')
+                                                # 尝试递归清理子组件
+                                                if hasattr(comp, 'parameters'):
+                                                    for param in comp.parameters():
+                                                        if param.is_cuda:
+                                                            param.data = param.data.cpu()
+                                            except Exception as e:
+                                                pass  # 忽略错误，继续清理其他组件
+                                
+                                # 方法3: 尝试将整个pipeline移到CPU
+                                try:
+                                    if hasattr(pipeline, 'to'):
+                                        pipeline.to('cpu')
+                                except:
+                                    pass
+                                
+                                # 清空引用
+                                setattr(self.image_generator, attr, None)
+                                print(f"  ✓ {attr} 已卸载")
+                            except Exception as e:
+                                print(f"  ⚠ 清理 {attr} 时出错（继续）: {e}")
+                                # 即使出错也要清空引用
+                                setattr(self.image_generator, attr, None)
+                
+                # 强制垃圾回收（多次）
+                for _ in range(3):
+                    gc.collect()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                        torch.cuda.synchronize()
+                
+                # 显示清理后的显存状态
+                if torch.cuda.is_available():
+                    allocated_after = torch.cuda.memory_allocated() / 1024**3
+                    reserved_after = torch.cuda.memory_reserved() / 1024**3
+                    freed = allocated_before - allocated_after
+                    print(f"  清理后显存: 已分配={allocated_after:.2f}GB, 已保留={reserved_after:.2f}GB")
+                    if freed > 0:
+                        print(f"  ✓ 释放显存: {freed:.2f}GB")
+                    else:
+                        print(f"  ⚠ 警告: 未释放显存，可能需要手动清理")
+            except Exception as e:
+                print(f"  ⚠ 显存清理时出现错误（可忽略）: {e}")
+
         return scenes
     
     def generate_video_clips(self, scenes: List[Dict], output_name: str, audio_durations: Optional[List[float]] = None, opening_narration: Optional[str] = None) -> List[str]:
@@ -670,6 +760,64 @@ class AIVideoPipeline:
 
         print("\n=== 生成视频片段 ===")
         
+        # 在开始生成视频前，彻底清理GPU显存
+        import torch
+        import gc
+        if torch.cuda.is_available():
+            print("  ℹ 清理GPU显存，为视频生成做准备...")
+            allocated_before_clean = torch.cuda.memory_allocated() / 1024**3
+            reserved_before_clean = torch.cuda.memory_reserved() / 1024**3
+            print(f"    清理前: 已分配={allocated_before_clean:.2f}GB, 已保留={reserved_before_clean:.2f}GB")
+            
+            # 强制清理图像生成器模型（如果还在GPU上）
+            if self.image_generator is not None:
+                try:
+                    pipeline_attrs = ['pipeline', 'flux_pipeline', 'flux1_pipeline', 'flux2_pipeline', 
+                                     'hunyuan_dit_pipeline', 'kolors_pipeline', 'sd3_turbo_pipeline',
+                                     'instantid_pipeline', 'sdxl_pipeline']
+                    for attr in pipeline_attrs:
+                        if hasattr(self.image_generator, attr):
+                            pipeline = getattr(self.image_generator, attr)
+                            if pipeline is not None:
+                                try:
+                                    # 尝试将所有组件移到CPU
+                                    components = ['unet', 'vae', 'text_encoder', 'text_encoder_2', 
+                                                'image_encoder', 'controlnet', 'image_proj_model']
+                                    for comp_name in components:
+                                        if hasattr(pipeline, comp_name):
+                                            comp = getattr(pipeline, comp_name)
+                                            if comp is not None and hasattr(comp, 'to'):
+                                                try:
+                                                    comp.to('cpu')
+                                                except:
+                                                    pass
+                                    # 尝试将整个pipeline移到CPU
+                                    if hasattr(pipeline, 'to'):
+                                        pipeline.to('cpu')
+                                    setattr(self.image_generator, attr, None)
+                                    print(f"    ✓ {attr} 已移至CPU并清空引用")
+                                except Exception as e:
+                                    print(f"    ⚠ 清理 {attr} 时出错: {e}")
+                                    setattr(self.image_generator, attr, None)
+                except Exception as e:
+                    print(f"    ⚠ 清理图像生成器时出错（可忽略）: {e}")
+            
+            # 多次强制垃圾回收和清理缓存
+            for i in range(3):
+                gc.collect()
+                torch.cuda.empty_cache()
+                torch.cuda.synchronize()
+            
+            # 显示清理后的显存状态
+            allocated_after_clean = torch.cuda.memory_allocated() / 1024**3
+            reserved_after_clean = torch.cuda.memory_reserved() / 1024**3
+            freed = allocated_before_clean - allocated_after_clean
+            print(f"    清理后: 已分配={allocated_after_clean:.2f}GB, 已保留={reserved_after_clean:.2f}GB")
+            if freed > 0.1:
+                print(f"  ✓ 释放显存: {freed:.2f}GB")
+            else:
+                print(f"  ⚠ 警告: 显存未释放（可能是PyTorch缓存），已保留={reserved_after_clean:.2f}GB")
+        
         video_clips = []
         output_dir = Path(self.paths['output_dir']) / output_name / "videos"
         output_dir.mkdir(parents=True, exist_ok=True)
@@ -682,8 +830,6 @@ class AIVideoPipeline:
         
         for i, scene in enumerate(tqdm(scenes, desc="生成视频")):
             # 在每个场景生成前清理GPU缓存
-            import torch
-            import gc
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
                 gc.collect()
@@ -1366,6 +1512,40 @@ def main():
     if args.script:
         script_path = Path(args.script)
         
+        # 如果路径不是绝对路径，尝试多个位置查找
+        if not script_path.is_absolute():
+            # 1. 先尝试当前工作目录（如果用户在 gen_video 目录下运行）
+            candidate = Path.cwd() / script_path
+            if candidate.exists():
+                script_path = candidate.resolve()
+                print(f"  ℹ 脚本路径（当前目录）: {script_path}")
+            else:
+                # 2. 尝试相对于当前工作目录的父目录（lingjie 和 gen_video 是平级的）
+                candidate = Path.cwd().parent / script_path
+                if candidate.exists():
+                    script_path = candidate.resolve()
+                    print(f"  ℹ 脚本路径（父目录）: {script_path}")
+                else:
+                    # 3. 尝试相对于配置文件目录的父目录
+                    candidate = pipeline.config_path.parent.parent / script_path
+                    if candidate.exists():
+                        script_path = candidate.resolve()
+                        print(f"  ℹ 脚本路径（配置文件父目录）: {script_path}")
+                    else:
+                        # 如果都找不到，使用原始路径（会在后面报错）
+                        script_path = Path.cwd() / script_path
+        
+        # 检查文件是否存在
+        if not script_path.exists():
+            print(f"错误: 脚本路径不存在: {script_path}")
+            print(f"   尝试的路径: {script_path.absolute()}")
+            # 提供一些建议
+            parent_dir = Path.cwd().parent
+            suggested_path = parent_dir / args.script
+            if suggested_path.exists():
+                print(f"   提示: 文件在父目录中，尝试使用: {suggested_path.resolve()}")
+            return
+        
         # 检查是否是目录（批量处理模式）
         if script_path.is_dir():
             print(f"检测到目录路径，进入批量处理模式: {args.script}")
@@ -1426,8 +1606,8 @@ def main():
             print(f"{'=' * 80}")
             
         elif script_path.exists() and script_path.is_file():
-            # 单个文件处理模式
-            pipeline.process_script(args.script, args.output)
+            # 单个文件处理模式（使用解析后的绝对路径）
+            pipeline.process_script(str(script_path.resolve()), args.output)
         else:
             print(f"错误: 脚本路径不存在: {args.script}")
             parser.print_help()

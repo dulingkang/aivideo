@@ -51,8 +51,12 @@ class ModelSelector:
             task_type = self._detect_task_type(prompt, scene_context)
         
         if task_type == TaskType.CHARACTER:
-            # 人物生成：使用 Flux + InstantID
-            return "flux-instantid"
+            # 人物生成：统一使用 InstantID (SDXL + InstantID)
+            # 原因：
+            # 1. 韩立需要InstantID保证人脸一致性
+            # 2. 其他角色也需要使用InstantID，因为SDXL支持风格LoRA，可以保持风格统一
+            # 3. 如果使用Flux，风格LoRA无法应用，会导致风格不统一
+            return "instantid"
         
         elif task_type == TaskType.SCENE:
             # 场景生成：根据提示词内容选择
@@ -83,6 +87,7 @@ class ModelSelector:
         if prompt:
             character_keywords = [
                 "主持人", "讲解员", "人物", "角色", "人像", "肖像",
+                "han li", "hanli", "韩立", "主角", "main character", "cultivator",
                 "presenter", "host", "character", "portrait", "person"
             ]
             prompt_lower = prompt.lower()
@@ -99,8 +104,8 @@ class ModelSelector:
     ) -> str:
         """根据提示词选择场景生成引擎"""
         if not prompt:
-            # 默认使用 Flux.2（科学背景图，冲击力强）
-            return "flux2"
+            # 默认使用 Flux.1（更稳定，flux2 加载可能失败）
+            return "flux1"
         
         prompt_lower = prompt.lower()
         
@@ -157,8 +162,283 @@ class ModelSelector:
         if any(keyword in prompt_lower for keyword in realism_keywords):
             return "kolors"  # 使用 Kolors（真人质感强，中文 prompt 理解优秀）
         
-        # 默认使用 Flux.2（科学背景图，冲击力强）
-        return "flux2"
+        # 默认使用 Flux.1（更稳定，flux2 加载可能失败）
+        return "flux1"
+    
+    def select_engine_for_scene_v2(
+        self,
+        scene: Dict[str, Any],
+        manual_engine: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        基于 Scene JSON v2 自动选择图像生成引擎（Execution Planner v1）
+        
+        核心策略：
+        - 默认用 SDXL（人物稳定）
+        - 只有"它做不好"的时候才切 Flux（世界/氛围）
+        
+        Args:
+            scene: Scene JSON v2 格式的场景数据
+            manual_engine: 手动指定的引擎（优先级最高）
+        
+        Returns:
+            {
+                "engine": "instantid" | "sdxl" | "flux1" | "flux2",
+                "mode": "instantid" | "normal" | "cinematic",
+                "lock_face": bool,
+                "task_type": "character" | "scene"
+            }
+        """
+        # 如果手动指定了引擎，直接使用
+        if manual_engine and manual_engine != "auto":
+            return {
+                "engine": manual_engine,
+                "mode": "normal",
+                "lock_face": False,
+                "task_type": "scene"
+            }
+        
+        # 提取关键字段（安全读取，避免 KeyError）
+        character = scene.get("character", {}) or {}
+        camera = scene.get("camera", {}) or {}
+        intent = scene.get("intent", {}) or {}
+        scene_role = scene.get("scene_role", "")
+        
+        # 判断是否有角色
+        character_present = character.get("present", False)
+        face_visible = character.get("face_visible", False)
+        visibility = character.get("visibility", "low")  # high/mid/low
+        camera_shot = camera.get("shot", "medium")
+        intent_type = intent.get("type", "")
+        
+        # ============================================================
+        # Rule 1: 有人物 + 近景/特写 → SDXL + InstantID（最高优先级）
+        # ============================================================
+        if character_present:
+            # 判断是否应该锁脸
+            should_lock_face = False
+            
+            # 条件1: face_visible 明确为 True
+            if face_visible:
+                should_lock_face = True
+            
+            # 条件2: visibility 为 high 或 mid
+            if visibility in ["high", "mid"]:
+                should_lock_face = True
+            
+            # 条件3: 镜头是 close_up 或 medium
+            if camera_shot in ["close_up", "extreme_close", "medium"]:
+                should_lock_face = True
+            
+            if should_lock_face:
+                return {
+                    "engine": "instantid",  # SDXL + InstantID
+                    "mode": "instantid",
+                    "lock_face": True,
+                    "task_type": "character"
+                }
+            
+            # ============================================================
+            # Rule 2: 三类镜头分流（人设锚点方案）
+            # 
+            # 🟢 A类：叙事/氛围镜头（FLUX，禁用 InstantID/LoRA，reference=人设锚点图）
+            #   用在：躺沙漠、远景、背影、剪影
+            # 
+            # 🟡 B类：过渡人物镜头（SDXL，reference=人设锚点图，不用 InstantID）
+            #   用在：站立、走路、回头
+            # 
+            # 🔴 C类：情绪/表情镜头（InstantID，reference=人设锚点图，中近景）
+            #   用在：回忆、痛苦、施法特写
+            # ============================================================
+            camera_angle = camera.get("angle", "eye_level")
+            character_pose = character.get("pose", "")
+            
+            # 检测镜头类型
+            is_wide_topdown_lying = (
+                camera_shot == "wide" and 
+                camera_angle == "top_down" and 
+                character_pose in ["lying_motionless", "lying"]
+            )
+            
+            is_narrative_shot = (
+                camera_shot == "wide" or 
+                visibility == "low" or
+                is_wide_topdown_lying or
+                character_pose in ["lying_motionless", "lying", "back_view"]
+            )
+            
+            is_transition_shot = (
+                camera_shot == "medium" and
+                character_pose in ["standing", "walking", "turning"]
+            )
+            
+            is_emotion_shot = (
+                camera_shot in ["close", "medium"] and
+                character_pose in ["thinking", "pain", "casting", "expression"]
+            )
+            
+            # 🟢 A类：叙事/氛围镜头 → FLUX
+            if is_narrative_shot:
+                result = {
+                    "engine": "flux1",  # 使用 FLUX.1（更稳定）
+                    "mode": "cinematic",
+                    "lock_face": False,
+                    "task_type": "character",
+                    "shot_category": "narrative",  # ⚡ 新增：镜头类别
+                    "use_character_anchor": True,  # ⚡ 新增：必须使用人设锚点图
+                    "style_anchor": {
+                        "enabled": False
+                    },
+                    "disable_character_lora": True,  # 禁用角色 LoRA
+                    "disable_style_lora": True,  # 禁用风格 LoRA
+                    "disable_ip_adapter": False,  # ⚡ 关键修复：不禁用 IP-Adapter，需要使用参考图
+                    "treat_as_silhouette": True,  # 标记为"剪影+氛围"镜头
+                    "use_semantic_prompt": True,  # 使用语义化 prompt（FLUX 优势）
+                }
+                print(f"  🟢 A类镜头（叙事/氛围）：使用 FLUX 引擎（世界观一致性 > 人脸一致性）")
+                print(f"  ✓ 必须引用人设锚点图（确保形象一致性）")
+                print(f"  ✓ 禁用 LoRA（避免姿态冲突），但使用 IP-Adapter 引用参考图")
+                return result
+            
+            # 🟡 B类：过渡人物镜头 → SDXL
+            if is_transition_shot:
+                result = {
+                    "engine": "sdxl",
+                    "mode": "normal",
+                    "lock_face": False,
+                    "task_type": "character",
+                    "shot_category": "transition",  # ⚡ 新增：镜头类别
+                    "use_character_anchor": True,  # ⚡ 新增：必须使用人设锚点图
+                    "style_anchor": {
+                        "type": "lora",
+                        "name": "fanren_style",
+                        "weight": 0.35,
+                        "enabled": True
+                    }
+                }
+                print(f"  🟡 B类镜头（过渡人物）：使用 SDXL 引擎")
+                print(f"  ✓ 必须引用人设锚点图（确保形象一致性）")
+                return result
+            
+            # 🔴 C类：情绪/表情镜头 → InstantID
+            if is_emotion_shot:
+                result = {
+                    "engine": "instantid",
+                    "mode": "face_lock",
+                    "lock_face": True,
+                    "task_type": "character",
+                    "shot_category": "emotion",  # ⚡ 新增：镜头类别
+                    "use_character_anchor": True,  # ⚡ 新增：必须使用人设锚点图
+                    "style_anchor": {
+                        "type": "lora",
+                        "name": "fanren_style",
+                        "weight": 0.35,
+                        "enabled": True
+                    }
+                }
+                print(f"  🔴 C类镜头（情绪/表情）：使用 InstantID 引擎（锁脸）")
+                print(f"  ✓ 必须引用人设锚点图（确保形象一致性）")
+                return result
+            
+            # 默认：根据镜头类型选择
+            if camera_shot == "wide" or visibility == "low":
+                # 远景场景，使用 SDXL + 风格锚点
+                result = {
+                    "engine": "sdxl",
+                    "mode": "normal",
+                    "lock_face": False,
+                    "task_type": "character",
+                    "shot_category": "default",
+                    "use_character_anchor": True,  # ⚡ 新增：必须使用人设锚点图
+                    "style_anchor": {
+                        "type": "lora",
+                        "name": "fanren_style",
+                        "weight": 0.35,
+                        "enabled": True
+                    }
+                }
+                return result
+            
+            # ============================================================
+            # Rule 3: 人物存在但中景 → SDXL（不锁脸，但用 SDXL 保证一致性）+ 风格锚点
+            # ⚡ 关键修复：禁用 InstantID 时，必须绑定风格锚点
+            # ============================================================
+            if camera_shot == "medium":
+                return {
+                    "engine": "sdxl",
+                    "mode": "normal",
+                    "lock_face": False,
+                    "task_type": "character",
+                    "style_anchor": {  # ⚡ 新增：风格锚点配置
+                        "type": "lora",
+                        "name": "fanren_style",  # 凡人修仙传风格 LoRA
+                        "weight": 0.35,  # 低权重，只绑定风格，不抢戏
+                        "enabled": True
+                    }
+                }
+            
+            # 其他情况（人物存在但镜头类型不明确）→ 默认 SDXL + 风格锚点
+            return {
+                "engine": "sdxl",
+                "mode": "normal",
+                "lock_face": False,
+                "task_type": "character",
+                "style_anchor": {  # ⚡ 新增：风格锚点配置
+                    "type": "lora",
+                    "name": "fanren_style",  # 凡人修仙传风格 LoRA
+                    "weight": 0.35,  # 低权重，只绑定风格，不抢戏
+                    "enabled": True
+                }
+            }
+        
+        # ============================================================
+        # Rule 4: 没有人物，是世界观镜头 → Flux
+        # ============================================================
+        if not character_present:
+            # 判断是否是世界观/环境镜头
+            world_intent_types = [
+                "title_reveal",
+                "introduce_world",
+                "establish_world",
+                "opening",
+                "transition"
+            ]
+            
+            if intent_type in world_intent_types or scene_role in ["opening", "establishing", "transition"]:
+                # 根据场景类型选择 Flux 版本
+                # 如果是科学/太空类，用 flux2；否则用 flux1
+                visual_constraints = scene.get("visual_constraints", {}) or {}
+                environment = str(visual_constraints.get("environment", "")).lower()
+                
+                flux2_keywords = [
+                    "space", "particle", "quantum", "scientific",
+                    "太空", "宇宙", "粒子", "量子", "科学"
+                ]
+                
+                if any(kw in environment for kw in flux2_keywords):
+                    return {
+                        "engine": "flux2",
+                        "mode": "cinematic",
+                        "lock_face": False,
+                        "task_type": "scene"
+                    }
+                else:
+                    return {
+                        "engine": "flux1",
+                        "mode": "cinematic",
+                        "lock_face": False,
+                        "task_type": "scene"
+                    }
+        
+        # ============================================================
+        # Fallback Rule: 默认用 SDXL（人物驱动小说推文）
+        # ============================================================
+        return {
+            "engine": "sdxl",
+            "mode": "normal",
+            "lock_face": False,
+            "task_type": "scene"
+        }
     
     def get_engine_config(self, engine: str) -> Dict[str, Any]:
         """获取指定引擎的配置"""

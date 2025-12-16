@@ -62,6 +62,29 @@ class VideoGenerator:
         self.svd_param_generator = SVDParameterGenerator()
         self.scene_classifier = SceneTypeClassifier()
         
+        # 初始化Prompt Engine（专业级Prompt工程系统）
+        try:
+            from utils.prompt_engine import PromptEngine
+            prompt_engine_config = self.video_config.get('prompt_engine', {})
+            use_llm = prompt_engine_config.get('use_llm_rewriter', False)
+            self.prompt_engine = PromptEngine(
+                config_path=None,  # 使用默认配置
+                use_llm_rewriter=use_llm,
+                llm_api=None  # TODO: 如果需要LLM，可以在这里传入API
+            )
+            print("  ✓ Prompt Engine已初始化")
+        except ImportError as e:
+            print(f"  ⚠ Prompt Engine导入失败: {e}，将使用基础prompt构建")
+            self.prompt_engine = None
+        
+        # 初始化模型路由器（用于自动选择模型）
+        try:
+            self.model_router = ModelRouter(self.video_config)
+            print("  ✓ 模型路由器已初始化")
+        except Exception as e:
+            print(f"  ⚠ 模型路由器初始化失败: {e}，将使用配置中的model_type")
+            self.model_router = None
+        
         # 模型相关
         self.pipeline = None
         self.hunyuanvideo_pipeline = None  # HunyuanVideo pipeline
@@ -131,7 +154,7 @@ class VideoGenerator:
         self.model_loaded = False
     
     def load_model(self):
-        """加载视频生成模型（支持SVD、AnimateDiff和HunyuanVideo）"""
+        """加载视频生成模型（支持SVD、AnimateDiff、HunyuanVideo和CogVideoX）"""
         import torch
         import gc
         
@@ -168,6 +191,15 @@ class VideoGenerator:
                     model_path = "Tencent-Hunyuan/HunyuanVideo-ImageToVideo"
                     print(f"  ℹ 未配置本地路径，将使用HuggingFace模型: {model_path}")
                 self._load_hunyuanvideo_model(model_path)
+            elif model_type == 'cogvideox':
+                # 加载CogVideoX模型（图生视频）
+                cogvideox_config = self.video_config.get('cogvideox', {})
+                model_path = cogvideox_config.get('model_path')
+                if not model_path:
+                    # 尝试从HuggingFace下载
+                    model_path = "THUDM/CogVideoX-5b-I2V"
+                    print(f"  ℹ 未配置本地路径，将使用HuggingFace模型: {model_path}")
+                self._load_cogvideox_model(model_path)
             else:
                 raise ValueError(f"不支持的模型类型: {model_type}")
             
@@ -390,8 +422,19 @@ class VideoGenerator:
                         # 即使失败也不移到GPU，保持CPU状态
                         print(f"  ℹ 保持模型在CPU，运行时按需加载")
                     
-                    # 启用attention slicing以减少attention计算的显存占用
+                    # Attention优化（小说推文优化：优先使用FlashAttention2/SDPA，获得20-40%速度提升）
                     try:
+                        # 优先尝试启用FlashAttention2/SDPA（PyTorch 2.1+）
+                        if torch.__version__ >= "2.1.0":
+                            try:
+                                # 启用Flash Attention SDPA（自动选择最优实现）
+                                torch.backends.cuda.enable_flash_sdp(True)
+                                torch.backends.cuda.enable_mem_efficient_sdp(True)
+                                print("  ✓ 已启用FlashAttention2/SDPA优化（20-40%速度提升）")
+                            except Exception as e:
+                                print(f"  ⚠ 启用FlashAttention2/SDPA失败: {e}，回退到attention slicing")
+                        
+                        # 如果没有FlashAttention2，使用attention slicing作为备选
                         if hasattr(self.hunyuanvideo_pipeline, 'enable_attention_slicing'):
                             # 使用更激进的切片（使用数字1而不是"max"），最小化显存占用
                             # slice_size=1 表示每次只处理1个head，最省显存但最慢
@@ -404,7 +447,7 @@ class VideoGenerator:
                             self.hunyuanvideo_pipeline.enable_attention_slicing(slice_size=slice_size)
                             print(f"  ✓ 已启用attention slicing（slice_size={slice_size}，减少attention计算显存占用）")
                     except Exception as e:
-                        print(f"  ⚠ 启用attention slicing失败: {e}")
+                        print(f"  ⚠ Attention优化失败: {e}")
                     
                     # 尝试启用gradient checkpointing（如果支持）
                     try:
@@ -472,35 +515,35 @@ class VideoGenerator:
             # 获取CogVideoX配置
             cogvideox_config = self.video_config.get('cogvideox', {})
             
-            # 使用低显存模式加载模型（避免一次性分配）
-            print("  ℹ 使用低显存模式加载模型（避免一次性分配）...")
-            # 临时隐藏GPU，强制在CPU上加载模型
-            import os
-            original_cuda_visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES", None)
-            os.environ["CUDA_VISIBLE_DEVICES"] = ""
+            # 判断是HuggingFace模型ID还是本地路径
+            is_hf_model_id = not Path(model_path).exists() and "/" in str(model_path)
             
-            try:
-                # 判断是HuggingFace模型ID还是本地路径
-                is_hf_model_id = not Path(model_path).exists() and "/" in str(model_path)
-                
-                if is_hf_model_id:
-                    print(f"  ℹ 使用HuggingFace模型: {model_path}")
-                    print(f"  ℹ 将自动下载所有必需组件...")
-                
-                # 加载CogVideoX pipeline
-                self.cogvideox_pipeline = CogVideoXImageToVideoPipeline.from_pretrained(
-                    model_path,
-                    torch_dtype=torch.float16,
-                    low_cpu_mem_usage=True,  # 降低CPU内存使用
-                    device_map="cpu"  # 强制在CPU上加载
-                )
-                print("  ✓ CogVideoX pipeline已加载到CPU")
-            finally:
-                # 恢复CUDA_VISIBLE_DEVICES
-                if original_cuda_visible_devices is not None:
-                    os.environ["CUDA_VISIBLE_DEVICES"] = original_cuda_visible_devices
-                else:
-                    del os.environ["CUDA_VISIBLE_DEVICES"]
+            if is_hf_model_id:
+                print(f"  ℹ 使用HuggingFace模型: {model_path}")
+                print(f"  ℹ 将自动下载所有必需组件...")
+            
+            # 检查是否启用CPU offload
+            use_cpu_offload = cogvideox_config.get('enable_model_cpu_offload', True)
+            
+            # CogVideoX只支持balanced和cuda策略，不支持cpu
+            # 如果启用CPU offload，使用balanced策略；否则使用cuda
+            if use_cpu_offload:
+                device_map_strategy = "balanced"
+                print("  ℹ 使用balanced策略加载模型（支持CPU offload）...")
+            else:
+                device_map_strategy = "cuda"
+                print("  ℹ 使用cuda策略加载模型...")
+            
+            # 加载CogVideoX pipeline
+            # CogVideoX-5B 推荐使用 BF16 精度（根据官方文档）
+            # BF16 可以提供更好的视频质量，避免纯色问题
+            self.cogvideox_pipeline = CogVideoXImageToVideoPipeline.from_pretrained(
+                model_path,
+                torch_dtype=torch.bfloat16,  # 从 float16 改为 bfloat16（CogVideoX-5B 推荐）
+                low_cpu_mem_usage=True,  # 降低CPU内存使用
+                device_map=device_map_strategy  # 使用balanced或cuda策略
+            )
+            print(f"  ✓ CogVideoX pipeline已加载（策略: {device_map_strategy}）")
             
             # 显存优化：设置显存限制
             if torch.cuda.is_available():
@@ -509,17 +552,23 @@ class VideoGenerator:
                 print(f"  ✓ 已设置显存限制: {max_memory_fraction * 100}%")
             
             # 显存优化：启用CPU offload（如果配置启用）
+            # 注意：当使用 device_map="cuda" 时，模型已经自动在 GPU 上，不能再使用 .to("cuda")
             if cogvideox_config.get('enable_model_cpu_offload', True):
                 try:
-                    self.cogvideox_pipeline.enable_model_cpu_offload()
-                    print("  ✓ 已启用CPU offload（降低显存占用）")
+                    # 如果使用 device_map="balanced"，可以启用 CPU offload
+                    if device_map_strategy == "balanced":
+                        self.cogvideox_pipeline.enable_model_cpu_offload()
+                        print("  ✓ 已启用CPU offload（降低显存占用）")
+                    else:
+                        print("  ℹ 使用 device_map='cuda'，模型已在 GPU 上，无需 CPU offload")
                 except Exception as e:
                     print(f"  ⚠ 启用CPU offload失败: {e}")
             else:
-                # 移动到GPU
-                if torch.cuda.is_available():
-                    self.cogvideox_pipeline = self.cogvideox_pipeline.to("cuda")
-                    print("  ✓ 模型已加载到GPU")
+                # 使用 device_map="cuda" 时，模型已经自动在 GPU 上，无需手动移动
+                if device_map_strategy == "cuda":
+                    print("  ✓ 模型已通过 device_map='cuda' 自动加载到 GPU")
+                else:
+                    print("  ℹ 模型已通过 device_map 策略加载")
             
             # 显存优化：启用VAE tiling（如果配置启用）
             if cogvideox_config.get('enable_tiling', True):
@@ -880,7 +929,7 @@ class VideoGenerator:
                 # 从scene中提取prompt信息
                 from diffusers.utils import load_image
                 image = load_image(image_path)
-                prompt = self._build_detailed_prompt(image_path, image, scene)
+                prompt = self._build_detailed_prompt(image_path, image, scene, model_type="cogvideox")
             
             return self._generate_video_cogvideox(
                 image_path=image_path,
@@ -1513,10 +1562,13 @@ class VideoGenerator:
         self,
         image_path: str,
         image: Image.Image,
-        scene: Optional[Dict[str, Any]] = None
+        scene: Optional[Dict[str, Any]] = None,
+        model_type: str = "general"
     ) -> str:
         """
         构建详细的prompt，描述图片内容和期望的运动
+        优先使用Prompt Engine（专业级Prompt工程系统），如果不可用则回退到基础方法
+        
         参考HunyuanVideo官方示例格式：
         "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. 
         The fluffy-furred feline gazes directly at the camera with a relaxed expression. 
@@ -1525,6 +1577,79 @@ class VideoGenerator:
         as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's 
         intricate details and the refreshing atmosphere of the seaside."
         """
+        # 如果Prompt Engine可用，优先使用
+        if self.prompt_engine is not None:
+            try:
+                # 从scene中提取用户输入
+                user_input = ""
+                if scene:
+                    user_input = scene.get('description', '') or scene.get('prompt', '') or scene.get('narration', '')
+                
+                # 如果没有用户输入，尝试从图片路径提取
+                if not user_input:
+                    from pathlib import Path
+                    image_name = Path(image_path).stem
+                    user_input = f"a scene from {image_name}"
+                
+                # 确定场景类型
+                scene_type = "general"
+                if scene:
+                    scene_type = scene.get('type') or scene.get('scene_type', 'general')
+                    # 如果没有明确指定，尝试从其他字段推断
+                    if scene_type == "general":
+                        visual = scene.get('visual', {})
+                        if isinstance(visual, dict):
+                            style = visual.get('style', '')
+                            if style in ['scientific', 'novel', 'drama', 'government', 'enterprise']:
+                                scene_type = style
+                
+                # 构建相机配置（从scene中提取）
+                camera_config = None
+                if scene:
+                    camera_motion = scene.get('camera_motion', {})
+                    if isinstance(camera_motion, dict):
+                        camera_type = camera_motion.get('type', 'static')
+                        # 映射到Prompt Engine的相机配置
+                        camera_config = {
+                            "shot_type": "wide",  # 默认wide shot
+                            "movement": camera_type,  # pan, zoom, dolly, static
+                            "viewpoint": "third_person",
+                            "dof": "shallow",
+                            "focal_length": "normal"
+                        }
+                        # 从scene中提取更多相机信息
+                        visual = scene.get('visual', {})
+                        if isinstance(visual, dict):
+                            composition = visual.get('composition', '')
+                            if 'close' in composition.lower() or 'close-up' in composition.lower():
+                                camera_config["shot_type"] = "close"
+                            elif 'medium' in composition.lower():
+                                camera_config["shot_type"] = "medium"
+                
+                # 使用Prompt Engine处理
+                result = self.prompt_engine.process(
+                    user_input=user_input,
+                    scene=scene,
+                    model_type=model_type,
+                    scene_type=scene_type,
+                    camera_config=camera_config
+                )
+                
+                prompt = result["prompt"]
+                qa_result = result["qa_result"]
+                
+                print(f"  ℹ Prompt Engine处理完成")
+                print(f"    QA评分: {qa_result['score']}/{qa_result['max_score']}")
+                if qa_result.get('suggestions'):
+                    print(f"    建议: {', '.join(qa_result['suggestions'][:2])}")
+                
+                return prompt
+            except Exception as e:
+                print(f"  ⚠ Prompt Engine处理失败: {e}，回退到基础方法")
+                import traceback
+                traceback.print_exc()
+        
+        # 回退到基础方法（原有逻辑）
         prompt_parts = []
         
         # 获取风格配置
@@ -1672,6 +1797,10 @@ class VideoGenerator:
         scene: Optional[Dict[str, Any]] = None,
     ) -> str:
         """使用HunyuanVideo生成视频（图生视频）"""
+        # 导入必要的模块（在函数开始处）
+        from diffusers.utils import load_image
+        from PIL import Image as PILImage  # 导入PIL Image，避免与局部变量冲突
+        
         print(f"  使用HunyuanVideo生成视频")
         print(f"    参数: num_frames={num_frames}, fps={fps}")
         
@@ -1686,16 +1815,49 @@ class VideoGenerator:
             gc.collect()
         
         # 加载图像
-        from diffusers.utils import load_image
         image = load_image(image_path)
         
         # 获取HunyuanVideo配置
         hunyuan_config = self.video_config.get('hunyuanvideo', {})
         use_v15 = hunyuan_config.get('use_v15', True)  # 默认使用1.5版本
-        width = hunyuan_config.get('width', self.video_config.get('width', 1280))
-        height = hunyuan_config.get('height', self.video_config.get('height', 768))
+        
+        # 优先从scene中获取分辨率（确保与图像一致），否则使用配置
+        if scene and 'width' in scene and 'height' in scene:
+            width = scene['width']
+            height = scene['height']
+            print(f"  ℹ 从scene获取分辨率: {width}x{height} (与图像一致)")
+        else:
+            width = hunyuan_config.get('width', self.video_config.get('width', 1280))
+            height = hunyuan_config.get('height', self.video_config.get('height', 768))
+            print(f"  ℹ 使用配置分辨率: {width}x{height}")
+        
+        # 确保分辨率是8的倍数（HunyuanVideo要求）
+        # 重要：调整时保持长宽比，避免变形
+        original_width, original_height = width, height
+        original_aspect = width / height
+        
+        # 先调整宽度到8的倍数
+        width = (width // 8) * 8
+        # 根据原始长宽比计算高度（保持长宽比）
+        height = int(width / original_aspect)
+        # 再调整高度到8的倍数
+        height = (height // 8) * 8
+        # 重新计算宽度，确保长宽比一致
+        width = int(height * original_aspect)
+        width = (width // 8) * 8
+        
+        if width != original_width or height != original_height:
+            new_aspect = width / height
+            print(f"  ℹ 分辨率已调整为8的倍数: {width}x{height} (原始: {original_width}x{original_height})")
+            print(f"  ℹ 长宽比: 原始={original_aspect:.3f}, 调整后={new_aspect:.3f} (差异: {abs(original_aspect - new_aspect):.3f})")
+            if abs(original_aspect - new_aspect) > 0.01:
+                print(f"  ⚠ 警告: 长宽比略有变化（由于8的倍数限制），但已尽量保持接近")
         num_inference_steps = hunyuan_config.get('num_inference_steps', 50)
         guidance_scale = hunyuan_config.get('guidance_scale', 7.5)
+        # 色彩调整参数（用于修复过暗、色彩过浓的问题）
+        saturation_factor = hunyuan_config.get('saturation_factor', 1.0)  # 饱和度调整因子
+        brightness_factor = hunyuan_config.get('brightness_factor', 1.0)  # 亮度调整因子
+        contrast_factor = hunyuan_config.get('contrast_factor', 1.0)  # 对比度调整因子
         
         # 获取prompt和negative_prompt（优先使用传入的参数，否则从配置读取）
         config_prompt = hunyuan_config.get('prompt', '')
@@ -1709,7 +1871,7 @@ class VideoGenerator:
             else:
                 # 从图片路径提取信息，构建基础prompt
                 # 注意：scene参数需要从generate_video传递下来
-                prompt = self._build_detailed_prompt(image_path, image, scene)
+                prompt = self._build_detailed_prompt(image_path, image, scene, model_type="hunyuanvideo")
         
         # 如果prompt仍然为空或太简单，使用默认值
         if not prompt or len(prompt) < 20:
@@ -1720,7 +1882,7 @@ class VideoGenerator:
             negative_prompt = config_negative_prompt
         # 如果仍然为空，使用默认值
         if not negative_prompt:
-            negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes"
+            negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, static, frozen, no motion, still image"
         
         print(f"    Prompt: {prompt[:150]}{'...' if len(prompt) > 150 else ''}")
         print(f"    Negative Prompt: {negative_prompt[:100]}{'...' if len(negative_prompt) > 100 else ''}")
@@ -1760,9 +1922,42 @@ class VideoGenerator:
                 print(f"  ℹ 分辨率已调整为: {width}x{height}")
         
         # 调整图像大小（如果需要）
+        # 重要：保持长宽比，避免横向压缩或变形
         if image.size != (width, height):
-            image = image.resize((width, height), Image.Resampling.LANCZOS)
-            print(f"  ℹ 图像已调整: {image.size}")
+            image_aspect = image.size[0] / image.size[1]
+            target_aspect = width / height
+            
+            if abs(image_aspect - target_aspect) > 0.01:  # 长宽比不一致（误差>1%）
+                print(f"  ⚠ 警告: 图像长宽比 ({image_aspect:.3f}) 与目标长宽比 ({target_aspect:.3f}) 不一致")
+                print(f"  ℹ 图像尺寸: {image.size[0]}x{image.size[1]}")
+                print(f"  ℹ 目标尺寸: {width}x{height}")
+                
+                # 使用保持长宽比的方式调整（避免变形）
+                # 方法：先resize到目标尺寸的某个维度，然后裁剪或填充
+                if image_aspect > target_aspect:
+                    # 图像更宽，先调整高度，然后裁剪宽度
+                    new_height = height
+                    new_width = int(image.size[0] * (height / image.size[1]))
+                    resized_image = image.resize((new_width, new_height), PILImage.Resampling.LANCZOS)
+                    # 居中裁剪
+                    left = (new_width - width) // 2
+                    image = resized_image.crop((left, 0, left + width, height))
+                    print(f"  ℹ 图像已调整（保持长宽比，居中裁剪）: {image.size[0]}x{image.size[1]} -> {width}x{height}")
+                else:
+                    # 图像更高，先调整宽度，然后裁剪高度
+                    new_width = width
+                    new_height = int(image.size[1] * (width / image.size[0]))
+                    resized_image = image.resize((new_width, new_height), PILImage.Resampling.LANCZOS)
+                    # 居中裁剪
+                    top = (new_height - height) // 2
+                    image = resized_image.crop((0, top, width, top + height))
+                    print(f"  ℹ 图像已调整（保持长宽比，居中裁剪）: {image.size[0]}x{image.size[1]} -> {width}x{height}")
+            else:
+                # 长宽比一致，直接resize
+                image = image.resize((width, height), PILImage.Resampling.LANCZOS)
+                print(f"  ℹ 图像已调整（长宽比一致）: {image.size[0]}x{image.size[1]} -> {width}x{height}")
+        else:
+            print(f"  ℹ 图像分辨率与目标一致: {width}x{height}，无需调整")
         
         # 生成视频前清理显存
         import torch
@@ -1857,6 +2052,7 @@ class VideoGenerator:
                             num_inference_steps=num_inference_steps,
                             num_frames=num_frames,
                             generator=generator,
+                            output_type="np",  # 明确指定输出numpy数组，值范围[0,1]
                         )
                     else:
                         # 原版HunyuanVideo: 需要height/width参数
@@ -1911,7 +2107,7 @@ class VideoGenerator:
                                 height = int(height * 512 / width)
                                 width = (width // 8) * 8
                                 height = (height // 8) * 8
-                                image = image.resize((width, height), Image.Resampling.LANCZOS)
+                                image = image.resize((width, height), PILImage.Resampling.LANCZOS)
                                 print(f"  ℹ 降级分辨率: {width}x{height}")
                             print(f"  ℹ 进一步降级: 帧数 {original_num_frames} -> {num_frames}, 步数 {original_num_steps} -> {num_inference_steps}")
                         
@@ -1995,6 +2191,9 @@ class VideoGenerator:
                                 frame = (frame * 255).astype(np.uint8)
                             else:
                                 frame = frame.astype(np.uint8)
+                            
+                            # 注意：不在这里应用色彩调整，统一在插帧完成后对所有帧应用一次
+                            # 这样可以避免原始帧被调整两次（提取时一次，插帧后一次）
                             video_frames.append(frame)
                         else:
                             # 转换其他格式
@@ -2007,6 +2206,8 @@ class VideoGenerator:
                         frames = (frames * 255).astype(np.uint8)
                     else:
                         frames = frames.astype(np.uint8)
+                    
+                    # 注意：不在这里应用色彩调整，统一在插帧完成后对所有帧应用一次
                     video_frames.append(frames)
                 else:
                     raise ValueError(f"无法处理numpy数组维度：{frames.shape}")
@@ -2029,6 +2230,8 @@ class VideoGenerator:
                                 frame = (frame * 255).astype(np.uint8)
                             else:
                                 frame = frame.astype(np.uint8)
+                            
+                            # 注意：不在这里应用色彩调整，统一在插帧完成后对所有帧应用一次
                         elif len(frame.shape) == 2:
                             # (h, w) 灰度图，转换为RGB
                             frame = np.stack([frame] * 3, axis=-1)
@@ -2052,10 +2255,101 @@ class VideoGenerator:
                 video_frames = self._interpolate_frames_rife(video_frames, num_frames)
                 print(f"  ✓ 插帧后帧数: {len(video_frames)} 帧")
             
+            # 统一对所有帧应用色彩调整（包括原始帧和插帧生成的帧）
+            # 这样可以确保所有帧都使用相同的调整参数，且只调整一次
+            # 注意：如果所有调整因子都是1.0，则跳过调整（保持原始输出）
+            if brightness_factor != 1.0 or contrast_factor != 1.0 or saturation_factor != 1.0:
+                print(f"  🔧 对所有帧应用色彩调整（brightness={brightness_factor}, contrast={contrast_factor}, saturation={saturation_factor}）")
+                
+                # 添加调试信息：检查第一帧的原始值范围
+                if len(video_frames) > 0:
+                    first_frame = video_frames[0]
+                    if len(first_frame.shape) == 3:
+                        print(f"  ℹ 第一帧原始值范围: min={first_frame.min()}, max={first_frame.max()}, mean={first_frame.mean():.1f}")
+                
+                adjusted_frames = []
+                for i, frame in enumerate(video_frames):
+                    if len(frame.shape) == 3 and frame.shape[2] == 3:
+                        # 转换为float32进行运算
+                        frame_float = frame.astype(np.float32)
+                        
+                        # 1. 调整亮度（线性缩放）
+                        if brightness_factor != 1.0:
+                            frame_float = frame_float * brightness_factor
+                        
+                        # 2. 调整对比度（以128为中心点，因为值已经在[0,255]范围内）
+                        if contrast_factor != 1.0:
+                            # 对比度调整：以128为中心，增强或减弱对比度
+                            frame_float = (frame_float - 128.0) * contrast_factor + 128.0
+                        
+                        # 3. 限制值范围到[0, 255]
+                        frame_float = np.clip(frame_float, 0, 255)
+                        
+                        # 4. 调整饱和度（在HSV色彩空间中）
+                        if saturation_factor != 1.0:
+                            from PIL import Image as PILImage
+                            # 转换为PIL Image进行HSV转换
+                            frame_pil = PILImage.fromarray(frame_float.astype(np.uint8))
+                            # 转换为HSV色彩空间
+                            frame_hsv = np.array(frame_pil.convert('HSV'))
+                            # 调整饱和度（S通道，范围0-255）
+                            frame_hsv[:, :, 1] = np.clip(
+                                (frame_hsv[:, :, 1].astype(np.float32) * saturation_factor),
+                                0, 255
+                            ).astype(np.uint8)
+                            # 转回RGB
+                            frame_corrected = PILImage.fromarray(frame_hsv, mode='HSV').convert('RGB')
+                            frame = np.array(frame_corrected)
+                        else:
+                            frame = frame_float.astype(np.uint8)
+                        
+                        # 添加调试信息：检查调整后的值范围（仅第一帧）
+                        if i == 0:
+                            print(f"  ℹ 第一帧调整后值范围: min={frame.min()}, max={frame.max()}, mean={frame.mean():.1f}")
+                    else:
+                        frame = frame  # 保持原样
+                    
+                    adjusted_frames.append(frame)
+                video_frames = adjusted_frames
+                print(f"  ✓ 色彩调整完成（共{len(video_frames)}帧）")
+            else:
+                print(f"  ℹ 跳过色彩调整（所有调整因子均为1.0，保持原始输出）")
+            
             # 保存视频
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             from diffusers.utils import export_to_video
-            export_to_video(video_frames, str(output_path), fps=fps)
+            from PIL import Image as PILImage
+            
+            # 重要修复：export_to_video 会假设所有 np.ndarray 帧都在 [0,1] 范围内并乘以255
+            # 但我们的帧已经是 [0,255] 范围的 uint8，需要转换为 PIL Image 避免重复处理
+            # 或者确保帧的 dtype 和值范围正确
+            export_frames = []
+            for frame in video_frames:
+                # 确保帧是 uint8 类型，值在 [0, 255] 范围内
+                if isinstance(frame, np.ndarray):
+                    if frame.dtype != np.uint8:
+                        if frame.max() <= 1.0:
+                            frame = (frame * 255).astype(np.uint8)
+                        else:
+                            frame = np.clip(frame, 0, 255).astype(np.uint8)
+                    else:
+                        # 已经是 uint8，确保值在范围内
+                        frame = np.clip(frame, 0, 255).astype(np.uint8)
+                    # 转换为 PIL Image，这样 export_to_video 就不会再次乘以255
+                    frame_pil = PILImage.fromarray(frame, 'RGB')
+                    export_frames.append(frame_pil)
+                elif isinstance(frame, PILImage.Image):
+                    export_frames.append(frame)
+                else:
+                    # 其他类型，尝试转换
+                    frame_array = np.array(frame)
+                    if frame_array.max() <= 1.0:
+                        frame_array = (frame_array * 255).astype(np.uint8)
+                    else:
+                        frame_array = np.clip(frame_array, 0, 255).astype(np.uint8)
+                    export_frames.append(PILImage.fromarray(frame_array, 'RGB'))
+            
+            export_to_video(export_frames, str(output_path), fps=fps)
             
             # 清理中间变量和显存
             del video_frames, frames, result
@@ -2109,8 +2403,32 @@ class VideoGenerator:
         
         # 获取CogVideoX配置
         cogvideox_config = self.video_config.get('cogvideox', {})
-        width = cogvideox_config.get('width', self.video_config.get('width', 1360))
-        height = cogvideox_config.get('height', self.video_config.get('height', 768))
+        
+        # 检查可用显存，如果不足则降低参数
+        if torch.cuda.is_available():
+            available_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3
+            allocated_memory = torch.cuda.memory_allocated() / 1024**3
+            free_memory = available_memory - allocated_memory
+            
+            print(f"  ℹ GPU显存状态: 总计={available_memory:.2f}GB, 已分配={allocated_memory:.2f}GB, 可用={free_memory:.2f}GB")
+            
+            # 如果可用显存少于15GB，降低分辨率
+            if free_memory < 15:
+                print(f"  ⚠ 可用显存不足，降低分辨率以节省显存")
+                width = 1024  # 降低到1024
+                height = 576  # 降低到576（保持16:9比例）
+            else:
+                width = cogvideox_config.get('width', self.video_config.get('width', 1360))
+                height = cogvideox_config.get('height', self.video_config.get('height', 768))
+            
+            # 如果可用显存少于10GB，进一步降低帧数
+            if free_memory < 10:
+                print(f"  ⚠ 可用显存严重不足，降低帧数以节省显存")
+                num_frames = min(num_frames, 49)  # 降低到49帧
+        else:
+            width = cogvideox_config.get('width', self.video_config.get('width', 1360))
+            height = cogvideox_config.get('height', self.video_config.get('height', 768))
+        
         num_inference_steps = cogvideox_config.get('num_inference_steps', 50)
         guidance_scale = cogvideox_config.get('guidance_scale', 6.0)
         use_dynamic_cfg = cogvideox_config.get('use_dynamic_cfg', True)
@@ -2125,7 +2443,7 @@ class VideoGenerator:
                 prompt = config_prompt
             else:
                 # 从图片路径提取信息，构建基础prompt
-                prompt = self._build_detailed_prompt(image_path, image, scene)
+                prompt = self._build_detailed_prompt(image_path, image, scene, model_type="cogvideox")
         
         # 如果prompt仍然为空或太简单，使用默认值
         if not prompt or len(prompt) < 20:
@@ -2136,38 +2454,91 @@ class VideoGenerator:
             negative_prompt = config_negative_prompt
         # 如果仍然为空，使用默认值
         if not negative_prompt:
-            negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes"
+            negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, static, frozen, no motion, still image"
         
         print(f"    Prompt: {prompt[:150]}{'...' if len(prompt) > 150 else ''}")
         print(f"    Negative Prompt: {negative_prompt[:100]}{'...' if len(negative_prompt) > 100 else ''}")
         
-        # 调整图像大小（如果需要）
-        if image.size != (width, height):
-            image = image.resize((width, height), Image.Resampling.LANCZOS)
-            print(f"  ℹ 图像已调整: {image.size}")
+        # 确保分辨率是vae_scale_factor_spatial的倍数（通常是8）
+        # 获取pipeline的vae_scale_factor_spatial（需要在模型加载后）
+        if self.cogvideox_pipeline is not None and hasattr(self.cogvideox_pipeline, 'vae_scale_factor_spatial'):
+            vae_scale_factor = self.cogvideox_pipeline.vae_scale_factor_spatial
+        else:
+            vae_scale_factor = 8  # 默认值
         
-        # 生成视频前清理显存
+        # 调整分辨率使其是vae_scale_factor的倍数
+        width = (width // vae_scale_factor) * vae_scale_factor
+        height = (height // vae_scale_factor) * vae_scale_factor
+        
+        # 确保帧数符合要求（必须是vae_scale_factor_temporal的倍数+1）
+        if self.cogvideox_pipeline is not None and hasattr(self.cogvideox_pipeline, 'vae_scale_factor_temporal'):
+            vae_scale_factor_temporal = self.cogvideox_pipeline.vae_scale_factor_temporal
+        else:
+            vae_scale_factor_temporal = 4  # 默认值
+        
+        # 调整帧数使其符合要求
+        # CogVideoX要求: (num_frames - 1) 必须是 vae_scale_factor_temporal 的倍数
+        if (num_frames - 1) % vae_scale_factor_temporal != 0:
+            # 调整到最近的符合要求的帧数
+            num_frames = ((num_frames - 1) // vae_scale_factor_temporal + 1) * vae_scale_factor_temporal + 1
+            print(f"  ℹ 帧数已调整为符合要求: {num_frames} (vae_scale_factor_temporal={vae_scale_factor_temporal})")
+        
+        print(f"  ℹ 最终参数: 分辨率={width}x{height} (vae_scale_factor={vae_scale_factor}), 帧数={num_frames} (vae_scale_factor_temporal={vae_scale_factor_temporal})")
+        
+        # 注意：不要在这里调整图像大小！
+        # CogVideoX pipeline 会在内部通过 video_processor.preprocess 处理图像
+        # 如果我们提前调整，可能导致尺寸不匹配
+        # pipeline 会确保图像尺寸与 height/width 参数匹配
+        
+        # 生成视频前彻底清理显存
         if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-            gc.collect()
+            # 多次清理以确保释放所有可释放的显存
+            for _ in range(3):
+                torch.cuda.empty_cache()
+                gc.collect()
+            torch.cuda.synchronize()  # 等待所有CUDA操作完成
+            
             allocated_before = torch.cuda.memory_allocated() / 1024**3
-            print(f"  ℹ 生成前显存占用: {allocated_before:.2f}GB")
+            reserved_before = torch.cuda.memory_reserved() / 1024**3
+            print(f"  ℹ 生成前显存: 已分配={allocated_before:.2f}GB, 已保留={reserved_before:.2f}GB")
+            
+            # 如果保留的显存过多，尝试释放
+            if reserved_before > allocated_before * 1.5:
+                print(f"  ℹ 检测到显存碎片，尝试释放...")
+                torch.cuda.empty_cache()
+                gc.collect()
         
         print(f"  开始生成视频（CogVideoX）...")
+        print(f"    分辨率: {width}x{height}, 帧数: {num_frames}, 步数: {num_inference_steps}")
+        
         try:
+            # 确保使用CPU offload（如果启用）
+            if cogvideox_config.get('enable_model_cpu_offload', True):
+                # 确保pipeline已启用CPU offload
+                if hasattr(self.cogvideox_pipeline, 'enable_model_cpu_offload'):
+                    try:
+                        self.cogvideox_pipeline.enable_model_cpu_offload()
+                    except:
+                        pass  # 如果已经启用，忽略错误
+            
             generator = torch.Generator(device="cuda" if torch.cuda.is_available() else "cpu")
             generator.manual_seed(42)
             
             # 调用CogVideoX pipeline
+            # 注意：必须传递height和width参数，确保pipeline使用正确的尺寸
+            # 重要：使用output_type="np"让pipeline自动处理值范围转换（[-1,1] -> [0,255]）
             result = self.cogvideox_pipeline(
                 image=image,
                 prompt=prompt,
                 negative_prompt=negative_prompt,
                 num_inference_steps=num_inference_steps,
                 num_frames=num_frames,
+                height=height,  # 传递调整后的高度
+                width=width,    # 传递调整后的宽度
                 guidance_scale=guidance_scale,
                 use_dynamic_cfg=use_dynamic_cfg,
                 generator=generator,
+                output_type="np",  # 指定输出numpy数组，pipeline会自动处理值范围
             )
             
             # 提取frames（CogVideoX返回CogVideoXPipelineOutput）
@@ -2178,46 +2549,270 @@ class VideoGenerator:
             else:
                 frames = result
             
+            # 添加调试信息
+            print(f"  [DEBUG] result类型: {type(result)}")
+            print(f"  [DEBUG] frames类型: {type(frames)}")
+            if hasattr(frames, 'shape'):
+                print(f"  [DEBUG] frames形状: {frames.shape}")
+            elif isinstance(frames, (list, tuple)):
+                print(f"  [DEBUG] frames是列表/元组，长度: {len(frames)}")
+                if len(frames) > 0:
+                    print(f"  [DEBUG] 第一帧类型: {type(frames[0])}, 形状: {getattr(frames[0], 'shape', 'N/A')}")
+            
             # 转换frames为numpy数组列表
             import numpy as np
             video_frames = []
             
             if isinstance(frames, torch.Tensor):
                 frames_np = frames.cpu().numpy()
+                print(f"  [DEBUG] Tensor转numpy后形状: {frames_np.shape}")
                 del frames
                 frames = frames_np
                 if torch.cuda.is_available():
                     torch.cuda.empty_cache()
             
             if isinstance(frames, np.ndarray):
+                print(f"  [DEBUG] frames是numpy数组，形状: {frames.shape}, dtype: {frames.dtype}")
                 if len(frames.shape) == 5:
+                    # [B, F, H, W, C] -> [F, H, W, C]
                     frames = frames[0]
+                    print(f"  [DEBUG] 去除batch维度后形状: {frames.shape}")
                 if len(frames.shape) == 4:
-                    for i in range(frames.shape[0]):
-                        video_frames.append(frames[i])
+                    # [F, H, W, C] 或 [F, C, H, W]
+                    print(f"  [DEBUG] 4D数组，检查通道维度位置...")
+                    # 检查通道维度：如果最后一维是3或4，说明是 [F, H, W, C]
+                    # 如果第二维是3或4，说明是 [F, C, H, W]
+                    if frames.shape[-1] in [1, 2, 3, 4]:
+                        # [F, H, W, C] 格式
+                        print(f"  [DEBUG] 格式: [F, H, W, C]，帧数={frames.shape[0]}")
+                        for i in range(frames.shape[0]):
+                            frame = frames[i]
+                            # 确保是 [H, W, C] 格式
+                            if len(frame.shape) == 3:
+                                # 添加调试信息
+                                if i < 3:  # 只打印前3帧的详细信息
+                                    print(f"  [DEBUG] 帧{i}转换前: dtype={frame.dtype}, min={frame.min():.4f}, max={frame.max():.4f}, mean={frame.mean():.4f}")
+                                
+                                # 处理值范围：pipeline的postprocess_video将[-1,1]转换为[0,1]
+                                # 需要将[0,1]转换为[0,255]
+                                if frame.max() <= 1.0 and frame.min() >= 0.0:
+                                    # 值在[0,1]范围内，直接转换为[0,255]
+                                    # 不要进行对比度增强，直接使用pipeline返回的结果
+                                    frame = (frame * 255).clip(0, 255).astype(np.uint8)
+                                    
+                                    if i < 3:
+                                        print(f"  [DEBUG] 帧{i}转换后([0,1]->[0,255]): dtype={frame.dtype}, min={frame.min()}, max={frame.max()}, mean={frame.mean():.1f}, range={frame.max()-frame.min()}")
+                                        # 检查是否有异常值
+                                        unique_values = np.unique(frame)
+                                        if len(unique_values) < 10:
+                                            print(f"  [WARNING] 帧{i}只有{len(unique_values)}个不同的值，可能有问题")
+                                        # 检查通道分布
+                                        for c in range(3):
+                                            channel = frame[:, :, c]
+                                            print(f"  [DEBUG] 帧{i}通道{c}: min={channel.min()}, max={channel.max()}, mean={channel.mean():.1f}, std={channel.std():.1f}")
+                                elif frame.min() >= -1.0 and frame.max() <= 1.0:
+                                    # 值在[-1,1]范围内，转换为[0,255]
+                                    frame = ((frame + 1) / 2 * 255).clip(0, 255).astype(np.uint8)
+                                    if i < 3:
+                                        print(f"  [DEBUG] 帧{i}转换后([-1,1]->[0,255]): dtype={frame.dtype}, min={frame.min()}, max={frame.max()}, mean={frame.mean():.1f}")
+                                elif frame.max() > 255 or frame.min() < 0:
+                                    # 值超出范围，先clip再转换
+                                    frame = frame.clip(0, 255).astype(np.uint8)
+                                    if i < 3:
+                                        print(f"  [DEBUG] 帧{i}转换后(clip->[0,255]): dtype={frame.dtype}, min={frame.min()}, max={frame.max()}, mean={frame.mean():.1f}")
+                                else:
+                                    # 值已经在[0,255]范围内，直接转换
+                                    frame = frame.astype(np.uint8)
+                                    if i < 3:
+                                        print(f"  [DEBUG] 帧{i}转换后(直接转换): dtype={frame.dtype}, min={frame.min()}, max={frame.max()}, mean={frame.mean():.1f}")
+                                video_frames.append(frame)
+                            else:
+                                video_frames.append(frame)
+                    elif frames.shape[1] in [1, 2, 3, 4]:
+                        # [F, C, H, W] 格式，需要转换为 [F, H, W, C]
+                        print(f"  [DEBUG] 格式: [F, C, H, W]，转换为 [F, H, W, C]，帧数={frames.shape[0]}")
+                        frames = np.transpose(frames, (0, 2, 3, 1))
+                        for i in range(frames.shape[0]):
+                            frame = frames[i]
+                            # 处理值范围：pipeline的postprocess_video将[-1,1]转换为[0,1]
+                            # 需要将[0,1]转换为[0,255]
+                            if frame.max() <= 1.0 and frame.min() >= 0.0:
+                                # 值在[0,1]范围内，转换为[0,255]
+                                frame = (frame * 255).clip(0, 255).astype(np.uint8)
+                            elif frame.min() >= -1.0 and frame.max() <= 1.0:
+                                # 值在[-1,1]范围内，转换为[0,255]
+                                frame = ((frame + 1) / 2 * 255).clip(0, 255).astype(np.uint8)
+                            elif frame.max() > 255 or frame.min() < 0:
+                                # 值超出范围，先clip再转换
+                                frame = frame.clip(0, 255).astype(np.uint8)
+                            else:
+                                # 值已经在[0,255]范围内，直接转换
+                                frame = frame.astype(np.uint8)
+                            video_frames.append(frame)
+                    else:
+                        # 不确定格式，尝试按第一维处理
+                        print(f"  [DEBUG] 不确定格式，按第一维处理，帧数={frames.shape[0]}")
+                        for i in range(frames.shape[0]):
+                            video_frames.append(frames[i])
+                elif len(frames.shape) == 3:
+                    # [H, W, C] 单帧
+                    print(f"  [DEBUG] 3D数组（单帧），形状: {frames.shape}")
+                    # 确保值在 [0, 255] 范围内
+                    if frames.max() <= 1.0:
+                        frames = (frames * 255).astype(np.uint8)
+                    else:
+                        frames = frames.astype(np.uint8)
+                    video_frames.append(frames)
                 else:
+                    print(f"  [DEBUG] 其他维度，形状: {frames.shape}")
                     video_frames = [frames]
             elif isinstance(frames, (list, tuple)):
-                for f in frames:
+                print(f"  [DEBUG] frames是列表/元组，长度: {len(frames)}")
+                for i, f in enumerate(frames):
                     if isinstance(f, torch.Tensor):
                         f_np = f.cpu().numpy()
+                        print(f"  [DEBUG] 帧{i}: Tensor转numpy，形状: {f_np.shape}")
+                        # 处理多帧数组：如果第一维是帧数，需要拆分
+                        if len(f_np.shape) == 4 and f_np.shape[0] > 1 and f_np.shape[-1] in [1, 2, 3, 4]:
+                            # [F, H, W, C] 格式，需要拆分成多帧
+                            print(f"  [DEBUG] 检测到多帧数组 [F, H, W, C]，帧数={f_np.shape[0]}，拆分成单独帧")
+                            for frame_idx in range(f_np.shape[0]):
+                                frame = f_np[frame_idx]
+                                # 确保值在 [0, 255] 范围内
+                                if frame.max() <= 1.0:
+                                    frame = (frame * 255).astype(np.uint8)
+                                else:
+                                    frame = frame.astype(np.uint8)
+                                video_frames.append(frame)
+                        else:
+                            # 单帧处理
+                            if len(f_np.shape) == 4:
+                                f_np = f_np[0]  # 去除batch维度
+                            if len(f_np.shape) == 3 and f_np.shape[0] in [1, 2, 3, 4]:
+                                # [C, H, W] -> [H, W, C]
+                                f_np = np.transpose(f_np, (1, 2, 0))
+                            # 确保值在 [0, 255] 范围内
+                            if f_np.max() <= 1.0:
+                                f_np = (f_np * 255).astype(np.uint8)
+                            else:
+                                f_np = f_np.astype(np.uint8)
+                            video_frames.append(f_np)
                         del f
-                        video_frames.append(f_np)
                     elif isinstance(f, np.ndarray):
-                        video_frames.append(f)
+                        print(f"  [DEBUG] 帧{i}: numpy数组，形状: {f.shape}")
+                        # 处理多帧数组：如果第一维是帧数，需要拆分
+                        if len(f.shape) == 4 and f.shape[0] > 1 and f.shape[-1] in [1, 2, 3, 4]:
+                            # [F, H, W, C] 格式，需要拆分成多帧
+                            print(f"  [DEBUG] 检测到多帧数组 [F, H, W, C]，帧数={f.shape[0]}，拆分成单独帧")
+                            for frame_idx in range(f.shape[0]):
+                                frame = f[frame_idx]
+                                # 确保值在 [0, 255] 范围内
+                                if frame.max() <= 1.0:
+                                    frame = (frame * 255).astype(np.uint8)
+                                else:
+                                    frame = frame.astype(np.uint8)
+                                video_frames.append(frame)
+                        else:
+                            # 单帧处理
+                            if len(f.shape) == 4:
+                                f = f[0]  # 去除batch维度
+                            if len(f.shape) == 3 and f.shape[0] in [1, 2, 3, 4]:
+                                # [C, H, W] -> [H, W, C]
+                                f = np.transpose(f, (1, 2, 0))
+                            # 确保值在 [0, 255] 范围内
+                            if f.max() <= 1.0:
+                                f = (f * 255).astype(np.uint8)
+                            else:
+                                f = f.astype(np.uint8)
+                            video_frames.append(f)
                     else:
-                        # 假设是PIL Image
-                        video_frames.append(np.array(f))
+                        # 假设是PIL Image或列表
+                        f_np = np.array(f)
+                        print(f"  [DEBUG] 帧{i}: 转换为numpy，形状: {f_np.shape}, dtype: {f_np.dtype}")
+                        # 处理多帧数组
+                        if len(f_np.shape) == 4 and f_np.shape[0] > 1 and f_np.shape[-1] in [1, 2, 3, 4]:
+                            # [F, H, W, C] 格式，需要拆分成多帧
+                            print(f"  [DEBUG] 检测到多帧数组 [F, H, W, C]，帧数={f_np.shape[0]}，拆分成单独帧")
+                            for frame_idx in range(f_np.shape[0]):
+                                frame = f_np[frame_idx].copy()  # 使用copy避免视图问题
+                                # 确保是 [H, W, C] 格式
+                                if len(frame.shape) != 3 or frame.shape[2] not in [1, 2, 3, 4]:
+                                    print(f"  [DEBUG] 警告：帧{frame_idx}形状异常: {frame.shape}")
+                                # 确保值在 [0, 255] 范围内
+                                if frame.max() <= 1.0:
+                                    frame = (frame * 255).astype(np.uint8)
+                                elif frame.dtype != np.uint8:
+                                    frame = frame.astype(np.uint8)
+                                video_frames.append(frame)
+                            print(f"  [DEBUG] 已拆分 {f_np.shape[0]} 帧")
+                        elif len(f_np.shape) == 3:
+                            # 单帧 [H, W, C] 格式
+                            print(f"  [DEBUG] 单帧格式 [H, W, C]")
+                            # 确保值在 [0, 255] 范围内
+                            if f_np.max() <= 1.0:
+                                f_np = (f_np * 255).astype(np.uint8)
+                            elif f_np.dtype != np.uint8:
+                                f_np = f_np.astype(np.uint8)
+                            video_frames.append(f_np)
+                        else:
+                            print(f"  [DEBUG] 其他格式，直接添加: {f_np.shape}")
+                            video_frames.append(f_np)
                 if torch.cuda.is_available():
                     torch.cuda.empty_cache()
             else:
-                # 假设是PIL Image
-                video_frames = [np.array(frames)]
+                # 假设是PIL Image或其他类型
+                print(f"  [DEBUG] frames是其他类型，假设是PIL Image或数组")
+                f_np = np.array(frames)
+                print(f"  [DEBUG] 转换后形状: {f_np.shape}, dtype: {f_np.dtype}")
+                # 处理多帧数组
+                if len(f_np.shape) == 4 and f_np.shape[0] > 1 and f_np.shape[-1] in [1, 2, 3, 4]:
+                    # [F, H, W, C] 格式，需要拆分成多帧
+                    print(f"  [DEBUG] 检测到多帧数组 [F, H, W, C]，帧数={f_np.shape[0]}，拆分成单独帧")
+                    for frame_idx in range(f_np.shape[0]):
+                        frame = f_np[frame_idx].copy()  # 使用copy避免视图问题
+                        # 确保是 [H, W, C] 格式
+                        if len(frame.shape) != 3 or frame.shape[2] not in [1, 2, 3, 4]:
+                            print(f"  [DEBUG] 警告：帧{frame_idx}形状异常: {frame.shape}")
+                        # 确保值在 [0, 255] 范围内
+                        if frame.max() <= 1.0:
+                            frame = (frame * 255).astype(np.uint8)
+                        elif frame.dtype != np.uint8:
+                            frame = frame.astype(np.uint8)
+                        video_frames.append(frame)
+                    print(f"  [DEBUG] 已拆分 {f_np.shape[0]} 帧")
+                elif len(f_np.shape) == 3:
+                    # 单帧 [H, W, C] 格式
+                    print(f"  [DEBUG] 单帧格式 [H, W, C]")
+                    # 确保值在 [0, 255] 范围内
+                    if f_np.max() <= 1.0:
+                        f_np = (f_np * 255).astype(np.uint8)
+                    elif f_np.dtype != np.uint8:
+                        f_np = f_np.astype(np.uint8)
+                    video_frames = [f_np]
+                else:
+                    print(f"  [DEBUG] 其他格式，直接添加: {f_np.shape}")
+                    video_frames = [f_np]
             
             if not video_frames:
                 raise ValueError("生成的视频帧为空")
             
+            # 验证每帧的格式
+            print(f"  [DEBUG] 最终video_frames数量: {len(video_frames)}")
+            for i, frame in enumerate(video_frames[:3]):  # 只检查前3帧
+                print(f"  [DEBUG] 帧{i}: 形状={frame.shape}, dtype={frame.dtype}, min={frame.min()}, max={frame.max()}")
+            
             print(f"  ✓ 生成完成，共 {len(video_frames)} 帧")
+            
+            # 保存第一帧作为调试图像
+            if len(video_frames) > 0:
+                debug_frame_path = output_path.replace('.mp4', '_frame0_debug.png')
+                try:
+                    from PIL import Image
+                    debug_frame = Image.fromarray(video_frames[0], 'RGB')
+                    debug_frame.save(debug_frame_path)
+                    print(f"  ✓ 调试图像已保存: {debug_frame_path}")
+                except Exception as e:
+                    print(f"  ⚠ 保存调试图像失败: {e}")
             
             # 导出视频
             from diffusers.utils import export_to_video
@@ -2477,9 +3072,12 @@ class VideoGenerator:
                                 mid_frame_tensor = mid_frame_tensor.cpu()
                             mid_frame_np = mid_frame_tensor.squeeze(0).permute(1, 2, 0).numpy()
                             # 确保值范围在 0-1，然后转换为 0-255
+                            # 注意：RIFE可能输出超出[0,1]范围的值，需要clip
                             mid_frame_np = np.clip(mid_frame_np, 0, 1)
                             mid_frame = (mid_frame_np * 255.0).astype(np.uint8)
                             
+                            # RIFE插帧后的帧可能色彩过浓，这里先不做调整
+                            # 统一在插帧完成后对所有帧（包括插帧生成的）应用色彩调整
                             interpolated_frames.append(mid_frame)
                             prev_frame = mid_frame
                         except Exception as e:

@@ -359,7 +359,7 @@ async def list_styles(current_user: dict = Depends(verify_api_key)):
             "styles": {},
             "default_style": "realistic",
             "count": 0
-        }
+    }
 
 @app.get("/api/v1/loras")
 async def list_loras():

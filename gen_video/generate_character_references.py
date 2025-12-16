@@ -333,7 +333,8 @@ def main():
         elif ref_dir:
             output_dir = Path(ref_dir) / "character_references"
         else:
-            output_dir = Path("gen_video/character_references")
+            # ⚡ 修复：去掉多余的 gen_video 层级
+            output_dir = Path("character_references")
     
     output_dir.mkdir(parents=True, exist_ok=True)
     print(f"参考图像输出目录: {output_dir}")

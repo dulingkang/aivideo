@@ -32,7 +32,14 @@ class ImageGenerator:
         # 保存 config_path 供后续使用（如 ModelManager）
         self.config_path = Path(config_path)
         if not self.config_path.is_absolute():
-            self.config_path = (Path(__file__).parent.parent / self.config_path).resolve()
+            # 如果传入的是字符串，可能是相对路径，优先使用当前工作目录
+            # 如果当前工作目录下没有，再尝试相对于 image_generator.py 的位置
+            config_candidate = Path.cwd() / self.config_path
+            if config_candidate.exists():
+                self.config_path = config_candidate.resolve()
+            else:
+                # 尝试相对于 image_generator.py 的位置（gen_video 目录）
+                self.config_path = (Path(__file__).parent / self.config_path).resolve()
 
         with open(self.config_path, "r", encoding="utf-8") as f:
             self.config = yaml.safe_load(f)
@@ -156,6 +163,7 @@ class ImageGenerator:
         )
 
         # 角色参考图像目录（用于存储生成的参考图像）
+        # ⚡ 修复：去掉多余的 gen_video 层级
         self.character_reference_dir = self.image_config.get(
             "character_reference_dir")
         if not self.character_reference_dir:
@@ -172,11 +180,11 @@ class ImageGenerator:
                             "*_reference.png")) or any(Path(self.face_reference_dir).glob("*_reference.jpg")):
                         self.character_reference_dir = self.face_reference_dir
                     else:
-                        # 默认路径
-                        self.character_reference_dir = "gen_video/character_references"
+                        # ⚡ 修复：默认路径去掉 gen_video 层级
+                        self.character_reference_dir = "character_references"
             else:
-                # 默认路径
-                self.character_reference_dir = "gen_video/character_references"
+                # ⚡ 修复：默认路径去掉 gen_video 层级
+                self.character_reference_dir = "character_references"
 
         # 加载角色参考图像映射
         self.character_reference_images: Dict[str, Path] = {}
@@ -210,18 +218,19 @@ class ImageGenerator:
         self.scene_reference_keyframes_base = self.scene_reference_config.get(
             "keyframes_base", "processed")
 
-        # InstantID 特定配置
+        # InstantID 特定配置（无论是instantid还是auto模式，都先初始化）
+        # 如果是auto模式，这些属性会在_load_instantid_pipeline时再次检查
+        instantid_width = self.instantid_config.get("width", 1536)
+        instantid_height = self.instantid_config.get("height", 864)
+        self.face_image_path = self.instantid_config.get("face_image_path")
+        self.face_cache_enabled = self.instantid_config.get("enable_face_cache", True)
+        self.face_emb_scale = float(self.instantid_config.get("face_emb_scale", 0.8))
+        self.instantid_width_set = False  # 标记是否已设置InstantID的宽高
+        
         if self.engine == "instantid":
-            instantid_width = self.instantid_config.get("width", 1536)
-            instantid_height = self.instantid_config.get("height", 864)
             self.width = int(instantid_width)
             self.height = int(instantid_height)
-            self.face_image_path = self.instantid_config.get("face_image_path")
-            self.face_cache_enabled = self.instantid_config.get(
-                "enable_face_cache", True)
-            self.face_emb_scale = float(
-                self.instantid_config.get(
-                    "face_emb_scale", 0.8))
+            self.instantid_width_set = True
         elif self.engine == "sdxl":
             # 使用 SDXL 配置
             sdxl_width = self.sdxl_config.get("width", 1280)
@@ -280,6 +289,22 @@ class ImageGenerator:
 
     def _load_instantid_pipeline(self) -> None:
         """加载 InstantID-SDXL-1080P 模型"""
+        # 确保 InstantID 相关属性已初始化（即使是 auto 模式）
+        if not hasattr(self, 'face_cache_enabled'):
+            self.face_cache_enabled = self.instantid_config.get("enable_face_cache", True)
+        if not hasattr(self, 'face_emb_scale'):
+            self.face_emb_scale = float(self.instantid_config.get("face_emb_scale", 0.8))
+        if not hasattr(self, 'face_image_path'):
+            self.face_image_path = self.instantid_config.get("face_image_path")
+        
+        # 如果使用 auto 模式切换到 instantid，也需要更新宽高
+        if not hasattr(self, 'instantid_width_set') or not self.instantid_width_set:
+            instantid_width = self.instantid_config.get("width", 1536)
+            instantid_height = self.instantid_config.get("height", 864)
+            self.width = int(instantid_width)
+            self.height = int(instantid_height)
+            self.instantid_width_set = True
+        
         try:
             from huggingface_hub import hf_hub_download  # noqa: F401
             if not hasattr(huggingface_hub, "cached_download"):
@@ -864,9 +889,22 @@ class ImageGenerator:
 
             if self.use_img2img and self.reference_images:
                 try:
-                    self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline(
-                        **self.pipeline.components)
-                except Exception:
+                    # 尝试使用 components 创建 img2img pipeline
+                    # 注意：如果使用 enable_model_cpu_offload()，components 可能不是标准字典
+                    components = self.pipeline.components
+                    # 检查 components 是否为字典或类似字典的对象，并包含必要的键
+                    if isinstance(components, dict):
+                        required_keys = ['unet', 'vae', 'text_encoder', 'text_encoder_2', 'tokenizer', 'tokenizer_2', 'scheduler']
+                        if all(key in components for key in required_keys):
+                            self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline(**components)
+                        else:
+                            raise KeyError(f"components missing required keys: {set(required_keys) - set(components.keys())}")
+                    else:
+                        # components 不是字典，使用 from_pretrained
+                        raise TypeError("components is not a dictionary")
+                except (KeyError, AttributeError, TypeError) as e:
+                    # 如果 components 方法失败，使用 from_pretrained
+                    print(f"  ℹ 无法使用 pipeline.components 创建 img2img pipeline: {e}，使用 from_pretrained")
                     self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline.from_pretrained(
                         model_path, **pipe_kwargs, )
 
@@ -965,11 +1003,12 @@ class ImageGenerator:
                 import torch
                 
                 print("  ℹ 加载普通 Flux.1 pipeline（不使用 InstantID）...")
+                # ⚡ 修复：FluxPipeline 不支持 torch_dtype/dtype 参数，使用默认 dtype
                 self.flux_pipeline = DiffusionPipeline.from_pretrained(
                     str(flux1_model_path) if isinstance(flux1_model_path, Path) else flux1_model_path,
-                    torch_dtype=torch.bfloat16,
                     device_map="balanced"
                 )
+                # 注意：不手动设置 dtype，让 FluxPipeline 使用其默认 dtype（会自动处理组件间的 dtype 一致性）
                 self.pipeline = self.flux_pipeline
                 self.pipe_name = "flux1"
                 print("  ✅ 普通 Flux.1 pipeline 加载成功")
@@ -1016,15 +1055,46 @@ class ImageGenerator:
             else:
                 dtype = torch.float32
             
+            # ⚡ Flux 性能优化：启用加速选项（根据建议）
+            enable_cpu_offload = flux1_config.get("enable_model_cpu_offload", True)
+            enable_attention_slicing = flux1_config.get("enable_attention_slicing", True)
+            
+            # 注意：device_map 和 enable_model_cpu_offload 不能同时使用
+            # 如果 enable_cpu_offload 为 True，就不使用 device_map
+            if enable_cpu_offload:
+                # 不使用 device_map，稍后使用 enable_model_cpu_offload
+                load_device_map = None
+            else:
+                # 使用 device_map
+                load_device_map = device_map
+            
             # 加载 pipeline
+            # ⚡ 修复：FluxPipeline 不支持 dtype 参数，使用默认 dtype（它会自动处理组件间的 dtype 一致性）
+            load_kwargs = {}
+            if load_device_map is not None:
+                load_kwargs["device_map"] = load_device_map
+            
             self.flux1_pipeline = DiffusionPipeline.from_pretrained(
                 model_path,
-                dtype=dtype,
-                device_map=device_map
+                **load_kwargs
             )
+            # 注意：不手动设置 dtype，因为 FluxPipeline 会自动处理组件间的 dtype 一致性
+            # 手动设置可能导致组件间 dtype 不匹配（如 unet 是 bfloat16 但 text_encoder 是 float32）
+            
+            # 如果未使用 device_map，可以启用 CPU offload
+            if enable_cpu_offload and load_device_map is None:
+                if hasattr(self.flux1_pipeline, "enable_model_cpu_offload"):
+                    self.flux1_pipeline.enable_model_cpu_offload()
+                    print("  ⚡ 已启用 CPU offload（减少显存占用）")
+            elif load_device_map is not None:
+                print(f"  ℹ 使用 device_map={load_device_map}（已自动管理设备分配）")
+            
+            if enable_attention_slicing and hasattr(self.flux1_pipeline, "enable_attention_slicing"):
+                self.flux1_pipeline.enable_attention_slicing()
+                print("  ⚡ 已启用 Attention slicing（加速推理）")
             
             self.pipe_name = "flux1"
-            print("✓ Flux.1 pipeline 加载成功")
+            print("✓ Flux.1 pipeline 加载成功（已优化）")
         except Exception as e:
             raise RuntimeError(f"加载 Flux.1 pipeline 失败: {e}") from e
 
@@ -1063,15 +1133,46 @@ class ImageGenerator:
             else:
                 dtype = torch.float32
             
+            # ⚡ Flux 性能优化：启用加速选项（根据建议）
+            enable_cpu_offload = flux2_config.get("enable_model_cpu_offload", True)
+            enable_attention_slicing = flux2_config.get("enable_attention_slicing", True)
+            
+            # 注意：device_map 和 enable_model_cpu_offload 不能同时使用
+            # 如果 enable_cpu_offload 为 True，就不使用 device_map
+            if enable_cpu_offload:
+                # 不使用 device_map，稍后使用 enable_model_cpu_offload
+                load_device_map = None
+            else:
+                # 使用 device_map
+                load_device_map = device_map
+            
             # 加载 pipeline
+            # ⚡ 修复：FluxPipeline 不支持 dtype 参数，使用默认 dtype（它会自动处理组件间的 dtype 一致性）
+            load_kwargs = {}
+            if load_device_map is not None:
+                load_kwargs["device_map"] = load_device_map
+            
             self.flux2_pipeline = DiffusionPipeline.from_pretrained(
                 model_path,
-                dtype=dtype,
-                device_map=device_map
+                **load_kwargs
             )
+            # 注意：不手动设置 dtype，因为 FluxPipeline 会自动处理组件间的 dtype 一致性
+            # 手动设置可能导致组件间 dtype 不匹配（如 unet 是 bfloat16 但 text_encoder 是 float32）
+            
+            # 如果未使用 device_map，可以启用 CPU offload
+            if enable_cpu_offload and load_device_map is None:
+                if hasattr(self.flux2_pipeline, "enable_model_cpu_offload"):
+                    self.flux2_pipeline.enable_model_cpu_offload()
+                    print("  ⚡ 已启用 CPU offload（减少显存占用）")
+            elif load_device_map is not None:
+                print(f"  ℹ 使用 device_map={load_device_map}（已自动管理设备分配）")
+            
+            if enable_attention_slicing and hasattr(self.flux2_pipeline, "enable_attention_slicing"):
+                self.flux2_pipeline.enable_attention_slicing()
+                print("  ⚡ 已启用 Attention slicing（加速推理）")
             
             self.pipe_name = "flux2"
-            print("✓ Flux.2 pipeline 加载成功")
+            print("✓ Flux.2 pipeline 加载成功（已优化）")
         except Exception as e:
             raise RuntimeError(f"加载 Flux.2 pipeline 失败: {e}") from e
 
@@ -1270,7 +1371,33 @@ class ImageGenerator:
             index: 场景索引（用于循环选择）
             character_id: 角色ID（如果提供，优先使用对应的参考图像）
         """
-        # 如果提供了角色ID，优先使用对应的参考图像
+        # ⚡ 关键修复：韩立角色统一使用 reference_image/hanli_mid.jpg
+        if character_id == "hanli":
+            # 优先级 1：配置中的 face_image_path
+            if hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                ref_path = Path(self.face_image_path)
+                print(f"  ✓ 韩立角色：使用配置中的参考图: {ref_path.name}")
+                return ref_path
+            # 优先级 2：reference_image/hanli_mid.jpg
+            base_paths = [
+                Path(__file__).parent / "reference_image",
+                Path(__file__).parent.parent / "reference_image",
+                Path.cwd() / "reference_image",
+            ]
+            for base in base_paths:
+                hanli_mid_path = base / "hanli_mid.jpg"
+                if hanli_mid_path.exists():
+                    print(f"  ✓ 韩立角色：使用统一参考图: {hanli_mid_path.name}")
+                    return hanli_mid_path
+            # 如果找不到，尝试 .png
+            for base in base_paths:
+                hanli_mid_path = base / "hanli_mid.png"
+                if hanli_mid_path.exists():
+                    print(f"  ✓ 韩立角色：使用统一参考图: {hanli_mid_path.name}")
+                    return hanli_mid_path
+            print(f"  ⚠ 警告：未找到韩立参考图 hanli_mid.jpg，将尝试使用 character_references")
+        
+        # 如果提供了角色ID，优先使用对应的参考图像（非韩立角色）
         if character_id and character_id in self.character_reference_images:
             ref_path = self.character_reference_images[character_id]
             print(f"  ✓ 使用角色参考图像: {character_id} -> {ref_path.name}")
@@ -1363,6 +1490,39 @@ class ImageGenerator:
             raise FileNotFoundError(f"未找到 IP-Adapter 权重目录: {path_obj}")
 
         def _load_into(pipe: Any) -> None:
+            # ⚡ 关键修复：在加载 IP-Adapter 之前，验证 pipeline 的 unet 组件
+            print(f"  🔍 [DEBUG] 准备加载 IP-Adapter，pipeline 类型: {type(pipe).__name__}")
+            try:
+                # 验证 pipeline 是否有 unet 属性
+                if not hasattr(pipe, 'unet'):
+                    raise AttributeError(f"Pipeline {type(pipe).__name__} 缺少 'unet' 属性")
+                # 尝试访问 unet（如果使用 CPU offload，可能需要触发加载）
+                unet = pipe.unet
+                if unet is None:
+                    raise AttributeError(f"Pipeline {type(pipe).__name__}.unet 为 None")
+                print(f"  ✓ Pipeline unet 验证成功: {type(unet).__name__}")
+            except (AttributeError, KeyError) as unet_error:
+                print(f"  ⚠ Pipeline unet 验证失败: {unet_error}")
+                # 尝试通过 components 检查
+                if hasattr(pipe, 'components'):
+                    try:
+                        components = pipe.components
+                        if isinstance(components, dict):
+                            print(f"  🔍 [DEBUG] components 键: {list(components.keys())[:10]}")
+                            if 'unet' not in components:
+                                raise KeyError(f"Pipeline.components 字典中缺少 'unet' 键，现有键: {list(components.keys())[:10]}")
+                        else:
+                            raise TypeError(f"Pipeline.components 不是字典，类型: {type(components)}")
+                    except Exception as comp_error:
+                        print(f"  ⚠ Pipeline.components 检查失败: {comp_error}")
+                        import traceback
+                        print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                        raise RuntimeError(f"Pipeline 组件验证失败，无法加载 IP-Adapter: {unet_error}, components错误: {comp_error}") from unet_error
+                else:
+                    import traceback
+                    print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                    raise RuntimeError(f"Pipeline 缺少 'unet' 属性且没有 'components' 属性: {unet_error}") from unet_error
+            
             # 检查 IP-Adapter 是否已经加载
             ip_adapter_already_loaded = False
             if hasattr(
@@ -1397,6 +1557,7 @@ class ImageGenerator:
                             pass
 
                     # 加载新的 IP-Adapter
+                    print(f"  🔍 [DEBUG] 准备调用 pipe.load_ip_adapter，pipe类型: {type(pipe).__name__}")
                     pipe.load_ip_adapter(
                         str(path_obj),
                         subfolder=subfolder,
@@ -1406,6 +1567,15 @@ class ImageGenerator:
                 except AttributeError as exc:
                     raise RuntimeError(
                         "当前 diffusers 版本不支持 IP-Adapter，请升级到 0.21.0 及以上版本。") from exc
+                except (KeyError, RuntimeError) as e:
+                    # ⚡ 关键修复：捕获 KeyError 'unet' 和其他运行时错误
+                    error_str = str(e)
+                    if isinstance(e, KeyError) and 'unet' in error_str:
+                        import traceback
+                        print(f"  ✗ IP-Adapter 加载失败（KeyError 'unet'）: {e}")
+                        print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                        raise RuntimeError(f"IP-Adapter 加载失败：pipeline.components 字典中缺少 'unet' 键。这可能是因为使用了 CPU offload。请尝试禁用 CPU offload 或重新加载 pipeline。") from e
+                    raise
                 except Exception as e:
                     # 如果加载失败，可能是因为已经加载了不同的 IP-Adapter
                     error_msg = str(e).lower()
@@ -1459,6 +1629,10 @@ class ImageGenerator:
 
         if self.img2img_pipeline is not None:
             _load_into(self.img2img_pipeline)
+        
+        # ⚡ 关键修复：方案2需要使用 sdxl_pipeline，确保 IP-Adapter 也加载到它上面
+        if self.sdxl_pipeline is not None and self.sdxl_pipeline is not self.pipeline and self.sdxl_pipeline is not self.img2img_pipeline:
+            _load_into(self.sdxl_pipeline)
 
     def _load_lora(self) -> None:
         if self.pipeline is None:
@@ -1606,6 +1780,16 @@ class ImageGenerator:
         """
         identified_characters = []
 
+        # ⚡ v2 格式支持：优先检查 character.id 字段
+        character = scene.get("character", {}) or {}
+        if isinstance(character, dict):
+            character_id = character.get("id", "")
+            if character_id:
+                char_id_lower = character_id.lower()
+                if char_id_lower not in identified_characters:
+                    identified_characters.append(char_id_lower)
+                    print(f"  ✓ v2 格式：从 character.id 识别到角色: {character_id}")
+
         # 获取场景文本
         text_parts = [
             scene.get("title", ""),
@@ -1615,11 +1799,17 @@ class ImageGenerator:
         ]
         combined_text = " ".join(str(p) for p in text_parts).lower()
 
-        # 检查 visual.character_pose
+        # 检查 visual 中的相关字段（composition、character_pose等）
         visual = scene.get("visual", {}) or {}
         if isinstance(visual, dict):
+            # 添加 composition（通常包含角色信息，如 "Han Li recalls..."）
+            composition = str(visual.get("composition", "")).lower()
+            if composition:
+                combined_text += " " + composition
+            # 添加 character_pose
             character_pose = str(visual.get("character_pose", "")).lower()
-            combined_text += " " + character_pose
+            if character_pose:
+                combined_text += " " + character_pose
 
         # 角色关键词映射（中文和英文）
         character_keywords = {
@@ -1632,7 +1822,7 @@ class ImageGenerator:
             "weilai_jiejie": ["未来姐姐", "weilai jiejie", "weilai_jiejie", "未来", "science presenter", "host"],
         }
         
-        # 检查 characters 字段（优先）
+        # 检查 characters 字段（v1 格式，优先）
         characters = scene.get("characters", [])
         if characters:
             for char in characters:
@@ -1665,6 +1855,17 @@ class ImageGenerator:
         检查场景描述、标题、提示词中是否包含主角或主持人相关关键词。
         同时识别纯环境场景（只有环境，不需要人物）。
         """
+        # ⚡ v2 格式支持：优先检查 character.present 字段
+        character = scene.get("character", {}) or {}
+        if isinstance(character, dict):
+            character_present = character.get("present", None)
+            if character_present is True:
+                print(f"  ✓ v2 格式：character.present=true，需要角色")
+                return True
+            elif character_present is False:
+                print(f"  ✓ v2 格式：character.present=false，不需要角色")
+                return False
+        
         # 首先检查是否有明确的"纯环境"标记
         if scene.get("environment_only") is True:
             return False
@@ -1808,6 +2009,71 @@ class ImageGenerator:
 
         return False
 
+    def _get_camera_string(self, scene: Dict[str, Any]) -> str:
+        """安全地获取 camera 字段的字符串表示（支持 v1 字符串和 v2 字典格式）"""
+        if not scene:
+            return ""
+        
+        camera = scene.get("camera", "")
+        if not camera:
+            return ""
+        
+        # 如果是字典（v2 格式），转换为字符串
+        if isinstance(camera, dict):
+            parts = []
+            
+            # shot 字段映射
+            shot_map = {
+                "wide": "远景",
+                "medium": "中景",
+                "close_up": "特写",
+                "closeup": "特写",
+                "extreme_close": "极近特写",
+                "full_body": "全身",
+                "long": "长镜头",
+            }
+            shot = camera.get("shot", "")
+            if shot:
+                shot_str = shot_map.get(shot.lower(), shot)
+                parts.append(shot_str)
+            
+            # angle 字段映射
+            angle_map = {
+                "eye_level": "平视",
+                "top_down": "俯拍",
+                "bird_eye": "鸟瞰",
+                "low_angle": "仰拍",
+                "worm_eye": "极低角度",
+                "side": "侧拍",
+                "front": "正面",
+                "back": "背后",
+            }
+            angle = camera.get("angle", "")
+            if angle:
+                angle_str = angle_map.get(angle.lower(), angle)
+                parts.append(angle_str)
+            
+            # movement 字段映射
+            movement_map = {
+                "static": "静止",
+                "pan": "横移",
+                "tilt": "上下摇",
+                "push_in": "推近",
+                "pull_out": "拉远",
+                "orbit": "环绕",
+                "follow": "跟随",
+                "shake": "抖动",
+            }
+            movement = camera.get("movement", "")
+            if movement:
+                movement_str = movement_map.get(movement.lower(), movement)
+                parts.append(movement_str)
+            
+            return " ".join(parts) if parts else ""
+        
+        # 如果是字符串（v1 格式），直接返回
+        return str(camera) if camera else ""
+
     # 注意：以下方法已迁移到 prompt.PromptBuilder
     # - _convert_motion_to_prompt
     # - _convert_camera_to_prompt
@@ -1830,7 +2096,8 @@ class ImageGenerator:
                      script_data: Dict[str,
                                        Any] = None,
                      previous_scene: Optional[Dict[str,
-                                                   Any]] = None) -> str:
+                                                   Any]] = None,
+                     use_semantic_prompt: Optional[bool] = None) -> str:  # ⚡ 新增：是否使用语义化 prompt（FLUX 专用）
         """根据场景数据构建 prompt。
 
         通用版本：基于场景意图分析，智能构建Prompt，不依赖特殊规则。
@@ -1849,7 +2116,8 @@ class ImageGenerator:
             scene=scene,
             include_character=include_character,
             script_data=script_data,
-            previous_scene=previous_scene
+            previous_scene=previous_scene,
+            use_semantic_prompt=use_semantic_prompt  # ⚡ 新增：传递语义化 prompt 标志
         )
 
     # ======================================================================
@@ -1888,6 +2156,13 @@ class ImageGenerator:
             task_type: 任务类型（可选），如 "character", "scene", "batch"
         """
         
+        # ⚡ 调试：记录传入的 reference_image_path
+        print(f"  🔍 调试：generate_image 接收到的 reference_image_path = {reference_image_path}")
+        print(f"  🔍 调试：generate_image 接收到的 face_reference_image_path = {face_reference_image_path}")
+        
+        # ⚡ 关键修复：保存原始的 reference_image_path，防止后续逻辑覆盖
+        original_reference_image_path = reference_image_path
+        
         # 多模型选择逻辑（如果启用自动模式）
         if self.engine == "auto" or model_engine:
             # 构建场景上下文
@@ -1925,17 +2200,57 @@ class ImageGenerator:
                 try:
                     self.load_pipeline(engine=selected_engine)
                 except Exception as e:
-                    print(f"⚠️  加载 {selected_engine} 失败: {e}，回退到 {original_engine}")
-                    self.engine = original_engine
-                    if self.pipeline is None:
-                        self.load_pipeline()
+                    print(f"⚠️  加载 {selected_engine} 失败: {e}")
+                    
+                    # 智能回退：如果是CHARACTER任务且InstantID失败，尝试使用Flux或其他引擎
+                    if selected_engine == "instantid" and task_type_enum == TaskType.CHARACTER:
+                        print(f"  ℹ  CHARACTER任务InstantID失败，尝试使用Flux...")
+                        try:
+                            # 尝试使用Flux.1（支持角色生成）
+                            self.engine = "flux1"
+                            self.load_pipeline(engine="flux1")
+                            print(f"  ✓ 成功回退到 Flux.1")
+                        except Exception as flux_err:
+                            print(f"  ⚠ Flux.1 也加载失败: {flux_err}，回退到 {original_engine}")
+                            self.engine = original_engine
+                            if self.pipeline is None:
+                                # 如果original_engine是auto，尝试加载sdxl作为最后的备选
+                                if original_engine == "auto":
+                                    try:
+                                        self.engine = "sdxl"
+                                        self.load_pipeline(engine="sdxl")
+                                        print(f"  ✓ 回退到 SDXL")
+                                    except:
+                                        self.engine = "auto"
+                                        print(f"  ⚠ 所有引擎加载失败，保持auto模式")
+                                else:
+                                    self.load_pipeline()
+                    else:
+                        # 非CHARACTER任务或非InstantID失败，正常回退
+                        print(f"  回退到 {original_engine}")
+                        self.engine = original_engine
+                        if self.pipeline is None:
+                            # 如果original_engine是auto，尝试加载sdxl作为最后的备选
+                            if original_engine == "auto":
+                                try:
+                                    self.engine = "sdxl"
+                                    self.load_pipeline(engine="sdxl")
+                                    print(f"  ✓ 回退到 SDXL")
+                                except:
+                                    self.engine = "auto"
+                                    print(f"  ⚠ 所有引擎加载失败，保持auto模式")
+                            else:
+                                self.load_pipeline()
         
         # 检查场景中的角色，确定使用哪种生成方法
         use_text_to_image = False
         primary_character = None
         has_character_reference = False
 
-        if scene:
+        # 如果明确指定了task_type="scene"，跳过角色检测，避免误识别
+        skip_character_detection = (task_type == "scene")
+        
+        if scene and not skip_character_detection:
             identified_characters = self._identify_characters_in_scene(scene)
             if identified_characters:
                 primary_character = identified_characters[0]
@@ -1968,11 +2283,29 @@ class ImageGenerator:
                 # 重要：韩立角色应该使用原来的高质量参考图（face_image_path），而不是生成的参考图
                 # 这样可以确保人脸相似度和发型一致性
                 if primary_character == "hanli":
+                    # ⚡ 核心修复：如果配置中LoRA被禁用，不要自动加载LoRA
+                    if not self.use_lora:
+                        character_lora = None  # 配置中LoRA已禁用，不使用LoRA
+                        print(f"  ✓ 检测到角色: {primary_character}（韩立），但配置中LoRA已禁用，不使用LoRA（使用HanLi.prompt模板代替）")
+                    elif character_lora is None:
+                        # 如果未指定 character_lora 且配置中LoRA启用，自动使用 hanli LoRA
+                        character_lora = "hanli"  # 使用 hanli LoRA
+                        print(f"  ✓ 检测到角色: {primary_character}（韩立），自动加载LoRA: {character_lora}")
+                    else:
+                        print(f"  ℹ 检测到角色: {primary_character}（韩立），使用指定的LoRA: {character_lora}")
+                    # 韩立角色：使用仙侠动漫风格（凡人修仙传风格）
+                    # 保持style_lora为None，使用配置中的anime_style LoRA（仙侠动漫风格）
+                    print(f"  ✓ 韩立角色：使用仙侠动漫风格（凡人修仙传风格）")
                     # 韩立使用原来的参考图，不使用 character_reference_images
-                    print(
-                        f"  ℹ 检测到角色: {primary_character}（韩立），使用原来的高质量参考图（跳过生成的参考图）")
-                    # 不设置 face_reference_image_path，让它使用 self.face_image_path
-                    # 这样会使用配置文件中的 韩立_mid.png
+                    # 重要：必须设置 face_reference_image_path 和 has_character_reference，确保使用 InstantID
+                    if hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        face_reference_image_path = Path(self.face_image_path)
+                        has_character_reference = True
+                        print(f"  ✓ 使用韩立的参考图: {face_reference_image_path}")
+                    else:
+                        print(f"  ⚠ 韩立参考图不存在: {self.face_image_path if hasattr(self, 'face_image_path') else '未设置'}")
+                        # 即使参考图不存在，也标记为有角色参考，这样会尝试使用 InstantID
+                        has_character_reference = True
                 elif primary_character in ["kepu_gege", "weilai_jiejie"]:
                     # 科普主持人：使用指定的参考图
                     if primary_character == "kepu_gege":
@@ -2044,32 +2377,154 @@ class ImageGenerator:
             print(f"  ℹ 用户已提供参考图像，跳过场景查询功能（避免加载领域特定索引）")
 
         # 根据引擎类型选择生成方法
-        # 如果使用 InstantID 引擎，只有明确需要面部参考时才使用 InstantID
-        # 对于普通场景（只有场景参考图，没有面部参考图），使用 SDXL + IP-Adapter
+        # 重要：如果检测到hanli角色，必须使用InstantID（SDXL + InstantID），不能使用Flux
+        # 原因：SDXL支持风格LoRA，可以保持风格统一；Flux不支持风格LoRA
+        
+        # 初始化 has_face_reference（必须在检查前初始化）
+        has_face_reference = (
+            (face_reference_image_path is not None and Path(face_reference_image_path).exists()) or
+            has_character_reference or
+            (primary_character == "hanli" and hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists())
+        )
+        
+        # ⚡ 关键修复：提前计算 should_disable_instantid（在所有分支中使用）
+        # 检测top-down + far away + lying场景，禁用InstantID（InstantID在脸部占比<5%时失效）
+        should_disable_instantid = False
+        if scene:
+            camera_desc = self._get_camera_string(scene).lower() if scene else ""
+            prompt_lower_check = prompt.lower()
+            visual = scene.get("visual", {}) or {}
+            composition_text = str(visual.get("composition", "")).lower() if isinstance(visual, dict) else ""
+            environment_text = str(visual.get("environment", "")).lower() if isinstance(visual, dict) else ""
+            all_text = f"{camera_desc} {prompt_lower_check} {composition_text} {environment_text}".lower()
+            
+            is_top_down = any(kw in all_text for kw in ["top-down", "top down", "俯视", "bird's eye", "bird eye", "bird's-eye", "bird-eye", "topdown", "top_down"])
+            is_far_away = any(kw in all_text for kw in ["far away", "distant view", "distant", "wide shot", "long shot", "extreme wide", "faraway"])
+            action_lower = str(scene.get("action", "")).lower() if scene else ""
+            is_lying_check = any(kw in all_text or kw in action_lower for kw in ["lying", "lie", "躺", "lying on", "lie on"])
+            
+            # top-down + far away + lying是InstantID的死刑组合
+            should_disable_instantid = is_top_down and is_far_away and is_lying_check
+        
+        # ⚡ 关键修复：检查场景是否适合使用InstantID
+        # 对于远景+俯拍+低可见度+face_visible=false的场景，InstantID效果很差，应该使用SDXL
+        should_use_instantid_for_hanli = True
+        if primary_character == "hanli" and scene:
+            # 检查v2格式的字段
+            character = scene.get("character", {}) or {}
+            if isinstance(character, dict):
+                face_visible = character.get("face_visible", True)
+                visibility = character.get("visibility", "high")
+                # 如果face_visible=false 或 visibility=low，不适合使用InstantID
+                if face_visible is False or visibility == "low":
+                    should_use_instantid_for_hanli = False
+                    print(f"  ℹ 场景配置：face_visible={face_visible}, visibility={visibility}，不适合使用InstantID，保持当前引擎")
+            
+            # 检查camera配置
+            camera = scene.get("camera", {}) or {}
+            if isinstance(camera, dict):
+                shot = camera.get("shot", "").lower()
+                angle = camera.get("angle", "").lower()
+                # 如果wide+top_down，不适合使用InstantID
+                if shot == "wide" and angle in ["top_down", "topdown", "bird_eye"]:
+                    should_use_instantid_for_hanli = False
+                    print(f"  ℹ 场景配置：shot={shot}, angle={angle}，不适合使用InstantID，保持当前引擎")
+            
+            # 检查generation_policy.allow_face_lock
+            generation_policy = scene.get("generation_policy", {}) or {}
+            if isinstance(generation_policy, dict):
+                allow_face_lock = generation_policy.get("allow_face_lock", True)
+                if allow_face_lock is False:
+                    should_use_instantid_for_hanli = False
+                    print(f"  ℹ 场景配置：allow_face_lock=false，不适合使用InstantID，保持当前引擎")
+            
+            # 如果检测到top-down+far away+lying组合，也不适合使用InstantID
+            if should_disable_instantid:
+                should_use_instantid_for_hanli = False
+                print(f"  ℹ 场景配置：检测到top-down+far away+lying组合，不适合使用InstantID，保持当前引擎")
+        
+        # 重要：如果检测到hanli角色且场景适合，才强制使用InstantID引擎
+        if primary_character == "hanli" and self.engine != "instantid" and should_use_instantid_for_hanli:
+            print(f"  ⚠ 检测到hanli角色，但当前引擎是{self.engine}，切换到InstantID")
+            try:
+                self.engine = "instantid"
+                self.load_pipeline(engine="instantid")
+                print(f"  ✓ 已切换到InstantID引擎")
+            except Exception as e:
+                print(f"  ⚠ 切换到InstantID失败: {e}，继续使用当前引擎")
+        
         if self.engine == "instantid":
-            # 检查是否有面部参考图像（InstantID 需要面部参考）
-            # 注意：只有场景参考图（reference_image_path）不算，需要面部参考图（face_reference_image_path）
-            has_face_reference = (
-                (face_reference_image_path is not None and Path(face_reference_image_path).exists()) or
-                has_character_reference or
-                (primary_character == "hanli" and self.face_image_path and Path(self.face_image_path).exists())
-            )
-
-            # 如果只有场景参考图（reference_image_path），没有面部参考图，使用 SDXL
-            if reference_image_path and not has_face_reference:
-                # 只有场景参考图，使用 SDXL + IP-Adapter（不使用 InstantID）
-                print(f"  ℹ 只有场景参考图，使用 SDXL + IP-Adapter（不使用 InstantID）")
-                use_text_to_image = True
-            elif has_face_reference:
-                # 有面部参考图像，使用 InstantID
-                print(f"  ℹ 使用 InstantID 生成（角色: {primary_character or '未知'}）")
+            # 重要：所有角色统一使用InstantID（SDXL + InstantID），保证风格统一
+            # 原因：
+            # 1. SDXL支持风格LoRA（anime_style），可以保持风格统一
+            # 2. Flux不支持风格LoRA，会导致风格不统一
+            # 3. InstantID可以保证角色人脸一致性
+            if primary_character:
+                # 所有角色都使用InstantID（特别是hanli角色）
+                if not has_face_reference:
+                    # 对于韩立角色，从配置文件获取参考图
+                    if primary_character == "hanli" and hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        face_reference_image_path = Path(self.face_image_path)
+                        has_face_reference = True
+                        has_character_reference = True
+                        print(f"  ✓ {primary_character}角色：使用InstantID，使用配置文件中的参考图: {self.face_image_path}")
+                    else:
+                        print(f"  ⚠ {primary_character}角色缺少参考图，但使用InstantID（SDXL支持风格LoRA，保证风格统一）")
+                        has_face_reference = True  # 强制使用InstantID
+                        has_character_reference = True
+                print(f"  ℹ 使用 InstantID 生成（角色: {primary_character}，SDXL + InstantID + 风格LoRA，保证风格统一）")
+                # 确保hanli角色和其他角色都使用InstantID，不会切换到Flux
+                # has_face_reference已经在上面初始化了，这里只需要确保它被正确设置
+                if primary_character == "hanli" and not has_face_reference:
+                    # 韩立角色必须使用InstantID，即使没有明确的参考图
+                    has_face_reference = True
+                    has_character_reference = True
+                    if hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        face_reference_image_path = Path(self.face_image_path)
             else:
-                # 没有任何参考图像，使用 SDXL 文生图
-                print(f"  ℹ 没有参考图像，使用 SDXL 文生图")
-                use_text_to_image = True
+                # 没有检测到角色的情况
+                # 如果没有检测到角色，检查是否有场景参考图
+                has_face_reference = (
+                    (face_reference_image_path is not None and Path(face_reference_image_path).exists()) or
+                    has_character_reference
+                )
+                
+                # 如果只有场景参考图（reference_image_path），没有面部参考图，使用 Flux.1
+                if reference_image_path and not has_face_reference:
+                    # 只有场景参考图，使用 Flux.1（不使用 InstantID 和 SDXL）
+                    print(f"  ℹ 只有场景参考图，使用 Flux.1（不使用 InstantID 和 SDXL）")
+                    # 切换到 Flux.1 引擎
+                    try:
+                        if self.flux1_pipeline is None:
+                            self.engine = "flux1"
+                            self.load_pipeline(engine="flux1")
+                            print(f"  ✓ 已切换到 Flux.1 引擎")
+                        else:
+                            self.engine = "flux1"
+                            print(f"  ✓ 使用已加载的 Flux.1 pipeline")
+                    except Exception as e:
+                        print(f"  ⚠ Flux.1 加载失败: {e}，回退到 SDXL")
+                        use_text_to_image = True
+                elif not has_face_reference:
+                    # 没有任何参考图像，使用 Flux.1 而不是 SDXL
+                    print(f"  ℹ 没有参考图像，使用 Flux.1（不使用 SDXL）")
+                    try:
+                        if self.flux1_pipeline is None:
+                            self.engine = "flux1"
+                            self.load_pipeline(engine="flux1")
+                            print(f"  ✓ 已切换到 Flux.1 引擎")
+                        else:
+                            self.engine = "flux1"
+                            print(f"  ✓ 使用已加载的 Flux.1 pipeline")
+                    except Exception as e:
+                        print(f"  ⚠ Flux.1 加载失败: {e}，回退到 SDXL")
+                        use_text_to_image = True
 
         # MVP 流程：如果检测到科普主持人且有参考图，使用 ModelManager 的完整流程（与 mvp_main 一致）
-        if primary_character in ["kepu_gege", "weilai_jiejie"] and face_reference_image_path and Path(face_reference_image_path).exists():
+        # 但如果明确指定了task_type="scene"，跳过这个流程，避免生成人物图像
+        if (not skip_character_detection and 
+            primary_character in ["kepu_gege", "weilai_jiejie"] and 
+            face_reference_image_path and Path(face_reference_image_path).exists()):
             try:
                 from model_manager import ModelManager
                 from PIL import Image
@@ -2119,9 +2574,12 @@ class ImageGenerator:
             )
         elif self.engine == "flux1":
             # 使用 Flux.1 生成（实验室/医学场景）
+            # ⚡ 关键修复：传递 reference_image_path 和 face_reference_image_path
             return self._generate_image_flux1(
                 prompt, output_path, negative_prompt, guidance_scale,
-                num_inference_steps, seed, scene=scene
+                num_inference_steps, seed, scene=scene,
+                reference_image_path=reference_image_path,  # ⚡ 新增：传递参考图
+                face_reference_image_path=face_reference_image_path  # ⚡ 新增：传递面部参考图
             )
         elif self.engine == "flux2":
             # 使用 Flux.2 生成（科学背景图、太空/粒子/量子类）
@@ -2129,55 +2587,84 @@ class ImageGenerator:
                 prompt, output_path, negative_prompt, guidance_scale,
                 num_inference_steps, seed, scene=scene
             )
-        elif self.engine == "instantid" and not use_text_to_image:
-            # 韩立角色使用 InstantID（需要参考照片）
-            # 如果之前使用了 SDXL 的 IP-Adapter，需要先卸载它
-            # 因为 InstantID 和 SDXL 使用不同的 IP-Adapter
-            if hasattr(
-                    self.pipeline,
-                    "ip_adapter_image_processor") and self.pipeline.ip_adapter_image_processor is not None:
-                # 检查是否是 SDXL 的 IP-Adapter（通过检查是否有 prepare_ip_adapter_image_embeds 方法）
-                # InstantID 的 IP-Adapter 使用不同的加载方式
-                try:
-                    # 尝试卸载 SDXL 的 IP-Adapter
-                    if hasattr(self.pipeline, "disable_ip_adapter"):
-                        self.pipeline.disable_ip_adapter()
-                        print(
-                            f"  ℹ 已卸载 SDXL 的 IP-Adapter，准备加载 InstantID 的 IP-Adapter")
-                    elif hasattr(self.pipeline, "unload_ip_adapter"):
-                        self.pipeline.unload_ip_adapter()
-                        print(
-                            f"  ℹ 已卸载 SDXL 的 IP-Adapter，准备加载 InstantID 的 IP-Adapter")
-                except Exception as e:
-                    print(f"  ⚠ 无法卸载 SDXL 的 IP-Adapter: {e}，继续使用 InstantID")
+        elif self.engine == "instantid":
+            # InstantID引擎：hanli角色必须使用InstantID生成
+            # 如果没有参考图，尝试从配置文件获取
+            if primary_character == "hanli" and not face_reference_image_path:
+                if hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                    face_reference_image_path = Path(self.face_image_path)
+                    has_face_reference = True
+                    has_character_reference = True
+                    print(f"  ✓ hanli角色：从配置文件获取参考图: {self.face_image_path}")
+            
+            # ⚡ 关键修复：should_disable_instantid已在函数开始处计算，这里直接使用
+            # ⚡ 调试信息：仅在需要时打印（减少日志）
+            if should_disable_instantid:
+                print(f"  ⚠ 检测到top-down + far away + lying场景，禁用InstantID（脸部占比<5%，InstantID失效）")
+                print(f"  ℹ 将使用SDXL/img2img代替InstantID，或后续使用I2V方式生成")
+                use_instantid_for_this_scene = False
+            else:
+                use_instantid_for_this_scene = True
+            
+            # hanli角色通常使用InstantID，但在top-down+far away+lying场景除外
+            if use_instantid_for_this_scene and (primary_character == "hanli" or (not use_text_to_image and (face_reference_image_path and Path(face_reference_image_path).exists()))):
+                # 韩立角色使用 InstantID（需要参考照片）
+                # 如果之前使用了 SDXL 的 IP-Adapter，需要先卸载它
+                # 因为 InstantID 和 SDXL 使用不同的 IP-Adapter
+                if hasattr(
+                        self.pipeline,
+                        "ip_adapter_image_processor") and self.pipeline.ip_adapter_image_processor is not None:
+                    # 检查是否是 SDXL 的 IP-Adapter（通过检查是否有 prepare_ip_adapter_image_embeds 方法）
+                    # InstantID 的 IP-Adapter 使用不同的加载方式
+                    try:
+                        # 尝试卸载 SDXL 的 IP-Adapter
+                        if hasattr(self.pipeline, "disable_ip_adapter"):
+                            self.pipeline.disable_ip_adapter()
+                            print(
+                                f"  ℹ 已卸载 SDXL 的 IP-Adapter，准备加载 InstantID 的 IP-Adapter")
+                        elif hasattr(self.pipeline, "unload_ip_adapter"):
+                            self.pipeline.unload_ip_adapter()
+                            print(
+                                f"  ℹ 已卸载 SDXL 的 IP-Adapter，准备加载 InstantID 的 IP-Adapter")
+                    except Exception as e:
+                        print(f"  ⚠ 无法卸载 SDXL 的 IP-Adapter: {e}，继续使用 InstantID")
 
-            # 确保 InstantID 的 IP-Adapter 已加载
-            # InstantID 的 IP-Adapter 在 _load_instantid_pipeline 中加载
-            # 但如果之前卸载了，需要重新加载
-            # 注意：InstantID 的 IP-Adapter 可能不需要单独加载，因为它可能在创建 pipeline 时已经自动加载
-            # 或者通过其他方式集成，所以这里只是尝试加载，如果失败就跳过
-            ip_adapter_loaded = False
-            # 对于 InstantID，优先检查 image_proj_model_in_features（最准确的标志）
-            if hasattr(self.pipeline, "image_proj_model_in_features"):
-                ip_adapter_loaded = True
-            elif hasattr(self.pipeline, "image_proj_model") and self.pipeline.image_proj_model is not None:
-                # 如果有 image_proj_model 但没有 image_proj_model_in_features，尝试手动设置
-                try:
-                    # InstantID 默认使用 512
-                    self.pipeline.image_proj_model_in_features = 512
+                # 确保 InstantID 的 IP-Adapter 已加载
+                # InstantID 的 IP-Adapter 在 _load_instantid_pipeline 中加载
+                # 但如果之前卸载了，需要重新加载
+                # 注意：InstantID 的 IP-Adapter 可能不需要单独加载，因为它可能在创建 pipeline 时已经自动加载
+                # 或者通过其他方式集成，所以这里只是尝试加载，如果失败就跳过
+                ip_adapter_loaded = False
+                # 对于 InstantID，优先检查 image_proj_model_in_features（最准确的标志）
+                if hasattr(self.pipeline, "image_proj_model_in_features"):
                     ip_adapter_loaded = True
-                    print("  ℹ 已手动设置 image_proj_model_in_features = 512")
-                except Exception as e:
-                    print(f"  ⚠ 无法手动设置 image_proj_model_in_features: {e}")
-            elif hasattr(self.pipeline, "ip_adapter_image_processor") and self.pipeline.ip_adapter_image_processor is not None:
-                ip_adapter_loaded = True
-            elif hasattr(self.pipeline, "prepare_ip_adapter_image_embeds"):
-                # 注意：InstantID 不使用 prepare_ip_adapter_image_embeds，这个检测可能不准确
-                # 但为了兼容性，仍然检查
-                ip_adapter_loaded = True
+                    print("  ✓ 检测到 IP-Adapter 已加载（通过 image_proj_model_in_features）")
+                elif hasattr(self.pipeline, "image_proj_model") and self.pipeline.image_proj_model is not None:
+                    # 如果有 image_proj_model 但没有 image_proj_model_in_features，尝试手动设置
+                    try:
+                        # InstantID 默认使用 512
+                        self.pipeline.image_proj_model_in_features = 512
+                        ip_adapter_loaded = True
+                        print("  ✓ 检测到 IP-Adapter 已加载（通过 image_proj_model），已手动设置 image_proj_model_in_features = 512")
+                    except Exception as e:
+                        print(f"  ⚠ 无法手动设置 image_proj_model_in_features: {e}")
+                        # 即使无法设置，如果 image_proj_model 存在，也认为已加载
+                        ip_adapter_loaded = True
+                        print("  ✓ 检测到 IP-Adapter 已加载（通过 image_proj_model）")
+                elif hasattr(self.pipeline, "ip_adapter_image_processor") and self.pipeline.ip_adapter_image_processor is not None:
+                    ip_adapter_loaded = True
+                    print("  ✓ 检测到 IP-Adapter 已加载（通过 ip_adapter_image_processor）")
+                elif hasattr(self.pipeline, "prepare_ip_adapter_image_embeds"):
+                    # 注意：InstantID 不使用 prepare_ip_adapter_image_embeds，这个检测可能不准确
+                    # 但为了兼容性，仍然检查
+                    ip_adapter_loaded = True
+                    print("  ⚠ 检测到 prepare_ip_adapter_image_embeds（InstantID 可能不使用此方法，但假设已加载）")
 
-            if not ip_adapter_loaded:
-                print(f"  ℹ InstantID 的 IP-Adapter 可能未加载，尝试加载...")
+                # ⚡ 重要：如果 IP-Adapter 已加载，跳过加载步骤，避免错误
+                if ip_adapter_loaded:
+                    print("  ℹ InstantID 的 IP-Adapter 已在 pipeline 创建时加载，跳过重新加载")
+                else:
+                    print(f"  ℹ InstantID 的 IP-Adapter 可能未加载，尝试加载...")
                 try:
                     # 重新加载 InstantID 的 IP-Adapter
                     instantid_config = self.instantid_config
@@ -2220,9 +2707,11 @@ class ImageGenerator:
 
                                         # 检查是否需要 subfolder 参数
                                         if "subfolder" in params:
+                                            # ⚡ 修复：subfolder 不能是 None，应该传递空字符串或不传递
+                                            # InstantID 的 IP-Adapter 通常在根目录，所以使用空字符串
                                             self.pipeline.load_ip_adapter(
                                                 pretrained_path,
-                                                subfolder=None,  # InstantID 的 IP-Adapter 通常在根目录
+                                                subfolder="",  # InstantID 的 IP-Adapter 通常在根目录，使用空字符串而不是 None
                                                 weight_name=weight_name
                                             )
                                         else:
@@ -2271,7 +2760,22 @@ class ImageGenerator:
                                 print(
                                     "  ℹ InstantID 的 IP-Adapter 可能在创建 pipeline 时已经加载，继续...")
                                 # 检查是否已经加载了 IP-Adapter
-                                if hasattr(
+                                # ⚡ 重要：对于 InstantID，优先检查 image_proj_model 和 image_proj_model_in_features
+                                if hasattr(self.pipeline, "image_proj_model_in_features"):
+                                    print(
+                                        "  ✓ 检测到 IP-Adapter 已加载（通过 image_proj_model_in_features）")
+                                    ip_adapter_loaded = True
+                                elif hasattr(self.pipeline, "image_proj_model") and self.pipeline.image_proj_model is not None:
+                                    print(
+                                        "  ✓ 检测到 IP-Adapter 已加载（通过 image_proj_model）")
+                                    # 尝试手动设置 image_proj_model_in_features
+                                    try:
+                                        self.pipeline.image_proj_model_in_features = 512
+                                        print("  ℹ 已手动设置 image_proj_model_in_features = 512")
+                                    except Exception as e:
+                                        print(f"  ⚠ 无法手动设置 image_proj_model_in_features: {e}")
+                                    ip_adapter_loaded = True
+                                elif hasattr(
                                         self.pipeline,
                                         "ip_adapter_image_processor") and self.pipeline.ip_adapter_image_processor is not None:
                                     print(
@@ -2279,7 +2783,7 @@ class ImageGenerator:
                                     ip_adapter_loaded = True
                                 elif hasattr(self.pipeline, "prepare_ip_adapter_image_embeds"):
                                     print(
-                                        "  ✓ 检测到 IP-Adapter 已加载（通过 prepare_ip_adapter_image_embeds）")
+                                        "  ⚠ 检测到 prepare_ip_adapter_image_embeds（InstantID 可能不使用此方法，但假设已加载）")
                                     ip_adapter_loaded = True
                         else:
                             print(
@@ -2293,72 +2797,620 @@ class ImageGenerator:
             else:
                 print(f"  ✓ InstantID 的 IP-Adapter 已加载")
 
-            try:
-                return self._generate_image_instantid(
-                    prompt, output_path, negative_prompt, guidance_scale,
-                    num_inference_steps, seed, face_reference_image_path, scene=scene,
-                    init_image=init_image,  # 传递前一个场景图像用于连贯性
-                    character_lora=character_lora, style_lora=style_lora
-                )
-            except ValueError as e:
-                # 如果 InstantID 无法识别人脸，自动回退到 SDXL 文生图
-                error_msg = str(e)
-                if "未检测到人脸" in error_msg or "no face" in error_msg.lower(
-                ) or "face not detected" in error_msg.lower():
-                    print(f"  ⚠ InstantID 无法识别人脸: {error_msg}")
-                    print(f"  ℹ 自动回退到 SDXL 文生图（不使用参考图像）")
-                    # 回退到 SDXL 文生图，禁用 IP-Adapter
+            # ⚡ 关键修复：如果should_disable_instantid为True，使用两阶段法（方案2）
+            if should_disable_instantid:
+                # 不调用InstantID，让代码继续执行到else分支使用两阶段法
+                pass
+            else:
+                try:
+                    return self._generate_image_instantid(
+                        prompt, output_path, negative_prompt, guidance_scale,
+                        num_inference_steps, seed, face_reference_image_path, scene=scene,
+                        init_image=init_image,  # 传递前一个场景图像用于连贯性
+                        character_lora=character_lora, style_lora=style_lora
+                    )
+                except ValueError as e:
+                    # 如果 InstantID 无法识别人脸，自动回退到 SDXL 文生图
+                    error_msg = str(e)
+                    if "未检测到人脸" in error_msg or "no face" in error_msg.lower(
+                    ) or "face not detected" in error_msg.lower():
+                        print(f"  ⚠ InstantID 无法识别人脸: {error_msg}")
+                        print(f"  ℹ 自动回退到 SDXL 文生图（不使用参考图像）")
+                        # 回退到 SDXL 文生图，禁用 IP-Adapter
+                        return self._generate_image_sdxl(
+                            prompt, output_path, negative_prompt, guidance_scale,
+                            num_inference_steps, seed, reference_image_path=None,
+                            face_reference_image_path=None, use_lora=use_lora, scene=scene,
+                            use_ip_adapter_override=False,  # 禁用 IP-Adapter，使用纯文生图
+                            scene_reference_images=scene_reference_images,  # 传递已选择的场景参考图像
+                            scene_reference_image_for_img2img=scene_reference_image_for_img2img,  # 传递用于img2img的参考图像
+                            character_lora=character_lora, style_lora=style_lora
+                        )
+                    else:
+                        # 其他类型的 ValueError，继续抛出
+                        raise
+            
+            # ⚡ 关键修复：如果should_disable_instantid为True，直接执行两阶段法（方案2）
+            if should_disable_instantid and primary_character == "hanli":
+                print(f"  ⚠ 已跳过InstantID生成，直接执行两阶段法（方案2）")
+                print(f"  📋 Stage A: 查找或生成人设图 -> Stage B: 使用人设图生成场景（SDXL+IP-Adapter）")
+                # 直接执行两阶段法的完整逻辑
+                # ⚡ 方案2：两阶段生成
+                # Stage A: 生成人设图（InstantID，中景/半身，脸优先）
+                # Stage B: 使用人设图作为IP-Adapter输入生成场景（SDXL+IP-Adapter）
+                
+                # 查找或生成人设图
+                hanli_character_image = None
+                
+                # 1. 检查是否已有缓存的人设图
+                character_cache_dir = Path(output_path).parent / "character_cache"
+                character_cache_dir.mkdir(parents=True, exist_ok=True)
+                cached_character_path = character_cache_dir / "hanli_character.png"
+                
+                if cached_character_path.exists():
+                    hanli_character_image = cached_character_path
+                    print(f"  ✓ Stage A: 找到缓存的人设图: {hanli_character_image}")
+                else:
+                    # 2. 使用现有的素材图（如果有）
+                    if face_reference_image_path and Path(face_reference_image_path).exists():
+                        hanli_character_image = face_reference_image_path
+                        print(f"  ✓ Stage A: 使用传入的韩立素材图作为人设图: {face_reference_image_path}")
+                    elif hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        hanli_character_image = Path(self.face_image_path)
+                        print(f"  ✓ Stage A: 从配置文件获取韩立素材图作为人设图: {self.face_image_path}")
+                    elif hasattr(self, 'face_reference_dir') and self.face_reference_dir:
+                        face_ref_dir = Path(self.face_reference_dir)
+                        if face_ref_dir.exists():
+                            # 查找中景素材图（优先）
+                            mid_images = list(face_ref_dir.glob("hanli_mid*.png")) + list(face_ref_dir.glob("hanli_mid*.jpg"))
+                            if mid_images:
+                                hanli_character_image = mid_images[0]
+                                print(f"  ✓ Stage A: 从face_reference_dir找到中景素材图作为人设图: {hanli_character_image}")
+                            else:
+                                # 查找其他韩立素材图
+                                other_images = list(face_ref_dir.glob("hanli*.png")) + list(face_ref_dir.glob("hanli*.jpg"))
+                                if other_images:
+                                    hanli_character_image = other_images[0]
+                                    print(f"  ✓ Stage A: 从face_reference_dir找到素材图作为人设图: {hanli_character_image}")
+                    
+                    # 3. 如果没有素材图，生成人设图（Stage A）
+                    if not hanli_character_image or not Path(hanli_character_image).exists():
+                        print(f"  📋 Stage A: 未找到素材图，生成人设图（InstantID，中景/半身，脸优先）")
+                        # 生成人设图的prompt（方案2推荐）
+                        character_prompt = "Han Li, young male cultivator, dark green robe, black hair tied back, calm and serious expression, front view, upper body, Chinese xianxia anime illustration, clean background"
+                        character_negative = "multiple people, extra limbs, deformed face, wrong clothes, modern clothing, armor, helmet, standing, walking, extreme long shot, tiny character, text, watermark"
+                        
+                        # 确保使用InstantID pipeline（此时self.engine已经是instantid）
+                        if self.engine != "instantid":
+                            original_engine = self.engine
+                            self.engine = "instantid"
+                            self.load_pipeline(engine="instantid")
+                            print(f"  ✓ 已切换到InstantID引擎（从{original_engine}）用于生成人设图")
+                        
+                        # 确保有参考图
+                        stage_a_face_ref = face_reference_image_path
+                        if not stage_a_face_ref and hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                            stage_a_face_ref = Path(self.face_image_path)
+                        
+                        try:
+                            # 生成人设图（使用InstantID，中景，脸优先）
+                            print(f"  🎨 Stage A: 生成人设图: {character_prompt[:60]}...")
+                            hanli_character_image = self._generate_image_instantid(
+                                character_prompt,
+                                cached_character_path,
+                                character_negative,
+                                guidance_scale=6.5,  # 方案2推荐值
+                                num_inference_steps=40,  # 方案2推荐值
+                                seed=seed,
+                                face_reference_image_path=stage_a_face_ref,
+                                scene=None,  # 人设图不需要场景信息
+                                character_lora=None,  # 人设图不使用LoRA
+                                style_lora=None
+                            )
+                            print(f"  ✓ Stage A完成: 人设图已生成并缓存: {hanli_character_image}")
+                        except Exception as e:
+                            print(f"  ⚠ Stage A失败: 无法生成人设图: {e}")
+                            print(f"  ℹ 将使用现有素材图或纯文生图")
+                            # 如果生成失败，尝试使用现有素材图
+                            if face_reference_image_path and Path(face_reference_image_path).exists():
+                                hanli_character_image = face_reference_image_path
+                                print(f"  ✓ 使用现有素材图: {hanli_character_image}")
+                
+                # Stage B: 使用人设图作为IP-Adapter输入生成场景
+                # ⚡ 关键修复：检测是否是 wide + top_down + lying 场景
+                # 如果是，则禁用 LoRA 和 IP-Adapter（当作"剪影+氛围"镜头处理）
+                is_wide_topdown_lying = False
+                if scene:
+                    camera = scene.get("camera", {}) or {}
+                    character_data = scene.get("character", {}) or {}
+                    camera_shot = camera.get("shot", "medium")
+                    camera_angle = camera.get("angle", "eye_level")
+                    character_pose = character_data.get("pose", "")
+                    is_wide_topdown_lying = (
+                        camera_shot == "wide" and 
+                        camera_angle == "top_down" and 
+                        character_pose in ["lying_motionless", "lying"]
+                    )
+                
+                if hanli_character_image and Path(hanli_character_image).exists():
+                    if is_wide_topdown_lying:
+                        # ⚡ 关键修复：wide + top_down + lying 场景，禁用 LoRA 和 IP-Adapter
+                        # 原因：人物只有 10-15% 像素，LoRA 和 IP-Adapter 会导致脸崩、比例怪
+                        # 这类镜头当作"剪影+氛围"处理，不追求人脸一致性
+                        print(f"  📋 Stage B: wide + top_down + lying 场景，使用纯文生图（禁用 LoRA 和 IP-Adapter）")
+                        print(f"  ⚠ 这类镜头当作'剪影+氛围'处理，不追求人脸一致性")
+                        reference_image_path = None  # 不使用人设图
+                        stage_b_character_lora = None  # 禁用角色 LoRA
+                        stage_b_style_lora = ""  # 禁用风格 LoRA
+                        stage_b_use_lora = False  # 禁用 LoRA
+                        stage_b_use_ip_adapter = False  # 禁用 IP-Adapter
+                        print(f"  ✓ Stage B: 已禁用所有 LoRA 和 IP-Adapter（避免姿态冲突和脸崩）")
+                    else:
+                        # 非 wide + top_down + lying 场景，使用正常的两阶段法
+                        print(f"  📋 Stage B: 使用人设图生成场景（SDXL+IP-Adapter）")
+                        print(f"  📸 人设图: {hanli_character_image}")
+                        # 将人设图作为IP-Adapter的参考图像（方案2推荐：使用IP-Adapter而不是img2img）
+                        reference_image_path = hanli_character_image
+                        # ⚡ 修复：提高IP-Adapter scale到0.85，确保人设图影响足够强
+                        self._two_stage_ip_adapter_scale = 0.85
+                        print(f"  ✓ 将使用人设图作为IP-Adapter输入（ip_adapter_scale=0.85，确保人设图影响足够强）")
+                        
+                        # ⚡ 修复：Stage B必须使用LoRA，确保角色和风格正确
+                        # 即使配置中禁用了LoRA，两阶段法也需要使用LoRA来保证角色一致性
+                        stage_b_character_lora = character_lora if character_lora is not None else "hanli"
+                        # ⚡ 修复：强制使用anime_style LoRA（仙侠风格），即使配置中禁用了
+                        if style_lora is not None:
+                            stage_b_style_lora = style_lora
+                        else:
+                            # 从配置中读取anime_style LoRA的adapter_name
+                            style_lora_config = self.lora_config.get("style_lora", {})
+                            if isinstance(style_lora_config, dict) and style_lora_config.get("adapter_name"):
+                                stage_b_style_lora = style_lora_config.get("adapter_name")  # 通常是"anime_style"
+                            else:
+                                stage_b_style_lora = "anime_style"  # 默认值
+                        stage_b_use_lora = True  # 强制启用LoRA
+                        stage_b_use_ip_adapter = True  # 使用 IP-Adapter
+                        print(f"  ✓ Stage B强制使用LoRA: character_lora={stage_b_character_lora}, style_lora={stage_b_style_lora}（确保修仙风格）")
+                    
+                    # ⚡ 修复：强制在prompt最前面添加高权重的lying描述，确保人物躺着
+                    import re
+                    # 检查prompt中是否已有lying描述
+                    has_lying = bool(re.search(r'lying|lie|躺', prompt, re.IGNORECASE))
+                    
+                    if has_lying:
+                        # 如果已有lying，检查权重是否足够高（至少3.0）
+                        lying_weight_match = re.search(r'\([^)]*lying[^)]*:([\d.]+)\)', prompt, re.IGNORECASE)
+                        if lying_weight_match:
+                            lying_weight = float(lying_weight_match.group(1))
+                            if lying_weight < 3.0:
+                                # 权重不够，在开头添加更高权重的lying描述
+                                # ⚡ 关键修复：使用物理接触描述而不是 NOT sitting（SDXL 对 NOT 不敏感）
+                                enhanced_lying = "(body fully on the ground, back touching the sand, legs fully extended on the ground, arms lying flat on the sand, no bent knees, horizontal position:3.0)"
+                                prompt = f"{enhanced_lying}, {prompt}"
+                                print(f"  ✓ 已提升lying描述权重到3.0（最高优先级），确保人物躺着")
+                        else:
+                            # 没有权重标记，在开头添加高权重描述
+                            enhanced_lying = "(lying on desert sand, lying on ground, NOT standing, NOT sitting, horizontal position, prone, supine:3.0)"
+                            prompt = f"{enhanced_lying}, {prompt}"
+                            print(f"  ✓ 已在prompt最前面添加lying描述（权重3.0），确保人物躺着")
+                    else:
+                        # 完全没有lying描述，在开头添加
+                        enhanced_lying = "(lying on desert sand, lying on ground, NOT standing, NOT sitting, horizontal position, prone, supine:3.0)"
+                        prompt = f"{enhanced_lying}, {prompt}"
+                        print(f"  ✓ 已在prompt最前面添加lying描述（权重3.0），确保人物躺着")
+                    
+                    # ⚡ 方案2：不需要切换pipeline，_generate_image_sdxl会自动处理InstantID pipeline
+                    # 调用SDXL生成方法（根据场景决定是否使用IP-Adapter）
+                    return self._generate_image_sdxl(
+                        prompt, output_path, negative_prompt, guidance_scale,
+                        num_inference_steps, seed, reference_image_path=reference_image_path,
+                        face_reference_image_path=None, use_lora=stage_b_use_lora, scene=scene,
+                        use_ip_adapter_override=stage_b_use_ip_adapter,  # ⚡ 关键修复：根据场景决定是否使用IP-Adapter
+                        scene_reference_images=scene_reference_images,
+                        scene_reference_image_for_img2img=None,  # 方案2不使用img2img
+                        character_lora=stage_b_character_lora, style_lora=stage_b_style_lora
+                    )
+                else:
+                    print(f"  ⚠ 未找到人设图，将使用纯文生图（建议配置face_image_path或face_reference_dir）")
+                    # 如果没有人设图，回退到纯文生图
                     return self._generate_image_sdxl(
                         prompt, output_path, negative_prompt, guidance_scale,
                         num_inference_steps, seed, reference_image_path=None,
                         face_reference_image_path=None, use_lora=use_lora, scene=scene,
-                        use_ip_adapter_override=False,  # 禁用 IP-Adapter，使用纯文生图
-                        scene_reference_images=scene_reference_images,  # 传递已选择的场景参考图像
-                        scene_reference_image_for_img2img=scene_reference_image_for_img2img,  # 传递用于img2img的参考图像
+                        use_ip_adapter_override=False,  # 禁用IP-Adapter
+                        scene_reference_images=scene_reference_images,
+                        scene_reference_image_for_img2img=scene_reference_image_for_img2img,
                         character_lora=character_lora, style_lora=style_lora
                     )
-                else:
-                    # 其他类型的 ValueError，继续抛出
-                    raise
         else:
-            # 使用 SDXL（包括：只有场景参考图、没有参考图、非韩立角色等情况）
+            # 检查是否是hanli角色但使用了其他引擎（应该使用InstantID）
+            # ⚡ 关键修复：但如果场景不适合使用InstantID，不强制切换
+            # 需要同时检查 should_use_instantid_for_hanli 和 should_disable_instantid
+            if primary_character == "hanli" and should_use_instantid_for_hanli and not should_disable_instantid:
+                print(f"  ⚠ hanli角色但当前引擎是{self.engine}，应该使用InstantID，切换到InstantID...")
+                try:
+                    # 切换到InstantID
+                    original_engine = self.engine
+                    original_pipeline = self.pipeline
+                    self.engine = "instantid"
+                    self.load_pipeline(engine="instantid")
+                    print(f"  ✓ 已切换到InstantID引擎（从{original_engine}）")
+                    # 确保有参考图
+                    if not face_reference_image_path and hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        face_reference_image_path = Path(self.face_image_path)
+                        print(f"  ✓ hanli角色：从配置文件获取参考图: {self.face_image_path}")
+                    # 直接调用InstantID生成方法（避免递归）
+                    return self._generate_image_instantid(
+                        prompt, output_path, negative_prompt, guidance_scale,
+                        num_inference_steps, seed, face_reference_image_path, scene=scene,
+                        init_image=init_image,
+                        character_lora=character_lora, style_lora=style_lora
+                    )
+                except Exception as e:
+                    print(f"  ⚠ 切换到InstantID失败: {e}，继续使用当前引擎{self.engine}")
+                    # 如果切换失败，恢复原来的pipeline
+                    if original_pipeline:
+                        self.pipeline = original_pipeline
+                    # 继续使用当前引擎（但这不是理想情况）
+            elif primary_character == "hanli" and (not should_use_instantid_for_hanli or should_disable_instantid):
+                print(f"  ✓ hanli角色但检测到top-down+far away+lying场景，已禁用InstantID，使用两阶段法（方案2）")
+                
+                # ⚡ 关键修复：检测是否是 wide + top_down + lying 场景
+                # 如果是，则禁用所有 LoRA 和 IP-Adapter（当作"剪影+氛围"镜头处理）
+                is_wide_topdown_lying = False
+                if scene:
+                    camera = scene.get("camera", {}) or {}
+                    character_data = scene.get("character", {}) or {}
+                    camera_shot = camera.get("shot", "medium")
+                    camera_angle = camera.get("angle", "eye_level")
+                    character_pose = character_data.get("pose", "")
+                    is_wide_topdown_lying = (
+                        camera_shot == "wide" and 
+                        camera_angle == "top_down" and 
+                        character_pose in ["lying_motionless", "lying"]
+                    )
+                
+                # ⚡ 关键修复：只有在非 wide+top_down+lying 场景才启用风格锚点
+                # wide + top_down + lying 场景：禁用所有 LoRA 和 IP-Adapter
+                if is_wide_topdown_lying:
+                    print(f"  ⚠ wide + top_down + lying 场景：禁用所有 LoRA 和 IP-Adapter（当作'剪影+氛围'处理）")
+                    style_lora = ""  # 禁用风格 LoRA
+                    character_lora = None  # 禁用角色 LoRA
+                    # ⚡ 关键修复：增强 negative prompt，添加多人排除词
+                    if negative_prompt is None:
+                        negative_prompt = self.negative_prompt
+                    # 添加多人排除词（确保只生成一个人物）
+                    multiple_people_negative = "multiple people, two people, crowd, group of people, several people, many people, extra people, additional person, duplicate person"
+                    if negative_prompt:
+                        negative_prompt = f"{negative_prompt}, {multiple_people_negative}"
+                    else:
+                        negative_prompt = multiple_people_negative
+                    print(f"  ✓ 增强 negative prompt：添加多人排除词（确保只生成一个人物）")
+                elif style_lora is None or style_lora == "":
+                    # 检查 Execution Planner 是否返回了 style_anchor 配置
+                    style_anchor = None
+                    if scene:
+                        # 尝试从 Execution Planner 决策中获取 style_anchor
+                        # 如果 Execution Planner 已经返回了 style_anchor，使用它
+                        # 否则，使用默认的凡人修仙传风格 LoRA
+                        style_anchor = {
+                            "type": "lora",
+                            "name": "fanren_style",  # 默认使用 anime_style（凡人修仙传风格）
+                            "weight": 0.35,  # 低权重，只绑定风格，不抢戏
+                            "enabled": True
+                        }
+                    
+                    if style_anchor and style_anchor.get("enabled", False):
+                        # 使用 Execution Planner 指定的风格 LoRA
+                        style_lora_name = style_anchor.get("name", "anime_style")
+                        style_lora_weight = style_anchor.get("weight", 0.35)
+                        # 映射 fanren_style 到实际的 LoRA 名称
+                        if style_lora_name == "fanren_style":
+                            style_lora_name = "anime_style"  # 使用配置中的 anime_style LoRA
+                        style_lora = style_lora_name
+                        print(f"  ✓ 启用风格锚点（风格 LoRA）: {style_lora_name}，权重: {style_lora_weight}")
+                        # 注意：权重会在 _load_lora 中应用
+                # ⚡ 方案2：两阶段生成
+                # Stage A: 生成人设图（InstantID，中景/半身，脸优先）
+                # Stage B: 使用人设图作为IP-Adapter输入生成场景（SDXL+IP-Adapter）
+                
+                # 查找或生成人设图
+                hanli_character_image = None
+                
+                # 1. 检查是否已有缓存的人设图
+                character_cache_dir = Path(output_path).parent / "character_cache"
+                character_cache_dir.mkdir(parents=True, exist_ok=True)
+                cached_character_path = character_cache_dir / "hanli_character.png"
+                
+                if cached_character_path.exists():
+                    hanli_character_image = cached_character_path
+                    print(f"  ✓ 找到缓存的人设图: {hanli_character_image}")
+                else:
+                    # 2. 使用现有的素材图（如果有）
+                    if face_reference_image_path and Path(face_reference_image_path).exists():
+                        hanli_character_image = face_reference_image_path
+                        print(f"  ✓ 使用传入的韩立素材图作为人设图: {face_reference_image_path}")
+                    elif hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        hanli_character_image = Path(self.face_image_path)
+                        print(f"  ✓ 从配置文件获取韩立素材图作为人设图: {self.face_image_path}")
+                    elif hasattr(self, 'face_reference_dir') and self.face_reference_dir:
+                        face_ref_dir = Path(self.face_reference_dir)
+                        if face_ref_dir.exists():
+                            # 查找中景素材图（优先）
+                            mid_images = list(face_ref_dir.glob("hanli_mid*.png")) + list(face_ref_dir.glob("hanli_mid*.jpg"))
+                            if mid_images:
+                                hanli_character_image = mid_images[0]
+                                print(f"  ✓ 从face_reference_dir找到中景素材图作为人设图: {hanli_character_image}")
+                            else:
+                                # 查找其他韩立素材图
+                                other_images = list(face_ref_dir.glob("hanli*.png")) + list(face_ref_dir.glob("hanli*.jpg"))
+                                if other_images:
+                                    hanli_character_image = other_images[0]
+                                    print(f"  ✓ 从face_reference_dir找到素材图作为人设图: {hanli_character_image}")
+                    
+                    # 3. 如果没有素材图，生成人设图（Stage A）
+                    if not hanli_character_image or not Path(hanli_character_image).exists():
+                        print(f"  📋 Stage A: 生成人设图（InstantID，中景/半身，脸优先）")
+                        # 生成人设图的prompt（方案2推荐）
+                        character_prompt = "Han Li, young male cultivator, dark green robe, black hair tied back, calm and serious expression, front view, upper body, Chinese xianxia anime illustration, clean background"
+                        character_negative = "multiple people, extra limbs, deformed face, wrong clothes, modern clothing, armor, helmet, standing, walking, extreme long shot, tiny character, text, watermark"
+                        
+                        # 确保使用InstantID pipeline
+                        if self.engine != "instantid":
+                            original_engine = self.engine
+                            self.engine = "instantid"
+                            self.load_pipeline(engine="instantid")
+                            print(f"  ✓ 已切换到InstantID引擎（从{original_engine}）用于生成人设图")
+                        
+                        # 确保有参考图
+                        stage_a_face_ref = face_reference_image_path
+                        if not stage_a_face_ref and hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                            stage_a_face_ref = Path(self.face_image_path)
+                        
+                        try:
+                            # 生成人设图（使用InstantID，中景，脸优先）
+                            print(f"  🎨 生成人设图: {character_prompt[:60]}...")
+                            hanli_character_image = self._generate_image_instantid(
+                                character_prompt,
+                                cached_character_path,
+                                character_negative,
+                                guidance_scale=6.5,  # 方案2推荐值
+                                num_inference_steps=40,  # 方案2推荐值
+                                seed=seed,
+                                face_reference_image_path=stage_a_face_ref,
+                                scene=None,  # 人设图不需要场景信息
+                                character_lora=None,  # 人设图不使用LoRA
+                                style_lora=None
+                            )
+                            print(f"  ✓ Stage A完成: 人设图已生成并缓存: {hanli_character_image}")
+                        except Exception as e:
+                            print(f"  ⚠ Stage A失败: 无法生成人设图: {e}")
+                            print(f"  ℹ 将使用现有素材图或纯文生图")
+                            # 如果生成失败，尝试使用现有素材图
+                            if face_reference_image_path and Path(face_reference_image_path).exists():
+                                hanli_character_image = face_reference_image_path
+                                print(f"  ✓ 使用现有素材图: {hanli_character_image}")
+                
+                # Stage B: 使用人设图作为IP-Adapter输入生成场景
+                if hanli_character_image and Path(hanli_character_image).exists():
+                    if is_wide_topdown_lying:
+                        # ⚡ 关键修复：wide + top_down + lying 场景，禁用 LoRA 和 IP-Adapter
+                        # 原因：人物只有 10-15% 像素，LoRA 和 IP-Adapter 会导致脸崩、比例怪
+                        # 这类镜头当作"剪影+氛围"处理，不追求人脸一致性
+                        print(f"  📋 Stage B: wide + top_down + lying 场景，使用纯文生图（禁用 LoRA 和 IP-Adapter）")
+                        print(f"  ⚠ 这类镜头当作'剪影+氛围'处理，不追求人脸一致性")
+                        reference_image_path = None  # 不使用人设图
+                        use_ip_adapter_for_this = False  # 禁用 IP-Adapter
+                        stage_b_character_lora = None  # 禁用角色 LoRA
+                        stage_b_style_lora = ""  # 禁用风格 LoRA
+                        stage_b_use_lora = False  # 禁用 LoRA
+                        print(f"  ✓ Stage B: 已禁用所有 LoRA 和 IP-Adapter（避免姿态冲突和脸崩）")
+                    else:
+                        # 非 wide + top_down + lying 场景，使用正常的两阶段法
+                        print(f"  📋 Stage B: 使用人设图生成场景（SDXL+IP-Adapter）")
+                        print(f"  📸 人设图: {hanli_character_image}")
+                        # 将人设图作为IP-Adapter的参考图像（方案2推荐：使用IP-Adapter而不是img2img）
+                        reference_image_path = hanli_character_image
+                        use_ip_adapter_for_this = True
+                        # ⚡ 修复：提高IP-Adapter scale到0.85，确保人设图影响足够强
+                        self._two_stage_ip_adapter_scale = 0.85
+                        print(f"  ✓ 将使用人设图作为IP-Adapter输入（ip_adapter_scale=0.85，确保人设图影响足够强）")
+                        
+                        # ⚡ 修复：Stage B必须使用LoRA，确保角色和风格正确
+                        # 即使配置中禁用了LoRA，两阶段法也需要使用LoRA来保证角色一致性
+                        stage_b_character_lora = character_lora if character_lora is not None else "hanli"
+                        # ⚡ 修复：强制使用anime_style LoRA（仙侠风格），即使配置中禁用了
+                        if style_lora is not None and style_lora != "":
+                            stage_b_style_lora = style_lora
+                        else:
+                            # 从配置中读取anime_style LoRA的adapter_name
+                            style_lora_config = self.lora_config.get("style_lora", {})
+                            if isinstance(style_lora_config, dict) and style_lora_config.get("adapter_name"):
+                                stage_b_style_lora = style_lora_config.get("adapter_name")  # 通常是"anime_style"
+                            else:
+                                stage_b_style_lora = "anime_style"  # 默认值
+                        stage_b_use_lora = True  # 强制启用LoRA
+                        print(f"  ✓ Stage B强制使用LoRA: character_lora={stage_b_character_lora}, style_lora={stage_b_style_lora}（确保修仙风格）")
+                    
+                    # ⚡ 修复：强制在prompt最前面添加高权重的lying描述，确保人物躺着
+                    import re
+                    # 检查prompt中是否已有lying描述
+                    has_lying = bool(re.search(r'lying|lie|躺', prompt, re.IGNORECASE))
+                    
+                    if has_lying:
+                        # 如果已有lying，检查权重是否足够高（至少3.0）
+                        lying_weight_match = re.search(r'\([^)]*lying[^)]*:([\d.]+)\)', prompt, re.IGNORECASE)
+                        if lying_weight_match:
+                            lying_weight = float(lying_weight_match.group(1))
+                            if lying_weight < 3.0:
+                                # 权重不够，在开头添加更高权重的lying描述
+                                # ⚡ 关键修复：使用物理接触描述而不是 NOT sitting（SDXL 对 NOT 不敏感）
+                                enhanced_lying = "(body fully on the ground, back touching the sand, legs fully extended on the ground, arms lying flat on the sand, no bent knees, horizontal position:3.0)"
+                                prompt = f"{enhanced_lying}, {prompt}"
+                                print(f"  ✓ 已提升lying描述权重到3.0（最高优先级），确保人物躺着")
+                        else:
+                            # 没有权重标记，在开头添加高权重描述
+                            # ⚡ 关键修复：使用物理接触描述而不是 NOT sitting（SDXL 对 NOT 不敏感）
+                            enhanced_lying = "(body fully on the ground, back touching the sand, legs fully extended on the ground, arms lying flat on the sand, no bent knees, horizontal position:3.0)"
+                            prompt = f"{enhanced_lying}, {prompt}"
+                            print(f"  ✓ 已在prompt最前面添加lying描述（权重3.0），确保人物躺着")
+                    else:
+                        # 完全没有lying描述，在开头添加
+                        # ⚡ 关键修复：使用物理接触描述而不是 NOT sitting（SDXL 对 NOT 不敏感）
+                        enhanced_lying = "(body fully on the ground, back touching the sand, legs fully extended on the ground, arms lying flat on the sand, no bent knees, horizontal position:3.0)"
+                        prompt = f"{enhanced_lying}, {prompt}"
+                        print(f"  ✓ 已在prompt最前面添加lying描述（权重3.0），确保人物躺着")
+                else:
+                    print(f"  ⚠ 未找到人设图，将使用纯文生图（建议配置face_image_path或face_reference_dir）")
+                    # ⚡ 关键修复：如果是 wide + top_down + lying 场景，即使没有人设图也要禁用 LoRA 和 IP-Adapter
+                    # ⚡ 但是，如果是 FLUX pipeline，需要保留传入的 reference_image_path（用于 IP-Adapter）
+                    if is_wide_topdown_lying:
+                        # 检查是否是 FLUX pipeline（通过检查 engine 或 model_engine）
+                        is_flux = (model_engine and "flux" in str(model_engine).lower()) or (self.engine and "flux" in str(self.engine).lower())
+                        if is_flux:
+                            # FLUX pipeline：保留传入的 reference_image_path（用于 IP-Adapter）
+                            # 但禁用 LoRA
+                            print(f"  ✓ wide + top_down + lying 场景 + FLUX：保留 reference_image_path 用于 IP-Adapter，但禁用 LoRA")
+                            # reference_image_path 保持不变（使用传入的值）
+                            use_ip_adapter_for_this = True  # FLUX 需要使用 IP-Adapter
+                        else:
+                            # SDXL pipeline：禁用所有
+                            reference_image_path = None
+                            use_ip_adapter_for_this = False
+                        stage_b_character_lora = None
+                        stage_b_style_lora = ""
+                        stage_b_use_lora = False
+                        print(f"  ✓ wide + top_down + lying 场景：禁用所有 LoRA")
+                    else:
+                        # 非 wide + top_down + lying 场景：检查是否是 FLUX pipeline
+                        is_flux = (model_engine and "flux" in str(model_engine).lower()) or (self.engine and "flux" in str(self.engine).lower())
+                        if is_flux:
+                            # FLUX pipeline：保留传入的 reference_image_path（用于 IP-Adapter）
+                            print(f"  ✓ FLUX pipeline：保留 reference_image_path 用于 IP-Adapter")
+                            use_ip_adapter_for_this = True
+                        else:
+                            # SDXL pipeline：不使用参考图
+                            reference_image_path = None
+                            use_ip_adapter_for_this = False
+            
+            # 使用 SDXL/Flux（包括：只有场景参考图、没有参考图、非韩立角色等情况）
+            # ⚡ 方案2：如果should_disable_instantid且是hanli角色，use_ip_adapter_for_this和reference_image_path已在上面设置
             # 对于普通场景（只有场景参考图，没有面部参考图）：
             # - 如果有场景参考图像，使用 IP-Adapter（使用参考图像）
             # - 如果没有参考图像，禁用 IP-Adapter（纯文生图）
-            use_ip_adapter_for_this = self.use_ip_adapter
-            if use_text_to_image:
-                if reference_image_path or has_character_reference:
-                    # 有参考图像（场景参考图或角色参考图），使用 IP-Adapter
-                    use_ip_adapter_for_this = True
-                    print(f"  ℹ 有参考图像，启用 IP-Adapter（使用参考图像）")
-                else:
-                    # 没有参考图像，禁用 IP-Adapter（纯文生图）
-                    use_ip_adapter_for_this = False
-                    print(f"  ℹ 无参考图像，禁用 IP-Adapter（纯文生图）")
+            if not (primary_character == "hanli" and should_disable_instantid):
+                # 如果不是方案2的情况，使用原有逻辑
+                use_ip_adapter_for_this = self.use_ip_adapter
+                if use_text_to_image:
+                    if reference_image_path or has_character_reference:
+                        # 有参考图像（场景参考图或角色参考图），使用 IP-Adapter
+                        use_ip_adapter_for_this = True
+                        print(f"  ℹ 有参考图像，启用 IP-Adapter（使用参考图像）")
+                    else:
+                        # 没有参考图像，禁用 IP-Adapter（纯文生图）
+                        use_ip_adapter_for_this = False
+                        print(f"  ℹ 无参考图像，禁用 IP-Adapter（纯文生图）")
 
             # 检查是否是 Flux pipeline（Flux 使用不同的架构，需要特殊处理）
+            # ⚡ 关键修复：检查 flux1_pipeline 或 flux_pipeline，而不仅仅是 self.pipeline
+            print(f"  🔍 调试：检查 FLUX pipeline，当前 reference_image_path = {reference_image_path}")
+            print(f"  🔍 调试：检查 FLUX pipeline，flux1_pipeline = {self.flux1_pipeline is not None}")
+            print(f"  🔍 调试：检查 FLUX pipeline，flux_pipeline = {self.flux_pipeline is not None}")
+            print(f"  🔍 调试：检查 FLUX pipeline，self.pipeline = {self.pipeline is not None}")
+            
             is_flux_pipeline = False
-            if self.pipeline is not None:
+            if self.flux1_pipeline is not None:
+                is_flux_pipeline = True
+                print(f"  ✓ 检测到 flux1_pipeline，将使用 FLUX 生成方法")
+            elif self.flux_pipeline is not None:
+                is_flux_pipeline = True
+                print(f"  ✓ 检测到 flux_pipeline，将使用 FLUX 生成方法")
+            elif self.pipeline is not None:
                 pipeline_type = type(self.pipeline).__name__
                 is_flux_pipeline = "Flux" in pipeline_type or "flux" in pipeline_type.lower()
+                if is_flux_pipeline:
+                    print(f"  ✓ 检测到 self.pipeline 是 FLUX 类型: {pipeline_type}")
+            
+            print(f"  🔍 调试：is_flux_pipeline = {is_flux_pipeline}")
             
             if is_flux_pipeline:
-                # 使用 Flux 专用的生成方法（支持 LoRA）
+                # ⚡ 调试：记录检测到 FLUX pipeline 时的 reference_image_path
+                print(f"  🔍 调试：检测到 FLUX pipeline，当前 reference_image_path = {reference_image_path}")
+                print(f"  🔍 调试：检测到 FLUX pipeline，当前 face_reference_image_path = {face_reference_image_path}")
+                print(f"  🔍 调试：检测到 FLUX pipeline，原始 reference_image_path = {original_reference_image_path}")
+                
+                # ⚡ 关键修复：如果 reference_image_path 被设置为 None，尝试恢复原始值或从其他来源获取
+                if reference_image_path is None:
+                    print(f"  🔍 调试：reference_image_path 为 None，尝试从其他来源获取")
+                    # 优先级 0：恢复原始传入的 reference_image_path
+                    if original_reference_image_path is not None:
+                        reference_image_path = original_reference_image_path
+                        print(f"  ✓ FLUX pipeline：恢复原始 reference_image_path: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}")
+                    # 优先级 1：使用 face_reference_image_path
+                    elif face_reference_image_path is not None:
+                        reference_image_path = face_reference_image_path
+                        print(f"  ✓ FLUX pipeline：使用 face_reference_image_path 作为 reference_image_path: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}")
+                    # 优先级 2：从 scene 中获取 reference_image（如果存在）
+                    elif scene and scene.get("reference_image"):
+                        reference_image_path = Path(scene["reference_image"])
+                        print(f"  ✓ FLUX pipeline：从 scene 获取 reference_image_path: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}")
+                    # 优先级 3：从配置中获取 face_image_path
+                    elif hasattr(self, 'face_image_path') and self.face_image_path and Path(self.face_image_path).exists():
+                        reference_image_path = Path(self.face_image_path)
+                        print(f"  ✓ FLUX pipeline：从配置获取 face_image_path 作为 reference_image_path: {reference_image_path.name}")
+                    else:
+                        print(f"  ⚠ FLUX pipeline：无法从任何来源获取 reference_image_path")
+                else:
+                    print(f"  ✓ FLUX pipeline：使用传入的 reference_image_path: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}")
+                
+                # 使用 Flux 专用的生成方法（支持 LoRA 和 IP-Adapter）
+                # ⚡ 关键修复：传递 reference_image_path，让 FLUX 使用参考图
+                print(f"  🔍 调试：调用 _generate_image_flux_simple，reference_image_path = {reference_image_path}")
                 return self._generate_image_flux_simple(
                     prompt, output_path, negative_prompt, guidance_scale,
                     num_inference_steps, seed, scene=scene,
-                    character_lora=character_lora, style_lora=style_lora
+                    character_lora=character_lora, style_lora=style_lora,
+                    reference_image_path=reference_image_path  # ⚡ 新增：传递参考图
                 )
             else:
                 # 使用 SDXL 生成方法
+                # ⚡ 方案2：如果禁用了InstantID且是韩立角色，reference_image_path已在上面设置为人设图
+                # 方案2使用IP-Adapter而不是img2img，所以不需要设置img2img_ref_image
+                img2img_ref_image = scene_reference_image_for_img2img
+                if primary_character == "hanli" and should_disable_instantid:
+                    # 方案2：使用人设图作为IP-Adapter输入，不使用img2img
+                    # reference_image_path已在上面设置为人设图
+                    print(f"  ✓ 方案2：将使用人设图作为IP-Adapter输入（不使用img2img）")
+                    # 不设置img2img_ref_image，因为方案2使用IP-Adapter
+                    img2img_ref_image = None
+                
+                # ⚡ 修复：如果是方案2，使用Stage B设置的LoRA参数
+                final_character_lora = character_lora
+                final_style_lora = style_lora
+                final_use_lora = use_lora
+                
+                if primary_character == "hanli" and should_disable_instantid:
+                    # ⚡ 修复：使用Stage B设置的LoRA参数（如果已设置）
+                    if 'stage_b_character_lora' in locals():
+                        final_character_lora = stage_b_character_lora
+                        final_style_lora = stage_b_style_lora
+                        final_use_lora = stage_b_use_lora
+                        print(f"  ✓ 方案2：使用Stage B的LoRA参数")
+                    elif 'is_wide_topdown_lying' in locals() and is_wide_topdown_lying:
+                        # ⚡ 关键修复：如果是 wide + top_down + lying 场景，即使没有进入 Stage B，也要禁用 LoRA
+                        final_character_lora = None
+                        final_style_lora = ""
+                        final_use_lora = False
+                        print(f"  ✓ wide + top_down + lying 场景：禁用所有 LoRA（即使没有进入 Stage B）")
+                
                 return self._generate_image_sdxl(
                     prompt, output_path, negative_prompt, guidance_scale,
                     num_inference_steps, seed, reference_image_path,
-                    face_reference_image_path, use_lora, scene=scene,
+                    face_reference_image_path, final_use_lora, scene=scene,
                     use_ip_adapter_override=use_ip_adapter_for_this,  # 传递 IP-Adapter 使用标志
                     scene_reference_images=scene_reference_images,  # 传递已选择的场景参考图像
-                    scene_reference_image_for_img2img=scene_reference_image_for_img2img,  # 传递用于img2img的参考图像
-                    character_lora=character_lora, style_lora=style_lora
+                    scene_reference_image_for_img2img=img2img_ref_image,  # 传递用于img2img的参考图像（优先使用韩立素材图）
+                    character_lora=final_character_lora, style_lora=final_style_lora
                 )
 
     def _generate_image_flux_simple(
@@ -2372,9 +3424,46 @@ class ImageGenerator:
         scene: Optional[Dict[str, Any]] = None,
         character_lora: Optional[str] = None,  # 角色LoRA适配器名称
         style_lora: Optional[str] = None,  # 风格LoRA适配器名称
+        reference_image_path: Optional[Path] = None,  # ⚡ 新增：参考图路径（用于 IP-Adapter）
     ) -> Path:
-        """使用 Flux pipeline 生成图像（支持 LoRA）"""
-        if self.pipeline is None:
+        """使用 Flux pipeline 生成图像（支持 LoRA 和 IP-Adapter）"""
+        # 确保使用 Flux pipeline，而不是 InstantID 或其他 pipeline
+        flux_pipeline = None
+        
+        # 优先使用 flux1_pipeline（如果已加载）
+        if self.flux1_pipeline is not None:
+            flux_pipeline = self.flux1_pipeline
+            print(f"  ℹ 使用 flux1_pipeline")
+        # 其次检查 self.pipeline 是否为 Flux pipeline
+        elif self.pipeline is not None:
+            pipeline_type = type(self.pipeline).__name__
+            if "Flux" in pipeline_type or "flux" in pipeline_type.lower():
+                flux_pipeline = self.pipeline
+                print(f"  ℹ 使用 self.pipeline (Flux)")
+            else:
+                # self.pipeline 不是 Flux，尝试加载 Flux.1
+                print(f"  ⚠ self.pipeline 是 {pipeline_type}，不是 Flux pipeline，尝试加载 Flux.1...")
+                try:
+                    if self.flux1_pipeline is None:
+                        self._load_flux1_pipeline()
+                    flux_pipeline = self.flux1_pipeline
+                    print(f"  ✓ 已加载 flux1_pipeline")
+                except Exception as e:
+                    print(f"  ❌ 无法加载 Flux.1 pipeline: {e}")
+                    raise RuntimeError(f"Flux pipeline 未加载且无法加载: {e}")
+        else:
+            # 没有可用的 pipeline，尝试加载 Flux.1
+            print(f"  ℹ 没有可用的 pipeline，尝试加载 Flux.1...")
+            try:
+                if self.flux1_pipeline is None:
+                    self._load_flux1_pipeline()
+                flux_pipeline = self.flux1_pipeline
+                print(f"  ✓ 已加载 flux1_pipeline")
+            except Exception as e:
+                print(f"  ❌ 无法加载 Flux.1 pipeline: {e}")
+                raise RuntimeError(f"Flux pipeline 未加载且无法加载: {e}")
+        
+        if flux_pipeline is None:
             raise RuntimeError("Flux pipeline 未加载")
         
         import torch
@@ -2400,10 +3489,24 @@ class ImageGenerator:
         else:
             steps = num_inference_steps
         
+        # ⚡ 关键修复：对于 wide shot 和包含复杂场景的情况，提高推理步数以提升质量
+        camera = scene.get("camera", {}) if scene else {}
+        camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
+        if camera_shot == "wide":
+            # wide shot 需要更多步数来保证细节和质量
+            if steps < 40:
+                steps = 40
+                print(f"  🔧 提高推理步数（wide shot）: {num_inference_steps} -> {steps}")
+        
         print(f"  🎨 使用 Flux pipeline 生成图像")
         print(f"  提示词: {prompt[:50]}...")
+        print(f"  完整提示词: {prompt}")
         print(f"  引导强度: {guidance}")
         print(f"  推理步数: {steps}")
+        if character_lora:
+            print(f"  ⚠ 警告: 检测到 character_lora={character_lora}，这可能导致生成人物图像而非场景图像")
+        if negative_prompt:
+            print(f"  负面提示词: {negative_prompt[:100]}...")
         
         # 从 scene 获取尺寸（如果有）
         width = self.width
@@ -2411,6 +3514,28 @@ class ImageGenerator:
         if scene and isinstance(scene, dict):
             width = scene.get("width", width)
             height = scene.get("height", height)
+        
+        # ⚡ 关键修复：对于 wide shot 和 top_down 场景，确保分辨率足够高
+        # 低分辨率会导致图像模糊，特别是对于包含人物和环境的场景
+        camera = scene.get("camera", {}) if scene else {}
+        camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
+        
+        # 对于 wide shot，至少需要 1024x1024，推荐 1536x1536 或更高
+        if camera_shot == "wide":
+            min_width = 1536
+            min_height = 1536
+            if width < min_width:
+                width = min_width
+                print(f"  🔧 提高分辨率（wide shot）: width -> {width}")
+            if height < min_height:
+                height = min_height
+                print(f"  🔧 提高分辨率（wide shot）: height -> {height}")
+        
+        # 确保分辨率是 64 的倍数（FLUX 的要求）
+        width = (width // 64) * 64
+        height = (height // 64) * 64
+        
+        print(f"  📐 图像分辨率: {width}x{height}")
         
         # MVP 流程：将 character_lora 名称解析为 lora_path
         lora_path = None
@@ -2448,32 +3573,315 @@ class ImageGenerator:
                 print(f"  ⚠ LoRA 路径不存在: {character_lora}，将不使用 LoRA")
                 lora_path = None
         
+        # ⚡ 关键修复：处理参考图（用于 IP-Adapter）
+        ip_adapter_image = None
+        print(f"  🔍 调试：_generate_image_flux_simple 接收到的 reference_image_path = {reference_image_path}")
+        print(f"  🔍 调试：_generate_image_flux_simple，reference_image_path 类型 = {type(reference_image_path)}")
+        if reference_image_path:
+            reference_path = Path(reference_image_path)
+            print(f"  🔍 调试：reference_path = {reference_path}, exists() = {reference_path.exists()}")
+            if reference_path.exists():
+                try:
+                    from PIL import Image
+                    ip_adapter_image = Image.open(reference_path).convert("RGB")
+                    print(f"  ✓ 已加载参考图用于 IP-Adapter: {reference_path.name}")
+                    # 调整图像尺寸（FLUX IP-Adapter 推荐 1024x1024）
+                    w, h = ip_adapter_image.size
+                    min_size = 1024
+                    if min(w, h) < min_size:
+                        scale = min_size / min(w, h)
+                        new_w = int(w * scale)
+                        new_h = int(h * scale)
+                        # 确保是 64 的倍数（Flux 的要求）
+                        new_w = (new_w // 64) * 64
+                        new_h = (new_h // 64) * 64
+                        ip_adapter_image = ip_adapter_image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+                        print(f"  ✓ 已调整参考图尺寸: {w}x{h} -> {new_w}x{new_h}")
+                    else:
+                        # 确保是 64 的倍数
+                        new_w = (w // 64) * 64
+                        new_h = (h // 64) * 64
+                        if new_w != w or new_h != h:
+                            ip_adapter_image = ip_adapter_image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+                            print(f"  ✓ 已调整参考图尺寸到 64 的倍数: {w}x{h} -> {new_w}x{new_h}")
+                except Exception as e:
+                    print(f"  ⚠ 加载参考图失败: {e}，将不使用 IP-Adapter")
+                    import traceback
+                    traceback.print_exc()
+                    ip_adapter_image = None
+            else:
+                print(f"  ⚠ 参考图路径不存在: {reference_path}")
+        else:
+            print(f"  ⚠ reference_image_path 为 None，将不使用 IP-Adapter")
+        
         try:
             # 检查 pipeline 是否有 generate 方法（FluxPipeline）
-            if hasattr(self.pipeline, 'generate'):
-                # 使用 FluxPipeline.generate 方法（支持 LoRA）
-                image = self.pipeline.generate(
-                    prompt=prompt,
-                    negative_prompt=negative_prompt,
-                    width=width,
-                    height=height,
-                    num_inference_steps=steps,
-                    guidance_scale=guidance,
-                    seed=seed,
-                    lora_path=lora_path,
-                    lora_alpha=lora_alpha,
-                )
+            if hasattr(flux_pipeline, 'generate'):
+                # 使用 FluxPipeline.generate 方法（支持 LoRA 和 IP-Adapter）
+                generate_kwargs = {
+                    "prompt": prompt,
+                    "negative_prompt": negative_prompt,
+                    "width": width,
+                    "height": height,
+                    "num_inference_steps": steps,
+                    "guidance_scale": guidance,
+                    "seed": seed,
+                    "lora_path": lora_path,
+                    "lora_alpha": lora_alpha,
+                }
+                # ⚡ 关键修复：如果提供了参考图，使用 IP-Adapter
+                if ip_adapter_image is not None:
+                    # 检查 pipeline 是否已加载 IP-Adapter
+                    ip_adapter_loaded = False
+                    if hasattr(flux_pipeline, 'ip_adapter_image_encoder') or hasattr(flux_pipeline, '_ip_adapter'):
+                        ip_adapter_loaded = True
+                        print(f"  ✓ 检测到 IP-Adapter 已加载")
+                    else:
+                        # 尝试加载 IP-Adapter
+                        try:
+                            print(f"  🔧 尝试加载 FLUX IP-Adapter...")
+                            # FLUX 使用标准的 load_ip_adapter 方法
+                            # 需要指定 IP-Adapter 路径（从配置中读取或使用默认路径）
+                            ip_adapter_path = self.image_config.get("model_selection", {}).get("flux", {}).get("ip_adapter_path")
+                            
+                            # ⚡ 关键修复：优先使用本地路径，避免从 HuggingFace 下载
+                            if not ip_adapter_path:
+                                # 尝试多个可能的本地路径（按优先级排序）
+                                possible_paths = [
+                                    Path(self.models_root) / "instantid" / "ip-adapter-flux",  # 优先级 1：已找到的路径
+                                    Path(self.models_root) / "ip-adapter" / "flux-ip-adapter",
+                                    Path(self.models_root) / "ip-adapter",
+                                    Path(__file__).parent / "models" / "instantid" / "ip-adapter-flux",
+                                    Path(__file__).parent / "models" / "ip-adapter" / "flux-ip-adapter",
+                                ]
+                                for possible_path in possible_paths:
+                                    if possible_path.exists():
+                                        # 检查是否是目录（需要包含 ip_adapter.safetensors 文件）
+                                        if possible_path.is_dir():
+                                            # 检查目录中是否有 ip_adapter.safetensors 文件
+                                            ip_adapter_file = possible_path / "ip_adapter.safetensors"
+                                            if ip_adapter_file.exists():
+                                                ip_adapter_path = str(possible_path)
+                                                print(f"  ✓ 找到本地 IP-Adapter 路径: {ip_adapter_path}")
+                                                break
+                                        elif possible_path.is_file():
+                                            # 如果是文件，使用父目录
+                                            ip_adapter_path = str(possible_path.parent)
+                                            print(f"  ✓ 找到本地 IP-Adapter 路径: {ip_adapter_path}")
+                                            break
+                            
+                            if not ip_adapter_path:
+                                # 如果都没有找到，使用 HuggingFace 模型 ID（会下载）
+                                ip_adapter_path = "XLabs-AI/flux-ip-adapter"
+                                print(f"  ⚠ 未找到本地 IP-Adapter，将尝试从 HuggingFace 下载: {ip_adapter_path}")
+                                print(f"  ⚠ 注意：首次下载可能需要较长时间，请耐心等待...")
+                            
+                            # 检查是否是本地路径
+                            ip_adapter_path_obj = Path(ip_adapter_path) if ip_adapter_path else None
+                            if ip_adapter_path_obj and ip_adapter_path_obj.exists():
+                                # 本地路径
+                                print(f"  📂 使用本地 IP-Adapter 路径: {ip_adapter_path}")
+                                print(f"  📂 路径详情: {ip_adapter_path_obj.absolute()}")
+                                # 检查文件是否存在
+                                ip_adapter_file = ip_adapter_path_obj / "ip_adapter.safetensors"
+                                if not ip_adapter_file.exists():
+                                    print(f"  ⚠ 警告：未找到 ip_adapter.safetensors 文件，尝试直接使用目录...")
+                                flux_pipeline.load_ip_adapter(
+                                    str(ip_adapter_path_obj),
+                                    weight_name="ip_adapter.safetensors",
+                                    image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14"
+                                )
+                            else:
+                                # HuggingFace 模型 ID（会下载）
+                                print(f"  🌐 从 HuggingFace 加载 IP-Adapter: {ip_adapter_path}")
+                                print(f"  ⚠ 注意：如果卡住，可能正在下载模型（首次使用需要下载，约 937MB）...")
+                                print(f"  ⚠ 建议：如果下载太慢，可以手动下载到: {self.models_root}/instantid/ip-adapter-flux/")
+                                flux_pipeline.load_ip_adapter(
+                                    ip_adapter_path,
+                                    weight_name="ip_adapter.safetensors",
+                                    image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14"
+                                )
+                            ip_adapter_loaded = True
+                            print(f"  ✅ FLUX IP-Adapter 加载成功")
+                            
+                            # ⚡ 关键修复：确保 image encoder 在正确的设备上
+                            if hasattr(flux_pipeline, 'image_encoder') and flux_pipeline.image_encoder is not None:
+                                import torch
+                                # 获取 pipeline 的设备（从 transformer 或其他组件）
+                                if hasattr(flux_pipeline, '_execution_device'):
+                                    device = flux_pipeline._execution_device
+                                elif hasattr(flux_pipeline, 'device'):
+                                    device = flux_pipeline.device
+                                elif hasattr(flux_pipeline, 'transformer') and hasattr(flux_pipeline.transformer, 'device'):
+                                    device = flux_pipeline.transformer.device
+                                else:
+                                    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                                
+                                # 获取 pipeline 的 dtype（从 transformer 获取）
+                                if hasattr(flux_pipeline, 'transformer') and next(flux_pipeline.transformer.parameters(), None) is not None:
+                                    pipeline_dtype = next(flux_pipeline.transformer.parameters()).dtype
+                                else:
+                                    pipeline_dtype = torch.float16
+                                
+                                # 确保 image encoder 在正确的设备和 dtype
+                                current_device = next(flux_pipeline.image_encoder.parameters()).device
+                                current_dtype = next(flux_pipeline.image_encoder.parameters()).dtype
+                                
+                                if current_device != device or current_dtype != pipeline_dtype:
+                                    print(f"  🔧 移动 image encoder: {current_device}/{current_dtype} -> {device}/{pipeline_dtype}")
+                                    flux_pipeline.image_encoder = flux_pipeline.image_encoder.to(device=device, dtype=pipeline_dtype)
+                                    print(f"  ✓ 已确保 image encoder 在设备: {device}, dtype: {pipeline_dtype}")
+                                else:
+                                    print(f"  ✓ image encoder 已在正确的设备: {device}, dtype: {pipeline_dtype}")
+                        except Exception as e:
+                            print(f"  ⚠ FLUX IP-Adapter 加载失败: {e}")
+                            import traceback
+                            traceback.print_exc()
+                            print(f"  ℹ 将不使用 IP-Adapter，仅使用 prompt 生成")
+                    
+                    if ip_adapter_loaded:
+                        # ⚡ 关键修复：对于 wide shot，降低 IP-Adapter scale 以避免过度融合导致模糊
+                        # 对于 wide shot，参考图主要用于风格和形象参考，不需要过强的融合
+                        camera = scene.get("camera", {}) if scene else {}
+                        camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
+                        
+                        if camera_shot == "wide":
+                            ip_adapter_scale = 0.9  # wide shot 使用较低的 scale，避免过度融合
+                            print(f"  🔧 wide shot：使用较低的 IP-Adapter scale: {ip_adapter_scale}（避免过度融合导致模糊）")
+                        else:
+                            ip_adapter_scale = 1.2  # 其他场景使用较高的 scale
+                        
+                        if hasattr(flux_pipeline, 'set_ip_adapter_scale'):
+                            flux_pipeline.set_ip_adapter_scale(ip_adapter_scale)
+                            print(f"  ✓ 已设置 IP-Adapter scale: {ip_adapter_scale}")
+                        
+                        # ⚡ 关键修复：在调用 pipeline 之前，再次确保 image_encoder 在正确的设备上
+                        if hasattr(flux_pipeline, 'image_encoder') and flux_pipeline.image_encoder is not None:
+                            import torch
+                            # 获取 pipeline 的执行设备
+                            if hasattr(flux_pipeline, '_execution_device'):
+                                target_device = flux_pipeline._execution_device
+                            elif hasattr(flux_pipeline, 'device'):
+                                target_device = flux_pipeline.device
+                            else:
+                                target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                            
+                            # 获取 pipeline 的 dtype
+                            if hasattr(flux_pipeline, 'transformer') and next(flux_pipeline.transformer.parameters(), None) is not None:
+                                target_dtype = next(flux_pipeline.transformer.parameters()).dtype
+                            else:
+                                target_dtype = torch.float16
+                            
+                            # 检查 image_encoder 的当前设备
+                            encoder_device = next(flux_pipeline.image_encoder.parameters()).device
+                            encoder_dtype = next(flux_pipeline.image_encoder.parameters()).dtype
+                            
+                            if encoder_device != target_device or encoder_dtype != target_dtype:
+                                print(f"  🔧 在生成前移动 image encoder: {encoder_device}/{encoder_dtype} -> {target_device}/{target_dtype}")
+                                flux_pipeline.image_encoder = flux_pipeline.image_encoder.to(device=target_device, dtype=target_dtype)
+                                print(f"  ✓ image encoder 已移动到: {target_device}, dtype: {target_dtype}")
+                            else:
+                                print(f"  ✓ image encoder 已在正确设备: {target_device}, dtype: {target_dtype}")
+                        
+                        generate_kwargs["ip_adapter_image"] = ip_adapter_image
+                        print(f"  🎯 使用 IP-Adapter 生成图像（参考图: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}）")
+                    else:
+                        print(f"  ⚠ IP-Adapter 未加载，将不使用参考图")
+                
+                image = flux_pipeline.generate(**generate_kwargs)
             else:
-                # 使用标准的 pipeline 调用（不支持 LoRA）
-                result = self.pipeline(
-                    prompt=prompt,
-                    negative_prompt=negative_prompt,
-                    width=width,
-                    height=height,
-                    num_inference_steps=steps,
-                    guidance_scale=guidance,
-                    generator=generator,
-                )
+                # 使用标准的 pipeline 调用（支持 IP-Adapter）
+                pipeline_kwargs = {
+                    "prompt": prompt,
+                    "negative_prompt": negative_prompt,
+                    "width": width,
+                    "height": height,
+                    "num_inference_steps": steps,
+                    "guidance_scale": guidance,
+                    "generator": generator,
+                }
+                # ⚡ 关键修复：如果提供了参考图，使用 IP-Adapter（与上面相同的逻辑）
+                if ip_adapter_image is not None:
+                    # 检查 pipeline 是否已加载 IP-Adapter
+                    ip_adapter_loaded = False
+                    if hasattr(flux_pipeline, 'ip_adapter_image_encoder') or hasattr(flux_pipeline, '_ip_adapter'):
+                        ip_adapter_loaded = True
+                        print(f"  ✓ 检测到 IP-Adapter 已加载")
+                    else:
+                        # 尝试加载 IP-Adapter（与上面相同的逻辑）
+                        try:
+                            print(f"  🔧 尝试加载 FLUX IP-Adapter...")
+                            ip_adapter_path = self.image_config.get("model_selection", {}).get("flux", {}).get("ip_adapter_path")
+                            if not ip_adapter_path:
+                                ip_adapter_path = "XLabs-AI/flux-ip-adapter"
+                            
+                            if isinstance(ip_adapter_path, str) and Path(ip_adapter_path).exists():
+                                flux_pipeline.load_ip_adapter(
+                                    ip_adapter_path,
+                                    weight_name="ip_adapter.safetensors",
+                                    image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14"
+                                )
+                            else:
+                                flux_pipeline.load_ip_adapter(
+                                    ip_adapter_path,
+                                    weight_name="ip_adapter.safetensors",
+                                    image_encoder_pretrained_model_name_or_path="openai/clip-vit-large-patch14"
+                                )
+                            ip_adapter_loaded = True
+                            print(f"  ✅ FLUX IP-Adapter 加载成功")
+                        except Exception as e:
+                            print(f"  ⚠ FLUX IP-Adapter 加载失败: {e}")
+                            print(f"  ℹ 将不使用 IP-Adapter，仅使用 prompt 生成")
+                    
+                    if ip_adapter_loaded:
+                        # ⚡ 关键修复：对于 wide shot，降低 IP-Adapter scale 以避免过度融合导致模糊
+                        camera = scene.get("camera", {}) if scene else {}
+                        camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
+                        
+                        if camera_shot == "wide":
+                            ip_adapter_scale = 0.9  # wide shot 使用较低的 scale，避免过度融合
+                            print(f"  🔧 wide shot：使用较低的 IP-Adapter scale: {ip_adapter_scale}（避免过度融合导致模糊）")
+                        else:
+                            ip_adapter_scale = 1.2  # 其他场景使用较高的 scale
+                        
+                        if hasattr(flux_pipeline, 'set_ip_adapter_scale'):
+                            flux_pipeline.set_ip_adapter_scale(ip_adapter_scale)
+                            print(f"  ✓ 已设置 IP-Adapter scale: {ip_adapter_scale}")
+                        
+                        # ⚡ 关键修复：在调用 pipeline 之前，再次确保 image_encoder 在正确的设备上
+                        if hasattr(flux_pipeline, 'image_encoder') and flux_pipeline.image_encoder is not None:
+                            import torch
+                            # 获取 pipeline 的执行设备
+                            if hasattr(flux_pipeline, '_execution_device'):
+                                target_device = flux_pipeline._execution_device
+                            elif hasattr(flux_pipeline, 'device'):
+                                target_device = flux_pipeline.device
+                            else:
+                                target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                            
+                            # 获取 pipeline 的 dtype
+                            if hasattr(flux_pipeline, 'transformer') and next(flux_pipeline.transformer.parameters(), None) is not None:
+                                target_dtype = next(flux_pipeline.transformer.parameters()).dtype
+                            else:
+                                target_dtype = torch.float16
+                            
+                            # 检查 image_encoder 的当前设备
+                            encoder_device = next(flux_pipeline.image_encoder.parameters()).device
+                            encoder_dtype = next(flux_pipeline.image_encoder.parameters()).dtype
+                            
+                            if encoder_device != target_device or encoder_dtype != target_dtype:
+                                print(f"  🔧 在生成前移动 image encoder: {encoder_device}/{encoder_dtype} -> {target_device}/{target_dtype}")
+                                flux_pipeline.image_encoder = flux_pipeline.image_encoder.to(device=target_device, dtype=target_dtype)
+                                print(f"  ✓ image encoder 已移动到: {target_device}, dtype: {target_dtype}")
+                            else:
+                                print(f"  ✓ image encoder 已在正确设备: {target_device}, dtype: {target_dtype}")
+                        
+                        pipeline_kwargs["ip_adapter_image"] = ip_adapter_image
+                        print(f"  🎯 使用 IP-Adapter 生成图像（参考图: {reference_image_path.name if hasattr(reference_image_path, 'name') else reference_image_path}）")
+                    else:
+                        print(f"  ⚠ IP-Adapter 未加载，将不使用参考图")
+                
+                result = flux_pipeline(**pipeline_kwargs)
                 image = result.images[0]
             
             image.save(output_path)
@@ -2497,6 +3905,8 @@ class ImageGenerator:
         scene: Optional[Dict[str, Any]] = None,
         character_lora: Optional[str] = None,  # 角色LoRA适配器名称
         style_lora: Optional[str] = None,  # 风格LoRA适配器名称
+        reference_image_path: Optional[Path] = None,  # ⚡ 新增：参考图路径（用于 IP-Adapter）
+        face_reference_image_path: Optional[Path] = None,  # ⚡ 新增：面部参考图路径
     ) -> Path:
         """使用 Flux.1 pipeline 生成图像（实验室/医学场景）"""
         # 如果 flux1_pipeline 未加载，尝试加载
@@ -2521,6 +3931,12 @@ class ImageGenerator:
         self.pipeline = pipeline
         
         try:
+            # ⚡ 关键修复：如果 reference_image_path 为 None，尝试使用 face_reference_image_path
+            final_reference_image_path = reference_image_path
+            if final_reference_image_path is None and face_reference_image_path is not None:
+                final_reference_image_path = face_reference_image_path
+                print(f"  ✓ _generate_image_flux1：使用 face_reference_image_path 作为 reference_image_path: {final_reference_image_path.name if hasattr(final_reference_image_path, 'name') else final_reference_image_path}")
+            
             return self._generate_image_flux_simple(
                 prompt=prompt,
                 output_path=output_path,
@@ -2531,6 +3947,7 @@ class ImageGenerator:
                 scene=scene,
                 character_lora=character_lora,  # 传递 character_lora
                 style_lora=style_lora,  # 传递 style_lora
+                reference_image_path=final_reference_image_path,  # ⚡ 关键修复：传递参考图
             )
         finally:
             # 恢复原始 pipeline
@@ -2903,7 +4320,7 @@ class ImageGenerator:
             keyword in prompt_lower for keyword in wide_shot_keywords)
 
         # 检查 camera 字段是否明确指定了特写（特别是眼睛特写）
-        camera_desc = scene.get("camera") if scene else ""
+        camera_desc = self._get_camera_string(scene) if scene else ""
         camera_desc_lower = (camera_desc or "").lower()
         is_eye_closeup_in_camera = any(
             kw in camera_desc_lower for kw in [
@@ -2953,13 +4370,37 @@ class ImageGenerator:
                         "man",
                         "people"]))
             if has_character_in_scene:
-                # 人物场景：默认中景，确保人物清晰可见且正面
-                prompt = "(medium shot, character clearly visible, front view, facing camera:2.0), " + prompt
-                print(f"  ⚠ 未检测到任何镜头关键词，人物场景默认添加中景描述（高权重2.0），避免远景和背影")
+                # ⚡ 重要：检查是否是躺着姿势或Top-down场景，如果是则使用远景而不是中景
+                is_lying_or_topdown = (
+                    "lying" in prompt_lower or
+                    "top-down" in prompt_lower or
+                    "top down" in prompt_lower or
+                    "俯视" in prompt_lower or
+                    (scene and (
+                        "lying" in str(scene.get("action", "")).lower() or
+                        "top-down" in self._get_camera_string(scene).lower() or
+                        "top down" in self._get_camera_string(scene).lower() or
+                        "俯视" in self._get_camera_string(scene).lower()
+                    ))
+                )
+                if is_lying_or_topdown:
+                    # 躺着姿势或Top-down场景：使用远景，确保能看到全身和背景
+                    # ⚡ 使用通用的prompt增强方法（基于语义分析，而不是硬编码）
+                    camera_prompt = "(wide shot, top-down view, bird's eye view, distant view, full body visible, lying on ground:2.8)"
+                    # 使用optimizer的通用增强方法自动添加排除词等
+                    enhanced_camera = self.prompt_optimizer.enhance_prompt_part(camera_prompt, "camera")
+                    prompt = f"{enhanced_camera}, {prompt}"
+                    print(f"  ✓ 检测到躺着姿势或Top-down场景，使用远景描述（已增强），确保能看到全身和背景")
+                else:
+                    # 其他人物场景：默认中景，确保人物清晰可见且正面
+                    prompt = "(medium shot, character clearly visible, front view, facing camera:2.0), " + prompt
+                    print(f"  ⚠ 未检测到任何镜头关键词，人物场景默认添加中景描述（高权重2.0），避免远景和背影")
             else:
                 # 无人物场景：可以使用远景
                 prompt = "(extreme wide shot:2.0), (distant view:1.8), " + prompt
-            print(f"  ⚠ 未检测到任何镜头关键词，已强制在 prompt 开头添加远景描述（高权重）")
+                is_lying_or_topdown = False  # 无人物场景不需要检查 lying/topdown
+            if not is_lying_or_topdown:
+                print(f"  ⚠ 未检测到任何镜头关键词，已强制在 prompt 开头添加远景描述（高权重）")
         else:
             # 检查远景关键词是否在 prompt 开头（前 100 个字符）
             prompt_start = prompt_lower[:100]
@@ -3111,8 +4552,10 @@ class ImageGenerator:
         # 优先使用 camera 字段判断镜头类型，更准确
         prompt_lower = prompt.lower()
         camera_desc_lower = ""
-        if scene and scene.get("camera"):
-            camera_desc_lower = str(scene.get("camera", "")).lower()
+        if scene:
+            camera_desc = self._get_camera_string(scene)
+            if camera_desc:
+                camera_desc_lower = camera_desc.lower()
 
         # 检测场景类型（优先级：camera 字段 > prompt 关键词）
         # 先检查 camera 字段
@@ -3123,11 +4566,15 @@ class ImageGenerator:
 
         if camera_desc_lower:
             # 优先使用 camera 字段判断
+            # ⚡ 重要：Top-down 应该被识别为远景（俯视远景）
             if any(
                 kw in camera_desc_lower for kw in [
                     'wide',
                     'long',
                     'establish',
+                    'top-down',
+                    'top down',
+                    '俯视',
                     '远景',
                     '全景']):
                 is_wide_shot = True
@@ -3159,8 +4606,10 @@ class ImageGenerator:
 
         # 如果 camera 字段没有明确判断，再从 prompt 中检测
         if not (is_wide_shot or is_full_body or is_close_up or is_medium_shot):
+            # ⚡ 重要：Top-down 应该被识别为远景（俯视远景）
+            wide_shot_keywords_extended = wide_shot_keywords + ['top-down', 'top down', '俯视', 'bird\'s eye', 'bird eye']
             is_wide_shot = any(
-                keyword in prompt_lower for keyword in wide_shot_keywords)
+                keyword in prompt_lower for keyword in wide_shot_keywords_extended)
             is_full_body = any(
                 keyword in prompt_lower for keyword in [
                     'full body', 'full figure', '全身'])
@@ -3205,11 +4654,13 @@ class ImageGenerator:
                     'medium shot', 'mid shot', '中景'])
 
         # 检查是否是躺着姿势（lying, top-down view等），这些姿势可能影响人脸相似度
+        # ⚡ 关键修复：确保 prompt_lower_check 在所有情况下都被定义
+        prompt_lower_check = prompt.lower() if prompt else ""
         is_lying_pose = False
+        camera_desc = ""
         if scene:
             action = str(scene.get("action", "")).lower()
-            camera_desc = str(scene.get("camera", "")).lower()
-            prompt_lower_check = prompt.lower()
+            camera_desc = self._get_camera_string(scene).lower()
             is_lying_pose = (
                 "lying" in action or
                 "lying" in prompt_lower_check or
@@ -3228,7 +4679,68 @@ class ImageGenerator:
         # 注意: 躺着姿势可能影响人脸相似度，需要提高权重
         min_ip_adapter_scale = 0.35
         min_controlnet_scale = 0.4
-        if is_wide_shot or is_full_body:
+        # ⚡ 关键修复：根据专业分析，top-down + far away + lying是InstantID的死刑组合
+        # 检测是否是top-down + far away + lying场景（脸部占比<5%，InstantID失效）
+        is_top_down_for_weights = (
+            "top-down" in camera_desc or
+            "top down" in camera_desc or
+            "俯视" in camera_desc or
+            "top-down" in prompt_lower_check or
+            "top down" in prompt_lower_check or
+            "bird's eye" in prompt_lower_check.lower() or
+            "bird eye" in prompt_lower_check.lower()
+        )
+        is_far_away_for_weights = any(kw in prompt_lower_check for kw in ["far away", "distant view", "distant", "wide shot", "long shot", "extreme wide"])
+        is_instantid_death_combo = is_top_down_for_weights and is_far_away_for_weights and is_lying_pose
+        
+        # ⚡ 重要：对于top-down + far away + lying场景，权重应该降低（0.65-0.72），而不是提高
+        # 因为脸部占比<5%时，权重越高越假，InstantID几乎失效
+        if is_instantid_death_combo:
+            # ⚡ 关键修复：这是InstantID的死刑组合，应该禁用InstantID（已在上面处理）
+            # 但如果仍然使用InstantID（兜底情况），权重应该降到最低
+            print(f"  ⚠ 警告：检测到top-down + far away + lying场景（InstantID死刑组合），如果使用InstantID，权重将降至最低")
+            ip_adapter_scale = 0.65  # 降到最低，避免硬拽
+            controlnet_scale = 0.70  # 适度降低
+            min_ip_adapter_scale = 0.60  # 最低阈值
+            min_controlnet_scale = 0.65
+            print(
+                f"  检测到InstantID死刑组合（top-down + far away + lying），面部权重: {
+                    ip_adapter_scale:.2f}, ControlNet: {
+                    controlnet_scale:.2f} (使用最低权重避免硬拽)")
+        elif is_lying_pose:
+            # 躺着姿势+远景：对于非死刑组合，使用中等权重
+            if is_wide_shot or is_full_body:
+                # 躺着姿势+远景：使用中等权重（不是超高权重，避免硬拽）
+                ip_adapter_scale = 0.75  # 从0.98降到0.75，避免硬拽
+                controlnet_scale = 0.75  # 保持中等权重
+                min_ip_adapter_scale = 0.70  # 降低最低阈值
+                min_controlnet_scale = 0.70
+                print(
+                    f"  检测到躺着姿势+远景/全身场景，面部权重: {
+                        ip_adapter_scale:.2f}, ControlNet: {
+                        controlnet_scale:.2f} (使用中等权重)")
+            else:
+                # 躺着姿势+其他场景：使用正常权重
+                ip_adapter_scale = self.face_emb_scale * 1.2  # 从1.6降到1.2，避免硬拽
+                controlnet_scale = 0.75  # 从0.85降到0.75
+                min_ip_adapter_scale = 0.75  # 从0.95降到0.75
+                min_controlnet_scale = 0.70  # 从0.80降到0.70
+                print(
+                    f"  检测到躺着姿势场景，面部权重: {
+                        ip_adapter_scale:.2f}, ControlNet: {
+                        controlnet_scale:.2f} (使用正常权重)")
+        # ⚡ 关键修复：检测是否是人设锚点图生成（需要最高相似度）
+        is_character_anchor = scene and scene.get("is_character_anchor", False)
+        if is_character_anchor:
+            # 人设锚点图生成：使用最高权重，确保人脸相似度最高
+            # ⚡ 关键修复：进一步提高权重，确保与参考图高度相似
+            ip_adapter_scale = 1.30  # 从 1.20 提高到 1.30（最高权重，确保人脸相似度）
+            controlnet_scale = 0.95  # 从 0.90 提高到 0.95（高 ControlNet 权重）
+            min_ip_adapter_scale = 1.25  # 从 1.15 提高到 1.25
+            min_controlnet_scale = 0.90  # 从 0.85 提高到 0.90
+            print(f"  🎯 人设锚点图生成模式：使用最高权重，面部权重: {ip_adapter_scale:.2f}, ControlNet: {controlnet_scale:.2f}")
+            print(f"  ⚠ 注意：已禁用 LoRA，只使用 InstantID（确保最高人脸相似度）")
+        elif is_wide_shot or is_full_body:
             # 远景/全身：适度降低面部权重，但确保人脸完整且相似，同时避免瘦长脸
             # 平衡权重，确保人脸完整且相似，但不过度控制导致瘦长脸
             # 提高基础权重，从0.80提高到0.85，确保人脸完整且相似（用户反馈效果不好）
@@ -3284,15 +4796,15 @@ class ImageGenerator:
                 original_scale = ip_adapter_scale
 
                 # 如果 multiplier 太低，限制最小值，避免过度降低权重
-                # 对于躺着姿势，需要更高的最小值（0.95），因为躺着姿势本身就需要更高权重
-                # 对于远景/全身场景，也需要更高的最小值（0.9），确保人脸完整且相似
-                # 对于中景/近景场景，最小值设为 0.9，确保人脸相似度
+                # ⚡ 重要：对于躺着姿势，不允许降低权重（min_multiplier = 1.0），因为躺着姿势本身就需要更高权重
+                # 对于远景/全身场景，也需要更高的最小值（0.95），确保人脸完整且相似
+                # 对于中景/近景场景，最小值设为 0.95，确保人脸相似度
                 if is_lying_pose:
-                    min_multiplier = 0.95
+                    min_multiplier = 1.0  # ⚡ 修复：躺着姿势不允许降低权重，必须 >= 1.0
                 elif is_wide_shot or is_full_body:
-                    min_multiplier = 0.9  # 从0.85提高到0.9，确保远景场景人脸完整且相似
+                    min_multiplier = 0.95  # 从0.9提高到0.95，确保远景场景人脸完整且相似
                 else:
-                    min_multiplier = 0.9  # 从0.85提高到0.9，确保中景/近景场景人脸相似度
+                    min_multiplier = 0.95  # 从0.9提高到0.95，确保中景/近景场景人脸相似度
                 if style_multiplier < min_multiplier:
                     print(
                         f"    ⚠ face_style_auto multiplier ({
@@ -3346,14 +4858,25 @@ class ImageGenerator:
                 1.0, controlnet_scale))
 
         # 躺着姿势特殊处理：提高面部权重，因为躺着姿势可能影响人脸相似度
+        # ⚡ 注意：如果已经在上面设置了躺着姿势的基础值，这里只需要微调（避免重复提高）
         if is_lying_pose:
-            # 躺着姿势需要更高的权重来保持人脸相似度
-            # 由于躺着姿势时面部角度与参考图不同，需要更高的权重来补偿
-            # 提高25%，最小0.85（比之前的0.7更高，确保人脸相似度）
-            ip_adapter_scale = max(ip_adapter_scale * 1.25, 0.85)
-            print(
-                f"  ⚠ 检测到躺着姿势，大幅提高面部权重至 {
-                    ip_adapter_scale:.2f}，确保人脸相似度（躺着姿势需要更高权重）")
+            # 如果基础值已经很高（>= 0.90），只需要小幅提高
+            # 如果基础值较低，需要大幅提高
+            if ip_adapter_scale < 0.90:
+                # 基础值较低，大幅提高
+                ip_adapter_scale = max(ip_adapter_scale * 1.30, 0.90)
+                controlnet_scale = max(controlnet_scale * 1.15, 0.70)
+                print(
+                    f"  ⚠ 检测到躺着姿势，大幅提高面部权重至 {
+                        ip_adapter_scale:.2f}，ControlNet权重至 {
+                        controlnet_scale:.2f}，确保人脸相似度（躺着姿势需要更高权重）")
+            else:
+                # 基础值已经很高，只需要小幅提高 ControlNet
+                controlnet_scale = max(controlnet_scale * 1.10, 0.70)
+                print(
+                    f"  ✓ 检测到躺着姿势，面部权重已足够高 ({
+                        ip_adapter_scale:.2f})，仅提高ControlNet权重至 {
+                        controlnet_scale:.2f}")
 
         # 远景场景额外检查：确保面部权重不会太低，导致人脸不像或不完整
         if is_wide_shot or is_full_body:
@@ -3368,6 +4891,22 @@ class ImageGenerator:
 
         # 改进 negative_prompt，避免人脸过大、拉伸、颜色和面部比例问题
         enhanced_negative = negative_prompt or self.negative_prompt or ""
+        
+        # ⚡ 修复风格问题：检测是否为仙侠/动漫场景，如果是则强化排除写实风格
+        # 检查prompt中是否包含仙侠/动漫关键词
+        is_xianxia_or_anime = False
+        if prompt:
+            prompt_lower = prompt.lower()
+            xianxia_keywords = ['xianxia', 'anime', 'cultivator', 'fantasy', '仙侠', '修仙', '动漫', 'animation', 'han li', '韩立']
+            if any(kw in prompt_lower for kw in xianxia_keywords):
+                is_xianxia_or_anime = True
+        
+        # 如果是仙侠/动漫场景，强化排除写实风格
+        if is_xianxia_or_anime:
+            photorealistic_exclusion = ", photorealistic, hyperrealistic, realistic, real photo, photograph, photography, photoreal, photo-real, photo real, (photorealistic:1.8), (hyperrealistic:1.8), (realistic:1.8), (real photo:1.8), (photograph:1.8), western style, european style, modern style"
+            if "photorealistic" not in enhanced_negative.lower() or "realistic" not in enhanced_negative.lower():
+                enhanced_negative += photorealistic_exclusion
+                print(f"  ✓ 仙侠/动漫场景：已添加强化写实风格排除（权重1.8）到 negative prompt")
 
         # 对于 lying_still 动作，添加"standing"到 negative prompt，确保生成"躺着"而不是"站着"的图像
         # 同时加强多腿排除，因为躺着姿势容易出现多腿问题
@@ -3492,6 +5031,7 @@ class ImageGenerator:
                 enhanced_negative += f", {neg_term}"
 
         # 中景和近景场景：增加身体宽度、模糊、拉伸的负面描述
+        # ⚡ 竖屏模式优化：明确排除过近的镜头
         if is_medium_shot or is_close_up:
             medium_negative_additions = [
                 "wide body, broad shoulders, thick torso",
@@ -3509,11 +5049,33 @@ class ImageGenerator:
                 "horizontally stretched face, horizontally stretched body",
                 "unnatural width, excessive width, distorted width, horizontal elongation",
                 "unnatural pose, stiff pose, rigid posture, awkward stance",  # 半身像：避免僵硬姿势
-                "unnatural body proportions, distorted body shape, bad body anatomy"  # 半身像：避免身体比例不自然
+                "unnatural body proportions, distorted body shape, bad body anatomy",  # 半身像：避免身体比例不自然
+                # ⚡ 竖屏模式优化：明确排除过近的镜头
+                "extreme close-up, too close, camera too close, face too close, head too close",
+                "macro shot, extreme proximity, uncomfortably close, overly close",
+                "face fills frame, head fills frame, character too close to camera",
+                "camera distance too short, shot distance too short, distance too close"
             ]
             for neg_term in medium_negative_additions:
                 if neg_term not in enhanced_negative.lower():
                     enhanced_negative += f", {neg_term}"
+        
+        # ⚡ 竖屏模式优化：对所有场景都添加过近镜头的排除（除非明确要求特写）
+        # 检查是否是眼睛特写或面部特写场景（这些场景需要保持特写）
+        is_eye_closeup = False
+        is_face_closeup = False
+        if scene:
+            camera_desc = self._get_camera_string(scene)
+            camera_desc_lower = (camera_desc or "").lower()
+            is_eye_closeup = any(kw in camera_desc_lower for kw in ['eye', 'eyes', 'pupil', 'pupils', '眼睛', '瞳孔', 'extreme close'])
+            is_face_closeup = any(kw in camera_desc_lower for kw in ['face', 'facial', 'portrait', 'headshot', '面部', '脸部', '头像', 'close-up on face', 'closeup on face'])
+        
+        # 如果不是眼睛特写或面部特写场景，添加过近镜头的排除
+        if not is_eye_closeup and not is_face_closeup:
+            too_close_negative = ", extreme close-up, too close, camera too close, face too close, head too close, macro shot, extreme proximity, uncomfortably close, overly close, face fills frame, head fills frame, character too close to camera, camera distance too short, shot distance too short, distance too close, (extreme close-up:1.5), (too close:1.5), (camera too close:1.5)"
+            if "too close" not in enhanced_negative.lower() and "extreme close-up" not in enhanced_negative.lower():
+                enhanced_negative += too_close_negative
+                print(f"  ✓ 竖屏模式优化：已添加排除过近镜头的负面提示（避免镜头太近）")
 
         # 确保单人场景（所有场景都应该是单人，避免重复人物）
         # 检查场景是否包含角色（通过检查 scene 数据或 prompt 中是否包含角色关键词）
@@ -3578,9 +5140,9 @@ class ImageGenerator:
         # 注意：这部分代码在 prompt 构建之后执行，确保单人约束在 prompt 最前面
 
         # 加强负面提示：排除多人、重复人物、多腿、多手等（对所有场景都适用）
-        # 用户反馈：场景5和7生成了多个人物，需要大幅提高权重
-        # 提高多人排除权重从1.2到1.8，确保不会生成多个人物
-        multiple_people_negative = ", multiple people, two people, crowd, group of people, extra person, duplicate character, second person, additional figure, cloned person, duplicate person, identical person, twin character, repeated character, second identical figure, duplicate figure, mirrored person, copy of person, repeated appearance, same person twice, duplicate appearance, two same people, two identical people, cloned figure, mirrored character, identical duplicate, (duplicate person:1.8), (same person twice:1.8), (two same people:1.8), (multiple people:1.8), (two people:1.8), (crowd:1.8), (group of people:1.8), (extra person:1.8), (second person:1.8), (additional figure:1.8), (cloned person:1.8), (duplicate character:1.8), (twin character:1.8), (repeated character:1.8), (second identical figure:1.8), (duplicate figure:1.8), (mirrored person:1.8), (copy of person:1.8), extra legs, multiple legs, duplicate legs, two sets of legs, three legs, four legs, extra feet, multiple feet, duplicate feet, three feet, four feet, extra limbs, multiple limbs, duplicate limbs, extra body parts, multiple body parts, duplicate body parts, extra hands, multiple hands, duplicate hands, extra arms, multiple arms, duplicate arms, (extra legs:1.5), (multiple legs:1.5), (duplicate legs:1.5), (three legs:1.5), (four legs:1.5), (two sets of legs:1.5), (extra feet:1.5), (multiple feet:1.5), (duplicate feet:1.5), (three feet:1.5), (extra limbs:1.3), (multiple limbs:1.3), (duplicate limbs:1.3), (extra body parts:1.3), (multiple body parts:1.3), (duplicate body parts:1.3), (extra hands:1.2), (multiple hands:1.2), (duplicate hands:1.2), (extra arms:1.2), (multiple arms:1.2), (duplicate arms:1.2), malformed legs, deformed legs, wrong number of legs, incorrect leg count, abnormal leg count, too many legs, leg duplication, leg repetition, leg cloning, leg mirroring, leg copy, leg repeat, leg duplicate, leg twin, leg identical, leg repeated, leg second, leg extra, leg additional, leg cloned, leg mirrored, leg identical duplicate, leg same twice, leg two same, leg two identical, leg cloned figure, leg mirrored character, broken legs, severed legs, cut off legs, missing legs, leg amputation, leg injury, leg damage, leg fracture, leg break, leg cut, leg severed, leg missing, leg incomplete, leg partial, leg fragment, leg piece, leg part, leg section, leg portion, leg segment"
+        # ⚡ 关键修复：用户反馈生成了两个人像，分开了，需要大幅提高多人排除权重到3.0
+        # 提高多人排除权重到3.0，确保绝对不会生成多个人物
+        multiple_people_negative = ", multiple people, two people, three people, four people, crowd, group of people, extra person, duplicate character, second person, additional figure, cloned person, duplicate person, identical person, twin character, repeated character, second identical figure, duplicate figure, mirrored person, copy of person, repeated appearance, same person twice, duplicate appearance, two same people, two identical people, cloned figure, mirrored character, identical duplicate, separated people, split person, divided person, (duplicate person:3.0), (same person twice:3.0), (two same people:3.0), (multiple people:3.0), (two people:3.0), (crowd:3.0), (group of people:3.0), (extra person:3.0), (second person:3.0), (additional figure:3.0), (cloned person:3.0), (duplicate character:3.0), (twin character:3.0), (repeated character:3.0), (second identical figure:3.0), (duplicate figure:3.0), (mirrored person:3.0), (two heads:3.0), (multiple heads:3.0), (duplicate head:3.0), (second head:3.0), (copy of person:3.0), (separated people:3.0), (split person:3.0), (divided person:3.0), extra legs, multiple legs, duplicate legs, two sets of legs, three legs, four legs, extra feet, multiple feet, duplicate feet, three feet, four feet, extra limbs, multiple limbs, duplicate limbs, extra body parts, multiple body parts, duplicate body parts, extra hands, multiple hands, duplicate hands, extra arms, multiple arms, duplicate arms, (extra legs:2.0), (multiple legs:2.0), (duplicate legs:2.0), (three legs:2.0), (four legs:2.0), (two sets of legs:2.0), (extra feet:2.0), (multiple feet:2.0), (duplicate feet:2.0), (three feet:2.0), (extra limbs:2.0), (multiple limbs:2.0), (duplicate limbs:2.0), (extra body parts:2.0), (multiple body parts:2.0), (duplicate body parts:2.0), (extra hands:2.0), (multiple hands:2.0), (duplicate hands:2.0), (extra arms:2.0), (multiple arms:2.0), (duplicate arms:2.0)"
 
         # 对于纯背景场景，明确排除所有人物（高权重），包括仙女等
         if is_background_only:
@@ -3613,12 +5175,19 @@ class ImageGenerator:
                         scene.get(
                             "characters", "")).lower())
                 if is_hanli:
-                    # 明确排除女性特征（高权重）
-                    female_negative = ", female, woman, girl, feminine, female character, woman character, girl character, female figure, woman figure, girl figure, female appearance, woman appearance, girl appearance, (female:1.5), (woman:1.5), (girl:1.5), (feminine:1.5), (female character:1.5), (woman character:1.5), (girl character:1.5), (female figure:1.5), (woman figure:1.5), (girl figure:1.5), (female appearance:1.5), (woman appearance:1.5), (girl appearance:1.5), female face, woman face, girl face, female body, woman body, girl body, (female face:1.5), (woman face:1.5), (girl face:1.5), (female body:1.5), (woman body:1.5), (girl body:1.5)"
+                    # ⚡ 修复性别错误：明确排除女性特征（超高权重2.5，防止生成女性）
+                    # 用户反馈：韩立变成了女性，大幅提高权重到2.5
+                    female_negative = ", female, woman, girl, feminine, female character, woman character, girl character, female figure, woman figure, girl figure, female appearance, woman appearance, girl appearance, (female:2.5), (woman:2.5), (girl:2.5), (feminine:2.5), (female character:2.5), (woman character:2.5), (girl character:2.5), (female figure:2.5), (woman figure:2.5), (girl figure:2.5), (female appearance:2.5), (woman appearance:2.5), (girl appearance:2.5), female face, woman face, girl face, female body, woman body, girl body, (female face:2.5), (woman face:2.5), (girl face:2.5), (female body:2.5), (woman body:2.5), (girl body:2.5), breasts, female breasts, (breasts:2.5), (female breasts:2.5), long hair flowing, feminine hair, (feminine hair:2.5), feminine features, womanly features, (feminine features:2.5), (womanly features:2.5)"
                     if "female" not in enhanced_negative.lower(
                     ) or "woman" not in enhanced_negative.lower():
                         enhanced_negative += female_negative
                         print(f"  ✓ 韩立角色：已添加排除女性特征到 negative prompt（高权重）")
+                    
+                    # ⚡ 关键修复：用户反馈光着上身，必须排除裸露、无上衣等
+                    if "naked" not in enhanced_negative.lower() or "bare" not in enhanced_negative.lower() or "topless" not in enhanced_negative.lower():
+                        naked_negative = ", naked, bare, topless, shirtless, bare chest, bare torso, exposed chest, exposed torso, no shirt, no clothing, no robe, no garment, without clothing, without robe, without garment, (naked:3.0), (bare:3.0), (topless:3.0), (shirtless:3.0), (bare chest:3.0), (bare torso:3.0), (exposed chest:3.0), (exposed torso:3.0), (no shirt:3.0), (no clothing:3.0), (no robe:3.0), (no garment:3.0), (without clothing:3.0), (without robe:3.0), (without garment:3.0)"
+                        enhanced_negative += naked_negative
+                        print(f"  ✓ 韩立角色：已添加排除裸露/光着上身到 negative prompt（超高权重3.0，防止生成光着上身的图像）")
 
             # 对于所有人物场景，强制添加多人排除项（防止出现多个相同的人）
             if scene and prompt and not is_background_only:
@@ -3650,15 +5219,16 @@ class ImageGenerator:
             enhanced_negative += ", oversized face, face too large, distorted face, wrong hairstyle, deformed face, character too large, person too large, figure too large, oversized character, oversized person, oversized figure, character too big, person too big, figure too big, character size wrong, person size wrong, figure size wrong, character scale wrong, person scale wrong, figure scale wrong, character proportions wrong, person proportions wrong, figure proportions wrong, character too prominent, person too prominent, figure too prominent, character dominates frame, person dominates frame, figure dominates frame, character fills frame, person fills frame, figure fills frame, character takes up too much space, person takes up too much space, figure takes up too much space"
 
         # 排除画中画、画框、文字等（防止生成画中画或带文字的画面）
+        # ⚡ 增强：大幅增强文字排除，防止生成任何文字
         has_art_negative = (
             "painting" in enhanced_negative.lower() and
             "frame" in enhanced_negative.lower() and
             "text" in enhanced_negative.lower()
         )
         if not has_art_negative:
-            art_negative = ", painting, picture frame, framed painting, artwork frame, picture in picture, painting in painting, framed picture, picture on wall, artwork on wall, text, letters, words, characters, writing, inscription, calligraphy, text overlay, text on image, watermark text, subtitle, caption, label, sign, (painting:2.5), (picture frame:2.5), (framed painting:2.5), (text:2.5), (letters:2.5), (words:2.5), (writing:2.5), (inscription:2.5)"
+            art_negative = ", painting, picture frame, framed painting, artwork frame, picture in picture, painting in painting, framed picture, picture on wall, artwork on wall, text, letters, words, characters, writing, inscription, calligraphy, text overlay, text on image, watermark text, subtitle, caption, label, sign, (painting:2.5), (picture frame:2.5), (framed painting:2.5), (text:3.0), (letters:3.0), (words:3.0), (writing:3.0), (inscription:3.0), (text overlay:3.0), (text on image:3.0), (watermark:3.0), (subtitle:3.0), (caption:3.0), (label:3.0), (sign:3.0), (chinese text:3.0), (english text:3.0), (any text:3.0), (visible text:3.0), (readable text:3.0), (printed text:3.0), (handwritten text:3.0)"
             enhanced_negative += art_negative
-            print(f"  ✓ 已添加画中画、画框、文字排除项到 negative prompt（高权重2.5，防止生成画中画或带文字的画面）")
+            print(f"  ✓ 已添加画中画、画框、文字排除项到 negative prompt（超高权重3.0，防止生成任何文字）")
 
         # 远景场景：添加负面提示，避免人脸不完整、模糊或缺失
         if is_wide_shot or is_full_body:
@@ -3755,27 +5325,123 @@ class ImageGenerator:
                 if style_lora == "":
                     print(f"  ℹ 已禁用风格LoRA（用户指定）")
                 else:
-                    # 使用用户指定的风格LoRA
-                    adapter_names.append(style_lora)
+                    # ⚡ 关键修复：在使用 style_lora 之前，确保它已被加载
                     style_config = self.lora_config.get("style_lora", {})
-                    style_alpha = float(style_config.get("alpha", 0.7)) if isinstance(style_config, dict) else 0.7
-                    adapter_weights.append(style_alpha)
-                    print(f"  ✓ 使用用户指定的风格LoRA: {style_lora} (alpha={style_alpha:.2f})")
+                    style_lora_path = None
+                    if isinstance(style_config, dict):
+                        style_lora_path = style_config.get("weights_path")
+                    
+                    # 如果提供了路径，尝试加载 style_lora
+                    if style_lora_path and Path(style_lora_path).exists():
+                        # 检查 adapter 是否已加载
+                        loaded_adapters = []
+                        if hasattr(self.pipeline, "get_active_adapters"):
+                            try:
+                                loaded_adapters = list(self.pipeline.get_active_adapters()) if self.pipeline.get_active_adapters() else []
+                            except:
+                                pass
+                        elif hasattr(self.pipeline, "peft_config") and self.pipeline.peft_config:
+                            loaded_adapters = list(self.pipeline.peft_config.keys())
+                        
+                        # 如果 adapter 未加载，先加载 LoRA
+                        if style_lora not in loaded_adapters:
+                            try:
+                                print(f"  🔧 加载风格 LoRA 文件: {Path(style_lora_path).name} (adapter={style_lora})")
+                                self.pipeline.load_lora_weights(style_lora_path, adapter_name=style_lora)
+                                print(f"  ✅ 风格 LoRA 已加载: {style_lora}")
+                            except Exception as e:
+                                print(f"  ⚠ 风格 LoRA 加载失败: {e}，跳过风格 LoRA")
+                                style_lora = None  # 加载失败，不使用风格 LoRA
+                    
+                    # 使用用户指定的风格LoRA（如果已加载或不需要加载）
+                    if style_lora:
+                        adapter_names.append(style_lora)
+                        style_alpha = float(style_config.get("alpha", 0.7)) if isinstance(style_config, dict) else 0.7
+                        adapter_weights.append(style_alpha)
+                        print(f"  ✓ 使用用户指定的风格LoRA: {style_lora} (alpha={style_alpha:.2f})")
+                    else:
+                        print(f"  ⚠ 风格LoRA未加载，跳过使用风格LoRA")
             else:
                 # style_lora是None，不使用风格LoRA（不使用默认的anime_style）
                 print(f"  ℹ 未指定风格LoRA，禁用风格LoRA（仅使用参考图）")
 
             # 确保在生成前应用LoRA（每次生成都重新应用，避免被覆盖）
             if adapter_names:
-                self.pipeline.set_adapters(
-                    adapter_names, adapter_weights=adapter_weights)
-                print(f"  ✓ 已应用LoRA适配器: {adapter_names} (权重: {adapter_weights})")
+                try:
+                    self.pipeline.set_adapters(
+                        adapter_names, adapter_weights=adapter_weights)
+                    print(f"  ✓ 已应用LoRA适配器: {adapter_names} (权重: {adapter_weights})")
+                except Exception as adapter_err:
+                    import traceback
+                    error_str = str(adapter_err)
+                    print(f"  ✗ 应用LoRA适配器时出错: {adapter_err}")
+                    print(f"  📋 错误堆栈:\n{traceback.format_exc()}")
+                    if 'unet' in error_str.lower():
+                        print(f"  ✗ 检测到 'unet' 相关错误，尝试重新加载 pipeline...")
+                        try:
+                            self.engine = "instantid"
+                            self._load_instantid_pipeline()
+                            print(f"  ✓ 已重新加载 InstantID pipeline，重试应用LoRA...")
+                            self.pipeline.set_adapters(
+                                adapter_names, adapter_weights=adapter_weights)
+                            print(f"  ✓ 已应用LoRA适配器: {adapter_names} (权重: {adapter_weights})")
+                        except Exception as reload_err:
+                            print(f"  ✗ 重新加载失败: {reload_err}")
+                            raise RuntimeError(f"无法修复 pipeline 组件错误: {adapter_err}") from adapter_err
+                    else:
+                        raise
             else:
                 # 如果没有适配器，完全禁用并卸载所有LoRA（只使用参考图生成正常图像）
-                self.pipeline.set_adapters([])
-                # 使用统一的卸载方法
-                self._unload_all_lora_adapters(self.pipeline, "InstantID pipeline")
-                print(f"  ℹ 已禁用所有LoRA适配器，仅使用参考图生成正常图像")
+                # ⚡ 重要：如果配置中 LoRA 已禁用，直接跳过 set_adapters 调用
+                # 因为 InstantID pipeline 可能没有正确初始化 LoRA 适配器系统，调用 set_adapters([]) 会抛出 KeyError 'unet'
+                lora_enabled = self.config.get("image", {}).get("lora", {}).get("enabled", True)
+                if not lora_enabled:
+                    # LoRA 已禁用，直接跳过 set_adapters 调用
+                    print(f"  ℹ LoRA 已禁用，跳过 set_adapters 调用（仅使用参考图生成正常图像）")
+                else:
+                    # LoRA 未禁用，尝试卸载（但可能没有加载过）
+                    try:
+                        # 先检查是否有已加载的适配器
+                        has_adapters = False
+                        if hasattr(self.pipeline, "get_active_adapters"):
+                            try:
+                                active = self.pipeline.get_active_adapters()
+                                if active and len(active) > 0:
+                                    has_adapters = True
+                            except:
+                                pass
+                        elif hasattr(self.pipeline, "peft_config") and self.pipeline.peft_config:
+                            if len(self.pipeline.peft_config) > 0:
+                                has_adapters = True
+                        
+                        if has_adapters:
+                            # 有已加载的适配器，尝试卸载
+                            self.pipeline.set_adapters([])
+                            self._unload_all_lora_adapters(self.pipeline, "InstantID pipeline")
+                            print(f"  ℹ 已禁用所有LoRA适配器，仅使用参考图生成正常图像")
+                        else:
+                            # 没有已加载的适配器，直接跳过
+                            print(f"  ℹ 没有已加载的LoRA适配器，跳过卸载（仅使用参考图生成正常图像）")
+                    except Exception as adapter_err:
+                        import traceback
+                        error_str = str(adapter_err)
+                        print(f"  ⚠ 禁用LoRA适配器时出错: {adapter_err}")
+                        # 如果是 'unet' 相关错误，说明 pipeline 组件不完整，尝试重新加载
+                        if 'unet' in error_str.lower():
+                            print(f"  ✗ 检测到 'unet' 相关错误，尝试重新加载 pipeline...")
+                            try:
+                                self.engine = "instantid"
+                                self._load_instantid_pipeline()
+                                print(f"  ✓ 已重新加载 InstantID pipeline")
+                                # 重新加载后，不需要再次调用 set_adapters，因为新加载的 pipeline 应该没有 LoRA
+                                print(f"  ℹ 重新加载后，跳过 LoRA 卸载（新 pipeline 应该没有 LoRA）")
+                            except Exception as reload_err:
+                                print(f"  ✗ 重新加载失败: {reload_err}")
+                                # 即使重新加载失败，也继续执行（因为 LoRA 可能本来就没有加载）
+                                print(f"  ⚠ 继续执行，假设 LoRA 未加载")
+                        else:
+                            # 如果错误不是 'unet' 相关的，继续执行（可能只是警告）
+                            print(f"  ⚠ 继续执行，但LoRA可能未完全卸载")
 
             # InstantID 模式下，use_ip_adapter 通常是 False，所以不会降低权重
             # 这是正确的，因为 InstantID 的 IP-Adapter 是必需的，不应该被 LoRA 影响
@@ -3812,10 +5478,10 @@ class ImageGenerator:
             face_kps_scale = face_kps_scale_cfg * 0.75  # 从0.65提高到0.75，提高远景场景清晰度
             print(f"  远景场景：面部关键点缩放至 {face_kps_scale:.2f}，确保人脸完整且清晰")
         elif is_medium_shot:
-            # 中景/半身像：进一步降低面部关键点缩放，使半身像更自然，避免横向压缩变形和瘦长脸
-            # 由于基准值已降低到0.70，进一步降低乘数以减少变形
-            face_kps_scale = face_kps_scale_cfg * 0.50  # 从0.55降到0.50，进一步减少横向压缩变形和瘦长脸
-            print(f"  中景/半身像场景：降低面部关键点缩放至 {face_kps_scale:.2f}，避免横向压缩变形和瘦长脸")
+            # 中景/半身像：适度降低面部关键点缩放，但保持足够的身体和背景可见性
+            # 从0.50提高到0.65，确保有足够的身体和背景，避免只有头像
+            face_kps_scale = face_kps_scale_cfg * 0.65  # 提高以确保身体和背景可见
+            print(f"  中景/半身像场景：面部关键点缩放至 {face_kps_scale:.2f}，确保身体和背景可见")
         elif is_close_up:
             # 降低关键点缩放，避免身体过宽、模糊和横向压缩变形
             face_kps_scale = face_kps_scale_cfg * 0.60  # 从0.65降到0.60，进一步减少横向压缩变形和瘦长脸
@@ -3846,8 +5512,9 @@ class ImageGenerator:
             # 远景场景：至少0.45，最大0.85，确保人脸完整
             face_kps_scale = max(0.45, min(face_kps_scale, 0.85))
         else:
-            # 其他场景：最大0.75，避免横向压缩变形和瘦长脸
-            face_kps_scale = max(0.3, min(face_kps_scale, 0.75))
+            # 其他场景（中景/特写）：最小0.45确保有身体和背景，最大0.75避免横向压缩变形和瘦长脸
+            # 提高最小值从0.3到0.45，确保有足够的身体和背景可见性
+            face_kps_scale = max(0.45, min(face_kps_scale, 0.75))
         face_kps = self._adjust_face_kps_canvas(
             face_kps_raw, face_kps_scale, face_kps_offset_y)
         if abs(face_kps_scale - face_kps_scale_cfg) > 1e-3:
@@ -3883,32 +5550,192 @@ class ImageGenerator:
 
         # 在调用 pipeline 之前，确保 InstantID 的 IP-Adapter 状态正确，否则回退到 SDXL 模式
         if self.engine == "instantid":
-            if not self._ensure_instantid_adapter_active():
-                print("  ✗ InstantID IP-Adapter 无法加载，回退到普通 SDXL pipeline")
-                # InstantID 不使用 reference_image_path，传 None
-                return self._generate_image_sdxl(
-                    prompt,
-                    output_path,
-                    negative_prompt=negative_prompt,
-                    guidance_scale=guidance,
-                    num_inference_steps=steps,
-                    seed=seed,
-                    reference_image_path=None,  # InstantID 不使用此参数
-                    face_reference_image_path=face_reference_image_path,
-                    use_lora=self.use_lora,  # 使用实例变量
-                    scene=scene,
-                    character_lora=character_lora,
-                    style_lora=style_lora,
-                )
+            try:
+                if not self._ensure_instantid_adapter_active():
+                    print("  ✗ InstantID IP-Adapter 无法加载，回退到普通 SDXL pipeline")
+                    # InstantID 不使用 reference_image_path，传 None
+                    return self._generate_image_sdxl(
+                        prompt,
+                        output_path,
+                        negative_prompt=negative_prompt,
+                        guidance_scale=guidance,
+                        num_inference_steps=steps,
+                        seed=seed,
+                        reference_image_path=None,  # InstantID 不使用此参数
+                        face_reference_image_path=face_reference_image_path,
+                        use_lora=self.use_lora,  # 使用实例变量
+                        scene=scene,
+                        character_lora=character_lora,
+                        style_lora=style_lora,
+                    )
+            except (KeyError, RuntimeError) as e:
+                error_str = str(e)
+                import traceback
+                print(f"  ✗ _ensure_instantid_adapter_active 时出错: {e}")
+                print(f"  📋 错误堆栈:\n{traceback.format_exc()}")
+                if 'unet' in error_str.lower():
+                    print(f"  ✗ 检测到 'unet' 相关错误，尝试重新加载 pipeline...")
+                    try:
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+                        print(f"  ✓ 已重新加载 InstantID pipeline")
+                        # 重试 _ensure_instantid_adapter_active
+                        if not self._ensure_instantid_adapter_active():
+                            print("  ✗ InstantID IP-Adapter 仍无法加载，回退到普通 SDXL pipeline")
+                            return self._generate_image_sdxl(
+                                prompt,
+                                output_path,
+                                negative_prompt=negative_prompt,
+                                guidance_scale=guidance,
+                                num_inference_steps=steps,
+                                seed=seed,
+                                reference_image_path=None,
+                                face_reference_image_path=face_reference_image_path,
+                                use_lora=self.use_lora,
+                                scene=scene,
+                                character_lora=character_lora,
+                                style_lora=style_lora,
+                            )
+                    except Exception as reload_err:
+                        print(f"  ✗ 重新加载失败: {reload_err}")
+                        raise RuntimeError(f"无法修复 pipeline 组件错误: {e}") from e
+                else:
+                    raise
 
         # 调用 InstantID pipeline（按照官方用法）
         # 注意：如果 guidance_rescale 不被支持，会自动忽略（不会报错）
+        # ⚡ 调试：在调用前检查 pipeline 状态
+        if self.pipeline is None:
+            print(f"  ✗ 错误：pipeline 为 None，无法生成图像")
+            raise RuntimeError("InstantID pipeline 未初始化")
+        
+        # ⚡ 重要：强制刷新输出，确保日志能及时显示
+        import sys
+        sys.stdout.flush()
+        
+        # 检查 pipeline 是否有必要的组件
+        # ⚡ 重要：在调用 pipeline 前检查组件完整性，避免运行时 KeyError
+        print(f"  🔍 检查 pipeline 组件完整性...")
+        sys.stdout.flush()
+        
+        if hasattr(self.pipeline, 'components'):
+            try:
+                components = self.pipeline.components
+                # 检查 components 是否为字典或类似字典的对象
+                if isinstance(components, dict):
+                    if 'unet' not in components:
+                        print(f"  ⚠ 警告：pipeline.components 中缺少 'unet'，尝试重新加载 pipeline...")
+                        # 尝试重新加载
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+                    else:
+                        print(f"  ✓ pipeline.components 检查通过，包含 'unet'")
+                else:
+                    # components 不是字典，可能是属性访问器或其他对象
+                    # 尝试直接访问 unet 属性来验证
+                    if hasattr(self.pipeline, 'unet') and self.pipeline.unet is not None:
+                        print(f"  ✓ pipeline 包含 unet 组件（通过属性访问）")
+                    else:
+                        print(f"  ⚠ pipeline 可能缺少 unet 组件，尝试重新加载...")
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+            except KeyError as comp_check_err:
+                error_str = str(comp_check_err)
+                import traceback
+                print(f"  ✗ 检查 pipeline.components 时发现 KeyError: {comp_check_err}")
+                print(f"  📋 错误堆栈:\n{traceback.format_exc()}")
+                if 'unet' in error_str:
+                    print(f"  ✗ 检查 pipeline.components 时发现 KeyError 'unet': {comp_check_err}")
+                    print(f"  ℹ 尝试重新加载 InstantID pipeline...")
+                    try:
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+                        print(f"  ✓ 已重新加载 InstantID pipeline")
+                    except Exception as reload_err:
+                        print(f"  ✗ 重新加载失败: {reload_err}")
+                        raise RuntimeError(f"无法修复 pipeline 组件错误: {comp_check_err}") from comp_check_err
+                else:
+                    print(f"  ⚠ 检查 pipeline.components 时出错: {comp_check_err}，继续尝试生成...")
+            except (AttributeError, TypeError) as comp_check_err:
+                error_str = str(comp_check_err)
+                print(f"  ⚠ 检查 pipeline.components 时出错: {comp_check_err}，继续尝试生成...")
+            except Exception as comp_check_err:
+                import traceback
+                print(f"  ✗ 检查 pipeline.components 时发生未知错误: {comp_check_err}")
+                print(f"  📋 错误堆栈:\n{traceback.format_exc()}")
+                print(f"  ⚠ 继续尝试生成...")
+        
+        print(f"  🚀 开始调用 InstantID pipeline...")
+        sys.stdout.flush()
+        
+        # ⚡ 最后检查：确保 pipeline 有 unet 组件（通过属性访问）
+        if not hasattr(self.pipeline, 'unet') or self.pipeline.unet is None:
+            print(f"  ✗ 错误：pipeline 缺少 unet 组件（通过属性检查）")
+            print(f"  ℹ 尝试重新加载 InstantID pipeline...")
+            try:
+                self.engine = "instantid"
+                self._load_instantid_pipeline()
+                print(f"  ✓ 已重新加载 InstantID pipeline")
+            except Exception as reload_err:
+                print(f"  ✗ 重新加载失败: {reload_err}")
+                raise RuntimeError(f"无法修复 pipeline unet 组件缺失: {reload_err}") from reload_err
+        
         try:
             result = self.pipeline(**kwargs)
-        except (TypeError, AttributeError, NameError) as e:
+        except Exception as e:  # 捕获所有异常，确保 KeyError 被正确捕获
             error_str = str(e)
+            error_type = type(e).__name__
+            import traceback
+            # ⚡ 重要：立即打印详细错误信息，确保即使被外层捕获也能看到
+            # 强制刷新输出，确保日志能及时显示
+            print(f"  ✗ InstantID pipeline 调用失败: {error_type}: {error_str}")
+            print(f"  📋 错误堆栈:\n{traceback.format_exc()}")
+            sys.stdout.flush()
+            
+            # ⚡ 修复：捕获 KeyError 'unet'，这可能发生在 pipeline 内部访问 components 时
+            # 检查是否是 KeyError 且错误信息包含 'unet'
+            is_unet_keyerror = (
+                isinstance(e, KeyError) or 
+                error_type == 'KeyError' or
+                ('unet' in error_str and ('KeyError' in error_str or 'key' in error_str.lower()))
+            )
+            if is_unet_keyerror and 'unet' in error_str:
+                print(f"  ✗ InstantID pipeline 内部错误（KeyError 'unet'）: {e}")
+                print(f"  ℹ 这通常是因为 pipeline 组件不完整")
+                # 检查 pipeline 状态
+                if self.pipeline is None:
+                    print(f"  ⚠ Pipeline 为 None，尝试重新加载...")
+                    try:
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+                        print(f"  ✓ 已重新加载 InstantID pipeline，重试生成...")
+                        result = self.pipeline(**kwargs)
+                    except Exception as reload_err:
+                        print(f"  ✗ 重新加载 pipeline 失败: {reload_err}")
+                        raise RuntimeError(
+                            f"InstantID pipeline 重新加载失败: {reload_err}") from reload_err
+                else:
+                    # Pipeline 存在但组件不完整，尝试检查 components
+                    print(f"  ⚠ Pipeline 存在但组件可能不完整，尝试重新初始化...")
+                    try:
+                        # 保存当前配置
+                        instantid_config_backup = self.instantid_config.copy() if hasattr(self, 'instantid_config') else {}
+                        # 清理当前 pipeline
+                        del self.pipeline
+                        self.pipeline = None
+                        # 重新加载
+                        self.engine = "instantid"
+                        self._load_instantid_pipeline()
+                        print(f"  ✓ 已重新初始化 InstantID pipeline，重试生成...")
+                        result = self.pipeline(**kwargs)
+                    except Exception as reload_err:
+                        print(f"  ✗ 重新初始化 pipeline 失败: {reload_err}")
+                        import traceback
+                        print(f"  📋 详细错误信息:\n{traceback.format_exc()}")
+                        raise RuntimeError(
+                            f"InstantID pipeline 重新初始化失败（KeyError 'unet'）: {reload_err}") from reload_err
             # 检查是否是 image_proj_model_in_features 错误
-            if "image_proj_model_in_features" in error_str:
+            elif "image_proj_model_in_features" in error_str:
                 print(f"  ✗ InstantID IP-Adapter 未正确加载: {e}")
                 raise RuntimeError(
                     f"InstantID IP-Adapter 未正确加载，请检查 IP-Adapter 文件是否正确: {e}") from e
@@ -3994,7 +5821,6 @@ class ImageGenerator:
                                 self.pipeline, "image_proj_model_in_features")
                 except Exception as e2:
                     print(f"  ⚠ 卸载失败: {e2}，继续尝试重新加载...")
-
         # 如果 image_proj_model 不存在，或者卸载成功，尝试重新加载
         try:
             self.pipeline.load_ip_adapter_instantid(str(ip_adapter_file))
@@ -4445,28 +6271,50 @@ class ImageGenerator:
             is_instantid_pipeline = "InstantID" in pipeline_type_name or "instantid" in pipeline_type_name.lower()
 
         if is_instantid_pipeline:
-            # 如果还没有加载普通的 SDXL pipeline，加载它
-            # 注意：不加载LoRA，因为用户可能没有指定LoRA
-            if self.sdxl_pipeline is None:
-                print(f"  ℹ 检测到 InstantID pipeline，加载普通的 SDXL pipeline 用于文生图（不加载LoRA）")
-                try:
-                    instantid_pipeline = self.pipeline
-                    self._load_sdxl_pipeline(load_lora=False)  # 不加载LoRA，避免自动加载hanli和anime_style
-                    self.sdxl_pipeline = self.pipeline
-                    self.pipeline = instantid_pipeline
-                    print(f"  ✓ 普通的 SDXL pipeline 已加载并保存（未加载LoRA）")
-                except Exception as e:
-                    print(f"  ⚠ 无法加载普通的 SDXL pipeline: {e}")
-                    print(f"  ⚠ 将尝试使用 InstantID pipeline（可能需要提供参考图像）")
-                    self.sdxl_pipeline = None
-
-            # 使用普通的 SDXL pipeline
-            if self.sdxl_pipeline is not None:
+            # ⚡ 关键修复：方案2需要使用 SDXL + IP-Adapter，而不是 Flux.1
+            # 如果使用 IP-Adapter（方案2），必须使用 SDXL pipeline
+            if use_ip_adapter:
+                # 方案2：强制使用 SDXL pipeline（支持 IP-Adapter）
+                if self.sdxl_pipeline is None:
+                    try:
+                        instantid_pipeline = self.pipeline
+                        self._load_sdxl_pipeline(load_lora=False)
+                        # ⚡ 关键修复：验证pipeline组件完整性，避免KeyError 'unet'
+                        if self.pipeline is not None:
+                            if hasattr(self.pipeline, 'components'):
+                                components = self.pipeline.components
+                                if isinstance(components, dict) and 'unet' not in components:
+                                    # 如果components缺少unet，重新加载
+                                    self._load_sdxl_pipeline(load_lora=False)
+                            elif not hasattr(self.pipeline, 'unet') or self.pipeline.unet is None:
+                                # 如果pipeline没有unet属性，重新加载
+                                self._load_sdxl_pipeline(load_lora=False)
+                        self.sdxl_pipeline = self.pipeline
+                        self.pipeline = instantid_pipeline
+                    except Exception as e:
+                        import traceback
+                        print(f"  ✗ 无法加载 SDXL pipeline（方案2需要）: {e}")
+                        print(f"  📋 详细错误:\n{traceback.format_exc()}")
+                        raise RuntimeError(f"无法加载 SDXL pipeline用于方案2: {e}") from e
                 pipeline_to_use = self.sdxl_pipeline
-                print(f"  ℹ 使用普通的 SDXL pipeline（非 InstantID）")
             else:
-                pipeline_to_use = self.pipeline
-                print(f"  ⚠ 使用 InstantID pipeline（可能失败）")
+                # 如果不使用 IP-Adapter，可以使用 Flux.1（质量更好）
+                if self.flux1_pipeline is None:
+                    try:
+                        instantid_pipeline = self.pipeline
+                        original_engine = self.engine
+                        self.engine = "flux1"
+                        self._load_flux1_pipeline()
+                        self.sdxl_pipeline = self.flux1_pipeline  # 复用变量名，实际是Flux.1
+                        self.pipeline = instantid_pipeline
+                        self.engine = original_engine
+                    except Exception as e:
+                        # 如果 Flux.1 失败，回退到 SDXL
+                        instantid_pipeline = self.pipeline
+                        self._load_sdxl_pipeline(load_lora=False)
+                        self.sdxl_pipeline = self.pipeline
+                        self.pipeline = instantid_pipeline
+                pipeline_to_use = self.sdxl_pipeline if self.sdxl_pipeline is not None else self.pipeline
         else:
             # 使用普通的 pipeline
             pipeline_to_use = self.pipeline
@@ -4496,6 +6344,23 @@ class ImageGenerator:
         # 如果启用 IP-Adapter，确保它已经被加载
         if use_ip_adapter:
             target_pipe = pipeline_to_use or self.pipeline
+            print(f"  🔍 [DEBUG] 检查 IP-Adapter，target_pipe: {type(target_pipe).__name__ if target_pipe else 'None'}")
+            
+            # ⚡ 关键修复：在加载 IP-Adapter 之前，验证 pipeline 的 unet 组件
+            if target_pipe is not None:
+                try:
+                    if not hasattr(target_pipe, 'unet'):
+                        raise AttributeError(f"Pipeline {type(target_pipe).__name__} 缺少 'unet' 属性")
+                    unet = target_pipe.unet
+                    if unet is None:
+                        raise AttributeError(f"Pipeline {type(target_pipe).__name__}.unet 为 None")
+                    print(f"  ✓ Pipeline unet 验证成功（IP-Adapter 加载前）: {type(unet).__name__}")
+                except (AttributeError, KeyError) as unet_error:
+                    print(f"  ⚠ Pipeline unet 验证失败（IP-Adapter 加载前）: {unet_error}")
+                    import traceback
+                    print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                    raise RuntimeError(f"Pipeline 组件验证失败，无法加载 IP-Adapter: {unet_error}") from unet_error
+            
             # 检查 IP-Adapter 是否已加载（检查是否有 ip_adapter_image_processor 属性且不为 None）
             ip_adapter_loaded = False
             if hasattr(
@@ -4561,7 +6426,18 @@ class ImageGenerator:
 
                     # 加载新的 IP-Adapter
                     print(f"  ℹ 加载 SDXL IP-Adapter...")
-                    self._load_ip_adapter()
+                    # ⚡ 关键修复：确保 IP-Adapter 加载到正确的 pipeline（pipeline_to_use 或 sdxl_pipeline）
+                    # 如果 pipeline_to_use 是 sdxl_pipeline，需要确保 IP-Adapter 加载到它上面
+                    if pipeline_to_use is self.sdxl_pipeline and self.sdxl_pipeline is not None:
+                        # 临时切换到 sdxl_pipeline，加载 IP-Adapter
+                        original_pipeline = self.pipeline
+                        self.pipeline = self.sdxl_pipeline
+                        try:
+                            self._load_ip_adapter()
+                        finally:
+                            self.pipeline = original_pipeline
+                    else:
+                        self._load_ip_adapter()
                     # 重新加载后，确保 pipeline_to_use 也加载了 IP-Adapter
                     if pipeline_to_use is self.img2img_pipeline and self.img2img_pipeline is not None:
                         # img2img_pipeline 的 IP-Adapter 会在 _load_ip_adapter 中自动加载
@@ -4615,7 +6491,9 @@ class ImageGenerator:
         # 如果使用 LoRA，降低 IP-Adapter 权重以避免冲突导致脸部变形
         # 重要：如果character_lora和style_lora都是None，表示不使用LoRA，只使用参考图生成正常图像
         ip_adapter_scale_override = None
-        if hasattr(self.pipeline, "set_adapters"):
+        # ⚡ 关键修复：使用 pipeline_to_use 而不是 self.pipeline（两阶段法中 self.pipeline 是 InstantID，pipeline_to_use 是 SDXL）
+        target_pipeline_for_lora = pipeline_to_use if pipeline_to_use is not None else self.pipeline
+        if hasattr(target_pipeline_for_lora, "set_adapters"):
             # 构建LoRA适配器列表（角色LoRA + 风格LoRA）
             adapter_names = []
             adapter_weights = []
@@ -4679,21 +6557,53 @@ class ImageGenerator:
                     print(f"  ℹ 已禁用风格LoRA（用户指定）")
                 else:
                     # 使用用户指定的风格LoRA
+                    # ⚡ 关键修复：优先使用 Execution Planner 指定的权重（0.35，低权重，只绑定风格，不抢戏）
+                    style_alpha = 0.35  # Execution Planner 推荐的权重
+                    
+                    # 检查 adapter 是否已加载
+                    loaded_adapters = []
+                    if hasattr(pipeline_to_use, "get_active_adapters"):
+                        try:
+                            loaded_adapters = list(pipeline_to_use.get_active_adapters()) if pipeline_to_use.get_active_adapters() else []
+                        except:
+                            pass
+                    elif hasattr(pipeline_to_use, "peft_config") and pipeline_to_use.peft_config:
+                        loaded_adapters = list(pipeline_to_use.peft_config.keys())
+                    
+                    # 如果 adapter 未加载，先加载 LoRA
+                    if style_lora not in loaded_adapters:
+                        # 尝试从配置中获取风格 LoRA 路径
+                        style_config = self.lora_config.get("style_lora", {})
+                        style_lora_path = None
+                        if isinstance(style_config, dict):
+                            style_lora_path = style_config.get("weights_path")
+                        
+                        if style_lora_path and Path(style_lora_path).exists():
+                            try:
+                                print(f"  🔧 加载风格 LoRA 文件: {Path(style_lora_path).name} (adapter={style_lora})")
+                                pipeline_to_use.load_lora_weights(style_lora_path, adapter_name=style_lora)
+                                print(f"  ✅ 风格 LoRA 已加载: {style_lora}")
+                            except Exception as e:
+                                print(f"  ⚠ 风格 LoRA 加载失败: {e}，尝试使用已加载的 adapter")
+                    
                     adapter_names.append(style_lora)
-                    style_config = self.lora_config.get("style_lora", {})
-                    style_alpha = float(style_config.get("alpha", 0.7)) if isinstance(style_config, dict) else 0.7
                     adapter_weights.append(style_alpha)
-                    print(f"  ✓ 使用用户指定的风格LoRA: {style_lora} (alpha={style_alpha:.2f})")
+                    print(f"  ✓ 使用风格锚点（风格 LoRA）: {style_lora} (alpha={style_alpha:.2f}，Execution Planner 推荐权重)")
             else:
                 # style_lora是None，不使用风格LoRA（不使用默认的anime_style）
                 print(f"  ℹ 未指定风格LoRA，禁用风格LoRA（仅使用参考图）")
 
             # 应用所有LoRA适配器（每次生成都重新应用，避免被覆盖）
             if adapter_names:
-                self.pipeline.set_adapters(
-                    adapter_names, adapter_weights=adapter_weights)
-                print(
-                    f"  ✓ 已应用LoRA适配器: {adapter_names} (权重: {adapter_weights})")
+                # ⚡ 关键修复：使用 target_pipeline_for_lora 而不是 self.pipeline
+                try:
+                    target_pipeline_for_lora.set_adapters(
+                        adapter_names, adapter_weights=adapter_weights)
+                    print(
+                        f"  ✓ 已应用LoRA适配器: {adapter_names} (权重: {adapter_weights})")
+                except Exception as e:
+                    print(f"  ⚠ 应用LoRA适配器失败: {e}，跳过LoRA操作")
+                    adapter_names = []  # 清空适配器列表，继续执行
                 # 如果使用 LoRA，降低 IP-Adapter 权重以避免冲突
                 if use_lora is not False:  # 只有当明确禁用时才不降低
                     ip_adapter_scale_override = 0.35  # 降低 IP-Adapter 权重
@@ -4701,15 +6611,33 @@ class ImageGenerator:
                 # 如果没有适配器，完全禁用并卸载所有LoRA（只使用参考图生成正常图像）
                 # 检查是否是 Flux pipeline（Flux 使用 transformer，LoRA 处理不同）
                 is_flux = False
-                if self.pipeline is not None:
-                    pipeline_type = type(self.pipeline).__name__
+                if target_pipeline_for_lora is not None:
+                    pipeline_type = type(target_pipeline_for_lora).__name__
                     is_flux = "Flux" in pipeline_type or "flux" in pipeline_type.lower()
                 
                 if not is_flux:
-                    # 首先禁用适配器
-                    self.pipeline.set_adapters([])
+                    # ⚡ 关键修复：使用 target_pipeline_for_lora 而不是 self.pipeline
+                    # 添加安全检查，确保 pipeline 支持 set_adapters
+                    try:
+                        if hasattr(target_pipeline_for_lora, "set_adapters"):
+                            # 检查是否有 _component_adapter_weights 属性（diffusers 内部字典）
+                            if hasattr(target_pipeline_for_lora, "_component_adapter_weights"):
+                                # 首先禁用适配器
+                                target_pipeline_for_lora.set_adapters([])
+                            else:
+                                print(f"  ℹ Pipeline 不支持 LoRA 适配器操作（缺少 _component_adapter_weights），跳过")
+                        else:
+                            print(f"  ℹ Pipeline 不支持 set_adapters 方法，跳过 LoRA 操作")
+                    except (KeyError, AttributeError) as e:
+                        # 如果 set_adapters 失败（例如 KeyError 'unet'），跳过操作
+                        print(f"  ⚠ 禁用 LoRA 适配器时出错: {e}，跳过 LoRA 操作")
+                    except Exception as e:
+                        print(f"  ⚠ 禁用 LoRA 适配器时出错: {e}，跳过 LoRA 操作")
                     # 尝试卸载所有已加载的LoRA权重，确保完全清除影响
-                    self._unload_all_lora_adapters(self.pipeline, "主pipeline")
+                    try:
+                        self._unload_all_lora_adapters(target_pipeline_for_lora, "主pipeline")
+                    except Exception as e:
+                        print(f"  ⚠ 卸载 LoRA 权重时出错: {e}，继续执行")
                 else:
                     print(f"  ℹ Flux pipeline 检测到，跳过 LoRA 操作（Flux 架构不同）")
             
@@ -4981,8 +6909,12 @@ class ImageGenerator:
         if ip_adapter_image is not None and use_ip_adapter:
             target_pipe = pipeline_to_use or self.pipeline
             if hasattr(target_pipe, "set_ip_adapter_scale"):
+                # ⚡ 方案2：如果使用两阶段法，使用0.65（推荐值）
+                if hasattr(self, '_two_stage_ip_adapter_scale') and self._two_stage_ip_adapter_scale is not None:
+                    scale = self._two_stage_ip_adapter_scale
+                    print(f"  ✓ 方案2：使用IP-Adapter scale={scale:.2f}（两阶段法推荐值）")
                 # 如果设置了 override，使用 override 值（使用 LoRA 时降低 IP-Adapter 权重）
-                if ip_adapter_scale_override is not None:
+                elif ip_adapter_scale_override is not None:
                     scale = ip_adapter_scale_override
                 else:
                     scale = (
@@ -5045,10 +6977,16 @@ class ImageGenerator:
                             num_images_per_prompt=1,
                             do_classifier_free_guidance=True,
                         )
-                    except (AttributeError, TypeError, NameError) as e:
+                    except (AttributeError, TypeError, NameError, KeyError) as e:
                         error_str = str(e)
+                        # ⚡ 修复：捕获 KeyError（如 'unet'），这可能发生在 pipeline 内部访问 components 时
+                        if isinstance(e, KeyError) and 'unet' in str(e):
+                            print(f"  ✗ IP-Adapter 准备失败（KeyError 'unet'）: {e}")
+                            print(f"  ℹ 这可能是 InstantID pipeline 组件问题，跳过 IP-Adapter 处理")
+                            prepared = None
+                            use_ip_adapter = False
                         # 检查是否是 InstantID pipeline 相关的错误
-                        if "image_proj_model_in_features" in error_str or (
+                        elif "image_proj_model_in_features" in error_str or (
                                 "InstantID" in error_str and "image_proj" in error_str):
                             print(f"  ✗ 检测到 InstantID pipeline 错误: {e}")
                             print(
@@ -5166,24 +7104,88 @@ class ImageGenerator:
                 continuity_strength = self.img2img_strength * 0.4  # 降低到约0.07（如果默认0.18）
                 print(f"  ✓ 使用场景连贯性img2img，strength={continuity_strength:.2f}")
 
-                # 确保有img2img pipeline
-                if self.img2img_pipeline is None and self.pipeline:
+                # ⚡ 核心修复：对于 InstantID pipeline，直接使用其 img2img 功能，不创建单独的 img2img pipeline
+                # 检查是否为 InstantID pipeline
+                is_instantid_pipeline = False
+                try:
+                    from pipeline_stable_diffusion_xl_instantid import StableDiffusionXLInstantIDPipeline
+                    is_instantid_pipeline = isinstance(self.pipeline, StableDiffusionXLInstantIDPipeline)
+                except ImportError:
+                    # 如果不能导入，检查 pipeline 的类型名称
+                    pipeline_type_name = type(self.pipeline).__name__
+                    is_instantid_pipeline = "InstantID" in pipeline_type_name or "instantid" in pipeline_type_name.lower()
+                
+                # 对于 InstantID pipeline，直接使用原 pipeline 的 img2img 功能（通过 image 参数）
+                if is_instantid_pipeline:
+                    print(f"  ℹ InstantID pipeline：直接使用原 pipeline 的 img2img 功能（通过 image 参数）")
+                    self.img2img_pipeline = None  # 不需要单独的 img2img pipeline
+                elif self.img2img_pipeline is None and self.pipeline:
+                    # 对于非 InstantID pipeline，创建 img2img pipeline
                     try:
                         from diffusers import StableDiffusionXLImg2ImgPipeline
-                        self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline(
-                            **self.pipeline.components)
-                        if hasattr(
-                                self.img2img_pipeline,
-                                "enable_model_cpu_offload"):
-                            self.img2img_pipeline.enable_model_cpu_offload()
-                        else:
-                            self.img2img_pipeline = self.img2img_pipeline.to(
-                                self.device)
+                        # 尝试使用 components 创建 img2img pipeline
+                        # 注意：如果使用 enable_model_cpu_offload()，components 可能不是标准字典
+                        try:
+                            components = getattr(self.pipeline, 'components', None)
+                            if components is None:
+                                raise AttributeError("pipeline.components is None")
+                            
+                            # 检查 components 是否为字典或类似字典的对象
+                            if not isinstance(components, dict):
+                                raise TypeError(f"components is not a dict, got {type(components)}")
+                            
+                            # 检查必要的键是否存在
+                            required_keys = ['unet', 'vae', 'text_encoder', 'text_encoder_2', 'tokenizer', 'tokenizer_2', 'scheduler']
+                            missing_keys = [key for key in required_keys if key not in components]
+                            if missing_keys:
+                                raise KeyError(f"components missing required keys: {missing_keys}")
+                            
+                            # 尝试创建 pipeline
+                            self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline(**components)
+                            print(f"  ✓ 使用 pipeline.components 创建 img2img pipeline 成功")
+                            
+                        except (KeyError, AttributeError, TypeError) as comp_error:
+                            # 如果 components 方法失败，使用 from_pretrained（需要从 pipeline 获取 model_path）
+                            print(f"  ℹ 无法使用 components 创建 img2img pipeline: {comp_error}，尝试使用 from_pretrained")
+                            model_path = getattr(self.pipeline, '_model_path', None) or getattr(self, 'pipe_name', None)
+                            if model_path:
+                                dtype = torch.float16 if self.image_config.get("mixed_precision", "bf16") == "fp16" else torch.float32
+                                self.img2img_pipeline = StableDiffusionXLImg2ImgPipeline.from_pretrained(
+                                    model_path, torch_dtype=dtype)
+                                print(f"  ✓ 使用 from_pretrained 创建 img2img pipeline 成功")
+                            else:
+                                raise ValueError(f"无法确定 model_path 用于创建 img2img pipeline（components错误: {comp_error}）")
+                        
+                        # 配置 img2img pipeline
+                        if self.img2img_pipeline:
+                            if hasattr(self.img2img_pipeline, "enable_model_cpu_offload"):
+                                self.img2img_pipeline.enable_model_cpu_offload()
+                            else:
+                                self.img2img_pipeline = self.img2img_pipeline.to(self.device)
                     except Exception as e:
-                        print(f"  ⚠ 无法创建img2img pipeline: {e}，将使用普通生成")
+                        print(f"  ⚠ 无法创建img2img pipeline: {type(e).__name__}: {e}，将使用普通生成")
+                        import traceback
+                        traceback.print_exc()
                         init_img = None
+                        self.img2img_pipeline = None
 
-                if self.img2img_pipeline and init_img is not None:
+                # ⚡ 核心修复：对于 InstantID pipeline，不支持 img2img，使用普通生成
+                if is_instantid_pipeline:
+                    # InstantID pipeline 不支持标准的 img2img 功能（通过 image 参数）
+                    # 强制使用普通文生图，忽略 init_img
+                    print(f"  ℹ InstantID pipeline 不支持场景连贯性 img2img，使用普通文生图")
+                    init_img = None  # 禁用 img2img
+                    pipeline_to_use = self.pipeline
+                    # 清理 kwargs 中的 image 相关参数
+                    kwargs_clean = {
+                        k: v for k, v in kwargs.items() if k not in [
+                            'image', 'ip_adapter_image', 'strength']}
+                    result = pipeline_to_use(
+                        width=self.width,
+                        height=self.height,
+                        **kwargs_clean,
+                    )
+                elif self.img2img_pipeline and init_img is not None:
                     result = self.img2img_pipeline(
                         image=init_img,
                         strength=continuity_strength,
@@ -5403,17 +7405,130 @@ class ImageGenerator:
                 )
             
             try:
+                # ⚡ 关键修复：在调用 pipeline 之前，验证 pipeline 组件完整性
+                # 检查 pipeline 是否有 unet 属性（更可靠的方法）
+                try:
+                    # 首先尝试直接访问 unet 属性
+                    if not hasattr(pipeline_to_use, 'unet'):
+                        raise AttributeError("Pipeline 缺少 'unet' 属性")
+                    # 尝试访问 unet（如果使用 CPU offload，可能需要触发加载）
+                    unet = pipeline_to_use.unet
+                    if unet is None:
+                        raise AttributeError("Pipeline.unet 为 None")
+                except (AttributeError, KeyError) as unet_check_error:
+                    # 如果直接访问失败，尝试通过 components 检查
+                    print(f"  ⚠ Pipeline.unet 访问失败: {unet_check_error}")
+                    if hasattr(pipeline_to_use, 'components'):
+                        try:
+                            components = pipeline_to_use.components
+                            if isinstance(components, dict):
+                                if 'unet' not in components:
+                                    raise KeyError(f"Pipeline.components 字典中缺少 'unet' 键，现有键: {list(components.keys())[:10]}")
+                            else:
+                                raise TypeError(f"Pipeline.components 不是字典，类型: {type(components)}")
+                        except Exception as comp_error:
+                            print(f"  ⚠ Pipeline.components 检查失败: {comp_error}")
+                            # 如果使用 CPU offload，可能需要强制加载组件
+                            # 尝试重新加载 pipeline
+                            raise RuntimeError(f"Pipeline 组件检查失败: {unet_check_error}, components错误: {comp_error}")
+                    else:
+                        raise RuntimeError(f"Pipeline 缺少 'unet' 属性且没有 'components' 属性: {unet_check_error}")
+                
                 # 如果是img2img pipeline，添加image和strength参数
                 if pipeline_to_use is self.img2img_pipeline and init_image is not None:
                     kwargs['image'] = init_image
                     kwargs['strength'] = img2img_strength
                     print(f"  ℹ img2img参数: strength={img2img_strength:.2f}")
 
+                # ⚡ 关键修复：在调用 pipeline 前，再次验证并输出调试信息
+                print(f"  🔍 [DEBUG] 准备调用 pipeline，类型: {type(pipeline_to_use).__name__}")
+                print(f"  🔍 [DEBUG] pipeline_to_use.unet: {pipeline_to_use.unet is not None if hasattr(pipeline_to_use, 'unet') else 'N/A'}")
+                if hasattr(pipeline_to_use, 'components'):
+                    try:
+                        components = pipeline_to_use.components
+                        if isinstance(components, dict):
+                            print(f"  🔍 [DEBUG] components 键: {list(components.keys())[:10]}")
+                    except Exception as e:
+                        print(f"  ⚠ 无法访问 components: {e}")
+
                 result = pipeline_to_use(
                     width=self.width,
                     height=self.height,
                     **kwargs,
                 )
+            except (KeyError, AttributeError, RuntimeError) as e:
+                error_str = str(e).lower()
+                error_type = type(e).__name__
+                import traceback
+                if isinstance(e, KeyError) and 'unet' in str(e):
+                    print(f"  ✗ Pipeline 调用失败（KeyError 'unet'）: {e}")
+                    print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                    # 尝试诊断问题
+                    print(f"  🔍 [DEBUG] pipeline_to_use 类型: {type(pipeline_to_use).__name__}")
+                    print(f"  🔍 [DEBUG] hasattr(pipeline_to_use, 'unet'): {hasattr(pipeline_to_use, 'unet')}")
+                    if hasattr(pipeline_to_use, 'unet'):
+                        try:
+                            unet = pipeline_to_use.unet
+                            print(f"  🔍 [DEBUG] pipeline_to_use.unet: {type(unet).__name__ if unet is not None else 'None'}")
+                        except Exception as unet_err:
+                            print(f"  🔍 [DEBUG] 访问 unet 时出错: {unet_err}")
+                    if hasattr(pipeline_to_use, 'components'):
+                        try:
+                            components = pipeline_to_use.components
+                            if isinstance(components, dict):
+                                print(f"  🔍 [DEBUG] components 键: {list(components.keys())[:10]}")
+                                print(f"  🔍 [DEBUG] 'unet' in components: {'unet' in components}")
+                            else:
+                                print(f"  🔍 [DEBUG] components 类型: {type(components)}")
+                        except Exception as comp_err:
+                            print(f"  🔍 [DEBUG] 访问 components 时出错: {comp_err}")
+                elif 'unet' in error_str:
+                    print(f"  ✗ Pipeline 组件错误（unet）: {error_type}: {e}")
+                    print(f"  📋 完整错误堆栈:\n{traceback.format_exc()}")
+                    print(f"  ⚠ 尝试重新加载 SDXL pipeline（不使用 CPU offload）...")
+                    try:
+                        # 强制重新加载 SDXL pipeline，但不使用 CPU offload（避免 components 字典不完整）
+                        instantid_pipeline = self.pipeline if is_instantid_pipeline else None
+                        original_use_cpu_offload = self.image_config.get("enable_cpu_offload", True)
+                        # 临时禁用 CPU offload，确保 components 字典完整
+                        self.image_config["enable_cpu_offload"] = False
+                        try:
+                            self._load_sdxl_pipeline(load_lora=False)
+                        finally:
+                            # 恢复原始配置
+                            self.image_config["enable_cpu_offload"] = original_use_cpu_offload
+                        # 验证重新加载的 pipeline
+                        if self.pipeline is not None:
+                            # 验证 unet 属性（更可靠的方法）
+                            if hasattr(self.pipeline, 'unet') and self.pipeline.unet is not None:
+                                # 将 pipeline 赋值给 sdxl_pipeline（如果之前是这样的话）
+                                if pipeline_to_use is self.sdxl_pipeline or (is_instantid_pipeline and use_ip_adapter):
+                                    self.sdxl_pipeline = self.pipeline
+                                pipeline_to_use = self.pipeline
+                                print(f"  ✓ SDXL pipeline 重新加载成功（通过 unet 属性验证）")
+                                # 重新尝试调用
+                                if pipeline_to_use is self.img2img_pipeline and init_image is not None:
+                                    kwargs['image'] = init_image
+                                    kwargs['strength'] = img2img_strength
+                                result = pipeline_to_use(
+                                    width=self.width,
+                                    height=self.height,
+                                    **kwargs,
+                                )
+                            else:
+                                raise RuntimeError("重新加载的 pipeline 仍然缺少有效的 'unet' 属性")
+                        else:
+                            raise RuntimeError("无法重新加载 SDXL pipeline")
+                        # 恢复 InstantID pipeline（如果之前在使用）
+                        if instantid_pipeline:
+                            self.pipeline = instantid_pipeline
+                    except Exception as reload_err:
+                        import traceback
+                        print(f"  ✗ 重新加载 pipeline 失败: {reload_err}")
+                        print(f"  📋 详细错误:\n{traceback.format_exc()}")
+                        raise RuntimeError(f"Pipeline 组件错误且无法修复: {e}") from e
+                else:
+                    raise
             except TypeError as e:
                 if "image must be passed" in str(
                         e) or "image" in str(e).lower():
@@ -5486,17 +7601,44 @@ class ImageGenerator:
             print("⚠ 未在脚本中找到场景数据，跳过图像生成")
             return []
 
-        # 自动生成 face_style_auto（如果不存在）
-        try:
-            from face_style_auto_generator import generate_face_styles_for_episode
-            print("\n[自动生成 face_style_auto]")
-            generate_face_styles_for_episode(
-                scenes, smooth=True, overwrite_existing=False)
-            print(f"✓ 已为 {len(scenes)} 个场景生成/更新 face_style_auto")
-        except ImportError:
-            print("⚠ face_style_auto_generator 未找到，跳过自动生成")
-        except Exception as e:
-            print(f"⚠ face_style_auto 生成失败: {e}")
+        # ============================================================
+        # Execution Planner v2 集成：检测是否是 v2 格式
+        # ============================================================
+        is_v2_format = False
+        planner = None
+        if scenes:
+            first_scene = scenes[0]
+            # 检查是否是 v2 格式（通过 version 字段或 v2 特有字段）
+            if first_scene.get("version") == "v2" or (
+                "intent" in first_scene and 
+                "visual_constraints" in first_scene and 
+                "generation_policy" in first_scene
+            ):
+                is_v2_format = True
+                print("\n" + "="*60)
+                print("🎯 检测到 Scene JSON v2 格式，启用 Execution Planner v2")
+                print("="*60)
+                try:
+                    from model_selector import ModelSelector
+                    planner = ModelSelector(self.config)
+                    print("✓ Execution Planner v2 已初始化")
+                except Exception as e:
+                    print(f"⚠ Execution Planner v2 初始化失败: {e}，将使用默认逻辑")
+                    planner = None
+                    is_v2_format = False
+
+        # 自动生成 face_style_auto（如果不存在，且不是 v2 格式）
+        if not is_v2_format:
+            try:
+                from face_style_auto_generator import generate_face_styles_for_episode
+                print("\n[自动生成 face_style_auto]")
+                generate_face_styles_for_episode(
+                    scenes, smooth=True, overwrite_existing=False)
+                print(f"✓ 已为 {len(scenes)} 个场景生成/更新 face_style_auto")
+            except ImportError:
+                print("⚠ face_style_auto_generator 未找到，跳过自动生成")
+            except Exception as e:
+                print(f"⚠ face_style_auto 生成失败: {e}")
 
         # 显示角色和场景模板加载状态
         if self.character_profiles:
@@ -5524,6 +7666,11 @@ class ImageGenerator:
         manager_config_path = None
 
         for idx, scene in enumerate(scenes, start=1):
+            scene_id = scene.get('id', idx - 1)
+            print(f"\n{'='*60}")
+            print(f"处理场景 {idx}/{len(scenes)} (场景ID={scene_id})")
+            print(f"{'='*60}")
+            
             # 在每个场景生成前清理GPU缓存（除了第一个场景）
             if idx > 1:
                 if torch.cuda.is_available():
@@ -5676,16 +7823,150 @@ class ImageGenerator:
                     traceback.print_exc()
                     # 继续使用普通流程
             
+            # ============================================================
+            # Execution Planner v2: 如果是 v2 格式，使用 Planner 决策
+            # ============================================================
+            planner_decision = None
+            if is_v2_format and planner:
+                try:
+                    planner_decision = planner.select_engine_for_scene_v2(scene)
+                    print(f"  🎯 Execution Planner 决策:")
+                    print(f"     引擎: {planner_decision['engine']}")
+                    print(f"     模式: {planner_decision['mode']}")
+                    print(f"     锁脸: {planner_decision['lock_face']}")
+                    print(f"     任务类型: {planner_decision['task_type']}")
+                    
+                    # 根据 Planner 决策调整参数
+                    if planner_decision['lock_face'] and not face_reference:
+                        # 如果需要锁脸但没有参考图，尝试从角色ID获取
+                        character_id = scene.get("character", {}).get("id")
+                        if character_id:
+                            face_reference = self._select_face_reference_image(
+                                idx, character_id=character_id)
+                            if face_reference:
+                                print(f"  ✓ 根据 Planner 决策，已加载角色参考图: {face_reference.name}")
+                except Exception as e:
+                    print(f"  ⚠ Execution Planner 决策失败: {e}，使用默认逻辑")
+                    planner_decision = None
+
+            # ⚡ 关键修复：检查 Execution Planner 是否要求使用语义化 prompt（FLUX 专用）
+            use_semantic_prompt = False
+            if planner_decision and planner_decision.get('use_semantic_prompt', False):
+                use_semantic_prompt = True
+                print(f"  ✓ Execution Planner 要求使用语义化 prompt（FLUX 专用）")
+            
             # 普通流程：传递前一个场景信息，用于连贯性控制
             prompt = self.build_prompt(
                 scene,
                 include_character=needs_character,
                 script_data=script_data,
-                previous_scene=previous_scene)
+                previous_scene=previous_scene,
+                use_semantic_prompt=use_semantic_prompt)  # ⚡ 新增：传递语义化 prompt 标志
             filename = f"scene_{idx:03d}.png"
+            # 重要：始终使用output_dir生成的文件路径，忽略JSON中可能错误的image_path
             output_path = output_dir / filename
 
-            reference_image = self._select_reference_image(scene, idx)
+            # ⚡ 关键修复：检查 Execution Planner 是否要求使用人设锚点图
+            # ⚡ 核心规则：直接使用参考图（hanli_mid.jpg），不拷贝 anchor
+            use_character_anchor = False
+            character_anchor_path = None
+            if planner_decision and planner_decision.get('use_character_anchor', False):
+                use_character_anchor = True
+                # ⚡ 核心规则：直接使用参考图，不查找 anchor 目录
+                character_id = scene.get("character", {}).get("id", primary_character if primary_character else "hanli")
+                
+                # ⚡ 关键修复：使用绝对路径查找，避免相对路径问题
+                # 优先级：配置中的 face_image_path > hanli_mid.jpg > hanli_mid.png
+                if character_id == "hanli":
+                    # 优先级 1：配置中的 face_image_path（通常是绝对路径）
+                    face_image_path = self.image_config.get("face_image_path")
+                    if face_image_path:
+                        face_image_path_obj = Path(face_image_path)
+                        # 如果是相对路径，转换为绝对路径
+                        if not face_image_path_obj.is_absolute():
+                            # 尝试从当前工作目录或项目根目录查找
+                            base_paths = [
+                                Path.cwd(),
+                                Path(__file__).parent.parent,  # gen_video 目录
+                                Path(__file__).parent.parent.parent,  # 项目根目录
+                            ]
+                            for base in base_paths:
+                                test_path = base / face_image_path
+                                if test_path.exists():
+                                    face_image_path_obj = test_path
+                                    break
+                        
+                        if face_image_path_obj.exists():
+                            character_anchor_path = face_image_path_obj
+                            print(f"  ✓ 使用人设锚点图（参考图）: {character_anchor_path.name}")
+                        else:
+                            # 优先级 2：hanli_mid.jpg（尝试多个路径）
+                            base_paths = [
+                                Path(__file__).parent / "reference_image",  # gen_video/reference_image
+                                Path(__file__).parent.parent / "reference_image",  # 项目根目录/reference_image
+                                Path.cwd() / "gen_video" / "reference_image",  # 当前目录/gen_video/reference_image
+                            ]
+                            found = False
+                            for base in base_paths:
+                                default_path_jpg = base / "hanli_mid.jpg"
+                                if default_path_jpg.exists():
+                                    character_anchor_path = default_path_jpg
+                                    print(f"  ✓ 使用人设锚点图（参考图）: {character_anchor_path.name}")
+                                    found = True
+                                    break
+                            
+                            if not found:
+                                print(f"  ⚠ 警告：Execution Planner 要求使用人设锚点图，但未找到")
+                                print(f"  ℹ 已尝试以下路径：")
+                                for base in base_paths:
+                                    print(f"     - {base / 'hanli_mid.jpg'}")
+                                # 回退到使用普通参考图
+                                use_character_anchor = False
+                    else:
+                        # 配置中没有 face_image_path，直接查找 hanli_mid.jpg
+                        base_paths = [
+                            Path(__file__).parent / "reference_image",
+                            Path(__file__).parent.parent / "reference_image",
+                            Path.cwd() / "gen_video" / "reference_image",
+                        ]
+                        found = False
+                        for base in base_paths:
+                            default_path_jpg = base / "hanli_mid.jpg"
+                            if default_path_jpg.exists():
+                                character_anchor_path = default_path_jpg
+                                print(f"  ✓ 使用人设锚点图（参考图）: {character_anchor_path.name}")
+                                found = True
+                                break
+                        
+                        if not found:
+                            print(f"  ⚠ 警告：未找到参考图 hanli_mid.jpg")
+                            use_character_anchor = False
+                else:
+                    # 其他角色：尝试查找对应的参考图
+                    base_paths = [
+                        Path(__file__).parent / "reference_image",
+                        Path(__file__).parent.parent / "reference_image",
+                        Path.cwd() / "gen_video" / "reference_image",
+                    ]
+                    found = False
+                    for base in base_paths:
+                        char_ref_path = base / f"{character_id}_mid.jpg"
+                        if char_ref_path.exists():
+                            character_anchor_path = char_ref_path
+                            print(f"  ✓ 使用人设锚点图（参考图）: {character_anchor_path.name}")
+                            found = True
+                            break
+                    
+                    if not found:
+                        print(f"  ⚠ 警告：未找到角色参考图: {character_id}_mid.jpg")
+                        use_character_anchor = False
+            
+            # 如果要求使用人设锚点图，优先使用它作为 reference_image
+            if use_character_anchor and character_anchor_path:
+                reference_image = character_anchor_path
+                print(f"  🎯 使用人设锚点图作为 reference_image: {reference_image.name}")
+            else:
+                reference_image = self._select_reference_image(scene, idx)
 
             if primary_character and face_reference:
                 print(
@@ -5752,14 +8033,71 @@ class ImageGenerator:
                             f"  ✓ 使用前一个场景作为参考（相邻场景连贯性），strength={
                                 self.img2img_strength * 0.4:.2f}")
 
+                # 根据 Execution Planner 决策选择引擎和参数
+                model_engine = None
+                task_type = None
+                style_lora_from_planner = None
+                if planner_decision:
+                    model_engine = planner_decision['engine']
+                    task_type = planner_decision['task_type']
+                    # ⚡ 关键修复：应用 Execution Planner 返回的风格锚点配置
+                    style_anchor = planner_decision.get('style_anchor')
+                    # ⚡ 关键修复：检查是否需要禁用 LoRA（wide + top_down + lying 场景）
+                    disable_character_lora = planner_decision.get('disable_character_lora', False)
+                    disable_style_lora = planner_decision.get('disable_style_lora', False)
+                    
+                    if disable_style_lora:
+                        # 禁用风格 LoRA
+                        style_lora_from_planner = ""  # 空字符串表示禁用
+                        print(f"  ✓ Execution Planner 禁用风格 LoRA（wide + top_down + lying 场景，避免姿态冲突）")
+                    elif style_anchor and style_anchor.get('enabled', False):
+                        style_lora_name = style_anchor.get('name', 'anime_style')
+                        # 映射 fanren_style 到实际的 LoRA 名称
+                        if style_lora_name == "fanren_style":
+                            style_lora_name = "anime_style"  # 使用配置中的 anime_style LoRA
+                        style_lora_from_planner = style_lora_name
+                        style_lora_weight = style_anchor.get('weight', 0.35)
+                        print(f"  ✓ Execution Planner 指定风格锚点: {style_lora_name}，权重: {style_lora_weight}")
+                    
+                    # 如果禁用角色 LoRA，确保 character_lora 为 None
+                    if disable_character_lora:
+                        character_lora = None  # 这里需要传递到 generate_image，但当前代码结构不支持，需要在 generate_image 中处理
+                        print(f"  ✓ Execution Planner 禁用角色 LoRA（wide + top_down + lying 场景，避免姿态冲突）")
+                    # 如果 Planner 决定不锁脸，但当前有 face_reference，根据决策决定是否使用
+                    if not planner_decision['lock_face'] and face_reference:
+                        # Planner 决定不锁脸，但保留参考图用于其他用途（如风格参考）
+                        # 这里可以根据需要决定是否传递 face_reference
+                        pass  # 暂时保留，后续可以根据需要调整
+                
+                # ⚡ 关键修复：如果要求使用人设锚点图，确保传递正确的 reference_image
+                final_reference_image = reference_image
+                if use_character_anchor and character_anchor_path:
+                    final_reference_image = character_anchor_path
+                    print(f"  🎯 传递人设锚点图到 generate_image: {final_reference_image.name}")
+                
+                # ⚡ 关键修复：对于 FLUX pipeline，即使不锁脸，也应该传递 face_reference 作为参考图
+                # 因为 FLUX 使用 IP-Adapter，需要参考图来保持形象一致性
+                face_ref_for_flux = None
+                if planner_decision and planner_decision.get('engine') == 'flux1':
+                    # FLUX 引擎：即使不锁脸，也传递 face_reference 作为参考图（用于 IP-Adapter）
+                    face_ref_for_flux = face_reference if face_reference else None
+                    if face_ref_for_flux:
+                        print(f"  ✓ FLUX 引擎：传递 face_reference 作为参考图（用于 IP-Adapter）: {face_ref_for_flux.name if hasattr(face_ref_for_flux, 'name') else face_ref_for_flux}")
+                else:
+                    # 非 FLUX 引擎：只在锁脸时传递 face_reference
+                    face_ref_for_flux = face_reference if (planner_decision is None or planner_decision.get('lock_face', False)) else None
+                
                 path = self.generate_image(
                     prompt,
                     output_path,
-                    reference_image_path=reference_image,
-                    face_reference_image_path=face_reference,
-                    use_lora=needs_character,  # 仅在需要主角时使用 LoRA
+                    reference_image_path=final_reference_image,  # ⚡ 修复：使用人设锚点图
+                    face_reference_image_path=face_ref_for_flux,  # ⚡ 修复：FLUX 引擎时传递 face_reference
+                    use_lora=needs_character if not planner_decision else False,  # v2 格式不使用 LoRA，改用 InstantID
+                    style_lora=style_lora_from_planner,  # ⚡ 新增：使用 Execution Planner 指定的风格 LoRA
                     scene=scene,
                     init_image=init_image,  # 传递前一个场景图像用于连贯性
+                    model_engine=model_engine,  # 使用 Planner 决策的引擎
+                    task_type=task_type,  # 使用 Planner 决策的任务类型
                 )
                 if not path or not Path(path).exists():
                     raise RuntimeError(f"图像生成函数未返回有效文件: {path}")
@@ -5776,7 +8114,15 @@ class ImageGenerator:
                     torch.cuda.empty_cache()
                     gc.collect()
             except Exception as exc:
-                print(f"✗ 场景 {idx} 生成失败: {exc}")
+                import traceback
+                error_type = type(exc).__name__
+                error_msg = str(exc)
+                print(f"✗ 场景 {idx} 生成失败: {error_type}: {error_msg}")
+                # 如果是 KeyError 'unet'，输出完整堆栈
+                if isinstance(exc, KeyError) and 'unet' in error_msg:
+                    print(f"  📋 完整错误堆栈（KeyError 'unet'）:\n{traceback.format_exc()}")
+                elif 'unet' in error_msg.lower():
+                    print(f"  📋 完整错误堆栈（包含 'unet'）:\n{traceback.format_exc()}")
                 scene.setdefault("image_path", str(output_path))
                 # 即使失败也清理缓存
                 if torch.cuda.is_available():
@@ -5945,3 +8291,4 @@ class ImageGenerator:
             return list(self.scene_profiles.values())[0]
 
         return {}
+
