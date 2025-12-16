@@ -1,0 +1,109 @@
+#!/bin/bash
+# HunyuanVideo 1.5模型下载脚本（推荐版本）
+
+# 注意：不使用 set -e，允许下载过程中的错误（断点续传需要）
+# set -e
+
+echo "=========================================="
+echo "HunyuanVideo 1.5模型下载脚本（推荐版本）"
+echo "=========================================="
+
+# 配置
+# 推荐使用diffusers格式模型（完整pipeline，包含所有组件）
+MODEL_NAME="black-forest-labs/FLUX.2-dev"  # 720p图生视频（推荐）
+# 其他可选版本：
+# - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-480p_i2v（480p图生视频，速度快）
+# - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_i2v_distilled（720p蒸馏版，更快）
+# - hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_t2v（720p文生视频）
+LOCAL_DIR="/vepfs-dev/shawn/vid/fanren/gen_video/models/flux2-dev"
+VENV_PATH="/vepfs-dev/shawn/venv/py312/bin/activate"
+
+# 创建目录
+echo "1. 创建模型目录..."
+mkdir -p "$LOCAL_DIR"
+echo "   ✓ 目录已创建: $LOCAL_DIR"
+
+# 激活虚拟环境
+echo "2. 激活虚拟环境..."
+source "$VENV_PATH"
+echo "   ✓ 虚拟环境已激活"
+
+# 检查huggingface-cli是否安装
+echo "3. 检查huggingface-cli..."
+if ! command -v huggingface-cli &> /dev/null; then
+    echo "   ⚠ huggingface-cli未安装，正在安装..."
+    pip install -U huggingface_hub[cli]
+    echo "   ✓ huggingface-cli已安装"
+else
+    echo "   ✓ huggingface-cli已安装"
+fi
+
+# 检查是否已登录HuggingFace
+echo "4. 检查HuggingFace登录状态..."
+if ! huggingface-cli whoami &> /dev/null; then
+    echo "   ⚠ 未登录HuggingFace，请先登录..."
+    echo "   提示: 运行 huggingface-cli login"
+    echo "   或者设置环境变量: export HF_TOKEN=your_token"
+    
+    # 尝试从环境变量读取token
+    if [ -n "$HF_TOKEN" ]; then
+        echo "   ℹ 检测到HF_TOKEN环境变量，使用它登录..."
+        huggingface-cli login --token "$HF_TOKEN" --add-to-git-credential
+    else
+        echo "   ❌ 请先登录HuggingFace或设置HF_TOKEN环境变量"
+        exit 1
+    fi
+else
+    echo "   ✓ 已登录HuggingFace"
+fi
+
+# 下载模型
+echo "5. 开始下载HunyuanVideo 1.5模型..."
+echo "   模型: $MODEL_NAME"
+echo "   目标目录: $LOCAL_DIR"
+echo "   类型: 720p图生视频（Image-to-Video）"
+echo "   格式: diffusers标准格式（完整pipeline）"
+echo "   预计大小: 15-25GB"
+echo "   这可能需要一些时间，请耐心等待..."
+
+# 下载模型（支持断点续传）
+# huggingface-cli download 默认支持断点续传，会自动检测已存在的文件
+echo "   ℹ 开始下载/续传..."
+echo "   ℹ huggingface-cli 会自动检测已存在的文件并跳过它们（自动断点续传）"
+echo "   ℹ 如果下载中断，可以重新运行此脚本继续下载"
+
+# 检查已下载的文件大小
+if [ -d "$LOCAL_DIR" ]; then
+    existing_size=$(du -sh "$LOCAL_DIR" 2>/dev/null | cut -f1)
+    if [ -n "$existing_size" ]; then
+        echo "   ℹ 已存在文件大小: $existing_size（将自动续传）"
+    fi
+fi
+
+# huggingface-cli 默认支持断点续传，会自动跳过已下载的文件
+# 使用 || true 确保即使下载失败也不会立即退出，允许重试
+if huggingface-cli download "$MODEL_NAME" \
+    --local-dir "$LOCAL_DIR" \
+    --local-dir-use-symlinks False; then
+    echo "   ✓ 下载完成"
+else
+    exit_code=$?
+    echo ""
+    echo "   ⚠ 下载过程中出现错误（退出码: $exit_code）"
+    echo "   ℹ 但已下载的文件已保存"
+    echo "   ℹ 可以重新运行此脚本继续下载（自动断点续传）"
+    echo "   ℹ 命令: bash download_model.sh"
+    exit $exit_code
+fi
+
+echo ""
+echo "=========================================="
+echo "✅ HunyuanVideo 1.5模型下载完成！"
+echo "=========================================="
+echo "模型位置: $LOCAL_DIR"
+echo ""
+echo "下一步:"
+echo "1. 更新config.yaml中的model_path为本地路径"
+echo "2. 确保use_v15: true（使用1.5版本）"
+echo "3. 运行测试脚本验证: python gen_video/test_hunyuanvideo.py"
+
