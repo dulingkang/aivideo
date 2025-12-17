@@ -141,6 +141,13 @@ class PuLIDEngine:
                 logger.warning("建议：1) 关闭其他占用显存的程序 2) 使用更激进的 CPU offload")
         
         # 导入原生模块
+        # 添加 PuLID 到 Python 路径（现在在项目根目录，与 gen_video 平级）
+        import sys
+        from pathlib import Path
+        pulid_path = Path(__file__).parent.parent.parent / "PuLID"
+        if pulid_path.exists() and str(pulid_path) not in sys.path:
+            sys.path.insert(0, str(pulid_path))
+        
         from flux.util import load_t5, load_clip, load_ae
         from pulid.pipeline_flux import PuLIDPipeline
         
@@ -245,6 +252,13 @@ class PuLIDEngine:
         
         # 尝试加载 PuLID
         try:
+            # 添加 PuLID 到 Python 路径（现在在项目根目录，与 gen_video 平级）
+            import sys
+            from pathlib import Path
+            pulid_path = Path(__file__).parent.parent.parent / "PuLID"
+            if pulid_path.exists() and str(pulid_path) not in sys.path:
+                sys.path.insert(0, str(pulid_path))
+            
             from pulid.pipeline_flux import PuLIDPipeline
             
             dit = self.pipeline.transformer
