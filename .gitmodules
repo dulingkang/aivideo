@@ -4,3 +4,6 @@
 [submodule "InstantID"]
 	path = InstantID
 	url = git@github.com:instantX-research/InstantID.git
+[submodule "PuLID"]
+	path = PuLID
+	url = https://github.com/ToTheBeginning/PuLID.git
