@@ -109,65 +109,110 @@ class IDAnimatorEngine:
         
         logger.info("  加载 AnimateDiff Pipeline...")
         
-        # 检查使用 SDXL 还是 SD1.5
-        use_sdxl = "sdxl" in self.motion_module_path.lower()
+        # 转换模型目录为绝对路径
+        self.model_dir = os.path.abspath(self.model_dir)
+        logger.info(f"  模型根目录: {self.model_dir}")
         
-        if use_sdxl:
+        # 本地模型路径
+        local_sd15_path = os.path.join(self.model_dir, "stable-diffusion-v1-5")
+        local_sdxl_path = os.path.join(self.model_dir, "sdxl-base")
+        local_motion_path = os.path.join(self.model_dir, "AnimateDiff", "diffusion_pytorch_model.safetensors")
+        local_motion_sdxl_path = self.motion_module_path
+        
+        # 检查使用 SDXL 还是 SD1.5
+        self.use_sdxl = "sdxl" in self.motion_module_path.lower()
+        
+        # 尝试导入 AnimateDiffSDXLPipeline
+        try:
+            from diffusers import AnimateDiffSDXLPipeline
+        except ImportError:
+            AnimateDiffSDXLPipeline = None
+            logger.warning("  无法导入 AnimateDiffSDXLPipeline，尝试使用普通 AnimateDiffPipeline")
+        
+        if self.use_sdxl:
             # SDXL 版本
             logger.info("  使用 SDXL 版本")
-            base_model = self.config.get("base_model", "stabilityai/stable-diffusion-xl-base-1.0")
+            
+            # 检查本地 SDXL 模型
+            if os.path.exists(local_sdxl_path):
+                logger.info(f"  使用本地模型: {local_sdxl_path}")
+                base_model = local_sdxl_path
+                is_local = True
+            else:
+                base_model = self.config.get("base_model", "stabilityai/stable-diffusion-xl-base-1.0")
+                is_local = False
             
             # 加载 Motion Adapter
-            try:
+            if os.path.exists(local_motion_sdxl_path):
+                logger.info(f"  加载本地 Motion Adapter: {local_motion_sdxl_path}")
                 adapter = MotionAdapter.from_single_file(
-                    self.motion_module_path,
+                    local_motion_sdxl_path,
                     torch_dtype=torch.float16
                 )
                 logger.info(f"  ✓ Motion Adapter 加载成功")
-            except Exception as e:
-                logger.warning(f"  从文件加载 Motion Adapter 失败: {e}")
-                # 尝试从 HuggingFace 加载
-                adapter = MotionAdapter.from_pretrained(
-                    "guoyww/animatediff-motion-adapter-sdxl-beta",
-                    torch_dtype=torch.float16
-                )
-            
-            # 加载 Pipeline
-            self.pipeline = AnimateDiffPipeline.from_pretrained(
-                base_model,
-                motion_adapter=adapter,
-                torch_dtype=torch.float16,
-            )
-        else:
-            # SD 1.5 版本
-            logger.info("  使用 SD 1.5 版本")
-            base_model = self.config.get("base_model", "runwayml/stable-diffusion-v1-5")
-            
-            # 加载 Motion Adapter
-            try:
-                adapter = MotionAdapter.from_pretrained(
-                    "guoyww/animatediff-motion-adapter-v1-5-2",
-                    torch_dtype=torch.float16
-                )
-            except Exception as e:
-                logger.warning(f"  从 HuggingFace 加载失败: {e}")
-                # 尝试本地加载
-                local_motion_path = os.path.join(
-                    self.model_dir, "AnimateDiff", "diffusion_pytorch_model.safetensors"
-                )
-                if os.path.exists(local_motion_path):
-                    adapter = MotionAdapter.from_single_file(
-                        local_motion_path,
+            else:
+                logger.warning(f"  本地 Motion Adapter 不存在: {local_motion_sdxl_path}")
+                try:
+                    adapter = MotionAdapter.from_pretrained(
+                        "guoyww/animatediff-motion-adapter-sdxl-beta",
                         torch_dtype=torch.float16
                     )
-                else:
+                except Exception as e:
+                    logger.error(f"  Motion Adapter 加载失败: {e}")
                     raise
             
             # 加载 Pipeline
+            pipeline_cls = AnimateDiffSDXLPipeline if AnimateDiffSDXLPipeline else AnimateDiffPipeline
+            logger.info(f"  使用 Pipeline 类: {pipeline_cls.__name__}")
+            
+            self.pipeline = pipeline_cls.from_pretrained(
+                base_model,
+                motion_adapter=adapter,
+                torch_dtype=torch.float16,
+                local_files_only=is_local,
+            )
+        else:
+            # SD 1.5 版本 - 优先使用本地模型
+            logger.info("  使用 SD 1.5 版本")
+            
+            # 检查本地模型是否存在
+            if os.path.exists(local_sd15_path) and os.path.exists(local_motion_path):
+                logger.info(f"  使用本地模型: {local_sd15_path}")
+                base_model = local_sd15_path
+                
+                # 从本地加载 Motion Adapter
+                logger.info(f"  加载本地 Motion Adapter: {local_motion_path}")
+                adapter = MotionAdapter.from_single_file(
+                    local_motion_path,
+                    torch_dtype=torch.float16,
+                    local_files_only=True
+                )
+            else:
+                # 回退到 HuggingFace
+                logger.info("  本地模型不存在，使用 HuggingFace")
+                base_model = self.config.get("base_model", "runwayml/stable-diffusion-v1-5")
+                
+                try:
+                    adapter = MotionAdapter.from_pretrained(
+                        "guoyww/animatediff-motion-adapter-v1-5-2",
+                        torch_dtype=torch.float16
+                    )
+                except Exception as e:
+                    logger.warning(f"  从 HuggingFace 加载失败: {e}")
+                    if os.path.exists(local_motion_path):
+                        adapter = MotionAdapter.from_single_file(
+                            local_motion_path,
+                            torch_dtype=torch.float16
+                        )
+                    else:
+                        raise
+            
+            # 加载 Pipeline
             self.pipeline = AnimateDiffPipeline.from_pretrained(
                 base_model,
                 motion_adapter=adapter,
                 torch_dtype=torch.float16,
+                local_files_only=os.path.exists(local_sd15_path),  # 如果本地存在则不联网
             )
         
         # 设置 Scheduler
@@ -288,6 +333,8 @@ class IDAnimatorEngine:
         num_inference_steps: Optional[int] = None,
         seed: Optional[int] = None,
         output_path: Optional[str] = None,
+        width: int = 512,
+        height: int = 512,
     ) -> List[Image.Image]:
         """
         生成身份保持视频
@@ -303,6 +350,8 @@ class IDAnimatorEngine:
             num_inference_steps: 推理步数
             seed: 随机种子
             output_path: 输出视频路径
+            width: 视频宽度
+            height: 视频高度
             
         Returns:
             生成的帧列表
@@ -319,23 +368,26 @@ class IDAnimatorEngine:
         
         # 设置随机种子
         if seed is not None:
-            generator = torch.Generator(device=self.device).manual_seed(seed)
+            generator = torch.Generator(device="cpu").manual_seed(seed)
         else:
             generator = None
         
         logger.info(f"生成视频: {prompt[:50]}...")
         logger.info(f"  帧数: {num_frames}, FPS: {fps}, ID强度: {id_strength}")
+        logger.info(f"  分辨率: {width}x{height}")
         
-        # 提取人脸嵌入
+        # 加载参考图用于 IP-Adapter 风格的图像引导
+        ref_img = self._load_reference_image(reference_image, width, height)
+        
+        # 提取人脸嵌入用于验证
         face_embedding = self.extract_face_embedding(reference_image)
         
         if face_embedding is not None:
             logger.info("  ✓ 人脸嵌入提取成功")
-            # TODO: 将嵌入注入到生成过程中
-            # 这需要修改 AnimateDiff 的 attention 层
-            # 当前版本先使用基础 AnimateDiff
+            self._reference_embedding = face_embedding  # 保存用于后续验证
         else:
-            logger.warning("  ⚠ 无法提取人脸嵌入，使用基础生成")
+            logger.warning("  ⚠ 无法提取人脸嵌入")
+            self._reference_embedding = None
         
         # 增强 prompt 以保持身份
         enhanced_prompt = self._enhance_prompt_for_identity(prompt, id_strength)
@@ -344,19 +396,36 @@ class IDAnimatorEngine:
         if not negative_prompt:
             negative_prompt = (
                 "bad quality, worst quality, blurry, deformed face, "
-                "multiple faces, distorted, ugly, disfigured"
+                "multiple faces, distorted, ugly, disfigured, "
+                "bad anatomy, extra limbs, cloned face"
             )
         
         try:
+            # 构建生成参数
+            gen_kwargs = {
+                "prompt": enhanced_prompt,
+                "negative_prompt": negative_prompt,
+                "num_frames": num_frames,
+                "guidance_scale": guidance_scale,
+                "num_inference_steps": num_inference_steps,
+                "generator": generator,
+                "width": width,
+                "height": height,
+            }
+            
             # 生成视频
-            output = self.pipeline(
-                prompt=enhanced_prompt,
-                negative_prompt=negative_prompt,
-                num_frames=num_frames,
-                guidance_scale=guidance_scale,
-                num_inference_steps=num_inference_steps,
-                generator=generator,
-            )
+            # 检查是否使用 SDXL (默认为 False)
+            use_sdxl = getattr(self, "use_sdxl", False)
+            
+            if use_sdxl:
+                 # SDXL 可能不需要 ip_adapter 参数或者需要不同格式
+                 # 暂时移除 ip_adapter 参数以修复基础生成
+                 if "ip_adapter_image" in gen_kwargs:
+                     logger.warning("  SDXL 模式下暂时移除 ip_adapter_image 参数")
+                     gen_kwargs.pop("ip_adapter_image", None)
+                     gen_kwargs.pop("ip_adapter_scale", None)
+
+            output = self.pipeline(**gen_kwargs)
             
             frames = output.frames[0]  # 获取帧列表
             
@@ -372,6 +441,22 @@ class IDAnimatorEngine:
         except Exception as e:
             logger.error(f"  ❌ 视频生成失败: {e}")
             raise
+    
+    def _load_reference_image(
+        self, 
+        reference_image: Union[str, Path, Image.Image],
+        width: int = 512,
+        height: int = 512
+    ) -> Image.Image:
+        """加载并预处理参考图"""
+        if isinstance(reference_image, (str, Path)):
+            img = Image.open(reference_image).convert('RGB')
+        else:
+            img = reference_image.convert('RGB')
+        
+        # 调整大小
+        img = img.resize((width, height), Image.Resampling.LANCZOS)
+        return img
     
     def _enhance_prompt_for_identity(self, prompt: str, id_strength: float) -> str:
         """
