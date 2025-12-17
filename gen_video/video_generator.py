@@ -18,7 +18,8 @@ import imageio
 import json
 
 # 优先使用项目中的diffusers（支持HunyuanVideo 1.5）
-_diffusers_path = Path(__file__).parent / "diffusers" / "src"
+# diffusers现在在项目根目录（与gen_video平级）
+_diffusers_path = Path(__file__).parent.parent / "diffusers" / "src"
 if _diffusers_path.exists():
     sys.path.insert(0, str(_diffusers_path))
 

@@ -7,3 +7,6 @@
 [submodule "PuLID"]
 	path = PuLID
 	url = https://github.com/ToTheBeginning/PuLID.git
+[submodule "diffusers"]
+	path = diffusers
+	url = https://github.com/huggingface/diffusers.git

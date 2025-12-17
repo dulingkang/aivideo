@@ -12,7 +12,8 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 # 优先使用项目中的diffusers（支持1.5版本）
-diffusers_path = project_root / "gen_video" / "diffusers" / "src"
+# diffusers现在在项目根目录（与gen_video平级）
+diffusers_path = project_root / "diffusers" / "src"
 if diffusers_path.exists():
     sys.path.insert(0, str(diffusers_path))
     print(f"  ℹ 使用项目中的diffusers: {diffusers_path}")
