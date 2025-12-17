@@ -554,7 +554,7 @@ image:
       /vepfs-dev/shawn/vid/fanren/gen_video/hanli_reference
     num_inference_steps: 40  # 统一为 40 步（与 InstantID 保持一致，如果使用 DPM++ 采样器）
     guidance_scale: 8.5
-    ip_adapter:
+  ip_adapter:
       model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/ip-adapter
       subfolder: sdxl_models
       weight_name: ip-adapter_sdxl.bin
@@ -563,6 +563,130 @@ image:
       face_image_size: 160
       face_crop_ratio: 0.9  # ⚡ 稳定性优化：从0.75提高到0.9，固定参考脸角度，提升稳定性
       face_reference_only: true
+  
+  # ==========================================
+  # 增强模式配置（新方案 - PuLID + 解耦融合 + Execution Planner V3）
+  # ==========================================
+  # 是否启用增强模式（使用新的角色一致性方案）
+  # 启用后，当 scene 参数存在时，会自动使用 EnhancedImageGenerator
+  # 否则使用传统的 ImageGenerator
+  enhanced_mode:
+    enabled: true  # 是否启用增强模式（默认 true，可以设置为 false 回退到旧方案）
+    # 注意：即使 enabled=false，pulid 和 decoupled_fusion 的配置仍然保留
+    # 以便将来可以单独启用某个功能
+  
+  # ==========================================
+  # PuLID-FLUX 配置（新方案 - 身份保持与环境融合更好）
+  # ==========================================
+  # 参考豆包/可灵的参考强度控制和多参考图方案
+  pulid:
+    enabled: true
+    # 模型路径
+    model_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/pulid/pulid_flux_v0.9.1.safetensors
+    flux_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/flux1-dev
+    # InsightFace 路径 (人脸检测)
+    antelopev2_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/antelopev2
+    eva_clip_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/clip/EVA02_CLIP_L_336_psz14_s6B.pt
+    # 分辨率（竖屏 9:16）
+    width: 768
+    height: 1152
+    # 生成参数
+    num_inference_steps: 28  # Flux 在 28 步已足够
+    guidance_scale: 3.5      # Flux 不需要高 CFG
+    quantization: bfloat16
+    # 参考强度控制 (0-100, 类似可灵)
+    # 这是默认值，实际值由 Execution Planner V3 根据场景动态计算
+    default_reference_strength: 60  # 默认中等强度
+    # 参考强度映射（镜头类型 -> 参考强度）
+    # 注意：这些值会被 Execution Planner V3 动态调整
+    reference_strength_map:
+      extreme_wide: 20   # 超远景: 环境优先
+      wide: 30           # 远景
+      full: 45           # 全身
+      american: 55       # 7/8身
+      medium: 60         # 中景
+      medium_close: 70   # 中近景
+      close: 80          # 特写
+      extreme_close: 90  # 超特写
+  
+  # ==========================================
+  # 解耦融合配置（SAM2 + YOLO）
+  # ==========================================
+  # 解决"人脸一致性 vs 环境丰富度"矛盾的核心方案
+  decoupled_fusion:
+    enabled: true
+    # SAM2 模型路径
+    sam2_path: /vepfs-dev/shawn/vid/fanren/gen_video/models/sam2
+    # 人物检测方法: auto, yolo, sam2
+    detection_method: auto  # auto 会根据场景自动选择
+    # 融合参数
+    feather_radius: 10      # 边缘羽化半径（像素）
+    mask_padding: 20        # mask 扩展边缘（用于自然过渡）
+    # 质量验证
+    verify_face_similarity: true
+    similarity_threshold: 0.7  # 人脸相似度阈值
+    # 自动重试
+    auto_retry: true
+    max_retries: 3
+    retry_strength_adjustment: 10  # 每次重试增加的参考强度
+  
+  # ==========================================
+  # Execution Planner V3 配置
+  # ==========================================
+  # 智能场景路由，根据镜头类型自动选择引擎和参数
+  execution_planner:
+    version: 3
+    # 是否启用 V3 功能
+    enabled: true
+    # 默认引擎选择策略
+    engine_selection:
+      # 特写/中近景: 使用 InstantID (锁脸更强)
+      close_shots: instantid
+      # 中景: 使用 PuLID (平衡)
+      medium_shots: pulid
+      # 远景: 使用 Flux (环境优先)
+      wide_shots: flux
+    # 是否自动使用解耦生成
+    auto_decoupled: true
+    # 解耦生成触发条件
+    decoupled_threshold:
+      max_reference_strength: 50  # 参考强度低于此值时考虑解耦
+      shot_types: ["extreme_wide", "wide", "full"]  # 这些镜头类型考虑解耦
+  
+  # ==========================================
+  # 角色档案系统（多参考图）
+  # ==========================================
+  # 参考可灵 Element Library 的多参考图方案
+  character_profiles:
+    enabled: true
+    # 角色档案基础目录
+    profiles_dir: /vepfs-dev/shawn/vid/fanren/gen_video/character_profiles
+    # 默认角色
+    default_character: hanli
+    # 角色配置
+    characters:
+      hanli:
+        id: hanli
+        name: 韩立
+        profile_dir: hanli
+        # 多角度参考图
+        references:
+          front: front.png
+          three_quarter: three_quarter.png
+          profile: side.png
+        # 表情库
+        expressions:
+          neutral: neutral.png
+          happy: happy.png
+          sad: sad.png
+          angry: angry.png
+        # 元数据
+        metadata:
+          gender: male
+          age_range: "20-25"
+          style_tags: ["ancient_chinese", "cultivator", "handsome"]
+          hair: "black, long, tied"
+          eyes: "deep, brown"
   
   # 通用提示词配置（两种引擎共用）
   # 注意：这些是默认提示词，实际使用时应该根据场景描述动态生成
