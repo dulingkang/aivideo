@@ -9,18 +9,22 @@ echo "PuLID 原生环境设置"
 echo "============================================================"
 
 # 基础路径
-PULID_DIR="/tmp/PuLID"
+# PuLID 现在作为子模块位于项目根目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PULID_DIR="$PROJECT_ROOT/PuLID"
 MODELS_DIR="/vepfs-dev/shawn/vid/fanren/gen_video/models"
 VENV_DIR="/vepfs-dev/shawn/venv/py312"
 
-# 1. 确保 PuLID 仓库存在
+# 1. 检查 PuLID 子模块
 echo ""
-echo "1. 检查 PuLID 仓库..."
+echo "1. 检查 PuLID 子模块..."
 if [ ! -d "$PULID_DIR" ]; then
-    echo "   克隆 PuLID 仓库..."
-    git clone https://github.com/ToTheBeginning/PuLID.git "$PULID_DIR"
+    echo "   ⚠ PuLID 子模块不存在，正在初始化..."
+    cd "$PROJECT_ROOT"
+    git submodule update --init --recursive PuLID
 else
-    echo "   PuLID 仓库已存在: $PULID_DIR"
+    echo "   ✓ PuLID 子模块已存在: $PULID_DIR"
 fi
 
 # 2. 添加 PuLID 到 Python 路径
