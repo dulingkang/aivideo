@@ -47,12 +47,13 @@ class EnhancedImageGenerator:
     - 角色档案系统 (多参考图)
     """
     
-    def __init__(self, config_path: str = "config.yaml"):
+    def __init__(self, config_path: str = "config.yaml", enable_memory_manager: bool = True):
         """
         初始化增强型图像生成器
         
         Args:
             config_path: 配置文件路径
+            enable_memory_manager: 是否启用显存管理器
         """
         self.config_path = config_path
         
@@ -73,6 +74,7 @@ class EnhancedImageGenerator:
         self.pulid_engine = None  # 延迟加载
         self.fusion_engine = None  # 延迟加载
         self.flux_pipeline = None  # 延迟加载
+        self.quality_analyzer = None  # 延迟加载
         
         # 角色档案
         self.character_profiles = {}
@@ -81,10 +83,107 @@ class EnhancedImageGenerator:
         # 设备配置
         self.device = self.image_config.get("device", "cuda")
         
+        # 显存管理器
+        self.enable_memory_manager = enable_memory_manager
+        self._memory_manager = None
+        if enable_memory_manager:
+            self._init_memory_manager()
+        
         logger.info("EnhancedImageGenerator 初始化完成")
         logger.info(f"  PuLID 启用: {self.pulid_config.get('enabled', False)}")
         logger.info(f"  解耦融合启用: {self.decoupled_config.get('enabled', False)}")
         logger.info(f"  Planner 版本: V{self.planner_config.get('version', 3)}")
+        logger.info(f"  显存管理器: {'启用' if enable_memory_manager else '禁用'}")
+    
+    def _init_memory_manager(self):
+        """初始化显存管理器"""
+        try:
+            from utils.memory_manager import MemoryManager, MemoryPriority
+            
+            self._memory_manager = MemoryManager(
+                warning_threshold=0.85,
+                critical_threshold=0.95,
+                auto_cleanup=True
+            )
+            
+            # 注册模型加载器
+            self._memory_manager.register_model(
+                name="pulid_engine",
+                loader=self._create_pulid_engine,
+                unloader=self._unload_pulid_engine,
+                priority=MemoryPriority.CRITICAL,
+                estimated_size_gb=25.0  # PuLID + Flux 约占 25GB
+            )
+            
+            self._memory_manager.register_model(
+                name="fusion_engine",
+                loader=self._create_fusion_engine,
+                unloader=self._unload_fusion_engine,
+                priority=MemoryPriority.HIGH,
+                estimated_size_gb=3.0  # SAM2 + YOLO + InsightFace
+            )
+            
+            self._memory_manager.register_model(
+                name="quality_analyzer",
+                loader=self._create_quality_analyzer,
+                unloader=self._unload_quality_analyzer,
+                priority=MemoryPriority.LOW,
+                estimated_size_gb=1.0  # InsightFace only
+            )
+            
+            logger.debug("显存管理器初始化完成")
+            
+        except ImportError:
+            logger.warning("无法导入显存管理器，使用默认显存管理")
+            self._memory_manager = None
+    
+    def _create_pulid_engine(self):
+        """创建 PuLID 引擎（供显存管理器使用）"""
+        engine_config = {
+            "device": self.device,
+            "quantization": self.pulid_config.get("quantization", "bfloat16"),
+            "model_dir": os.path.dirname(os.path.dirname(
+                self.pulid_config.get("model_path", "")
+            )),
+        }
+        engine = PuLIDEngine(engine_config)
+        engine.load_pipeline()
+        return engine
+    
+    def _unload_pulid_engine(self, engine):
+        """卸载 PuLID 引擎"""
+        if engine:
+            engine.unload()
+    
+    def _create_fusion_engine(self):
+        """创建融合引擎（供显存管理器使用）"""
+        engine_config = {
+            "device": self.device,
+            "model_dir": os.path.dirname(
+                self.decoupled_config.get("sam2_path", "")
+            ),
+        }
+        return DecoupledFusionEngine(engine_config)
+    
+    def _unload_fusion_engine(self, engine):
+        """卸载融合引擎"""
+        if engine:
+            engine.unload()
+    
+    def _create_quality_analyzer(self):
+        """创建质量分析器（供显存管理器使用）"""
+        from utils.image_quality_analyzer import ImageQualityAnalyzer
+        return ImageQualityAnalyzer({
+            "device": self.device,
+            "insightface_root": os.path.dirname(
+                self.decoupled_config.get("sam2_path", "models")
+            )
+        })
+    
+    def _unload_quality_analyzer(self, analyzer):
+        """卸载质量分析器"""
+        if analyzer:
+            analyzer.unload()
     
     def _load_character_profiles(self):
         """加载角色档案"""
@@ -569,15 +668,132 @@ class EnhancedImageGenerator:
         self,
         generated: Image.Image,
         reference: Image.Image,
+        strategy: GenerationStrategy,
+        expected_shot_type: Optional[str] = None,
+        verbose: bool = True
+    ) -> Optional[Dict[str, Any]]:
+        """
+        验证生成质量（增强版）
+        
+        使用 ImageQualityAnalyzer 进行全面的质量评估，包括：
+        - 人脸相似度验证
+        - 构图分析（远景/中景/近景）
+        - 技术指标（清晰度/饱和度/亮度/对比度）
+        - 综合评分
+        
+        Args:
+            generated: 生成的图像
+            reference: 参考图像
+            strategy: 生成策略
+            expected_shot_type: 期望的镜头类型
+            verbose: 是否输出详细日志
+            
+        Returns:
+            质量报告字典，如果分析失败则返回 None
+        """
+        try:
+            from utils.image_quality_analyzer import ImageQualityAnalyzer, QualityLevel
+            
+            # 创建分析器
+            analyzer_config = {
+                "device": self.device,
+                "insightface_root": os.path.dirname(
+                    self.decoupled_config.get("sam2_path", "models")
+                )
+            }
+            analyzer = ImageQualityAnalyzer(analyzer_config)
+            
+            # 确定期望的镜头类型
+            if expected_shot_type is None and hasattr(strategy, 'shot_type'):
+                expected_shot_type = strategy.shot_type
+            
+            # 执行分析
+            report = analyzer.analyze(
+                image=generated,
+                reference_image=reference,
+                similarity_threshold=strategy.similarity_threshold,
+                expected_shot_type=expected_shot_type
+            )
+            
+            # 输出日志
+            logger.info("=" * 50)
+            logger.info("📊 图像质量分析结果")
+            logger.info("=" * 50)
+            
+            # 综合评分
+            level_emoji = {
+                QualityLevel.EXCELLENT: "🌟",
+                QualityLevel.GOOD: "✅",
+                QualityLevel.FAIR: "🟡",
+                QualityLevel.POOR: "🟠",
+                QualityLevel.BAD: "🔴"
+            }
+            emoji = level_emoji.get(report.overall_level, "❓")
+            logger.info(f"🎯 综合评分: {report.overall_score:.1f}/100 {emoji} {report.overall_level.value.upper()}")
+            
+            # 人脸相似度
+            if report.face_similarity:
+                face = report.face_similarity
+                if face.error:
+                    logger.warning(f"👤 人脸相似度: ⚠️ {face.error}")
+                else:
+                    status = "✅ 通过" if face.passed else "❌ 未通过"
+                    logger.info(f"👤 人脸相似度: {face.similarity:.3f} (阈值: {face.threshold}) {status}")
+            
+            # 构图分析
+            if report.composition and verbose:
+                comp = report.composition
+                shot_emoji = {"extreme_close": "🔍", "close": "👁️", "medium": "📷", "wide": "🏞️", "unknown": "❓"}
+                logger.info(f"🎬 镜头类型: {shot_emoji.get(comp.shot_type.value, '')} {comp.shot_type.value}")
+                if comp.person_ratio > 0:
+                    logger.info(f"   人物占比: {comp.person_ratio*100:.1f}%")
+            
+            # 技术指标（简要）
+            if report.technical and verbose:
+                tech = report.technical
+                level_sym = {"excellent": "🟢", "good": "🟢", "fair": "🟡", "poor": "🟠", "bad": "🔴"}
+                logger.info(f"📊 清晰度: {tech.sharpness:.1f} {level_sym.get(tech.sharpness_level.value, '')}")
+                logger.info(f"   饱和度: {tech.saturation:.1f} {level_sym.get(tech.saturation_level.value, '')}")
+            
+            # 问题和建议
+            if report.issues:
+                logger.warning("⚠️ 发现问题:")
+                for issue in report.issues:
+                    logger.warning(f"   • {issue}")
+            
+            if report.suggestions and verbose:
+                logger.info("💡 优化建议:")
+                for suggestion in report.suggestions:
+                    logger.info(f"   • {suggestion}")
+            
+            logger.info("=" * 50)
+            
+            # 清理
+            analyzer.unload()
+            
+            return report.to_dict()
+            
+        except ImportError:
+            # 回退到简单验证
+            logger.debug("ImageQualityAnalyzer 不可用，使用简单验证")
+            return self._verify_quality_simple(generated, reference, strategy)
+        except Exception as e:
+            logger.error(f"质量分析失败: {e}")
+            return self._verify_quality_simple(generated, reference, strategy)
+    
+    def _verify_quality_simple(
+        self,
+        generated: Image.Image,
+        reference: Image.Image,
         strategy: GenerationStrategy
-    ):
-        """验证生成质量"""
+    ) -> Optional[Dict[str, Any]]:
+        """简单质量验证（回退方法）"""
         if self.fusion_engine is None:
             self._load_fusion_engine()
         
         if self.fusion_engine is None:
             logger.warning("无法验证人脸相似度")
-            return
+            return None
         
         passed, similarity = self.fusion_engine.verify_face_similarity(
             generated_image=generated,
@@ -589,6 +805,14 @@ class EnhancedImageGenerator:
             logger.info(f"✅ 质量验证通过: 相似度 {similarity:.2f}")
         else:
             logger.warning(f"⚠️ 质量验证未通过: 相似度 {similarity:.2f} < 阈值 {strategy.similarity_threshold}")
+        
+        return {
+            "face_similarity": {
+                "similarity": similarity,
+                "passed": passed,
+                "threshold": strategy.similarity_threshold
+            }
+        }
     
     def unload_all(self):
         """卸载所有模型"""
