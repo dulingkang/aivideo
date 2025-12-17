@@ -52,7 +52,7 @@ echo "身份保持模型:"
 check_exist "InstantID" "$BASE_DIR/instantid"
 check_exist "IP-Adapter" "$BASE_DIR/ip-adapter"
 check_exist "AntelopeV2 (InsightFace)" "$BASE_DIR/antelopev2"
-check_exist "PuLID-FLUX" "$BASE_DIR/pulid/PuLID-FLUX-v0.9.1.safetensors"
+check_exist "PuLID-FLUX" "$BASE_DIR/pulid/pulid_flux_v0.9.1.safetensors"
 
 echo ""
 echo "视频生成模型:"
@@ -127,33 +127,65 @@ echo "5. 下载 PuLID-FLUX 模型..."
 echo "   来源: guozinan/PuLID"
 echo "   目标: $BASE_DIR/pulid/"
 
-PULID_FILE="$BASE_DIR/pulid/PuLID-FLUX-v0.9.1.safetensors"
+PULID_FILE="$BASE_DIR/pulid/pulid_flux_v0.9.1.safetensors"
+# 检查文件是否存在且大于 1GB (正常应该约 1.14GB)
+PULID_MIN_SIZE=1000000000  # 1GB in bytes
+
+need_download=false
 if [ -f "$PULID_FILE" ]; then
-    echo "   ✓ PuLID-FLUX-v0.9.1.safetensors 已存在，跳过"
+    file_size=$(stat -c%s "$PULID_FILE" 2>/dev/null || echo "0")
+    if [ "$file_size" -lt "$PULID_MIN_SIZE" ]; then
+        echo "   ⚠ PuLID 文件存在但大小异常 (${file_size} bytes), 重新下载..."
+        rm -f "$PULID_FILE"
+        need_download=true
+    else
+        echo "   ✓ pulid_flux_v0.9.1.safetensors 已存在 ($(numfmt --to=iec $file_size)), 跳过"
+    fi
 else
-    echo "   ℹ 开始下载 PuLID-FLUX-v0.9.1..."
+    need_download=true
+fi
+
+if [ "$need_download" = true ]; then
+    echo "   ℹ 开始下载 PuLID-FLUX-v0.9.1 (约 1.14GB)..."
     
     # 方式1: 使用 huggingface-cli 下载特定文件（新版语法）
     huggingface-cli download guozinan/PuLID \
-        PuLID-FLUX-v0.9.1.safetensors \
+        pulid_flux_v0.9.1.safetensors \
         --local-dir "$BASE_DIR/pulid"
     
     # 检查下载是否成功
     if [ -f "$PULID_FILE" ]; then
-        echo "   ✓ PuLID-FLUX 下载完成"
+        file_size=$(stat -c%s "$PULID_FILE" 2>/dev/null || echo "0")
+        if [ "$file_size" -gt "$PULID_MIN_SIZE" ]; then
+            echo "   ✓ PuLID-FLUX 下载完成 ($(numfmt --to=iec $file_size))"
+        else
+            echo "   ⚠ 下载可能不完整，尝试 wget..."
+            rm -f "$PULID_FILE"
+            
+            # 方式2: 直接用wget下载
+            wget -c "https://huggingface.co/guozinan/PuLID/resolve/main/pulid_flux_v0.9.1.safetensors" \
+                -O "$PULID_FILE"
+        fi
     else
         echo "   ⚠ huggingface-cli 方式失败，尝试 wget..."
         
         # 方式2: 直接用wget下载
-        wget -c "https://huggingface.co/guozinan/PuLID/resolve/main/PuLID-FLUX-v0.9.1.safetensors" \
+        wget -c "https://huggingface.co/guozinan/PuLID/resolve/main/pulid_flux_v0.9.1.safetensors" \
             -O "$PULID_FILE"
-        
-        if [ -f "$PULID_FILE" ]; then
-            echo "   ✓ PuLID-FLUX 通过 wget 下载完成"
+    fi
+    
+    # 最终验证
+    if [ -f "$PULID_FILE" ]; then
+        file_size=$(stat -c%s "$PULID_FILE" 2>/dev/null || echo "0")
+        if [ "$file_size" -gt "$PULID_MIN_SIZE" ]; then
+            echo "   ✓ PuLID-FLUX 下载验证通过"
         else
-            echo "   ❌ PuLID-FLUX 下载失败"
+            echo "   ❌ PuLID-FLUX 下载失败或不完整"
             echo "   请手动下载: https://huggingface.co/guozinan/PuLID/tree/main"
         fi
+    else
+        echo "   ❌ PuLID-FLUX 下载失败"
+        echo "   请手动下载: https://huggingface.co/guozinan/PuLID/tree/main"
     fi
 fi
 
@@ -296,7 +328,7 @@ echo "==========================================="
 echo ""
 echo "PuLID-FLUX:     $BASE_DIR/pulid/"
 echo "EVA-CLIP:       $BASE_DIR/clip/"
-echo "InsightFace:    $BASE_DIR/antelopev2/"
+echo "InsightFace:    $BASE_DIR/insightface/"
 echo "SAM2:           $BASE_DIR/sam2/"
 echo "YOLO:           ~/.cache/ultralytics/ (或自动管理)"
 echo ""
@@ -315,8 +347,8 @@ check_file() {
     fi
 }
 
-check_file "PuLID-FLUX" "$BASE_DIR/pulid/PuLID-FLUX-v0.9.1.safetensors"
-check_file "InsightFace AntelopeV2" "$BASE_DIR/antelopev2/1k3d68.onnx"
+check_file "PuLID-FLUX" "$BASE_DIR/pulid/pulid_flux_v0.9.1.safetensors"
+check_file "InsightFace AntelopeV2" "$BASE_DIR/insightface/models/antelopev2/1k3d68.onnx"
 check_file "SAM2" "$BASE_DIR/sam2"
 echo "✓ YOLO (自动管理)"
 

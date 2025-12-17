@@ -96,6 +96,15 @@ class ImageGenerator:
         self.ascii_only_prompt: bool = bool(
             self.image_config.get(
                 "ascii_only_prompt", False))
+        
+        # 增强模式配置（新方案：PuLID + 解耦融合 + Execution Planner V3）
+        enhanced_config = self.image_config.get("enhanced_mode", {})
+        self.use_enhanced_mode = enhanced_config.get("enabled", False)
+        self.enhanced_generator = None  # 延迟加载
+        
+        if self.use_enhanced_mode:
+            print("  ℹ️  增强模式已启用（PuLID + 解耦融合 + Execution Planner V3）")
+            print("     当 scene 参数存在时，将自动使用增强模式生成")
 
         # 初始化 Prompt 模块组件
         self.token_estimator = TokenEstimator(
@@ -2155,6 +2164,42 @@ class ImageGenerator:
             model_engine: 手动指定模型引擎（可选），如 "flux-instantid", "hunyuan-dit", "kolors", "sd3-turbo", "auto"
             task_type: 任务类型（可选），如 "character", "scene", "batch"
         """
+        
+        # ⚡ 增强模式：如果启用且提供了 scene 参数，使用增强生成器
+        if self.use_enhanced_mode and scene is not None:
+            try:
+                # 延迟加载增强生成器
+                if self.enhanced_generator is None:
+                    from enhanced_image_generator import EnhancedImageGenerator
+                    print("  🚀 初始化增强模式生成器...")
+                    self.enhanced_generator = EnhancedImageGenerator(str(self.config_path))
+                
+                # 准备参考图像
+                face_ref = None
+                if face_reference_image_path:
+                    from PIL import Image
+                    face_ref = Image.open(face_reference_image_path).convert('RGB')
+                elif reference_image_path:
+                    from PIL import Image
+                    face_ref = Image.open(reference_image_path).convert('RGB')
+                
+                # 使用增强生成器生成
+                print("  ✨ 使用增强模式生成（PuLID + 解耦融合 + Execution Planner V3）")
+                image = self.enhanced_generator.generate_scene(
+                    scene=scene,
+                    face_reference=face_ref
+                )
+                
+                if image:
+                    image.save(output_path)
+                    print(f"  ✅ 增强模式生成成功: {output_path}")
+                    return output_path
+                else:
+                    print("  ⚠️  增强模式生成失败，回退到标准模式")
+            except Exception as e:
+                print(f"  ⚠️  增强模式生成出错: {e}，回退到标准模式")
+                import traceback
+                traceback.print_exc()
         
         # ⚡ 调试：记录传入的 reference_image_path
         print(f"  🔍 调试：generate_image 接收到的 reference_image_path = {reference_image_path}")
