@@ -160,6 +160,84 @@ video:
         negative_keywords: ["modern", "realistic", "photorealistic"]
     # 默认风格（如果脚本中未指定style，使用此风格）
     default_style: realistic  # 可选: scientific, commercial, dramatic, realistic, xianxia
+
+  # ==========================================
+  # M6 视频身份保持：身份验证配置（HunyuanVideo 生成后验证 + 失败重试）
+  # ==========================================
+  identity_verification:
+    # 是否启用身份验证（上层脚本也可覆盖）
+    enabled: true
+    # 相似度阈值：低于此值判定失败并可能触发重试
+    similarity_threshold: 0.65
+    # 丢弃阈值：低于此值直接丢弃，不再重试
+    similarity_discard: 0.60
+    # 是否允许“丢弃级别”的视频继续参与后续重试（用于 hard case 兜底）
+    retry_on_discard: true
+    # 最多允许触发几次“丢弃后仍继续重试”（避免无限烧算力）
+    discard_retry_max: 1
+    # 漂移阈值：单帧相似度低于此值视为漂移帧（用于 drift_ratio 统计）
+    drift_threshold: 0.50
+    # 最大漂移帧比例（超过则失败）
+    max_drift_ratio: 0.05
+    # 最低人脸检测率（低于则失败）
+    min_face_detect_ratio: 0.75
+    # 最低相似度下限（用于过滤极端崩脸帧）
+    min_similarity_floor: 0.10
+    # 最大重试次数
+    max_retries: 3
+    # 重试策略开关
+    retry_reduce_motion: true
+    retry_adjust_prompt: true
+    # 验证采样：每隔多少帧采样一次（越小越准，越大越快）
+    sample_interval: 5
+    # 最多分析多少帧（限制耗时）
+    max_frames: 30
+    # 强制分析最后 N 帧（避免采样间隔错过“尾段崩脸”）
+    include_last_n_frames: 3
+    # 重试随机种子（确保每次重试采样不同，避免“重试=同一条视频”）
+    seed_base: 42
+    seed_step: 1
+    # 不同镜头类型的阈值容忍度（会从 similarity_threshold 中减去该值，值越大越“宽松”）
+    shot_type_tolerance:
+      wide: 0.10
+      medium: 0.05
+      medium_close: 0.04
+      close: 0.03
+      extreme_close: 0.02
+    # 分层调参（失败后按严重度/失败类型升级参数）
+    layered_tuning:
+      # 极低相似度（常见于尾段脸崩/脸花）阈值：低于此值按“严重”处理
+      catastrophic_min_similarity: 0.15
+      # 漂移比例偏高阈值：超过则按“漂移型失败”处理
+      high_drift_ratio: 0.12
+      # 人脸检测率偏低阈值：低于则按“未检出/遮挡”处理
+      low_face_detect_ratio: 0.80
+      # 失败后步数升级策略
+      steps_increase_small: 4
+      steps_increase_large: 8
+      # 极端崩脸/高漂移场景的额外升级
+      steps_increase_catastrophic: 12
+      steps_max: 45
+      # 动态场景降级链：dynamic -> moderate -> gentle
+      downgrade_motion_on_retry: true
+
+  # ==========================================
+  # ID-Animator（实验/研究路径）：身份保持视频生成（SD1.5 + AnimateDiff）
+  # ==========================================
+  id_animator:
+    enabled: false
+    model_dir: models
+    # Face Adapter（下载脚本默认文件名：id_animator.pth）
+    animator_path: models/ID-Animator/id_animator.pth
+    # Motion Module（下载脚本通常会落盘 diffusion_pytorch_model.safetensors 或 mm_sd_v15_v2.safetensors）
+    motion_module_path: models/AnimateDiff/diffusion_pytorch_model.safetensors
+    base_model: runwayml/stable-diffusion-v1-5
+    # 生成参数（默认用于测试）
+    id_strength: 0.7
+    num_frames: 16
+    fps: 8
+    guidance_scale: 7.5
+    num_inference_steps: 25
   
   # CogVideoX配置（量产产线，快速批量生成）
   cogvideox:

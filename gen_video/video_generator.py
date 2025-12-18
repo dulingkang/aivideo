@@ -40,6 +40,9 @@ except ImportError:
         pass
     class SceneTypeClassifier:
         pass
+    class ModelRouter:
+        def __init__(self, config): pass
+        def get_model_for_user(self, user_tier, scene_type): return None
 
 
 class VideoGenerator:
@@ -237,6 +240,50 @@ class VideoGenerator:
         - HunyuanVideo（原版）：使用 HunyuanVideoImageToVideoPipeline
         """
         import torch
+
+        # 兼容补丁：某些版本的 transformer.forward 不接受 timestep_r（diffusers pipeline 可能会传入）
+        # 该补丁尽量在 pipeline 加载后立刻注入，避免运行期 TypeError。
+        def _patch_timestep_r_compat() -> None:
+            try:
+                import inspect
+
+                pipe = self.hunyuanvideo_pipeline
+                if pipe is None:
+                    return
+                transformer = getattr(pipe, "transformer", None)
+                if transformer is None or not hasattr(transformer, "forward"):
+                    return
+                if getattr(transformer, "_timestep_r_compat_patched", False):
+                    return
+
+                # 若 forward 已显式支持 timestep_r，就不打补丁（避免引入额外开销）
+                try:
+                    sig = inspect.signature(transformer.forward)
+                    if "timestep_r" in sig.parameters:
+                        return
+                except Exception:
+                    # 签名不可用时，继续走“捕获 TypeError 再回退”的兜底补丁
+                    pass
+
+                orig_forward = transformer.forward
+
+                def forward_compat(*args, **kwargs):
+                    if "timestep_r" not in kwargs:
+                        return orig_forward(*args, **kwargs)
+                    try:
+                        return orig_forward(*args, **kwargs)
+                    except TypeError as e:
+                        msg = str(e)
+                        if "timestep_r" in msg and "unexpected keyword argument" in msg:
+                            kwargs.pop("timestep_r", None)
+                            return orig_forward(*args, **kwargs)
+                        raise
+
+                transformer.forward = forward_compat  # type: ignore[assignment]
+                transformer._timestep_r_compat_patched = True  # type: ignore[attr-defined]
+                print("  ✓ timestep_r 兼容补丁：transformer.forward 不支持时将自动忽略 timestep_r")
+            except Exception as e:
+                print(f"  ⚠ timestep_r 兼容补丁注入失败: {e}")
         
         # 检查是1.5版本还是原版
         hunyuan_config = self.video_config.get('hunyuanvideo', {})
@@ -349,27 +396,51 @@ class VideoGenerator:
                         print(f"  ℹ 将自动下载所有必需组件...")
                     # 重要：使用low_cpu_mem_usage避免一次性分配显存，不指定device让模型在CPU上加载
                     print(f"  ℹ 使用低显存模式加载模型（避免一次性分配）...")
-                    # 临时设置CUDA设备为CPU，确保模型在CPU上加载
-                    import os
-                    old_cuda_visible = os.environ.get('CUDA_VISIBLE_DEVICES', None)
-                    try:
-                        # 临时隐藏GPU，强制在CPU上加载
-                        os.environ['CUDA_VISIBLE_DEVICES'] = ''
+                    # 智能加载：如果有大量显存，直接加载到GPU；否则先到CPU再offload
+                    has_large_vram = False
+                    if torch.cuda.is_available():
+                        try:
+                            # 获取真实可用显存 (free, total)
+                            free_memory_bytes, total_memory_bytes = torch.cuda.mem_get_info()
+                            free_vram_gb = free_memory_bytes / 1024**3
+                            total_vram_gb = total_memory_bytes / 1024**3
+                            # HunyuanVideo 1.5 大约需要 35GB 显存 (fp16) 才能舒适地运行在GPU上
+                            has_large_vram = free_vram_gb > 35
+                            print(f"  ℹ 检测到显存: 总计{total_vram_gb:.2f}GB, 可用{free_vram_gb:.2f}GB (大显存模式: {has_large_vram})")
+                        except Exception as e:
+                            print(f"  ⚠ 显存检测失败: {e}, 默认使用保守模式")
+                            has_large_vram = False
+
+                    if has_large_vram:
                         self.hunyuanvideo_pipeline = HunyuanVideo15ImageToVideoPipeline.from_pretrained(
                             model_path,
                             torch_dtype=torch.float16,
-                            low_cpu_mem_usage=True  # 降低CPU内存使用
-                        )
-                    finally:
-                        # 恢复CUDA设置
-                        if old_cuda_visible is None:
-                            os.environ.pop('CUDA_VISIBLE_DEVICES', None)
-                        else:
-                            os.environ['CUDA_VISIBLE_DEVICES'] = old_cuda_visible
+                        ).to("cuda")
+                        print("  ✓ 已直接加载到GPU (高性能模式)")
+                    else:
+                        # 临时设置CUDA设备为CPU，确保模型在CPU上加载
+                        import os
+                        old_cuda_visible = os.environ.get('CUDA_VISIBLE_DEVICES', None)
+                        try:
+                            # 临时隐藏GPU，强制在CPU上加载
+                            os.environ['CUDA_VISIBLE_DEVICES'] = ''
+                            self.hunyuanvideo_pipeline = HunyuanVideo15ImageToVideoPipeline.from_pretrained(
+                                model_path,
+                                torch_dtype=torch.float16,
+                                low_cpu_mem_usage=True  # 降低CPU内存使用
+                            )
+                        finally:
+                            # 恢复CUDA设置
+                            if old_cuda_visible is None:
+                                os.environ.pop('CUDA_VISIBLE_DEVICES', None)
+                            else:
+                                os.environ['CUDA_VISIBLE_DEVICES'] = old_cuda_visible
                 print("  ✓ 使用HunyuanVideo 1.5（推荐版本）")
+                _patch_timestep_r_compat()
             else:
                 # 使用原版HunyuanVideo
                 from diffusers import HunyuanVideoImageToVideoPipeline
+                has_large_vram = False  # 默认假设
                 # 尝试加载fp16变体，如果不存在则使用默认
                 try:
                     self.hunyuanvideo_pipeline = HunyuanVideoImageToVideoPipeline.from_pretrained(
@@ -384,36 +455,38 @@ class VideoGenerator:
                         torch_dtype=torch.float16
                     )
                 print("  ✓ 使用HunyuanVideo（原版）")
-            
+                _patch_timestep_r_compat()
+
             # 使用激进的显存优化策略，避免一次性分配完显存
             # 重要：模型已经在CPU上加载（device_map="cpu"），现在配置按需加载到GPU
             if torch.cuda.is_available():
                 # 设置显存限制（类似JAX，防止一次性分配完显存）
-                max_memory_fraction = hunyuan_config.get('max_memory_fraction', 0.3)  # 默认30%
+                # 注意：在多租户环境下，不要过分限制，否则可能导致OOM（如果PyTorch认为配额已满）
+                max_memory_fraction = hunyuan_config.get('max_memory_fraction', 1.0) # 默认为不限制
                 try:
-                    torch.cuda.set_per_process_memory_fraction(max_memory_fraction, device=0)
-                    total_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3  # GB
-                    max_allocatable = total_memory * max_memory_fraction
-                    print(f"  ✓ 已设置显存限制: {max_memory_fraction*100:.0f}% (最多 {max_allocatable:.2f}GB)")
+                    # 只有在确实需要限制时才设置
+                     if max_memory_fraction < 1.0:
+                        torch.cuda.set_per_process_memory_fraction(max_memory_fraction, device=0)
+                        total_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3  # GB
+                        print(f"  ✓ 已设置显存限制: {max_memory_fraction*100:.0f}%")
                 except Exception as e:
                     print(f"  ⚠ 设置显存限制失败: {e}")
-                    max_memory_fraction = 1.0  # 失败时不限制
-                
+
                 # 检查显存是否足够
                 total_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3  # GB
                 allocated = torch.cuda.memory_allocated() / 1024**3
                 reserved = torch.cuda.memory_reserved() / 1024**3
                 free_memory = total_memory - reserved
-                
+
                 print(f"  ℹ 模型加载后显存状态: 总计={total_memory:.2f}GB, 已分配={allocated:.2f}GB, 已保留={reserved:.2f}GB, 可用={free_memory:.2f}GB")
-                
+
                 # 检查是否有其他进程占用显存
                 # 如果可用显存少于20GB，强制使用sequential CPU offload（更激进，只在需要时加载）
                 force_cpu_offload = hunyuan_config.get('force_cpu_offload', False)
                 # 由于模型已经在CPU上，使用model CPU offload来按需加载（比sequential更稳定）
-                if True:  # 总是使用CPU offload，避免一次性分配
+                if not has_large_vram:  # 只有在显存不足时才使用CPU offload
                     print(f"  ℹ 模型已在CPU上加载，配置按需GPU加载（避免一次性分配显存）...")
-                    
+
                     # 使用标准的model CPU offload（比sequential更稳定，避免meta device问题）
                     try:
                         self.hunyuanvideo_pipeline.enable_model_cpu_offload()
@@ -422,33 +495,36 @@ class VideoGenerator:
                         print(f"  ⚠ CPU offload启用失败: {e}")
                         # 即使失败也不移到GPU，保持CPU状态
                         print(f"  ℹ 保持模型在CPU，运行时按需加载")
+                
+                # Attention优化（小说推文优化：优先使用FlashAttention2/SDPA，获得20-40%速度提升）
+                try:
+                    # 优先尝试启用FlashAttention2/SDPA（PyTorch 2.1+）
+                    if torch.__version__ >= "2.1.0":
+                        try:
+                            # 启用Flash Attention SDPA（自动选择最优实现）
+                            torch.backends.cuda.enable_flash_sdp(True)
+                            torch.backends.cuda.enable_mem_efficient_sdp(True)
+                            print("  ✓ 已启用FlashAttention2/SDPA优化（20-40%速度提升）")
+                        except Exception as e:
+                            print(f"  ⚠ 启用FlashAttention2/SDPA失败: {e}，回退到attention slicing")
                     
-                    # Attention优化（小说推文优化：优先使用FlashAttention2/SDPA，获得20-40%速度提升）
-                    try:
-                        # 优先尝试启用FlashAttention2/SDPA（PyTorch 2.1+）
-                        if torch.__version__ >= "2.1.0":
-                            try:
-                                # 启用Flash Attention SDPA（自动选择最优实现）
-                                torch.backends.cuda.enable_flash_sdp(True)
-                                torch.backends.cuda.enable_mem_efficient_sdp(True)
-                                print("  ✓ 已启用FlashAttention2/SDPA优化（20-40%速度提升）")
-                            except Exception as e:
-                                print(f"  ⚠ 启用FlashAttention2/SDPA失败: {e}，回退到attention slicing")
-                        
-                        # 如果没有FlashAttention2，使用attention slicing作为备选
-                        if hasattr(self.hunyuanvideo_pipeline, 'enable_attention_slicing'):
-                            # 使用更激进的切片（使用数字1而不是"max"），最小化显存占用
-                            # slice_size=1 表示每次只处理1个head，最省显存但最慢
-                            # slice_size="max" 表示尽可能多的head，平衡显存和速度
-                            # 对于显存紧张的情况，使用数字1更安全
-                            slice_size = hunyuan_config.get('attention_slice_size', 1)  # 默认使用1，最省显存
+                    # 如果没有FlashAttention2，使用attention slicing作为备选
+                    # 但在大显存模式下，尽量不要slice，除非显存真的很满
+                    if hasattr(self.hunyuanvideo_pipeline, 'enable_attention_slicing'):
+                        # 使用更激进的切片（使用数字1而不是"max"），最小化显存占用
+                        # slice_size=1 表示每次只处理1个head，最省显存但最慢
+                        # slice_size="max" 表示尽可能多的head，平衡显存和速度
+                        # 对于显存紧张的情况，使用数字1更安全
+                        # 只有在小显存模式下才开启slicing
+                        if not has_large_vram:
+                            slice_size = hunyuan_config.get('attention_slice_size', 8)  # 默认使用8，平衡速度和显存
                             if slice_size == "max":
                                 # 如果设置为"max"，改为使用1（最激进的切片）
                                 slice_size = 1
                             self.hunyuanvideo_pipeline.enable_attention_slicing(slice_size=slice_size)
                             print(f"  ✓ 已启用attention slicing（slice_size={slice_size}，减少attention计算显存占用）")
-                    except Exception as e:
-                        print(f"  ⚠ Attention优化失败: {e}")
+                except Exception as e:
+                    print(f"  ⚠ Attention优化设置失败: {e}")
                     
                     # 尝试启用gradient checkpointing（如果支持）
                     try:
@@ -781,16 +857,16 @@ class VideoGenerator:
         if scene:
             analysis = self.motion_analyzer.analyze(scene)
             print(f"  ℹ 智能分析结果:")
-            print(f"    - 物体运动: {analysis['has_object_motion']} ({analysis['object_motion_type']})")
-            print(f"    - 镜头运动: {analysis['camera_motion_type']}")
-            print(f"    - 运动强度: {analysis['motion_intensity']}")
-            print(f"    - 使用SVD: {analysis['use_svd']}")
+            print(f"    - 物体运动: {analysis.get('has_object_motion', False)} ({analysis.get('object_motion_type', 'unknown')})")
+            print(f"    - 镜头运动: {analysis.get('camera_motion_type', 'static')}")
+            print(f"    - 运动强度: {analysis.get('motion_intensity', 'moderate')}")
+            print(f"    - 使用SVD: {analysis.get('use_svd', False)}")
             
             # 根据分析结果覆盖参数
-            if analysis['motion_bucket_id_override'] is not None:
+            if analysis.get('motion_bucket_id_override') is not None:
                 motion_bucket_id = analysis['motion_bucket_id_override']
                 print(f"    - 覆盖 motion_bucket_id: {motion_bucket_id}")
-            if analysis['noise_aug_strength_override'] is not None:
+            if analysis.get('noise_aug_strength_override') is not None:
                 noise_aug_strength = analysis['noise_aug_strength_override']
                 print(f"    - 覆盖 noise_aug_strength: {noise_aug_strength}")
         
@@ -943,12 +1019,21 @@ class VideoGenerator:
             )
         # 如果使用HunyuanVideo，使用HunyuanVideo生成
         elif model_type == 'hunyuanvideo':
+            # HunyuanVideo 专用参数：优先使用 video.hunyuanvideo 配置（否则 quick 模式设置的 hv.num_frames/hv.fps 无效）
+            if not num_frames_explicit:
+                hunyuan_config = self.video_config.get('hunyuanvideo', {})
+                if hunyuan_config:
+                    num_frames = hunyuan_config.get('num_frames', num_frames)
+                    fps = hunyuan_config.get('fps', fps)
+
             # 从scene中提取prompt（如果有）
             video_prompt = ""
             video_negative_prompt = ""
             if scene:
                 # 优先使用scene中的prompt或description
                 video_prompt = scene.get('prompt') or scene.get('description') or ""
+                # 读取 negative prompt（如果提供）
+                video_negative_prompt = scene.get('negative_prompt') or scene.get('neg_prompt') or ""
                 # 可以添加运动、风格等描述
                 if video_prompt:
                     # 如果场景有运动信息，可以添加到prompt中
@@ -1972,7 +2057,23 @@ class VideoGenerator:
         print(f"  开始生成视频（HunyuanVideo {'1.5' if use_v15 else '原版'}）...")
         try:
             generator = torch.Generator(device="cuda" if torch.cuda.is_available() else "cpu")
-            generator.manual_seed(42)
+            # 允许从 scene / 配置读取 seed（用于重试时生成不同结果）
+            seed = None
+            try:
+                if scene and scene.get("seed") is not None:
+                    seed = int(scene["seed"])
+                else:
+                    seed = hunyuan_config.get("seed", None)
+                    if seed is not None:
+                        seed = int(seed)
+            except Exception:
+                seed = None
+
+            if seed is None:
+                seed = 42
+
+            generator.manual_seed(seed)
+            print(f"  ℹ 使用随机种子 seed={seed}")
             
             # 显存优化：根据可用显存动态减少num_frames
             if torch.cuda.is_available():

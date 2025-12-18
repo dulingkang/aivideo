@@ -134,6 +134,8 @@ class VideoIdentityAnalyzer:
         self.similarity_threshold = self.config.get("similarity_threshold", 0.65)
         self.drift_threshold = self.config.get("drift_threshold", 0.50)
         self.adjacent_threshold = self.config.get("adjacent_threshold", 0.85)
+        # 采样增强：强制包含尾帧，避免采样间隔错过“最后崩脸”
+        self.include_last_n_frames = int(self.config.get("include_last_n_frames", 3))
     
     def _load_face_analyzer(self):
         """延迟加载人脸分析器"""
@@ -266,9 +268,30 @@ class VideoIdentityAnalyzer:
         logger.info(f"分析视频: {video_path}")
         logger.info(f"  帧数: {report.total_frames}, FPS: {report.fps:.1f}, 时长: {report.duration_sec:.1f}s")
         
-        # 分析帧
+        # 预计算需要分析的帧索引（保证包含尾帧）
         frame_results: List[FrameIdentityResult] = []
         prev_embedding = None
+
+        # 基础采样索引
+        total = max(report.total_frames, 0)
+        sample_interval = max(int(sample_interval), 1)
+        base_indices = list(range(0, total, sample_interval)) if total > 0 else []
+
+        # 若 max_frames 限制导致采样太多，则对 base_indices 进行下采样（不影响尾帧补充）
+        if max_frames is not None and max_frames > 0 and len(base_indices) > max_frames:
+            import math
+
+            stride = int(math.ceil(len(base_indices) / float(max_frames)))
+            base_indices = base_indices[::max(1, stride)]
+
+        # 强制包含最后 N 帧
+        tail_n = max(int(self.include_last_n_frames), 0)
+        tail_indices = []
+        if total > 0 and tail_n > 0:
+            start = max(0, total - tail_n)
+            tail_indices = list(range(start, total))
+
+        indices_to_analyze = set(base_indices) | set(tail_indices)
         
         frame_idx = 0
         analyzed_count = 0
@@ -279,14 +302,16 @@ class VideoIdentityAnalyzer:
             if not ret:
                 break
             
-            # 按间隔采样
-            if frame_idx % sample_interval != 0:
+            # 按预计算的索引采样（包含尾帧）
+            if frame_idx not in indices_to_analyze:
                 frame_idx += 1
                 continue
             
             # 检查最大帧数限制
             if max_frames and analyzed_count >= max_frames:
-                break
+                # 如果达到上限，但当前帧属于尾帧索引，仍然允许分析（保证尾段覆盖）
+                if frame_idx not in tail_indices:
+                    break
             
             # 转换颜色空间
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

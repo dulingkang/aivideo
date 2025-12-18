@@ -1,12 +1,18 @@
 [submodule "CosyVoice"]
 	path = CosyVoice
 	url = https://github.com/FunAudioLLM/CosyVoice.git
+[submodule "ComfyUI"]
+	path = ComfyUI
+	url = https://github.com/comfyanonymous/ComfyUI.git
 [submodule "InstantID"]
 	path = InstantID
 	url = git@github.com:instantX-research/InstantID.git
 [submodule "PuLID"]
 	path = PuLID
 	url = https://github.com/ToTheBeginning/PuLID.git
+[submodule "RIFE"]
+	path = RIFE
+	url = https://github.com/hzwer/arXiv2020-RIFE.git
 [submodule "diffusers"]
 	path = diffusers
 	url = https://github.com/huggingface/diffusers.git

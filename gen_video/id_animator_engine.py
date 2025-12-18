@@ -50,11 +50,11 @@ class IDAnimatorEngine:
         self.model_dir = self.config.get("model_dir", "models")
         self.animator_path = self.config.get(
             "animator_path", 
-            os.path.join(self.model_dir, "ID-Animator", "animator.ckpt")
+            os.path.join(self.model_dir, "ID-Animator", "id_animator.pth")
         )
         self.motion_module_path = self.config.get(
             "motion_module_path",
-            os.path.join(self.model_dir, "animatediff-sdxl-1080p", "mm_sdxl_v10_beta.ckpt")
+            os.path.join(self.model_dir, "AnimateDiff", "diffusion_pytorch_model.safetensors")
         )
         
         # ID 保持参数
@@ -117,10 +117,12 @@ class IDAnimatorEngine:
         local_sd15_path = os.path.join(self.model_dir, "stable-diffusion-v1-5")
         local_sdxl_path = os.path.join(self.model_dir, "sdxl-base")
         local_motion_path = os.path.join(self.model_dir, "AnimateDiff", "diffusion_pytorch_model.safetensors")
+        local_motion_alt_path = os.path.join(self.model_dir, "AnimateDiff", "mm_sd_v15_v2.safetensors")
+        local_motion_alt_path2 = os.path.join(self.model_dir, "AnimateDiff", "mm_sd_v15_v2.ckpt")
         local_motion_sdxl_path = self.motion_module_path
         
-        # 检查使用 SDXL 还是 SD1.5
-        self.use_sdxl = "sdxl" in self.motion_module_path.lower()
+        # 检查使用 SDXL 还是 SD1.5（默认推荐 SD1.5）
+        self.use_sdxl = "sdxl" in str(self.motion_module_path).lower()
         
         # 尝试导入 AnimateDiffSDXLPipeline
         try:
@@ -176,16 +178,21 @@ class IDAnimatorEngine:
             logger.info("  使用 SD 1.5 版本")
             
             # 检查本地模型是否存在
-            if os.path.exists(local_sd15_path) and os.path.exists(local_motion_path):
+            resolved_motion_path = None
+            for p in [self.motion_module_path, local_motion_path, local_motion_alt_path, local_motion_alt_path2]:
+                if p and os.path.exists(p):
+                    resolved_motion_path = p
+                    break
+
+            if os.path.exists(local_sd15_path) and resolved_motion_path is not None:
                 logger.info(f"  使用本地模型: {local_sd15_path}")
                 base_model = local_sd15_path
                 
                 # 从本地加载 Motion Adapter
-                logger.info(f"  加载本地 Motion Adapter: {local_motion_path}")
+                logger.info(f"  加载本地 Motion Adapter: {resolved_motion_path}")
                 adapter = MotionAdapter.from_single_file(
-                    local_motion_path,
-                    torch_dtype=torch.float16,
-                    local_files_only=True
+                    resolved_motion_path,
+                    torch_dtype=torch.float16
                 )
             else:
                 # 回退到 HuggingFace
@@ -202,6 +209,16 @@ class IDAnimatorEngine:
                     if os.path.exists(local_motion_path):
                         adapter = MotionAdapter.from_single_file(
                             local_motion_path,
+                            torch_dtype=torch.float16
+                        )
+                    elif os.path.exists(local_motion_alt_path):
+                        adapter = MotionAdapter.from_single_file(
+                            local_motion_alt_path,
+                            torch_dtype=torch.float16
+                        )
+                    elif os.path.exists(local_motion_alt_path2):
+                        adapter = MotionAdapter.from_single_file(
+                            local_motion_alt_path2,
                             torch_dtype=torch.float16
                         )
                     else:
@@ -236,9 +253,18 @@ class IDAnimatorEngine:
         logger.info("  加载 Face Adapter...")
         
         if not os.path.exists(self.animator_path):
-            logger.warning(f"  Face Adapter 文件不存在: {self.animator_path}")
-            logger.warning("  将使用基础 AnimateDiff（无身份保持）")
-            return
+            # 尝试在目录里自动探测
+            candidate_dir = os.path.join(self.model_dir, "ID-Animator")
+            if os.path.isdir(candidate_dir):
+                for name in ["id_animator.pth", "id_animator.safetensors", "animator.ckpt", "animator.pth"]:
+                    p = os.path.join(candidate_dir, name)
+                    if os.path.exists(p):
+                        self.animator_path = p
+                        break
+            if not os.path.exists(self.animator_path):
+                logger.warning(f"  Face Adapter 文件不存在: {self.animator_path}")
+                logger.warning("  将使用基础 AnimateDiff（当前实现不会注入身份权重）")
+                return
         
         try:
             # 加载 animator.ckpt
@@ -251,6 +277,7 @@ class IDAnimatorEngine:
                 self.animator_adapter = checkpoint
             
             logger.info(f"  ✓ Face Adapter 加载成功 (keys: {len(self.animator_adapter)})")
+            logger.warning("  ⚠ 当前版本仅完成权重加载，尚未将 Face Adapter 权重注入到 diffusers pipeline（身份保持仍以 prompt 稳定性为主）")
             
         except Exception as e:
             logger.error(f"  Face Adapter 加载失败: {e}")
