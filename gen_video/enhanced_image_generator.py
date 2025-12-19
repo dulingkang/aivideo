@@ -69,8 +69,9 @@ class EnhancedImageGenerator:
         self.planner_config = self.image_config.get("execution_planner", {})
         self.profiles_config = self.image_config.get("character_profiles", {})
         
-        # 初始化组件
-        self.planner = ExecutionPlannerV3(self.planner_config)
+        # ⚡ 关键修复：传递完整的 config 给 ExecutionPlannerV3，确保能读取 prompt_engine 配置
+        # ExecutionPlannerV3 需要读取 prompt_engine.scene_analyzer_mode 来初始化 LLM 客户端
+        self.planner = ExecutionPlannerV3(self.config)  # 传递完整 config，而不是只有 execution_planner 部分
         self.pulid_engine = None  # 延迟加载
         self.fusion_engine = None  # 延迟加载
         self.flux_pipeline = None  # 延迟加载
@@ -451,6 +452,7 @@ class EnhancedImageGenerator:
         scene: Dict[str, Any],
         character_id: Optional[str] = None,
         face_reference: Optional[Union[str, Image.Image]] = None,
+        original_prompt: Optional[str] = None,
         **kwargs
     ) -> Image.Image:
         """
@@ -462,6 +464,7 @@ class EnhancedImageGenerator:
             scene: 场景 JSON (v2 格式)
             character_id: 角色 ID (可选，用于选择角色档案)
             face_reference: 人脸参考图 (可选，覆盖角色档案)
+            original_prompt: 原始 prompt（如果提供，会优先使用它，而不是从 scene 构建）
             **kwargs: 额外参数
             
         Returns:
@@ -484,15 +487,24 @@ class EnhancedImageGenerator:
             face_reference=face_reference
         )
         
-        # 3. 构建 Prompt
-        prompt = self.planner.build_weighted_prompt(scene, strategy)
+        # 3. 构建 Prompt（如果提供了 original_prompt，优先使用它）
+        prompt = self.planner.build_weighted_prompt(scene, strategy, original_prompt=original_prompt)
         logger.info(f"完整 Prompt: {prompt}")
         logger.info(f"Prompt 预览: {prompt[:150]}...")
         
         # 4. 根据策略选择生成方式
+        # ⚡ 关键修复：如果没有参考图像，直接使用标准生成（不需要身份注入）
+        if ref_image is None:
+            logger.info("没有参考图像，使用标准生成模式（无身份注入）")
+            image = self._generate_standard(
+                prompt=prompt,
+                face_reference=ref_image,
+                strategy=strategy,
+                **kwargs
+            )
         # 注意：特写/近景（参考强度 > 70%）不使用解耦模式，直接使用 PuLID
         # 解耦模式更适合远景/中景（参考强度 < 60%）
-        if strategy.use_decoupled_pipeline and strategy.reference_strength < 70:
+        elif strategy.use_decoupled_pipeline and strategy.reference_strength < 70:
             # 解耦生成（仅用于远景/中景）
             image = self._generate_decoupled(
                 prompt=prompt,
@@ -566,6 +578,11 @@ class EnhancedImageGenerator:
         **kwargs
     ) -> Image.Image:
         """使用 PuLID 生成"""
+        # ⚡ 关键修复：如果没有参考图像，直接使用标准生成（不需要身份注入）
+        if face_reference is None:
+            logger.info("没有参考图像，跳过 PuLID 身份注入，使用标准生成")
+            return self._generate_standard(prompt, face_reference, strategy, **kwargs)
+        
         logger.info("使用 PuLID 生成...")
         
         self._load_pulid_engine()
@@ -826,12 +843,19 @@ class EnhancedImageGenerator:
         
         # 卸载 PuLID 引擎
         if self.pulid_engine is not None:
-            self.pulid_engine.unload()
+            try:
+                self.pulid_engine.unload()
+            except Exception as e:
+                logger.warning(f"卸载 PuLID 引擎失败: {e}")
             self.pulid_engine = None
         
         # 卸载融合引擎
         if self.fusion_engine is not None:
-            self.fusion_engine.unload()
+            try:
+                if hasattr(self.fusion_engine, 'unload'):
+                    self.fusion_engine.unload()
+            except Exception as e:
+                logger.warning(f"卸载融合引擎失败: {e}")
             self.fusion_engine = None
         
         # 卸载 Flux pipeline（包括包装器）
@@ -851,6 +875,26 @@ class EnhancedImageGenerator:
                 del self.flux_pipeline
             self.flux_pipeline = None
         
+        # ⚡ 关键修复：清理 quality_analyzer（可能持有 InsightFace 模型）
+        if self.quality_analyzer is not None:
+            try:
+                if hasattr(self.quality_analyzer, 'face_analyzer'):
+                    # InsightFace 模型可能占用显存
+                    if self.quality_analyzer.face_analyzer is not None:
+                        del self.quality_analyzer.face_analyzer
+                self.quality_analyzer = None
+                logger.info("已清理 quality_analyzer")
+            except Exception as e:
+                logger.warning(f"清理 quality_analyzer 失败: {e}")
+        
+        # ⚡ 关键修复：清理 planner 的 LLM 客户端引用（虽然不占显存，但有助于垃圾回收）
+        if self.planner is not None:
+            try:
+                if hasattr(self.planner, 'llm_client'):
+                    self.planner.llm_client = None
+            except Exception as e:
+                logger.warning(f"清理 planner LLM 客户端失败: {e}")
+        
         # 强制清理所有 Python 对象
         import gc
         gc.collect()
@@ -862,6 +906,13 @@ class EnhancedImageGenerator:
             torch.cuda.empty_cache()
             # 再次强制垃圾回收
             gc.collect()
+            
+            # ⚡ 关键修复：多次清理，确保彻底释放
+            for i in range(5):
+                torch.cuda.empty_cache()
+                gc.collect()
+                if i % 2 == 0:
+                    torch.cuda.synchronize()
             
             # 记录卸载后的显存
             allocated_after = torch.cuda.memory_allocated() / 1024**3

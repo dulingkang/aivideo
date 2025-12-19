@@ -1,0 +1,329 @@
+{
+  "episode": 1,
+  "title": "Strange Land.First Entry into the Spirit Realm",
+  "scenes": [
+    {
+      "scene_id": 0,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 3.0,
+      "target_fps": 24,
+      "scene_role": "opening",
+      "scene_type": "novel",
+      "intent": {
+        "type": "title_reveal",
+        "emotion": "serene",
+        "tension_level": "low",
+        "narrative_function": "setup"
+      },
+      "visual_constraints": {
+        "environment": "Sky of the immortal realm,mist-wreathed,golden radiance",
+        "time_of_day": "day",
+        "weather": "mist",
+        "location_type": "outdoor",
+        "elements": [
+          "golden_scroll"
+        ],
+        "color_palette": "cool_with_gold",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "我是云卷仙音，欢迎回来。第一集《陌生之地·初入灵界》。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_001.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "镜头淡入，云雾笼罩的仙域天空中金色卷轴舒展开来并闪烁灵光。",
+      "image_path": "outputs/images/lingjie_ep1_v2/scene_001.png"
+    },
+    {
+      "scene_id": 1,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "tense",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Gray-green desert floor",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "top_down",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "low",
+        "body_coverage": "full_body",
+        "pose": "lying_motionless",
+        "face_visible": false,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_002.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。",
+      "image_path": "outputs/images/lingjie_ep1_v2/scene_002.png"
+    },
+    {
+      "scene_id": 2,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "introduce_world",
+        "emotion": "mysterious",
+        "tension_level": "medium",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Three brilliant suns,four hazy moon silhouettes",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_003.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。",
+      "image_path": "outputs/images/lingjie_ep1_v2/scene_003.png"
+    },
+    {
+      "scene_id": 3,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "intent": {
+        "type": "flashback",
+        "emotion": "tense",
+        "tension_level": "high",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_in",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "importance": "primary",
+        "visibility": "high",
+        "body_coverage": "head_only",
+        "pose": "recalling",
+        "face_visible": true,
+        "instantid_policy": "auto"
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft_cinematic",
+        "motion_intensity": "gentle",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux_instantid",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": true,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "每当想起空间节点发生的一切，韩立的脸色就会暗沉下来，心底泛起寒意。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_004.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立回想空间节点的遭遇，面色渐渐阴沉。",
+      "image_path": "outputs/images/lingjie_ep1_v2/scene_004.png"
+    },
+    {
+      "scene_id": 999,
+      "episode_id": "lingjie_ep1",
+      "version": "v2",
+      "duration_sec": 3.0,
+      "target_fps": 24,
+      "scene_role": "ending",
+      "scene_type": "novel",
+      "intent": {
+        "type": "emotional_beat",
+        "emotion": "serene",
+        "tension_level": "low",
+        "narrative_function": "exposition"
+      },
+      "visual_constraints": {
+        "environment": "Night sky,city silhouette,drifting spirit particles",
+        "time_of_day": "day",
+        "weather": "clear",
+        "location_type": "outdoor",
+        "elements": [
+          "spirit_particles"
+        ],
+        "color_palette": "neutral",
+        "dominant_colors": []
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false
+      },
+      "quality_target": {
+        "style": "xianxia_anime",
+        "detail_level": "high",
+        "lighting_style": "soft",
+        "motion_intensity": "static",
+        "camera_stability": "stable"
+      },
+      "generation_policy": {
+        "image_model": "flux",
+        "video_model": "hunyuan_i2v",
+        "priority": "normal",
+        "allow_face_lock": false,
+        "allow_upscale": true
+      },
+      "narration": {
+        "text": "下集再见。我是云卷仙音，第二集的故事即将开始。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_022.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "画面淡出，夜色下的仙城剪影与灵光缓缓下落。",
+      "image_path": "outputs/images/lingjie_ep1_v2/scene_022.png"
+    }
+  ]
+}

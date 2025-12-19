@@ -20,10 +20,27 @@ from pathlib import Path
 from typing import Dict, Any, Optional, List, Union, Tuple
 from PIL import Image
 import logging
+import warnings
 
+# ⚡ 抑制 EVA02-CLIP 的 rope keys 缺失警告（这是正常的，不影响功能）
+warnings.filterwarnings("ignore", message=".*incompatible_keys.missing_keys.*rope.*")
+warnings.filterwarnings("ignore", message=".*missing_keys.*rope.*")
 
 import logging
 import gc
+
+# ⚡ 添加 logging filter 来过滤 EVA02-CLIP 的 rope keys 缺失日志
+class EVA02CLIPRopeFilter(logging.Filter):
+    """过滤 EVA02-CLIP 的 rope keys 缺失日志（这是正常的，不影响功能）"""
+    def filter(self, record):
+        # 过滤包含 rope.freqs 相关的日志
+        if "rope.freqs" in record.getMessage() or "missing_keys" in record.getMessage():
+            if "rope" in record.getMessage().lower():
+                return False  # 不显示这些日志
+        return True  # 显示其他日志
+
+# 应用 filter 到 root logger（因为 EVA02-CLIP 使用 root logger）
+logging.getLogger().addFilter(EVA02CLIPRopeFilter())
 
 logger = logging.getLogger(__name__)
 
@@ -121,6 +138,23 @@ class PuLIDEngine:
             except Exception as e:
                 logger.warning(f"原生模式加载失败: {e}")
                 logger.info("回退到 diffusers 模式...")
+                try:
+                    self.use_native = False
+                    self._load_diffusers_pipeline()
+                    self.pulid_loaded = True
+                    logger.info("PuLID diffusers 模式加载完成（原生失败回退）")
+                    return
+                except Exception as e2:
+                    logger.error(f"diffusers 回退加载也失败: {e2}")
+                    raise
+
+        # 没有原生权重时，直接使用 diffusers 模式
+        logger.info("未检测到可用的原生 Flux 权重，使用 diffusers 模式加载 PuLID...")
+        self.use_native = False
+        self._load_diffusers_pipeline()
+        self.pulid_loaded = True
+        logger.info("PuLID diffusers 模式加载完成")
+        return
 
     def _load_native_pipeline(self):
         """加载 PuLID 原生 Flux 模型（显存优化版）"""
@@ -141,10 +175,10 @@ class PuLIDEngine:
                 logger.warning("建议：1) 关闭其他占用显存的程序 2) 使用更激进的 CPU offload")
         
         # 导入原生模块
-        # 添加 PuLID 到 Python 路径（现在在项目根目录，与 gen_video 平级）
+        # 添加 PuLID 到 Python 路径（PuLID 子模块位于 fanren/PuLID，与 gen_video 平级）
         import sys
         from pathlib import Path
-        pulid_path = Path(__file__).parent.parent.parent / "PuLID"
+        pulid_path = Path(__file__).parent.parent / "PuLID"
         if pulid_path.exists() and str(pulid_path) not in sys.path:
             sys.path.insert(0, str(pulid_path))
         
@@ -162,13 +196,97 @@ class PuLIDEngine:
         log_memory("After AE Load")
         
         # 加载 T5 和 CLIP (先加载到 CPU，使用时再移到 GPU)
-        # 注意：Flux 使用 T5 编码器，支持 128/256/512 tokens（比 SDXL 的 77 tokens 多得多）
-        # 设置为 256 以支持更详细的 prompt 描述（如详细的服饰描述）
-        logger.info("  加载 T5 编码器 (CPU offload, max_length=256)...")
-        self.t5 = load_t5(device="cpu", max_length=256)
+        # 注意：Flux 使用双编码器架构：
+        #   - T5 编码器（主要）：支持 128/256/512 tokens，当前配置为 256
+        #   - CLIP 编码器（辅助）：固定 77 tokens（用于辅助语义，不是主要限制）
+        # ⚡ 重要：CLIP 的 77 token 警告是正常的，不影响生成质量（T5 是主要编码器）
+        # 如果需要支持更长的 prompt，可以将 T5 max_length 提高到 512
+        t5_max_length = self.config.get("t5_max_length", 256)  # 默认 256，可配置为 512
+        logger.info(f"  加载 T5 编码器 (CPU offload, max_length={t5_max_length})...")
+        
+        # ⚡ 关键修复：优先使用本地 T5 模型，避免重复下载
+        local_t5_path = os.path.join(self.model_base_path, "xflux_text_encoders")
+        if os.path.exists(local_t5_path):
+            logger.info(f"  ✓ 使用本地 T5 模型: {local_t5_path}")
+            # 使用本地路径加载 T5（HFEmbedder 的 from_pretrained 支持本地路径）
+            from flux.modules.conditioner import HFEmbedder
+            # ⚡ 修复：不要在这里重新导入 torch，使用文件顶部已导入的 torch
+            # import torch  # 删除这行，因为文件顶部已经导入了 torch
+            try:
+                # 直接使用本地路径，from_pretrained 会自动识别
+                self.t5 = HFEmbedder(local_t5_path, max_length=256, torch_dtype=torch.bfloat16).to("cpu")
+                logger.info(f"  ✅ 本地 T5 模型加载成功")
+            except Exception as e:
+                logger.warning(f"  ⚠ 本地 T5 模型加载失败: {e}，尝试使用 HuggingFace 缓存")
+                import traceback
+                traceback.print_exc()
+                # 回退到原始方法（会尝试使用 HuggingFace 缓存）
+                self.t5 = load_t5(device="cpu", max_length=256)
+        else:
+            # 回退到原始方法（会从 HuggingFace 下载或使用缓存）
+            logger.warning(f"  ⚠ 本地 T5 模型不存在: {local_t5_path}，将使用 HuggingFace")
+            self.t5 = load_t5(device="cpu", max_length=256)
         
         logger.info("  加载 CLIP 编码器 (CPU offload)...")
-        self.clip = load_clip(device="cpu")
+        # ⚡ 关键修复：优先使用本地 CLIP 模型或缓存，避免网络下载
+        try:
+            from flux.modules.conditioner import HFEmbedder
+            # 检查本地 CLIP 模型路径
+            local_clip_path = os.path.join(self.model_base_path, "clip", "openai-clip-vit-large-patch14")
+            
+            # 检查 HuggingFace 缓存路径
+            hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+            # 如果默认路径不存在，尝试使用项目配置的缓存目录
+            if not os.path.exists(hf_home):
+                hf_home = "/vepfs-dev/shawn/.cache/huggingface"
+                os.environ["HF_HOME"] = hf_home
+            hf_cache_path = os.path.join(hf_home, "hub", "models--openai--clip-vit-large-patch14")
+            
+            # 尝试从本地路径加载
+            if os.path.exists(local_clip_path):
+                logger.info(f"  ✓ 使用本地 CLIP 模型: {local_clip_path}")
+                try:
+                    self.clip = HFEmbedder(local_clip_path, max_length=77, torch_dtype=torch.bfloat16).to("cpu")
+                    logger.info(f"  ✅ 本地 CLIP 模型加载成功")
+                except Exception as e:
+                    logger.warning(f"  ⚠ 本地 CLIP 模型加载失败: {e}，尝试使用 HuggingFace 缓存")
+                    # 回退到使用 HuggingFace 缓存（local_files_only=True）
+                    if os.path.exists(hf_cache_path):
+                        try:
+                            self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
+                            logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
+                        except Exception as e2:
+                            logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e2}")
+                            raise
+                    else:
+                        logger.error(f"  ❌ HuggingFace 缓存不存在: {hf_cache_path}")
+                        logger.error(f"  💡 请先下载 CLIP 模型，运行: python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
+                        raise FileNotFoundError(f"CLIP 模型不存在，请先下载")
+            else:
+                # 检查 HuggingFace 缓存
+                if os.path.exists(hf_cache_path):
+                    logger.info(f"  ℹ 本地 CLIP 模型不存在，使用 HuggingFace 缓存: {hf_cache_path}")
+                    try:
+                        self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
+                        logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
+                    except Exception as e:
+                        logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e}")
+                        raise
+                else:
+                    logger.error(f"  ❌ CLIP 模型不存在（本地和缓存都没有）")
+                    logger.error(f"  💡 请先下载 CLIP 模型，运行以下命令:")
+                    logger.error(f"     python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
+                    raise FileNotFoundError(f"CLIP 模型不存在，请先下载到: {hf_cache_path}")
+        except ImportError:
+            logger.warning(f"  ⚠ 无法导入 HFEmbedder，使用 load_clip（可能尝试网络下载）")
+            self.clip = load_clip(device="cpu")
+        except FileNotFoundError:
+            # 如果明确是文件不存在，抛出异常，不要尝试网络下载
+            raise
+        except Exception as e:
+            logger.error(f"  ❌ CLIP 加载失败: {e}")
+            logger.error(f"  💡 如果网络不可用，请先下载 CLIP 模型到缓存")
+            raise
         log_memory("After Encoders Load")
         
         # 创建 PuLID Pipeline
@@ -199,6 +317,9 @@ class PuLIDEngine:
         加上已经初始化的模型，会导致显存占用翻倍 (23GB * 2 = 46GB)。
         此函数强制先加载到 CPU，再加载进模型。
         """
+        # ⚡ 关键修复：确保 torch 在方法作用域内可用
+        import torch
+        
         from flux.model import Flux
         from flux.util import configs, load_sft, print_load_warning
         from huggingface_hub import hf_hub_download
@@ -215,8 +336,11 @@ class PuLIDEngine:
             ckpt_path = hf_hub_download(configs[name].repo_id, configs[name].repo_flow, local_dir='models')
 
         # 1. 初始化模型结构 (占用显存)
-        with torch.device(device):
-            model = Flux(configs[name].params).to(torch.bfloat16)
+        # ⚡ 修复：使用 torch.device 对象而不是上下文管理器
+        # 注意：torch.device 上下文管理器在某些 PyTorch 版本中可能不可用
+        # 直接创建模型并移动到指定设备
+        model = Flux(configs[name].params)
+        model = model.to(device).to(torch.bfloat16)
 
         if ckpt_path is not None:
             logger.info(f"Loading checkpoint: {ckpt_path}")
@@ -252,10 +376,10 @@ class PuLIDEngine:
         
         # 尝试加载 PuLID
         try:
-            # 添加 PuLID 到 Python 路径（现在在项目根目录，与 gen_video 平级）
+            # 添加 PuLID 到 Python 路径（PuLID 子模块位于 fanren/PuLID，与 gen_video 平级）
             import sys
             from pathlib import Path
-            pulid_path = Path(__file__).parent.parent.parent / "PuLID"
+            pulid_path = Path(__file__).parent.parent / "PuLID"
             if pulid_path.exists() and str(pulid_path) not in sys.path:
                 sys.path.insert(0, str(pulid_path))
             
@@ -278,6 +402,8 @@ class PuLIDEngine:
         
         # 加载 InsightFace
         self._load_face_analyzer()
+        # 标记加载完成
+        self.pulid_loaded = True
     
     def _load_pulid_with_diffusers(self):
         """
@@ -409,6 +535,29 @@ class PuLIDEngine:
         Returns:
             生成的图像
         """
+        # ⚡ 关键修复：如果没有参考图像，直接使用无身份注入模式
+        if face_reference is None:
+            logger.info("没有参考图像，使用无身份注入模式生成")
+            # 确保 pipeline 已加载
+            self.load_pipeline()
+            if self.pipeline is None:
+                raise RuntimeError("Pipeline 未加载，无法生成图像")
+            
+            # 设置随机种子
+            generator = None
+            if seed is not None:
+                generator = torch.Generator(device=self.device).manual_seed(seed)
+            
+            result = self.pipeline(
+                prompt=prompt,
+                width=width,
+                height=height,
+                num_inference_steps=num_inference_steps,
+                guidance_scale=guidance_scale,
+                generator=generator,
+            ).images[0]
+            return result
+        
         # 确保 pipeline 已加载
         self.load_pipeline()
         
@@ -966,41 +1115,84 @@ class PuLIDEngine:
         """卸载模型以释放显存"""
         log_memory("Before Unload")
         
+        # ⚡ 关键修复：先移动到 CPU，再删除，确保显存真正释放
         if self.pipeline is not None:
-            del self.pipeline
+            try:
+                # 如果是 diffusers pipeline，尝试移动到 CPU
+                if hasattr(self.pipeline, 'to'):
+                    self.pipeline.to('cpu')
+                del self.pipeline
+            except:
+                pass
             self.pipeline = None
             
         if self.flux_model is not None:
-            del self.flux_model
+            try:
+                # 移动到 CPU 再删除
+                if hasattr(self.flux_model, 'to'):
+                    self.flux_model.to('cpu')
+                del self.flux_model
+            except:
+                pass
             self.flux_model = None
             
         if self.ae is not None:
-            del self.ae
+            try:
+                if hasattr(self.ae, 'to'):
+                    self.ae.to('cpu')
+                del self.ae
+            except:
+                pass
             self.ae = None
             
         if self.pulid_model is not None:
-            del self.pulid_model
+            try:
+                if hasattr(self.pulid_model, 'to'):
+                    self.pulid_model.to('cpu')
+                del self.pulid_model
+            except:
+                pass
             self.pulid_model = None
             
         if self.t5 is not None:
-            del self.t5
+            try:
+                if hasattr(self.t5, 'to'):
+                    self.t5.to('cpu')
+                del self.t5
+            except:
+                pass
             self.t5 = None
             
         if self.clip is not None:
-            del self.clip
+            try:
+                if hasattr(self.clip, 'to'):
+                    self.clip.to('cpu')
+                del self.clip
+            except:
+                pass
             self.clip = None
         
         if self.face_analyzer is not None:
-            del self.face_analyzer
+            try:
+                del self.face_analyzer
+            except:
+                pass
             self.face_analyzer = None
         
         self.pulid_loaded = False
         
-        # 清理 GPU 缓存
+        # ⚡ 关键修复：多次清理 GPU 缓存，确保显存真正释放
         import gc
         gc.collect()
         if torch.cuda.is_available():
+            torch.cuda.synchronize()
             torch.cuda.empty_cache()
+            # 多次清理，确保彻底释放
+            for i in range(5):
+                gc.collect()
+                torch.cuda.empty_cache()
+                if i % 2 == 0:
+                    torch.cuda.synchronize()
         
         logger.info("PuLID Engine 已彻底卸载")
         log_memory("After Unload")

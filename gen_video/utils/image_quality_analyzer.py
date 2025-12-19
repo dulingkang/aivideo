@@ -226,30 +226,54 @@ class ImageQualityAnalyzer:
             # 所以 root 应该是包含 models 目录的父目录
             model_root = self.config.get("insightface_root", None)
             
+            # ⚡ 关键修复：优先从配置中读取 antelopev2_path
+            antelopev2_path = self.config.get("antelopev2_path", None)
+            if antelopev2_path:
+                # 如果配置了 antelopev2_path，直接使用
+                if os.path.isabs(antelopev2_path):
+                    model_path = antelopev2_path
+                else:
+                    gen_video_dir = Path(__file__).parent.parent
+                    model_path = str(gen_video_dir / antelopev2_path)
+                
+                # InsightFace 会在 root/models/{name} 下查找模型
+                # 如果 antelopev2_path 是 models/antelopev2，则 root 应该是 gen_video 目录
+                if os.path.exists(model_path):
+                    # 检查路径结构：如果是 models/antelopev2，则 root 是 gen_video 目录
+                    if "models" in model_path and "antelopev2" in model_path:
+                        model_root = str(Path(model_path).parent.parent)
+                    else:
+                        # 如果直接是 antelopev2 目录，则 root 是 antelopev2 的父目录
+                        model_root = str(Path(model_path).parent)
+                    logger.info(f"使用配置的 antelopev2 路径: {model_path}, root: {model_root}")
+                else:
+                    logger.warning(f"配置的 antelopev2 路径不存在: {model_path}，尝试默认路径")
+                    model_root = None
+            else:
+                model_root = None
+            
             if model_root is None:
                 # 默认路径：gen_video 目录（其下有 models/antelopev2）
                 gen_video_dir = Path(__file__).parent.parent
                 model_root = str(gen_video_dir)
-            elif not os.path.isabs(model_root):
-                # 相对路径时，基于 gen_video 目录
-                gen_video_dir = Path(__file__).parent.parent
-                model_root = str(gen_video_dir / model_root)
             
             logger.debug(f"InsightFace 模型根目录: {model_root}")
             
-            # 检查模型是否存在
+            # 检查模型是否存在（InsightFace 会在 root/models/antelopev2 下查找）
             model_path = os.path.join(model_root, "models", "antelopev2")
             if not os.path.exists(model_path):
                 logger.warning(f"InsightFace 模型不存在: {model_path}")
-                # 尝试备用路径
+                # 尝试备用路径：直接使用 models/antelopev2（如果 antelopev2_path 配置了完整路径）
+                gen_video_dir = Path(__file__).parent.parent
                 alt_paths = [
-                    os.path.join(gen_video_dir, "models", "antelopev2"),
+                    os.path.join(str(gen_video_dir), "models", "antelopev2"),
                     os.path.expanduser("~/.insightface/models/antelopev2"),
                 ]
                 for alt_path in alt_paths:
                     if os.path.exists(alt_path):
-                        model_root = os.path.dirname(os.path.dirname(alt_path))
-                        logger.info(f"使用备用模型路径: {alt_path}")
+                        # 如果找到备用路径，设置正确的 root
+                        model_root = str(Path(alt_path).parent.parent)
+                        logger.info(f"使用备用模型路径: {alt_path}, root: {model_root}")
                         break
             
             self.face_analyzer = FaceAnalysis(

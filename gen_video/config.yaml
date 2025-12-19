@@ -267,20 +267,6 @@ video:
     # 显存限制（速度优化：如果禁用CPU offload，可以提高显存限制）
     max_memory_fraction: 0.8  # 从0.3提高到0.6，允许使用更多显存以提升速度（禁用CPU offload时）
   
-  # Prompt Engine配置（专业级Prompt工程系统）
-  # 包含6个核心模块：Prompt Rewriter、Scene Decomposer、Style Controller、
-  # Camera Engine、Negative Prompt Generator、Prompt QA
-  prompt_engine:
-    # 是否启用Prompt Engine（推荐启用，可提升视频质量30%-70%）
-    enabled: true
-    # 是否使用LLM进行Prompt重写（需要LLM API，暂时禁用）
-    use_llm_rewriter: false
-    # LLM API配置（如果启用LLM重写器）
-    # llm_api:
-    #   type: "openai"  # 或 "anthropic", "custom"
-    #   api_key: ""  # API密钥
-    #   model: "gpt-4"  # 模型名称
-  
   # 模型路由配置（自动选择模型）
   model_routing:
     # 场景类型到模型的映射
@@ -305,7 +291,26 @@ video:
     memory_threshold:
       hunyuanvideo: 20  # HunyuanVideo需要至少20GB可用显存
       cogvideox: 12  # CogVideoX需要至少12GB可用显存
-  
+
+# Prompt Engine配置（专业级Prompt工程系统）
+# 包含6个核心模块：Prompt Rewriter、Scene Decomposer、Style Controller、
+# Camera Engine、Negative Prompt Generator、Prompt QA
+prompt_engine:
+  # 是否启用Prompt Engine（推荐启用，可提升视频质量30%-70%）
+  enabled: true
+  # 是否使用LLM进行Prompt重写（需要LLM API，暂时禁用）
+  use_llm_rewriter: false
+  # 是否使用智能场景分析器（推荐启用，自动识别场景需求）
+  use_scene_analyzer: true
+  # 场景分析器模式：local（本地规则，快速免费）或 llm（LLM分析，更智能但需要API）
+  scene_analyzer_mode: "llm" # local | llm | hybrid
+  # LLM API配置（如果启用LLM重写器或LLM场景分析）
+  llm_api:
+    type: "openai"  # 或 "anthropic", "custom", "qwen", "doubao"
+    api_key: "sk-2OyCN2OOgrk8GA6hSASHaMeZBmbh5R0ZNPQ99x122bXWMhuU"
+    model: "gpt-4o-mini"
+    base_url: "https://api.chatanywhere.tech/v1"
+
   # 生成帧数
   # 关键优化：num_frames 必须 = duration * fps，否则会导致运动不连贯
   # 例如：duration=5s, fps=24 → num_frames=120

@@ -214,6 +214,100 @@ def _high_risk_suite() -> List[Dict[str, Any]]:
     ]
 
 
+def _battle_occlusion_suite() -> List[Dict[str, Any]]:
+    """
+    战斗/遮挡强化回归集（非 quick 建议）：
+    - 目的：验证写回后的严格漂移阈值（max_drift_ratio=0.05）不会对“战斗/遮挡/烟尘特效”误伤
+    - 特点：更强的动作为主，辅以烟尘/火花/手臂遮挡等容易引发脸部漂移的因素
+    """
+    return [
+        {
+            "name": "battle_sword_slash_wide",
+            "risk": "high",
+            "prompt": "Wide shot, Han Li performing a fast sword slash technique, flowing robes, sparks and dust in the air, single person, cinematic, high quality",
+            "motion_intensity": "dynamic",
+            "shot_type": "wide",
+        },
+        {
+            "name": "battle_dodge_counter_medium",
+            "risk": "high",
+            "prompt": "Medium shot, Han Li dodging and counter-attacking, quick but controlled movement, single person, stable camera, cinematic lighting, high quality",
+            "motion_intensity": "dynamic",
+            "shot_type": "medium",
+        },
+        {
+            "name": "battle_smoke_occlusion_medium_close",
+            "risk": "high",
+            "prompt": "Medium close shot, Han Li in a battle with smoke and dust briefly occluding parts of the face, then face clearly visible again, single person, cinematic, high quality",
+            "motion_intensity": "moderate",
+            "shot_type": "medium_close",
+        },
+        {
+            "name": "battle_arm_block_face_close",
+            "risk": "high",
+            "prompt": "Close-up, Han Li raising his arm to block an attack, brief face occlusion by forearm, then lowering arm, clear face, single person, cinematic, high quality",
+            "motion_intensity": "moderate",
+            "shot_type": "close",
+        },
+        {
+            "name": "battle_turn_backlight_wide",
+            "risk": "high",
+            "prompt": "Wide shot, Han Li turning his body rapidly in backlight with flying dust, strong motion, stable camera, single person, cinematic, high quality",
+            "motion_intensity": "dynamic",
+            "shot_type": "wide",
+        },
+        {
+            "name": "battle_close_sparks_face",
+            "risk": "high",
+            "prompt": "Close-up, Han Li's face with sparks flying near the camera during battle, subtle head movement, stable camera, single person, cinematic, high quality",
+            "motion_intensity": "moderate",
+            "shot_type": "close",
+        },
+    ]
+
+
+def _nightly_suite() -> List[Dict[str, Any]]:
+    """
+    Nightly regression 集（固定集合，便于每日回归/趋势追踪）：
+    - 覆盖 low/medium/high + battle/occlusion
+    - 控制在 10-20 条左右（当前 16 条），避免 nightly 耗时过大
+    """
+    all_items: List[Dict[str, Any]] = []
+    all_items.extend(_low_risk_suite())
+    all_items.extend(_medium_risk_suite())
+    all_items.extend(_high_risk_suite())
+    all_items.extend(_battle_occlusion_suite())
+
+    by_name: Dict[str, Dict[str, Any]] = {it["name"]: it for it in all_items}
+    wanted = [
+        # low (5)
+        "low_portrait_intro",
+        "low_dialogue_teahouse",
+        "low_training_meditation",
+        "low_establishing_mountain",
+        "low_bamboo_garden",
+        # medium (4)
+        "mid_walk_street_turn_head",
+        "mid_corridor_turn_around",
+        "mid_bamboo_walk_look_back",
+        "mid_market_walk_stop_turn",
+        # high (3)
+        "high_turn_over_shoulder_close",
+        "high_turn_around_face_camera",
+        "high_occlusion_hand_adjust_hair",
+        # battle/occlusion (4)
+        "battle_sword_slash_wide",
+        "battle_smoke_occlusion_medium_close",
+        "battle_arm_block_face_close",
+        "battle_turn_backlight_wide",
+    ]
+
+    missing = [n for n in wanted if n not in by_name]
+    if missing:
+        raise ValueError(f"nightly suite 缺少场景定义: {missing}")
+    return [by_name[n] for n in wanted]
+
+
 def _resolve_scenarios(suite: str) -> List[Dict[str, Any]]:
     if suite == "low_risk":
         return _low_risk_suite()
@@ -221,6 +315,10 @@ def _resolve_scenarios(suite: str) -> List[Dict[str, Any]]:
         return _medium_risk_suite()
     if suite == "high_risk":
         return _high_risk_suite()
+    if suite == "battle_occlusion":
+        return _battle_occlusion_suite()
+    if suite == "nightly":
+        return _nightly_suite()
     # default：保持向后兼容
     return _default_scenarios()
 
@@ -266,8 +364,8 @@ def main():
     parser.add_argument(
         "--suite",
         default="default",
-        choices=["default", "low_risk", "medium_risk", "high_risk"],
-        help="场景套件：default=原有集合，low_risk=低风险回归集，medium_risk=走路/转身中风险回归集，high_risk=高风险（遮挡/大幅转身/close）",
+        choices=["default", "low_risk", "medium_risk", "high_risk", "battle_occlusion", "nightly"],
+        help="场景套件：default=原有集合，low_risk=低风险回归集，medium_risk=走路/转身中风险回归集，high_risk=高风险（遮挡/大幅转身/close），battle_occlusion=战斗/遮挡强化集（严格阈值回归建议），nightly=固定 nightly 回归集（约16条）",
     )
     parser.add_argument("--scenarios", nargs="*", default=None, help="仅运行指定场景名（不传则跑默认全部）")
 

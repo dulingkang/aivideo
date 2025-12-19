@@ -7,8 +7,10 @@
 
 import sys
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Tuple
 import yaml
+import json
+import re
 
 # 添加项目路径
 project_root = Path(__file__).parent
@@ -40,6 +42,9 @@ class NovelVideoGenerator:
         # 初始化视频生成器（使用 HunyuanVideo）
         print("初始化视频生成器（HunyuanVideo）...")
         self.video_generator = VideoGenerator(str(self.config_path))
+
+        # M6 增强视频生成器（懒加载：仅在启用身份验证时初始化）
+        self._m6_video_generator = None
         
         # 确保使用正确的模型
         self._ensure_model_config()
@@ -47,6 +52,68 @@ class NovelVideoGenerator:
         print("=" * 60)
         print("✅ 初始化完成")
         print("=" * 60)
+
+    @staticmethod
+    def _infer_character_id_from_text(text: str) -> Optional[str]:
+        """
+        从文本中推断角色ID（当前只做“韩立”识别，避免误伤纯场景推文）。
+        - 命中 “韩立”/“Han Li”/“hanli” 等 → hanli
+        """
+        if not text:
+            return None
+        t = str(text)
+        if "韩立" in t:
+            return "hanli"
+        tl = t.lower()
+        if "hanli" in tl:
+            return "hanli"
+        if re.search(r"\bhan\s*li\b", tl):
+            return "hanli"
+        return None
+
+    def _resolve_character_and_m6(
+        self,
+        prompt: str,
+        scene: Optional[Dict[str, Any]],
+        include_character: Optional[bool],
+        character_id: Optional[str],
+        enable_m6_identity: Optional[bool],
+        auto_character: bool,
+        auto_m6_identity: bool,
+        force_scene: bool,
+    ) -> Tuple[bool, Optional[str], bool]:
+        """
+        统一决策：
+        - 是否包含韩立（以及角色ID）
+        - 是否启用 M6 身份验证
+        """
+        if force_scene:
+            return False, None, False
+
+        inferred_id = self._infer_character_id_from_text(prompt) if auto_character else None
+
+        # scene 中显式 character.id 优先
+        if scene and isinstance(scene, dict):
+            c = scene.get("character")
+            if isinstance(c, dict):
+                cid = c.get("id")
+                if cid:
+                    inferred_id = str(cid)
+
+        effective_character_id = str(character_id) if character_id else inferred_id
+
+        if include_character is None:
+            effective_include_character = bool(effective_character_id)
+        else:
+            effective_include_character = bool(include_character)
+
+        # M6 开关：显式优先；否则自动（仅对韩立场景打开）
+        if enable_m6_identity is None:
+            effective_enable_m6 = bool(auto_m6_identity and effective_include_character and effective_character_id == "hanli")
+        else:
+            effective_enable_m6 = bool(enable_m6_identity and effective_include_character)
+
+        return effective_include_character, effective_character_id, effective_enable_m6
     
     def _ensure_model_config(self):
         """确保配置使用 Flux + HunyuanVideo"""
@@ -74,6 +141,20 @@ class NovelVideoGenerator:
         num_frames: int = 120,
         fps: int = 24,
         scene: Optional[Dict[str, Any]] = None,
+        # === 角色一致（图片端）===
+        include_character: Optional[bool] = None,
+        character_id: Optional[str] = None,
+        auto_character: bool = True,
+        force_scene: bool = False,
+        image_model_engine: Optional[str] = None,
+        # === 视频一致（M6 身份验证+重试）===
+        enable_m6_identity: Optional[bool] = None,
+        auto_m6_identity: bool = True,
+        reference_image_path: Optional[str] = None,
+        shot_type: str = "medium",
+        motion_intensity: str = "moderate",
+        m6_max_retries: Optional[int] = None,
+        m6_quick: bool = False,
     ) -> Dict[str, Path]:
         """
         生成小说推文视频
@@ -88,6 +169,18 @@ class NovelVideoGenerator:
             num_frames: 视频帧数
             fps: 视频帧率
             scene: 场景配置（可选）
+            include_character: 是否生成带角色的画面（启用后会使用现有“角色一致”系统）
+            character_id: 角色ID（默认 hanli）
+            auto_character: 是否自动从 prompt/scene 推断是否包含韩立（默认 True，仅识别韩立，避免误伤纯场景）
+            force_scene: 强制按纯场景生成（忽略自动推断/手动角色）
+            image_model_engine: 覆盖图片引擎（例如 auto / flux-instantid / pulid / flux1 等；不传则按模式选择默认）
+            enable_m6_identity: 是否启用 M6 身份验证 + 重试（仅在 include_character=True 时强烈建议开启）
+            auto_m6_identity: 是否自动对“韩立场景”启用 M6（默认 True）
+            reference_image_path: 身份验证参考图（不传则自动按 character_id 选择，找不到则用生成图）
+            shot_type: 镜头类型（影响阈值容忍度）
+            motion_intensity: 运动强度（会传入 scene，供生成/重试策略参考）
+            m6_max_retries: 覆盖最大重试次数（None=用 config.yaml）
+            m6_quick: 快速模式（更少步数/更少重试，适合冒烟）
         
         Returns:
             dict: 包含 'image' 和 'video' 路径的字典
@@ -97,6 +190,23 @@ class NovelVideoGenerator:
         print("=" * 60)
         print(f"提示词: {prompt}")
         print()
+
+        # 自动推断是否有韩立，并据此决定是否启用 M6
+        effective_include_character, effective_character_id, effective_enable_m6 = self._resolve_character_and_m6(
+            prompt=prompt,
+            scene=scene,
+            include_character=include_character,
+            character_id=character_id,
+            enable_m6_identity=enable_m6_identity,
+            auto_character=auto_character,
+            auto_m6_identity=auto_m6_identity,
+            force_scene=force_scene,
+        )
+        if effective_character_id:
+            print(f"  ℹ 角色推断: character_id={effective_character_id}, include_character={effective_include_character}")
+        else:
+            print(f"  ℹ 角色推断: 无韩立（按纯场景生成）")
+        print(f"  ℹ M6 身份验证: {'启用' if effective_enable_m6 else '关闭'}")
         
         # 设置输出目录
         if output_dir is None:
@@ -117,13 +227,24 @@ class NovelVideoGenerator:
             image_scene = scene.copy() if scene else {}
             image_scene['width'] = width
             image_scene['height'] = height
+
+            # 角色模式：让 ImageGenerator/EnhancedImageGenerator 接管“角色一致”
+            if effective_include_character:
+                # 给下游一个明确的角色信号（ImageGenerator 内部会识别 character.id）
+                image_scene.setdefault("character", {})
+                if isinstance(image_scene.get("character"), dict):
+                    if effective_character_id:
+                        image_scene["character"].setdefault("id", effective_character_id)
+                # 运动强度也写入（Prompt Engine / 生成器可按需使用）
+                image_scene.setdefault("motion_intensity", motion_intensity)
             
-            # 生成图像（使用纯 Flux 生成场景，不使用 InstantID）
-            # 对于小说推文，应该生成场景图像，而不是人物图像
+            # 生成图像：
+            # - 默认（include_character=False）：走“场景图”逻辑（无人物）
+            # - 角色模式（include_character=True）：走“角色一致”逻辑（人物+场景）
             print(f"  [DEBUG] 原始prompt: {prompt}")
             print(f"  [DEBUG] scene: {image_scene}")
-            print(f"  [DEBUG] model_engine: flux1")
-            print(f"  [DEBUG] task_type: scene")
+            if effective_include_character:
+                print(f"  [DEBUG] character_id: {effective_character_id}")
             
             # 使用 Prompt Engine V2 优化提示词（完全本地模式，无需LLM API）
             print(f"  🔧 开始优化提示词（使用 Prompt Engine V2 本地模式）...")
@@ -153,83 +274,104 @@ class NovelVideoGenerator:
                 optimized_prompt = pkg.final_prompt
                 negative_prompt = pkg.negative
                 
-                # 检查并限制提示词长度（CLIP限制77 tokens）
-                def count_tokens(text: str) -> int:
-                    """估算token数量（简单方法）"""
-                    try:
-                        from transformers import CLIPTokenizer
-                        tokenizer = CLIPTokenizer.from_pretrained(
-                            "openai/clip-vit-large-patch14"
-                        )
-                        tokens = tokenizer(text, truncation=False, return_tensors="pt")
-                        return tokens.input_ids.shape[1]
-                    except Exception:
-                        # 如果无法加载tokenizer，使用简单估算
-                        # 中文约1.5 tokens/字，英文约1.3 tokens/词
-                        chinese_chars = sum(1 for c in text if ord(c) > 127)
-                        english_words = len([w for w in text.split() if not any(ord(c) > 127 for c in w)])
-                        return int(chinese_chars * 1.5 + english_words * 1.3)
-                
-                def truncate_prompt(prompt: str, max_tokens: int = 77) -> str:
-                    """截断prompt到指定token数"""
-                    current_tokens = count_tokens(prompt)
-                    if current_tokens <= max_tokens:
-                        return prompt
-                    
-                    # 如果超过限制，逐步移除后面的部分
-                    parts = [p.strip() for p in prompt.split(',')]
-                    truncated_parts = []
-                    truncated_prompt = ""
-                    
-                    for part in parts:
-                        test_prompt = truncated_prompt + (", " if truncated_prompt else "") + part
-                        if count_tokens(test_prompt) <= max_tokens:
-                            truncated_parts.append(part)
-                            truncated_prompt = test_prompt
-                        else:
-                            break
-                    
-                    if not truncated_parts:
-                        # 如果第一部分就超过，直接截断字符串
-                        return prompt[:int(len(prompt) * max_tokens / current_tokens)]
-                    
-                    return ", ".join(truncated_parts)
-                
-                # 先检查优化后的prompt长度
-                optimized_tokens = count_tokens(optimized_prompt)
-                print(f"  ℹ 优化后prompt token数: {optimized_tokens}")
+                # ⚡ 工程级优化：移除 HF token 统计（LLM 已返回正确数量，且可能阻塞）
+                # 如果确实需要 token 统计，可以使用 LLM 返回的信息或简单估算
+                # 不再使用 T5Tokenizer（可能阻塞或加载慢）
                 
                 # 添加场景强化关键词（确保是场景而非人物）
-                # 使用更简洁的scene_enhancers，避免超过token限制
-                scene_enhancers = "landscape, nature, no people"
-                
-                # 检查添加scene_enhancers后是否会超过限制
-                test_prompt = f"{optimized_prompt}, {scene_enhancers}"
-                test_tokens = count_tokens(test_prompt)
-                
-                if test_tokens > 77:
-                    print(f"  ⚠ 添加scene_enhancers后会超过77 tokens ({test_tokens})，先截断optimized_prompt")
-                    # 预留空间给scene_enhancers（约5 tokens）
-                    optimized_prompt = truncate_prompt(optimized_prompt, max_tokens=72)
-                    optimized_tokens = count_tokens(optimized_prompt)
-                    print(f"  ℹ 截断后prompt token数: {optimized_tokens}")
-                
+                # 角色模式下不要加 no people
+                scene_enhancers = "landscape, nature" if effective_include_character else "landscape, nature, no people"
                 optimized_prompt = f"{optimized_prompt}, {scene_enhancers}"
-                final_tokens = count_tokens(optimized_prompt)
-                print(f"  ℹ 最终prompt token数: {final_tokens}")
-                
-                if final_tokens > 77:
-                    print(f"  ⚠ 最终prompt仍然超过77 tokens ({final_tokens})，进行截断")
-                    optimized_prompt = truncate_prompt(optimized_prompt, max_tokens=77)
-                    final_tokens = count_tokens(optimized_prompt)
-                    print(f"  ℹ 截断后最终prompt token数: {final_tokens}")
                 
                 # 增强负面提示词（确保排除人物）
-                additional_negatives = [
-                    "faces, portraits, black faces, dark faces, human faces, person faces, character faces",
-                    "people in image, humans in scene, any people, any persons, any characters, any human figures"
-                ]
-                negative_prompt = f"{negative_prompt}, {', '.join(additional_negatives)}"
+                if not effective_include_character:
+                    additional_negatives = [
+                        "faces, portraits, black faces, dark faces, human faces, person faces, character faces",
+                        "people in image, humans in scene, any people, any persons, any characters, any human figures",
+                    ]
+                    negative_prompt = f"{negative_prompt}, {', '.join(additional_negatives)}"
+                
+                # ⚡ 关键修复：如果包含角色，强制添加角色描述（特别是服饰描述和性别），确保不被优化掉
+                if effective_include_character and effective_character_id:
+                    try:
+                        # ⚡ 修复：不要在这里重新导入 Path，使用文件顶部已导入的 Path
+                        # from pathlib import Path  # 删除这行，因为文件顶部已经导入了
+                        # 读取角色档案
+                        profile_path = Path(__file__).parent / "character_profiles.yaml"
+                        if profile_path.exists():
+                            with open(profile_path, 'r', encoding='utf-8') as f:
+                                profiles = yaml.safe_load(f) or {}
+                            character_profile = profiles.get("characters", {}).get(effective_character_id, {})
+                            
+                            if character_profile:
+                                # 构建角色描述（特别是服饰描述和性别）
+                                character_parts = []
+                                
+                                # ⚡ 关键修复：添加性别描述（从 identity 字段提取）
+                                # ⚡ 注意：Flux 使用 T5 编码器，不支持权重语法 (xxx:1.5)
+                                # 使用自然语言描述，通过重复和位置来强调重要性
+                                identity = character_profile.get("identity", "")
+                                if identity:
+                                    # 提取性别（Male/Female）
+                                    identity_lower = identity.lower()
+                                    if "male" in identity_lower:
+                                        character_parts.append("Male, male character, male person")  # 通过重复强调
+                                    elif "female" in identity_lower:
+                                        character_parts.append("Female, female character, female person")
+                                
+                                # 服饰描述（最高优先级，确保不被优化掉）
+                                # ⚡ 注意：character_profiles.yaml 中的 prompt_keywords 可能包含权重语法
+                                # 需要移除权重语法，只保留描述内容
+                                clothes = character_profile.get("clothes", {})
+                                clothes_keywords = clothes.get("prompt_keywords", "")
+                                if clothes_keywords:
+                                    # 移除权重语法 (xxx:1.5)，只保留描述内容
+                                    import re
+                                    clothes_clean = re.sub(r'\(([^:]+):[\d.]+\)', r'\1', clothes_keywords)
+                                    clothes_clean = re.sub(r'\(([^)]+)\)', r'\1', clothes_clean)  # 移除普通括号
+                                    character_parts.append(clothes_clean)
+                                
+                                # 发型描述
+                                hair = character_profile.get("hair", {})
+                                hair_keywords = hair.get("prompt_keywords", "")
+                                if hair_keywords:
+                                    # 移除权重语法
+                                    import re
+                                    hair_clean = re.sub(r'\(([^:]+):[\d.]+\)', r'\1', hair_keywords)
+                                    hair_clean = re.sub(r'\(([^)]+)\)', r'\1', hair_clean)
+                                    character_parts.append(hair_clean)
+                                
+                                # 如果构建了角色描述，添加到 prompt 最前面（最高优先级）
+                                if character_parts:
+                                    # ⚡ 关键修复：使用去重工具，避免角色描述与 prompt 重复
+                                    try:
+                                        from utils.prompt_deduplicator import filter_duplicates, merge_prompt_parts
+                                        
+                                        # 检查角色描述是否与 prompt 重复
+                                        filtered_character_parts = filter_duplicates(
+                                            new_descriptions=character_parts,
+                                            existing_texts=[optimized_prompt],
+                                            threshold=0.5  # 50% 重叠认为是重复（角色描述更严格）
+                                        )
+                                        
+                                        if filtered_character_parts:
+                                            # 合并角色描述和 prompt
+                                            all_parts = filtered_character_parts + [optimized_prompt]
+                                            optimized_prompt = merge_prompt_parts(all_parts)
+                                            print(f"  ✓ 已添加角色描述（性别+服饰+发型）到 prompt 最前面，已去重")
+                                        else:
+                                            print(f"  ℹ 角色描述与 prompt 重复，已跳过")
+                                    except ImportError:
+                                        # 如果去重工具不可用，直接合并
+                                        character_desc = ", ".join(character_parts)
+                                        optimized_prompt = f"{character_desc}, {optimized_prompt}"
+                                        print(f"  ✓ 已强制添加角色描述（性别+服饰+发型）到 prompt 最前面，确保不被优化掉")
+                    except Exception as e:
+                        print(f"  ⚠ 添加角色描述时出错: {e}")
+                
+                # ⚡ 关键修复：场景增强描述由 ExecutionPlannerV3 的场景分析器统一处理
+                # 这里不再重复添加，避免 prompt 重复
+                # ExecutionPlannerV3 会使用场景分析器进行更智能的分析，并自动添加增强描述
                 
                 print(f"  ✓ Prompt Engine V2 处理完成")
                 print(f"  ℹ 原始提示词: {original_prompt[:80]}...")
@@ -241,23 +383,109 @@ class NovelVideoGenerator:
                 import traceback
                 traceback.print_exc()
                 
-                # 备用方案：使用原始提示词+场景强化（简化版本，避免超过token限制）
-                scene_enhancers = "landscape, nature, no people"
+                # 备用方案：使用原始提示词+场景强化
+                # ⚡ 修复：Flux 使用 T5，支持 512 tokens，不需要 77 token 限制
+                scene_enhancers = "landscape, nature" if effective_include_character else "landscape, nature, no people"
                 optimized_prompt = f"{original_prompt}, {scene_enhancers}"
                 
-                # 检查token数
-                try:
-                    from transformers import CLIPTokenizer
-                    tokenizer = CLIPTokenizer.from_pretrained(
-                        "openai/clip-vit-large-patch14"
-                    )
-                    tokens = tokenizer(optimized_prompt, truncation=False, return_tensors="pt")
-                    token_count = tokens.input_ids.shape[1]
-                    if token_count > 77:
-                        print(f"  ⚠ 备用方案prompt超过77 tokens ({token_count})，将被CLIP截断")
-                except Exception:
-                    pass
-                negative_prompt = "anime, cartoon, characters, people, persons, human figures, anime style, cartoon style, faces, portraits, black faces, dark faces, human faces, person faces, character faces, people in image, humans in scene, any people, any persons, any characters, any human figures, low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes, low quality, worst quality, distorted proportions, unrealistic details"
+                # ⚡ 工程级优化：移除 HF token 统计（LLM 已返回正确数量，且可能阻塞）
+                # 不再使用 T5Tokenizer（可能阻塞或加载慢）
+                # 如果需要 token 统计，可以使用简单估算或 LLM 返回的信息
+                if effective_include_character:
+                    # ⚡ 关键修复：增强负面提示词，特别是排除"站立"、"直立"等姿态
+                    # 检查场景分析结果，如果是"lying"动作，添加更强的负面提示
+                    # ⚡ 关键修复：排除耳坠、饰品等不需要的装饰
+                    negative_prompt = "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, abrupt changes, worst quality, unrealistic details, earrings, earring, jewelry, accessories, decorative ornaments, decorative items, unnecessary decorations"
+                    
+                    # ⚡ 关键优化：优先使用 LLM 返回的姿态负面提示词（如果可用）
+                    # 如果 LLM 已经返回了精确的姿态负面提示词，直接使用，不需要再次调用 PostureController
+                    try:
+                        # 尝试从场景分析结果中获取姿态负面提示词
+                        from utils.scene_analyzer import analyze_scene
+                        prompt_engine_config = self.config.get("prompt_engine", {})
+                        use_llm = prompt_engine_config.get("scene_analyzer_mode", "local") in ["llm", "hybrid"]
+                        
+                        if use_llm:
+                            llm_client = None
+                            try:
+                                llm_api_config = prompt_engine_config.get("llm_api", {})
+                                if llm_api_config.get("api_key"):
+                                    from utils.scene_analyzer import OpenAILLMClient
+                                    llm_client = OpenAILLMClient(
+                                        api_key=llm_api_config.get("api_key"),
+                                        model=llm_api_config.get("model", "gpt-4o-mini"),
+                                        base_url=llm_api_config.get("base_url")
+                                    )
+                            except Exception as e:
+                                print(f"  ⚠ LLM 客户端创建失败: {e}，使用本地模式")
+                                use_llm = False
+                            
+                            analysis_result = analyze_scene(
+                                prompt=original_prompt,
+                                current_shot_type=scene.get('shot_type', 'medium') if scene else 'medium',
+                                use_llm=use_llm,
+                                llm_client=llm_client
+                            )
+                            
+                            if analysis_result and analysis_result.posture_negative:
+                                # LLM 已经返回了精确的姿态负面提示词，直接使用
+                                negative_prompt = f"{analysis_result.posture_negative}, {negative_prompt}"
+                                print(f"  ✓ LLM 已返回姿态负面提示词: {analysis_result.posture_type}")
+                        else:
+                            # 使用 PostureController 作为回退
+                            from utils.posture_controller import PostureController
+                            posture_controller = PostureController()
+                            
+                            # 检测姿态
+                            posture = posture_controller.detect_posture(original_prompt)
+                            if posture:
+                                posture_prompt = posture_controller.get_posture_prompt(posture, use_chinese=False)
+                                if posture_prompt["negative"]:
+                                    # 添加姿态相关的负面提示词
+                                    negative_prompt = f"{posture_prompt['negative']}, {negative_prompt}"
+                                    print(f"  ✓ PostureController 检测到姿态: {posture}，已添加姿态负面提示词")
+                    except ImportError:
+                        # 回退到原有逻辑
+                        try:
+                            from utils.scene_analyzer import analyze_scene
+                            # ⚡ 关键修复：读取配置，决定是否使用 LLM
+                            prompt_engine_config = self.config.get("prompt_engine", {})
+                            use_llm = prompt_engine_config.get("scene_analyzer_mode", "local") in ["llm", "hybrid"]
+                            
+                            # 如果使用 LLM，需要创建 LLM 客户端
+                            llm_client = None
+                            if use_llm:
+                                try:
+                                    llm_api_config = prompt_engine_config.get("llm_api", {})
+                                    if llm_api_config.get("api_key"):
+                                        from utils.scene_analyzer import OpenAILLMClient
+                                        llm_client = OpenAILLMClient(
+                                            api_key=llm_api_config.get("api_key"),
+                                            model=llm_api_config.get("model", "gpt-4o-mini"),
+                                            base_url=llm_api_config.get("base_url")
+                                        )
+                                except Exception as e:
+                                    print(f"  ⚠ LLM 客户端创建失败: {e}，使用本地模式")
+                                    use_llm = False
+                            
+                            analysis_result = analyze_scene(
+                                prompt=original_prompt,
+                                current_shot_type=scene.get('shot_type', 'medium') if scene else 'medium',
+                                use_llm=use_llm,
+                                llm_client=llm_client
+                            )
+                            if analysis_result and analysis_result.action_type == "lying":
+                                # ⚡ 关键修复：增强负面提示词，强烈排除站立和直立姿态
+                                # 注意：Flux 对负面描述不够敏感，主要依赖正面描述（在 prompt 中强调"躺下"）
+                                # 负面提示词只作为辅助，不要添加太多"不要xx"，避免 prompt 过长
+                                negative_prompt = "standing, upright, vertical position, person standing, person upright, standing pose, upright pose, vertical pose, " + negative_prompt
+                                print(f"  ✓ 检测到'lying'动作，已增强负面提示词（排除站立）")
+                        except Exception as e:
+                            # 如果场景分析失败，忽略
+                            print(f"  ⚠ 场景分析失败: {e}")
+                            pass
+                else:
+                    negative_prompt = "anime, cartoon, characters, people, persons, human figures, anime style, cartoon style, faces, portraits, black faces, dark faces, human faces, person faces, character faces, people in image, humans in scene, any people, any persons, any characters, any human figures, low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes, low quality, worst quality, distorted proportions, unrealistic details"
             
             print(f"  ✅ 提示词优化完成:")
             print(f"     原始: {original_prompt}")
@@ -267,27 +495,59 @@ class NovelVideoGenerator:
             prompt = optimized_prompt
             negative_prompt = negative_prompt
             
-            # 确保scene中不包含角色信息，避免被误识别为人物生成
-            if image_scene:
-                # 移除可能触发角色检测的字段
+            # 非角色模式：确保 scene 中不包含角色信息，避免误识别为人物生成
+            if (not effective_include_character) and image_scene:
                 image_scene.pop('character', None)
                 image_scene.pop('characters', None)
                 image_scene.pop('primary_character', None)
                 image_scene.pop('face_reference_image_path', None)
                 image_scene.pop('reference_image_path', None)
                 print(f"  [DEBUG] 已清理scene中的角色相关字段，确保生成场景图像")
+
+            # 选择图片引擎/任务类型
+            if image_model_engine is None:
+                # 默认策略：场景=flux1；角色=auto（走你现有"角色一致"路由）
+                image_model_engine = "auto" if effective_include_character else "flux1"
+            image_task_type = "character" if effective_include_character else "scene"
+            
+            # ⚡ 关键修复：为角色模式查找并传递参考图路径
+            face_ref_path = None
+            if effective_include_character and effective_character_id:
+                # 优先级 1：用户显式指定的参考图
+                if reference_image_path:
+                    ref_p = Path(reference_image_path)
+                    if not ref_p.is_absolute():
+                        ref_p = (project_root / ref_p).resolve()
+                    if ref_p.exists():
+                        face_ref_path = ref_p
+                        print(f"  ✓ 使用用户指定的参考图: {face_ref_path.name}")
+                
+                # 优先级 2：自动查找 reference_image/{character_id}_mid.jpg
+                if face_ref_path is None:
+                    candidate = (project_root / "reference_image" / f"{effective_character_id}_mid.jpg").resolve()
+                    if candidate.exists():
+                        face_ref_path = candidate
+                        print(f"  ✓ 自动找到参考图: {face_ref_path.name}")
+                    else:
+                        # 尝试 .png
+                        candidate = (project_root / "reference_image" / f"{effective_character_id}_mid.png").resolve()
+                        if candidate.exists():
+                            face_ref_path = candidate
+                            print(f"  ✓ 自动找到参考图: {face_ref_path.name}")
+                
+                # 优先级 3：使用 ImageGenerator 的自动查找逻辑（通过 scene 中的 character_id）
+                # 这会在 image_generator.generate_image 内部调用 _select_face_reference_image
+                if face_ref_path is None:
+                    print(f"  ⚠ 未找到显式参考图，将使用 ImageGenerator 的自动查找逻辑")
             
             image_path = self.image_generator.generate_image(
                 prompt=prompt,
                 output_path=image_output_path,
                 scene=image_scene,
-                model_engine="flux1",  # 使用纯 Flux 1，不包含 InstantID（用于场景生成）
-                task_type="scene",  # 明确指定为场景生成任务
-                character_lora=None,  # 明确不使用角色LoRA
-                use_lora=False,  # 明确不使用LoRA
-                face_reference_image_path=None,  # 明确不使用面部参考图
-                reference_image_path=None,  # 明确不使用参考图
+                model_engine=image_model_engine,
+                task_type=image_task_type,
                 negative_prompt=negative_prompt,  # 使用优化后的负面提示词
+                face_reference_image_path=face_ref_path,  # ⚡ 关键修复：传递参考图路径
             )
             print(f"✅ 图像生成成功: {image_path}")
             
@@ -377,26 +637,144 @@ class NovelVideoGenerator:
                             except:
                                 pass
             
+            # ⚡ 关键修复：清理 EnhancedImageGenerator 的 PuLID 引擎和融合引擎
+            # 先检查 enhanced_generator（如果存在）
+            if hasattr(self.image_generator, 'enhanced_generator') and self.image_generator.enhanced_generator is not None:
+                try:
+                    # 清理 enhanced_generator 的 PuLID 引擎
+                    if hasattr(self.image_generator.enhanced_generator, 'pulid_engine') and self.image_generator.enhanced_generator.pulid_engine is not None:
+                        try:
+                            self.image_generator.enhanced_generator.pulid_engine.unload()
+                            self.image_generator.enhanced_generator.pulid_engine = None
+                            print("  ✓ 已卸载 enhanced_generator 的 PuLID 引擎")
+                        except Exception as e:
+                            print(f"  ⚠ 卸载 enhanced_generator PuLID 引擎时出错: {e}")
+                    
+                    # 清理 enhanced_generator 的融合引擎
+                    if hasattr(self.image_generator.enhanced_generator, 'fusion_engine') and self.image_generator.enhanced_generator.fusion_engine is not None:
+                        try:
+                            if hasattr(self.image_generator.enhanced_generator.fusion_engine, 'unload'):
+                                self.image_generator.enhanced_generator.fusion_engine.unload()
+                            self.image_generator.enhanced_generator.fusion_engine = None
+                            print("  ✓ 已卸载 enhanced_generator 的融合引擎")
+                        except Exception as e:
+                            print(f"  ⚠ 卸载 enhanced_generator 融合引擎时出错: {e}")
+                    
+                    # 清理 enhanced_generator 的 flux_pipeline
+                    if hasattr(self.image_generator.enhanced_generator, 'flux_pipeline') and self.image_generator.enhanced_generator.flux_pipeline is not None:
+                        try:
+                            if hasattr(self.image_generator.enhanced_generator.flux_pipeline, 'unload'):
+                                self.image_generator.enhanced_generator.flux_pipeline.unload()
+                            del self.image_generator.enhanced_generator.flux_pipeline
+                            self.image_generator.enhanced_generator.flux_pipeline = None
+                            print("  ✓ 已卸载 enhanced_generator 的 flux_pipeline")
+                        except Exception as e:
+                            print(f"  ⚠ 卸载 enhanced_generator flux_pipeline 时出错: {e}")
+                    
+                    # 调用 enhanced_generator 的 unload_all
+                    if hasattr(self.image_generator.enhanced_generator, 'unload_all'):
+                        try:
+                            self.image_generator.enhanced_generator.unload_all()
+                            print("  ✓ 已调用 enhanced_generator.unload_all()")
+                        except Exception as e:
+                            print(f"  ⚠ 调用 enhanced_generator.unload_all 时出错: {e}")
+                    
+                    # ⚡ 关键修复：删除 enhanced_generator 对象本身，确保所有引用都被清理
+                    try:
+                        del self.image_generator.enhanced_generator
+                        self.image_generator.enhanced_generator = None
+                        print("  ✓ 已删除 enhanced_generator 对象")
+                    except Exception as e:
+                        print(f"  ⚠ 删除 enhanced_generator 对象时出错: {e}")
+                except Exception as e:
+                    print(f"  ⚠ 清理 enhanced_generator 时出错: {e}")
+            
+            # 清理 ImageGenerator 自己的 PuLID 引擎和融合引擎（如果存在）
+            if hasattr(self.image_generator, 'pulid_engine') and self.image_generator.pulid_engine is not None:
+                try:
+                    self.image_generator.pulid_engine.unload()
+                    self.image_generator.pulid_engine = None
+                    print("  ✓ 已卸载 ImageGenerator 的 PuLID 引擎")
+                except Exception as e:
+                    print(f"  ⚠ 卸载 ImageGenerator PuLID 引擎时出错: {e}")
+            
+            if hasattr(self.image_generator, 'fusion_engine') and self.image_generator.fusion_engine is not None:
+                try:
+                    if hasattr(self.image_generator.fusion_engine, 'unload'):
+                        self.image_generator.fusion_engine.unload()
+                    self.image_generator.fusion_engine = None
+                    print("  ✓ 已卸载 ImageGenerator 的融合引擎")
+                except Exception as e:
+                    print(f"  ⚠ 卸载 ImageGenerator 融合引擎时出错: {e}")
+            
+            # ⚡ 关键修复：清理 planner 的 LLM 客户端（如果存在）
+            if hasattr(self.image_generator, 'planner') and self.image_generator.planner is not None:
+                try:
+                    if hasattr(self.image_generator.planner, 'llm_client') and self.image_generator.planner.llm_client is not None:
+                        # LLM 客户端通常不占用显存，但清理引用有助于垃圾回收
+                        self.image_generator.planner.llm_client = None
+                        print("  ✓ 已清理 planner 的 LLM 客户端")
+                except Exception as e:
+                    print(f"  ⚠ 清理 planner LLM 客户端时出错: {e}")
+            
+            # 如果 EnhancedImageGenerator 有 unload_all 方法，调用它
+            if hasattr(self.image_generator, 'unload_all'):
+                try:
+                    self.image_generator.unload_all()
+                    print("  ✓ 已调用 EnhancedImageGenerator.unload_all()")
+                except Exception as e:
+                    print(f"  ⚠ 调用 unload_all 时出错: {e}")
+            
             # 清理ModelManager（如果使用）
             if hasattr(self.image_generator, 'model_manager') and self.image_generator.model_manager is not None:
                 try:
-                    if hasattr(self.image_generator.model_manager, 'unload'):
-                        self.image_generator.model_manager.unload()
+                    if hasattr(self.image_generator.model_manager, 'unload_all'):
+                        self.image_generator.model_manager.unload_all(include_critical=False)
                         print("  ✓ 已卸载ModelManager所有模型")
+                    elif hasattr(self.image_generator.model_manager, 'unload'):
+                        self.image_generator.model_manager.unload()
+                        print("  ✓ 已卸载ModelManager")
                 except Exception as e:
                     print(f"  ⚠ 卸载ModelManager时出错: {e}")
             
-            # 强制清理所有CUDA缓存
+            # ⚡ 关键修复：清理 quality_analyzer（如果存在，可能持有 InsightFace 模型）
+            if hasattr(self.image_generator, 'quality_analyzer') and self.image_generator.quality_analyzer is not None:
+                try:
+                    # InsightFace 模型可能占用显存
+                    if hasattr(self.image_generator.quality_analyzer, 'face_analyzer'):
+                        self.image_generator.quality_analyzer.face_analyzer = None
+                    self.image_generator.quality_analyzer = None
+                    print("  ✓ 已清理 quality_analyzer")
+                except Exception as e:
+                    print(f"  ⚠ 清理 quality_analyzer 时出错: {e}")
+            
+            # ⚡ 关键修复：强制清理所有CUDA缓存，每几步清理一次
             if torch.cuda.is_available():
-                # 多次清理，确保彻底释放
-                for i in range(10):  # 增加到10次
-                    torch.cuda.empty_cache()
-                    gc.collect()
+                # 同步所有 CUDA 操作
                 torch.cuda.synchronize()
                 
-                # 再次清理
+                # 多次清理，每几步清理一次（模拟之前优化的方式）
+                for i in range(20):  # 增加到20次，更彻底
+                    if i % 3 == 0:  # 每3次同步一次
+                        torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                
+                # 最终同步和清理
+                torch.cuda.synchronize()
                 torch.cuda.empty_cache()
                 gc.collect()
+                
+                # 等待一小段时间让显存真正释放
+                import time
+                time.sleep(1.0)  # 增加到1秒，让显存有更多时间释放
+                
+                # 再次清理
+                for i in range(10):
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                    if i % 2 == 0:
+                        torch.cuda.synchronize()
                 
                 allocated_after = torch.cuda.memory_allocated() / 1024**3
                 reserved_after = torch.cuda.memory_reserved() / 1024**3
@@ -405,7 +783,14 @@ class NovelVideoGenerator:
                 if freed > 0:
                     print(f"  ✓ 已释放显存: {freed:.2f}GB")
                 else:
-                    print(f"  ⚠ 警告: 显存未释放（可能被其他进程占用）")
+                    print(f"  ⚠ 警告：显存未释放，可能仍有模型占用显存")
+                
+                # 检查可用显存是否足够
+                total = torch.cuda.get_device_properties(0).total_memory / 1024**3
+                free = total - reserved_after
+                print(f"  ℹ 可用显存: {free:.2f}GB / {total:.2f}GB")
+                if free < 20:
+                    print(f"  ⚠ 警告: 可用显存较少 ({free:.2f}GB)，视频生成可能会失败")
             
         except Exception as e:
             print(f"  ⚠ 清理显存时出错: {e}")
@@ -418,6 +803,54 @@ class NovelVideoGenerator:
         print("步骤2: 使用 HunyuanVideo 生成视频")
         print("=" * 60)
         
+        # ⚡ 关键修复：视频生成前再次彻底清理显存
+        print("  🔧 视频生成前最后一次清理显存...")
+        try:
+            import torch
+            import gc
+            
+            if torch.cuda.is_available():
+                allocated_before_video = torch.cuda.memory_allocated() / 1024**3
+                reserved_before_video = torch.cuda.memory_reserved() / 1024**3
+                print(f"  ℹ 视频生成前显存: 已分配={allocated_before_video:.2f}GB, 已保留={reserved_before_video:.2f}GB")
+                
+                # 多次彻底清理
+                for i in range(10):
+                    if i % 2 == 0:
+                        torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                
+                # 最终同步和清理
+                torch.cuda.synchronize()
+                torch.cuda.empty_cache()
+                gc.collect()
+                
+                # 等待显存真正释放
+                import time
+                time.sleep(0.3)
+                
+                # 再次清理
+                torch.cuda.empty_cache()
+                gc.collect()
+                torch.cuda.synchronize()
+                
+                allocated_after_cleanup = torch.cuda.memory_allocated() / 1024**3
+                reserved_after_cleanup = torch.cuda.memory_reserved() / 1024**3
+                freed = allocated_before_video - allocated_after_cleanup
+                print(f"  ℹ 清理后显存: 已分配={allocated_after_cleanup:.2f}GB, 已保留={reserved_after_cleanup:.2f}GB")
+                if freed > 0:
+                    print(f"  ✓ 已释放显存: {freed:.2f}GB")
+                
+                # 检查可用显存
+                total = torch.cuda.get_device_properties(0).total_memory / 1024**3
+                free = total - reserved_after_cleanup
+                print(f"  ℹ 可用显存: {free:.2f}GB / {total:.2f}GB")
+                if free < 15:
+                    print(f"  ⚠ 警告: 可用显存较少 ({free:.2f}GB)，视频生成可能会失败")
+        except Exception as e:
+            print(f"  ⚠ 视频生成前清理显存时出错: {e}")
+        
         if video_output_path is None:
             video_output_path = output_dir / "novel_video.mp4"
         
@@ -429,21 +862,125 @@ class NovelVideoGenerator:
             video_scene = scene.copy() if scene else {}
             video_scene['description'] = video_prompt
             video_scene['prompt'] = video_prompt  # 也添加到prompt字段
+            video_scene['motion_intensity'] = motion_intensity
             # 重要：确保视频使用与图像相同的分辨率，保持长宽比一致
             # width和height已经在图像生成后更新为实际分辨率
             video_scene['width'] = width  # 使用图像的实际宽度
             video_scene['height'] = height  # 使用图像的实际高度
             print(f"  ℹ 视频将使用分辨率: {width}x{height} (与图像一致，保持长宽比 {width/height:.2f})")
             
-            # 生成视频
-            video_path = self.video_generator.generate_video(
-                image_path=str(image_path),
-                output_path=str(video_output_path),
-                num_frames=num_frames,
-                fps=fps,
-                scene=video_scene,
-            )
+            # 生成视频：
+            # - 默认：VideoGenerator（纯生成）
+            # - 启用 enable_m6_identity：EnhancedVideoGeneratorM6（验证 + 重试 + 产出 report）
+            if effective_enable_m6:
+                if not effective_include_character:
+                    print("  ⚠ 警告：enable_m6_identity=True 但 include_character=False（无人物场景通常无法做人脸验证），将退回普通视频生成")
+                    effective_enable_m6 = False
+
+            identity_report_path: Optional[Path] = None
+            if effective_enable_m6:
+                from enhanced_video_generator_m6 import EnhancedVideoGeneratorM6
+                if self._m6_video_generator is None:
+                    print("初始化 M6 增强视频生成器（身份验证+重试）...")
+                    self._m6_video_generator = EnhancedVideoGeneratorM6(str(self.config_path))
+
+                # 选择参考图：优先用户显式传入；否则尝试按 character_id 找 reference_image/<id>_mid.jpg；否则用生成图
+                ref = None
+                if reference_image_path:
+                    rp = Path(reference_image_path)
+                    if not rp.is_absolute():
+                        rp = (project_root / rp).resolve()
+                    if rp.exists():
+                        ref = str(rp)
+                if ref is None and effective_character_id:
+                    candidate = (project_root / "reference_image" / f"{effective_character_id}_mid.jpg").resolve()
+                    if candidate.exists():
+                        ref = str(candidate)
+                if ref is None:
+                    ref = str(image_path)
+
+                # quick 模式：减少步数（保守默认 8）并将重试设为 0（除非用户显式传）
+                if m6_quick:
+                    self._m6_video_generator.video_config.setdefault("hunyuanvideo", {})
+                    hv = self._m6_video_generator.video_config["hunyuanvideo"]
+                    hv["num_inference_steps"] = min(int(hv.get("num_inference_steps", 25)), 8)
+                    if m6_max_retries is None:
+                        m6_max_retries = 0
+
+                vp, result = self._m6_video_generator.generate_video_with_identity_check(
+                    image_path=str(image_path),
+                    output_path=str(video_output_path),
+                    reference_image=ref,
+                    scene=video_scene,
+                    shot_type=shot_type,
+                    enable_verification=True,
+                    max_retries=m6_max_retries,
+                    num_frames=num_frames,
+                    fps=fps,
+                )
+                video_path = vp
+
+                # 写一个轻量 report（便于后续批量统计/归档）
+                identity_report_path = output_dir / "novel_video_identity.json"
+                payload = {
+                    "passed": bool(result.passed) if result else False,
+                    "avg_similarity": float(result.avg_similarity) if result else 0.0,
+                    "min_similarity": float(result.min_similarity) if result else 0.0,
+                    "drift_ratio": float(result.drift_ratio) if result else 1.0,
+                    "face_detect_ratio": float(result.face_detect_ratio) if result else 0.0,
+                    "issues": list(result.issues or []) if result else ["result=None"],
+                    "reference_image": ref,
+                    "video_path": str(video_path),
+                    "character_id": effective_character_id,
+                }
+                identity_report_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+                print(f"✅ M6 身份验证报告: {identity_report_path}")
+            else:
+                video_path = self.video_generator.generate_video(
+                    image_path=str(image_path),
+                    output_path=str(video_output_path),
+                    num_frames=num_frames,
+                    fps=fps,
+                    scene=video_scene,
+                )
+
             print(f"✅ 视频生成成功: {video_path}")
+            
+            # ⚡ 关键修复：视频生成后彻底清理显存
+            print()
+            print("  🔧 视频生成后清理显存...")
+            try:
+                import torch
+                import gc
+                
+                if torch.cuda.is_available():
+                    # 多次清理，确保彻底释放
+                    for i in range(10):
+                        if i % 2 == 0:
+                            torch.cuda.synchronize()
+                        torch.cuda.empty_cache()
+                        gc.collect()
+                    
+                    # 最终同步和清理
+                    torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                    
+                    # 等待显存真正释放
+                    import time
+                    time.sleep(0.2)
+                    
+                    # 再次清理
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                    torch.cuda.synchronize()
+                    
+                    allocated_after = torch.cuda.memory_allocated() / 1024**3
+                    reserved_after = torch.cuda.memory_reserved() / 1024**3
+                    print(f"  ℹ 视频生成后显存: 已分配={allocated_after:.2f}GB, 已保留={reserved_after:.2f}GB")
+            except Exception as e:
+                print(f"  ⚠ 视频生成后清理显存时出错: {e}")
+                
         except Exception as e:
             print(f"❌ 视频生成失败: {e}")
             import traceback
@@ -460,6 +997,7 @@ class NovelVideoGenerator:
         return {
             'image': image_path,
             'video': video_path,
+            **({"identity_report": identity_report_path} if effective_enable_m6 and identity_report_path else {}),
         }
     
     def _build_video_prompt(self, image_prompt: str, scene: Optional[Dict[str, Any]] = None) -> str:
@@ -752,12 +1290,36 @@ def main():
     parser.add_argument("--num-frames", type=int, default=120, help="视频帧数")
     parser.add_argument("--fps", type=int, default=24, help="视频帧率")
     parser.add_argument("--config", type=str, default="config.yaml", help="配置文件路径")
+
+    # 角色一致（图片端）
+    parser.add_argument("--include-character", action="store_true", help="强制启用角色模式（人物出镜，走角色一致系统）")
+    parser.add_argument("--force-scene", action="store_true", help="强制纯场景模式（忽略自动推断/手动角色）")
+    parser.add_argument("--auto-character", action=argparse.BooleanOptionalAction, default=True, help="是否自动识别是否包含韩立（默认开启）")
+    parser.add_argument("--character-id", type=str, default=None, help="角色ID（可选，覆盖自动推断）")
+    parser.add_argument("--image-model-engine", type=str, default=None, help="覆盖图片引擎（auto/flux-instantid/pulid/flux1...）")
+
+    # 视频一致（M6）
+    parser.add_argument("--enable-m6-identity", action="store_true", help="强制启用 M6 身份验证+重试（仅在检测到韩立/角色模式时生效）")
+    parser.add_argument("--disable-m6-identity", action="store_true", help="强制关闭 M6（即使检测到韩立）")
+    parser.add_argument("--auto-m6-identity", action=argparse.BooleanOptionalAction, default=True, help="是否对韩立场景自动启用 M6（默认开启）")
+    parser.add_argument("--reference-image-path", type=str, default=None, help="身份验证参考图（不传则按 character-id 自动找 *_mid.jpg，否则用生成图）")
+    parser.add_argument("--shot-type", type=str, default="medium", choices=["wide", "medium", "medium_close", "close", "extreme_close"], help="镜头类型")
+    parser.add_argument("--motion-intensity", type=str, default="moderate", choices=["gentle", "moderate", "dynamic"], help="运动强度")
+    parser.add_argument("--m6-max-retries", type=int, default=None, help="覆盖 M6 最大重试次数（0=不重试）")
+    parser.add_argument("--m6-quick", action="store_true", help="M6 快速模式（更少步数/默认不重试，适合冒烟）")
     
     args = parser.parse_args()
     
     # 创建生成器
     generator = NovelVideoGenerator(config_path=args.config)
     
+    # M6 显式开关优先级：disable > enable > auto(None)
+    enable_m6_identity = None
+    if args.disable_m6_identity:
+        enable_m6_identity = False
+    elif args.enable_m6_identity:
+        enable_m6_identity = True
+
     # 生成视频
     result = generator.generate(
         prompt=args.prompt,
@@ -766,6 +1328,18 @@ def main():
         height=args.height,
         num_frames=args.num_frames,
         fps=args.fps,
+        include_character=True if args.include_character else None,
+        character_id=args.character_id,
+        auto_character=bool(args.auto_character),
+        force_scene=bool(args.force_scene),
+        image_model_engine=args.image_model_engine,
+        enable_m6_identity=enable_m6_identity,
+        auto_m6_identity=bool(args.auto_m6_identity),
+        reference_image_path=args.reference_image_path,
+        shot_type=args.shot_type,
+        motion_intensity=args.motion_intensity,
+        m6_max_retries=args.m6_max_retries,
+        m6_quick=bool(args.m6_quick),
     )
     
     print("\n生成完成！")

@@ -1132,6 +1132,954 @@ async def get_kepu_video(filename: str):
         raise HTTPException(status_code=404, detail="视频文件不存在")
     return FileResponse(video_path)
 
+# ==================== 参考图管理 API ====================
+
+class ReferenceImageUpload(BaseModel):
+    """参考图上传请求"""
+    character_id: Optional[str] = Field(None, description="角色ID（可选，用于自动关联）")
+    reference_type: str = Field("face", pattern="^(face|scene)$", description="参考图类型：face（面部）或scene（场景）")
+    angle: Optional[str] = Field(None, description="角度类型（可选）：front/side/three_quarter/back")
+    expression: Optional[str] = Field(None, description="表情类型（可选）：neutral/happy/sad/angry/surprised")
+    description: Optional[str] = Field(None, max_length=500, description="参考图描述（可选）")
+
+class ReferenceImageResponse(BaseModel):
+    """参考图响应"""
+    reference_id: str
+    character_id: Optional[str]
+    reference_type: str
+    angle: Optional[str]
+    expression: Optional[str]
+    file_path: str
+    file_url: str
+    file_size: int
+    width: int
+    height: int
+    description: Optional[str]
+    created_at: datetime
+
+class ReferenceImageListResponse(BaseModel):
+    """参考图列表响应"""
+    references: List[ReferenceImageResponse]
+    total: int
+    character_id: Optional[str] = None
+
+@app.post("/api/v1/references/upload", response_model=ReferenceImageResponse)
+async def upload_reference_image(
+    image: UploadFile = File(..., description="参考图像文件"),
+    character_id: Optional[str] = Form(None, description="角色ID（可选，用于自动关联）"),
+    reference_type: str = Form("face", description="参考图类型：face（面部）或scene（场景）"),
+    angle: Optional[str] = Form(None, description="角度类型（可选）：front/side/three_quarter/back"),
+    expression: Optional[str] = Form(None, description="表情类型（可选）：neutral/happy/sad/angry/surprised"),
+    description: Optional[str] = Form(None, description="参考图描述（可选）"),
+    current_user: dict = Depends(verify_api_key)
+):
+    """
+    上传参考图像（支持多角度、表情）
+    
+    - **image**: 参考图像文件（PNG/JPG/JPEG/WEBP）
+    - **character_id**: 角色ID（可选，如果提供会自动关联到角色档案）
+    - **reference_type**: 参考图类型（face=面部参考，scene=场景参考）
+    - **angle**: 角度类型（front=正面，side=侧面，three_quarter=3/4侧面，back=背面）
+    - **expression**: 表情类型（neutral/happy/sad/angry/surprised）
+    - **description**: 参考图描述（可选）
+    
+    存储位置：
+    - 如果指定了 character_id 和 angle/expression，会存储到 `character_profiles/{character_id}/{angle}/{expression}.jpg`
+    - 否则存储到 `outputs/api/references/{reference_id}.{ext}`
+    """
+    reference_id = str(uuid.uuid4())
+    
+    try:
+        # 验证文件扩展名
+        file_ext = Path(image.filename).suffix if image.filename else ".png"
+        if file_ext not in [".png", ".jpg", ".jpeg", ".webp"]:
+            file_ext = ".png"
+        
+        # 确定存储路径
+        base_dir = Path(__file__).parent.parent.parent
+        if character_id and (angle or expression):
+            # 存储到角色档案目录
+            if expression:
+                # 表情参考图：character_profiles/{character_id}/expressions/{expression}.jpg
+                profile_dir = base_dir / "gen_video" / "character_profiles" / character_id / "expressions"
+                profile_dir.mkdir(parents=True, exist_ok=True)
+                file_path = profile_dir / f"{expression}{file_ext}"
+            elif angle:
+                # 角度参考图：character_profiles/{character_id}/{angle}.jpg
+                profile_dir = base_dir / "gen_video" / "character_profiles" / character_id
+                profile_dir.mkdir(parents=True, exist_ok=True)
+                file_path = profile_dir / f"{angle}{file_ext}"
+            else:
+                # 默认：character_profiles/{character_id}/reference.jpg
+                profile_dir = base_dir / "gen_video" / "character_profiles" / character_id
+                profile_dir.mkdir(parents=True, exist_ok=True)
+                file_path = profile_dir / f"reference{file_ext}"
+        else:
+            # 存储到通用参考图目录
+            ref_dir = base_dir / "outputs" / "api" / "references"
+            ref_dir.mkdir(parents=True, exist_ok=True)
+            file_path = ref_dir / f"{reference_id}{file_ext}"
+        
+        # 保存文件
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+        
+        # 验证图像文件
+        try:
+            img = Image.open(file_path)
+            img.verify()
+            img = Image.open(file_path)  # verify后需要重新打开
+            width, height = img.size
+            print(f"  ✓ 参考图像已上传: {image.filename} ({width}x{height})")
+        except Exception as e:
+            if file_path.exists():
+                file_path.unlink()
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"无效的图像文件: {str(e)}"
+            )
+        
+        # 获取文件大小
+        file_size = file_path.stat().st_size
+        
+        # 生成文件URL（相对路径）
+        if character_id and (angle or expression):
+            # 角色档案路径：使用角色档案服务端点
+            if expression:
+                file_url = f"/api/v1/characters/{character_id}/references/expressions/{expression}{file_ext}"
+            elif angle:
+                file_url = f"/api/v1/characters/{character_id}/references/{angle}{file_ext}"
+            else:
+                file_url = f"/api/v1/characters/{character_id}/references/reference{file_ext}"
+        else:
+            # 通用参考图路径
+            file_url = f"/api/v1/files/references/{reference_id}{file_ext}"
+        
+        print(f"✅ 参考图像上传成功 (ID: {reference_id})")
+        print(f"   角色: {character_id or '未指定'}")
+        print(f"   类型: {reference_type}, 角度: {angle or '未指定'}, 表情: {expression or '未指定'}")
+        print(f"   路径: {file_path}")
+        
+        return ReferenceImageResponse(
+            reference_id=reference_id,
+            character_id=character_id,
+            reference_type=reference_type,
+            angle=angle,
+            expression=expression,
+            file_path=str(file_path),
+            file_url=file_url,
+            file_size=file_size,
+            width=width,
+            height=height,
+            description=description,
+            created_at=datetime.now()
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 参考图像上传失败: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"参考图像上传失败: {str(e)}"
+        )
+
+@app.get("/api/v1/references", response_model=ReferenceImageListResponse)
+async def list_reference_images(
+    character_id: Optional[str] = None,
+    reference_type: Optional[str] = None,
+    current_user: dict = Depends(verify_api_key)
+):
+    """
+    列出参考图像
+    
+    - **character_id**: 角色ID（可选，筛选特定角色的参考图）
+    - **reference_type**: 参考图类型（可选，face/scene）
+    """
+    base_dir = Path(__file__).parent.parent.parent
+    references = []
+    
+    try:
+        # 如果指定了角色ID，从角色档案目录读取
+        if character_id:
+            profile_dir = base_dir / "gen_video" / "character_profiles" / character_id
+            if profile_dir.exists():
+                # 读取角度参考图
+                for angle_file in ["front", "side", "three_quarter", "back", "reference"]:
+                    for ext in [".png", ".jpg", ".jpeg", ".webp"]:
+                        angle_path = profile_dir / f"{angle_file}{ext}"
+                        if angle_path.exists():
+                            img = Image.open(angle_path)
+                            width, height = img.size
+                            file_size = angle_path.stat().st_size
+                            references.append(ReferenceImageResponse(
+                                reference_id=f"{character_id}_{angle_file}",
+                                character_id=character_id,
+                                reference_type="face",
+                                angle=angle_file if angle_file != "reference" else None,
+                                expression=None,
+                                file_path=str(angle_path),
+                                file_url=f"/api/v1/characters/{character_id}/references/{angle_file}{ext}",
+                                file_size=file_size,
+                                width=width,
+                                height=height,
+                                description=None,
+                                created_at=datetime.fromtimestamp(angle_path.stat().st_mtime)
+                            ))
+                
+                # 读取表情参考图
+                expressions_dir = profile_dir / "expressions"
+                if expressions_dir.exists():
+                    for expr_file in expressions_dir.glob("*.*"):
+                        if expr_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
+                            expr_name = expr_file.stem
+                            img = Image.open(expr_file)
+                            width, height = img.size
+                            file_size = expr_file.stat().st_size
+                            references.append(ReferenceImageResponse(
+                                reference_id=f"{character_id}_expr_{expr_name}",
+                                character_id=character_id,
+                                reference_type="face",
+                                angle=None,
+                                expression=expr_name,
+                                file_path=str(expr_file),
+                                file_url=f"/api/v1/characters/{character_id}/references/expressions/{expr_file.name}",
+                                file_size=file_size,
+                                width=width,
+                                height=height,
+                                description=None,
+                                created_at=datetime.fromtimestamp(expr_file.stat().st_mtime)
+                            ))
+        
+        # 从通用参考图目录读取
+        ref_dir = base_dir / "outputs" / "api" / "references"
+        if ref_dir.exists():
+            for ref_file in ref_dir.glob("*.*"):
+                if ref_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
+                    img = Image.open(ref_file)
+                    width, height = img.size
+                    file_size = ref_file.stat().st_size
+                    ref_id = ref_file.stem
+                    references.append(ReferenceImageResponse(
+                        reference_id=ref_id,
+                        character_id=None,
+                        reference_type="face",  # 默认
+                        angle=None,
+                        expression=None,
+                        file_path=str(ref_file),
+                        file_url=f"/api/v1/files/references/{ref_file.name}",
+                        file_size=file_size,
+                        width=width,
+                        height=height,
+                        description=None,
+                        created_at=datetime.fromtimestamp(ref_file.stat().st_mtime)
+                    ))
+        
+        # 按类型筛选
+        if reference_type:
+            references = [r for r in references if r.reference_type == reference_type]
+        
+        return ReferenceImageListResponse(
+            references=references,
+            total=len(references),
+            character_id=character_id
+        )
+        
+    except Exception as e:
+        print(f"❌ 获取参考图列表失败: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"获取参考图列表失败: {str(e)}"
+        )
+
+@app.delete("/api/v1/references/{reference_id}")
+async def delete_reference_image(
+    reference_id: str,
+    current_user: dict = Depends(verify_api_key)
+):
+    """删除参考图像"""
+    base_dir = Path(__file__).parent.parent.parent
+    
+    try:
+        # 尝试从通用参考图目录删除
+        ref_dir = base_dir / "outputs" / "api" / "references"
+        if ref_dir.exists():
+            for ref_file in ref_dir.glob(f"{reference_id}.*"):
+                if ref_file.exists():
+                    ref_file.unlink()
+                    return {"message": f"参考图 {reference_id} 已删除", "reference_id": reference_id}
+        
+        # 尝试从角色档案目录删除（格式：{character_id}_{angle} 或 {character_id}_expr_{expression}）
+        if "_expr_" in reference_id:
+            # 表情参考图
+            parts = reference_id.split("_expr_")
+            if len(parts) == 2:
+                character_id, expr_name = parts
+                expr_path = base_dir / "gen_video" / "character_profiles" / character_id / "expressions"
+                if expr_path.exists():
+                    for expr_file in expr_path.glob(f"{expr_name}.*"):
+                        if expr_file.exists():
+                            expr_file.unlink()
+                            return {"message": f"参考图 {reference_id} 已删除", "reference_id": reference_id}
+        else:
+            # 角度参考图
+            parts = reference_id.split("_", 1)
+            if len(parts) == 2:
+                character_id, angle = parts
+                angle_path = base_dir / "gen_video" / "character_profiles" / character_id / f"{angle}.*"
+                import glob
+                for path in glob.glob(str(angle_path)):
+                    Path(path).unlink()
+                    return {"message": f"参考图 {reference_id} 已删除", "reference_id": reference_id}
+        
+        raise HTTPException(status_code=404, detail=f"参考图 {reference_id} 不存在")
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 删除参考图失败: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"删除参考图失败: {str(e)}"
+        )
+
+@app.get("/api/v1/files/references/{filename}")
+async def get_reference_image(filename: str):
+    """获取参考图像文件"""
+    ref_path = Path(__file__).parent.parent.parent / "outputs" / "api" / "references" / filename
+    if not ref_path.exists():
+        raise HTTPException(status_code=404, detail="参考图像文件不存在")
+    return FileResponse(ref_path)
+
+# ==================== 角色档案管理 API ====================
+
+class CharacterProfileResponse(BaseModel):
+    """角色档案响应"""
+    character_id: str
+    name: str
+    profile_dir: str
+    references: Dict[str, Any]  # 参考图信息
+    metadata: Optional[Dict[str, Any]] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+class CharacterProfileListResponse(BaseModel):
+    """角色档案列表响应"""
+    characters: List[CharacterProfileResponse]
+    total: int
+
+@app.get("/api/v1/characters", response_model=CharacterProfileListResponse)
+async def list_characters(current_user: dict = Depends(verify_api_key)):
+    """列出所有角色档案"""
+    base_dir = Path(__file__).parent.parent.parent
+    profile_dir = base_dir / "gen_video" / "character_profiles"
+    characters = []
+    
+    try:
+        if profile_dir.exists():
+            for char_dir in profile_dir.iterdir():
+                if char_dir.is_dir() and not char_dir.name.startswith("_"):
+                    character_id = char_dir.name
+                    
+                    # 读取元数据
+                    metadata_path = char_dir / "metadata.yaml"
+                    metadata = None
+                    if metadata_path.exists():
+                        import yaml
+                        with open(metadata_path, 'r', encoding='utf-8') as f:
+                            metadata = yaml.safe_load(f)
+                    
+                    # 收集参考图信息
+                    references = {
+                        "angles": [],
+                        "expressions": []
+                    }
+                    
+                    # 角度参考图
+                    for angle in ["front", "side", "three_quarter", "back", "reference"]:
+                        for ext in [".png", ".jpg", ".jpeg", ".webp"]:
+                            angle_path = char_dir / f"{angle}{ext}"
+                            if angle_path.exists():
+                                references["angles"].append({
+                                    "angle": angle if angle != "reference" else None,
+                                    "path": str(angle_path),
+                                    "url": f"/api/v1/characters/{character_id}/references/{angle}{ext}"
+                                })
+                                break
+                    
+                    # 表情参考图
+                    expressions_dir = char_dir / "expressions"
+                    if expressions_dir.exists():
+                        for expr_file in expressions_dir.glob("*.*"):
+                            if expr_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
+                                references["expressions"].append({
+                                    "expression": expr_file.stem,
+                                    "path": str(expr_file),
+                                    "url": f"/api/v1/characters/{character_id}/references/expressions/{expr_file.name}"
+                                })
+                    
+                    # 获取创建/更新时间
+                    created_at = datetime.fromtimestamp(char_dir.stat().st_ctime) if char_dir.exists() else None
+                    updated_at = datetime.fromtimestamp(char_dir.stat().st_mtime) if char_dir.exists() else None
+                    
+                    characters.append(CharacterProfileResponse(
+                        character_id=character_id,
+                        name=metadata.get("name", character_id) if metadata else character_id,
+                        profile_dir=str(char_dir),
+                        references=references,
+                        metadata=metadata,
+                        created_at=created_at,
+                        updated_at=updated_at
+                    ))
+        
+        return CharacterProfileListResponse(
+            characters=characters,
+            total=len(characters)
+        )
+        
+    except Exception as e:
+        print(f"❌ 获取角色列表失败: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"获取角色列表失败: {str(e)}"
+        )
+
+@app.get("/api/v1/characters/{character_id}", response_model=CharacterProfileResponse)
+async def get_character(
+    character_id: str,
+    current_user: dict = Depends(verify_api_key)
+):
+    """获取角色档案详情"""
+    base_dir = Path(__file__).parent.parent.parent
+    char_dir = base_dir / "gen_video" / "character_profiles" / character_id
+    
+    if not char_dir.exists():
+        raise HTTPException(status_code=404, detail=f"角色 {character_id} 不存在")
+    
+    try:
+        # 读取元数据
+        metadata_path = char_dir / "metadata.yaml"
+        metadata = None
+        if metadata_path.exists():
+            import yaml
+            with open(metadata_path, 'r', encoding='utf-8') as f:
+                metadata = yaml.safe_load(f)
+        
+        # 收集参考图信息
+        references = {
+            "angles": [],
+            "expressions": []
+        }
+        
+        # 角度参考图
+        for angle in ["front", "side", "three_quarter", "back", "reference"]:
+            for ext in [".png", ".jpg", ".jpeg", ".webp"]:
+                angle_path = char_dir / f"{angle}{ext}"
+                if angle_path.exists():
+                    references["angles"].append({
+                        "angle": angle if angle != "reference" else None,
+                        "path": str(angle_path),
+                        "url": f"/api/v1/characters/{character_id}/references/{angle}{ext}"
+                    })
+                    break
+        
+        # 表情参考图
+        expressions_dir = char_dir / "expressions"
+        if expressions_dir.exists():
+            for expr_file in expressions_dir.glob("*.*"):
+                if expr_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
+                    references["expressions"].append({
+                        "expression": expr_file.stem,
+                        "path": str(expr_file),
+                        "url": f"/api/v1/characters/{character_id}/references/expressions/{expr_file.name}"
+                    })
+        
+        # 获取创建/更新时间
+        created_at = datetime.fromtimestamp(char_dir.stat().st_ctime) if char_dir.exists() else None
+        updated_at = datetime.fromtimestamp(char_dir.stat().st_mtime) if char_dir.exists() else None
+        
+        return CharacterProfileResponse(
+            character_id=character_id,
+            name=metadata.get("name", character_id) if metadata else character_id,
+            profile_dir=str(char_dir),
+            references=references,
+            metadata=metadata,
+            created_at=created_at,
+            updated_at=updated_at
+        )
+        
+    except Exception as e:
+        print(f"❌ 获取角色详情失败: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"获取角色详情失败: {str(e)}"
+        )
+
+@app.get("/api/v1/characters/{character_id}/references/{filename:path}")
+async def get_character_reference(
+    character_id: str,
+    filename: str,
+    current_user: dict = Depends(verify_api_key)
+):
+    """获取角色参考图像文件"""
+    base_dir = Path(__file__).parent.parent.parent
+    char_dir = base_dir / "gen_video" / "character_profiles" / character_id
+    
+    # 支持 expressions/ 子目录
+    if filename.startswith("expressions/"):
+        ref_path = char_dir / filename
+    else:
+        ref_path = char_dir / filename
+    
+    if not ref_path.exists():
+        raise HTTPException(status_code=404, detail="参考图像文件不存在")
+    return FileResponse(ref_path)
+
+# ==================== 临时参考图端到端生成 API ====================
+
+class ReferenceToVideoRequest(BaseModel):
+    """临时参考图生成图片和视频请求"""
+    prompt: str = Field(..., min_length=1, max_length=500, description="生成提示词")
+    negative_prompt: Optional[str] = Field(None, max_length=500, description="负面提示词")
+    reference_image_type: str = Field("face", pattern="^(face|scene)$", description="参考图类型：face（面部）或scene（场景）")
+    # 图片生成参数
+    image_width: int = Field(1024, ge=512, le=2048, description="图像宽度（必须是8的倍数）")
+    image_height: int = Field(1024, ge=512, le=2048, description="图像高度（必须是8的倍数）")
+    num_inference_steps: int = Field(40, ge=10, le=100, description="推理步数")
+    guidance_scale: float = Field(7.5, ge=1.0, le=20.0, description="引导尺度")
+    seed: Optional[int] = Field(None, description="随机种子")
+    # 视频生成参数
+    generate_video: bool = Field(True, description="是否生成视频（默认True）")
+    video_width: Optional[int] = Field(None, ge=512, le=1920, description="视频宽度（可选，默认使用图片宽度）")
+    video_height: Optional[int] = Field(None, ge=512, le=1080, description="视频高度（可选，默认使用图片高度）")
+    num_frames: int = Field(120, ge=8, le=240, description="视频帧数")
+    fps: int = Field(24, ge=15, le=30, description="视频帧率")
+    # M6 身份验证参数（仅当 reference_image_type=face 时有效）
+    enable_m6_identity: bool = Field(False, description="是否启用 M6 身份验证（仅面部参考图）")
+    shot_type: str = Field("medium", pattern="^(wide|medium|medium_close|close|extreme_close)$", description="镜头类型（M6模式）")
+    motion_intensity: str = Field("moderate", pattern="^(gentle|moderate|dynamic)$", description="运动强度（M6模式）")
+    m6_max_retries: Optional[int] = Field(None, ge=0, le=10, description="M6 最大重试次数")
+    m6_quick: bool = Field(False, description="M6 快速模式")
+    
+    @validator('image_width', 'image_height')
+    def validate_image_resolution(cls, v):
+        if v % 8 != 0:
+            raise ValueError('图像分辨率必须是8的倍数')
+        return v
+
+class ReferenceToVideoResponse(BaseModel):
+    """临时参考图生成响应"""
+    task_id: str
+    status: str
+    # 参考图信息
+    reference_image_url: str
+    reference_image_path: str
+    # 生成的图片信息
+    image_url: Optional[str] = None
+    image_path: Optional[str] = None
+    image_width: int
+    image_height: int
+    image_file_size: Optional[int] = None
+    # 生成的视频信息（如果 generate_video=True）
+    video_url: Optional[str] = None
+    video_path: Optional[str] = None
+    video_duration: Optional[float] = None
+    video_file_size: Optional[int] = None
+    # M6 身份验证信息（如果启用）
+    m6_passed: Optional[bool] = None
+    m6_avg_similarity: Optional[float] = None
+    m6_min_similarity: Optional[float] = None
+    m6_drift_ratio: Optional[float] = None
+    m6_face_detect_ratio: Optional[float] = None
+    m6_issues: Optional[List[str]] = None
+    m6_report_path: Optional[str] = None
+    # 元数据
+    created_at: datetime
+    elapsed_time: float
+
+@app.post("/api/v1/generate/from-reference", response_model=ReferenceToVideoResponse)
+async def generate_from_reference(
+    reference_image: UploadFile = File(..., description="参考图像文件（必需）"),
+    prompt: str = Form(..., description="生成提示词"),
+    negative_prompt: Optional[str] = Form(None, description="负面提示词"),
+    reference_image_type: str = Form("face", description="参考图类型：face（面部）或scene（场景）"),
+    # 图片生成参数
+    image_width: int = Form(1024, description="图像宽度（必须是8的倍数）"),
+    image_height: int = Form(1024, description="图像高度（必须是8的倍数）"),
+    num_inference_steps: int = Form(40, description="推理步数"),
+    guidance_scale: float = Form(7.5, description="引导尺度"),
+    seed: Optional[int] = Form(None, description="随机种子"),
+    # 视频生成参数
+    generate_video: bool = Form(True, description="是否生成视频（默认True）"),
+    video_width: Optional[int] = Form(None, description="视频宽度（可选，默认使用图片宽度）"),
+    video_height: Optional[int] = Form(None, description="视频高度（可选，默认使用图片高度）"),
+    num_frames: int = Form(120, description="视频帧数"),
+    fps: int = Form(24, description="视频帧率"),
+    # M6 身份验证参数
+    enable_m6_identity: bool = Form(False, description="是否启用 M6 身份验证（仅面部参考图）"),
+    shot_type: str = Form("medium", description="镜头类型（M6模式）"),
+    motion_intensity: str = Form("moderate", description="运动强度（M6模式）"),
+    m6_max_retries: Optional[int] = Form(None, description="M6 最大重试次数"),
+    m6_quick: bool = Form(False, description="M6 快速模式"),
+    current_user: dict = Depends(verify_api_key)
+):
+    """
+    临时参考图端到端生成：上传参考图 → 生成图片 → 生成视频
+    
+    这是一个便捷接口，适合用户临时上传一张参考图，快速生成图片和视频。
+    
+    **使用场景**：
+    - 用户上传一张人物照片，生成该人物在不同场景的图片和视频
+    - 用户上传一张场景图，生成相似风格的图片和视频
+    
+    **工作流程**：
+    1. 上传参考图（临时存储，24小时后自动清理）
+    2. 基于参考图生成图片
+    3. （可选）基于生成的图片生成视频
+    4. （可选，仅面部参考图）启用 M6 身份验证，确保视频中人物一致性
+    
+    **参数说明**：
+    - **reference_image**: 参考图像文件（必需）
+    - **reference_image_type**: 参考图类型
+      - `face`: 面部参考图（用于人物生成，可启用 M6 身份验证）
+      - `scene`: 场景参考图（用于风格迁移）
+    - **generate_video**: 是否生成视频（默认 True）
+    - **enable_m6_identity**: 是否启用 M6 身份验证（仅当 reference_image_type=face 时有效）
+      - 启用后会进行身份一致性检查，失败时自动重试
+      - 适合需要确保视频中人物一致性的场景
+    
+    **返回信息**：
+    - 包含生成的图片和视频路径、URL
+    - 如果启用 M6，还包含身份验证指标（相似度、漂移率等）
+    
+    **注意事项**：
+    - 此接口会同步执行，可能需要几分钟（图片30-60秒，视频2-5分钟）
+    - 参考图会临时存储，24小时后自动清理
+    - 建议先测试图片生成，确认效果后再生成视频
+    """
+    user_id = current_user["user_id"]
+    tier = current_user["tier"]
+    task_id = str(uuid.uuid4())
+    start_time = time.time()
+    
+    # 验证分辨率
+    if image_width % 8 != 0 or image_height % 8 != 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="图像分辨率必须是8的倍数"
+        )
+    
+    # 检查配额
+    if not check_quota(user_id, tier, "image"):
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"今日图像生成配额已用完（{DEFAULT_QUOTAS[tier]['images']}张/天）"
+        )
+    
+    if generate_video and not check_quota(user_id, tier, "video"):
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"今日视频生成配额已用完（{DEFAULT_QUOTAS[tier]['videos']}个/天）"
+        )
+    
+    try:
+        base_dir = Path(__file__).parent.parent.parent
+        
+        # ========== 步骤1: 上传并验证参考图 ==========
+        print(f"📤 步骤1: 上传参考图 (任务: {task_id})...")
+        
+        # 临时存储目录（24小时后自动清理）
+        temp_ref_dir = base_dir / "outputs" / "api" / "temp_references"
+        temp_ref_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 获取文件扩展名
+        file_ext = Path(reference_image.filename).suffix if reference_image.filename else ".png"
+        if file_ext not in [".png", ".jpg", ".jpeg", ".webp"]:
+            file_ext = ".png"
+        
+        # 保存参考图（临时存储，文件名包含时间戳以便后续清理）
+        ref_image_path = temp_ref_dir / f"{task_id}_ref{file_ext}"
+        with open(ref_image_path, "wb") as buffer:
+            shutil.copyfileobj(reference_image.file, buffer)
+        
+        # 验证图像文件
+        try:
+            img = Image.open(ref_image_path)
+            img.verify()
+            img = Image.open(ref_image_path)
+            ref_width, ref_height = img.size
+            print(f"  ✓ 参考图已上传: {reference_image.filename} ({ref_width}x{ref_height})")
+        except Exception as e:
+            if ref_image_path.exists():
+                ref_image_path.unlink()
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"无效的图像文件: {str(e)}"
+            )
+        
+        # 设置参考图路径
+        if reference_image_type == "face":
+            face_reference_image_path = ref_image_path
+            reference_image_path = None
+        else:
+            reference_image_path = ref_image_path
+            face_reference_image_path = None
+        
+        # ========== 步骤2: 生成图片 ==========
+        print(f"🎨 步骤2: 生成图片 (任务: {task_id})...")
+        
+        image_output_dir = base_dir / "outputs" / "api" / "images"
+        image_output_dir.mkdir(parents=True, exist_ok=True)
+        image_output_path = image_output_dir / f"{task_id}.png"
+        
+        # 获取图像生成器
+        image_generator = get_image_generator()
+        
+        # 生成图片
+        generated_image_path = image_generator.generate_image(
+            prompt=prompt,
+            output_path=image_output_path,
+            negative_prompt=negative_prompt,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=guidance_scale,
+            seed=seed,
+            reference_image_path=reference_image_path,
+            face_reference_image_path=face_reference_image_path,
+            use_lora=None,
+            character_lora=None,
+            style_lora=None,
+            scene={
+                "prompt": prompt,
+                "width": image_width,
+                "height": image_height,
+            },
+            model_engine="auto",
+            task_type="character" if reference_image_type == "face" else "scene"
+        )
+        
+        image_path = Path(generated_image_path)
+        image_file_size = image_path.stat().st_size if image_path.exists() else 0
+        print(f"  ✓ 图片生成完成: {image_path.name} ({image_file_size / 1024:.1f} KB)")
+        
+        # ========== 步骤3: 生成视频（可选）==========
+        video_url = None
+        video_path = None
+        video_duration = None
+        video_file_size = None
+        m6_passed = None
+        m6_avg_similarity = None
+        m6_min_similarity = None
+        m6_drift_ratio = None
+        m6_face_detect_ratio = None
+        m6_issues = None
+        m6_report_path = None
+        
+        if generate_video:
+            print(f"🎬 步骤3: 生成视频 (任务: {task_id})...")
+            
+            # 确定视频分辨率
+            video_w = video_width or image_width
+            video_h = video_height or image_height
+            
+            video_output_dir = base_dir / "outputs" / "api" / "videos"
+            video_output_dir.mkdir(parents=True, exist_ok=True)
+            video_output_path = video_output_dir / f"{task_id}.mp4"
+            
+            # 如果启用 M6 身份验证（仅面部参考图）
+            if enable_m6_identity and reference_image_type == "face":
+                print(f"  🔒 启用 M6 身份验证...")
+                
+                try:
+                    from enhanced_video_generator_m6 import EnhancedVideoGeneratorM6
+                    m6_generator = EnhancedVideoGeneratorM6(str(base_dir / "gen_video" / "config.yaml"))
+                    
+                    scene = {
+                        "prompt": prompt,
+                        "motion_intensity": motion_intensity,
+                    }
+                    
+                    # 使用生成的图片作为 anchor，参考图作为 reference
+                    video_path_result, verification_result = m6_generator.generate_video_with_identity_check(
+                        image_path=str(image_path),
+                        output_path=str(video_output_path),
+                        reference_image=str(ref_image_path),
+                        scene=scene,
+                        shot_type=shot_type,
+                        enable_verification=True,
+                        max_retries=m6_max_retries,
+                    )
+                    
+                    if video_path_result and video_path_result.exists():
+                        video_path = video_path_result
+                        video_file_size = video_path.stat().st_size
+                        
+                        # 获取视频时长
+                        try:
+                            import subprocess
+                            result = subprocess.run(
+                                ["ffprobe", "-v", "error", "-show_entries", "format=duration", 
+                                 "-of", "default=noprint_wrappers=1:nokey=1", str(video_path)],
+                                capture_output=True,
+                                text=True
+                            )
+                            video_duration = float(result.stdout.strip()) if result.stdout.strip() else None
+                        except:
+                            video_duration = num_frames / fps
+                        
+                        # M6 验证结果
+                        if verification_result:
+                            m6_passed = verification_result.passed
+                            m6_avg_similarity = verification_result.avg_similarity
+                            m6_min_similarity = verification_result.min_similarity
+                            m6_drift_ratio = verification_result.drift_ratio
+                            m6_face_detect_ratio = verification_result.face_detect_ratio
+                            m6_issues = verification_result.issues
+                            
+                            # 保存验证报告
+                            report_dir = base_dir / "outputs" / "api" / "m6_reports"
+                            report_dir.mkdir(parents=True, exist_ok=True)
+                            m6_report_path = report_dir / f"{task_id}.json"
+                            with open(m6_report_path, 'w', encoding='utf-8') as f:
+                                import json
+                                json.dump({
+                                    "task_id": task_id,
+                                    "passed": m6_passed,
+                                    "avg_similarity": m6_avg_similarity,
+                                    "min_similarity": m6_min_similarity,
+                                    "drift_ratio": m6_drift_ratio,
+                                    "face_detect_ratio": m6_face_detect_ratio,
+                                    "issues": m6_issues,
+                                    "video_path": str(video_path),
+                                    "reference_image": str(ref_image_path),
+                                }, f, indent=2, ensure_ascii=False)
+                            
+                            print(f"  ✓ M6 验证完成: {'通过' if m6_passed else '未通过'}")
+                            if m6_issues:
+                                print(f"    问题: {', '.join(m6_issues)}")
+                        
+                        video_url = f"/api/v1/files/videos/{task_id}.mp4"
+                        print(f"  ✓ 视频生成完成: {video_path.name} ({video_file_size / 1024 / 1024:.2f} MB)")
+                    else:
+                        print(f"  ⚠️  视频生成失败")
+                        
+                except Exception as e:
+                    print(f"  ⚠️  M6 视频生成失败: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    # 继续，不中断流程
+            
+            else:
+                # 普通视频生成（不使用 M6）
+                try:
+                    video_generator = get_video_generator()
+                    
+                    # 构建场景数据
+                    scene_data = {
+                        "id": 1,
+                        "prompt": prompt,
+                        "description": prompt,
+                        "duration": num_frames / fps,
+                        "image_path": str(image_path),
+                    }
+                    
+                    # 生成视频
+                    video_path_result = video_generator.generate_video(
+                        scenes=[scene_data],
+                        output_path=str(video_output_path),
+                        fps=fps,
+                        width=video_w,
+                        height=video_h,
+                    )
+                    
+                    if video_path_result and Path(video_path_result).exists():
+                        video_path = Path(video_path_result)
+                        video_file_size = video_path.stat().st_size
+                        
+                        # 获取视频时长
+                        try:
+                            import subprocess
+                            result = subprocess.run(
+                                ["ffprobe", "-v", "error", "-show_entries", "format=duration", 
+                                 "-of", "default=noprint_wrappers=1:nokey=1", str(video_path)],
+                                capture_output=True,
+                                text=True
+                            )
+                            video_duration = float(result.stdout.strip()) if result.stdout.strip() else num_frames / fps
+                        except:
+                            video_duration = num_frames / fps
+                        
+                        video_url = f"/api/v1/files/videos/{task_id}.mp4"
+                        print(f"  ✓ 视频生成完成: {video_path.name} ({video_file_size / 1024 / 1024:.2f} MB)")
+                    else:
+                        print(f"  ⚠️  视频生成失败")
+                        
+                except Exception as e:
+                    print(f"  ⚠️  视频生成失败: {e}")
+                    import traceback
+                    traceback.print_exc()
+        
+        elapsed_time = time.time() - start_time
+        
+        # 生成参考图 URL
+        reference_image_url = f"/api/v1/files/temp_references/{task_id}_ref{file_ext}"
+        
+        # 生成图片 URL
+        image_url = f"/api/v1/files/images/{task_id}.png"
+        
+        print(f"✅ 端到端生成完成 (任务: {task_id}, 耗时: {elapsed_time:.1f}秒)")
+        
+        return ReferenceToVideoResponse(
+            task_id=task_id,
+            status="completed",
+            reference_image_url=reference_image_url,
+            reference_image_path=str(ref_image_path),
+            image_url=image_url,
+            image_path=str(image_path),
+            image_width=image_width,
+            image_height=image_height,
+            image_file_size=image_file_size,
+            video_url=video_url,
+            video_path=str(video_path) if video_path else None,
+            video_duration=video_duration,
+            video_file_size=video_file_size,
+            m6_passed=m6_passed,
+            m6_avg_similarity=m6_avg_similarity,
+            m6_min_similarity=m6_min_similarity,
+            m6_drift_ratio=m6_drift_ratio,
+            m6_face_detect_ratio=m6_face_detect_ratio,
+            m6_issues=m6_issues,
+            m6_report_path=str(m6_report_path) if m6_report_path else None,
+            created_at=datetime.now(),
+            elapsed_time=elapsed_time
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 端到端生成失败 (任务: {task_id}): {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"端到端生成失败: {str(e)}"
+        )
+
+@app.get("/api/v1/files/temp_references/{filename}")
+async def get_temp_reference_image(filename: str):
+    """获取临时参考图像文件"""
+    ref_path = Path(__file__).parent.parent.parent / "outputs" / "api" / "temp_references" / filename
+    if not ref_path.exists():
+        raise HTTPException(status_code=404, detail="临时参考图像文件不存在")
+    return FileResponse(ref_path)
+
 # ==================== 启动 ====================
 
 if __name__ == "__main__":

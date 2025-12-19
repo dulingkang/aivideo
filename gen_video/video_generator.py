@@ -1893,12 +1893,37 @@ class VideoGenerator:
         if not self.model_loaded or self.hunyuanvideo_pipeline is None:
             self.load_model()
         
-        # 生成前清理显存（释放之前可能残留的显存）
+        # ⚡ 关键修复：生成前彻底清理显存（释放之前可能残留的显存）
         import torch
         import gc
         if torch.cuda.is_available():
+            # 同步所有 CUDA 操作
+            torch.cuda.synchronize()
+            
+            # 多次清理，确保彻底释放
+            for i in range(10):
+                if i % 2 == 0:
+                    torch.cuda.synchronize()
+                torch.cuda.empty_cache()
+                gc.collect()
+            
+            # 最终同步和清理
+            torch.cuda.synchronize()
             torch.cuda.empty_cache()
             gc.collect()
+            
+            # 等待显存真正释放
+            import time
+            time.sleep(0.2)
+            
+            # 再次清理
+            torch.cuda.empty_cache()
+            gc.collect()
+            torch.cuda.synchronize()
+            
+            allocated_before = torch.cuda.memory_allocated() / 1024**3
+            reserved_before = torch.cuda.memory_reserved() / 1024**3
+            print(f"  ℹ 视频生成前显存: 已分配={allocated_before:.2f}GB, 已保留={reserved_before:.2f}GB")
         
         # 加载图像
         image = load_image(image_path)
@@ -2137,6 +2162,24 @@ class VideoGenerator:
                     
                     if num_frames != original_num_frames:
                         print(f"  ⚠ 显存限制内可用不足 ({available_in_limit:.1f}GB)，进一步减少帧数: {original_num_frames} -> {num_frames}")
+            
+            # ⚡ 关键修复：在生成前再次清理显存，每几步清理一次
+            if torch.cuda.is_available():
+                import gc
+                # 同步所有 CUDA 操作
+                torch.cuda.synchronize()
+                # 每几步清理一次（模拟之前优化的方式）
+                for i in range(5):
+                    if i % 2 == 0:
+                        torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                torch.cuda.synchronize()
+                
+                # 记录清理后的显存状态
+                allocated_after_cleanup = torch.cuda.memory_allocated() / 1024**3
+                reserved_after_cleanup = torch.cuda.memory_reserved() / 1024**3
+                print(f"  ℹ 生成前清理后显存: 已分配={allocated_after_cleanup:.2f}GB, 已保留={reserved_after_cleanup:.2f}GB")
             
             # 尝试生成视频，如果显存不足则自动降级
             max_retries = 3
@@ -2453,13 +2496,45 @@ class VideoGenerator:
             
             export_to_video(export_frames, str(output_path), fps=fps)
             
-            # 清理中间变量和显存
-            del video_frames, frames, result
+            # ⚡ 关键修复：视频生成后彻底清理显存
+            print("  🔧 视频生成后清理显存...")
+            import torch
+            import gc
+            
+            # 清理中间变量
+            del export_frames
+            del video_frames
+            if 'frames' in locals():
+                del frames
+            if 'result' in locals():
+                del result
+            
+            # 彻底清理显存
             if torch.cuda.is_available():
+                # 多次清理，确保彻底释放
+                for i in range(10):
+                    if i % 2 == 0:
+                        torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                
+                # 最终同步和清理
+                torch.cuda.synchronize()
                 torch.cuda.empty_cache()
                 gc.collect()
+                
+                # 等待显存真正释放
+                import time
+                time.sleep(0.2)
+                
+                # 再次清理
+                torch.cuda.empty_cache()
+                gc.collect()
+                torch.cuda.synchronize()
+                
                 allocated_after = torch.cuda.memory_allocated() / 1024**3
-                print(f"  ℹ 生成后显存占用: {allocated_after:.2f}GB")
+                reserved_after = torch.cuda.memory_reserved() / 1024**3
+                print(f"  ℹ 视频生成后显存: 已分配={allocated_after:.2f}GB, 已保留={reserved_after:.2f}GB")
             
             print(f"  ✓ HunyuanVideo视频生成成功: {output_path}")
             return output_path

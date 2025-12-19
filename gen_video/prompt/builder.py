@@ -2419,7 +2419,8 @@ class PromptBuilder:
     
     def _build_scene_background_prompt_compact(self, scene: Dict[str, Any], script_data: Dict[str, Any] = None) -> str:
         """构建精简版场景背景 prompt"""
-        scene_id = scene.get("id")
+        # v2 兼容：优先 scene_id，其次 id
+        scene_id = scene.get("scene_id", scene.get("id"))
         is_opening_ending = scene_id in [0, 999]
         
         if is_opening_ending:

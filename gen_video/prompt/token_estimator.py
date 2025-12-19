@@ -30,17 +30,37 @@ class TokenEstimator:
             # SDXL使用两个tokenizer：CLIP-L/14（主要）和CLIP-G（辅助）
             # 我们使用CLIP-L/14，这是实际限制77 tokens的tokenizer
             try:
-                # 尝试从本地SDXL模型加载
-                self._clip_tokenizer = CLIPTokenizer.from_pretrained(
-                    "stabilityai/stable-diffusion-xl-base-1.0",
-                    subfolder="tokenizer"
-                )
+                # ⚡ 关键修复：优先使用本地SDXL模型，避免网络下载
+                import os
+                local_sdxl_path = "/vepfs-dev/shawn/vid/fanren/gen_video/models/sdxl-base"
+                if os.path.exists(os.path.join(local_sdxl_path, "tokenizer")):
+                    # 使用本地路径
+                    self._clip_tokenizer = CLIPTokenizer.from_pretrained(
+                        local_sdxl_path,
+                        subfolder="tokenizer",
+                        local_files_only=True
+                    )
+                    print(f"  ✓ CLIPTokenizer 从本地加载成功: {local_sdxl_path}")
+                else:
+                    # 尝试从HuggingFace加载（但设置 local_files_only=True 优先使用缓存）
+                    self._clip_tokenizer = CLIPTokenizer.from_pretrained(
+                        "stabilityai/stable-diffusion-xl-base-1.0",
+                        subfolder="tokenizer",
+                        local_files_only=True  # 只使用本地缓存，不联网下载
+                    )
+                    print(f"  ✓ CLIPTokenizer 从缓存加载成功")
             except Exception:
                 # 如果本地加载失败，尝试使用CLIP-L/14（SDXL实际使用的）
-                self._clip_tokenizer = CLIPTokenizer.from_pretrained(
-                    "openai/clip-vit-large-patch14"
-                )
-            print(f"  ✓ CLIPTokenizer 加载成功，使用准确计算（SDXL CLIP-L/14）")
+                try:
+                    self._clip_tokenizer = CLIPTokenizer.from_pretrained(
+                        "openai/clip-vit-large-patch14",
+                        local_files_only=True  # 只使用本地缓存，不联网下载
+                    )
+                    print(f"  ✓ CLIPTokenizer 从CLIP-L/14缓存加载成功")
+                except Exception:
+                    # 如果都失败，不加载tokenizer，使用估算方法
+                    print(f"  ⚠ 无法从本地或缓存加载 CLIPTokenizer，将使用保守估算")
+                    self._clip_tokenizer = None
         except Exception as e:
             print(f"  ⚠ 无法加载 CLIPTokenizer，使用保守估算: {e}")
             self._clip_tokenizer = None

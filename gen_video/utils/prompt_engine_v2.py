@@ -924,33 +924,29 @@ class PromptEngine:
             pkg.final_prompt = adapter.build_prompt(pkg)
             pkg.model_target = model_type
             
-            # 8. Token限制检查（CLIP限制77 tokens）
+            # 8. Token限制检查
+            # ⚡ 关键修复：Flux 使用 T5 编码器，支持 512 tokens（当前配置 256），不需要 77 token 限制
             if model_type == "flux":
                 try:
-                    from transformers import CLIPTokenizer
-                    tokenizer = CLIPTokenizer.from_pretrained(
-                        "openai/clip-vit-large-patch14"
+                    # Flux 使用 T5 tokenizer（不是 CLIP）
+                    from transformers import T5Tokenizer
+                    tokenizer = T5Tokenizer.from_pretrained(
+                        "xlabs-ai/xflux_text_encoders",
+                        local_files_only=True  # 优先使用本地模型
                     )
                     tokens = tokenizer(pkg.final_prompt, truncation=False, return_tensors="pt")
                     token_count = tokens.input_ids.shape[1]
                     
-                    if token_count > 77:
-                        logger.warning(f"Prompt超过77 tokens限制 ({token_count} tokens)，开始截断")
-                        # 截断到77 tokens
-                        tokens_truncated = tokenizer(
-                            pkg.final_prompt,
-                            truncation=True,
-                            max_length=77,
-                            return_tensors="pt"
-                        )
-                        # 解码回文本（可能略有差异，但确保不超过77 tokens）
-                        pkg.final_prompt = tokenizer.decode(tokens_truncated.input_ids[0], skip_special_tokens=True)
-                        final_token_count = tokenizer(pkg.final_prompt, truncation=False, return_tensors="pt").input_ids.shape[1]
-                        logger.info(f"Prompt已截断到 {final_token_count} tokens")
+                    # Flux T5 支持 512 tokens，当前配置为 256
+                    # 如果超过 256，只警告，不截断（让 T5 tokenizer 在生成时自动处理）
+                    if token_count > 256:
+                        logger.warning(f"Prompt超过256 tokens ({token_count} tokens)，T5 tokenizer会在生成时自动截断到256")
+                        logger.info(f"如需支持更长 prompt，可在 pulid_engine.py 中将 T5 max_length 提高到 512")
                     else:
-                        logger.info(f"Prompt token数: {token_count} (在限制内)")
+                        logger.info(f"Prompt token数: {token_count} (Flux T5 支持 512 tokens，当前配置 256)")
                 except Exception as e:
-                    logger.warning(f"无法检查token数: {e}，跳过token限制检查")
+                    logger.warning(f"无法检查 T5 token数: {e}，跳过token限制检查")
+                    # 如果无法加载 T5 tokenizer，说明可能使用本地模型，跳过检查
             
             # 验证参数
             if user_request.params:

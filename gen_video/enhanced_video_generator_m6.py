@@ -263,8 +263,9 @@ class EnhancedVideoGeneratorM6(VideoGenerator):
         if reference_image is None:
             reference_image = image_path
         
-        # 重试次数
-        max_retries = max_retries or self.identity_config.max_retries
+        # 重试次数（注意：max_retries=0 是合法值，表示不重试；不能用 `or`）
+        if max_retries is None:
+            max_retries = self.identity_config.max_retries
         
         # 从 scene 中获取或构建 prompt
         prompt = ""

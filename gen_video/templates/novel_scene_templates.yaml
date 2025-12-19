@@ -1,0 +1,128 @@
+# 小说推文场景模板库
+# 用于快速生成常见场景的 prompt 和参数配置
+
+templates:
+  # 战斗场景
+  battle:
+    name: "战斗场景"
+    description: "仙侠战斗、法术对决"
+    prompts:
+      - "韩立手持长剑，与敌人激烈战斗，剑气纵横，法术光芒四射"
+      - "韩立施展法术，火球与冰箭在空中碰撞，爆炸声震耳欲聋"
+      - "韩立与对手近身搏斗，剑光闪烁，衣袍翻飞"
+    camera:
+      shot: "medium"
+      angle: "eye_level"
+      movement: "dynamic"
+    motion_intensity: "dynamic"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "angry"
+    
+  # 修炼场景
+  cultivation:
+    name: "修炼场景"
+    description: "打坐修炼、吸收灵气"
+    prompts:
+      - "韩立盘膝而坐，闭目修炼，周围灵气汇聚，形成光晕"
+      - "韩立静坐于洞府中，双手结印，周身有淡淡灵光流转"
+      - "韩立在山顶修炼，日出时分，灵气如潮水般涌入体内"
+    camera:
+      shot: "medium_close"
+      angle: "eye_level"
+      movement: "static"
+    motion_intensity: "gentle"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "neutral"
+    
+  # 探索场景
+  exploration:
+    name: "探索场景"
+    description: "探索秘境、寻找宝物"
+    prompts:
+      - "韩立小心翼翼地走在古老的洞府中，四周有神秘符文闪烁"
+      - "韩立穿过迷雾森林，寻找传说中的灵草"
+      - "韩立进入地下洞穴，发现一处隐藏的修炼之地"
+    camera:
+      shot: "wide"
+      angle: "eye_level"
+      movement: "slow"
+    motion_intensity: "moderate"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "neutral"
+    
+  # 对话场景
+  dialogue:
+    name: "对话场景"
+    description: "人物对话、情感交流"
+    prompts:
+      - "韩立与道友相对而坐，品茶论道，气氛融洽"
+      - "韩立与敌人对峙，双方剑拔弩张，气氛紧张"
+      - "韩立与师父交谈，聆听教诲，神情恭敬"
+    camera:
+      shot: "medium"
+      angle: "eye_level"
+      movement: "static"
+    motion_intensity: "gentle"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "neutral"
+    
+  # 飞行场景
+  flying:
+    name: "飞行场景"
+    description: "御剑飞行、腾云驾雾"
+    prompts:
+      - "韩立御剑飞行，穿梭于云层之间，衣袍猎猎作响"
+      - "韩立站在飞剑上，俯瞰下方山川河流，风景如画"
+      - "韩立与同伴一起飞行，追逐前方的目标"
+    camera:
+      shot: "wide"
+      angle: "low"
+      movement: "dynamic"
+    motion_intensity: "dynamic"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "neutral"
+    
+  # 休息场景
+  rest:
+    name: "休息场景"
+    description: "休息、恢复体力"
+    prompts:
+      - "韩立躺在草地上，仰望星空，神情放松"
+      - "韩立坐在篝火旁，烤制食物，火光映照脸庞"
+      - "韩立靠在树下休息，闭目养神，周围环境宁静"
+    camera:
+      shot: "medium"
+      angle: "eye_level"
+      movement: "static"
+    motion_intensity: "gentle"
+    character:
+      present: true
+      id: "hanli"
+      emotion: "neutral"
+    
+  # 纯场景（无人物）
+  landscape:
+    name: "风景场景"
+    description: "纯风景、环境展示"
+    prompts:
+      - "仙山云雾缭绕，瀑布从山顶倾泻而下，彩虹横跨天际"
+      - "古老的洞府，石壁上刻满符文，散发着神秘光芒"
+      - "竹林深处，月光透过竹叶洒下，形成斑驳光影"
+    camera:
+      shot: "wide"
+      angle: "eye_level"
+      movement: "slow"
+    motion_intensity: "gentle"
+    character:
+      present: false
+

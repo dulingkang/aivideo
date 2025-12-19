@@ -2187,7 +2187,8 @@ class ImageGenerator:
                 print("  ✨ 使用增强模式生成（PuLID + 解耦融合 + Execution Planner V3）")
                 image = self.enhanced_generator.generate_scene(
                     scene=scene,
-                    face_reference=face_ref
+                    face_reference=face_ref,
+                    original_prompt=prompt  # ⚡ 传递优化后的 prompt，确保包含完整信息（场景、性别、服饰等）
                 )
                 
                 if image:
@@ -7711,7 +7712,8 @@ class ImageGenerator:
         manager_config_path = None
 
         for idx, scene in enumerate(scenes, start=1):
-            scene_id = scene.get('id', idx - 1)
+            # v2 兼容：scene_id 优先，其次 id，最后回退 idx
+            scene_id = scene.get("scene_id", scene.get('id', idx - 1))
             print(f"\n{'='*60}")
             print(f"处理场景 {idx}/{len(scenes)} (场景ID={scene_id})")
             print(f"{'='*60}")
@@ -8120,17 +8122,19 @@ class ImageGenerator:
                     final_reference_image = character_anchor_path
                     print(f"  🎯 传递人设锚点图到 generate_image: {final_reference_image.name}")
                 
-                # ⚡ 关键修复：对于 FLUX pipeline，即使不锁脸，也应该传递 face_reference 作为参考图
-                # 因为 FLUX 使用 IP-Adapter，需要参考图来保持形象一致性
+                # ⚡ 修复：人物场景必须始终传递 face_reference 给 generate_image
+                # 原因：增强模式（PuLID）依赖 face_reference 注入身份；如果只在 lock_face/flux1 传递，
+                # 会导致 B 类/SDXL 过渡镜头（lock_face=False）完全丢失身份一致性。
                 face_ref_for_flux = None
-                if planner_decision and planner_decision.get('engine') == 'flux1':
-                    # FLUX 引擎：即使不锁脸，也传递 face_reference 作为参考图（用于 IP-Adapter）
-                    face_ref_for_flux = face_reference if face_reference else None
-                    if face_ref_for_flux:
-                        print(f"  ✓ FLUX 引擎：传递 face_reference 作为参考图（用于 IP-Adapter）: {face_ref_for_flux.name if hasattr(face_ref_for_flux, 'name') else face_ref_for_flux}")
+                if needs_character and face_reference:
+                    face_ref_for_flux = face_reference
+                    if planner_decision:
+                        print(
+                            f"  ✓ 人物场景：传递 face_reference（用于增强模式身份注入）: {face_ref_for_flux.name if hasattr(face_ref_for_flux, 'name') else face_ref_for_flux}"
+                        )
                 else:
-                    # 非 FLUX 引擎：只在锁脸时传递 face_reference
-                    face_ref_for_flux = face_reference if (planner_decision is None or planner_decision.get('lock_face', False)) else None
+                    # 纯场景：不传 reference，避免误伤
+                    face_ref_for_flux = None
                 
                 path = self.generate_image(
                     prompt,

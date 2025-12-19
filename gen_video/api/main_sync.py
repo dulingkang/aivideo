@@ -11,6 +11,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 import sys
+import json
 
 # 添加路径以便导入生成器
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -69,6 +70,32 @@ class VideoRequest(BaseModel):
     video_config: Optional[Dict[str, Any]] = Field(None, description="视频配置")
     output_format: str = Field("mp4", pattern="^(mp4|avi|mov)$", description="输出格式")
 
+class M6VideoRequest(BaseModel):
+    """M6 单段视频生成请求（Anchor I2V + 身份验证）"""
+    prompt: str = Field(..., min_length=1, max_length=800, description="视频提示词（建议包含动作/场景描述）")
+    input_image_path: str = Field(..., description="Anchor 输入图路径（服务器本地路径）")
+    reference_image_path: Optional[str] = Field(None, description="参考图路径（不传则使用 input_image_path）")
+    shot_type: str = Field("medium", pattern="^(wide|medium|medium_close|close|extreme_close)$", description="镜头类型")
+    motion_intensity: str = Field("moderate", pattern="^(gentle|moderate|dynamic)$", description="运动强度")
+    quick: bool = Field(False, description="快速模式（更少步数/更少重试，适合冒烟测试）")
+    num_frames: Optional[int] = Field(None, ge=8, le=240, description="覆盖 HunyuanVideo num_frames（可选）")
+    num_inference_steps: Optional[int] = Field(None, ge=1, le=60, description="覆盖 HunyuanVideo 推理步数（可选）")
+    max_retries: Optional[int] = Field(None, ge=0, le=10, description="覆盖验证失败后的最大重试次数（可选）")
+
+class M6VideoResponse(BaseModel):
+    """M6 单段视频生成响应（含身份验证指标）"""
+    task_id: str
+    status: str
+    video_path: Optional[str] = None
+    report_path: Optional[str] = None
+    passed: Optional[bool] = None
+    avg_similarity: Optional[float] = None
+    min_similarity: Optional[float] = None
+    drift_ratio: Optional[float] = None
+    face_detect_ratio: Optional[float] = None
+    issues: Optional[List[str]] = None
+    created_at: datetime
+
 class ImageResponse(BaseModel):
     """图像生成响应"""
     task_id: str
@@ -90,6 +117,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 _image_generator = None
 _video_generator = None
+_m6_video_generator = None
 _config_path = None
 
 def get_image_generator():
@@ -113,6 +141,17 @@ def get_video_generator():
         from video_generator import VideoGenerator
         _video_generator = VideoGenerator(_config_path)
     return _video_generator
+
+def get_m6_video_generator():
+    """获取 M6 视频生成器（单例）"""
+    global _m6_video_generator, _config_path
+    if _m6_video_generator is None:
+        if _config_path is None:
+            _config_path = str(Path(__file__).parent.parent / "config.yaml")
+        print("🔧 初始化 M6 视频生成器（EnhancedVideoGeneratorM6）...")
+        from enhanced_video_generator_m6 import EnhancedVideoGeneratorM6
+        _m6_video_generator = EnhancedVideoGeneratorM6(_config_path)
+    return _m6_video_generator
 
 # ==================== API端点 ====================
 
@@ -229,6 +268,116 @@ async def generate_video(
         "message": "视频生成功能在同步模式下暂未实现，请使用异步模式（需要Redis）",
         "note": "视频生成耗时较长，建议使用异步任务队列"
     }
+
+@app.post("/api/v1/m6/videos/generate", response_model=M6VideoResponse)
+async def generate_m6_video(
+    request: M6VideoRequest,
+    current_user: dict = Depends(get_current_user),
+):
+    """
+    生成 M6 单段视频（Anchor I2V）并输出身份验证指标（同步模式）。
+    - 输入为服务器本地的 anchor/reference 图片路径
+    - 输出为视频路径 + verifier report JSON 路径 + 关键指标（passed/avg/min/drift/face）
+    """
+    task_id = str(uuid.uuid4())
+
+    input_image = Path(request.input_image_path)
+    if not input_image.exists():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"input_image_path 不存在: {input_image}")
+
+    reference_image = Path(request.reference_image_path) if request.reference_image_path else input_image
+    if not reference_image.exists():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"reference_image_path 不存在: {reference_image}")
+
+    # 输出目录
+    out_dir = Path(__file__).parent.parent.parent / "outputs" / "api" / "m6"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    video_path = out_dir / f"{task_id}.mp4"
+    report_path = out_dir / f"{task_id}.json"
+
+    generator = get_m6_video_generator()
+    try:
+        # 覆盖 hunyuanvideo 参数（按需）
+        generator.video_config.setdefault("hunyuanvideo", {})
+        hv = generator.video_config["hunyuanvideo"]
+
+        # quick 默认（可被显式参数覆盖）
+        if request.quick:
+            hv["num_frames"] = int(request.num_frames or 24)
+            hv["num_inference_steps"] = int(request.num_inference_steps or 8)
+            if request.max_retries is None:
+                max_retries = 0
+            else:
+                max_retries = int(request.max_retries)
+        else:
+            if request.num_frames is not None:
+                hv["num_frames"] = int(request.num_frames)
+            if request.num_inference_steps is not None:
+                hv["num_inference_steps"] = int(request.num_inference_steps)
+            max_retries = int(request.max_retries) if request.max_retries is not None else None
+
+        scene = {
+            "prompt": request.prompt,
+            "motion_intensity": request.motion_intensity,
+        }
+
+        vp, result = generator.generate_video_with_identity_check(
+            image_path=str(input_image),
+            output_path=str(video_path),
+            reference_image=str(reference_image),
+            scene=scene,
+            shot_type=request.shot_type,
+            enable_verification=True,
+            max_retries=max_retries,
+        )
+
+        payload: Dict[str, Any] = {
+            "task_id": task_id,
+            "input_image": str(input_image),
+            "reference_image": str(reference_image),
+            "video_path": str(vp) if vp else "",
+            "shot_type": request.shot_type,
+            "motion_intensity": request.motion_intensity,
+            "passed": False,
+            "avg_similarity": 0.0,
+            "min_similarity": 0.0,
+            "drift_ratio": 1.0,
+            "face_detect_ratio": 0.0,
+            "issues": [],
+        }
+        if result is not None:
+            payload.update(
+                {
+                    "passed": bool(result.passed),
+                    "avg_similarity": float(result.avg_similarity),
+                    "min_similarity": float(result.min_similarity),
+                    "drift_ratio": float(result.drift_ratio),
+                    "face_detect_ratio": float(result.face_detect_ratio),
+                    "issues": list(result.issues or []),
+                }
+            )
+        else:
+            payload["issues"] = ["无验证结果（result=None）"]
+
+        report_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        return M6VideoResponse(
+            task_id=task_id,
+            status="completed",
+            video_path=str(vp) if vp else str(video_path),
+            report_path=str(report_path),
+            passed=bool(payload.get("passed")),
+            avg_similarity=float(payload.get("avg_similarity", 0.0)),
+            min_similarity=float(payload.get("min_similarity", 0.0)),
+            drift_ratio=float(payload.get("drift_ratio", 1.0)),
+            face_detect_ratio=float(payload.get("face_detect_ratio", 0.0)),
+            issues=list(payload.get("issues") or []),
+            created_at=datetime.now(),
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"M6 视频生成失败: {str(e)}")
 
 @app.get("/api/v1/health")
 async def health_check():

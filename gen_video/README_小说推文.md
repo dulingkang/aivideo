@@ -44,6 +44,41 @@ python3 generate_novel_video.py \
   --num-frames 120 --fps 24
 ```
 
+### 方法1.1：启用“角色一致 + 视频一致”（推荐用于凡人修仙人物出镜推文）
+
+> 说明：脚本现在支持**自动识别是否包含韩立**：prompt/scene 中出现“韩立/Han Li/hanli”时，会自动按角色模式生成，并对韩立场景自动启用 M6（否则不启用）。
+> 你仍然可以用参数强制开启/关闭。
+
+```bash
+python3 generate_novel_video.py \
+  --shot-type medium_close --motion-intensity moderate \
+  --prompt "韩立在竹林中快步穿行，衣袍随风摆动，神情警惕，远处有淡淡雾气与月光" \
+  --output-dir outputs/novel_videos_hanli \
+  --width 768 --height 1152 \
+  --num-frames 120 --fps 24
+```
+
+如果你有更稳定的参考脸，可显式指定（否则会尝试自动找 `reference_image/<character_id>_mid.jpg`）：
+
+```bash
+python3 generate_novel_video.py \
+  --reference-image-path reference_image/hanli_mid.jpg \
+  --prompt "..." \
+  --output-dir outputs/novel_videos_hanli
+```
+
+强制纯场景（即使 prompt 提到了韩立也不走角色/M6）：
+
+```bash
+python3 generate_novel_video.py --force-scene --prompt "..." --output-dir outputs/novel_scene_only
+```
+
+强制关闭 M6（仍可生成带韩立的画面，但不做身份验证/重试）：
+
+```bash
+python3 generate_novel_video.py --disable-m6-identity --prompt "韩立..." --output-dir outputs/novel_no_m6
+```
+
 ### 方法2: 使用 Python API
 
 ```python
@@ -78,6 +113,22 @@ python3 test_novel_video.py
 - `--height`: 图像高度（默认: 768）
 - `--num-frames`: 视频帧数（默认: 120）
 - `--fps`: 视频帧率（默认: 24）
+
+### 角色一致 / 视频一致相关参数
+
+- `--include-character`: 启用角色模式（人物出镜，复用角色一致系统）
+- `--force-scene`: 强制纯场景模式（忽略自动推断/手动角色）
+- `--auto-character/--no-auto-character`: 是否自动识别是否包含韩立（默认开启）
+- `--character-id`: 角色ID（可选，覆盖自动推断）
+- `--image-model-engine`: 覆盖图片引擎（默认：场景模式 `flux1`；角色模式 `auto`）
+- `--enable-m6-identity`: 强制启用 M6
+- `--disable-m6-identity`: 强制关闭 M6
+- `--auto-m6-identity/--no-auto-m6-identity`: 是否对韩立场景自动启用 M6（默认开启）
+- `--reference-image-path`: 身份验证参考图（可选）
+- `--shot-type`: 镜头类型（wide/medium/medium_close/close/extreme_close）
+- `--motion-intensity`: 运动强度（gentle/moderate/dynamic）
+- `--m6-max-retries`: M6 最大重试次数（0=不重试；None=用 config.yaml）
+- `--m6-quick`: M6 快速模式（更少步数/默认不重试，冒烟用）
 
 ## 注意事项
 

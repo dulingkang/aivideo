@@ -39,9 +39,28 @@ class AIVideoPipeline:
         load_composer: bool = True,
     ):
         """初始化流水线"""
+        # 兼容：允许从 repo 根目录运行 `python3 gen_video/main.py`
+        # - 默认 config_path="config.yaml" 时，优先找 cwd/config.yaml
+        # - 找不到则回退到 gen_video/config.yaml
+        # - 如果用户传了相对路径（如 gen_video/config.yaml），也应正常解析
         self.config_path = Path(config_path)
         if not self.config_path.is_absolute():
-            self.config_path = (Path.cwd() / self.config_path).resolve()
+            cwd_candidate = (Path.cwd() / self.config_path).resolve()
+            if cwd_candidate.exists():
+                self.config_path = cwd_candidate
+            else:
+                # 尝试相对于当前文件（gen_video目录）
+                file_candidate = (Path(__file__).parent / self.config_path).resolve()
+                if file_candidate.exists():
+                    self.config_path = file_candidate
+                else:
+                    # 常见场景：从 repo 根目录运行，默认 config.yaml 实际在 gen_video/config.yaml
+                    fallback = (Path(__file__).parent / "config.yaml").resolve()
+                    if fallback.exists():
+                        self.config_path = fallback
+                    else:
+                        # 保持原样，让后续 open 抛出明确错误
+                        self.config_path = cwd_candidate
 
         with open(self.config_path, 'r', encoding='utf-8') as f:
             self.config = yaml.safe_load(f)
@@ -57,11 +76,21 @@ class AIVideoPipeline:
         
         # 初始化各个组件
         print("初始化组件...")
-        self.image_generator = ImageGenerator(config_path) if load_image else None
-        self.video_generator = VideoGenerator(config_path) if load_video else None
-        self.tts_generator = TTSGenerator(config_path) if load_tts else None
-        self.subtitle_generator = SubtitleGenerator(config_path) if load_subtitle else None
-        self.video_composer = VideoComposer(config_path) if load_composer else None
+        resolved_config_path = str(self.config_path)
+        self.image_generator = ImageGenerator(resolved_config_path) if load_image else None
+        # 视频生成器：优先使用 EnhancedVideoGeneratorM6（仅在需要时调用身份验证；非韩立场景仍走普通生成）
+        self.video_generator = None
+        if load_video:
+            try:
+                from enhanced_video_generator_m6 import EnhancedVideoGeneratorM6
+                self.video_generator = EnhancedVideoGeneratorM6(resolved_config_path)
+                print("  ✓ 已启用 EnhancedVideoGeneratorM6（按场景自动启用身份验证）")
+            except Exception as e:
+                print(f"  ⚠ EnhancedVideoGeneratorM6 初始化失败，回退到 VideoGenerator: {e}")
+                self.video_generator = VideoGenerator(resolved_config_path)
+        self.tts_generator = TTSGenerator(resolved_config_path) if load_tts else None
+        self.subtitle_generator = SubtitleGenerator(resolved_config_path) if load_subtitle else None
+        self.video_composer = VideoComposer(resolved_config_path) if load_composer else None
     
     def process_script(self, script_path: str, output_name: str = "output"):
         """
@@ -72,10 +101,31 @@ class AIVideoPipeline:
             output_name: 输出文件名
         """
         print(f"\n处理脚本: {script_path}")
-        
+
+        script_path_obj = Path(script_path)
         # 加载脚本
-        with open(script_path, 'r', encoding='utf-8') as f:
+        with open(script_path_obj, "r", encoding="utf-8") as f:
             script = json.load(f)
+
+        # ============================================================
+        # v2 JSON 兼容：将 v2 结构化字段补齐为 pipeline 可消费字段（不改源文件，写入 temp 工作副本）
+        # ============================================================
+        try:
+            from utils.v2_script_adapter import normalize_script_for_pipeline, is_v2_script
+            if is_v2_script(script):
+                normalized_script, changed = normalize_script_for_pipeline(script)
+                if changed:
+                    # 写入工作副本：后续 image_generator(update_script=True) 会把 image_path 写回这个文件，利于断点续跑
+                    temp_script_path = Path(self.paths["temp_dir"]) / f"{output_name}_v2_working_script.json"
+                    temp_script_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(temp_script_path, "w", encoding="utf-8") as wf:
+                        json.dump(normalized_script, wf, ensure_ascii=False, indent=2)
+                    script_path_obj = temp_script_path
+                    script = normalized_script
+                    print(f"  ✓ v2 脚本已归一化为工作副本: {temp_script_path}")
+        except Exception as e:
+            # 保守策略：不因兼容层失败阻断现有流程
+            print(f"  ⚠ v2 脚本归一化失败（将继续使用原脚本）: {e}")
         
         scenes = script.get('scenes', [])
         print(f"找到 {len(scenes)} 个场景")
@@ -86,15 +136,15 @@ class AIVideoPipeline:
         if scenes:
             first_scene = scenes[0]
             last_scene = scenes[-1]
-            if first_scene.get("id") == 0:
+            if (first_scene.get("id") or first_scene.get("scene_id")) == 0:
                 has_opening_scene = True
                 print("  ✓ 检测到开头场景（id=0），将使用scenes中的场景而不是单独生成")
-            if last_scene.get("id") == 999:
+            if (last_scene.get("id") or last_scene.get("scene_id")) == 999:
                 has_ending_scene = True
                 print("  ✓ 检测到结尾场景（id=999），将使用scenes中的场景而不是单独生成")
         
         # 1. 确保场景图像就绪
-        script_json_path = Path(script_path)
+        script_json_path = script_path_obj
         scenes = self.ensure_scene_images(scenes, str(script_json_path), output_name)
 
         # 2. 先生成配音（以便获取实际音频时长，用于生成匹配时长的视频）
@@ -112,8 +162,14 @@ class AIVideoPipeline:
             narration_parts.append(opening_narration)
         
         # 场景旁白（包括id=0和id=999的场景）
+        def _scene_narration_text(scene: Dict) -> str:
+            n = scene.get("narration", "")
+            if isinstance(n, dict):
+                return n.get("text", "") if isinstance(n.get("text"), str) else ""
+            return n if isinstance(n, str) else ""
+
         narration_parts.extend(
-            [scene.get("narration", "") for scene in scenes if scene.get("narration")]
+            [_scene_narration_text(scene) for scene in scenes if _scene_narration_text(scene)]
         )
         
         # 结尾旁白：如果scenes中有id=999的场景，场景的narration已经在上面添加了；否则使用ending.narration
@@ -759,6 +815,138 @@ class AIVideoPipeline:
             return []
 
         print("\n=== 生成视频片段 ===")
+
+        # ----------------------------
+        # M6 自动启用：仅对韩立场景启用身份验证
+        # ----------------------------
+        def _infer_character_id(scene: Dict) -> Optional[str]:
+            c = scene.get("character")
+            if isinstance(c, dict):
+                if c.get("present") is False:
+                    return None
+                cid = c.get("id")
+                if cid:
+                    return str(cid).strip().lower()
+
+            chars = scene.get("characters")
+            if isinstance(chars, list):
+                for item in chars:
+                    if isinstance(item, dict):
+                        cid = item.get("id") or item.get("character_id")
+                        if cid:
+                            return str(cid).strip().lower()
+                    elif isinstance(item, str):
+                        return item.strip().lower()
+
+            # fallback：文本推断（仅识别韩立，避免误伤）
+            text = " ".join(
+                [
+                    str(scene.get("description") or ""),
+                    str(scene.get("prompt") or ""),
+                    str(scene.get("narration") or ""),
+                ]
+            )
+            if "韩立" in text:
+                return "hanli"
+            tl = text.lower()
+            if "hanli" in tl:
+                return "hanli"
+            import re
+            if re.search(r"\bhan\s*li\b", tl):
+                return "hanli"
+            return None
+
+        def _should_enable_m6(scene: Dict) -> bool:
+            identity_cfg = (self.video_config or {}).get("identity_verification", {}) or {}
+            if not bool(identity_cfg.get("enabled", False)):
+                return False
+            cid = _infer_character_id(scene)
+            if cid != "hanli":
+                return False
+            # v2: character.present 明确为 false 的直接跳过
+            c = scene.get("character")
+            if isinstance(c, dict) and c.get("present") is False:
+                return False
+            return True
+
+        def _map_shot_type(scene: Dict) -> str:
+            camera = scene.get("camera") or {}
+            shot = ""
+            if isinstance(camera, dict):
+                shot = str(camera.get("shot") or "")
+            else:
+                shot = str(camera or "")
+            s = shot.strip().lower().replace("-", "_").replace(" ", "_")
+            if s in ("wide",):
+                return "wide"
+            if s in ("medium",):
+                return "medium"
+            if s in ("medium_close", "medium_close_up", "medium_closeup"):
+                return "medium_close"
+            if s in ("close", "close_up", "closeup"):
+                return "close"
+            if s in ("extreme_close", "extreme_close_up", "extreme_closeup"):
+                return "extreme_close"
+            # fallback：按角色可见度做一个保守猜测
+            c = scene.get("character") or {}
+            if isinstance(c, dict):
+                vis = str(c.get("visibility") or "").lower()
+                if vis in ("low",):
+                    return "wide"
+                if vis in ("high",):
+                    return "medium_close"
+            return "medium"
+
+        def _resolve_m6_reference_image(scene: Dict) -> Optional[str]:
+            # 1) 显式字段
+            for k in ("reference_image_path", "reference_image", "reference_image_abs"):
+                v = scene.get(k)
+                if isinstance(v, str) and v.strip() and os.path.exists(v.strip()):
+                    return v.strip()
+
+            # 2) v2 assets.reference_images
+            assets = scene.get("assets") or {}
+            if isinstance(assets, dict):
+                refs = assets.get("reference_images")
+                if isinstance(refs, list):
+                    for r in refs:
+                        if not isinstance(r, str) or not r.strip():
+                            continue
+                        rp = r.strip()
+                        if os.path.exists(rp):
+                            return rp
+                        # 尝试相对路径（相对于 repo 根目录）
+                        try:
+                            repo_root = Path(__file__).parent.parent
+                            cand = (repo_root / rp).resolve()
+                            if cand.exists():
+                                return str(cand)
+                        except Exception:
+                            pass
+
+            # 3) 韩立默认参考图（优先用 InstantID face_image_path）
+            image_cfg = (self.config or {}).get("image", {}) or {}
+            instantid_cfg = image_cfg.get("instantid", {}) or {}
+            face_path = instantid_cfg.get("face_image_path")
+            if isinstance(face_path, str) and face_path.strip() and os.path.exists(face_path.strip()):
+                return face_path.strip()
+
+            # 4) fallback：character_references/hanli_reference.*
+            try:
+                base = Path(__file__).parent / "character_references"
+                for ext in (".png", ".jpg", ".jpeg", ".webp"):
+                    cand = base / f"hanli_reference{ext}"
+                    if cand.exists():
+                        return str(cand.resolve())
+            except Exception:
+                pass
+
+            # 5) 最后：使用当前 anchor 图做 reference（用于检测“漂移/崩脸”）
+            ip = scene.get("image_path")
+            if isinstance(ip, str) and ip and os.path.exists(ip):
+                return ip
+
+            return None
         
         # 在开始生成视频前，彻底清理GPU显存
         import torch
@@ -825,7 +1013,7 @@ class AIVideoPipeline:
         # 计算场景对应的音频时长索引
         # 如果scenes中有id=0的场景，audio_durations[0]对应scenes[0]
         # 如果scenes中没有id=0的场景，audio_durations[0]对应单独的opening，scenes[0]对应audio_durations[1]
-        has_opening_scene = scenes and scenes[0].get("id") == 0
+        has_opening_scene = scenes and ((scenes[0].get("id") or scenes[0].get("scene_id")) == 0)
         scene_audio_start_idx = 0 if has_opening_scene else (1 if opening_narration else 0)
         
         for i, scene in enumerate(tqdm(scenes, desc="生成视频")):
@@ -839,7 +1027,13 @@ class AIVideoPipeline:
                 print(f"警告: 场景 {i+1} 的图像不存在: {image_path}")
                 continue
             
-            output_path = output_dir / f"scene_{i+1:03d}.mp4"
+            # v2：优先按 scene.id/scene_id 命名，确保 opening=000、ending=999 等稳定一致
+            raw_scene_id = scene.get("id") or scene.get("scene_id") or scene.get("scene_number") or (i + 1)
+            try:
+                scene_id_int = int(raw_scene_id)
+            except Exception:
+                scene_id_int = i + 1
+            output_path = output_dir / f"scene_{scene_id_int:03d}.mp4"
             abs_output_path = os.path.abspath(str(output_path))
             
             # 如果视频已存在，直接使用
@@ -851,9 +1045,9 @@ class AIVideoPipeline:
             # 确保 scene 对象只包含当前场景的数据，不包含其他场景或开头/结尾的数据
             # 创建一个干净的 scene 副本，只包含当前场景的字段
             clean_scene = {
-                "id": scene.get("id"),
+                "id": scene.get("id") or scene.get("scene_id"),
                 "scene_number": scene.get("scene_number"),
-                "narration": scene.get("narration", ""),  # 只使用当前场景的旁白
+                "narration": _scene_narration_text(scene),  # 只使用当前场景的旁白（兼容 v2 narration dict）
                 "description": scene.get("description") or scene.get("prompt", ""),  # 添加description字段
                 "duration": scene.get("duration"),
                 "visual": scene.get("visual"),  # 包含style和composition
@@ -873,7 +1067,7 @@ class AIVideoPipeline:
                 actual_audio_duration = audio_durations[scene_audio_start_idx + i]
                 # 将实际音频时长设置到 scene 的 duration 字段，这样视频生成器会优先使用它
                 clean_scene["duration"] = actual_audio_duration
-                scene_id = scene.get("id") or scene.get("scene_number")
+                scene_id = scene.get("id") or scene.get("scene_id") or scene.get("scene_number")
                 scene_label = f"场景 {i+1}" if scene_id not in [0, 999] else (f"开头场景(id={scene_id})" if scene_id == 0 else f"结尾场景(id={scene_id})")
                 print(f"\n生成{scene_label}视频，使用实际音频时长: {actual_audio_duration:.2f}s")
             
@@ -885,15 +1079,55 @@ class AIVideoPipeline:
             
             # 生成新视频
             try:
-                self.video_generator.generate_video(
-                    image_path,
-                    str(output_path),
-                    motion_bucket_id=scene.get('motion_bucket_id'),
-                    noise_aug_strength=scene.get('noise_aug_strength'),
-                    num_frames=scene.get('num_frames'),
-                    fps=scene.get('fps'),
-                    scene=clean_scene,  # 传递干净的场景数据，确保只包含当前场景的旁白
-                )
+                # 若为韩立场景：启用 M6 身份验证 + 重试；否则走普通生成
+                if _should_enable_m6(scene) and hasattr(self.video_generator, "generate_video_with_identity_check"):
+                    shot_type = _map_shot_type(scene)
+                    reference_image = _resolve_m6_reference_image(scene)
+                    # 记录报告
+                    m6_reports_dir = Path(self.paths["output_dir"]) / output_name / "m6_reports"
+                    m6_reports_dir.mkdir(parents=True, exist_ok=True)
+                    report_path = m6_reports_dir / f"scene_{scene_id_int:03d}_m6.json"
+
+                    video_path, ver = self.video_generator.generate_video_with_identity_check(
+                        image_path=image_path,
+                        output_path=str(output_path),
+                        reference_image=reference_image,
+                        scene=clean_scene,
+                        shot_type=shot_type,
+                        enable_verification=True,
+                        max_retries=None,  # 使用 config.yaml
+                        motion_bucket_id=scene.get("motion_bucket_id"),
+                        noise_aug_strength=scene.get("noise_aug_strength"),
+                        num_frames=scene.get("num_frames"),
+                        fps=scene.get("fps"),
+                    )
+                    if ver is not None:
+                        try:
+                            with open(report_path, "w", encoding="utf-8") as rf:
+                                json.dump(
+                                    {
+                                        "scene_id": scene_id_int,
+                                        "shot_type": shot_type,
+                                        "reference_image": reference_image,
+                                        "video_path": video_path,
+                                        "verification": ver.to_dict(),
+                                    },
+                                    rf,
+                                    ensure_ascii=False,
+                                    indent=2,
+                                )
+                        except Exception as e:
+                            print(f"  ⚠ M6 报告写入失败（继续）: {e}")
+                else:
+                    self.video_generator.generate_video(
+                        image_path,
+                        str(output_path),
+                        motion_bucket_id=scene.get('motion_bucket_id'),
+                        noise_aug_strength=scene.get('noise_aug_strength'),
+                        num_frames=scene.get('num_frames'),
+                        fps=scene.get('fps'),
+                        scene=clean_scene,  # 传递干净的场景数据，确保只包含当前场景的旁白
+                    )
                 # 使用绝对路径确保文件可找到
                 # 等待一下确保文件写入完成
                 import time
@@ -974,21 +1208,31 @@ class AIVideoPipeline:
         # 处理场景音频（包括id=0和id=999的场景）
         # narration_parts 的顺序：opening（如果有，且不在scenes中）-> scenes[].narration -> ending（如果有，且不在scenes中）
         # 对于 scenes，需要找到对应的 narration_parts 索引
+        def _scene_narration_text(scene: Dict) -> str:
+            n = scene.get("narration", "")
+            if isinstance(n, dict):
+                return n.get("text", "") if isinstance(n.get("text"), str) else ""
+            return n if isinstance(n, str) else ""
+
         for i, scene in enumerate(scenes):
-            narration = scene.get("narration", "")
+            narration = _scene_narration_text(scene)
             if narration:
                 # 计算对应的 narration_parts 索引
                 # narration_parts 中场景旁白的位置
                 # 如果 has_opening_scene，scenes[0]对应narration_parts[0]；否则scenes[0]对应narration_parts[1]（跳过opening）
                 scene_audio_idx = part_idx
                 if scene_audio_idx < len(narration_parts) and narration_parts[scene_audio_idx]:
-                    scene_id = scene.get("id") or scene.get("scene_number")
+                    scene_id = scene.get("id") or scene.get("scene_id") or scene.get("scene_number")
                     if scene_id == 0:
                         output_path = output_dir / "audio_scene_000.wav"
                     elif scene_id == 999:
                         output_path = output_dir / "audio_scene_ending.wav"
                     else:
-                        output_path = output_dir / f"audio_scene_{i+1:03d}.wav"
+                        try:
+                            scene_id_int = int(scene_id)
+                        except Exception:
+                            scene_id_int = i + 1
+                        output_path = output_dir / f"audio_scene_{scene_id_int:03d}.wav"
                     
                     scene_label = f"场景 {i+1}" if scene_id not in [0, 999] else (f"开头场景(id={scene_id})" if scene_id == 0 else f"结尾场景(id={scene_id})")
                     # 检查文件是否已存在
