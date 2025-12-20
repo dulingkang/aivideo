@@ -1,0 +1,119 @@
+{
+  "version": "2.1-execution-locked",
+  "scene_id": 1,
+  "episode_id": "lingjie_ep1",
+  "intent": "character_intro",
+  "locks": {
+    "shot": true,
+    "pose": true,
+    "gender": true,
+    "model": true,
+    "character_identity": true
+  },
+  "shot": {
+    "type": "medium",
+    "source": "intent_mapping",
+    "allow_override": false
+  },
+  "pose": {
+    "type": "lying",
+    "validated_by": "shot_pose_rules",
+    "auto_corrected": false
+  },
+  "character": {
+    "id": "hanli",
+    "gender": "male",
+    "identity_source": "lora",
+    "locks": {
+      "gender": true,
+      "face": true,
+      "body_type": true
+    }
+  },
+  "character_anchor": {
+    "lora": "hanli_character_v1.safetensors",
+    "weight": 0.6
+  },
+  "identity_engine": {
+    "type": "instantid",
+    "enabled": true,
+    "condition": "face_visible",
+    "strength": 0.75
+  },
+  "model_plan": {
+    "base_model": "flux1-dev",
+    "fallback_allowed": false
+  },
+  "prompt": {
+    "positive_core": [
+      "Han Li, unconscious, lying on the ground",
+      "male cultivator, rough appearance",
+      "dust-covered clothes"
+    ],
+    "scene_description": [
+      "desert environment",
+      "dry ground with scattered leaves",
+      "muted cinematic lighting"
+    ],
+    "style_hint": [
+      "Chinese fantasy illustration"
+    ],
+    "negative_lock": {
+      "gender_male": [
+        "female",
+        "woman",
+        "girl",
+        "feminine face",
+        "delicate facial features",
+        "long eyelashes",
+        "soft jawline",
+        "slim waist"
+      ]
+    }
+  },
+  "llm_usage": {
+    "enabled": true,
+    "scope": [
+      "scene_description",
+      "atmosphere_only"
+    ],
+    "forbidden": [
+      "shot",
+      "pose",
+      "gender",
+      "model",
+      "character_identity"
+    ]
+  },
+  "validation": {
+    "ruleset": "v2.1",
+    "on_violation": "auto_correct",
+    "hard_fail": [
+      "gender_mismatch",
+      "shot_override",
+      "character_lora_missing"
+    ]
+  },
+  "visual_constraints": {
+    "environment": "Gray-green desert floor",
+    "time_of_day": "day",
+    "weather": "clear",
+    "location_type": "outdoor"
+  },
+  "camera": {
+    "shot": "medium",
+    "angle": "top_down",
+    "movement": "pan",
+    "focal_length_mm": 35,
+    "depth_of_field": "shallow"
+  },
+  "narration": {
+    "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+    "voice_id": "yunjuan_xianyin",
+    "emotion_hint": "tense",
+    "timing_policy": "fit_scene"
+  },
+  "duration_sec": 4.0,
+  "target_fps": 24
+}
+
