@@ -422,10 +422,18 @@ negative = anchor_manager.get_negative_prompt_with_gender_lock(character_id)
 - ✅ 已修复InstantID pipeline参数问题
 - ✅ 已修复FaceAnalysis初始化问题
 
-**模型选择规则**:
-- 有人物 + medium/close_up → Flux + PuLID
-- 有人物 + wide → SDXL + InstantID
-- 无人物 → Flux/SDXL
+**模型选择规则（智能分流）**:
+- **主角（韩立）**: Flux + PuLID（必须，保证质量）
+- **重要配角**: Flux + PuLID（如有LoRA）
+- **NPC/路人**: SDXL + InstantID（零成本，不需要训练LoRA）
+- **扩图任务**: SDXL Inpainting（速度快，省显存）
+- **构图控制**: SDXL ControlNet（生态成熟）
+- **纯场景**: Flux（画质优先）
+
+**SDXL的3个核心位置**:
+1. **NPC引擎**: 路人甲生成，零成本换脸
+2. **扩图与修补**: 速度快3倍，省显存
+3. **构图控制**: ControlNet生态成熟，响应快
 
 ---
 
@@ -532,10 +540,13 @@ negative = anchor_manager.get_negative_prompt_with_gender_lock(character_id)
 
 ### 图像生成
 
-- **Flux.1-dev**: 高质量图像生成（主要）
-- **SDXL**: 稳定方案（远景场景）
+- **Flux.1-dev**: 高质量图像生成（主角专用）
+- **SDXL**: 特种兵和后勤部长（NPC/扩图/构图控制）
+  - NPC生成: SDXL + InstantID（零成本换脸）
+  - 扩图与修补: SDXL Inpainting（速度快3倍）
+  - 构图控制: SDXL ControlNet（生态成熟）
 - **PuLID**: 身份注入（Flux场景）
-- **InstantID**: 身份注入（SDXL场景）
+- **InstantID**: 身份注入（SDXL场景，NPC专用）
 
 ### 视频生成
 
