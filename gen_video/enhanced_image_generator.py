@@ -1238,12 +1238,26 @@ class EnhancedImageGenerator:
             
             face_emb = None
             if temp_generator.face_analysis and face_reference:
-                face_info = temp_generator.face_analysis.get(face_reference)
-                if face_info:
-                    face_emb = face_info[0].normed_embedding
-                    logger.info("  ✓ 已从参考图提取人脸 embedding")
-                else:
-                    logger.warning("  ⚠ 未能从参考图提取人脸信息")
+                # ⚡ 修复：face_analysis.get() 需要 numpy 数组，不是 PIL Image
+                # 将 PIL Image 转换为 numpy 数组
+                try:
+                    import numpy as np
+                    if hasattr(face_reference, 'shape'):
+                        # 已经是 numpy 数组
+                        face_img_array = face_reference
+                    else:
+                        # 是 PIL Image，转换为 numpy 数组
+                        face_img_array = np.array(face_reference)
+                    
+                    face_info = temp_generator.face_analysis.get(face_img_array)
+                    if face_info:
+                        face_emb = face_info[0].normed_embedding
+                        logger.info("  ✓ 已从参考图提取人脸 embedding")
+                    else:
+                        logger.warning("  ⚠ 未能从参考图提取人脸信息")
+                except Exception as e:
+                    logger.warning(f"  ⚠ 提取人脸信息失败: {e}")
+                    face_emb = None
             
             if face_emb is None:
                 logger.warning("  没有 face embedding，使用纯 SDXL 生成（无身份注入）")
