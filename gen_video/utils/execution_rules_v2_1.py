@@ -52,7 +52,25 @@ class ModelType(Enum):
     """模型类型"""
     FLUX = "flux"
     SDXL = "sdxl"
+    SDXL_TURBO = "sdxl_turbo"  # SDXL Turbo（快速生成）
     HUNYUAN_VIDEO = "hunyuan_video"
+
+
+class CharacterRole(Enum):
+    """角色类型"""
+    MAIN_CHARACTER = "main"  # 主角（如韩立）
+    IMPORTANT_SUPPORTING = "important_supporting"  # 重要配角（如南宫婉）
+    NPC = "npc"  # 路人/一次性角色
+    NO_CHARACTER = "no_character"  # 无角色（纯场景）
+
+
+class TaskType(Enum):
+    """任务类型"""
+    CHARACTER_GENERATION = "character_generation"  # 角色生成
+    SCENE_GENERATION = "scene_generation"  # 场景生成
+    OUTPAINTING = "outpainting"  # 扩图
+    INPAINTING = "inpainting"  # 修补
+    CONTROLNET_LAYOUT = "controlnet_layout"  # 构图控制
 
 
 @dataclass
@@ -273,19 +291,48 @@ class ExecutionRulesV21:
     def get_model_route(
         self,
         has_character: bool,
-        shot_type: ShotType
+        shot_type: ShotType,
+        character_role: Optional[CharacterRole] = None,
+        task_type: Optional[TaskType] = None,
+        character_id: Optional[str] = None
     ) -> Tuple[ModelType, Optional[str]]:
         """
-        获取模型路由（硬规则，禁止动态切换）
+        获取模型路由（硬规则，支持智能分流）
         
         Args:
             has_character: 是否有人物
             shot_type: Shot类型
+            character_role: 角色类型（可选，用于智能分流）
+            task_type: 任务类型（可选，用于智能分流）
+            character_id: 角色ID（可选，用于判断主角/NPC）
             
         Returns:
             Tuple[ModelType, Optional[str]]: (场景模型, 身份引擎)
         """
-        # 查找匹配的路由规则
+        # 智能分流（v2.2新增）
+        if character_role is not None or task_type is not None:
+            # 自动判断角色类型
+            if character_role is None and character_id:
+                if character_id == "hanli":
+                    character_role = CharacterRole.MAIN_CHARACTER
+                elif character_id.startswith("npc_") or character_id.startswith("random_"):
+                    character_role = CharacterRole.NPC
+                else:
+                    character_role = CharacterRole.IMPORTANT_SUPPORTING
+            
+            # 自动判断任务类型
+            if task_type is None:
+                task_type = TaskType.CHARACTER_GENERATION if has_character else TaskType.SCENE_GENERATION
+            
+            # 查找智能分流路由
+            for (role, task, shot), (model, identity) in self.SMART_ROUTING.items():
+                if (role is None or role == character_role) and \
+                   (task is None or task == task_type) and \
+                   (shot is None or shot == shot_type):
+                    logger.info(f"✓ 智能分流: {character_role.value if character_role else 'N/A'} + {task_type.value} -> {model.value} + {identity}")
+                    return model, identity
+        
+        # 传统路由（向后兼容）
         for (has_char, shot), (model, identity) in self.MODEL_ROUTING.items():
             if has_char == has_character:
                 if shot is None or shot == shot_type:
@@ -296,6 +343,58 @@ class ExecutionRulesV21:
             return ModelType.FLUX, "pulid"
         else:
             return ModelType.FLUX, None
+    
+    def get_model_route_for_npc(
+        self,
+        npc_description: str,
+        reference_image: Optional[str] = None
+    ) -> Tuple[ModelType, Optional[str]]:
+        """
+        获取NPC生成路由（SDXL + InstantID）
+        
+        Args:
+            npc_description: NPC描述（如"满脸横肉的黑煞教弟子"）
+            reference_image: 参考图像路径（可选）
+            
+        Returns:
+            Tuple[ModelType, Optional[str]]: (SDXL, instantid)
+        """
+        logger.info(f"✓ NPC生成路由: {npc_description} -> SDXL + InstantID")
+        return ModelType.SDXL, "instantid"
+    
+    def get_model_route_for_outpainting(
+        self,
+        base_image_path: str,
+        target_aspect_ratio: str = "9:16"
+    ) -> Tuple[ModelType, Optional[str]]:
+        """
+        获取扩图路由（SDXL Inpainting）
+        
+        Args:
+            base_image_path: 基础图像路径
+            target_aspect_ratio: 目标宽高比（如"9:16"）
+            
+        Returns:
+            Tuple[ModelType, Optional[str]]: (SDXL, None)
+        """
+        logger.info(f"✓ 扩图路由: {target_aspect_ratio} -> SDXL Inpainting")
+        return ModelType.SDXL, None
+    
+    def get_model_route_for_controlnet_layout(
+        self,
+        controlnet_type: str = "openpose"
+    ) -> Tuple[ModelType, Optional[str]]:
+        """
+        获取构图控制路由（SDXL ControlNet）
+        
+        Args:
+            controlnet_type: ControlNet类型（openpose/depth/canny/lineart）
+            
+        Returns:
+            Tuple[ModelType, Optional[str]]: (SDXL, None)
+        """
+        logger.info(f"✓ 构图控制路由: {controlnet_type} -> SDXL ControlNet")
+        return ModelType.SDXL, None
     
     def get_gender_negative_lock(self, gender: str) -> List[str]:
         """
