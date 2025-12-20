@@ -132,7 +132,7 @@ class NovelVideoGenerator:
     
     def generate(
         self,
-        prompt: str,
+        prompt: str = None,
         output_dir: Optional[Path] = None,
         image_output_path: Optional[Path] = None,
         video_output_path: Optional[Path] = None,
@@ -141,6 +141,7 @@ class NovelVideoGenerator:
         num_frames: int = 120,
         fps: int = 24,
         scene: Optional[Dict[str, Any]] = None,
+        use_v21_exec: bool = False,  # v2.1-exec模式开关
         # === 角色一致（图片端）===
         include_character: Optional[bool] = None,
         character_id: Optional[str] = None,
@@ -188,6 +189,23 @@ class NovelVideoGenerator:
         print("=" * 60)
         print("开始生成小说推文视频")
         print("=" * 60)
+        
+        # ⚡ v2.1-exec模式：如果scene是v2.1-exec格式，使用Execution Executor
+        if use_v21_exec and scene and scene.get("version", "").startswith("v2.1"):
+            return self._generate_v21_exec(scene, output_dir, width, height, num_frames, fps)
+        
+        # 兼容模式：如果scene是v2格式，自动转换为v2.1-exec（可选）
+        if scene and scene.get("version") == "v2" and use_v21_exec:
+            print("  ℹ 检测到v2格式，自动转换为v2.1-exec")
+            from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
+            converter = JSONV2ToV21Converter()
+            scene = converter.convert_scene(scene)
+            return self._generate_v21_exec(scene, output_dir, width, height, num_frames, fps)
+        
+        # 原有流程（兼容）
+        if prompt is None:
+            prompt = scene.get("prompt", {}).get("positive_core", "") if scene else ""
+        
         print(f"提示词: {prompt}")
         print()
 
@@ -1016,6 +1034,93 @@ class NovelVideoGenerator:
             'video': video_path,
             **({"identity_report": identity_report_path} if effective_enable_m6 and identity_report_path else {}),
         }
+    
+    def _generate_v21_exec(
+        self,
+        scene: Dict[str, Any],
+        output_dir: Path,
+        width: int,
+        height: int,
+        num_frames: int,
+        fps: int
+    ) -> Dict[str, Path]:
+        """
+        使用v2.1-exec格式生成（Execution Executor模式）
+        
+        Args:
+            scene: v2.1-exec格式的场景JSON
+            output_dir: 输出目录
+            width: 图像宽度
+            height: 图像高度
+            num_frames: 视频帧数
+            fps: 视频帧率
+            
+        Returns:
+            dict: 包含 'image' 和 'video' 路径的字典
+        """
+        print("=" * 60)
+        print("使用v2.1-exec模式生成")
+        print("=" * 60)
+        
+        try:
+            from utils.execution_executor_v21 import (
+                ExecutionExecutorV21,
+                ExecutionConfig,
+                ExecutionMode
+            )
+            from utils.execution_validator import ExecutionValidator
+            
+            # 1. 校验JSON
+            validator = ExecutionValidator()
+            validation_result = validator.validate_scene(scene)
+            if not validation_result.is_valid:
+                print(f"  ✗ JSON校验失败: {validation_result.errors_count} 个错误")
+                raise ValueError("场景JSON校验失败")
+            
+            print(f"  ✓ JSON校验通过")
+            
+            # 2. 创建Execution Executor
+            config = ExecutionConfig(mode=ExecutionMode.STRICT)
+            executor = ExecutionExecutorV21(
+                config=config,
+                image_generator=self.image_generator,
+                video_generator=self.video_generator,
+                tts_generator=None  # TTS可以后续添加
+            )
+            
+            # 3. 执行场景生成
+            result = executor.execute_scene(scene, str(output_dir))
+            
+            if result.success:
+                print(f"  ✓ 场景 {scene.get('scene_id')} 生成成功")
+                return {
+                    "image": Path(result.image_path) if result.image_path else None,
+                    "video": Path(result.video_path) if result.video_path else None
+                }
+            else:
+                print(f"  ✗ 场景 {scene.get('scene_id')} 生成失败: {result.error_message}")
+                raise RuntimeError(f"生成失败: {result.error_message}")
+                
+        except ImportError as e:
+            print(f"  ⚠ v2.1-exec模块未找到: {e}")
+            print("  回退到原有流程")
+            # 回退到原有流程
+            prompt = scene.get("prompt", {}).get("positive_core", "")
+            return self.generate(
+                prompt=prompt,
+                output_dir=output_dir,
+                width=width,
+                height=height,
+                num_frames=num_frames,
+                fps=fps,
+                scene=scene,
+                use_v21_exec=False
+            )
+        except Exception as e:
+            print(f"  ✗ v2.1-exec生成失败: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
     
     def _build_video_prompt(self, image_prompt: str, scene: Optional[Dict[str, Any]] = None) -> str:
         """
