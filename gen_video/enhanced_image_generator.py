@@ -1203,16 +1203,33 @@ class EnhancedImageGenerator:
             # ⚡ 修复：ImageGenerator 使用 face_analysis 而不是 face_analyzer
             if not hasattr(temp_generator, 'face_analysis') or temp_generator.face_analysis is None:
                 # ImageGenerator 在初始化时已经加载了 face_analysis
-                # 如果没有，尝试重新初始化
+                # 如果没有，尝试重新初始化（使用与ImageGenerator相同的逻辑）
                 try:
                     from insightface.app import FaceAnalysis
-                    import os
-                    antelopev2_path = self.image_config.get("antelopev2_path", "models/antelopev2")
-                    antelopev2_root = os.path.dirname(os.path.dirname(os.path.abspath(antelopev2_path)))
-                    temp_generator.face_analysis = FaceAnalysis(
-                        root=antelopev2_root,
-                        providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
-                    )
+                    from pathlib import Path
+                    
+                    # 使用与ImageGenerator相同的路径查找逻辑
+                    antelopev2_path = None
+                    script_dir = Path(__file__).parent
+                    antelopev2_path = script_dir / "models" / "antelopev2"
+                    
+                    if antelopev2_path.exists() and antelopev2_path.is_dir():
+                        # antelopev2_path 是 models/antelopev2
+                        # root 应该是当前目录（antelopev2_path.parent.parent）
+                        antelopev2_root = str(antelopev2_path.parent.parent)
+                        temp_generator.face_analysis = FaceAnalysis(
+                            name='antelopev2',
+                            root=antelopev2_root,
+                            providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
+                        )
+                    else:
+                        # 使用默认路径
+                        temp_generator.face_analysis = FaceAnalysis(
+                            name='antelopev2',
+                            root='./',
+                            providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
+                        )
+                    
                     temp_generator.face_analysis.prepare(ctx_id=0, det_size=(640, 640))
                     logger.info("  ✓ FaceAnalysis 初始化成功")
                 except Exception as e:
