@@ -1200,12 +1200,28 @@ class EnhancedImageGenerator:
             pipeline = temp_generator.pipeline
             
             # 提取 face embedding（如果还没有）
-            if not hasattr(temp_generator, 'face_analyzer') or temp_generator.face_analyzer is None:
-                temp_generator._load_face_analyzer()
+            # ⚡ 修复：ImageGenerator 使用 face_analysis 而不是 face_analyzer
+            if not hasattr(temp_generator, 'face_analysis') or temp_generator.face_analysis is None:
+                # ImageGenerator 在初始化时已经加载了 face_analysis
+                # 如果没有，尝试重新初始化
+                try:
+                    from insightface.app import FaceAnalysis
+                    import os
+                    antelopev2_path = self.image_config.get("antelopev2_path", "models/antelopev2")
+                    antelopev2_root = os.path.dirname(os.path.dirname(os.path.abspath(antelopev2_path)))
+                    temp_generator.face_analysis = FaceAnalysis(
+                        root=antelopev2_root,
+                        providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
+                    )
+                    temp_generator.face_analysis.prepare(ctx_id=0, det_size=(640, 640))
+                    logger.info("  ✓ FaceAnalysis 初始化成功")
+                except Exception as e:
+                    logger.warning(f"  ⚠ FaceAnalysis 初始化失败: {e}")
+                    temp_generator.face_analysis = None
             
             face_emb = None
-            if temp_generator.face_analyzer and face_reference:
-                face_info = temp_generator.face_analyzer.get(face_reference)
+            if temp_generator.face_analysis and face_reference:
+                face_info = temp_generator.face_analysis.get(face_reference)
                 if face_info:
                     face_emb = face_info[0].normed_embedding
                     logger.info("  ✓ 已从参考图提取人脸 embedding")
