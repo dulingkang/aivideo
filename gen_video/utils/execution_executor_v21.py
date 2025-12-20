@@ -106,6 +106,34 @@ class ExecutionExecutorV21:
         
         logger.info(f"Execution Executor V2.1 初始化完成 (mode: {self.config.mode.value})")
     
+    def _normalize_scene_format(self, scene: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        规范化场景格式，支持v2.1-exec和v2.2-final
+        
+        Args:
+            scene: 原始场景JSON
+            
+        Returns:
+            规范化后的场景JSON
+        """
+        version = scene.get("version", "")
+        
+        # v2.2-final格式：scene在顶层
+        if version == "v2.2-final" and "scene" in scene:
+            scene_data = scene["scene"]
+            # 添加scene_id（如果缺失）
+            if "scene_id" not in scene_data:
+                scene_id_str = scene_data.get("id", "scene_001")
+                if scene_id_str.startswith("scene_"):
+                    scene_id = int(scene_id_str.split("_")[1])
+                else:
+                    scene_id = 1
+                scene_data["scene_id"] = scene_id
+            return scene_data
+        
+        # v2.1-exec格式：直接返回
+        return scene
+    
     def execute_scene(
         self,
         scene: Dict[str, Any],
@@ -114,13 +142,20 @@ class ExecutionExecutorV21:
         """
         执行单个场景
         
+        支持格式:
+        - v2.1-exec: 旧格式（向后兼容）
+        - v2.2-final: 新格式（推荐）
+        
         Args:
-            scene: v2.1-exec格式的场景JSON
+            scene: v2.1-exec或v2.2-final格式的场景JSON
             output_dir: 输出目录
             
         Returns:
             ExecutionResult: 执行结果
         """
+        # 0. 检测并规范化JSON格式
+        scene = self._normalize_scene_format(scene)
+        
         # 1. 校验JSON
         validation_result = self.validator.validate_scene(scene)
         if not validation_result.is_valid:
@@ -181,27 +216,33 @@ class ExecutionExecutorV21:
     
     def _build_decision_trace(self, scene: Dict[str, Any]) -> Dict[str, Any]:
         """构建决策trace（可解释性）"""
+        shot_info = scene.get("shot", {})
+        pose_info = scene.get("pose", {})
+        model_info = scene.get("model_route", {})
+        character_info = scene.get("character", {})
+        
         return {
             "shot": {
-                "type": scene["shot"]["type"],
-                "source": scene["shot"].get("source", "unknown"),
-                "locked": scene["shot"]["locked"]
+                "type": shot_info.get("type", "medium"),
+                "source": shot_info.get("source", "direct_specification"),
+                "locked": shot_info.get("locked", True)
             },
             "pose": {
-                "type": scene["pose"]["type"],
-                "auto_corrected": scene["pose"].get("auto_corrected", False),
-                "original": scene["pose"].get("original_pose")
+                "type": pose_info.get("type", "stand"),
+                "auto_corrected": pose_info.get("auto_corrected", False),
+                "original": pose_info.get("original_pose")
             },
             "model_route": {
-                "base_model": scene["model_route"]["base_model"],
-                "identity_engine": scene["model_route"]["identity_engine"],
-                "reason": scene["model_route"].get("decision_reason", ""),
-                "confidence": scene["model_route"].get("confidence", 0.95)
+                "base_model": model_info.get("base_model", "flux"),
+                "identity_engine": model_info.get("identity_engine", "pulid"),
+                "reason": model_info.get("decision_reason", "direct_specification"),
+                "character_role": model_info.get("character_role", "main")
             },
             "character_anchor": {
-                "character_id": scene["character"].get("id"),
+                "character_id": character_info.get("id"),
                 "lora_enabled": True,  # LoRA总是启用
-                "instantid_enabled": scene.get("identity_engine", {}).get("enabled", False)
+                "lora_config": character_info.get("lora_config", {}),
+                "anchor_patches": character_info.get("anchor_patches", {})
             }
         }
     
@@ -209,11 +250,32 @@ class ExecutionExecutorV21:
         """
         构建Prompt（模板填充，无LLM）
         
-        这是Prompt Builder的瘦身版，只做字符串拼接
+        支持v2.2-final格式的prompt配置
         """
         prompt_config = scene.get("prompt", {})
-        shot_type = scene["shot"]["type"]
-        pose_type = scene["pose"]["type"]
+        character_info = scene.get("character", {})
+        environment_info = scene.get("environment", {})
+        
+        # v2.2-final格式：直接使用final字段（如果存在）
+        if "final" in prompt_config:
+            return prompt_config["final"]
+        
+        # v2.2-final格式：使用base_template（如果存在）
+        if "base_template" in prompt_config:
+            template = prompt_config["base_template"]
+            # 简单的模板替换
+            template = template.replace("{{character.name}}", character_info.get("name", ""))
+            template = template.replace("{{character.anchor_patches.temperament_anchor}}", 
+                                       character_info.get("anchor_patches", {}).get("temperament_anchor", ""))
+            template = template.replace("{{character.anchor_patches.explicit_lock_words}}", 
+                                       character_info.get("anchor_patches", {}).get("explicit_lock_words", ""))
+            template = template.replace("{{environment.location}}", environment_info.get("location", ""))
+            template = template.replace("{{environment.atmosphere}}", environment_info.get("atmosphere", ""))
+            return template
+        
+        # v2.1-exec格式：使用旧逻辑
+        shot_type = scene.get("shot", {}).get("type", "medium")
+        pose_type = scene.get("pose", {}).get("type", "stand")
         
         # Shot描述模板
         shot_descriptions = {
@@ -238,27 +300,50 @@ class ExecutionExecutorV21:
         # 合并Prompt
         parts = []
         
-        # 1. Shot描述
+        # 1. 角色名称和锚点（v2.2格式）
+        if character_info:
+            name = character_info.get("name", "")
+            if name:
+                parts.append(name)
+            
+            # 气质锚点
+            temperament = character_info.get("anchor_patches", {}).get("temperament_anchor", "")
+            if temperament:
+                parts.append(temperament)
+            
+            # 显式锁词
+            lock_words = character_info.get("anchor_patches", {}).get("explicit_lock_words", "")
+            if lock_words:
+                parts.append(lock_words)
+        
+        # 2. Shot描述
         parts.append(shot_desc)
         
-        # 2. Pose描述
+        # 3. Pose描述
         if pose_type != "face_only":
             parts.append(pose_desc)
         
-        # 3. 场景描述
+        # 4. 环境描述
+        if environment_info:
+            location = environment_info.get("location", "")
+            if location:
+                parts.append(f"in {location}")
+            atmosphere = environment_info.get("atmosphere", "")
+            if atmosphere:
+                parts.append(f"{atmosphere} atmosphere")
+        
+        # 5. 场景描述（v2.1格式兼容）
         scene_desc = prompt_config.get("scene_description", "")
         if scene_desc:
             parts.append(scene_desc)
         
-        # 4. 角色描述
-        positive_core = prompt_config.get("positive_core", "")
-        if positive_core:
-            parts.append(positive_core)
-        
-        # 5. 风格
+        # 6. 风格
         style = prompt_config.get("style", "")
         if style:
             parts.append(style)
+        
+        # 7. 通用质量标签
+        parts.append("cinematic lighting, high detail, epic atmosphere")
         
         return ", ".join(filter(None, parts))
     
@@ -269,10 +354,21 @@ class ExecutionExecutorV21:
             "bad anatomy", "bad proportions"
         ]
         
-        # 添加性别负锁
+        # v2.2-final格式：从character.negative_gender_lock读取
+        character_info = scene.get("character", {})
+        negative_gender_lock = character_info.get("negative_gender_lock", [])
+        if negative_gender_lock:
+            negative_base.extend(negative_gender_lock)
+        
+        # v2.1-exec格式：从negative_lock读取
         negative_lock = scene.get("negative_lock", {})
         if negative_lock.get("gender"):
-            negative_base.extend(negative_lock.get("extra", []))
+            gender_lock_list = negative_lock.get("gender_male", []) or negative_lock.get("gender_female", [])
+            if gender_lock_list:
+                negative_base.extend(gender_lock_list)
+            extra = negative_lock.get("extra", [])
+            if extra:
+                negative_base.extend(extra)
         
         return negative_base
     

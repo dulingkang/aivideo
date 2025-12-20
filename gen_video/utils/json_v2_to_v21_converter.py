@@ -3,12 +3,17 @@
 """
 JSON v2 → v2.1-exec 自动转换器
 
+⚠️ **已废弃** - 从v2.2开始，直接使用新JSON格式（v2.2-final），不再需要转换器。
+
 功能：
 1. 将v2格式的JSON转换为v2.1-exec执行型格式
 2. 应用硬规则（Shot/Pose/Model锁定）
 3. 添加角色锚配置
 4. 添加性别负锁
 5. 记录决策来源（decision trace）
+
+**注意**: 此转换器仅用于向后兼容，新项目应直接使用v2.2-final格式。
+参考: `schemas/scene_v22_final.json` 和 `JSON_FORMAT_V22_FINAL.md`
 """
 
 import json
