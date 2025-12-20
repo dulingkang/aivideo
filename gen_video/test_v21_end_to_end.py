@@ -57,8 +57,23 @@ def test_conversion_and_validation():
     }
     
     try:
-        from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
-        from utils.execution_validator import ExecutionValidator
+        # 直接导入，避免通过__init__.py（可能有依赖问题）
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "json_v2_to_v21_converter",
+            Path(__file__).parent / "utils" / "json_v2_to_v21_converter.py"
+        )
+        converter_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(converter_module)
+        JSONV2ToV21Converter = converter_module.JSONV2ToV21Converter
+        
+        spec2 = importlib.util.spec_from_file_location(
+            "execution_validator",
+            Path(__file__).parent / "utils" / "execution_validator.py"
+        )
+        validator_module = importlib.util.module_from_spec(spec2)
+        spec2.loader.exec_module(validator_module)
+        ExecutionValidator = validator_module.ExecutionValidator
         
         # 转换
         converter = JSONV2ToV21Converter()
@@ -92,7 +107,17 @@ def test_executor_prompt_building():
     print("=" * 60)
     
     try:
-        from utils.execution_executor_v21 import ExecutionExecutorV21, ExecutionConfig, ExecutionMode
+        # 直接导入
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "execution_executor_v21",
+            Path(__file__).parent / "utils" / "execution_executor_v21.py"
+        )
+        executor_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(executor_module)
+        ExecutionExecutorV21 = executor_module.ExecutionExecutorV21
+        ExecutionConfig = executor_module.ExecutionConfig
+        ExecutionMode = executor_module.ExecutionMode
         
         # 创建测试场景（v2.1-exec格式）
         scene_v21 = {
@@ -151,7 +176,16 @@ def test_pose_correction_levels():
     print("=" * 60)
     
     try:
-        from utils.execution_rules_v2_1 import get_execution_rules, ShotType
+        # 直接导入
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "execution_rules_v2_1",
+            Path(__file__).parent / "utils" / "execution_rules_v2_1.py"
+        )
+        rules_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(rules_module)
+        get_execution_rules = rules_module.get_execution_rules
+        ShotType = rules_module.ShotType
         
         rules = get_execution_rules()
         

@@ -21,7 +21,13 @@ try:
     from .execution_rules_v2_1 import get_execution_rules, ShotType, PoseType, ModelType
     from .character_anchor_v2_1 import get_character_anchor_manager
     from .execution_validator import ExecutionValidator, ValidationResult
-except ImportError:
+except (ImportError, ValueError):
+    # 如果相对导入失败，尝试绝对导入
+    import sys
+    from pathlib import Path
+    utils_path = Path(__file__).parent
+    if str(utils_path) not in sys.path:
+        sys.path.insert(0, str(utils_path))
     from execution_rules_v2_1 import get_execution_rules, ShotType, PoseType, ModelType
     from character_anchor_v2_1 import get_character_anchor_manager
     from execution_validator import ExecutionValidator, ValidationResult
