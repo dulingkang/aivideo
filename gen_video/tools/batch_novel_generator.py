@@ -80,12 +80,13 @@ class BatchNovelGenerator:
         self.results = []
         self.errors = []
         
-    def load_scenes_from_json(self, json_path: Path) -> List[Dict[str, Any]]:
+    def load_scenes_from_json(self, json_path: Path, auto_convert_v21: bool = True) -> List[Dict[str, Any]]:
         """
         从 JSON 文件加载场景列表
         
         Args:
             json_path: JSON 文件路径
+            auto_convert_v21: 是否自动将v2格式转换为v2.1-exec
         
         Returns:
             场景列表
@@ -98,6 +99,29 @@ class BatchNovelGenerator:
         
         scenes = data.get('scenes', [])
         print(f"  ✓ 从 {json_path} 加载了 {len(scenes)} 个场景")
+        
+        # ⚡ v2.1-exec支持：检测并转换v2格式
+        converted_count = 0
+        for i, scene in enumerate(scenes):
+            scene_version = scene.get('version', '')
+            
+            # 如果是v2格式且启用自动转换
+            if scene_version == 'v2' and auto_convert_v21:
+                try:
+                    from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
+                    converter = JSONV2ToV21Converter()
+                    scenes[i] = converter.convert_scene(scene)
+                    converted_count += 1
+                    print(f"  ℹ 场景 {scene.get('scene_id', i)}: v2 → v2.1-exec 转换完成")
+                except Exception as e:
+                    print(f"  ⚠ 场景 {scene.get('scene_id', i)} 转换失败: {e}，使用原始格式")
+            # 如果已经是v2.1-exec格式，直接使用
+            elif scene_version.startswith('v2.1'):
+                print(f"  ✓ 场景 {scene.get('scene_id', i)}: 已是v2.1-exec格式")
+        
+        if converted_count > 0:
+            print(f"  ✓ 共转换 {converted_count} 个场景为v2.1-exec格式")
+        
         return scenes
     
     def extract_prompt_from_scene(self, scene: Dict[str, Any]) -> str:
@@ -400,12 +424,41 @@ class BatchNovelGenerator:
                             image_scene["character"].setdefault("id", character_id)
                 image_scene.setdefault("motion_intensity", motion_intensity)
                 
-                # 生成图片（width 和 height 通过 scene 字典传递）
-                image_path = self.generator.image_generator.generate_image(
-                    prompt=prompt,
-                    output_path=image_output_path,
-                    scene=image_scene,
-                )
+                # ⚡ v2.1-exec支持：如果scene是v2.1-exec格式，使用v2.1流程
+                scene_version = scene.get('version', '')
+                if scene_version.startswith('v2.1'):
+                    # 使用v2.1-exec流程
+                    print(f"  ℹ 使用v2.1-exec模式生成")
+                    try:
+                        result = self.generator.generate(
+                            prompt=prompt,
+                            output_dir=scene_output_dir,
+                            width=width,
+                            height=height,
+                            num_frames=24,  # 阶段1只生成图片，帧数不重要
+                            fps=24,
+                            scene=scene,  # 传入完整的v2.1-exec格式scene
+                            use_v21_exec=True,  # 启用v2.1-exec模式
+                        )
+                        if result and result.get('image'):
+                            image_path = result['image']
+                        else:
+                            raise ValueError("v2.1-exec模式生成失败")
+                    except Exception as e:
+                        print(f"  ⚠ v2.1-exec模式失败: {e}，回退到原有流程")
+                        # 回退到原有流程
+                        image_path = self.generator.image_generator.generate_image(
+                            prompt=prompt,
+                            output_path=image_output_path,
+                            scene=image_scene,
+                        )
+                else:
+                    # 原有流程
+                    image_path = self.generator.image_generator.generate_image(
+                        prompt=prompt,
+                        output_path=image_output_path,
+                        scene=image_scene,
+                    )
                 
                 if image_path and Path(image_path).exists():
                     print(f"  ✅ 图片生成成功: {image_path}")
