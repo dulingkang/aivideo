@@ -240,6 +240,50 @@ negative = anchor_manager.get_negative_prompt_with_gender_lock("hanli")
 
 ---
 
+### 1.3 Execution Executor V2.1
+
+**文件**: `gen_video/utils/execution_executor_v21.py`
+
+**职责**:
+- ✅ 瘦身版执行器（不计划，只执行）
+- ✅ 完全确定性路径（无LLM参与）
+- ✅ 失败重试机制（同模型低风险重试）
+- ✅ 决策trace记录（可解释性）
+
+**执行模式**:
+- `STRICT`: 严格模式，无LLM，完全表驱动
+- `FLEXIBLE`: 灵活模式，允许部分LLM增强（待实现）
+
+**关键方法**:
+```python
+# 执行场景
+executor = ExecutionExecutorV21(config=ExecutionConfig(mode=ExecutionMode.STRICT))
+result = executor.execute_scene(scene, output_dir)
+
+# 结果
+if result.success:
+    print(f"图像: {result.image_path}")
+    print(f"视频: {result.video_path}")
+    print(f"决策trace: {result.decision_trace}")
+else:
+    print(f"错误: {result.error_message}")
+```
+
+**执行流程**:
+1. 校验JSON（ExecutionValidator）
+2. 构建决策trace（可解释性）
+3. 构建Prompt（模板填充）
+4. 执行图像生成（ImageGenerator）
+5. 执行视频生成（VideoGenerator，可选）
+6. 执行音频生成（TTSGenerator，可选）
+
+**失败重试**:
+- 同模型重试（不切换模型）
+- 参数微调（CFG scale, InstantID strength）
+- 最大重试次数可配置
+
+---
+
 ### 2. 业务逻辑层
 
 #### 2.1 Execution Planner V3 (部分重构)
