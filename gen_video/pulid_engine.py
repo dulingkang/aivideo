@@ -14,6 +14,10 @@ PuLID-FLUX 引擎 - 身份保持与环境融合
 """
 
 import os
+# ⚡ 关键修复：在导入任何库之前设置环境变量，抑制 transformers 的警告输出
+os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")  # 设置为 error 级别，只显示错误
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")  # 禁用 tokenizers 的并行警告
+
 import torch
 import numpy as np
 from pathlib import Path
@@ -21,10 +25,55 @@ from typing import Dict, Any, Optional, List, Union, Tuple
 from PIL import Image
 import logging
 import warnings
+import sys
+from contextlib import contextmanager
 
 # ⚡ 抑制 EVA02-CLIP 的 rope keys 缺失警告（这是正常的，不影响功能）
 warnings.filterwarnings("ignore", message=".*incompatible_keys.missing_keys.*rope.*")
 warnings.filterwarnings("ignore", message=".*missing_keys.*rope.*")
+
+# ⚡ 抑制 CLIP tokenizer 的 77 token 警告（Flux 使用 T5 作为主编码器，支持 512 tokens，CLIP 只是辅助编码器）
+warnings.filterwarnings("ignore", message=".*Token indices sequence length is longer than the specified maximum sequence length.*")
+warnings.filterwarnings("ignore", message=".*The following part of your input was truncated because CLIP can only handle sequences up to 77 tokens.*")
+
+# ⚡ 关键修复：创建一个上下文管理器来抑制 CLIP tokenizer 的直接 stderr 输出
+@contextmanager
+def suppress_clip_tokenizer_warnings():
+    """抑制 CLIP tokenizer 直接打印到 stderr 的警告"""
+    import sys
+    from io import StringIO
+    
+    # 保存原始的 stderr
+    original_stderr = sys.stderr
+    
+    try:
+        # 创建一个过滤器来过滤 CLIP tokenizer 的警告
+        class FilteredStderr:
+            def __init__(self, original):
+                self.original = original
+                self.buffer = []
+            
+            def write(self, text):
+                # 过滤掉 CLIP tokenizer 的 77 token 警告
+                if "Token indices sequence length is longer" in text:
+                    return
+                if "The following part of your input was truncated because CLIP can only handle sequences up to 77 tokens" in text:
+                    return
+                # 其他内容正常输出
+                self.original.write(text)
+            
+            def flush(self):
+                self.original.flush()
+            
+            def __getattr__(self, name):
+                return getattr(self.original, name)
+        
+        # 替换 stderr
+        sys.stderr = FilteredStderr(original_stderr)
+        yield
+    finally:
+        # 恢复原始的 stderr
+        sys.stderr = original_stderr
 
 import logging
 import gc
@@ -185,6 +234,13 @@ class PuLIDEngine:
         from flux.util import load_t5, load_clip, load_ae
         from pulid.pipeline_flux import PuLIDPipeline
         
+        # ⚡ 关键修复：设置环境变量，让 PuLIDPipeline 使用本地 EVA-CLIP 模型
+        if os.path.exists(self.eva_clip_path):
+            os.environ['EVA_CLIP_PATH'] = self.eva_clip_path
+            logger.info(f"  ✓ 设置 EVA_CLIP_PATH 环境变量: {self.eva_clip_path}")
+        else:
+            logger.warning(f"  ⚠ 本地 EVA-CLIP 模型不存在: {self.eva_clip_path}")
+        
         # 加载 Flux DiT 模型 (主要模型，保持在 GPU)
         logger.info(f"  加载 Flux DiT: {self.flux_native_path}")
         self.flux_model = self._optimized_load_flux("flux-dev", device=self.device)
@@ -192,7 +248,38 @@ class PuLIDEngine:
         
         # 加载 AutoEncoder (解码器，保持在 GPU)
         logger.info(f"  加载 AutoEncoder: {self.ae_path}")
-        self.ae = load_ae("flux-dev", device=self.device)
+        # ⚡ 关键修复：优先使用本地 AE 模型文件，避免下载
+        # load_ae 使用 configs[name].ae_path，我们需要临时修改 configs 来使用本地路径
+        from flux.util import configs, load_sft, AutoEncoder
+        # ⚡ 关键修复：torch 已在文件顶部导入，不需要再次导入
+        # import torch  # 删除这行，使用文件顶部的 torch
+        
+        if os.path.exists(self.ae_path):
+            logger.info(f"  ✓ 检测到本地 AE 模型文件: {self.ae_path}")
+            try:
+                # 保存原始路径
+                original_ae_path = configs["flux-dev"].ae_path
+                # 临时修改 configs 使用本地路径
+                configs["flux-dev"].ae_path = self.ae_path
+                logger.info(f"  ✓ 使用本地 AE 路径: {self.ae_path}")
+                
+                # 调用 load_ae，现在它会使用我们设置的本地路径
+                self.ae = load_ae("flux-dev", device=self.device, hf_download=False)
+                logger.info(f"  ✅ 成功从本地加载 AE 模型（未下载）")
+                
+                # 恢复原始路径（可选，因为已经加载完成）
+                # configs["flux-dev"].ae_path = original_ae_path
+            except Exception as e:
+                logger.warning(f"  ⚠ 使用本地 AE 文件失败: {e}")
+                logger.info(f"  ℹ 回退到默认加载方式（可能会下载）")
+                # 恢复原始路径
+                if 'original_ae_path' in locals():
+                    configs["flux-dev"].ae_path = original_ae_path
+                self.ae = load_ae("flux-dev", device=self.device)
+        else:
+            logger.warning(f"  ⚠ 本地 AE 模型文件不存在: {self.ae_path}")
+            logger.info(f"  ℹ 将使用默认加载方式（可能会下载）")
+            self.ae = load_ae("flux-dev", device=self.device)
         log_memory("After AE Load")
         
         # 加载 T5 和 CLIP (先加载到 CPU，使用时再移到 GPU)
@@ -213,80 +300,177 @@ class PuLIDEngine:
             # ⚡ 修复：不要在这里重新导入 torch，使用文件顶部已导入的 torch
             # import torch  # 删除这行，因为文件顶部已经导入了 torch
             try:
-                # 直接使用本地路径，from_pretrained 会自动识别
-                self.t5 = HFEmbedder(local_t5_path, max_length=256, torch_dtype=torch.bfloat16).to("cpu")
-                logger.info(f"  ✅ 本地 T5 模型加载成功")
+                # ⚡ 关键修复：使用绝对路径，并检查关键文件是否存在
+                abs_t5_path = os.path.abspath(local_t5_path)
+                # 检查关键文件是否存在
+                required_files = [
+                    "model-00001-of-00002.safetensors",
+                    "model-00002-of-00002.safetensors",
+                    "config.json"
+                ]
+                missing_files = []
+                for file in required_files:
+                    file_path = os.path.join(abs_t5_path, file)
+                    if not os.path.exists(file_path):
+                        missing_files.append(file)
+                
+                if missing_files:
+                    logger.warning(f"  ⚠ 本地 T5 模型文件不完整，缺少: {missing_files}")
+                    raise FileNotFoundError(f"T5 模型文件不完整: {missing_files}")
+                
+                # 直接使用本地路径，HFEmbedder 应该会自动识别
+                # 如果 HFEmbedder 内部使用 transformers，它会自动识别本地路径
+                # ⚡ 关键修复：传递 local_files_only=True 强制使用本地文件
+                logger.info(f"  ✓ T5 模型文件完整，使用本地路径: {abs_t5_path}")
+                self.t5 = HFEmbedder(
+                    abs_t5_path, 
+                    max_length=t5_max_length, 
+                    torch_dtype=torch.bfloat16,
+                    local_files_only=True  # 强制使用本地文件，避免下载
+                ).to("cpu")
+                logger.info(f"  ✅ 本地 T5 模型加载成功（未下载）")
             except Exception as e:
                 logger.warning(f"  ⚠ 本地 T5 模型加载失败: {e}，尝试使用 HuggingFace 缓存")
                 import traceback
                 traceback.print_exc()
                 # 回退到原始方法（会尝试使用 HuggingFace 缓存）
-                self.t5 = load_t5(device="cpu", max_length=256)
+                # ⚡ 关键修复：设置 local_files_only=True（如果 HFEmbedder 支持）
+                try:
+                    # 尝试使用 local_files_only（如果支持）
+                    from transformers import AutoModel, AutoTokenizer
+                    # 检查 HuggingFace 缓存
+                    hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+                    hf_cache_path = os.path.join(hf_home, "hub", "models--xlabs-ai--xflux_text_encoders")
+                    if os.path.exists(hf_cache_path):
+                        logger.info(f"  ℹ 尝试从 HuggingFace 缓存加载 T5: {hf_cache_path}")
+                        self.t5 = load_t5(device="cpu", max_length=t5_max_length)
+                    else:
+                        logger.error(f"  ❌ T5 模型不存在（本地和缓存都没有）")
+                        raise FileNotFoundError(f"T5 模型不存在，请先下载到: {local_t5_path} 或 {hf_cache_path}")
+                except Exception as e2:
+                    logger.error(f"  ❌ T5 加载失败: {e2}")
+                    raise
         else:
             # 回退到原始方法（会从 HuggingFace 下载或使用缓存）
             logger.warning(f"  ⚠ 本地 T5 模型不存在: {local_t5_path}，将使用 HuggingFace")
-            self.t5 = load_t5(device="cpu", max_length=256)
+            # ⚡ 关键修复：检查 HuggingFace 缓存，避免下载
+            hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+            hf_cache_path = os.path.join(hf_home, "hub", "models--xlabs-ai--xflux_text_encoders")
+            if os.path.exists(hf_cache_path):
+                logger.info(f"  ℹ 使用 HuggingFace 缓存: {hf_cache_path}")
+                self.t5 = load_t5(device="cpu", max_length=t5_max_length)
+            else:
+                logger.error(f"  ❌ T5 模型不存在（本地和缓存都没有）")
+                logger.error(f"  💡 请先下载 T5 模型到: {local_t5_path}")
+                raise FileNotFoundError(f"T5 模型不存在，请先下载到: {local_t5_path}")
         
         logger.info("  加载 CLIP 编码器 (CPU offload)...")
         # ⚡ 关键修复：优先使用本地 CLIP 模型或缓存，避免网络下载
-        try:
-            from flux.modules.conditioner import HFEmbedder
-            # 检查本地 CLIP 模型路径
-            local_clip_path = os.path.join(self.model_base_path, "clip", "openai-clip-vit-large-patch14")
-            
-            # 检查 HuggingFace 缓存路径
-            hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
-            # 如果默认路径不存在，尝试使用项目配置的缓存目录
-            if not os.path.exists(hf_home):
-                hf_home = "/vepfs-dev/shawn/.cache/huggingface"
-                os.environ["HF_HOME"] = hf_home
-            hf_cache_path = os.path.join(hf_home, "hub", "models--openai--clip-vit-large-patch14")
-            
-            # 尝试从本地路径加载
-            if os.path.exists(local_clip_path):
-                logger.info(f"  ✓ 使用本地 CLIP 模型: {local_clip_path}")
-                try:
-                    self.clip = HFEmbedder(local_clip_path, max_length=77, torch_dtype=torch.bfloat16).to("cpu")
-                    logger.info(f"  ✅ 本地 CLIP 模型加载成功")
-                except Exception as e:
-                    logger.warning(f"  ⚠ 本地 CLIP 模型加载失败: {e}，尝试使用 HuggingFace 缓存")
-                    # 回退到使用 HuggingFace 缓存（local_files_only=True）
+        # ⚡ 关键修复：在加载 CLIP 时抑制 77 token 警告
+        with suppress_clip_tokenizer_warnings():
+            try:
+                from flux.modules.conditioner import HFEmbedder
+                # 检查本地 CLIP 模型路径
+                local_clip_path = os.path.join(self.model_base_path, "clip", "openai-clip-vit-large-patch14")
+                
+                # 检查 HuggingFace 缓存路径
+                hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+                # 如果默认路径不存在，尝试使用项目配置的缓存目录
+                if not os.path.exists(hf_home):
+                    hf_home = "/vepfs-dev/shawn/.cache/huggingface"
+                    os.environ["HF_HOME"] = hf_home
+                hf_cache_path = os.path.join(hf_home, "hub", "models--openai--clip-vit-large-patch14")
+                
+                # 尝试从本地路径加载
+                if os.path.exists(local_clip_path):
+                    logger.info(f"  ✓ 使用本地 CLIP 模型: {local_clip_path}")
+                    try:
+                        # ⚡ 关键修复：确保路径是字符串类型，并检查关键文件是否存在
+                        abs_clip_path = os.path.abspath(local_clip_path)
+                        # 检查关键文件是否存在（transformers 支持 safetensors 或 pytorch_model.bin）
+                        required_config_file = "config.json"
+                        model_files = ["model.safetensors", "pytorch_model.bin"]
+                        
+                        config_exists = os.path.exists(os.path.join(abs_clip_path, required_config_file))
+                        has_model_file = any(os.path.exists(os.path.join(abs_clip_path, f)) for f in model_files)
+                        
+                        if not config_exists:
+                            logger.warning(f"  ⚠ 本地 CLIP 模型缺少配置文件: {required_config_file}")
+                            # 检查是否有其他格式的文件
+                            all_files = os.listdir(abs_clip_path)
+                            logger.info(f"  ℹ CLIP 目录中的文件: {all_files[:10]}")
+                            # 如果缺少配置文件，尝试使用 HuggingFace 缓存
+                            if os.path.exists(hf_cache_path):
+                                logger.info(f"  ℹ 尝试从 HuggingFace 缓存加载 CLIP: {hf_cache_path}")
+                                self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
+                                logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
+                            else:
+                                raise FileNotFoundError(f"CLIP 模型缺少配置文件: {required_config_file}")
+                        elif not has_model_file:
+                            logger.warning(f"  ⚠ 本地 CLIP 模型缺少模型文件（需要 {model_files} 之一）")
+                            # 检查是否有其他格式的文件
+                            all_files = os.listdir(abs_clip_path)
+                            logger.info(f"  ℹ CLIP 目录中的文件: {all_files[:10]}")
+                            # 如果缺少模型文件，尝试使用 HuggingFace 缓存
+                            if os.path.exists(hf_cache_path):
+                                logger.info(f"  ℹ 尝试从 HuggingFace 缓存加载 CLIP: {hf_cache_path}")
+                                self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
+                                logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
+                            else:
+                                raise FileNotFoundError(f"CLIP 模型缺少模型文件（需要 {model_files} 之一）")
+                        else:
+                            # ⚡ 关键修复：使用绝对路径字符串，并传递 local_files_only=True
+                            # transformers 会自动识别 safetensors 或 pytorch_model.bin
+                            # ⚡ 关键修复：HFEmbedder 现在可以识别本地 CLIP 路径（包含 "clip" 关键字）
+                            logger.info(f"  ✓ CLIP 模型文件完整（config.json + 模型文件），使用本地路径: {abs_clip_path}")
+                            self.clip = HFEmbedder(
+                                abs_clip_path,  # 直接使用本地路径，HFEmbedder 会识别为 CLIP
+                                max_length=77, 
+                                torch_dtype=torch.bfloat16,
+                                local_files_only=True  # 强制使用本地文件，避免下载
+                            ).to("cpu")
+                            logger.info(f"  ✅ 本地 CLIP 模型加载成功（未下载）")
+                    except Exception as e:
+                        logger.warning(f"  ⚠ 本地 CLIP 模型加载失败: {e}，尝试使用 HuggingFace 缓存")
+                        import traceback
+                        traceback.print_exc()
+                        # 回退到使用 HuggingFace 缓存（local_files_only=True）
+                        if os.path.exists(hf_cache_path):
+                            try:
+                                self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
+                                logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
+                            except Exception as e2:
+                                logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e2}")
+                                raise
+                        else:
+                            logger.error(f"  ❌ HuggingFace 缓存不存在: {hf_cache_path}")
+                            logger.error(f"  💡 请先下载 CLIP 模型，运行: python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
+                            raise FileNotFoundError(f"CLIP 模型不存在，请先下载")
+                else:
+                    # 检查 HuggingFace 缓存
                     if os.path.exists(hf_cache_path):
+                        logger.info(f"  ℹ 本地 CLIP 模型不存在，使用 HuggingFace 缓存: {hf_cache_path}")
                         try:
                             self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
                             logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
-                        except Exception as e2:
-                            logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e2}")
+                        except Exception as e:
+                            logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e}")
                             raise
                     else:
-                        logger.error(f"  ❌ HuggingFace 缓存不存在: {hf_cache_path}")
-                        logger.error(f"  💡 请先下载 CLIP 模型，运行: python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
-                        raise FileNotFoundError(f"CLIP 模型不存在，请先下载")
-            else:
-                # 检查 HuggingFace 缓存
-                if os.path.exists(hf_cache_path):
-                    logger.info(f"  ℹ 本地 CLIP 模型不存在，使用 HuggingFace 缓存: {hf_cache_path}")
-                    try:
-                        self.clip = HFEmbedder("openai/clip-vit-large-patch14", max_length=77, torch_dtype=torch.bfloat16, local_files_only=True).to("cpu")
-                        logger.info(f"  ✅ 从 HuggingFace 缓存加载 CLIP 成功")
-                    except Exception as e:
-                        logger.error(f"  ❌ 从缓存加载 CLIP 失败: {e}")
-                        raise
-                else:
-                    logger.error(f"  ❌ CLIP 模型不存在（本地和缓存都没有）")
-                    logger.error(f"  💡 请先下载 CLIP 模型，运行以下命令:")
-                    logger.error(f"     python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
-                    raise FileNotFoundError(f"CLIP 模型不存在，请先下载到: {hf_cache_path}")
-        except ImportError:
-            logger.warning(f"  ⚠ 无法导入 HFEmbedder，使用 load_clip（可能尝试网络下载）")
-            self.clip = load_clip(device="cpu")
-        except FileNotFoundError:
-            # 如果明确是文件不存在，抛出异常，不要尝试网络下载
-            raise
-        except Exception as e:
-            logger.error(f"  ❌ CLIP 加载失败: {e}")
-            logger.error(f"  💡 如果网络不可用，请先下载 CLIP 模型到缓存")
-            raise
+                        logger.error(f"  ❌ CLIP 模型不存在（本地和缓存都没有）")
+                        logger.error(f"  💡 请先下载 CLIP 模型，运行以下命令:")
+                        logger.error(f"     python3 -c \"from transformers import CLIPTokenizer, CLIPTextModel; CLIPTokenizer.from_pretrained('openai/clip-vit-large-patch14'); CLIPTextModel.from_pretrained('openai/clip-vit-large-patch14')\"")
+                        raise FileNotFoundError(f"CLIP 模型不存在，请先下载到: {hf_cache_path}")
+            except ImportError:
+                logger.warning(f"  ⚠ 无法导入 HFEmbedder，使用 load_clip（可能尝试网络下载）")
+                self.clip = load_clip(device="cpu")
+            except FileNotFoundError:
+                # 如果明确是文件不存在，抛出异常，不要尝试网络下载
+                raise
+            except Exception as e:
+                logger.error(f"  ❌ CLIP 加载失败: {e}")
+                logger.error(f"  💡 如果网络不可用，请先下载 CLIP 模型到缓存")
+                raise
         log_memory("After Encoders Load")
         
         # 创建 PuLID Pipeline
@@ -299,7 +483,18 @@ class PuLIDEngine:
         
         # 加载 PuLID 权重
         logger.info(f"  加载 PuLID 权重: {self.pulid_path}")
-        self.pulid_model.load_pretrain(pretrain_path=self.pulid_path)
+        # ⚡ 关键修复：传递正确的版本号，避免下载错误版本
+        # 从路径中提取版本号（例如：pulid_flux_v0.9.1.safetensors -> v0.9.1）
+        import re
+        version_match = re.search(r'v(\d+\.\d+\.\d+)', self.pulid_path)
+        if version_match:
+            pulid_version = version_match.group(1)
+            logger.info(f"  ✓ 检测到 PuLID 版本: v{pulid_version}")
+            self.pulid_model.load_pretrain(pretrain_path=self.pulid_path, version=pulid_version)
+        else:
+            # 默认使用 v0.9.1（与配置中的文件名匹配）
+            logger.info(f"  ℹ 使用默认 PuLID 版本: v0.9.1")
+            self.pulid_model.load_pretrain(pretrain_path=self.pulid_path, version='v0.9.1')
         log_memory("After PuLID Load")
         
         # 设置标志
@@ -317,8 +512,8 @@ class PuLIDEngine:
         加上已经初始化的模型，会导致显存占用翻倍 (23GB * 2 = 46GB)。
         此函数强制先加载到 CPU，再加载进模型。
         """
-        # ⚡ 关键修复：确保 torch 在方法作用域内可用
-        import torch
+        # ⚡ 关键修复：torch 已在文件顶部导入，不需要再次导入
+        # import torch  # 删除这行，使用文件顶部的 torch
         
         from flux.model import Flux
         from flux.util import configs, load_sft, print_load_warning
@@ -326,14 +521,32 @@ class PuLIDEngine:
         
         # Loading Flux
         logger.info("Init model (Optimized)")
-        ckpt_path = configs[name].ckpt_path
-        if (
-            not os.path.exists(ckpt_path)
-            and configs[name].repo_id is not None
-            and configs[name].repo_flow is not None
-            and hf_download
-        ):
-            ckpt_path = hf_hub_download(configs[name].repo_id, configs[name].repo_flow, local_dir='models')
+        
+        # ⚡ 关键修复：优先使用本地模型路径（self.flux_native_path）
+        # 如果本地文件存在，直接使用，避免下载
+        ckpt_path = None
+        if hasattr(self, 'flux_native_path') and os.path.exists(self.flux_native_path):
+            ckpt_path = self.flux_native_path
+            logger.info(f"  ✓ 使用本地模型文件: {ckpt_path}")
+        else:
+            # 回退到使用 configs 中的路径
+            ckpt_path = configs[name].ckpt_path
+            logger.info(f"  ℹ 使用 configs 路径: {ckpt_path}")
+            
+            # ⚡ 关键修复：只有在文件不存在且明确允许下载时才下载
+            if (
+                not os.path.exists(ckpt_path)
+                and configs[name].repo_id is not None
+                and configs[name].repo_flow is not None
+                and hf_download
+            ):
+                logger.warning(f"  ⚠ 模型文件不存在: {ckpt_path}")
+                logger.warning(f"  ⚠ 将尝试从 HuggingFace 下载: {configs[name].repo_id}/{configs[name].repo_flow}")
+                logger.warning(f"  ⚠ 如果本地已有模型文件，请检查路径配置")
+                ckpt_path = hf_hub_download(configs[name].repo_id, configs[name].repo_flow, local_dir='models')
+            elif not os.path.exists(ckpt_path):
+                logger.error(f"  ✗ 模型文件不存在且不允许下载: {ckpt_path}")
+                raise FileNotFoundError(f"模型文件不存在: {ckpt_path}，且 hf_download=False")
 
         # 1. 初始化模型结构 (占用显存)
         # ⚡ 修复：使用 torch.device 对象而不是上下文管理器
@@ -368,10 +581,63 @@ class PuLIDEngine:
         from diffusers import FluxPipeline
         
         logger.info("加载 Flux pipeline (diffusers 模式)...")
-        self.pipeline = FluxPipeline.from_pretrained(
-            self.flux_path,
-            torch_dtype=self.dtype
-        )
+        logger.info(f"  Flux 模型路径: {self.flux_path}")
+        
+        # ⚡ 关键修复：在加载 pipeline 时抑制 CLIP tokenizer 的 77 token 警告
+        with suppress_clip_tokenizer_warnings():
+            # ⚡ 修复：优先使用本地路径，避免重新下载
+            # 检查路径是否存在
+            if os.path.exists(self.flux_path):
+                logger.info(f"  ✓ 检测到本地模型路径，使用本地模型")
+                # ⚡ 关键修复：检查关键文件是否存在
+                required_files = [
+                    "model_index.json",
+                    "flux1-dev.safetensors",
+                    "transformer",
+                    "vae",
+                    "text_encoder",
+                    "text_encoder_2"
+                ]
+                missing_files = []
+                for file_or_dir in required_files:
+                    path = os.path.join(self.flux_path, file_or_dir)
+                    if not os.path.exists(path):
+                        missing_files.append(file_or_dir)
+                
+                if missing_files:
+                    logger.warning(f"  ⚠ 本地模型文件不完整，缺少: {missing_files}")
+                    logger.info(f"  ℹ 将从 HuggingFace 下载缺失文件")
+                    # 如果缺少关键文件，允许网络下载
+                    self.pipeline = FluxPipeline.from_pretrained(
+                        self.flux_path,
+                        torch_dtype=self.dtype
+                    )
+                else:
+                    # 所有关键文件都存在，强制使用本地文件
+                    logger.info(f"  ✓ 本地模型文件完整，强制使用本地文件（local_files_only=True）")
+                    try:
+                        self.pipeline = FluxPipeline.from_pretrained(
+                            self.flux_path,
+                            torch_dtype=self.dtype,
+                            local_files_only=True
+                        )
+                        logger.info(f"  ✅ 成功从本地加载模型（未下载任何文件）")
+                    except Exception as e:
+                        logger.error(f"  ✗ 使用 local_files_only 加载失败: {e}")
+                        logger.warning(f"  ⚠ 即使文件存在，加载仍失败，可能是文件损坏或格式不兼容")
+                        logger.info(f"  ℹ 尝试不使用 local_files_only（可能会检查网络但不会下载，因为文件已存在）")
+                        # 最后一次尝试：不使用 local_files_only，但文件已存在，应该不会下载
+                        self.pipeline = FluxPipeline.from_pretrained(
+                            self.flux_path,
+                            torch_dtype=self.dtype
+                        )
+            else:
+                logger.warning(f"  ⚠ 本地模型路径不存在: {self.flux_path}")
+                logger.info(f"  ℹ 将从 HuggingFace 下载模型")
+                self.pipeline = FluxPipeline.from_pretrained(
+                    self.flux_path,
+                    torch_dtype=self.dtype
+                )
         self.pipeline.enable_model_cpu_offload()
         
         # 尝试加载 PuLID
@@ -391,7 +657,18 @@ class PuLIDEngine:
                 device=self.device,
                 weight_dtype=self.dtype
             )
-            self.pulid_model.load_pretrain(pretrain_path=self.pulid_path)
+            # ⚡ 关键修复：传递正确的版本号，避免下载错误版本
+            # 从路径中提取版本号（例如：pulid_flux_v0.9.1.safetensors -> v0.9.1）
+            import re
+            version_match = re.search(r'v(\d+\.\d+\.\d+)', self.pulid_path)
+            if version_match:
+                pulid_version = version_match.group(1)
+                logger.info(f"  ✓ 检测到 PuLID 版本: v{pulid_version}")
+                self.pulid_model.load_pretrain(pretrain_path=self.pulid_path, version=pulid_version)
+            else:
+                # 默认使用 v0.9.1（与配置中的文件名匹配）
+                logger.info(f"  ℹ 使用默认 PuLID 版本: v0.9.1")
+                self.pulid_model.load_pretrain(pretrain_path=self.pulid_path, version='v0.9.1')
             self.use_pulid = True  # 标记 PuLID 可用
             logger.info("PuLID 模型加载完成 (diffusers 模式)")
             
@@ -415,12 +692,15 @@ class PuLIDEngine:
             from diffusers import FluxPipeline
             
             logger.info("加载 Flux pipeline (diffusers 方式)...")
+            logger.info(f"  Flux 模型路径: {self.flux_path}")
             
-            # 加载基础 Flux pipeline
-            self.pipeline = FluxPipeline.from_pretrained(
-                self.flux_path,
-                torch_dtype=self.dtype
-            )
+            # ⚡ 关键修复：在加载 pipeline 时抑制 CLIP tokenizer 的 77 token 警告
+            with suppress_clip_tokenizer_warnings():
+                # 加载基础 Flux pipeline
+                self.pipeline = FluxPipeline.from_pretrained(
+                    self.flux_path,
+                    torch_dtype=self.dtype
+                )
             
             # 启用优化
             self.pipeline.enable_model_cpu_offload()
@@ -548,14 +828,16 @@ class PuLIDEngine:
             if seed is not None:
                 generator = torch.Generator(device=self.device).manual_seed(seed)
             
-            result = self.pipeline(
-                prompt=prompt,
-                width=width,
-                height=height,
-                num_inference_steps=num_inference_steps,
-                guidance_scale=guidance_scale,
-                generator=generator,
-            ).images[0]
+            # ⚡ 关键修复：在生成图像时抑制 CLIP tokenizer 的 77 token 警告
+            with suppress_clip_tokenizer_warnings():
+                result = self.pipeline(
+                    prompt=prompt,
+                    width=width,
+                    height=height,
+                    num_inference_steps=num_inference_steps,
+                    guidance_scale=guidance_scale,
+                    generator=generator,
+                ).images[0]
             return result
         
         # 确保 pipeline 已加载
@@ -706,14 +988,16 @@ class PuLIDEngine:
                                 ca.id_embedding = id_embedding
                                 ca.id_scale = pulid_weight
                         
-                        result = self.pipeline(
-                            prompt=prompt,
-                            width=width,
-                            height=height,
-                            num_inference_steps=num_inference_steps,
-                            guidance_scale=guidance_scale,
-                            generator=generator,
-                        ).images[0]
+                        # ⚡ 关键修复：在生成图像时抑制 CLIP tokenizer 的 77 token 警告
+                        with suppress_clip_tokenizer_warnings():
+                            result = self.pipeline(
+                                prompt=prompt,
+                                width=width,
+                                height=height,
+                                num_inference_steps=num_inference_steps,
+                                guidance_scale=guidance_scale,
+                                generator=generator,
+                            ).images[0]
                         
                         # 清理
                         if hasattr(dit, 'pulid_ca'):

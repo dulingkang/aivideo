@@ -191,6 +191,19 @@ class NovelVideoGenerator:
         print(f"提示词: {prompt}")
         print()
 
+        # ⚡ 关键修复：根据配音时长（duration_sec）计算帧数
+        # 如果 scene 中有 duration_sec，优先使用它来计算帧数
+        if scene and isinstance(scene, dict):
+            duration_sec = scene.get('duration_sec')
+            if duration_sec:
+                # 根据配音时长计算帧数：帧数 = 时长(秒) × 帧率
+                calculated_frames = int(duration_sec * fps)
+                if calculated_frames != num_frames:
+                    print(f"  ℹ 根据配音时长调整帧数: {duration_sec}秒 × {fps}fps = {calculated_frames}帧 (原值: {num_frames}帧)")
+                    num_frames = calculated_frames
+                else:
+                    print(f"  ℹ 帧数已匹配配音时长: {num_frames}帧 = {duration_sec}秒 × {fps}fps")
+
         # 自动推断是否有韩立，并据此决定是否启用 M6
         effective_include_character, effective_character_id, effective_enable_m6 = self._resolve_character_and_m6(
             prompt=prompt,
@@ -227,7 +240,7 @@ class NovelVideoGenerator:
             image_scene = scene.copy() if scene else {}
             image_scene['width'] = width
             image_scene['height'] = height
-
+            
             # 角色模式：让 ImageGenerator/EnhancedImageGenerator 接管“角色一致”
             if effective_include_character:
                 # 给下游一个明确的角色信号（ImageGenerator 内部会识别 character.id）
@@ -318,7 +331,7 @@ class NovelVideoGenerator:
                                         character_parts.append("Male, male character, male person")  # 通过重复强调
                                     elif "female" in identity_lower:
                                         character_parts.append("Female, female character, female person")
-                                
+                
                                 # 服饰描述（最高优先级，确保不被优化掉）
                                 # ⚡ 注意：character_profiles.yaml 中的 prompt_keywords 可能包含权重语法
                                 # 需要移除权重语法，只保留描述内容
@@ -485,7 +498,10 @@ class NovelVideoGenerator:
                             print(f"  ⚠ 场景分析失败: {e}")
                             pass
                 else:
-                    negative_prompt = "anime, cartoon, characters, people, persons, human figures, anime style, cartoon style, faces, portraits, black faces, dark faces, human faces, person faces, character faces, people in image, humans in scene, any people, any persons, any characters, any human figures, low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, flickering, jittery, unstable, sudden movement, abrupt changes, low quality, worst quality, distorted proportions, unrealistic details"
+                    # 非角色模式：使用纯场景的负面提示词
+                    # ⚡ 关键修复：不要排除 anime/cartoon 风格（因为 quality_target.style 可能是 xianxia_anime）
+                    # 只排除人物，保留风格灵活性
+                    negative_prompt = "characters, people, persons, human figures, faces, portraits, black faces, dark faces, human faces, person faces, character faces, people in image, humans in scene, any people, any persons, any characters, any human figures, low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark, worst quality, distorted proportions, unrealistic details"
             
             print(f"  ✅ 提示词优化完成:")
             print(f"     原始: {original_prompt}")
@@ -936,6 +952,7 @@ class NovelVideoGenerator:
                 identity_report_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
                 print(f"✅ M6 身份验证报告: {identity_report_path}")
             else:
+                # 非 M6 模式：使用普通视频生成器
                 video_path = self.video_generator.generate_video(
                     image_path=str(image_path),
                     output_path=str(video_output_path),
@@ -1319,7 +1336,7 @@ def main():
         enable_m6_identity = False
     elif args.enable_m6_identity:
         enable_m6_identity = True
-
+    
     # 生成视频
     result = generator.generate(
         prompt=args.prompt,

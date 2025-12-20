@@ -374,13 +374,100 @@ class OpenAILLMClient:
         """
         try:
             from openai import OpenAI
+            # ⚡ 修复：处理 SOCKS proxy 相关错误
+            # 如果环境中有 SOCKS proxy 配置但缺少 socksio，尝试禁用 proxy 或给出明确提示
+            import os
+            proxy_env_vars = ['HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY', 'http_proxy', 'https_proxy', 'all_proxy']
+            has_proxy = any(os.environ.get(var) for var in proxy_env_vars)
+            
+            # ⚡ 关键修复：初始化 socks_proxy_found，避免 UnboundLocalError
+            socks_proxy_found = False
+            
+            # ⚡ 关键修复：如果没有代理配置，确保不会因为网络问题卡死
+            # 通过设置明确的超时和重试策略来避免卡死
+            http_client_config = {}
+            
+            if has_proxy:
+                # 检查是否有 SOCKS proxy
+                for var in proxy_env_vars:
+                    proxy_value = os.environ.get(var, '')
+                    if proxy_value.startswith('socks'):
+                        socks_proxy_found = True
+                        logger.warning(f"  ⚠ 检测到 SOCKS proxy 配置 ({var})，但缺少 socksio 包")
+                        logger.warning(f"  💡 已自动绕过 proxy，API 调用将正常工作（无需安装 socksio）")
+                        logger.warning(f"  💡 如需支持 SOCKS proxy，可尝试: pip install socksio")
+                        break
+                
+                # 如果有 SOCKS proxy 但缺少 socksio，尝试临时禁用
+                if socks_proxy_found:
+                    try:
+                        import httpx
+                        # 检查是否有 socksio
+                        import importlib
+                        importlib.import_module('socksio')
+                    except ImportError:
+                        logger.warning(f"  ⚠ 检测到 SOCKS proxy 但缺少 socksio，将尝试不使用 proxy")
+                        # 临时禁用 proxy（仅对 OpenAI 客户端）
+                        http_client_config = {"proxy": None}
+            
+            # ⚡ 关键修复：设置 HTTP 客户端超时，避免卡死
+            # 即使没有代理，也要设置超时，防止网络问题导致卡死
+            import httpx
+            timeout_config = httpx.Timeout(
+                connect=10.0,  # 连接超时 10 秒
+                read=30.0,     # 读取超时 30 秒
+                write=10.0,    # 写入超时 10 秒
+                pool=10.0      # 连接池超时 10 秒
+            )
+            
+            # ⚡ 关键修复：如果检测到 SOCKS proxy 但缺少 socksio，明确禁用所有 proxy
+            # 因为 httpx 会自动从环境变量读取 proxy，即使我们设置了 http_client_config
+            if socks_proxy_found and not http_client_config.get("proxy"):
+                # 临时保存环境变量
+                saved_proxy_vars = {}
+                for var in proxy_env_vars:
+                    if var in os.environ:
+                        saved_proxy_vars[var] = os.environ[var]
+                        del os.environ[var]  # 临时删除环境变量
+                
+                try:
+                    # 创建 HTTP 客户端（不带 proxy）
+                    http_client = httpx.Client(
+                        timeout=timeout_config,
+                        proxy=None  # 明确禁用 proxy
+                    )
+                finally:
+                    # 恢复环境变量
+                    for var, value in saved_proxy_vars.items():
+                        os.environ[var] = value
+            else:
+                # 创建 HTTP 客户端（带超时配置）
+                http_client = httpx.Client(
+                    timeout=timeout_config,
+                    **http_client_config
+                )
+            
             self.client = OpenAI(
                 api_key=api_key,
-                base_url=base_url if base_url else None
+                base_url=base_url if base_url else None,
+                http_client=http_client  # ⚡ 关键：传入带超时的 HTTP 客户端
             )
             self.model = model
-        except ImportError:
-            raise ImportError("需要安装 openai 库: pip install openai")
+        except ImportError as e:
+            error_msg = str(e)
+            if 'socksio' in error_msg.lower() or 'socks' in error_msg.lower():
+                logger.error(f"导入 openai 库失败（SOCKS proxy 问题）: {e}")
+                logger.error(f"  💡 解决方案: pip install httpx[socks] 或禁用 SOCKS proxy")
+                raise ImportError(f"需要安装 httpx[socks] 以支持 SOCKS proxy，或禁用 proxy 配置")
+            else:
+                logger.error(f"导入 openai 库失败: {e}")
+                raise ImportError(f"需要安装 openai 库: pip install openai (原始错误: {e})")
+        except Exception as e:
+            # ⚡ 修复：捕获所有异常，避免把其他错误误判为 ImportError
+            logger.error(f"初始化 OpenAI 客户端失败: {e}")
+            import traceback
+            logger.debug(f"异常详情: {traceback.format_exc()}")
+            raise
     
     def analyze_scene(self, prompt: str) -> str:
         """
@@ -393,7 +480,10 @@ class OpenAILLMClient:
             JSON 格式的分析结果
         """
         try:
-            # 添加超时设置（30秒）
+            # ⚡ 关键修复：添加多层超时保护，避免卡死
+            # 1. HTTP 客户端层面已有超时（连接10秒，读取30秒）
+            # 2. API 调用层面也设置超时（30秒）
+            # 3. 如果超时，会抛出异常，不会卡死
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
@@ -402,14 +492,23 @@ class OpenAILLMClient:
                 ],
                 temperature=0.3,  # 降低温度，提高准确性
                 response_format={"type": "json_object"},  # 强制返回 JSON
-                timeout=30.0  # 30秒超时
+                timeout=30.0  # 30秒超时（API 调用层面）
             )
             content = response.choices[0].message.content
             if not content:
                 raise ValueError("LLM 返回空内容")
             return content
         except Exception as e:
-            logger.error(f"OpenAI API 调用失败: {e}")
+            error_msg = str(e)
+            # ⚡ 关键修复：区分不同类型的错误，给出明确的提示
+            if "timeout" in error_msg.lower() or "timed out" in error_msg.lower():
+                logger.error(f"OpenAI API 调用超时: {e}")
+                logger.error(f"  💡 可能是网络问题或代理配置问题，将回退到本地模式")
+            elif "proxy" in error_msg.lower() or "socks" in error_msg.lower():
+                logger.error(f"OpenAI API 调用失败（代理问题）: {e}")
+                logger.error(f"  💡 请检查代理配置或安装 httpx[socks]")
+            else:
+                logger.error(f"OpenAI API 调用失败: {e}")
             logger.debug(f"API 调用异常详情: {traceback.format_exc()}")
             raise
 

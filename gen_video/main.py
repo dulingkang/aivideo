@@ -101,7 +101,7 @@ class AIVideoPipeline:
             output_name: 输出文件名
         """
         print(f"\n处理脚本: {script_path}")
-
+        
         script_path_obj = Path(script_path)
         # 加载脚本
         with open(script_path_obj, "r", encoding="utf-8") as f:
@@ -1119,15 +1119,15 @@ class AIVideoPipeline:
                         except Exception as e:
                             print(f"  ⚠ M6 报告写入失败（继续）: {e}")
                 else:
-                    self.video_generator.generate_video(
-                        image_path,
-                        str(output_path),
-                        motion_bucket_id=scene.get('motion_bucket_id'),
-                        noise_aug_strength=scene.get('noise_aug_strength'),
-                        num_frames=scene.get('num_frames'),
-                        fps=scene.get('fps'),
-                        scene=clean_scene,  # 传递干净的场景数据，确保只包含当前场景的旁白
-                    )
+                self.video_generator.generate_video(
+                    image_path,
+                    str(output_path),
+                    motion_bucket_id=scene.get('motion_bucket_id'),
+                    noise_aug_strength=scene.get('noise_aug_strength'),
+                    num_frames=scene.get('num_frames'),
+                    fps=scene.get('fps'),
+                    scene=clean_scene,  # 传递干净的场景数据，确保只包含当前场景的旁白
+                )
                 # 使用绝对路径确保文件可找到
                 # 等待一下确保文件写入完成
                 import time

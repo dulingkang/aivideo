@@ -133,9 +133,16 @@ class ExecutionPlannerV3:
                 else:
                     logger.warning("  ⚠ 配置了 LLM 模式但未提供 API Key，将使用本地模式")
             except Exception as e:
-                logger.warning(f"  ⚠ LLM 客户端初始化失败: {e}，将使用本地模式")
+                # ⚡ 修复：更详细的错误信息，区分 ImportError 和其他错误
                 import traceback
+                error_type = type(e).__name__
+                if isinstance(e, ImportError):
+                    logger.warning(f"  ⚠ LLM 客户端初始化失败（导入错误）: {e}")
+                    logger.warning(f"  💡 请检查 openai 库是否正确安装: pip install openai")
+                else:
+                    logger.warning(f"  ⚠ LLM 客户端初始化失败（{error_type}）: {e}")
                 logger.debug(f"  [DEBUG] LLM 初始化异常详情: {traceback.format_exc()}")
+                logger.info(f"  ℹ 将使用本地模式（规则引擎）")
         
         # 参考强度映射表 (基于镜头类型)
         # 注意：中景和全身场景提高参考强度，以增强服饰一致性
@@ -211,16 +218,22 @@ class ExecutionPlannerV3:
         # 因为参考图可能是站立的，会强烈影响姿态，所以需要降低参考强度
         is_lying_action = False
         if character_present:
-            # 检查场景描述中是否包含"lying"相关关键词
-            scene_text = str(scene.get("prompt", "")).lower() + " " + str(scene.get("description", "")).lower()
-            lying_keywords = ["lying", "lie", "躺", "lying on", "lie on", "prone", "保持不动", "静止", "脚下", "地面", "floor", "ground", "沙地"]
-            if any(kw in scene_text for kw in lying_keywords):
-                # 进一步检查是否是"lying"动作（需要组合判断）
-                motionless_keywords = ["保持不动", "静止", "不动", "motionless", "still"]
-                ground_keywords = ["脚下", "地面", "floor", "ground", "沙地"]
-                if any(kw in scene_text for kw in motionless_keywords) and any(kw in scene_text for kw in ground_keywords):
-                    is_lying_action = True
-                    logger.info("  ⚡ 检测到'lying'动作，将降低参考强度以让 prompt 控制姿态")
+            # ⚡ 关键修复：优先检查 character.pose 字段（v2 格式）
+            character_pose = character.get("pose", "").lower()
+            if character_pose in ["lying_motionless", "lying", "lie", "prone"]:
+                is_lying_action = True
+                logger.info(f"  ⚡ 从 character.pose 检测到'lying'动作: {character_pose}，将降低参考强度以让 prompt 控制姿态")
+            else:
+                # 检查场景描述中是否包含"lying"相关关键词
+                scene_text = str(scene.get("prompt", "")).lower() + " " + str(scene.get("description", "")).lower()
+                lying_keywords = ["lying", "lie", "躺", "lying on", "lie on", "prone", "保持不动", "静止", "脚下", "地面", "floor", "ground", "沙地"]
+                if any(kw in scene_text for kw in lying_keywords):
+                    # 进一步检查是否是"lying"动作（需要组合判断）
+                    motionless_keywords = ["保持不动", "静止", "不动", "motionless", "still"]
+                    ground_keywords = ["脚下", "地面", "floor", "ground", "沙地"]
+                    if any(kw in scene_text for kw in motionless_keywords) and any(kw in scene_text for kw in ground_keywords):
+                        is_lying_action = True
+                        logger.info("  ⚡ 从场景描述检测到'lying'动作，将降低参考强度以让 prompt 控制姿态")
         
         # 1. 计算参考强度
         reference_strength = self._calculate_reference_strength(
@@ -230,10 +243,19 @@ class ExecutionPlannerV3:
             character_present=character_present
         )
         
-        # ⚡ 关键修复：如果是"lying"动作，降低参考强度（从 60% 降到 40%），让 prompt 有更大控制权
+        # ⚡ 关键修复：如果是"lying"动作，使用配置中的最优参考强度值
+        # 注意：参考强度的最优值已经通过实验确定，这里不再硬编码降低
+        # 如果需要调整，请在 config.yaml 的 execution_planner.pose_reference_strength_adjustments 中配置
         if is_lying_action:
-            reference_strength = max(40, reference_strength - 20)  # 至少降低 20%，但不低于 40%
-            logger.info(f"  ⚡ 'lying'动作：参考强度从 {reference_strength + 20}% 降低到 {reference_strength}%")
+            # 从配置中读取 lying 动作的参考强度调整值（如果有）
+            pose_adjustments = self.config.get("execution_planner", {}).get("pose_reference_strength_adjustments", {})
+            lying_adjustment = pose_adjustments.get("lying", 0)  # 默认不调整，使用实验得出的最优值
+            if lying_adjustment != 0:
+                reference_strength = max(0, min(100, reference_strength + lying_adjustment))
+                logger.info(f"  ⚡ 'lying'动作：参考强度调整为 {reference_strength}% (调整值: {lying_adjustment})")
+            else:
+                # 如果没有配置调整值，保持原值（使用实验得出的最优值）
+                logger.info(f"  ⚡ 'lying'动作：使用实验得出的最优参考强度 {reference_strength}% (未调整)")
 
         
         # ⚡ 脸可见/特写场景：强制提高参考强度，避免"完全不像"的人像
@@ -260,11 +282,21 @@ class ExecutionPlannerV3:
             reference_strength=reference_strength
         )
         
-        # 3. 选择引擎
+        # 3. 评估场景稳定性（决定是否使用 Flux + PuLID）
+        stability_score = self._evaluate_scene_stability(
+            scene=scene,
+            shot_type=shot_type,
+            camera_angle=camera_angle,
+            character=character,
+            environment=environment
+        )
+        
+        # 4. 选择引擎（根据稳定性决定是否回退到 SDXL + InstantID）
         scene_engine, identity_engine = self._select_engines(
             shot_type=shot_type,
             mode=mode,
-            scene=scene
+            scene=scene,
+            stability_score=stability_score
         )
         
         # 4. 选择参考图
@@ -378,24 +410,187 @@ class ExecutionPlannerV3:
         
         return GenerationMode.STANDARD
     
+    def _evaluate_scene_stability(
+        self,
+        scene: Dict[str, Any],
+        shot_type: str,
+        camera_angle: str,
+        character: Dict[str, Any],
+        environment: Dict[str, Any]
+    ) -> float:
+        """
+        评估场景稳定性（0.0-1.0）
+        
+        稳定性分数越低，越不适合使用 Flux + PuLID，应该回退到 SDXL + InstantID
+        
+        评估维度：
+        1. 人脸像素占比（face_pixel_ratio）
+        2. 姿态类型（lying + wide shot 组合）
+        3. 背景与服饰颜色相似度
+        4. SAM2 mask 置信度预估
+        
+        Returns:
+            稳定性分数 (0.0-1.0)，< 0.5 时建议回退到 SDXL + InstantID
+        """
+        stability_factors = []
+        
+        # 1. 估算人脸像素占比
+        face_pixel_ratio = self._estimate_face_pixel_ratio(
+            shot_type=shot_type,
+            camera_angle=camera_angle,
+            character=character
+        )
+        # face_pixel_ratio < 0.04 时，稳定性大幅下降
+        if face_pixel_ratio < 0.04:
+            stability_factors.append(0.2)  # 严重不稳定
+        elif face_pixel_ratio < 0.06:
+            stability_factors.append(0.4)  # 不稳定
+        elif face_pixel_ratio < 0.08:
+            stability_factors.append(0.6)  # 中等稳定
+        else:
+            stability_factors.append(1.0)  # 稳定
+        
+        # 2. 检测"死刑组合"：lying + wide shot
+        character_pose = character.get("pose", "").lower()
+        is_lying = character_pose in ["lying_motionless", "lying", "lie", "prone"]
+        is_wide_shot = shot_type in ["extreme_wide", "wide", "full"]
+        
+        if is_lying and is_wide_shot:
+            logger.warning("  ⚠ 检测到'死刑组合'：lying + wide shot，稳定性大幅下降")
+            stability_factors.append(0.1)  # 极不稳定
+        elif is_lying:
+            stability_factors.append(0.5)  # 中等不稳定
+        elif is_wide_shot:
+            stability_factors.append(0.7)  # 轻微不稳定
+        else:
+            stability_factors.append(1.0)  # 稳定
+        
+        # 3. 检测背景与服饰颜色相似度（简单启发式）
+        scene_text = str(scene.get("prompt", "")).lower() + " " + str(scene.get("description", "")).lower()
+        environment_color = environment.get("color_palette", "").lower()
+        
+        # 检测沙漠/沙地场景（人物与背景颜色相似）
+        desert_keywords = ["desert", "sand", "沙地", "沙漠", "beach", "海滩"]
+        clothing_keywords = ["robe", "clothing", "clothes", "garment", "服饰", "衣服", "道袍"]
+        
+        has_desert = any(kw in scene_text or kw in environment_color for kw in desert_keywords)
+        has_clothing = any(kw in scene_text for kw in clothing_keywords)
+        
+        if has_desert and has_clothing:
+            logger.warning("  ⚠ 检测到背景与服饰颜色相似（沙漠场景），SAM2 分割可能失败")
+            stability_factors.append(0.3)  # 不稳定（SAM2 难以分割）
+        else:
+            stability_factors.append(1.0)  # 稳定
+        
+        # 4. 检测 top-down 角度（俯拍）
+        if camera_angle in ["top_down", "bird_eye"]:
+            logger.warning("  ⚠ 检测到俯拍角度，人脸检测可能失败")
+            stability_factors.append(0.4)  # 不稳定
+        else:
+            stability_factors.append(1.0)  # 稳定
+        
+        # 5. 检测 face_visible 和 visibility
+        face_visible = character.get("face_visible", True)
+        visibility = str(character.get("visibility", "") or "").lower()
+        
+        if not face_visible or visibility == "low":
+            logger.warning("  ⚠ 检测到 face_visible=false 或 visibility=low，人脸检测可能失败")
+            stability_factors.append(0.3)  # 不稳定
+        elif visibility == "high":
+            stability_factors.append(1.0)  # 稳定
+        else:
+            stability_factors.append(0.7)  # 中等稳定
+        
+        # 计算综合稳定性分数（取最小值，因为任何一项失败都会导致整体失败）
+        stability_score = min(stability_factors)
+        
+        logger.info(f"  场景稳定性评估: {stability_score:.2f} (face_ratio={face_pixel_ratio:.3f}, "
+                   f"lying={is_lying}, wide={is_wide_shot}, desert={has_desert})")
+        
+        return stability_score
+    
+    def _estimate_face_pixel_ratio(
+        self,
+        shot_type: str,
+        camera_angle: str,
+        character: Dict[str, Any]
+    ) -> float:
+        """
+        估算人脸在画面中的像素占比
+        
+        基于镜头类型、相机角度和人物可见性进行估算
+        
+        Returns:
+            人脸像素占比 (0.0-1.0)
+        """
+        # 基础占比（基于镜头类型）
+        base_ratios = {
+            "extreme_close": 0.15,  # 超特写：人脸占 15%
+            "close": 0.10,          # 特写：人脸占 10%
+            "medium_close": 0.06,   # 中近景：人脸占 6%
+            "medium": 0.04,         # 中景：人脸占 4%
+            "american": 0.03,       # 7/8身：人脸占 3%
+            "full": 0.02,          # 全身：人脸占 2%
+            "wide": 0.01,          # 远景：人脸占 1%
+            "extreme_wide": 0.005,  # 超远景：人脸占 0.5%
+        }
+        
+        base_ratio = base_ratios.get(shot_type, 0.04)
+        
+        # 角度调整
+        if camera_angle in ["top_down", "bird_eye"]:
+            base_ratio *= 0.5  # 俯拍：人脸占比减半
+        elif camera_angle == "low":
+            base_ratio *= 1.2  # 仰拍：人脸占比增加
+        
+        # 可见性调整
+        face_visible = character.get("face_visible", True)
+        visibility = str(character.get("visibility", "") or "").lower()
+        
+        if not face_visible:
+            base_ratio *= 0.3  # 脸不可见：占比大幅降低
+        elif visibility == "low":
+            base_ratio *= 0.5  # 低可见性：占比减半
+        elif visibility == "high":
+            base_ratio *= 1.2  # 高可见性：占比增加
+        
+        return base_ratio
+    
     def _select_engines(
         self,
         shot_type: str,
         mode: GenerationMode,
-        scene: Dict[str, Any]
+        scene: Dict[str, Any],
+        stability_score: float = 1.0
     ) -> Tuple[SceneEngine, IdentityEngine]:
-        """选择引擎组合"""
+        """
+        选择引擎组合
         
+        根据场景稳定性决定：
+        - 稳定性 >= 0.5：使用 Flux + PuLID（上限方案）
+        - 稳定性 < 0.5：回退到 SDXL + InstantID（稳定方案）
+        
+        Args:
+            shot_type: 镜头类型
+            mode: 生成模式
+            scene: 场景字典
+            stability_score: 场景稳定性分数 (0.0-1.0)
+        """
         # 场景引擎选择
-        scene_engine = SceneEngine.FLUX1  # 默认 Flux1
+        if stability_score < 0.5:
+            # 稳定性不足，回退到 SDXL + InstantID
+            logger.warning(f"  ⚠ 场景稳定性不足 ({stability_score:.2f})，回退到 SDXL + InstantID（稳定方案）")
+            scene_engine = SceneEngine.SDXL
+            identity_engine = IdentityEngine.INSTANTID
+        else:
+            # 稳定性足够，使用 Flux + PuLID（上限方案）
+            logger.info(f"  ✓ 场景稳定性良好 ({stability_score:.2f})，使用 Flux + PuLID（上限方案）")
+            scene_engine = SceneEngine.FLUX1
+            identity_engine = IdentityEngine.PULID
         
-        # 身份引擎选择
-        # 统一使用 PuLID，保持所有镜头类型的一致性
+        # 无人物场景
         if mode == GenerationMode.SCENE_ONLY:
             identity_engine = IdentityEngine.NONE
-        else:
-            # 所有场景统一使用 PuLID，确保处理方式一致
-            identity_engine = IdentityEngine.PULID
         
         return scene_engine, identity_engine
     
@@ -556,27 +751,71 @@ class ExecutionPlannerV3:
                     prompt_engine_config = self.config.get("prompt_engine", {})
                     use_llm = prompt_engine_config.get("scene_analyzer_mode", "local") in ["llm", "hybrid"]
                     
-                    # ⚡ 关键修复：传递 LLM 客户端，确保 LLM 模式正常工作
-                    analysis_result = analyze_scene(
-                        prompt=original_prompt,
-                        current_shot_type=shot_type,
-                        use_llm=use_llm,
-                        llm_client=self.llm_client if use_llm else None
-                    )
+                    # ⚡ 关键修复：添加超时保护，避免 LLM 调用卡住
+                    import threading
+                    analysis_result_container = [None]  # 使用列表来存储结果，避免作用域问题
+                    analysis_error = [None]
+                    
+                    def run_analysis():
+                        try:
+                            # ⚡ 关键修复：传递 LLM 客户端，确保 LLM 模式正常工作
+                            result = analyze_scene(
+                                prompt=original_prompt,
+                                current_shot_type=shot_type,
+                                use_llm=use_llm,
+                                llm_client=self.llm_client if use_llm else None
+                            )
+                            analysis_result_container[0] = result
+                        except Exception as e:
+                            analysis_error[0] = e
+                    
+                    try:
+                        # 使用线程 + 超时，更可靠
+                        print("    [调试] 启动场景分析线程（15秒超时）...")
+                        analysis_thread = threading.Thread(target=run_analysis, daemon=True)
+                        analysis_thread.start()
+                        analysis_thread.join(timeout=15.0)  # 15秒超时
+                        
+                        if analysis_thread.is_alive():
+                            # 线程仍在运行，说明超时了
+                            print("    ⚠ 场景分析超时（15秒），回退到本地规则引擎")
+                            logger.warning(f"  ⚠ 场景分析超时（15秒），回退到本地规则引擎")
+                            analysis_result = None
+                        elif analysis_error[0]:
+                            # 有错误
+                            print(f"    ⚠ 场景分析失败: {analysis_error[0]}，回退到本地规则引擎")
+                            if isinstance(analysis_error[0], TimeoutError):
+                                logger.warning(f"  ⚠ 场景分析超时: {analysis_error[0]}，回退到本地规则引擎")
+                            else:
+                                logger.warning(f"  ⚠ 场景分析失败: {analysis_error[0]}，回退到本地规则引擎")
+                            analysis_result = None
+                        else:
+                            # 成功
+                            analysis_result = analysis_result_container[0]
+                            print(f"    ✓ 场景分析完成（LLM: {'是' if use_llm and self.llm_client else '否'}）")
+                    except Exception as e:
+                        print(f"    ⚠ 场景分析异常: {e}，回退到本地规则引擎")
+                        logger.warning(f"  ⚠ 场景分析异常: {e}，回退到本地规则引擎")
+                        analysis_result = None
                     
                     if use_llm and self.llm_client:
                         logger.info("  ✓ 使用 LLM 场景分析器（更智能的分析）")
                     else:
                         logger.info("  ✓ 使用本地场景分析器（快速规则引擎）")
                     
+                    logger.info(f"  ✓ 场景分析完成，开始构建 prompt...")
+                    
                     # ⚡ 工程级优化：使用决策表整合规则层和 LLM 层
+                    print("    [调试] 开始处理场景分析结果...")
                     logger.info(f"  ✓ LLM 场景分析完成，开始处理结果...")
                     # 1. 获取 LLM 的语义理解结果
                     llm_posture_type = analysis_result.posture_type if analysis_result else None
                     llm_recommended_shot = analysis_result.recommended_shot_type.value if analysis_result else shot_type
+                    print(f"    [调试] LLM 返回: posture_type={llm_posture_type}, recommended_shot={llm_recommended_shot}")
                     logger.debug(f"  [DEBUG] LLM 返回: posture_type={llm_posture_type}, recommended_shot={llm_recommended_shot}")
                     
                     # 2. 使用规则引擎（PostureController）做导演语义判断
+                    print("    [调试] 开始规则引擎分析...")
                     logger.debug(f"  [DEBUG] 开始规则引擎分析...")
                     posture_hint = None
                     try:
@@ -588,13 +827,17 @@ class ExecutionPlannerV3:
                         logger.debug(f"  [DEBUG] 规则引擎分析完成: {director_semantics}")
                         posture_hint = director_semantics.get("posture_hint")
                         if posture_hint:
+                            print(f"    ✓ 规则引擎检测到姿态提示: {posture_hint}")
                             logger.info(f"  ✓ 规则引擎检测到姿态提示: {posture_hint} (置信度: {director_semantics.get('confidence', 0):.2f})")
                         else:
+                            print("    [调试] 规则引擎未检测到姿态提示")
                             logger.debug(f"  [DEBUG] 规则引擎未检测到姿态提示")
                     except ImportError as e:
+                        print(f"    [调试] PostureController 导入失败: {e}")
                         logger.debug(f"  [DEBUG] PostureController 导入失败: {e}")
                         pass
                     except Exception as e:
+                        print(f"    ⚠ 规则引擎分析出错: {e}")
                         logger.warning(f"  ⚠ 规则引擎分析出错: {e}")
                         import traceback
                         logger.debug(f"  [DEBUG] 规则引擎异常详情: {traceback.format_exc()}")
@@ -696,24 +939,60 @@ class ExecutionPlannerV3:
                 # 特别是"lying"等姿态描述，需要放在最前面（镜头类型之后），确保不被覆盖
                 if enhancement_descriptions:
                     # ⚡ 关键修复：使用统一的去重工具，避免重复
+                    print(f"    [调试] 开始去重处理，enhancement_descriptions: {len(enhancement_descriptions)} 条")
                     logger.debug(f"  [DEBUG] 开始去重处理，enhancement_descriptions: {len(enhancement_descriptions)} 条")
                     try:
                         from utils.prompt_deduplicator import filter_duplicates
+                        print("    [调试] filter_duplicates 导入成功")
                         logger.debug(f"  [DEBUG] filter_duplicates 导入成功")
                         
                         # 合并已有文本（镜头类型描述 + 原始 prompt）
                         existing_texts = [shot_desc, enhanced_prompt]
+                        print(f"    [调试] existing_texts: {existing_texts}")
                         logger.debug(f"  [DEBUG] existing_texts: {existing_texts}")
                         
                         # 使用去重工具过滤
                         # ⚡ 关键修复：提高阈值，更严格地检测重复（从0.6提高到0.5）
+                        # ⚡ 关键修复：添加异常保护，避免卡住
+                        print("    [调试] 调用 filter_duplicates...")
                         logger.debug(f"  [DEBUG] 调用 filter_duplicates...")
-                        filtered_enhancements = filter_duplicates(
-                            new_descriptions=enhancement_descriptions,
-                            existing_texts=existing_texts,
-                            threshold=0.5  # 50% 重叠认为是重复（更严格）
-                        )
-                        logger.debug(f"  [DEBUG] filter_duplicates 完成，结果: {len(filtered_enhancements)} 条")
+                        import time
+                        dedup_start = time.time()
+                        try:
+                            # 如果描述数量很少，直接使用简单去重（避免复杂计算）
+                            if len(enhancement_descriptions) <= 3:
+                                print("    [调试] 描述数量少，使用简单去重")
+                                logger.debug(f"  [DEBUG] 描述数量少，使用简单去重")
+                                filtered_enhancements = []
+                                enhanced_prompt_lower = enhanced_prompt.lower()
+                                shot_desc_lower = shot_desc.lower()
+                                combined_lower = f"{shot_desc_lower}, {enhanced_prompt_lower}"
+                                for desc in enhancement_descriptions:
+                                    desc_lower = desc.lower()
+                                    if desc_lower not in combined_lower:
+                                        filtered_enhancements.append(desc)
+                            else:
+                                filtered_enhancements = filter_duplicates(
+                                    new_descriptions=enhancement_descriptions,
+                                    existing_texts=existing_texts,
+                                    threshold=0.5  # 50% 重叠认为是重复（更严格）
+                                )
+                            dedup_elapsed = time.time() - dedup_start
+                            print(f"    [调试] filter_duplicates 完成 (耗时: {dedup_elapsed:.2f}秒)，结果: {len(filtered_enhancements)} 条")
+                            logger.debug(f"  [DEBUG] filter_duplicates 完成，结果: {len(filtered_enhancements)} 条")
+                        except Exception as e:
+                            dedup_elapsed = time.time() - dedup_start
+                            print(f"    ⚠ filter_duplicates 失败 (耗时: {dedup_elapsed:.2f}秒): {e}，使用简单去重")
+                            logger.warning(f"  ⚠ filter_duplicates 失败: {e}，使用简单去重")
+                            # 回退到简单去重
+                            filtered_enhancements = []
+                            enhanced_prompt_lower = enhanced_prompt.lower()
+                            shot_desc_lower = shot_desc.lower()
+                            combined_lower = f"{shot_desc_lower}, {enhanced_prompt_lower}"
+                            for desc in enhancement_descriptions:
+                                desc_lower = desc.lower()
+                                if desc_lower not in combined_lower:
+                                    filtered_enhancements.append(desc)
                     except ImportError:
                         # 如果去重工具不可用，使用简单检查
                         logger.warning("去重工具不可用，使用简单检查")
@@ -736,76 +1015,122 @@ class ExecutionPlannerV3:
                     
                     # ⚡ 工程级优化：使用 final_posture_type（已由规则层和 LLM 层整合）
                     # 优先使用 LLM 返回的姿态描述，如果没有则使用 PostureController 模板
+                    print(f"    [调试] 开始处理姿态指令，final_posture_type: {final_posture_type}")
                     logger.info(f"  ✓ 开始处理姿态指令，final_posture_type: {final_posture_type}")
                     final_parts = []
-                    other_descriptions = filtered_enhancements if filtered_enhancements else []
+                    # ⚡ 关键修复：确保 other_descriptions 被正确初始化
+                    other_descriptions = []
+                    if filtered_enhancements:
+                        other_descriptions = filtered_enhancements.copy()  # 使用 copy 避免引用问题
+                    print(f"    [调试] other_descriptions 初始化完成: {len(other_descriptions)} 条")
                     logger.debug(f"  [DEBUG] other_descriptions: {len(other_descriptions)} 条")
                     
                     # 获取姿态指令（优先级：LLM 返回 > PostureController 模板）
+                    print("    [调试] 获取姿态指令...")
                     posture_instruction = None
                     if analysis_result and analysis_result.posture_positive:
                         # LLM 已经返回了精确的姿态描述，直接使用
                         posture_instruction = analysis_result.posture_positive
+                        print(f"    ✓ LLM 已返回姿态描述: {analysis_result.posture_type}")
                         logger.info(f"  ✓ LLM 已返回姿态描述: {analysis_result.posture_type}")
                         logger.info(f"  ✓ 姿态指令: {posture_instruction[:80]}...")
                     elif final_posture_type:
                         # LLM 没有返回描述，但检测到了姿态类型，使用 PostureController 模板
+                        print(f"    [调试] 使用 PostureController 模板生成姿态描述: {final_posture_type}")
                         try:
                             from utils.posture_controller import PostureController
                             posture_controller = PostureController()
                             posture_prompt = posture_controller.get_posture_prompt(final_posture_type, use_chinese=False)
                             posture_instruction = posture_prompt.get("positive", "")
                             if posture_instruction:
+                                print(f"    ✓ 使用 PostureController 模板生成姿态描述: {final_posture_type}")
                                 logger.info(f"  ✓ 使用 PostureController 模板生成姿态描述: {final_posture_type}")
                                 logger.info(f"  ✓ 姿态指令: {posture_instruction[:80]}...")
                         except ImportError:
+                            print("    [调试] PostureController 导入失败")
                             pass
+                        except Exception as e:
+                            print(f"    ⚠ PostureController 调用失败: {e}")
+                            pass
+                    else:
+                        print("    [调试] 没有检测到姿态类型")
                     
                     # 如果有姿态指令，添加到 final_parts 最前面（最高优先级）
+                    print("    [调试] 处理姿态指令...")
                     if posture_instruction:
                         final_parts = [posture_instruction]
+                        print(f"    ✓ 姿态指令已添加到 final_parts，当前长度: {len(final_parts)}")
                         logger.debug(f"  姿态指令已添加到 final_parts，当前长度: {len(final_parts)}")
                     else:
                         # 没有检测到姿态，检查是否有增强描述
+                        print("    [调试] 没有姿态指令，检查增强描述...")
                         if not filtered_enhancements:
                             # 如果没有增强描述，直接返回
+                            print("    [调试] 没有增强描述，直接返回")
                             return f"{shot_desc}, {enhanced_prompt}"
                         
                         # 如果有增强描述但没有检测到姿态，检查是否有姿态关键词
+                        print("    [调试] 检查增强描述中的姿态关键词...")
+                        print(f"    [调试] filtered_enhancements: {filtered_enhancements}")
                         pose_keywords = ["lying", "躺", "sitting", "坐", "prone", "水平位置", "俯卧", "水平"]
                         pose_descriptions = []
                         
-                        for desc in filtered_enhancements:
-                            desc_lower = desc.lower()
-                            if any(kw in desc_lower for kw in pose_keywords):
-                                pose_descriptions.append(desc)
-                            else:
-                                other_descriptions.append(desc)
+                        print(f"    [调试] 开始遍历 {len(filtered_enhancements)} 条增强描述...")
+                        # ⚡ 关键修复：重新初始化 other_descriptions，避免引用问题
+                        other_descriptions = []
+                        for i, desc in enumerate(filtered_enhancements):
+                            print(f"    [调试] 处理第 {i+1}/{len(filtered_enhancements)} 条: {desc[:50]}...")
+                            try:
+                                desc_lower = desc.lower()
+                                matched_keywords = [kw for kw in pose_keywords if kw in desc_lower]
+                                if matched_keywords:
+                                    print(f"    [调试] 匹配到姿态关键词: {matched_keywords}")
+                                    pose_descriptions.append(desc)
+                                else:
+                                    print(f"    [调试] 未匹配到姿态关键词，添加到 other_descriptions")
+                                    other_descriptions.append(desc)
+                            except Exception as e:
+                                print(f"    ⚠ 处理描述时出错: {e}，跳过该描述")
+                                import traceback
+                                traceback.print_exc()
+                                continue
+                        
+                        print(f"    [调试] 姿态关键词检查完成：pose_descriptions={len(pose_descriptions)}, other_descriptions={len(other_descriptions)}")
                         
                         # ⚡ 关键修复：姿态描述放在最最前面（最高优先级），确保不被任何其他描述覆盖
                         if pose_descriptions:
                             final_parts.extend(pose_descriptions)
+                            print(f"    ✓ 已添加姿态描述（最高优先级，放在最最前面）: {len(pose_descriptions)} 条")
                             logger.info(f"  ✓ 已添加姿态描述（最高优先级，放在最最前面）: {len(pose_descriptions)} 条")
+                        else:
+                            print("    [调试] 没有找到姿态描述")
                     
                     # ⚡ 关键修复：统一处理 other_descriptions
                     # 如果 PostureController 检测到姿态，final_parts 已经包含姿态指令，只需要处理其他描述
+                    print("    [调试] 统一处理 other_descriptions...")
                     if "other_descriptions" not in locals():
                         other_descriptions = filtered_enhancements if filtered_enhancements else []
                     
                     # 镜头类型描述
+                    print("    [调试] 添加镜头类型描述...")
                     if "final_parts" not in locals():
                         final_parts = []
                     final_parts.append(shot_desc)
+                    print(f"    ✓ 镜头类型描述已添加，final_parts 长度: {len(final_parts)}")
                     
                     # 其他增强描述（场景、地面等）
+                    print(f"    [调试] 添加其他增强描述，other_descriptions: {len(other_descriptions)} 条")
                     if other_descriptions:
                         final_parts.extend(other_descriptions)
+                        print(f"    ✓ 已添加场景增强描述: {len(other_descriptions)} 条")
                         logger.info(f"  ✓ 已添加场景增强描述: {len(other_descriptions)} 条")
                     
                     # ⚡ 关键修复：分离角色描述和原始 prompt，确保角色描述在姿态和场景之后，但在原始 prompt 之前
+                    print("    [调试] 开始分离角色描述和场景描述...")
                     logger.info(f"  ✓ 开始分离角色描述和场景描述...")
                     # 检查 enhanced_prompt 是否包含角色描述（通常在开头）
                     enhanced_prompt_parts = enhanced_prompt.split(", ")
+                    print(f"    [调试] enhanced_prompt_parts: {len(enhanced_prompt_parts)} 部分")
                     logger.debug(f"  [DEBUG] enhanced_prompt_parts: {len(enhanced_prompt_parts)} 部分")
                     # ⚡ 关键修复：更精确的角色关键词识别，避免误判场景描述为角色描述
                     character_keywords = [
@@ -818,6 +1143,7 @@ class ExecutionPlannerV3:
                     character_parts = []
                     scene_parts = []
                     
+                    print("    [调试] 开始分类 prompt 部分...")
                     for part in enhanced_prompt_parts:
                         part_lower = part.lower()
                         # 检查是否是角色描述（更精确的匹配）
@@ -830,37 +1156,85 @@ class ExecutionPlannerV3:
                             character_parts.append(part)
                         else:
                             scene_parts.append(part)
+                    print(f"    ✓ 分类完成：角色部分 {len(character_parts)} 条，场景部分 {len(scene_parts)} 条")
                     
                     # ⚡ 关键修复：构建最终 prompt 的顺序：
                     # 姿态描述 -> 镜头类型 -> 场景描述 -> 角色描述（服饰+形象）-> 原始 prompt
                     # 这样确保角色描述在原始 prompt 之前，有足够的权重
                     
                     # ⚡ 关键修复：使用 PromptDeduplicator 去除重复描述
+                    print("    [调试] 开始最终去重处理...")
                     logger.info(f"  ✓ 开始最终去重处理...")
                     try:
                         from utils.prompt_deduplicator import PromptDeduplicator
+                        print("    [调试] PromptDeduplicator 导入成功")
                         logger.debug(f"  [DEBUG] PromptDeduplicator 导入成功")
                         deduplicator = PromptDeduplicator()
+                        print("    [调试] PromptDeduplicator 实例化成功")
                         logger.debug(f"  [DEBUG] PromptDeduplicator 实例化成功")
                         
+                        # ⚡ 性能优化：如果部分数量较少，直接合并，不进行复杂的去重
+                        # ⚡ 关键修复：添加异常保护，避免卡住
                         # 去重场景部分
                         if scene_parts:
+                            print(f"    [调试] 开始去重场景部分，共 {len(scene_parts)} 条")
                             logger.debug(f"  [DEBUG] 开始去重场景部分，共 {len(scene_parts)} 条")
-                            scene_text = ", ".join(scene_parts)
-                            # 检查场景部分内部是否有重复
-                            scene_parts_clean = deduplicator.merge_prompt_parts(scene_parts)
-                            logger.debug(f"  [DEBUG] 场景部分去重完成，结果: {len(scene_parts_clean.split(', ')) if scene_parts_clean else 0} 条")
-                            if scene_parts_clean:
-                                final_parts.append(scene_parts_clean)
+                            import time
+                            scene_start = time.time()
+                            try:
+                                if len(scene_parts) <= 5:
+                                    # 少量部分，直接合并
+                                    scene_parts_clean = ", ".join(scene_parts)
+                                    print("    [调试] 场景部分数量少，直接合并")
+                                    logger.debug(f"  [DEBUG] 场景部分数量少，直接合并")
+                                else:
+                                    # 大量部分，进行去重（添加超时保护）
+                                    print("    [调试] 场景部分数量多，进行去重...")
+                                    scene_parts_clean = deduplicator.merge_prompt_parts(scene_parts)
+                                    scene_elapsed = time.time() - scene_start
+                                    print(f"    [调试] 场景部分去重完成 (耗时: {scene_elapsed:.2f}秒)")
+                                    logger.debug(f"  [DEBUG] 场景部分去重完成，结果: {len(scene_parts_clean.split(', ')) if scene_parts_clean else 0} 条")
+                                if scene_parts_clean:
+                                    final_parts.append(scene_parts_clean)
+                            except Exception as e:
+                                scene_elapsed = time.time() - scene_start
+                                print(f"    ⚠ 场景部分去重失败 (耗时: {scene_elapsed:.2f}秒): {e}，使用简单合并")
+                                logger.warning(f"  ⚠ 场景部分去重失败: {e}，使用简单合并")
+                                scene_parts_clean = ", ".join(scene_parts)
+                                if scene_parts_clean:
+                                    final_parts.append(scene_parts_clean)
                         
                         # 去重角色部分
                         if character_parts:
-                            character_text = ", ".join(character_parts)
-                            # 检查角色部分内部是否有重复
-                            character_parts_clean = deduplicator.merge_prompt_parts(character_parts)
-                            if character_parts_clean:
-                                final_parts.append(character_parts_clean)
-                                logger.info(f"  ✓ 已添加角色描述（服饰+形象，已去重）")
+                            print(f"    [调试] 开始去重角色部分，共 {len(character_parts)} 条")
+                            logger.debug(f"  [DEBUG] 开始去重角色部分，共 {len(character_parts)} 条")
+                            char_start = time.time()
+                            try:
+                                if len(character_parts) <= 5:
+                                    # 少量部分，直接合并
+                                    character_parts_clean = ", ".join(character_parts)
+                                    print("    [调试] 角色部分数量少，直接合并")
+                                    logger.debug(f"  [DEBUG] 角色部分数量少，直接合并")
+                                else:
+                                    # 大量部分，进行去重（添加超时保护）
+                                    print("    [调试] 角色部分数量多，进行去重...")
+                                    character_parts_clean = deduplicator.merge_prompt_parts(character_parts)
+                                    char_elapsed = time.time() - char_start
+                                    print(f"    [调试] 角色部分去重完成 (耗时: {char_elapsed:.2f}秒)")
+                                    logger.debug(f"  [DEBUG] 角色部分去重完成")
+                                if character_parts_clean:
+                                    final_parts.append(character_parts_clean)
+                                    print("    ✓ 已添加角色描述（已去重）")
+                                    logger.info(f"  ✓ 已添加角色描述（服饰+形象，已去重）")
+                            except Exception as e:
+                                char_elapsed = time.time() - char_start
+                                print(f"    ⚠ 角色部分去重失败 (耗时: {char_elapsed:.2f}秒): {e}，使用简单合并")
+                                logger.warning(f"  ⚠ 角色部分去重失败: {e}，使用简单合并")
+                                character_parts_clean = ", ".join(character_parts)
+                                if character_parts_clean:
+                                    final_parts.append(character_parts_clean)
+                                    print("    ✓ 已添加角色描述（简单合并）")
+                                    logger.info(f"  ✓ 已添加角色描述（简单合并）")
                         
                         # ⚡ 关键修复：添加原始 prompt（如果还有剩余内容）
                         # 注意：enhanced_prompt 可能已经被 PostureController 处理过，需要确保原始内容也被添加
@@ -878,17 +1252,51 @@ class ExecutionPlannerV3:
                                 final_parts.append(enhanced_prompt)
                                 logger.info(f"  ✓ 已添加原始 prompt 到 final_parts")
                         
-                        # 最终合并并去重
-                        final_prompt = deduplicator.merge_prompt_parts(final_parts)
-                        logger.info(f"  ✓ 已对最终 prompt 进行去重处理")
+                        # 最终合并并去重（如果部分数量较少，直接合并）
+                        print(f"    [调试] 开始最终合并，共 {len(final_parts)} 部分")
+                        logger.debug(f"  [DEBUG] 开始最终合并，共 {len(final_parts)} 部分")
+                        merge_start = time.time()
+                        try:
+                            if len(final_parts) <= 10:
+                                # 少量部分，直接合并
+                                final_prompt = ", ".join(final_parts)
+                                print("    [调试] 最终部分数量少，直接合并")
+                                logger.debug(f"  [DEBUG] 最终部分数量少，直接合并")
+                            else:
+                                # 大量部分，进行去重
+                                print("    [调试] 最终部分数量多，进行去重...")
+                                final_prompt = deduplicator.merge_prompt_parts(final_parts)
+                                merge_elapsed = time.time() - merge_start
+                                print(f"    [调试] 最终去重完成 (耗时: {merge_elapsed:.2f}秒)")
+                                logger.debug(f"  [DEBUG] 最终去重完成")
+                            print("    ✓ 已对最终 prompt 进行去重处理")
+                            logger.info(f"  ✓ 已对最终 prompt 进行去重处理")
+                        except Exception as e:
+                            merge_elapsed = time.time() - merge_start
+                            print(f"    ⚠ 最终合并失败 (耗时: {merge_elapsed:.2f}秒): {e}，使用简单合并")
+                            logger.warning(f"  ⚠ 最终合并失败: {e}，使用简单合并")
+                            final_prompt = ", ".join(final_parts)
                         return final_prompt
-                    except ImportError:
+                    except ImportError as e:
+                        logger.warning(f"  ⚠ PromptDeduplicator 导入失败: {e}，使用简单合并")
                         # 如果去重工具不可用，使用原始逻辑
                         if scene_parts:
                             final_parts.append(", ".join(scene_parts))
                         if character_parts:
                             final_parts.append(", ".join(character_parts))
                             logger.info(f"  ✓ 已添加角色描述（服饰+形象，{len(character_parts)} 条）")
+                        if enhanced_prompt.strip():
+                            final_parts.append(enhanced_prompt)
+                        return ", ".join(final_parts)
+                    except Exception as e:
+                        logger.error(f"  ❌ 去重处理失败: {e}，使用简单合并")
+                        import traceback
+                        logger.debug(f"  [DEBUG] 异常详情: {traceback.format_exc()}")
+                        # 如果去重失败，使用简单合并
+                        if scene_parts:
+                            final_parts.append(", ".join(scene_parts))
+                        if character_parts:
+                            final_parts.append(", ".join(character_parts))
                         if enhanced_prompt.strip():
                             final_parts.append(enhanced_prompt)
                         return ", ".join(final_parts)

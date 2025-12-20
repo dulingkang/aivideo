@@ -13,6 +13,7 @@ from __future__ import annotations
 import os
 import json
 from typing import Dict, Any, List, Optional, Tuple
+import warnings
 
 import torch
 from pathlib import Path
@@ -21,6 +22,10 @@ from scene_intent_analyzer import SceneIntentAnalyzer
 from prompt import TokenEstimator, PromptParser, PromptOptimizer, PromptBuilder
 from model_selector import ModelSelector, TaskType
 import re
+
+# ⚡ 抑制 CLIP tokenizer 的 77 token 警告（Flux 使用 T5 作为主编码器，支持 512 tokens，CLIP 只是辅助编码器）
+warnings.filterwarnings("ignore", message=".*Token indices sequence length is longer than the specified maximum sequence length.*")
+warnings.filterwarnings("ignore", message=".*The following part of your input was truncated because CLIP can only handle sequences up to 77 tokens.*")
 
 
 class ImageGenerator:
@@ -2172,7 +2177,18 @@ class ImageGenerator:
                 if self.enhanced_generator is None:
                     from enhanced_image_generator import EnhancedImageGenerator
                     print("  🚀 初始化增强模式生成器...")
-                    self.enhanced_generator = EnhancedImageGenerator(str(self.config_path))
+                    import time
+                    start_time = time.time()
+                    try:
+                        self.enhanced_generator = EnhancedImageGenerator(str(self.config_path))
+                        elapsed = time.time() - start_time
+                        print(f"  ✓ 增强模式生成器初始化完成 (耗时: {elapsed:.2f}秒)")
+                    except Exception as e:
+                        elapsed = time.time() - start_time
+                        print(f"  ❌ 增强模式生成器初始化失败 (耗时: {elapsed:.2f}秒): {e}")
+                        import traceback
+                        traceback.print_exc()
+                        raise
                 
                 # 准备参考图像
                 face_ref = None
@@ -2185,22 +2201,59 @@ class ImageGenerator:
                 
                 # 使用增强生成器生成
                 print("  ✨ 使用增强模式生成（PuLID + 解耦融合 + Execution Planner V3）")
-                image = self.enhanced_generator.generate_scene(
-                    scene=scene,
-                    face_reference=face_ref,
-                    original_prompt=prompt  # ⚡ 传递优化后的 prompt，确保包含完整信息（场景、性别、服饰等）
-                )
+                print("  [调试] 准备调用 generate_scene...")
+                import time
+                call_start = time.time()
+                try:
+                    image = self.enhanced_generator.generate_scene(
+                        scene=scene,
+                        face_reference=face_ref,
+                        original_prompt=prompt  # ⚡ 传递优化后的 prompt，确保包含完整信息（场景、性别、服饰等）
+                    )
+                    call_elapsed = time.time() - call_start
+                    print(f"  [调试] generate_scene 调用完成 (耗时: {call_elapsed:.2f}秒)")
+                except Exception as e:
+                    call_elapsed = time.time() - call_start
+                    print(f"  [调试] generate_scene 调用失败 (耗时: {call_elapsed:.2f}秒): {e}")
+                    import traceback
+                    traceback.print_exc()
+                    raise
                 
                 if image:
+                    # ⚡ 关键修复：处理 Result 对象（如果返回的是 Result，提取 images[0]）
+                    if hasattr(image, 'images') and isinstance(image.images, list) and len(image.images) > 0:
+                        # 这是 Result 对象，提取第一个图像
+                        image = image.images[0]
+                    elif hasattr(image, 'save'):
+                        # 这是 PIL Image，直接使用
+                        pass
+                    else:
+                        # 未知类型，尝试转换
+                        print(f"  ⚠️  警告：未知的图像类型: {type(image)}")
+                        if isinstance(image, (list, tuple)) and len(image) > 0:
+                            image = image[0]
+                    
+                    # 确保是 PIL Image
+                    from PIL import Image as PILImage
+                    if not isinstance(image, PILImage.Image):
+                        print(f"  ⚠️  错误：返回的不是 PIL Image: {type(image)}")
+                        raise TypeError(f"generate_scene 返回的不是 PIL Image: {type(image)}")
+                    
                     image.save(output_path)
                     print(f"  ✅ 增强模式生成成功: {output_path}")
                     return output_path
                 else:
                     print("  ⚠️  增强模式生成失败，回退到标准模式")
             except Exception as e:
-                print(f"  ⚠️  增强模式生成出错: {e}，回退到标准模式")
+                error_msg = str(e)
+                print(f"  ⚠️  增强模式生成出错: {e}")
                 import traceback
                 traceback.print_exc()
+                
+                # ⚡ 关键修复：如果是内存不足错误，不要回退到标准模式（避免无限循环）
+                if "out of memory" in error_msg.lower() or "cuda error" in error_msg.lower():
+                    print("  ❌ 检测到内存不足错误，不再回退到标准模式（避免无限循环）")
+                    raise RuntimeError(f"内存不足，无法生成图像。请先清理 GPU 内存或减少并发数量。原始错误: {e}") from e
         
         # ⚡ 调试：记录传入的 reference_image_path
         print(f"  🔍 调试：generate_image 接收到的 reference_image_path = {reference_image_path}")
@@ -4462,17 +4515,35 @@ class ImageGenerator:
                     prompt = f"({primary_keyword}:2.0), " + prompt
                     print(f"  ✓ 检测到远景关键词但不在开头，已移至开头并增强权重（2.0倍）")
 
-        # 检查并精简 prompt，确保不超过 77 tokens
+        # ⚡ 关键修复：根据引擎类型选择正确的 tokenizer 和限制
+        # - SDXL/InstantID 使用 T5 tokenizer，支持 512 tokens
+        # - Flux 使用 T5 tokenizer，支持 512 tokens
+        # - 只有 CLIP-based 模型才需要 77 tokens 限制
+        token_limit = 77  # 默认 CLIP 限制
+        use_clip_limit = True
+        
+        if self.engine in ["instantid", "sdxl"]:
+            # SDXL 和 InstantID 使用 T5 tokenizer，支持 512 tokens
+            token_limit = 512
+            use_clip_limit = False
+            print(f"  ℹ SDXL/InstantID 引擎：使用 T5 tokenizer，支持 {token_limit} tokens")
+        elif self.engine in ["flux1", "flux2", "flux-instantid"]:
+            # Flux 使用 T5 tokenizer，支持 512 tokens
+            token_limit = 512
+            use_clip_limit = False
+            print(f"  ℹ Flux 引擎：使用 T5 tokenizer，支持 {token_limit} tokens")
+        
+        # 检查并精简 prompt，确保不超过 token 限制
         # 在添加镜头描述后，重新计算 token 数
         # 使用 token_estimator 进行更准确的估算（如果可用）
         token_checker = None
         if hasattr(self, 'token_estimator'):
             token_checker = self.token_estimator
-        elif hasattr(self, '_clip_tokenizer') and self._clip_tokenizer is not None:
-            # 使用 _clip_tokenizer 作为备选
+        elif use_clip_limit and hasattr(self, '_clip_tokenizer') and self._clip_tokenizer is not None:
+            # 只有 CLIP-based 模型才使用 _clip_tokenizer
             token_checker = self._clip_tokenizer
 
-        if token_checker:
+        if token_checker and use_clip_limit:
             try:
                 # 使用 token_estimator 或 _clip_tokenizer 计算 token 数
                 if hasattr(token_checker, 'estimate'):
@@ -4484,9 +4555,9 @@ class ImageGenerator:
                         prompt, truncation=False, return_tensors="pt")
                     actual_tokens = tokens_obj.input_ids.shape[1]
 
-                if actual_tokens > 77:
+                if actual_tokens > token_limit:
                     print(
-                        f"  ⚠ 警告: Prompt 长度 ({actual_tokens} tokens) 超过 77 tokens 限制，开始智能精简...")
+                        f"  ⚠ 警告: Prompt 长度 ({actual_tokens} tokens) 超过 {token_limit} tokens 限制，开始智能精简...")
                     # 智能精简策略：优先保留关键信息（角色名、动作、场景）
                     import re
 
@@ -4534,7 +4605,7 @@ class ImageGenerator:
                                 test_prompt, truncation=False, return_tensors="pt")
                             test_tokens = test_tokens_obj.input_ids.shape[1]
 
-                        if test_tokens <= 77:
+                        if test_tokens <= token_limit:
                             selected_parts.append(part)
                             current_tokens = test_tokens
                         else:
@@ -4554,7 +4625,7 @@ class ImageGenerator:
                                     test_prompt, truncation=False, return_tensors="pt")
                                 test_tokens = test_tokens_obj.input_ids.shape[1]
 
-                            if test_tokens <= 77:
+                            if test_tokens <= token_limit:
                                 selected_parts.append(simplified)
                                 current_tokens = test_tokens
                             # 如果精简后还是超过，跳过这个部分（但关键部分应该尽量保留）
@@ -4569,7 +4640,7 @@ class ImageGenerator:
                                 test_prompt, truncation=False, return_tensors="pt")
                             test_tokens = test_tokens_obj.input_ids.shape[1]
 
-                        if test_tokens <= 77:
+                        if test_tokens <= token_limit:
                             selected_parts.append(part)
                             current_tokens = test_tokens
                         else:
@@ -4588,9 +4659,9 @@ class ImageGenerator:
                     print(
                         f"  ✓ 智能精简完成: {
                             len(selected_parts)} 个部分，{final_tokens} tokens")
-                    if final_tokens > 77:
+                    if final_tokens > token_limit:
                         print(
-                            f"  ⚠ 警告: 精简后仍超过 77 tokens ({final_tokens} tokens)，可能会被截断")
+                            f"  ⚠ 警告: 精简后仍超过 {token_limit} tokens ({final_tokens} tokens)，可能会被截断")
             except Exception as e:
                 print(f"  ⚠ Token 检查失败: {e}")
 

@@ -21,6 +21,22 @@ from pathlib import Path
 from typing import Dict, Any, Optional, List, Union
 from PIL import Image
 import logging
+import warnings
+import os
+import gc
+
+# ⚡ 关键修复：设置 PyTorch CUDA allocator 为可扩展段模式（解决显存碎片化问题）
+# 这必须在导入任何 torch 模块之前设置
+if "PYTORCH_CUDA_ALLOC_CONF" not in os.environ:
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+
+# ⚡ 抑制 CLIP tokenizer 的 77 token 警告（Flux 使用 T5 作为主编码器，支持 512 tokens，CLIP 只是辅助编码器）
+warnings.filterwarnings("ignore", message=".*Token indices sequence length is longer than the specified maximum sequence length.*")
+warnings.filterwarnings("ignore", message=".*The following part of your input was truncated because CLIP can only handle sequences up to 77 tokens.*")
+
+# ⚡ 抑制 transformers 库直接打印的警告（通过环境变量）
+# 这些警告是 transformers 库内部直接打印的，不是通过 warnings 模块
+os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")  # 设置为 error 级别，只显示错误
 
 # 导入新的模块
 from pulid_engine import PuLIDEngine, CharacterProfile
@@ -34,6 +50,10 @@ from execution_planner_v3 import (
 )
 
 logger = logging.getLogger(__name__)
+
+# ⚡ 关键修复：在 logger 初始化后记录环境变量设置
+if "PYTORCH_CUDA_ALLOC_CONF" in os.environ and os.environ["PYTORCH_CUDA_ALLOC_CONF"] == "expandable_segments:True":
+    logger.info("  ✓ PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True 已设置（解决显存碎片化）")
 
 
 class EnhancedImageGenerator:
@@ -76,6 +96,7 @@ class EnhancedImageGenerator:
         self.fusion_engine = None  # 延迟加载
         self.flux_pipeline = None  # 延迟加载
         self.quality_analyzer = None  # 延迟加载
+        self.image_generator = None  # 延迟加载 ImageGenerator 实例（用于 SDXL/InstantID）
         
         # 角色档案
         self.character_profiles = {}
@@ -155,6 +176,310 @@ class EnhancedImageGenerator:
         """卸载 PuLID 引擎"""
         if engine:
             engine.unload()
+    
+    def _unload_pipeline_completely(self, pipeline):
+        """
+        完全卸载 pipeline（工程级实现）
+        
+        核心原则：同一时刻 GPU 上只允许一个 diffusion pipeline 存活
+        
+        Args:
+            pipeline: 要卸载的 pipeline 对象
+        """
+        if pipeline is None:
+            return
+        
+        logger.info("  开始完全卸载 pipeline...")
+        
+        try:
+            # 1. 先移到 CPU（释放 GPU 显存）
+            try:
+                pipeline.to("cpu")
+                logger.info("  ✓ Pipeline 已移到 CPU")
+            except Exception as e:
+                logger.warning(f"  移动 pipeline 到 CPU 时出错: {e}")
+            
+            # 2. 清理所有组件（逐个删除，确保彻底）
+            components_to_clear = [
+                'text_encoder', 'text_encoder_2', 'tokenizer', 'tokenizer_2',
+                'vae', 'unet', 'scheduler', 'image_encoder', 'feature_extractor',
+                'controlnet', 'adapter', 'attention_processor'
+            ]
+            
+            for comp_name in components_to_clear:
+                if hasattr(pipeline, comp_name):
+                    try:
+                        comp = getattr(pipeline, comp_name)
+                        if comp is not None:
+                            # 先移到 CPU
+                            try:
+                                if hasattr(comp, 'to'):
+                                    comp.to("cpu")
+                            except:
+                                pass
+                            # 删除
+                            delattr(pipeline, comp_name)
+                            del comp
+                    except Exception as e:
+                        logger.debug(f"  清理组件 {comp_name} 时出错: {e}")
+            
+            # 3. 删除 pipeline 对象本身
+            del pipeline
+            
+            logger.info("  ✓ Pipeline 组件已全部删除")
+            
+        except Exception as e:
+            logger.warning(f"  卸载 pipeline 时出错: {e}")
+        
+        # 4. 硬 barrier：同步 + 清理缓存
+        try:
+            torch.cuda.synchronize()
+        except:
+            pass
+        
+        for _ in range(3):
+            gc.collect()
+            torch.cuda.empty_cache()
+        
+        logger.info("  ✓ Pipeline 卸载完成，GPU 缓存已清理")
+    
+    def _optimize_prompt_for_sdxl(self, prompt: str, image_generator) -> str:
+        """
+        为 SDXL 优化 prompt（SDXL 使用 CLIP tokenizer，77 tokens 限制）
+        
+        优先保留关键信息（场景、角色、姿态），确保不被截断
+        """
+        # 检查 prompt 长度（使用 CLIP tokenizer）
+        if not hasattr(image_generator, '_clip_tokenizer') or image_generator._clip_tokenizer is None:
+            # 如果没有 tokenizer，简单估算（平均每个词 1.3 tokens）
+            estimated_tokens = len(prompt.split()) * 1.3
+            if estimated_tokens <= 77:
+                return prompt
+            logger.warning(f"  ⚠ 无法精确计算 token 数，使用估算: {estimated_tokens:.1f} tokens")
+        else:
+            try:
+                tokenizer = image_generator._clip_tokenizer
+                tokens_obj = tokenizer(prompt, truncation=False, return_tensors="pt")
+                actual_tokens = tokens_obj.input_ids.shape[1]
+                if actual_tokens <= 77:
+                    return prompt
+                logger.warning(f"  ⚠ Prompt 长度 ({actual_tokens} tokens) 超过 77 tokens 限制，开始智能精简...")
+            except Exception as e:
+                logger.warning(f"  ⚠ Token 检查失败: {e}，使用简单估算")
+                estimated_tokens = len(prompt.split()) * 1.3
+                if estimated_tokens <= 77:
+                    return prompt
+        
+        # 智能精简：优先保留关键信息
+        import re
+        
+        # 1. 提取所有部分
+        parts = [p.strip() for p in prompt.split(',')]
+        
+        # 2. 识别关键部分（场景、角色、姿态）
+        key_keywords = [
+            # 场景关键词
+            'desert', '沙漠', 'gray-green', 'gray green', 'ground', '地面', 'floor',
+            # 角色关键词
+            'han li', 'hanli', '韩立', 'character', 'cultivator',
+            # 姿态关键词
+            'lying', '躺', 'motionless', '不动', 'prone', 'horizontal',
+            # 镜头关键词
+            'wide', '远景', 'full', '全身', 'visible', '可见'
+        ]
+        
+        key_parts = []  # 必须保留的关键部分
+        other_parts = []  # 其他部分
+        
+        for part in parts:
+            part_lower = part.lower()
+            is_key = any(kw in part_lower for kw in key_keywords)
+            if is_key:
+                key_parts.append(part)
+            else:
+                other_parts.append(part)
+        
+        # 3. 优先保留关键部分，然后添加其他部分直到达到限制
+        selected_parts = []
+        token_limit = 77
+        
+        # 先添加关键部分
+        for part in key_parts:
+            test_prompt = ', '.join(selected_parts + [part])
+            try:
+                if hasattr(image_generator, '_clip_tokenizer') and image_generator._clip_tokenizer is not None:
+                    tokens_obj = image_generator._clip_tokenizer(test_prompt, truncation=False, return_tensors="pt")
+                    test_tokens = tokens_obj.input_ids.shape[1]
+                else:
+                    test_tokens = len(test_prompt.split()) * 1.3
+                
+                if test_tokens <= token_limit:
+                    selected_parts.append(part)
+                else:
+                    # 如果添加这个关键部分会超过，尝试精简它
+                    # 移除权重语法和冗余描述
+                    simplified = re.sub(r':\d+\.\d+', '', part)  # 移除权重
+                    simplified = re.sub(r':\d+', '', simplified)  # 移除整数权重
+                    simplified = simplified.strip()
+                    test_prompt = ', '.join(selected_parts + [simplified])
+                    if hasattr(image_generator, '_clip_tokenizer') and image_generator._clip_tokenizer is not None:
+                        tokens_obj = image_generator._clip_tokenizer(test_prompt, truncation=False, return_tensors="pt")
+                        test_tokens = tokens_obj.input_ids.shape[1]
+                    else:
+                        test_tokens = len(test_prompt.split()) * 1.3
+                    
+                    if test_tokens <= token_limit:
+                        selected_parts.append(simplified)
+            except Exception as e:
+                logger.warning(f"  ⚠ 处理关键部分时出错: {e}，直接添加")
+                selected_parts.append(part)
+        
+        # 4. 添加其他部分（如果还有空间）
+        for part in other_parts:
+            test_prompt = ', '.join(selected_parts + [part])
+            try:
+                if hasattr(image_generator, '_clip_tokenizer') and image_generator._clip_tokenizer is not None:
+                    tokens_obj = image_generator._clip_tokenizer(test_prompt, truncation=False, return_tensors="pt")
+                    test_tokens = tokens_obj.input_ids.shape[1]
+                else:
+                    test_tokens = len(test_prompt.split()) * 1.3
+                
+                if test_tokens <= token_limit:
+                    selected_parts.append(part)
+                else:
+                    break  # 没有更多空间
+            except Exception as e:
+                logger.warning(f"  ⚠ 处理其他部分时出错: {e}，跳过")
+                break
+        
+        optimized = ', '.join(selected_parts)
+        
+        # 最终验证
+        try:
+            if hasattr(image_generator, '_clip_tokenizer') and image_generator._clip_tokenizer is not None:
+                tokens_obj = image_generator._clip_tokenizer(optimized, truncation=False, return_tensors="pt")
+                final_tokens = tokens_obj.input_ids.shape[1]
+            else:
+                final_tokens = len(optimized.split()) * 1.3
+            
+            logger.info(f"  ✓ 智能精简完成: {len(selected_parts)} 个部分，{final_tokens:.1f} tokens")
+            if final_tokens > token_limit:
+                logger.warning(f"  ⚠ 精简后仍超过 {token_limit} tokens ({final_tokens:.1f} tokens)，可能会被截断")
+        except Exception as e:
+            logger.warning(f"  ⚠ 最终验证失败: {e}")
+        
+        return optimized
+    
+    def _unload_all_models(self):
+        """
+        卸载所有已加载的模型（Flux, PuLID, Fusion 等）
+        
+        这是切换模型前的"硬切换"操作
+        """
+        logger.info("  [硬切换] 开始卸载所有已加载的模型...")
+        
+        # 1. 卸载 Flux pipeline
+        if self.flux_pipeline is not None:
+            logger.info("  [硬切换] 卸载 Flux pipeline...")
+            self._unload_pipeline_completely(self.flux_pipeline)
+            self.flux_pipeline = None
+        
+        # 2. 卸载 PuLID 引擎
+        if self.pulid_engine is not None:
+            logger.info("  [硬切换] 卸载 PuLID 引擎...")
+            try:
+                if hasattr(self.pulid_engine, 'unload'):
+                    self.pulid_engine.unload()
+                # 清理所有可能的 GPU 对象
+                if hasattr(self.pulid_engine, 'pipeline') and self.pulid_engine.pipeline is not None:
+                    self._unload_pipeline_completely(self.pulid_engine.pipeline)
+                if hasattr(self.pulid_engine, 'flux_model') and self.pulid_engine.flux_model is not None:
+                    try:
+                        self.pulid_engine.flux_model.to("cpu")
+                        del self.pulid_engine.flux_model
+                    except:
+                        pass
+                if hasattr(self.pulid_engine, 'face_analyzer') and self.pulid_engine.face_analyzer is not None:
+                    try:
+                        del self.pulid_engine.face_analyzer
+                    except:
+                        pass
+                del self.pulid_engine
+                self.pulid_engine = None
+            except Exception as e:
+                logger.warning(f"  [硬切换] 卸载 PuLID 引擎时出错: {e}")
+        
+        # 3. 卸载融合引擎
+        if self.fusion_engine is not None:
+            logger.info("  [硬切换] 卸载融合引擎...")
+            try:
+                if hasattr(self.fusion_engine, 'unload'):
+                    self.fusion_engine.unload()
+                # 清理 SAM2 和 YOLO
+                if hasattr(self.fusion_engine, 'sam2_predictor') and self.fusion_engine.sam2_predictor is not None:
+                    try:
+                        del self.fusion_engine.sam2_predictor
+                    except:
+                        pass
+                if hasattr(self.fusion_engine, 'yolo_model') and self.fusion_engine.yolo_model is not None:
+                    try:
+                        del self.fusion_engine.yolo_model
+                    except:
+                        pass
+                del self.fusion_engine
+                self.fusion_engine = None
+            except Exception as e:
+                logger.warning(f"  [硬切换] 卸载融合引擎时出错: {e}")
+        
+        # 4. 卸载质量分析器
+        if self.quality_analyzer is not None:
+            logger.info("  [硬切换] 卸载质量分析器...")
+            try:
+                if hasattr(self.quality_analyzer, 'unload'):
+                    self.quality_analyzer.unload()
+                if hasattr(self.quality_analyzer, 'face_analyzer') and self.quality_analyzer.face_analyzer is not None:
+                    try:
+                        del self.quality_analyzer.face_analyzer
+                    except:
+                        pass
+                del self.quality_analyzer
+                self.quality_analyzer = None
+            except Exception as e:
+                logger.warning(f"  [硬切换] 卸载质量分析器时出错: {e}")
+        
+        # 5. 卸载 ImageGenerator 的 pipeline
+        if self.image_generator is not None:
+            logger.info("  [硬切换] 卸载 ImageGenerator 的 pipeline...")
+            try:
+                if hasattr(self.image_generator, 'pipeline') and self.image_generator.pipeline is not None:
+                    self._unload_pipeline_completely(self.image_generator.pipeline)
+                    self.image_generator.pipeline = None
+                if hasattr(self.image_generator, 'sdxl_pipeline') and self.image_generator.sdxl_pipeline is not None:
+                    self._unload_pipeline_completely(self.image_generator.sdxl_pipeline)
+                    self.image_generator.sdxl_pipeline = None
+                if hasattr(self.image_generator, 'img2img_pipeline') and self.image_generator.img2img_pipeline is not None:
+                    self._unload_pipeline_completely(self.image_generator.img2img_pipeline)
+                    self.image_generator.img2img_pipeline = None
+                if hasattr(self.image_generator, 'face_analyzer') and self.image_generator.face_analyzer is not None:
+                    try:
+                        del self.image_generator.face_analyzer
+                        self.image_generator.face_analyzer = None
+                    except:
+                        pass
+            except Exception as e:
+                logger.warning(f"  [硬切换] 卸载 ImageGenerator pipeline 时出错: {e}")
+        
+        # 6. 最终硬 barrier
+        try:
+            torch.cuda.synchronize()
+        except:
+            pass
+        
+        for _ in range(5):  # 多次清理确保彻底
+            gc.collect()
+            torch.cuda.empty_cache()
+        
+        logger.info("  [硬切换] 所有模型已卸载，GPU 缓存已清理")
     
     def _create_fusion_engine(self):
         """创建融合引擎（供显存管理器使用）"""
@@ -470,64 +795,139 @@ class EnhancedImageGenerator:
         Returns:
             生成的图像
         """
+        # ⚡ 关键修复：将 scene 添加到 kwargs，确保传递给生成方法
+        kwargs['scene'] = scene
+        
+        # ⚡ 关键修复：使用 print 确保日志输出到控制台（logger 可能被重定向）
+        print("  [步骤0] 进入 generate_scene 方法...")
         logger.info("=" * 60)
         logger.info("开始生成场景图像")
         logger.info("=" * 60)
         
+        import time
+        start_time = time.time()
+        
         # 1. 分析场景，获取策略
-        strategy = self.planner.analyze_scene(
-            scene=scene,
-            character_profiles=self.character_profiles
-        )
+        print("  [步骤1] 分析场景，获取策略...")
+        logger.info("  [步骤1] 分析场景，获取策略...")
+        strategy_start = time.time()
+        try:
+            strategy = self.planner.analyze_scene(
+                scene=scene,
+                character_profiles=self.character_profiles
+            )
+            elapsed = time.time() - strategy_start
+            print(f"  ✓ 场景分析完成 (耗时: {elapsed:.2f}秒)")
+            logger.info(f"  ✓ 场景分析完成 (耗时: {elapsed:.2f}秒)")
+        except Exception as e:
+            elapsed = time.time() - strategy_start
+            print(f"  ❌ 场景分析失败 (耗时: {elapsed:.2f}秒): {e}")
+            logger.error(f"  ❌ 场景分析失败 (耗时: {elapsed:.2f}秒): {e}")
+            import traceback
+            traceback.print_exc()
+            raise
         
         # 2. 准备参考图
-        ref_image = self._prepare_reference(
-            strategy=strategy,
-            character_id=character_id,
-            face_reference=face_reference
-        )
+        print("  [步骤2] 准备参考图...")
+        logger.info("  [步骤2] 准备参考图...")
+        ref_start = time.time()
+        try:
+            ref_image = self._prepare_reference(
+                strategy=strategy,
+                character_id=character_id,
+                face_reference=face_reference
+            )
+            elapsed = time.time() - ref_start
+            print(f"  ✓ 参考图准备完成 (耗时: {elapsed:.2f}秒)")
+            logger.info(f"  ✓ 参考图准备完成 (耗时: {elapsed:.2f}秒)")
+        except Exception as e:
+            elapsed = time.time() - ref_start
+            print(f"  ❌ 参考图准备失败 (耗时: {elapsed:.2f}秒): {e}")
+            logger.error(f"  ❌ 参考图准备失败 (耗时: {elapsed:.2f}秒): {e}")
+            import traceback
+            traceback.print_exc()
+            raise
         
         # 3. 构建 Prompt（如果提供了 original_prompt，优先使用它）
-        prompt = self.planner.build_weighted_prompt(scene, strategy, original_prompt=original_prompt)
-        logger.info(f"完整 Prompt: {prompt}")
-        logger.info(f"Prompt 预览: {prompt[:150]}...")
+        print("  [步骤3] 构建 Prompt...")
+        logger.info("  [步骤3] 构建 Prompt...")
+        prompt_start = time.time()
+        try:
+            prompt = self.planner.build_weighted_prompt(scene, strategy, original_prompt=original_prompt)
+            elapsed = time.time() - prompt_start
+            print(f"  ✓ Prompt 构建完成 (耗时: {elapsed:.2f}秒)")
+            logger.info(f"  ✓ Prompt 构建完成 (耗时: {elapsed:.2f}秒)")
+            logger.info(f"完整 Prompt: {prompt}")
+            logger.info(f"Prompt 预览: {prompt[:150]}...")
+        except Exception as e:
+            elapsed = time.time() - prompt_start
+            print(f"  ❌ Prompt 构建失败 (耗时: {elapsed:.2f}秒): {e}")
+            logger.error(f"  ❌ Prompt 构建失败 (耗时: {elapsed:.2f}秒): {e}")
+            import traceback
+            traceback.print_exc()
+            raise
         
         # 4. 根据策略选择生成方式
-        # ⚡ 关键修复：如果没有参考图像，直接使用标准生成（不需要身份注入）
-        if ref_image is None:
-            logger.info("没有参考图像，使用标准生成模式（无身份注入）")
+        logger.info("  [步骤4] 根据策略选择生成方式...")
+        logger.info(f"  策略决策: scene_engine={strategy.scene_engine.value}, identity_engine={strategy.identity_engine.value}, use_decoupled={strategy.use_decoupled_pipeline}")
+        gen_start = time.time()
+        
+        # ⚡ 关键修复：优先检查 scene_engine，确保 Planner 的决策被正确执行
+        # 1. 如果 Planner 决定使用 SDXL + InstantID（稳定性不足的场景）
+        if strategy.scene_engine == SceneEngine.SDXL:
+            if strategy.identity_engine == IdentityEngine.INSTANTID:
+                logger.info("  ⚡ 使用 SDXL + InstantID（稳定方案，适用于不稳定场景）")
+                image = self._generate_with_sdxl_instantid(
+                    prompt=prompt,
+                    face_reference=ref_image,
+                    strategy=strategy,
+                    **kwargs
+                )
+            else:
+                logger.warning(f"  ⚠ Planner 决定使用 SDXL，但 identity_engine={strategy.identity_engine.value}，回退到标准 SDXL 生成")
+                image = self._generate_with_sdxl(
+                    prompt=prompt,
+                    face_reference=ref_image,
+                    strategy=strategy,
+                    **kwargs
+                )
+        # 2. 如果没有参考图像，直接使用标准生成（不需要身份注入）
+        elif ref_image is None:
+            logger.info("  没有参考图像，使用标准生成模式（无身份注入）")
             image = self._generate_standard(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
-        # 注意：特写/近景（参考强度 > 70%）不使用解耦模式，直接使用 PuLID
-        # 解耦模式更适合远景/中景（参考强度 < 60%）
+        # 3. 解耦模式（远景/中景，参考强度 < 70%）
         elif strategy.use_decoupled_pipeline and strategy.reference_strength < 70:
-            # 解耦生成（仅用于远景/中景）
+            logger.info("  使用解耦生成模式（远景/中景）")
             image = self._generate_decoupled(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
+        # 4. PuLID 模式（Flux + PuLID，稳定性良好的场景）
         elif strategy.identity_engine == IdentityEngine.PULID:
-            # PuLID 生成
+            logger.info("  ⚡ 使用 Flux + PuLID（上限方案，适用于稳定场景）")
             image = self._generate_with_pulid(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
+        # 5. 标准生成（InstantID 或无身份约束）
         else:
-            # 标准生成 (InstantID 或无身份约束)
+            logger.info("  使用标准生成模式 (InstantID 或无身份约束)")
             image = self._generate_standard(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
+        logger.info(f"  ✓ 图像生成完成 (耗时: {time.time()-gen_start:.2f}秒)")
         
         # 5. 质量验证
         # 注意：对于解耦模式，验证应该在最终图像上进行（已经在 _generate_decoupled 中完成）
@@ -578,14 +978,18 @@ class EnhancedImageGenerator:
         **kwargs
     ) -> Image.Image:
         """使用 PuLID 生成"""
+        import time
         # ⚡ 关键修复：如果没有参考图像，直接使用标准生成（不需要身份注入）
         if face_reference is None:
-            logger.info("没有参考图像，跳过 PuLID 身份注入，使用标准生成")
+            logger.info("  没有参考图像，跳过 PuLID 身份注入，使用标准生成")
             return self._generate_standard(prompt, face_reference, strategy, **kwargs)
         
-        logger.info("使用 PuLID 生成...")
+        logger.info("  开始加载 PuLID 引擎...")
+        load_start = time.time()
         
         self._load_pulid_engine()
+        
+        logger.info(f"  ✓ PuLID 引擎加载完成 (耗时: {time.time()-load_start:.2f}秒)")
         
         if self.pulid_engine is None:
             logger.warning("PuLID 引擎不可用，回退到标准生成")
@@ -654,6 +1058,387 @@ class EnhancedImageGenerator:
         
         return image
     
+    def _generate_with_sdxl_instantid(
+        self,
+        prompt: str,
+        face_reference: Optional[Image.Image],
+        strategy: GenerationStrategy,
+        **kwargs
+    ) -> Image.Image:
+        """使用 SDXL + InstantID 生成（稳定方案，适用于不稳定场景）"""
+        logger.info("  使用 SDXL + InstantID 生成（稳定方案）...")
+        
+        # ⚡ 关键修复：对于"死刑组合"场景（lying + wide + desert），InstantID 几乎失效
+        # 检测是否为"死刑组合"场景
+        scene = kwargs.get("scene", {})
+        is_death_combo = False
+        if scene:
+            character = scene.get("character", {})
+            camera = scene.get("camera", {})
+            environment = scene.get("environment", {})
+            
+            # 检测 lying + wide shot
+            character_pose = str(character.get("pose", "")).lower()
+            shot_type = str(camera.get("shot", "")).lower()
+            is_lying = character_pose in ["lying_motionless", "lying", "lie", "prone"]
+            is_wide = shot_type in ["wide", "extreme_wide", "full"]
+            
+            # 检测沙漠场景
+            scene_text = str(scene.get("prompt", "")).lower() + " " + str(scene.get("description", "")).lower()
+            is_desert = any(kw in scene_text for kw in ["desert", "sand", "沙地", "沙漠", "gray-green", "gray green"])
+            
+            # 检测俯拍角度
+            camera_angle = str(camera.get("angle", "")).lower()
+            is_top_down = camera_angle in ["top_down", "topdown", "bird_eye"]
+            
+            # 检测低可见性
+            face_visible = character.get("face_visible", True)
+            visibility = str(character.get("visibility", "") or "").lower()
+            is_low_visibility = not face_visible or visibility == "low"
+            
+            # "死刑组合"：lying + wide + (desert OR top_down OR low_visibility)
+            if is_lying and is_wide and (is_desert or is_top_down or is_low_visibility):
+                is_death_combo = True
+                logger.warning("  ⚠ 检测到'死刑组合'场景（lying + wide + desert/top_down/low_visibility），InstantID 几乎失效")
+                logger.warning("  ⚠ 禁用 InstantID，使用纯 SDXL + prompt（确保场景和姿态正确）")
+        
+        # 如果是"死刑组合"，直接使用纯 SDXL（不使用 InstantID）
+        if is_death_combo:
+            logger.info("  ⚡ 使用纯 SDXL 生成（死刑组合场景，InstantID 失效）")
+            return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
+        
+        # 准备参考图
+        if face_reference is None:
+            logger.warning("  没有参考图像，使用纯 SDXL 生成（无身份注入）")
+            return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
+        
+        # ⚡ 关键修复：在加载 InstantID 之前，先清理所有已加载的模型（PuLID、Flux 等）
+        from pathlib import Path
+        import tempfile
+        import torch
+        import gc
+        
+        # ⚡ 关键修复：硬切换 - 在加载 InstantID 之前，完全卸载所有已加载的模型
+        # 核心原则：同一时刻 GPU 上只允许一个 diffusion pipeline 存活
+        self._unload_all_models()
+        
+        # ⚡ 关键修复：复用现有的 ImageGenerator 实例，避免重复加载模型导致内存不足
+        # 如果 self.image_generator 已存在，先清理之前的 pipeline，然后加载 InstantID
+        if self.image_generator is not None:
+            logger.info("  复用现有的 ImageGenerator 实例...")
+            # ⚡ 更彻底的内存清理：清理所有 pipeline 组件
+            logger.info("  清理之前的 pipeline 以释放内存...")
+            try:
+                # 清理主 pipeline
+                if hasattr(self.image_generator, 'pipeline') and self.image_generator.pipeline is not None:
+                    # 尝试清理 pipeline 的所有组件
+                    if hasattr(self.image_generator.pipeline, 'text_encoder'):
+                        try:
+                            del self.image_generator.pipeline.text_encoder
+                        except:
+                            pass
+                    if hasattr(self.image_generator.pipeline, 'text_encoder_2'):
+                        try:
+                            del self.image_generator.pipeline.text_encoder_2
+                        except:
+                            pass
+                    if hasattr(self.image_generator.pipeline, 'vae'):
+                        try:
+                            del self.image_generator.pipeline.vae
+                        except:
+                            pass
+                    if hasattr(self.image_generator.pipeline, 'unet'):
+                        try:
+                            del self.image_generator.pipeline.unet
+                        except:
+                            pass
+                    del self.image_generator.pipeline
+                    self.image_generator.pipeline = None
+                # 清理其他 pipeline
+                if hasattr(self.image_generator, 'sdxl_pipeline') and self.image_generator.sdxl_pipeline is not None:
+                    del self.image_generator.sdxl_pipeline
+                    self.image_generator.sdxl_pipeline = None
+                if hasattr(self.image_generator, 'img2img_pipeline') and self.image_generator.img2img_pipeline is not None:
+                    del self.image_generator.img2img_pipeline
+                    self.image_generator.img2img_pipeline = None
+            except Exception as e:
+                logger.warning(f"  清理 pipeline 时出错（继续执行）: {e}")
+            
+            # 清理 GPU 缓存（多次清理确保彻底）
+            for _ in range(3):
+                torch.cuda.empty_cache()
+                gc.collect()
+            
+            temp_generator = self.image_generator
+        else:
+            # 如果不存在，创建新实例
+            from image_generator import ImageGenerator
+            logger.info("  创建新的 ImageGenerator 实例...")
+            temp_generator = ImageGenerator(self.config_path)
+            self.image_generator = temp_generator
+        
+        # 加载 InstantID pipeline
+        if not hasattr(temp_generator, 'pipeline') or temp_generator.pipeline is None or \
+           (hasattr(temp_generator, 'engine') and temp_generator.engine != "instantid"):
+            logger.info("  加载 InstantID pipeline...")
+            temp_generator.load_pipeline("instantid")
+        
+        # 保存 face_reference 到临时文件
+        with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as tmp_file:
+            face_reference.save(tmp_file.name)
+            face_ref_path = Path(tmp_file.name)
+        
+        try:
+            # ⚡ 关键修复：直接调用 InstantID pipeline，避免递归调用 generate_image
+            # 原因：generate_image 会检测 scene 参数并再次调用 enhanced_generator.generate_scene，形成无限递归
+            # 我们已经有了完整的 prompt（已经通过 Execution Planner 处理），直接使用 pipeline 即可
+            
+            # 确保 pipeline 已加载
+            if not hasattr(temp_generator, 'pipeline') or temp_generator.pipeline is None:
+                raise RuntimeError("InstantID pipeline 不可用")
+            
+            pipeline = temp_generator.pipeline
+            
+            # 提取 face embedding（如果还没有）
+            if not hasattr(temp_generator, 'face_analyzer') or temp_generator.face_analyzer is None:
+                temp_generator._load_face_analyzer()
+            
+            face_emb = None
+            if temp_generator.face_analyzer and face_reference:
+                face_info = temp_generator.face_analyzer.get(face_reference)
+                if face_info:
+                    face_emb = face_info[0].normed_embedding
+                    logger.info("  ✓ 已从参考图提取人脸 embedding")
+                else:
+                    logger.warning("  ⚠ 未能从参考图提取人脸信息")
+            
+            if face_emb is None:
+                logger.warning("  没有 face embedding，使用纯 SDXL 生成（无身份注入）")
+                return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
+            
+            # 直接调用 InstantID pipeline
+            logger.info("  直接调用 InstantID pipeline 生成图像（避免递归调用）...")
+            
+            # 准备参数
+            negative_prompt = kwargs.get("negative_prompt", "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark")
+            guidance_scale = kwargs.get("guidance_scale", 5.0)
+            num_inference_steps = kwargs.get("num_inference_steps", 30)
+            seed = kwargs.get("seed", None)
+            
+            # 调整 IP-Adapter scale（根据 reference_strength）
+            ip_adapter_scale = temp_generator.face_emb_scale if hasattr(temp_generator, 'face_emb_scale') else 0.8
+            if hasattr(strategy, 'reference_strength'):
+                ip_adapter_scale = ip_adapter_scale * (strategy.reference_strength / 100.0)
+                ip_adapter_scale = max(0.3, min(1.0, ip_adapter_scale))
+            
+            # 生成图像
+            output_path = Path(tempfile.mktemp(suffix='.png'))
+            result = pipeline(
+                prompt=prompt,
+                image_embeds=face_emb,
+                controlnet_conditioning_scale=ip_adapter_scale,
+                width=temp_generator.width if hasattr(temp_generator, 'width') else 1024,
+                height=temp_generator.height if hasattr(temp_generator, 'height') else 1024,
+                num_inference_steps=num_inference_steps,
+                guidance_scale=guidance_scale,
+                negative_prompt=negative_prompt,
+                generator=torch.Generator(device=temp_generator.device).manual_seed(seed) if seed is not None else None,
+            )
+            
+            # 提取图像
+            if hasattr(result, 'images') and len(result.images) > 0:
+                result_image = result.images[0]
+            elif isinstance(result, Image.Image):
+                result_image = result
+            elif isinstance(result, (list, tuple)) and len(result) > 0:
+                result_image = result[0]
+            else:
+                raise RuntimeError(f"Pipeline 返回了未知格式: {type(result)}")
+            
+            # 保存图像
+            result_image.save(output_path)
+            result_path = output_path
+            
+            # 清理临时文件
+            if face_ref_path.exists():
+                face_ref_path.unlink()
+            if output_path.exists() and output_path != result_path:
+                output_path.unlink()
+            
+            return result_image
+            
+        except Exception as e:
+            logger.error(f"  SDXL + InstantID 生成失败: {e}")
+            import traceback
+            traceback.print_exc()
+            # 清理临时文件
+            if face_ref_path.exists():
+                face_ref_path.unlink()
+            # 回退到纯 SDXL
+            logger.warning("  回退到纯 SDXL 生成（无身份注入）")
+            return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
+    
+    def _generate_with_sdxl(
+        self,
+        prompt: str,
+        face_reference: Optional[Image.Image],
+        strategy: GenerationStrategy,
+        **kwargs
+    ) -> Image.Image:
+        """使用纯 SDXL 生成（无身份注入，适用于死刑组合场景）"""
+        logger.info("  使用纯 SDXL 生成（无身份注入）...")
+        
+        from pathlib import Path
+        import tempfile
+        import torch
+        import gc
+        
+        # ⚡ 关键修复：硬切换 - 在加载 SDXL 之前，完全卸载所有已加载的模型
+        # 核心原则：同一时刻 GPU 上只允许一个 diffusion pipeline 存活
+        self._unload_all_models()
+        
+        # ⚡ 关键修复：复用现有的 ImageGenerator 实例，避免重复加载模型导致内存不足
+        # 如果 self.image_generator 已存在，先清理之前的 pipeline，然后加载 SDXL
+        if self.image_generator is not None:
+            logger.info("  复用现有的 ImageGenerator 实例...")
+            temp_generator = self.image_generator
+        else:
+            # 如果不存在，创建新实例
+            from image_generator import ImageGenerator
+            logger.info("  创建新的 ImageGenerator 实例...")
+            temp_generator = ImageGenerator(self.config_path)
+            self.image_generator = temp_generator
+        
+        # 加载 SDXL pipeline
+        if not hasattr(temp_generator, 'pipeline') or temp_generator.pipeline is None or \
+           (hasattr(temp_generator, 'engine') and temp_generator.engine != "sdxl"):
+            logger.info("  加载 SDXL pipeline...")
+            temp_generator.load_pipeline("sdxl")
+        
+        if not hasattr(temp_generator, 'pipeline') or temp_generator.pipeline is None:
+            raise RuntimeError("SDXL pipeline 不可用")
+        
+        # ⚡ 关键修复：直接调用 pipeline，避免递归调用 generate_image
+        # 原因：generate_image 会检测 scene 参数并再次调用 enhanced_generator.generate_scene，形成无限递归
+        # 我们已经有了完整的 prompt（已经通过 Execution Planner 处理），直接使用 pipeline 即可
+        output_path = Path(tempfile.mktemp(suffix='.png'))
+        
+        try:
+            # 确保 pipeline 已加载
+            if not hasattr(temp_generator, 'pipeline') or temp_generator.pipeline is None:
+                raise RuntimeError("SDXL pipeline 不可用")
+            
+            pipeline = temp_generator.pipeline
+            
+            # 直接调用 pipeline（不使用 generate_image，避免递归）
+            logger.info("  直接调用 SDXL pipeline 生成图像（避免递归调用）...")
+            
+            # ⚡ 关键修复：SDXL 使用 CLIP tokenizer（77 tokens 限制），需要智能精简 prompt
+            # 优先保留关键信息（场景、角色、姿态），确保不被截断
+            # 注意：需要确保 temp_generator 已加载 CLIP tokenizer
+            if not hasattr(temp_generator, '_clip_tokenizer') or temp_generator._clip_tokenizer is None:
+                # 如果 tokenizer 未加载，尝试加载它
+                try:
+                    from transformers import CLIPTokenizer
+                    # 尝试从 SDXL pipeline 获取 tokenizer
+                    if hasattr(temp_generator, 'pipeline') and temp_generator.pipeline is not None:
+                        if hasattr(temp_generator.pipeline, 'tokenizer'):
+                            temp_generator._clip_tokenizer = temp_generator.pipeline.tokenizer
+                            logger.info("  ✓ 从 SDXL pipeline 获取 CLIP tokenizer")
+                        elif hasattr(temp_generator.pipeline, 'tokenizer_2'):
+                            temp_generator._clip_tokenizer = temp_generator.pipeline.tokenizer_2
+                            logger.info("  ✓ 从 SDXL pipeline 获取 CLIP tokenizer_2")
+                    # 如果还是 None，尝试直接加载
+                    if temp_generator._clip_tokenizer is None:
+                        tokenizer_path = "/vepfs-dev/shawn/vid/fanren/gen_video/models/sdxl-base"
+                        if os.path.exists(tokenizer_path):
+                            temp_generator._clip_tokenizer = CLIPTokenizer.from_pretrained(tokenizer_path)
+                            logger.info(f"  ✓ 从本地路径加载 CLIP tokenizer: {tokenizer_path}")
+                except Exception as e:
+                    logger.warning(f"  ⚠ 加载 CLIP tokenizer 失败: {e}，将使用估算方法")
+            
+            optimized_prompt = self._optimize_prompt_for_sdxl(prompt, temp_generator)
+            logger.info(f"  Prompt 优化: 原始长度={len(prompt.split())} 词，优化后长度={len(optimized_prompt.split())} 词")
+            
+            # 验证优化后的 prompt 长度
+            if hasattr(temp_generator, '_clip_tokenizer') and temp_generator._clip_tokenizer is not None:
+                try:
+                    tokens_obj = temp_generator._clip_tokenizer(optimized_prompt, truncation=False, return_tensors="pt")
+                    final_tokens = tokens_obj.input_ids.shape[1]
+                    if final_tokens > 77:
+                        logger.warning(f"  ⚠ 优化后的 prompt 仍然超过 77 tokens ({final_tokens} tokens)，可能会被截断")
+                    else:
+                        logger.info(f"  ✓ 优化后的 prompt 长度: {final_tokens} tokens（在限制内）")
+                except Exception as e:
+                    logger.warning(f"  ⚠ 验证优化后的 prompt 长度失败: {e}")
+            
+            # 准备参数
+            negative_prompt = kwargs.get("negative_prompt", "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark")
+            guidance_scale = kwargs.get("guidance_scale", 7.5)
+            num_inference_steps = kwargs.get("num_inference_steps", 30)
+            seed = kwargs.get("seed", None)
+            
+            # 生成图像
+            result = pipeline(
+                prompt=optimized_prompt,
+                negative_prompt=negative_prompt,
+                guidance_scale=guidance_scale,
+                num_inference_steps=num_inference_steps,
+                generator=torch.Generator(device=temp_generator.device).manual_seed(seed) if seed is not None else None,
+            )
+            
+            # 提取图像
+            if hasattr(result, 'images') and len(result.images) > 0:
+                result_image = result.images[0]
+            elif isinstance(result, Image.Image):
+                result_image = result
+            elif isinstance(result, (list, tuple)) and len(result) > 0:
+                result_image = result[0]
+            else:
+                raise RuntimeError(f"Pipeline 返回了未知格式: {type(result)}")
+            
+            # 保存图像
+            result_image.save(output_path)
+            result_path = output_path
+            
+            # 读取生成的图像
+            result_image = Image.open(result_path)
+            
+            # 清理临时文件
+            if output_path.exists() and output_path != result_path:
+                output_path.unlink()
+            
+            return result_image
+            
+        except Exception as e:
+            error_msg = str(e)
+            logger.error(f"  SDXL 生成失败: {e}")
+            import traceback
+            traceback.print_exc()
+            # 清理临时文件
+            if output_path.exists():
+                output_path.unlink()
+            
+            # ⚡ 关键修复：如果是内存不足错误，清理 pipeline 并抛出明确的错误信息
+            if "out of memory" in error_msg.lower() or "cuda error" in error_msg.lower():
+                logger.error("  ❌ 检测到内存不足错误，清理 pipeline 并抛出错误（避免无限循环）")
+                # 清理 pipeline
+                try:
+                    if hasattr(temp_generator, 'pipeline') and temp_generator.pipeline is not None:
+                        del temp_generator.pipeline
+                        temp_generator.pipeline = None
+                except:
+                    pass
+                # 清理 GPU 缓存
+                import torch
+                import gc
+                for _ in range(3):
+                    torch.cuda.empty_cache()
+                    gc.collect()
+                raise RuntimeError(f"内存不足，无法加载 SDXL pipeline。请先清理 GPU 内存或减少并发数量。原始错误: {e}") from e
+            
+            raise
+    
     def _generate_standard(
         self,
         prompt: str,
@@ -661,8 +1446,8 @@ class EnhancedImageGenerator:
         strategy: GenerationStrategy,
         **kwargs
     ) -> Image.Image:
-        """标准生成 (使用现有的 InstantID 或 Flux)"""
-        logger.info("使用标准生成...")
+        """标准生成 (使用 Flux，当 scene_engine 为 FLUX 时)"""
+        logger.info("使用标准生成（Flux）...")
         
         self._load_flux_pipeline()
         
@@ -679,7 +1464,14 @@ class EnhancedImageGenerator:
             **kwargs
         )
         
-        return result.images[0]
+        # ⚡ 关键修复：处理 Result 对象（FluxWrapper 返回的）和 ImagePipelineOutput（diffusers 返回的）
+        if hasattr(result, 'images') and isinstance(result.images, list) and len(result.images) > 0:
+            return result.images[0]
+        elif hasattr(result, 'save'):
+            # 如果 result 本身就是 PIL Image（不应该发生，但为了安全）
+            return result
+        else:
+            raise TypeError(f"Flux pipeline 返回了未知类型: {type(result)}")
     
     def _verify_quality(
         self,

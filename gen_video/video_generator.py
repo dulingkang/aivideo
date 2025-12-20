@@ -1925,6 +1925,13 @@ class VideoGenerator:
             reserved_before = torch.cuda.memory_reserved() / 1024**3
             print(f"  ℹ 视频生成前显存: 已分配={allocated_before:.2f}GB, 已保留={reserved_before:.2f}GB")
         
+        # ⚡ 关键修复：确保 image_path 是字符串类型
+        from pathlib import Path as PathLibPath
+        if isinstance(image_path, PathLibPath):
+            image_path = str(image_path)
+        elif not isinstance(image_path, str):
+            image_path = str(image_path)
+        
         # 加载图像
         image = load_image(image_path)
         

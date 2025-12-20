@@ -77,29 +77,34 @@ class DecoupledFusionEngine:
                 from sam2.build_sam import build_sam2
                 from sam2.sam2_image_predictor import SAM2ImagePredictor
                 
-                # 查找配置文件
-                config_file = os.path.join(self.sam2_path, "sam2_hiera_l.yaml")
-                if not os.path.exists(config_file):
-                    # 使用默认配置
-                    config_file = "sam2_hiera_l"
+                # ⚡ 关键修复：build_sam2 使用 Hydra 加载配置，需要配置名称而不是文件路径
+                # Hydra 会在 sam2 包的配置目录中查找配置（如 configs/sam2/sam2_hiera_l.yaml）
+                # 配置名称格式：configs/sam2/sam2_hiera_l 或 sam2_hiera_l（Hydra 会自动查找）
+                config_file = "configs/sam2/sam2_hiera_l"  # 使用 Hydra 配置路径
+                logger.info(f"  ✓ 使用 SAM2 配置: {config_file} (Hydra 会自动从 sam2 包中加载)")
                 
                 # 查找权重文件
                 checkpoint = None
-                for name in ["sam2_hiera_large.pt", "model.safetensors"]:
+                for name in ["sam2_hiera_large.pt", "model.safetensors", "sam2_hiera_l.pt"]:
                     path = os.path.join(self.sam2_path, name)
                     if os.path.exists(path):
                         checkpoint = path
+                        logger.info(f"  ✓ 找到 SAM2 权重文件: {checkpoint}")
                         break
                 
                 if checkpoint is None:
-                    raise FileNotFoundError(f"SAM2 权重文件未找到: {self.sam2_path}")
+                    logger.warning(f"  ⚠ SAM2 权重文件未找到: {self.sam2_path}")
+                    logger.info("  ℹ SAM2 将尝试从 HuggingFace 下载权重（如果网络可用）")
+                    # 使用模型名称，让 sam2 自动下载
+                    checkpoint = "sam2_hiera_large"
                 
                 # 构建模型
+                logger.info(f"  加载 SAM2 模型: config={config_file}, checkpoint={checkpoint}")
                 sam2_model = build_sam2(config_file, checkpoint, device=self.device)
                 self.sam2_predictor = SAM2ImagePredictor(sam2_model)
                 
                 self.sam2_loaded = True
-                logger.info(f"SAM2 加载完成: {checkpoint}")
+                logger.info(f"  ✅ SAM2 加载完成")
                 
             except ImportError as e:
                 logger.warning(f"sam2 包未安装: {e}")
@@ -137,8 +142,28 @@ class DecoupledFusionEngine:
         try:
             from ultralytics import YOLO
             
-            # YOLO 会自动下载权重
-            self.yolo_model = YOLO("yolov8n.pt")  # nano 版本，速度快
+            # ⚡ 关键修复：优先使用本地 YOLO 模型文件，避免重复下载
+            yolo_model_name = "yolov8n.pt"
+            yolo_paths = [
+                yolo_model_name,  # 当前目录
+                os.path.join("gen_video", yolo_model_name),  # gen_video 目录
+                os.path.join(os.path.dirname(__file__), yolo_model_name),  # 脚本所在目录
+            ]
+            
+            yolo_path = None
+            for path in yolo_paths:
+                if os.path.exists(path):
+                    yolo_path = path
+                    logger.info(f"  ✓ 找到本地 YOLO 模型: {yolo_path}")
+                    break
+            
+            if yolo_path:
+                # 使用本地文件（绝对路径，避免 YOLO 库再次下载）
+                self.yolo_model = YOLO(os.path.abspath(yolo_path))
+            else:
+                # 如果本地文件不存在，使用默认方式（会下载）
+                logger.warning(f"  ⚠ 本地 YOLO 模型不存在，将从网络下载: {yolo_model_name}")
+                self.yolo_model = YOLO(yolo_model_name)
             
             self.yolo_loaded = True
             logger.info("YOLO 加载完成")
@@ -193,7 +218,19 @@ class DecoupledFusionEngine:
         
         # 自动选择方法
         if method == "auto":
-            method = "yolo"  # YOLO 更快更稳定
+            # ⚡ 关键修复：优先使用 SAM2（更精确的 mask，避免方框感）
+            # 如果 SAM2 不可用，回退到 YOLO
+            try:
+                self.load_sam2()
+                if self.sam2_loaded and hasattr(self, 'sam2_predictor') and self.sam2_predictor is not None:
+                    method = "sam2"  # SAM2 生成精确的 mask，避免方框感
+                    logger.info("  ✓ 使用 SAM2 检测（精确 mask，避免方框感）")
+                else:
+                    method = "yolo"  # SAM2 不可用时使用 YOLO
+                    logger.info("  ℹ SAM2 不可用，使用 YOLO 检测")
+            except Exception as e:
+                method = "yolo"  # 如果 SAM2 加载失败，使用 YOLO
+                logger.warning(f"  ⚠ SAM2 加载失败: {e}，使用 YOLO 检测")
         
         if method == "sam2":
             return self._detect_with_sam2(image_np)
@@ -242,47 +279,74 @@ class DecoupledFusionEngine:
         
         for box in boxes:
             x1, y1, x2, y2 = box.astype(int)
-            mask[y1:y2, x1:x2] = 255
+            # ⚡ 关键修复：使用圆角矩形而不是硬矩形，减少方框感
+            # 创建圆角矩形 mask
+            from PIL import ImageDraw
+            mask_pil = Image.new('L', (w, h), 0)
+            draw = ImageDraw.Draw(mask_pil)
+            # 计算圆角半径（约为框大小的 10%）
+            corner_radius = int(min(x2 - x1, y2 - y1) * 0.1)
+            # 绘制圆角矩形
+            draw.rounded_rectangle(
+                [(x1, y1), (x2, y2)],
+                radius=corner_radius,
+                fill=255
+            )
+            # 转换为 numpy 数组并合并
+            mask_yolo = np.array(mask_pil)
+            mask = np.maximum(mask, mask_yolo)
         
+        # ⚡ 关键修复：使用更大的羽化半径，进一步减少方框感
         # 扩展 mask 边缘 (用于自然融合)
-        mask = self._expand_mask(mask, padding=20)
+        mask = self._expand_mask(mask, padding=30)  # 从 20 增加到 30，更好的融合
         
         return mask
     
     def _detect_with_sam2(self, image: np.ndarray) -> Optional[np.ndarray]:
         """使用 SAM2 检测人物"""
-        self.load_sam2()
-        
-        # 先用 YOLO 获取人物框作为 SAM2 的 prompt
-        self.load_yolo()
-        results = self.yolo_model(image, classes=[0], verbose=False)
-        
-        if not results or len(results[0].boxes) == 0:
-            logger.warning("未检测到人物框")
+        # ⚡ 关键修复：优先使用原生 SAM2（sam2 包），如果不可用则回退到 YOLO
+        try:
+            self.load_sam2()
+        except Exception as e:
+            logger.warning(f"SAM2 加载失败: {e}，回退到 YOLO")
             return None
         
-        # 获取最大的人物框
-        boxes = results[0].boxes.xyxy.cpu().numpy()
-        areas = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
-        main_box = boxes[np.argmax(areas)]
-        
-        # 使用 SAM2 生成精确 mask
+        # 检查是否有可用的 SAM2 predictor（原生版本）
         if hasattr(self, 'sam2_predictor') and self.sam2_predictor is not None:
-            self.sam2_predictor.set_image(image)
-            
-            # 使用框作为 prompt
-            masks, scores, _ = self.sam2_predictor.predict(
-                box=main_box,
-                multimask_output=True
-            )
-            
-            # 选择得分最高的 mask
-            best_mask = masks[np.argmax(scores)]
-            
-            return (best_mask * 255).astype(np.uint8)
+            try:
+                # 先用 YOLO 获取人物框作为 SAM2 的 prompt
+                self.load_yolo()
+                results = self.yolo_model(image, classes=[0], verbose=False)
+                
+                if not results or len(results[0].boxes) == 0:
+                    logger.warning("未检测到人物框，SAM2 无法使用")
+                    return None
+                
+                # 获取最大的人物框
+                boxes = results[0].boxes.xyxy.cpu().numpy()
+                areas = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
+                main_box = boxes[np.argmax(areas)]
+                
+                # 使用 SAM2 生成精确 mask
+                self.sam2_predictor.set_image(image)
+                
+                # 使用框作为 prompt
+                masks, scores, _ = self.sam2_predictor.predict(
+                    box=main_box,
+                    multimask_output=True
+                )
+                
+                # 选择得分最高的 mask
+                best_mask = masks[np.argmax(scores)]
+                
+                return (best_mask * 255).astype(np.uint8)
+            except Exception as e:
+                logger.warning(f"SAM2 原生版本推理失败: {e}，回退到 YOLO")
+                return None
         else:
-            # 使用 transformers 版本
-            return self._detect_with_sam2_transformers(image, main_box)
+            # ⚡ 关键修复：transformers 版本的 SAM2 有兼容性问题（sam2_video vs sam2），直接回退到 YOLO
+            logger.warning("SAM2 原生版本不可用，transformers 版本有兼容性问题，回退到 YOLO")
+            return None
     
     def _detect_with_sam2_transformers(
         self,
@@ -332,11 +396,27 @@ class DecoupledFusionEngine:
         """
         from scipy import ndimage
         
-        # 使用形态学膨胀扩展 mask
-        kernel = np.ones((padding * 2, padding * 2), np.uint8)
-        expanded = ndimage.binary_dilation(mask > 0, kernel)
+        # ⚡ 关键修复：使用高斯模糊 + 形态学操作，创建更平滑的边缘
+        # 1. 先对 mask 进行轻微高斯模糊，软化边缘
+        mask_float = mask.astype(float) / 255.0
+        mask_blurred = ndimage.gaussian_filter(mask_float, sigma=padding * 0.3)
         
-        return (expanded * 255).astype(np.uint8)
+        # 2. 使用形态学膨胀扩展 mask（使用圆形核，更自然）
+        # 创建圆形核而不是方形核，减少方框感
+        kernel_size = padding * 2
+        y, x = np.ogrid[:kernel_size, :kernel_size]
+        center = kernel_size // 2
+        kernel = (x - center) ** 2 + (y - center) ** 2 <= (padding) ** 2
+        kernel = kernel.astype(np.uint8)
+        
+        # 3. 对模糊后的 mask 进行膨胀
+        expanded = ndimage.binary_dilation(mask_blurred > 0.1, structure=kernel)
+        
+        # 4. 再次高斯模糊，创建平滑的渐变边缘
+        expanded_float = expanded.astype(float)
+        expanded_smooth = ndimage.gaussian_filter(expanded_float, sigma=padding * 0.2)
+        
+        return (expanded_smooth * 255).astype(np.uint8)
     
     # ==========================================
     # 解耦生成模块
@@ -399,7 +479,16 @@ class DecoupledFusionEngine:
         
         # 阶段2: 检测人物区域
         logger.info("阶段2: 检测人物区域...")
-        person_mask = self.detect_person_region(scene_image)
+        # ⚡ 关键修复：如果 SAM2 失败，自动回退到 YOLO
+        person_mask = None
+        try:
+            person_mask = self.detect_person_region(scene_image, method="auto")
+        except Exception as e:
+            logger.warning(f"人物区域检测失败: {e}，尝试使用 YOLO...")
+            try:
+                person_mask = self.detect_person_region(scene_image, method="yolo")
+            except Exception as e2:
+                logger.error(f"YOLO 检测也失败: {e2}")
         
         if person_mask is None:
             logger.warning("未检测到人物区域，将在场景中心区域注入身份")
@@ -416,8 +505,18 @@ class DecoupledFusionEngine:
             y1 = max(0, center_y - mask_size // 2)
             x2 = min(w, center_x + mask_size // 2)
             y2 = min(h, center_y + mask_size // 2)
-            person_mask[y1:y2, x1:x2] = 255
-            person_mask = self._expand_mask(person_mask, padding=20)
+            # ⚡ 关键修复：使用圆角矩形而不是硬矩形
+            from PIL import ImageDraw
+            mask_pil = Image.new('L', (w, h), 0)
+            draw = ImageDraw.Draw(mask_pil)
+            corner_radius = int(mask_size * 0.1)
+            draw.rounded_rectangle(
+                [(x1, y1), (x2, y2)],
+                radius=corner_radius,
+                fill=255
+            )
+            person_mask = np.array(mask_pil)
+            person_mask = self._expand_mask(person_mask, padding=30)
         
         # 阶段3: 身份注入
         logger.info("阶段3: 身份注入...")
@@ -433,12 +532,14 @@ class DecoupledFusionEngine:
             scene_img = self._remove_existing_person(scene_img, person_mask)
         
         if identity_injector is not None:
+            # ⚡ 关键修复：传递原始 prompt 给身份注入器，确保包含角色和服饰描述
             final_image = self._inject_identity(
                 scene_image=scene_img,
                 mask=person_mask,
                 face_reference=face_reference,
                 identity_injector=identity_injector,
                 reference_strength=reference_strength,
+                prompt=prompt,  # ⚡ 传递原始 prompt（包含角色和服饰描述）
                 **kwargs
             )
         else:
@@ -570,16 +671,36 @@ class DecoupledFusionEngine:
             y_min, y_max = coords[0].min(), coords[0].max()
             x_min, x_max = coords[1].min(), coords[1].max()
             
-            # 生成人物图像
-            # 使用原始 prompt 但添加人物描述，确保生成的人物符合场景
+            # ⚡ 关键修复：生成人物图像时，需要包含完整的角色描述（包括服饰）
+            # 从 kwargs 中获取原始 prompt（包含角色描述）
             original_prompt = kwargs.get('prompt', '')
-            # 构建人物生成 prompt：保留环境描述，但强调人物
+            
+            # ⚡ 关键修复：从原始 prompt 中提取角色描述（包括服饰信息）
+            # 如果 original_prompt 中没有角色描述，尝试从场景中提取
             person_prompt = original_prompt
-            # 如果 prompt 中没有人物描述，添加基本的人物描述
-            if 'person' not in person_prompt.lower() and 'character' not in person_prompt.lower():
+            
+            # 检查 prompt 中是否包含角色和服饰描述
+            has_character = any(kw in person_prompt.lower() for kw in ['hanli', '韩立', 'character', 'person'])
+            has_clothing = any(kw in person_prompt.lower() for kw in ['robe', 'clothing', 'clothes', 'garment', 'outfit', '服饰', '衣服', '道袍', '长袍'])
+            
+            # ⚡ 关键修复：如果没有角色描述，添加基本描述
+            if not has_character:
                 person_prompt = f"a person, {person_prompt}"
             
-            logger.info(f"人物生成 prompt: {person_prompt[:100]}...")
+            # ⚡ 关键修复：如果没有服饰描述，添加基本服饰描述（仙侠风格）
+            if not has_clothing:
+                # 检查是否是仙侠场景
+                is_xianxia = any(kw in person_prompt.lower() for kw in ['xianxia', 'immortal', 'cultivator', '仙侠', '修仙', '修士'])
+                if is_xianxia:
+                    person_prompt = f"{person_prompt}, wearing traditional Chinese cultivator robe, deep cyan flowing fabric, not armor"
+                else:
+                    person_prompt = f"{person_prompt}, wearing appropriate clothing"
+            
+            logger.info(f"人物生成 prompt: {person_prompt[:150]}...")
+            
+            # ⚡ 关键修复：从 kwargs 中移除 prompt，避免重复传递
+            # 因为我们已经显式传递了 person_prompt
+            kwargs_clean = {k: v for k, v in kwargs.items() if k != 'prompt'}
             
             person_image = identity_injector.generate_with_identity(
                 prompt=person_prompt,
@@ -587,7 +708,7 @@ class DecoupledFusionEngine:
                 reference_strength=reference_strength,
                 width=x_max - x_min,
                 height=y_max - y_min,
-                **kwargs
+                **kwargs_clean
             )
             
             # 合成到场景
@@ -676,7 +797,7 @@ class DecoupledFusionEngine:
             scene_array = np.array(scene)
             mask_bool = mask > 128  # 转换为布尔 mask
             
-            # 对 mask 区域进行轻微的高斯模糊，模拟背景
+            # ⚡ 关键修复：使用更大的填充区域，并使用更智能的背景填充
             if mask_bool.any():
                 # 获取 mask 区域的边界框
                 coords = np.where(mask_bool)
@@ -684,8 +805,8 @@ class DecoupledFusionEngine:
                     y_min, y_max = coords[0].min(), coords[0].max()
                     x_min, x_max = coords[1].min(), coords[1].max()
                     
-                    # 扩展边界框以获取周围区域
-                    padding = 20
+                    # ⚡ 关键修复：使用更大的填充区域（至少 50 像素）
+                    padding = max(50, int(min(x_max - x_min, y_max - y_min) * 0.2))
                     y_min_ext = max(0, y_min - padding)
                     y_max_ext = min(scene_array.shape[0], y_max + padding)
                     x_min_ext = max(0, x_min - padding)
@@ -695,12 +816,22 @@ class DecoupledFusionEngine:
                     background_region = scene_array[y_min_ext:y_max_ext, x_min_ext:x_max_ext].copy()
                     mask_region = mask_bool[y_min_ext:y_max_ext, x_min_ext:x_max_ext]
                     
+                    # ⚡ 关键修复：使用更强的模糊（sigma=5），创建更自然的背景
                     # 对背景区域进行轻微模糊，然后填充到 mask 区域
-                    background_blurred = ndimage.gaussian_filter(background_region, sigma=3)
+                    background_blurred = ndimage.gaussian_filter(background_region, sigma=5)
                     
-                    # 在 mask 区域使用模糊后的背景
+                    # ⚡ 关键修复：使用 Image.inpaint 风格的填充，而不是简单的替换
+                    # 在 mask 区域使用模糊后的背景，但保持边缘的渐变
                     for c in range(3):  # RGB 三个通道
-                        background_region[:, :, c][mask_region] = background_blurred[:, :, c][mask_region]
+                        # 创建渐变 mask（边缘更透明）
+                        mask_gradient = mask_region.astype(float)
+                        # 对 mask 边缘进行羽化
+                        mask_gradient = ndimage.gaussian_filter(mask_gradient, sigma=3)
+                        # 使用渐变混合
+                        background_region[:, :, c] = (
+                            background_region[:, :, c] * (1 - mask_gradient) + 
+                            background_blurred[:, :, c] * mask_gradient
+                        )
                     
                     scene_array[y_min_ext:y_max_ext, x_min_ext:x_max_ext] = background_region
             
@@ -710,7 +841,7 @@ class DecoupledFusionEngine:
         scene_array = np.array(scene)
         mask_bool = mask > 128  # 转换为布尔 mask
         
-        # 对 mask 区域进行轻微的高斯模糊，模拟背景
+        # ⚡ 关键修复：使用更大的填充区域，并使用更智能的背景填充
         if mask_bool.any():
             # 获取 mask 区域的边界框
             coords = np.where(mask_bool)
@@ -718,8 +849,8 @@ class DecoupledFusionEngine:
                 y_min, y_max = coords[0].min(), coords[0].max()
                 x_min, x_max = coords[1].min(), coords[1].max()
                 
-                # 扩展边界框以获取周围区域
-                padding = 20
+                # ⚡ 关键修复：使用更大的填充区域（至少 50 像素）
+                padding = max(50, int(min(x_max - x_min, y_max - y_min) * 0.2))
                 y_min_ext = max(0, y_min - padding)
                 y_max_ext = min(scene_array.shape[0], y_max + padding)
                 x_min_ext = max(0, x_min - padding)
@@ -729,12 +860,22 @@ class DecoupledFusionEngine:
                 background_region = scene_array[y_min_ext:y_max_ext, x_min_ext:x_max_ext].copy()
                 mask_region = mask_bool[y_min_ext:y_max_ext, x_min_ext:x_max_ext]
                 
+                # ⚡ 关键修复：使用更强的模糊（sigma=5），创建更自然的背景
                 # 对背景区域进行轻微模糊，然后填充到 mask 区域
-                background_blurred = ndimage.gaussian_filter(background_region, sigma=3)
+                background_blurred = ndimage.gaussian_filter(background_region, sigma=5)
                 
-                # 在 mask 区域使用模糊后的背景
+                # ⚡ 关键修复：使用 Image.inpaint 风格的填充，而不是简单的替换
+                # 在 mask 区域使用模糊后的背景，但保持边缘的渐变
                 for c in range(3):  # RGB 三个通道
-                    background_region[:, :, c][mask_region] = background_blurred[:, :, c][mask_region]
+                    # 创建渐变 mask（边缘更透明）
+                    mask_gradient = mask_region.astype(float)
+                    # 对 mask 边缘进行羽化
+                    mask_gradient = ndimage.gaussian_filter(mask_gradient, sigma=3)
+                    # 使用渐变混合
+                    background_region[:, :, c] = (
+                        background_region[:, :, c] * (1 - mask_gradient) + 
+                        background_blurred[:, :, c] * mask_gradient
+                    )
                 
                 scene_array[y_min_ext:y_max_ext, x_min_ext:x_max_ext] = background_region
         
