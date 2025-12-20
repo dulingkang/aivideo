@@ -296,8 +296,18 @@ class ExecutionExecutorV21:
             from pathlib import Path
             
             # 构建输出路径
+            # ⚡ 修复：如果output_dir已经包含scene_XXX，不再重复添加
             scene_id = scene.get("scene_id", 0)
-            output_path = Path(output_dir) / f"scene_{scene_id:03d}" / "novel_image.png"
+            output_dir_path = Path(output_dir)
+            
+            # 检查output_dir是否已经包含scene_XXX
+            if output_dir_path.name.startswith("scene_"):
+                # 已经包含scene_XXX，直接使用
+                output_path = output_dir_path / "novel_image.png"
+            else:
+                # 需要添加scene_XXX
+                output_path = output_dir_path / f"scene_{scene_id:03d}" / "novel_image.png"
+            
             output_path.parent.mkdir(parents=True, exist_ok=True)
             
             # 构建scene字典（兼容ImageGenerator的格式）
