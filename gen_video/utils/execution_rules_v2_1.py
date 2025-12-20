@@ -136,13 +136,39 @@ class ExecutionRulesV21:
             }
         }
         
-        # 3. Model 路由表（硬切）
+        # 3. Model 路由表（硬切，向后兼容）
         self.MODEL_ROUTING = {
             # 条件: (有人物, shot_type) -> (scene_model, identity_engine)
             (True, ShotType.MEDIUM): (ModelType.FLUX, "pulid"),
             (True, ShotType.CLOSE_UP): (ModelType.FLUX, "pulid"),
             (True, ShotType.WIDE): (ModelType.SDXL, "instantid"),  # 远景用SDXL
             (False, None): (ModelType.FLUX, None),  # 无人物场景
+        }
+        
+        # 智能分流路由表（v2.2新增）
+        # 格式: (character_role, task_type, shot_type) -> (model, identity_engine)
+        # None表示"任意匹配"
+        self.SMART_ROUTING = {
+            # 主角（韩立）-> 必须 Flux
+            (CharacterRole.MAIN_CHARACTER, TaskType.CHARACTER_GENERATION, None): (ModelType.FLUX, "pulid"),
+            
+            # 重要配角（如有LoRA）-> Flux + LoRA
+            (CharacterRole.IMPORTANT_SUPPORTING, TaskType.CHARACTER_GENERATION, None): (ModelType.FLUX, "pulid"),
+            
+            # NPC/路人 -> SDXL + InstantID（零成本换脸）
+            (CharacterRole.NPC, TaskType.CHARACTER_GENERATION, None): (ModelType.SDXL, "instantid"),
+            
+            # 扩图任务 -> SDXL Inpainting（性价比之王）
+            (None, TaskType.OUTPAINTING, None): (ModelType.SDXL, None),
+            
+            # 修补任务 -> SDXL Inpainting
+            (None, TaskType.INPAINTING, None): (ModelType.SDXL, None),
+            
+            # 构图控制 -> SDXL ControlNet（生态成熟）
+            (None, TaskType.CONTROLNET_LAYOUT, None): (ModelType.SDXL, None),
+            
+            # 纯场景 -> Flux（画质优先）
+            (CharacterRole.NO_CHARACTER, TaskType.SCENE_GENERATION, None): (ModelType.FLUX, None),
         }
         
         # 4. 性别负锁（工业级标配）
