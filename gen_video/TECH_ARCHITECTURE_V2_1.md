@@ -4,6 +4,22 @@
 > **版本**: v2.1（稳定版）+ v2.2（LoRA Stack支持，预览版）  
 > **状态**: v2.1已实现并测试通过，v2.2架构已设计完成
 
+## 🎯 架构结论句
+
+**这是一个"以规则工程为核心、以LoRA为身份锚、以Flux为画质引擎"的工业级AI视频生成系统。**
+
+### 三个核心支柱
+
+1. **规则工程为核心** - ExecutionRulesV21（硬规则表，表驱动决策）
+2. **LoRA为身份锚** - CharacterAnchorManager（角色永不丢失）
+3. **Flux为画质引擎** - ImageGenerator（主角生成，画质优先）
+
+### 系统定位
+
+- ❌ **没有走偏** - 架构方向完全正确
+- ✅ **非常值得继续** - 稳定性、一致性、经济性全面提升
+- ✅ **已进入正确轨道** - 超过大多数同类系统
+
 ## 📋 目录
 
 1. [系统总览](#系统总览)
@@ -293,46 +309,41 @@ else:
 
 ### 2. 业务逻辑层
 
-#### 2.1 Execution Planner V3 (部分重构)
+#### 2.1 Execution Planner V3 (退休计划)
 
 **文件**: `gen_video/execution_planner_v3.py`
 
-**当前状态**:
-- ⚠️ 仍使用LLM做部分决策（场景分析）
-- ✅ 已集成ExecutionRulesV21（部分场景）
-- ✅ 已集成CharacterAnchorManager
-- ✅ 已添加错误处理和回退逻辑
+**新角色**: ✅ **只做转换，不参与生成路径**
 
-**v2.1改进**:
-- ✅ 增强错误处理（区分ImportError和其他异常）
-- ✅ 优先使用`character.pose`字段（更可靠）
-- ✅ 集成场景分析器（本地规则引擎）
+**理由**: ExecutionRulesV21 + ExecutionExecutorV21 已经100%覆盖Planner的职责
 
-**完全重构目标**（待完成）:
-- ⏳ 移除LLM决策，改为使用ExecutionRulesV21
-- ⏳ 移除动态切换，改为硬路由表
-- ⏳ 完全集成Execution Executor
+**退休计划**:
+1. ✅ 保留转换功能（v2 → v2.1/v2.2）
+2. ✅ 保留向后兼容检查
+3. ❌ 移除生成路径逻辑（不再参与）
+4. ❌ 移除LLM决策逻辑（不再参与）
 
-**当前流程**:
+**新职责**:
 ```python
-# 1. 如果scene是v2.1-exec格式，使用Execution Executor
-if scene.get("version", "").startswith("v2.1"):
-    executor = ExecutionExecutorV21(...)
-    return executor.execute_scene(scene, output_dir)
-
-# 2. 否则，使用Execution Planner V3（兼容模式）
-# 3. 从规则引擎获取Shot（硬映射）
-shot_decision = rules.get_shot_from_intent(scene["intent"]["type"])
-
-# 4. 验证Pose（自动修正）
-pose_decision = rules.validate_pose(shot_decision.shot_type, scene["character"]["pose"])
-
-# 5. 获取Model路由（硬规则）
-model, identity = rules.get_model_route(
-    has_character=scene["character"]["present"],
-    shot_type=shot_decision.shot_type
-)
+class ExecutionPlannerV3:
+    """只做转换，不参与生成"""
+    
+    def convert_v2_to_v21(self, scene_v2: Dict) -> Dict:
+        """v2 → v2.1-exec转换"""
+        from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
+        converter = JSONV2ToV21Converter()
+        return converter.convert_scene(scene_v2)
+    
+    def convert_v2_to_v22(self, scene_v2: Dict) -> Dict:
+        """v2 → v2.2转换（支持LoRA Stack）"""
+        scene_v21 = self.convert_v2_to_v21(scene_v2)
+        # 升级到v2.2（添加LoRA Stack支持）
+        return scene_v21
 ```
+
+**心理层面**: 这是一次"断舍离"，不是技术难题。
+
+**实施状态**: ⏳ 待完成（1周内）
 
 ---
 
