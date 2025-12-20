@@ -284,11 +284,8 @@ class ExecutionExecutorV21:
         output_dir: str
     ) -> Dict[str, Any]:
         """执行图像生成"""
-        # 这里应该调用实际的ImageGenerator
-        # 为了演示，返回模拟结果
-        
         if self._image_generator is None:
-            logger.warning("ImageGenerator未初始化，返回模拟结果")
+            logger.warning("ImageGenerator未初始化")
             return {
                 "success": False,
                 "error": "ImageGenerator未初始化",
@@ -296,36 +293,48 @@ class ExecutionExecutorV21:
             }
         
         try:
-            # 获取模型路由
-            model_route = scene["model_route"]
-            base_model = model_route["base_model"]
-            identity_engine = model_route["identity_engine"]
+            from pathlib import Path
             
-            # 获取角色锚
-            character = scene["character"]
-            character_id = character.get("id")
+            # 构建输出路径
+            scene_id = scene.get("scene_id", 0)
+            output_path = Path(output_dir) / f"scene_{scene_id:03d}" / "novel_image.png"
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             
-            # 构建生成参数
-            generation_params = {
-                "prompt": prompt,
-                "negative_prompt": ", ".join(negative_prompt),
-                "model": base_model,
-                "identity_engine": identity_engine,
-                "character_id": character_id,
-                "output_dir": output_dir
-            }
+            # 构建scene字典（兼容ImageGenerator的格式）
+            image_scene = scene.copy()
             
-            # 调用ImageGenerator（这里需要实际实现）
-            # image_path = self._image_generator.generate(**generation_params)
+            # 添加width和height（如果scene中没有）
+            if "width" not in image_scene:
+                image_scene["width"] = 768  # 默认值
+            if "height" not in image_scene:
+                image_scene["height"] = 1152  # 默认值
             
-            # 模拟成功
-            return {
-                "success": True,
-                "path": f"{output_dir}/scene_{scene['scene_id']:03d}_image.png"
-            }
+            # 调用ImageGenerator生成图像
+            logger.info(f"开始生成图像: scene_id={scene_id}, prompt={prompt[:50]}...")
+            image_path = self._image_generator.generate_image(
+                prompt=prompt,
+                output_path=str(output_path),
+                scene=image_scene,
+                negative_prompt=", ".join(negative_prompt) if negative_prompt else None
+            )
+            
+            # 检查文件是否生成成功
+            if image_path and Path(image_path).exists():
+                logger.info(f"图像生成成功: {image_path}")
+                return {
+                    "success": True,
+                    "path": str(image_path)
+                }
+            else:
+                logger.error(f"图像文件不存在: {image_path}")
+                return {
+                    "success": False,
+                    "error": f"图像文件未生成: {image_path}",
+                    "retryable": True
+                }
             
         except Exception as e:
-            logger.error(f"图像生成失败: {e}")
+            logger.error(f"图像生成失败: {e}", exc_info=True)
             return {
                 "success": False,
                 "error": str(e),
