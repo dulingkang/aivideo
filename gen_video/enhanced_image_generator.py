@@ -1254,43 +1254,53 @@ class EnhancedImageGenerator:
                     
                     face_info_list = temp_generator.face_analysis.get(face_img_array)
                     if face_info_list and len(face_info_list) > 0:
-                        # face_info_list[0] 是一个 BBox 对象
-                        face_data = face_info_list[0]
-                        face_emb = face_data.normed_embedding
-                        
-                        # ⚡ 修复：提取关键点图像（InstantID pipeline 需要）
+                        # ⚡ 修复：face_analysis.get() 返回的是列表，每个元素可能是字典或对象
+                        # 选择最大的人脸（与 image_generator.py 保持一致）
                         try:
-                            # 导入 draw_kps 函数
-                            from pathlib import Path
-                            instantid_repo_path = Path(__file__).parent.parent / "InstantID"
-                            if instantid_repo_path.exists():
-                                import sys
-                                if str(instantid_repo_path) not in sys.path:
-                                    sys.path.insert(0, str(instantid_repo_path))
-                                from pipeline_stable_diffusion_xl_instantid import draw_kps
-                                
-                                # 提取关键点
-                                # face_data 是一个 BBox 对象，kps 是属性
-                                if hasattr(face_data, 'kps'):
-                                    face_kps_raw = draw_kps(face_image, face_data.kps)
-                                    # 调整关键点图像（如果需要）
-                                    face_kps = face_kps_raw
-                                    logger.info("  ✓ 已提取人脸关键点图像")
-                                elif hasattr(face_data, 'landmark'):
-                                    # 有些版本使用 landmark 而不是 kps
-                                    face_kps_raw = draw_kps(face_image, face_data.landmark)
-                                    face_kps = face_kps_raw
-                                    logger.info("  ✓ 已提取人脸关键点图像（使用 landmark）")
-                                else:
-                                    logger.warning(f"  ⚠ face_data 中没有 kps 或 landmark 属性，可用属性: {[attr for attr in dir(face_data) if not attr.startswith('_')]}")
+                            # 尝试按字典方式访问（image_generator.py 的方式）
+                            if isinstance(face_info_list[0], dict):
+                                face_info = sorted(face_info_list, key=lambda x: (
+                                    x['bbox'][2] - x['bbox'][0]) * (x['bbox'][3] - x['bbox'][1]))[-1]
+                                face_emb = face_info['embedding']
+                                face_kps_data = face_info.get('kps')
                             else:
-                                logger.warning("  ⚠ InstantID 仓库未找到，无法提取关键点")
+                                # 按对象方式访问
+                                face_data = face_info_list[0]
+                                face_emb = face_data.normed_embedding if hasattr(face_data, 'normed_embedding') else face_data.embedding
+                                face_kps_data = face_data.kps if hasattr(face_data, 'kps') else (face_data.landmark if hasattr(face_data, 'landmark') else None)
+                            
+                            # ⚡ 修复：提取关键点图像（InstantID pipeline 需要）
+                            if face_kps_data is not None:
+                                try:
+                                    # 导入 draw_kps 函数
+                                    from pathlib import Path
+                                    instantid_repo_path = Path(__file__).parent.parent / "InstantID"
+                                    if instantid_repo_path.exists():
+                                        import sys
+                                        if str(instantid_repo_path) not in sys.path:
+                                            sys.path.insert(0, str(instantid_repo_path))
+                                        from pipeline_stable_diffusion_xl_instantid import draw_kps
+                                        
+                                        # 生成关键点图像
+                                        face_kps_raw = draw_kps(face_image, face_kps_data)
+                                        face_kps = face_kps_raw
+                                        logger.info("  ✓ 已提取人脸关键点图像")
+                                    else:
+                                        logger.warning("  ⚠ InstantID 仓库未找到，无法提取关键点")
+                                except Exception as e:
+                                    logger.warning(f"  ⚠ 提取关键点图像失败: {e}")
+                                    import traceback
+                                    traceback.print_exc()
+                            else:
+                                logger.warning("  ⚠ 无法获取关键点数据")
                         except Exception as e:
-                            logger.warning(f"  ⚠ 提取关键点图像失败: {e}")
+                            logger.warning(f"  ⚠ 处理人脸信息失败: {e}")
                             import traceback
                             traceback.print_exc()
+                            face_emb = None
                         
-                        logger.info("  ✓ 已从参考图提取人脸 embedding")
+                        if face_emb is not None:
+                            logger.info("  ✓ 已从参考图提取人脸 embedding")
                     else:
                         logger.warning("  ⚠ 未能从参考图提取人脸信息")
                 except Exception as e:
