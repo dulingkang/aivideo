@@ -1237,6 +1237,7 @@ class EnhancedImageGenerator:
                     temp_generator.face_analysis = None
             
             face_emb = None
+            face_kps = None
             if temp_generator.face_analysis and face_reference:
                 # ⚡ 修复：face_analysis.get() 需要 numpy 数组，不是 PIL Image
                 # 将 PIL Image 转换为 numpy 数组
@@ -1245,13 +1246,40 @@ class EnhancedImageGenerator:
                     if hasattr(face_reference, 'shape'):
                         # 已经是 numpy 数组
                         face_img_array = face_reference
+                        face_image = Image.fromarray(face_img_array) if len(face_img_array.shape) == 3 else face_reference
                     else:
                         # 是 PIL Image，转换为 numpy 数组
                         face_img_array = np.array(face_reference)
+                        face_image = face_reference
                     
                     face_info = temp_generator.face_analysis.get(face_img_array)
-                    if face_info:
+                    if face_info and len(face_info) > 0:
                         face_emb = face_info[0].normed_embedding
+                        
+                        # ⚡ 修复：提取关键点图像（InstantID pipeline 需要）
+                        try:
+                            # 导入 draw_kps 函数
+                            from pathlib import Path
+                            instantid_repo_path = Path(__file__).parent.parent / "InstantID"
+                            if instantid_repo_path.exists():
+                                import sys
+                                if str(instantid_repo_path) not in sys.path:
+                                    sys.path.insert(0, str(instantid_repo_path))
+                                from pipeline_stable_diffusion_xl_instantid import draw_kps
+                                
+                                # 提取关键点
+                                if hasattr(face_info[0], 'kps'):
+                                    face_kps_raw = draw_kps(face_image, face_info[0].kps)
+                                    # 调整关键点图像（如果需要）
+                                    face_kps = face_kps_raw
+                                    logger.info("  ✓ 已提取人脸关键点图像")
+                                else:
+                                    logger.warning("  ⚠ face_info 中没有 kps 属性")
+                            else:
+                                logger.warning("  ⚠ InstantID 仓库未找到，无法提取关键点")
+                        except Exception as e:
+                            logger.warning(f"  ⚠ 提取关键点图像失败: {e}")
+                        
                         logger.info("  ✓ 已从参考图提取人脸 embedding")
                     else:
                         logger.warning("  ⚠ 未能从参考图提取人脸信息")
@@ -1261,6 +1289,10 @@ class EnhancedImageGenerator:
             
             if face_emb is None:
                 logger.warning("  没有 face embedding，使用纯 SDXL 生成（无身份注入）")
+                return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
+            
+            if face_kps is None:
+                logger.warning("  没有关键点图像，使用纯 SDXL 生成（无身份注入）")
                 return self._generate_with_sdxl(prompt, face_reference, strategy, **kwargs)
             
             # 直接调用 InstantID pipeline
@@ -1283,6 +1315,7 @@ class EnhancedImageGenerator:
             result = pipeline(
                 prompt=prompt,
                 image_embeds=face_emb,
+                image=face_kps,  # ⚡ 修复：添加关键点图像参数
                 controlnet_conditioning_scale=ip_adapter_scale,
                 width=temp_generator.width if hasattr(temp_generator, 'width') else 1024,
                 height=temp_generator.height if hasattr(temp_generator, 'height') else 1024,
