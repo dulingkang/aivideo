@@ -1268,13 +1268,20 @@ class EnhancedImageGenerator:
                                 from pipeline_stable_diffusion_xl_instantid import draw_kps
                                 
                                 # 提取关键点
-                                if hasattr(face_info[0], 'kps'):
-                                    face_kps_raw = draw_kps(face_image, face_info[0].kps)
+                                # face_info[0] 是一个 BBox 对象，kps 是属性
+                                face_data = face_info[0]
+                                if hasattr(face_data, 'kps'):
+                                    face_kps_raw = draw_kps(face_image, face_data.kps)
                                     # 调整关键点图像（如果需要）
                                     face_kps = face_kps_raw
                                     logger.info("  ✓ 已提取人脸关键点图像")
+                                elif hasattr(face_data, 'landmark'):
+                                    # 有些版本使用 landmark 而不是 kps
+                                    face_kps_raw = draw_kps(face_image, face_data.landmark)
+                                    face_kps = face_kps_raw
+                                    logger.info("  ✓ 已提取人脸关键点图像（使用 landmark）")
                                 else:
-                                    logger.warning("  ⚠ face_info 中没有 kps 属性")
+                                    logger.warning(f"  ⚠ face_info[0] 中没有 kps 或 landmark 属性，可用属性: {dir(face_data)}")
                             else:
                                 logger.warning("  ⚠ InstantID 仓库未找到，无法提取关键点")
                         except Exception as e:
