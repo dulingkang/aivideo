@@ -1,4 +1,8 @@
-# 技术架构文档 v2.1 - 工业级稳定视频生成系统
+# 技术架构文档 v2.1/v2.2 - 工业级稳定视频生成系统
+
+> **更新日期**: 2025-12-20  
+> **版本**: v2.1（稳定版）+ v2.2（LoRA Stack支持，预览版）  
+> **状态**: v2.1已实现并测试通过，v2.2架构已设计完成
 
 ## 📋 目录
 
@@ -800,17 +804,64 @@ negative = anchor_manager.get_negative_prompt_with_gender_lock(character_id)
 
 ---
 
+## v2.2架构升级（LoRA Stack支持）
+
+### 核心升级
+
+基于第三方分析报告（2025-12-20）的建议，v2.2架构支持：
+
+1. **LoRA Stack（分层）**
+   - 脸部LoRA（核心，永远不变）
+   - 气质LoRA（阶段性，随剧情变）
+   - 服饰LoRA（动态，随装备变）
+   - 画风LoRA（可选）
+
+2. **解耦训练策略**
+   - 脸部与服饰解耦
+   - 气质与表情解耦
+
+3. **运行时补丁**
+   - 气质锚点（Prompt中）
+   - FaceDetailer（远景增强）
+   - 显式锁词（服饰描述）
+
+### 关键发现
+
+**第三方分析的核心价值**:
+1. ✅ 确认v2.1硬规则的价值（Flux最缺的缰绳）
+2. ✅ 指出单LoRA的局限性（长篇连载会崩溃）
+3. ✅ 提供LoRA Stack解决方案（解耦训练）
+4. ✅ 提供3个运行时补丁（立即可用）
+
+**结论**: 
+- **能直接运行**，而且已经走在80%人走不到的阶段
+- **不需要重新训练**，只需要3个运行时补丁
+- **保持v2.1硬规则**，这是Flux最缺的缰绳
+
+### 实施状态
+
+- ✅ **架构设计**: 已完成
+- ✅ **LoRA Stack管理器**: 已实现（`character_anchor_v2_2.py`）
+- ✅ **JSON v2.2格式**: 已定义（`scene_v2_2_example.json`）
+- ⏳ **代码集成**: 待完成
+- ⏳ **训练素材准备**: 待完成
+
+---
+
 ## 相关文档
 
 - `REFACTOR_PLAN_V2_1.md` - 详细重构计划
 - `REFACTOR_SUMMARY.md` - 重构总结
 - `V2_1_TO_V2_2_EVOLUTION.md` - v2.2演进建议
+- `LORA_STACK_IMPLEMENTATION.md` - LoRA Stack实施指南（**新增**）
 - `DEVELOPMENT_STATUS_V21.md` - 开发状态报告
 - `INTEGRATION_GUIDE_V21.md` - 集成指南
 - `USAGE_V2_1.md` - 使用指南
 - `TEST_PREPARATION_V21.md` - 测试准备清单
 - `schemas/scene_v2_1_example.json` - v2.1 JSON示例
+- `schemas/scene_v2_2_example.json` - v2.2 JSON示例（**新增**）
 - `utils/execution_rules_v2_1.py` - 规则引擎实现
-- `utils/character_anchor_v2_1.py` - 角色锚系统实现
+- `utils/character_anchor_v2_1.py` - 角色锚系统实现（v2.1）
+- `utils/character_anchor_v2_2.py` - 角色锚系统实现（v2.2，**新增**）
 - `utils/execution_executor_v21.py` - 执行器实现
 
