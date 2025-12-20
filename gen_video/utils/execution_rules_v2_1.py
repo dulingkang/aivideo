@@ -69,6 +69,8 @@ class PoseDecision:
     pose_type: PoseType
     validated_by: str  # "shot_pose_rules"
     auto_corrected: bool = False
+    correction_level: Optional[str] = None  # "none", "level1", "level2"
+    correction_reason: Optional[str] = None
 
 
 class ExecutionRulesV21:
@@ -166,13 +168,19 @@ class ExecutionRulesV21:
             allow_override=False
         )
     
-    def validate_pose(self, shot_type: ShotType, pose_str: str) -> PoseDecision:
+    def validate_pose(
+        self,
+        shot_type: ShotType,
+        pose_str: str,
+        story_context: Optional[Dict[str, Any]] = None
+    ) -> PoseDecision:
         """
-        验证Pose是否合法，如果不合法则自动修正
+        验证Pose是否合法，如果不合法则自动修正（两级修正策略）
         
         Args:
             shot_type: Shot类型
             pose_str: 姿态字符串
+            story_context: 剧情上下文（可选，用于Level 2语义修正）
             
         Returns:
             PoseDecision: Pose决策结果
@@ -191,16 +199,18 @@ class ExecutionRulesV21:
             "faceonly": PoseType.FACE_ONLY,
         }
         
-        pose_type = None
+        original_pose_type = None
         for key, value in pose_mapping.items():
             if key in pose_str_lower:
-                pose_type = value
+                original_pose_type = value
                 break
         
-        if pose_type is None:
+        if original_pose_type is None:
             # 如果无法识别，默认使用STAND
-            pose_type = PoseType.STAND
+            original_pose_type = PoseType.STAND
             logger.warning(f"无法识别的pose: {pose_str}，使用默认值 STAND")
+        
+        pose_type = original_pose_type
         
         # 检查是否合法
         rules = self.SHOT_POSE_RULES.get(shot_type, {})
@@ -208,27 +218,56 @@ class ExecutionRulesV21:
         forbidden = rules.get("forbid", [])
         
         auto_corrected = False
+        correction_level = None
+        correction_reason = None
+        
+        # Level 1: 无感修正（硬规则冲突）
         if pose_type in forbidden:
-            # 不合法，自动修正为第一个允许的pose
             if allowed:
                 pose_type = allowed[0]
                 auto_corrected = True
-                logger.warning(f"⚠ Pose {pose_str} 在 Shot {shot_type.value} 中不合法，自动修正为 {pose_type.value}")
+                correction_level = "level1"
+                correction_reason = f"shot_pose_conflict: {shot_type.value}禁止{pose_str}"
+                logger.warning(f"⚠ [Level 1] Pose {pose_str} 在 Shot {shot_type.value} 中不合法，自动修正为 {pose_type.value}")
             else:
-                # 如果没有允许的pose，使用STAND作为兜底
                 pose_type = PoseType.STAND
                 auto_corrected = True
-                logger.warning(f"⚠ Shot {shot_type.value} 没有允许的pose，使用默认值 STAND")
+                correction_level = "level1"
+                correction_reason = f"no_allowed_pose: {shot_type.value}没有允许的pose"
+                logger.warning(f"⚠ [Level 1] Shot {shot_type.value} 没有允许的pose，使用默认值 STAND")
         elif pose_type not in allowed and allowed:
-            # 不在允许列表中，但不在禁止列表中，修正为第一个允许的
+            # 不在允许列表中，但不在禁止列表中
             pose_type = allowed[0]
             auto_corrected = True
-            logger.info(f"ℹ Pose {pose_str} 不在允许列表中，修正为 {pose_type.value}")
+            correction_level = "level1"
+            correction_reason = f"not_in_allowed_list: {pose_str}不在允许列表中"
+            logger.info(f"ℹ [Level 1] Pose {pose_str} 不在允许列表中，修正为 {pose_type.value}")
+        
+        # Level 2: 语义修正（剧情冲突，需要story_context）
+        if story_context and auto_corrected and correction_level == "level1":
+            # 检查剧情是否需要特定pose
+            story_requires_walking = story_context.get("requires_walking", False)
+            story_requires_rest = story_context.get("requires_rest", False)
+            
+            if story_requires_walking and pose_type == PoseType.STAND:
+                pose_type = PoseType.WALK
+                correction_level = "level2"
+                correction_reason = "story_flow_conflict: 剧情需要行走"
+                logger.info(f"ℹ [Level 2] 剧情需要行走，修正为 WALK")
+            elif story_requires_rest and pose_type == PoseType.LYING:
+                # lying在非受伤剧情中可能不合适
+                if not story_context.get("is_injured", False):
+                    pose_type = PoseType.SIT
+                    correction_level = "level2"
+                    correction_reason = "story_flow_conflict: 非受伤剧情，lying改为sitting"
+                    logger.info(f"ℹ [Level 2] 非受伤剧情，lying改为sitting")
         
         return PoseDecision(
             pose_type=pose_type,
             validated_by="shot_pose_rules",
-            auto_corrected=auto_corrected
+            auto_corrected=auto_corrected,
+            correction_level=correction_level,
+            correction_reason=correction_reason
         )
     
     def get_model_route(
