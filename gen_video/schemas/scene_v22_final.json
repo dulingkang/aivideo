@@ -1,0 +1,119 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-20T00:00:00Z",
+    "description": "v2.2最终JSON格式 - 直接包含所有决策信息，无需LLM"
+  },
+  "scene": {
+    "id": "scene_001",
+    "duration_sec": 5.0,
+    
+    "intent": {
+      "type": "character_intro",
+      "description": "韩立初次登场，展现其冷静内敛的气质"
+    },
+    
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "intent_mapping",
+      "description": "中景镜头，突出人物特征"
+    },
+    
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "shot_pose_rules",
+      "auto_corrected": false,
+      "description": "站立姿态，符合中景镜头要求"
+    },
+    
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "main_character -> flux + pulid",
+      "character_role": "main"
+    },
+    
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      
+      "lora_config": {
+        "type": "single",
+        "lora_path": "path/to/HanLi_Face_v3.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35
+        }
+      },
+      
+      "reference_image": "path/to/hanli_reference.jpg",
+      "negative_gender_lock": [
+        "female", "woman", "girl",
+        "soft facial features", "delicate face"
+      ]
+    },
+    
+    "environment": {
+      "location": "黄枫谷",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "serene and mysterious"
+    },
+    
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, standing in {{environment.location}}, {{environment.atmosphere}}, cinematic lighting, high detail, epic atmosphere",
+      
+      "llm_enhancement": {
+        "enable": true,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      
+      "final": "HanLi, calm and restrained temperament, sharp but composed eyes, wearing his iconic mid-late-stage green daoist robe, standing in 黄枫谷, serene and mysterious atmosphere, cinematic lighting, high detail, epic atmosphere"
+    },
+    
+    "generation_params": {
+      "width": 1024,
+      "height": 1024,
+      "num_inference_steps": 30,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}
+
