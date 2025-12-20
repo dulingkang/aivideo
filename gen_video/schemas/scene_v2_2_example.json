@@ -1,0 +1,148 @@
+{
+  "version": "v2.2-lora-stack",
+  "scene_id": 1,
+  "episode_id": "lingjie_ep1",
+  "intent": {
+    "type": "character_intro",
+    "emotion": "tense"
+  },
+  "locks": {
+    "shot": true,
+    "pose": true,
+    "gender": true,
+    "model": true,
+    "character_identity": true
+  },
+  "shot": {
+    "type": "medium",
+    "source": "intent_mapping",
+    "allow_override": false,
+    "locked": true
+  },
+  "pose": {
+    "type": "lying",
+    "validated_by": "shot_pose_rules",
+    "auto_corrected": false,
+    "locked": true
+  },
+  "character": {
+    "id": "hanli",
+    "gender": "male",
+    "state": "foundation_phase",
+    "costume": "battle_armor",
+    "identity_source": "lora_stack",
+    "locks": {
+      "gender": true,
+      "face": true,
+      "body_type": true
+    },
+    "lora_stack": [
+      {
+        "layer": "face",
+        "path": "HanLi_Face_v3.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli_face",
+        "adapter_name": "hanli_face"
+      },
+      {
+        "layer": "age",
+        "path": "HanLi_Youth_v1.safetensors",
+        "weight": 0.6,
+        "trigger": "young man",
+        "adapter_name": "hanli_youth"
+      },
+      {
+        "layer": "costume",
+        "path": "Costume_BattleArmor_v1.safetensors",
+        "weight": 0.8,
+        "trigger": "battle armor",
+        "adapter_name": "battle_armor"
+      }
+    ],
+    "temperament_anchor": "calm and restrained temperament, sharp but composed eyes",
+    "costume_lock_words": [
+      "wearing his iconic mid-late-stage green daoist robe",
+      "battle-ready armor with subtle spiritual patterns"
+    ]
+  },
+  "character_anchor": {
+    "lora_stack_enabled": true,
+    "face_refine": {
+      "enable": true,
+      "trigger": "shot_scale >= medium",
+      "model": "flux1-dev",
+      "lora": [
+        {
+          "name": "HanLi_face_lora",
+          "weight": 0.9
+        }
+      ],
+      "steps": 12,
+      "denoise": 0.35
+    }
+  },
+  "identity_engine": {
+    "type": "instantid",
+    "enabled": true,
+    "condition": "face_visible",
+    "strength": 0.75
+  },
+  "model_route": {
+    "base_model": "flux1-dev",
+    "identity_engine": "pulid",
+    "allow_fallback": false,
+    "decision_reason": "character_present + medium_shot -> flux + pulid",
+    "confidence": 0.95
+  },
+  "prompt": {
+    "positive_core": [
+      "Han Li, unconscious, lying on the ground",
+      "male cultivator, rough appearance",
+      "dust-covered clothes"
+    ],
+    "scene_description": [
+      "desert environment",
+      "dry ground with scattered leaves",
+      "muted cinematic lighting"
+    ],
+    "style_hint": [
+      "Chinese fantasy illustration"
+    ],
+    "negative_lock": {
+      "gender_male": [
+        "female", "woman", "girl", "feminine face", "delicate facial features",
+        "long eyelashes", "soft jawline", "slim waist"
+      ]
+    }
+  },
+  "llm_usage": {
+    "enabled": true,
+    "scope": [
+      "scene_description",
+      "atmosphere_only"
+    ],
+    "forbidden": [
+      "shot",
+      "pose",
+      "gender",
+      "model",
+      "character_identity"
+    ]
+  },
+  "validation": {
+    "ruleset": "v2.2-lora-stack",
+    "on_violation": "auto_correct",
+    "hard_fail": [
+      "gender_mismatch",
+      "shot_override",
+      "character_lora_missing"
+    ]
+  },
+  "narration": {
+    "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+    "voice_id": "yunjuan_xianyin"
+  },
+  "duration_sec": 4.0,
+  "target_fps": 24
+}
+
