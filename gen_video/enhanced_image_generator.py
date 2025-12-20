@@ -1252,9 +1252,11 @@ class EnhancedImageGenerator:
                         face_img_array = np.array(face_reference)
                         face_image = face_reference
                     
-                    face_info = temp_generator.face_analysis.get(face_img_array)
-                    if face_info and len(face_info) > 0:
-                        face_emb = face_info[0].normed_embedding
+                    face_info_list = temp_generator.face_analysis.get(face_img_array)
+                    if face_info_list and len(face_info_list) > 0:
+                        # face_info_list[0] 是一个 BBox 对象
+                        face_data = face_info_list[0]
+                        face_emb = face_data.normed_embedding
                         
                         # ⚡ 修复：提取关键点图像（InstantID pipeline 需要）
                         try:
@@ -1268,8 +1270,7 @@ class EnhancedImageGenerator:
                                 from pipeline_stable_diffusion_xl_instantid import draw_kps
                                 
                                 # 提取关键点
-                                # face_info[0] 是一个 BBox 对象，kps 是属性
-                                face_data = face_info[0]
+                                # face_data 是一个 BBox 对象，kps 是属性
                                 if hasattr(face_data, 'kps'):
                                     face_kps_raw = draw_kps(face_image, face_data.kps)
                                     # 调整关键点图像（如果需要）
@@ -1281,11 +1282,13 @@ class EnhancedImageGenerator:
                                     face_kps = face_kps_raw
                                     logger.info("  ✓ 已提取人脸关键点图像（使用 landmark）")
                                 else:
-                                    logger.warning(f"  ⚠ face_info[0] 中没有 kps 或 landmark 属性，可用属性: {dir(face_data)}")
+                                    logger.warning(f"  ⚠ face_data 中没有 kps 或 landmark 属性，可用属性: {[attr for attr in dir(face_data) if not attr.startswith('_')]}")
                             else:
                                 logger.warning("  ⚠ InstantID 仓库未找到，无法提取关键点")
                         except Exception as e:
                             logger.warning(f"  ⚠ 提取关键点图像失败: {e}")
+                            import traceback
+                            traceback.print_exc()
                         
                         logger.info("  ✓ 已从参考图提取人脸 embedding")
                     else:
