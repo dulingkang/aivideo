@@ -17,9 +17,14 @@ from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
 from enum import Enum
 
-from utils.execution_rules_v2_1 import get_execution_rules, ShotType, PoseType, ModelType
-from utils.character_anchor_v2_1 import get_character_anchor_manager
-from utils.execution_validator import ExecutionValidator, ValidationResult
+try:
+    from .execution_rules_v2_1 import get_execution_rules, ShotType, PoseType, ModelType
+    from .character_anchor_v2_1 import get_character_anchor_manager
+    from .execution_validator import ExecutionValidator, ValidationResult
+except ImportError:
+    from execution_rules_v2_1 import get_execution_rules, ShotType, PoseType, ModelType
+    from character_anchor_v2_1 import get_character_anchor_manager
+    from execution_validator import ExecutionValidator, ValidationResult
 
 logger = logging.getLogger(__name__)
 

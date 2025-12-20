@@ -16,8 +16,12 @@ from typing import Dict, Any, List, Tuple, Optional
 from dataclasses import dataclass
 from enum import Enum
 
-from utils.execution_rules_v2_1 import get_execution_rules, ShotType, PoseType
-from utils.character_anchor_v2_1 import get_character_anchor_manager
+try:
+    from .execution_rules_v2_1 import get_execution_rules, ShotType, PoseType
+    from .character_anchor_v2_1 import get_character_anchor_manager
+except ImportError:
+    from execution_rules_v2_1 import get_execution_rules, ShotType, PoseType
+    from character_anchor_v2_1 import get_character_anchor_manager
 
 logger = logging.getLogger(__name__)
 
