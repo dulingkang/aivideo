@@ -364,7 +364,50 @@ class ExecutionExecutorV21:
         # 7. 通用质量标签
         parts.append("cinematic lighting, high detail, epic atmosphere")
         
-        return ", ".join(filter(None, parts))
+        prompt = ", ".join(filter(None, parts))
+        return self._optimize_prompt_length(prompt)
+    
+    def _optimize_prompt_length(self, prompt: str, max_tokens: int = 77) -> str:
+        """
+        优化Prompt长度，确保不超过token限制
+        
+        Args:
+            prompt: 原始Prompt
+            max_tokens: 最大token数（CLIP默认77，Flux T5支持512）
+            
+        Returns:
+            优化后的Prompt
+        """
+        # 简单估算：1 token ≈ 0.75 单词 ≈ 4 字符（英文）
+        # 为了安全，使用更保守的估算：1 token ≈ 3 字符
+        estimated_tokens = len(prompt) / 3
+        
+        if estimated_tokens <= max_tokens:
+            return prompt
+        
+        # Prompt过长，需要精简
+        logger.warning(f"Prompt过长（估计{estimated_tokens:.0f} tokens > {max_tokens}），开始精简...")
+        
+        # 策略：保留关键信息，删除冗余描述
+        # 1. 保留角色名称和关键特征
+        # 2. 保留动作/姿态
+        # 3. 保留环境关键信息
+        # 4. 删除重复和冗余的描述
+        
+        # 简单实现：截断到合理长度
+        # 更智能的实现可以使用tokenizer精确计算
+        max_chars = max_tokens * 3  # 保守估算
+        if len(prompt) > max_chars:
+            # 尝试智能截断：保留前面的关键信息
+            truncated = prompt[:max_chars]
+            # 尝试在最后一个逗号处截断，避免截断单词
+            last_comma = truncated.rfind(',')
+            if last_comma > max_chars * 0.8:  # 如果最后一个逗号在80%位置之后
+                truncated = truncated[:last_comma]
+            logger.warning(f"Prompt已截断: {len(prompt)} -> {len(truncated)} 字符")
+            return truncated
+        
+        return prompt
     
     def _build_negative_prompt(self, scene: Dict[str, Any]) -> List[str]:
         """构建负面Prompt（包含性别负锁）"""
@@ -398,7 +441,11 @@ class ExecutionExecutorV21:
         negative_prompt: List[str],
         output_dir: str
     ) -> Dict[str, Any]:
-        """执行图像生成"""
+        """
+        执行图像生成（v2.2-final硬规则模式）
+        
+        严格按照JSON中的model_route执行，不使用增强模式生成器
+        """
         if self._image_generator is None:
             logger.warning("ImageGenerator未初始化")
             return {
@@ -411,36 +458,87 @@ class ExecutionExecutorV21:
             from pathlib import Path
             
             # 构建输出路径
-            # ⚡ 修复：如果output_dir已经包含scene_XXX，不再重复添加
             scene_id = scene.get("scene_id", 0)
             output_dir_path = Path(output_dir)
             
             # 检查output_dir是否已经包含scene_XXX
             if output_dir_path.name.startswith("scene_"):
-                # 已经包含scene_XXX，直接使用
                 output_path = output_dir_path / "novel_image.png"
             else:
-                # 需要添加scene_XXX
                 output_path = output_dir_path / f"scene_{scene_id:03d}" / "novel_image.png"
             
             output_path.parent.mkdir(parents=True, exist_ok=True)
             
-            # 构建scene字典（兼容ImageGenerator的格式）
-            image_scene = scene.copy()
+            # 获取model_route（硬规则）
+            model_route = scene.get("model_route", {})
+            base_model = model_route.get("base_model", "flux")
+            identity_engine = model_route.get("identity_engine", "pulid")
             
-            # 添加width和height（如果scene中没有）
-            if "width" not in image_scene:
-                image_scene["width"] = 768  # 默认值
-            if "height" not in image_scene:
-                image_scene["height"] = 1152  # 默认值
+            logger.info(f"v2.2-final硬规则模式: base_model={base_model}, identity_engine={identity_engine}")
+            logger.info(f"Prompt长度: {len(prompt)} 字符")
             
-            # 调用ImageGenerator生成图像
-            logger.info(f"开始生成图像: scene_id={scene_id}, prompt={prompt[:50]}...")
+            # 获取生成参数
+            gen_params = scene.get("generation_params", {})
+            width = gen_params.get("width", 768)
+            height = gen_params.get("height", 1152)
+            num_steps = gen_params.get("num_inference_steps", 30)
+            guidance_scale = gen_params.get("guidance_scale", 7.5)
+            seed = gen_params.get("seed", -1)
+            
+            # 获取角色信息
+            character = scene.get("character", {})
+            character_id = character.get("id")
+            reference_image = character.get("reference_image")
+            
+            # 构建scene字典（关键：不传递scene参数，或者传递一个空的scene，禁用增强模式）
+            # 方法：传递None或最小化的scene，避免触发增强模式
+            image_scene = None  # 不传递scene，禁用增强模式
+            
+            # 构建model_engine参数（强制指定模型）
+            if base_model == "flux" and identity_engine == "pulid":
+                model_engine = "flux-instantid"  # Flux + PuLID通常使用flux-instantid
+            elif base_model == "flux" and identity_engine == "instantid":
+                model_engine = "flux-instantid"
+            elif base_model == "sdxl" and identity_engine == "instantid":
+                model_engine = "instantid"
+            elif base_model == "flux":
+                model_engine = "flux1"  # 纯Flux
+            elif base_model == "sdxl":
+                model_engine = "sdxl"  # 纯SDXL
+            else:
+                model_engine = f"{base_model}-{identity_engine}" if identity_engine else base_model
+            
+            logger.info(f"开始生成图像: scene_id={scene_id}, model={base_model}+{identity_engine}, engine={model_engine}")
+            logger.info(f"Prompt预览: {prompt[:100]}...")
+            logger.info(f"⚠️  禁用增强模式，严格按照JSON中的model_route执行")
+            
+            # 获取参考图路径
+            face_ref_path = None
+            if reference_image:
+                from pathlib import Path
+                ref_path = Path(reference_image)
+                if ref_path.exists():
+                    face_ref_path = ref_path
+                else:
+                    # 尝试从character_reference_images获取
+                    if hasattr(self._image_generator, 'character_reference_images'):
+                        char_refs = self._image_generator.character_reference_images
+                        if character_id and character_id in char_refs:
+                            face_ref_path = char_refs[character_id]
+                            logger.info(f"使用角色参考图: {face_ref_path}")
+            
+            # 直接调用ImageGenerator，不传递scene参数（禁用增强模式）
+            # 使用model_engine强制指定模型
             image_path = self._image_generator.generate_image(
                 prompt=prompt,
                 output_path=str(output_path),
-                scene=image_scene,
-                negative_prompt=", ".join(negative_prompt) if negative_prompt else None
+                negative_prompt=", ".join(negative_prompt) if negative_prompt else None,
+                guidance_scale=guidance_scale,
+                num_inference_steps=num_steps,
+                seed=seed if seed > 0 else None,
+                face_reference_image_path=face_ref_path,
+                model_engine=model_engine,  # 强制指定引擎，避免自动选择
+                task_type="character" if character_id else "scene"  # 明确任务类型
             )
             
             # 检查文件是否生成成功
@@ -460,6 +558,8 @@ class ExecutionExecutorV21:
             
         except Exception as e:
             logger.error(f"图像生成失败: {e}", exc_info=True)
+            import traceback
+            traceback.print_exc()
             return {
                 "success": False,
                 "error": str(e),
