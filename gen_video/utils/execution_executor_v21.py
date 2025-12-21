@@ -120,7 +120,9 @@ class ExecutionExecutorV21:
         
         # v2.2-final格式：scene在顶层
         if version == "v2.2-final" and "scene" in scene:
-            scene_data = scene["scene"]
+            scene_data = scene["scene"].copy()  # 使用copy避免修改原数据
+            # 保留version字段，验证器需要它
+            scene_data["version"] = "v2.2-final"
             # 添加scene_id（如果缺失）
             if "scene_id" not in scene_data:
                 scene_id_str = scene_data.get("id", "scene_001")
