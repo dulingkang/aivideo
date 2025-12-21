@@ -277,7 +277,9 @@ class ExecutionExecutorV21:
         
         # v2.2-final格式：直接使用final字段（如果存在）
         if "final" in prompt_config:
-            return prompt_config["final"]
+            final_prompt = prompt_config["final"]
+            # 精简Prompt，确保不超过77 tokens（CLIP限制）
+            return self._optimize_prompt_length(final_prompt, max_tokens=77)
         
         # v2.2-final格式：使用base_template（如果存在）
         if "base_template" in prompt_config:
