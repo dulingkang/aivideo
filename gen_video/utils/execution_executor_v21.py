@@ -365,7 +365,7 @@ class ExecutionExecutorV21:
         parts.append("cinematic lighting, high detail, epic atmosphere")
         
         prompt = ", ".join(filter(None, parts))
-        return self._optimize_prompt_length(prompt)
+        return self._optimize_prompt_length(prompt, max_tokens=77)
     
     def _optimize_prompt_length(self, prompt: str, max_tokens: int = 77) -> str:
         """
@@ -378,6 +378,91 @@ class ExecutionExecutorV21:
         Returns:
             优化后的Prompt
         """
+        # 尝试使用CLIP tokenizer精确计算token数
+        try:
+            from transformers import CLIPTokenizer
+            # 尝试加载tokenizer（如果可用）
+            try:
+                tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-large-patch14")
+                tokens = tokenizer.encode(prompt, return_tensors="pt")
+                token_count = tokens.shape[1]
+                logger.info(f"Prompt token数: {token_count} (限制: {max_tokens})")
+                
+                if token_count <= max_tokens:
+                    return prompt
+                
+                # Token数超限，需要精简
+                logger.warning(f"Prompt token数超限（{token_count} > {max_tokens}），开始精简...")
+                
+                # 策略：按重要性保留部分
+                # 1. 保留角色名称和关键特征（前30%）
+                # 2. 保留动作/姿态（中间30%）
+                # 3. 保留环境关键信息（后40%）
+                
+                # 按逗号分割，保留最重要的部分
+                parts = [p.strip() for p in prompt.split(',')]
+                
+                # 优先级：角色信息 > 动作 > 环境 > 风格标签
+                priority_parts = []
+                style_parts = []
+                other_parts = []
+                
+                for part in parts:
+                    part_lower = part.lower()
+                    # 角色相关（高优先级）
+                    if any(kw in part_lower for kw in ['hanli', 'character', 'temperament', 'expression', 'wearing', 'robe', 'attire']):
+                        priority_parts.append(part)
+                    # 风格标签（低优先级，可以删除）
+                    elif any(kw in part_lower for kw in ['cinematic', 'lighting', 'high detail', 'epic atmosphere', 'illustration style']):
+                        style_parts.append(part)
+                    else:
+                        other_parts.append(part)
+                
+                # 逐步添加，直到接近token限制
+                optimized_parts = []
+                current_tokens = 0
+                
+                # 先添加高优先级部分
+                for part in priority_parts:
+                    test_prompt = ', '.join(optimized_parts + [part])
+                    test_tokens = tokenizer.encode(test_prompt, return_tensors="pt").shape[1]
+                    if test_tokens <= max_tokens * 0.9:  # 保留10%余量
+                        optimized_parts.append(part)
+                        current_tokens = test_tokens
+                    else:
+                        break
+                
+                # 再添加其他重要部分
+                for part in other_parts:
+                    test_prompt = ', '.join(optimized_parts + [part])
+                    test_tokens = tokenizer.encode(test_prompt, return_tensors="pt").shape[1]
+                    if test_tokens <= max_tokens * 0.95:  # 保留5%余量
+                        optimized_parts.append(part)
+                        current_tokens = test_tokens
+                    else:
+                        break
+                
+                # 最后添加1-2个最重要的风格标签
+                for part in style_parts[:2]:  # 最多添加2个风格标签
+                    test_prompt = ', '.join(optimized_parts + [part])
+                    test_tokens = tokenizer.encode(test_prompt, return_tensors="pt").shape[1]
+                    if test_tokens <= max_tokens:
+                        optimized_parts.append(part)
+                        current_tokens = test_tokens
+                    else:
+                        break
+                
+                optimized = ', '.join(optimized_parts)
+                final_tokens = tokenizer.encode(optimized, return_tensors="pt").shape[1]
+                logger.info(f"Prompt已优化: {token_count} -> {final_tokens} tokens, {len(prompt)} -> {len(optimized)} 字符")
+                return optimized
+                
+            except Exception as e:
+                logger.warning(f"无法使用CLIP tokenizer精确计算: {e}，使用估算方法")
+        except ImportError:
+            logger.warning("transformers未安装，使用估算方法")
+        
+        # 回退到估算方法
         # 简单估算：1 token ≈ 0.75 单词 ≈ 4 字符（英文）
         # 为了安全，使用更保守的估算：1 token ≈ 3 字符
         estimated_tokens = len(prompt) / 3
@@ -389,25 +474,41 @@ class ExecutionExecutorV21:
         logger.warning(f"Prompt过长（估计{estimated_tokens:.0f} tokens > {max_tokens}），开始精简...")
         
         # 策略：保留关键信息，删除冗余描述
-        # 1. 保留角色名称和关键特征
-        # 2. 保留动作/姿态
-        # 3. 保留环境关键信息
-        # 4. 删除重复和冗余的描述
+        # 按逗号分割，保留最重要的部分
+        parts = [p.strip() for p in prompt.split(',')]
         
-        # 简单实现：截断到合理长度
-        # 更智能的实现可以使用tokenizer精确计算
+        # 优先级排序
+        priority_parts = []
+        style_parts = []
+        other_parts = []
+        
+        for part in parts:
+            part_lower = part.lower()
+            # 角色相关（高优先级）
+            if any(kw in part_lower for kw in ['hanli', 'character', 'temperament', 'expression', 'wearing', 'robe', 'attire']):
+                priority_parts.append(part)
+            # 风格标签（低优先级）
+            elif any(kw in part_lower for kw in ['cinematic', 'lighting', 'high detail', 'epic atmosphere', 'illustration style']):
+                style_parts.append(part)
+            else:
+                other_parts.append(part)
+        
+        # 组合：优先部分 + 其他部分（前N个） + 风格（1-2个）
         max_chars = max_tokens * 3  # 保守估算
-        if len(prompt) > max_chars:
-            # 尝试智能截断：保留前面的关键信息
-            truncated = prompt[:max_chars]
-            # 尝试在最后一个逗号处截断，避免截断单词
+        optimized_parts = priority_parts + other_parts[:len(other_parts)//2] + style_parts[:2]
+        optimized = ', '.join(optimized_parts)
+        
+        if len(optimized) > max_chars:
+            # 如果还是太长，截断
+            truncated = optimized[:max_chars]
             last_comma = truncated.rfind(',')
-            if last_comma > max_chars * 0.8:  # 如果最后一个逗号在80%位置之后
+            if last_comma > max_chars * 0.8:
                 truncated = truncated[:last_comma]
             logger.warning(f"Prompt已截断: {len(prompt)} -> {len(truncated)} 字符")
             return truncated
         
-        return prompt
+        logger.info(f"Prompt已优化: {len(prompt)} -> {len(optimized)} 字符")
+        return optimized
     
     def _build_negative_prompt(self, scene: Dict[str, Any]) -> List[str]:
         """构建负面Prompt（包含性别负锁）"""
