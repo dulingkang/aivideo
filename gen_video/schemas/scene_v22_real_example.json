@@ -54,7 +54,7 @@
       
       "lora_config": {
         "type": "single",
-        "lora_path": "models/lora/HanLi_Face_v3.safetensors",
+        "lora_path": "",
         "weight": 0.9,
         "trigger": "hanli"
       },
@@ -70,7 +70,7 @@
         }
       },
       
-      "reference_image": "references/hanli/hanli_reference_001.jpg",
+      "reference_image": "",
       "negative_gender_lock": [
         "female", "woman", "girl",
         "soft facial features", "delicate face",
