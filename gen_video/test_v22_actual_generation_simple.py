@@ -95,10 +95,11 @@ def main():
         start_time = time.time()
         
         print("\n🚀 调用generate方法...")
+        # generate方法的参数是scene，不是scene_data
+        # 注意：generate方法会自动检测v2.2-final格式，无需use_v21_exec参数
         result = generator.generate(
-            scene_data=scene,
-            output_dir=str(output_base),
-            use_v21_exec=True  # 使用v2.1执行器（支持v2.2-final）
+            scene=scene,  # 使用scene参数
+            output_dir=str(output_base)
         )
         
         elapsed = time.time() - start_time

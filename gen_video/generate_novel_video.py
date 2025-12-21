@@ -1093,6 +1093,11 @@ class NovelVideoGenerator:
             validation_result = validator.validate_scene(scene)
             if not validation_result.is_valid:
                 print(f"  ✗ JSON校验失败: {validation_result.errors_count} 个错误")
+                for issue in validation_result.issues:
+                    if issue.level.value == "error":
+                        print(f"    - [{issue.field}] {issue.message}")
+                        if issue.suggestion:
+                            print(f"      建议: {issue.suggestion}")
                 raise ValueError("场景JSON校验失败")
             
             print(f"  ✓ JSON校验通过")
