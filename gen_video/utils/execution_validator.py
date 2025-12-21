@@ -4,10 +4,14 @@
 Execution Validator - 校验JSON是否可执行
 
 功能：
-1. 校验v2.1-exec JSON的完整性和合法性
+1. 校验v2.2-final/v2.1-exec JSON的完整性和合法性
 2. 检查所有必需字段
 3. 验证硬规则约束
 4. 生成校验报告
+
+支持格式:
+- v2.2-final: 新格式（推荐）
+- v2.1-exec: 旧格式（向后兼容）
 """
 
 import json
@@ -87,22 +91,52 @@ class ExecutionValidator:
         """
         校验单个场景
         
+        支持格式:
+        - v2.2-final: 新格式（推荐）
+        - v2.1-exec: 旧格式（向后兼容）
+        
         Args:
-            scene: v2.1-exec格式的场景JSON
+            scene: v2.2-final或v2.1-exec格式的场景JSON
             
         Returns:
             ValidationResult: 校验结果
         """
         issues: List[ValidationIssue] = []
         
-        # 1. 检查版本
+        # 0. 规范化格式（支持v2.2-final）
         version = scene.get("version", "")
-        if not version.startswith("v2.1"):
+        if version == "v2.2-final" and "scene" in scene:
+            # v2.2-final格式：提取scene字段
+            scene = scene["scene"]
+            # 添加scene_id（如果缺失）
+            if "scene_id" not in scene:
+                scene_id_str = scene.get("id", "scene_001")
+                try:
+                    if scene_id_str.startswith("scene_"):
+                        parts = scene_id_str.split("_")
+                        if len(parts) > 1:
+                            try:
+                                scene["scene_id"] = int(parts[1])
+                            except ValueError:
+                                scene["scene_id"] = 1
+                        else:
+                            scene["scene_id"] = 1
+                    else:
+                        try:
+                            scene["scene_id"] = int(scene_id_str)
+                        except ValueError:
+                            scene["scene_id"] = 1
+                except Exception:
+                    scene["scene_id"] = 1
+        
+        # 1. 检查版本（规范化后）
+        version = scene.get("version", "")
+        if version not in ["v2.2-final", "v2.1-exec"] and not version.startswith("v2.1"):
             issues.append(ValidationIssue(
                 level=ValidationLevel.ERROR,
                 field="version",
-                message=f"版本不匹配: {version}，需要 v2.1-exec",
-                suggestion="使用 JSONV2ToV21Converter 转换"
+                message=f"版本不匹配: {version}，需要 v2.2-final 或 v2.1-exec",
+                suggestion="使用 v2.2-final 格式（推荐）或 v2.1-exec 格式"
             ))
         
         # 2. 检查Shot（必须锁定）
@@ -116,8 +150,10 @@ class ExecutionValidator:
             ))
         
         shot_type_str = shot.get("type", "")
+        shot_type = None
         try:
-            shot_type = ShotType(shot_type_str)
+            if shot_type_str:
+                shot_type = ShotType(shot_type_str)
         except ValueError:
             issues.append(ValidationIssue(
                 level=ValidationLevel.ERROR,
@@ -137,8 +173,10 @@ class ExecutionValidator:
             ))
         
         pose_type_str = pose.get("type", "")
+        pose_type = None
         try:
-            pose_type = PoseType(pose_type_str)
+            if pose_type_str:
+                pose_type = PoseType(pose_type_str)
         except ValueError:
             issues.append(ValidationIssue(
                 level=ValidationLevel.ERROR,
@@ -148,7 +186,7 @@ class ExecutionValidator:
             ))
         
         # 4. 验证Shot → Pose组合合法性
-        if shot_type and pose_type:
+        if 'shot_type' in locals() and 'pose_type' in locals() and shot_type and pose_type:
             is_forbidden = self.rules.check_forbidden_combinations(shot_type, pose_type)
             if is_forbidden:
                 issues.append(ValidationIssue(
@@ -199,33 +237,57 @@ class ExecutionValidator:
                         suggestion="使用 CharacterAnchorManager.register_character 注册"
                     ))
         
-        # 7. 检查Prompt
+        # 7. 检查Prompt（支持v2.2-final格式）
         prompt = scene.get("prompt", {})
-        if not prompt.get("positive_core") and character.get("present"):
-            issues.append(ValidationIssue(
-                level=ValidationLevel.WARNING,
-                field="prompt.positive_core",
-                message="缺少角色核心描述",
-                suggestion="添加 prompt.positive_core 字段"
-            ))
         
-        if not prompt.get("scene_description"):
-            issues.append(ValidationIssue(
-                level=ValidationLevel.WARNING,
-                field="prompt.scene_description",
-                message="缺少场景描述",
-                suggestion="添加 prompt.scene_description 字段"
-            ))
+        # v2.2-final格式：检查base_template或final
+        if version == "v2.2-final":
+            if not prompt.get("base_template") and not prompt.get("final"):
+                issues.append(ValidationIssue(
+                    level=ValidationLevel.WARNING,
+                    field="prompt",
+                    message="缺少prompt.base_template或prompt.final",
+                    suggestion="添加 prompt.base_template 或 prompt.final 字段"
+                ))
+        else:
+            # v2.1-exec格式：检查positive_core和scene_description
+            if not prompt.get("positive_core") and character.get("present"):
+                issues.append(ValidationIssue(
+                    level=ValidationLevel.WARNING,
+                    field="prompt.positive_core",
+                    message="缺少角色核心描述",
+                    suggestion="添加 prompt.positive_core 字段"
+                ))
+            
+            if not prompt.get("scene_description"):
+                issues.append(ValidationIssue(
+                    level=ValidationLevel.WARNING,
+                    field="prompt.scene_description",
+                    message="缺少场景描述",
+                    suggestion="添加 prompt.scene_description 字段"
+                ))
         
-        # 8. 检查性别负锁
-        negative_lock = scene.get("negative_lock", {})
-        if character.get("present") and not negative_lock.get("gender"):
-            issues.append(ValidationIssue(
-                level=ValidationLevel.WARNING,
-                field="negative_lock.gender",
-                message="缺少性别负锁（可能导致性别错误）",
-                suggestion="设置 negative_lock.gender = true"
-            ))
+        # 8. 检查性别负锁（支持v2.2-final格式）
+        if version == "v2.2-final":
+            # v2.2-final格式：从character.negative_gender_lock读取
+            negative_gender_lock = character.get("negative_gender_lock", [])
+            if character.get("present") and not negative_gender_lock:
+                issues.append(ValidationIssue(
+                    level=ValidationLevel.WARNING,
+                    field="character.negative_gender_lock",
+                    message="缺少性别负锁（可能导致性别错误）",
+                    suggestion="添加 character.negative_gender_lock 数组"
+                ))
+        else:
+            # v2.1-exec格式：从negative_lock读取
+            negative_lock = scene.get("negative_lock", {})
+            if character.get("present") and not negative_lock.get("gender"):
+                issues.append(ValidationIssue(
+                    level=ValidationLevel.WARNING,
+                    field="negative_lock.gender",
+                    message="缺少性别负锁（可能导致性别错误）",
+                    suggestion="设置 negative_lock.gender = true"
+                ))
         
         # 统计错误和警告
         errors_count = sum(1 for issue in issues if issue.level == ValidationLevel.ERROR)
