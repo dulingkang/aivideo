@@ -1115,8 +1115,10 @@ class NovelVideoGenerator:
             result = executor.execute_scene(scene, str(output_dir))
             
             if result.success:
-                print(f"  ✓ 场景 {scene.get('scene_id')} 生成成功")
+                scene_id = scene.get('scene_id') or normalized.get('scene_id') if 'normalized' in locals() else scene.get('scene_id')
+                print(f"  ✓ 场景 {scene_id} 生成成功")
                 return {
+                    "success": True,
                     "image": Path(result.image_path) if result.image_path else None,
                     "video": Path(result.video_path) if result.video_path else None
                 }
