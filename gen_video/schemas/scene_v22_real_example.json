@@ -1,0 +1,146 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-21T00:00:00Z",
+    "description": "v2.2-final格式真实场景示例 - 韩立在黄枫谷修炼",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 1
+  },
+  "scene": {
+    "id": "scene_001",
+    "scene_id": 1,
+    "duration_sec": 4.5,
+    
+    "intent": {
+      "type": "character_intro",
+      "description": "韩立初次登场，展现其冷静内敛的气质，在黄枫谷中修炼"
+    },
+    
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "direct_specification",
+      "description": "中景镜头，突出人物特征和修炼环境"
+    },
+    
+    "pose": {
+      "type": "sit",
+      "locked": true,
+      "validated_by": "shot_pose_rules",
+      "auto_corrected": false,
+      "description": "盘坐修炼姿态，符合中景镜头要求"
+    },
+    
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "main_character -> flux + pulid",
+      "character_role": "main"
+    },
+    
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/HanLi_Face_v3.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      
+      "reference_image": "references/hanli/hanli_reference_001.jpg",
+      "negative_gender_lock": [
+        "female", "woman", "girl",
+        "soft facial features", "delicate face",
+        "long eyelashes", "narrow shoulders",
+        "slim waist", "feminine body"
+      ]
+    },
+    
+    "environment": {
+      "location": "黄枫谷",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "serene and mysterious, ancient cultivation atmosphere, spiritual energy flowing",
+      "background_elements": [
+        "ancient Chinese architecture",
+        "traditional pavilions",
+        "mountain peaks in distance",
+        "spiritual mist"
+      ]
+    },
+    
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      
+      "final": "HanLi, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, sitting in meditation pose, in 黄枫谷, serene and mysterious, ancient cultivation atmosphere, spiritual energy flowing, ancient Chinese architecture, traditional pavilions, mountain peaks in distance, spiritual mist, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    
+    "generation_params": {
+      "width": 1024,
+      "height": 1024,
+      "num_inference_steps": 30,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "static",
+      "focal_length_mm": 50,
+      "depth_of_field": "medium"
+    },
+    
+    "narration": {
+      "text": "韩立盘坐在黄枫谷中，静静体会着天地间的灵气流动。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "calm",
+      "timing_policy": "fit_scene"
+    },
+    
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}
+

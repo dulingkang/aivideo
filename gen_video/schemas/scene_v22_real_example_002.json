@@ -1,0 +1,144 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-21T00:00:00Z",
+    "description": "v2.2-final格式真实场景示例 - 韩立战斗场景",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 2
+  },
+  "scene": {
+    "id": "scene_002",
+    "scene_id": 2,
+    "duration_sec": 5.0,
+    
+    "intent": {
+      "type": "action_heavy",
+      "description": "韩立与敌人激烈战斗，展现其战斗技巧和冷静判断"
+    },
+    
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "direct_specification",
+      "description": "中景镜头，展现战斗动作"
+    },
+    
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "shot_pose_rules",
+      "auto_corrected": false,
+      "description": "战斗姿态，持剑站立"
+    },
+    
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "main_character -> flux + pulid",
+      "character_role": "main"
+    },
+    
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/HanLi_Face_v3.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression, battle-ready",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, holding a sword",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      
+      "reference_image": "references/hanli/hanli_reference_001.jpg",
+      "negative_gender_lock": [
+        "female", "woman", "girl",
+        "soft facial features", "delicate face",
+        "long eyelashes", "narrow shoulders",
+        "slim waist", "feminine body"
+      ]
+    },
+    
+    "environment": {
+      "location": "战斗场地",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "tense and dangerous, battle atmosphere, energy clashes visible",
+      "background_elements": [
+        "ruined structures",
+        "scattered debris",
+        "spiritual energy waves",
+        "dust clouds"
+      ]
+    },
+    
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style, dynamic action",
+      
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      }
+    },
+    
+    "generation_params": {
+      "width": 1024,
+      "height": 1024,
+      "num_inference_steps": 30,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "pan",
+      "focal_length_mm": 50,
+      "depth_of_field": "shallow"
+    },
+    
+    "narration": {
+      "text": "韩立紧握长剑，冷静地观察着对手的每一个动作。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "tense",
+      "timing_policy": "fit_scene"
+    },
+    
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}
+
