@@ -297,7 +297,7 @@ video:
 # Camera Engine、Negative Prompt Generator、Prompt QA
 prompt_engine:
   # 是否启用Prompt Engine（推荐启用，可提升视频质量30%-70%）
-  enabled: true
+  enabled: false
   # 是否使用LLM进行Prompt重写（需要LLM API，暂时禁用）
   use_llm_rewriter: false
   # 是否使用智能场景分析器（推荐启用，自动识别场景需求）

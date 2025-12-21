@@ -1038,6 +1038,7 @@ class NovelVideoGenerator:
         print(f"视频: {video_path}")
         
         return {
+            'success': True,
             'image': image_path,
             'video': video_path,
             **({"identity_report": identity_report_path} if effective_enable_m6 and identity_report_path else {}),
@@ -1086,23 +1087,8 @@ class NovelVideoGenerator:
                 ExecutionConfig,
                 ExecutionMode
             )
-            from utils.execution_validator import ExecutionValidator
             
-            # 1. 校验JSON
-            validator = ExecutionValidator()
-            validation_result = validator.validate_scene(scene)
-            if not validation_result.is_valid:
-                print(f"  ✗ JSON校验失败: {validation_result.errors_count} 个错误")
-                for issue in validation_result.issues:
-                    if issue.level.value == "error":
-                        print(f"    - [{issue.field}] {issue.message}")
-                        if issue.suggestion:
-                            print(f"      建议: {issue.suggestion}")
-                raise ValueError("场景JSON校验失败")
-            
-            print(f"  ✓ JSON校验通过")
-            
-            # 2. 创建Execution Executor
+            # 1. 创建Execution Executor（让executor自己处理验证和自动修正）
             config = ExecutionConfig(mode=ExecutionMode.STRICT)
             executor = ExecutionExecutorV21(
                 config=config,
@@ -1111,7 +1097,7 @@ class NovelVideoGenerator:
                 tts_generator=None  # TTS可以后续添加
             )
             
-            # 3. 执行场景生成
+            # 2. 执行场景生成（executor内部会进行验证和自动修正）
             result = executor.execute_scene(scene, str(output_dir))
             
             if result.success:
@@ -1123,8 +1109,22 @@ class NovelVideoGenerator:
                     "video": Path(result.video_path) if result.video_path else None
                 }
             else:
-                print(f"  ✗ 场景 {scene.get('scene_id')} 生成失败: {result.error_message}")
-                raise RuntimeError(f"生成失败: {result.error_message}")
+                # 显示详细的错误信息
+                error_msg = result.error_message or "未知错误"
+                print(f"  ✗ 场景 {scene.get('scene_id', 'Unknown')} 生成失败: {error_msg}")
+                
+                # 如果有decision_trace，尝试提取更详细的错误信息
+                if result.decision_trace and "validation" in result.decision_trace:
+                    validation_info = result.decision_trace["validation"]
+                    if "issues" in validation_info:
+                        print("  详细错误信息:")
+                        for issue in validation_info["issues"]:
+                            if issue.get("level") == "error":
+                                print(f"    - [{issue.get('field', 'unknown')}] {issue.get('message', '')}")
+                                if issue.get("suggestion"):
+                                    print(f"      建议: {issue.get('suggestion')}")
+                
+                raise RuntimeError(f"生成失败: {error_msg}")
                 
         except ImportError as e:
             print(f"  ⚠ v2.1-exec模块未找到: {e}")

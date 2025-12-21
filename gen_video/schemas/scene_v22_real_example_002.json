@@ -54,7 +54,7 @@
       
       "lora_config": {
         "type": "single",
-        "lora_path": "models/lora/HanLi_Face_v3.safetensors",
+        "lora_path": "",
         "weight": 0.9,
         "trigger": "hanli"
       },
@@ -70,7 +70,7 @@
         }
       },
       
-      "reference_image": "references/hanli/hanli_reference_001.jpg",
+      "reference_image": "",
       "negative_gender_lock": [
         "female", "woman", "girl",
         "soft facial features", "delicate face",
@@ -107,13 +107,15 @@
           "decide_pose_type",
           "decide_model_route"
         ]
-      }
+      },
+      
+      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, battle-ready, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, holding a sword, battle stance, in 战斗场地, tense and dangerous, battle atmosphere, energy clashes visible, ruined structures, scattered debris, spiritual energy waves, dust clouds, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style, dynamic action"
     },
     
     "generation_params": {
-      "width": 1024,
-      "height": 1024,
-      "num_inference_steps": 30,
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 40,
       "guidance_scale": 7.5,
       "seed": -1
     },

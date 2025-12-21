@@ -1,0 +1,161 @@
+{
+  "episode": 1,
+  "title": "Strange Land.First Entry into the Spirit Realm",
+  "scenes": [
+    {
+      "version": "v2.1-exec",
+      "scene_id": 1,
+      "episode_id": "lingjie_ep1",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "shot": {
+        "type": "medium",
+        "locked": true,
+        "source": "intent_mapping",
+        "original_intent": "dialogue"
+      },
+      "pose": {
+        "type": "lying",
+        "locked": true,
+        "validated_by": "shot_pose_rules",
+        "auto_corrected": false,
+        "original_pose": null
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "top_down",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": true,
+        "id": "hanli",
+        "gender": "male",
+        "face_visible": false,
+        "visibility": "low",
+        "body_coverage": "full_body",
+        "locks": {
+          "gender": true,
+          "face": true,
+          "body_type": true
+        }
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "pulid",
+        "allow_fallback": false,
+        "decision_reason": "character_present + medium_shot -> flux + pulid",
+        "confidence": 0.95
+      },
+      "prompt": {
+        "positive_core": "hanli,",
+        "scene_description": "Gray-green desert floor",
+        "style": "xianxia_anime"
+      },
+      "negative_lock": {
+        "gender": true,
+        "extra": [
+          "female",
+          "woman",
+          "girl",
+          "soft facial features",
+          "delicate face",
+          "long eyelashes",
+          "narrow shoulders",
+          "slim waist",
+          "feminine body"
+        ]
+      },
+      "narration": {
+        "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_002.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。 [已转换为v2.1-exec执行型]"
+    },
+    {
+      "version": "v2.1-exec",
+      "scene_id": 2,
+      "episode_id": "lingjie_ep1",
+      "duration_sec": 4.0,
+      "target_fps": 24,
+      "scene_role": "key_moment",
+      "scene_type": "novel",
+      "shot": {
+        "type": "wide",
+        "locked": true,
+        "source": "intent_mapping",
+        "original_intent": "establishing"
+      },
+      "pose": {
+        "type": "stand",
+        "locked": true,
+        "validated_by": "shot_pose_rules",
+        "auto_corrected": false,
+        "original_pose": null
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "character": {
+        "present": false,
+        "id": null,
+        "gender": "male",
+        "face_visible": true,
+        "visibility": "mid",
+        "body_coverage": "half_body",
+        "locks": {
+          "gender": true,
+          "face": true,
+          "body_type": true
+        }
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": null,
+        "allow_fallback": false,
+        "decision_reason": "no_character -> flux",
+        "confidence": 0.95
+      },
+      "prompt": {
+        "positive_core": "",
+        "scene_description": "Three brilliant suns,four hazy moon silhouettes",
+        "style": "xianxia_anime"
+      },
+      "negative_lock": {
+        "gender": false,
+        "extra": []
+      },
+      "narration": {
+        "text": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "assets": {
+        "image_output": "outputs/images/lingjie_ep1_full/scene_003.png",
+        "video_output": "",
+        "reference_images": []
+      },
+      "notes": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。 [已转换为v2.1-exec执行型]"
+    }
+  ],
+  "conversion_info": {
+    "original_file": "../lingjie/episode/1.v2-1.json",
+    "converted_count": 2,
+    "range": "1-2"
+  }
+}

@@ -1,64 +1,59 @@
 {
   "version": "v2.2-final",
   "metadata": {
-    "created_at": "2025-12-21T00:00:00Z",
-    "description": "v2.2-final格式真实场景示例 - 韩立在黄枫谷修炼",
+    "created_at": "2025-12-21T13:48:31.711675",
+    "description": "从 v2 格式转换的场景 1",
     "episode_id": "lingjie_ep1",
     "scene_id": 1
   },
   "scene": {
     "id": "scene_001",
     "scene_id": 1,
-    "duration_sec": 4.5,
-    
+    "duration_sec": 4.0,
     "intent": {
-      "type": "character_intro",
-      "description": "韩立初次登场，展现其冷静内敛的气质，在黄枫谷中修炼"
+      "type": "emotional_beat",
+      "description": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。"
     },
-    
     "shot": {
-      "type": "medium",
+      "type": "wide",
       "locked": true,
-      "source": "direct_specification",
-      "description": "中景镜头，突出人物特征和修炼环境"
+      "source": "v2_conversion",
+      "description": "wide shot showing the vast desert landscape with character in the foreground"
     },
-    
     "pose": {
-      "type": "sit",
+      "type": "stand",
       "locked": true,
-      "validated_by": "shot_pose_rules",
-      "auto_corrected": false,
-      "description": "盘坐修炼姿态，符合中景镜头要求"
+      "validated_by": "v2_conversion_auto_corrected",
+      "auto_corrected": true,
+      "correction_reason": "wide + lying 是不合法组合，自动修正为 wide + stand",
+      "correction_level": "level1",
+      "original_pose": "lying",
+      "description": "standing on the gray-green desert floor, looking down at the sandy ground beneath his feet"
     },
-    
     "model_route": {
       "base_model": "flux",
       "identity_engine": "pulid",
       "locked": true,
-      "decision_reason": "main_character -> flux + pulid",
+      "decision_reason": "v2_conversion",
       "character_role": "main"
     },
-    
     "character": {
       "id": "hanli",
       "name": "韩立",
       "present": true,
       "role": "main",
-      
       "identity": {
         "gender": "male",
         "age_range": "young_adult",
         "physique": "lean",
         "face_shape": "sharp"
       },
-      
       "lora_config": {
         "type": "single",
-        "lora_path": "",
+        "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
         "weight": 0.9,
         "trigger": "hanli"
       },
-      
       "anchor_patches": {
         "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
         "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
@@ -69,32 +64,32 @@
           "steps": 12
         }
       },
-      
-      "reference_image": "",
+      "reference_image": "character_references/hanli_reference.jpg",
       "negative_gender_lock": [
-        "female", "woman", "girl",
-        "soft facial features", "delicate face",
-        "long eyelashes", "narrow shoulders",
-        "slim waist", "feminine body"
+        "female",
+        "woman",
+        "girl",
+        "soft facial features",
+        "delicate face",
+        "long eyelashes",
+        "narrow shoulders",
+        "slim waist",
+        "feminine body"
       ]
     },
-    
     "environment": {
-      "location": "黄枫谷",
+      "location": "Gray-green desert floor",
       "time": "day",
       "weather": "clear",
-      "atmosphere": "serene and mysterious, ancient cultivation atmosphere, spiritual energy flowing",
+      "atmosphere": "vast gray-green desert wasteland, endless sand dunes, desolate landscape, hot and dry atmosphere, xianxia_anime style, soft_cinematic lighting",
       "background_elements": [
-        "ancient Chinese architecture",
-        "traditional pavilions",
-        "mountain peaks in distance",
-        "spiritual mist"
+        "sand dunes",
+        "desert horizon",
+        "barren wasteland"
       ]
     },
-    
     "prompt": {
       "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
-      
       "llm_enhancement": {
         "enable": false,
         "role": "copywriter",
@@ -108,33 +103,28 @@
           "decide_model_route"
         ]
       },
-      
-      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, sitting in meditation pose, in 黄枫谷, serene and mysterious, ancient cultivation atmosphere, spiritual energy flowing, ancient Chinese architecture, traditional pavilions, mountain peaks in distance, spiritual mist, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, standing on the gray-green desert floor, looking down at the sandy ground beneath his feet, wide shot showing the vast desert landscape, gray-green sand stretching to the horizon, desolate wasteland, hot desert atmosphere, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
     },
-    
     "generation_params": {
       "width": 1536,
       "height": 1536,
-      "num_inference_steps": 40,
+      "num_inference_steps": 50,
       "guidance_scale": 7.5,
       "seed": -1
     },
-    
     "camera": {
-      "shot": "medium",
-      "angle": "eye_level",
-      "movement": "static",
-      "focal_length_mm": 50,
-      "depth_of_field": "medium"
+      "shot": "wide",
+      "angle": "top_down",
+      "movement": "pan",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
     },
-    
     "narration": {
-      "text": "韩立盘坐在黄枫谷中，静静体会着天地间的灵气流动。",
+      "text": "韩立保持不动，静静体会脚下炽热的沙地。",
       "voice_id": "yunjuan_xianyin",
-      "emotion_hint": "calm",
+      "emotion_hint": "tense",
       "timing_policy": "fit_scene"
     },
-    
     "validation": {
       "shot_pose_compatible": true,
       "model_route_valid": true,
@@ -143,4 +133,3 @@
     }
   }
 }
-

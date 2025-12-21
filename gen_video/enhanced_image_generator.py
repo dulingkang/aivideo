@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-增强型图像生成器 - 整合 PuLID + 解耦融合 + Execution Planner V3
+增强型图像生成器 - 整合 PuLID + 解耦融合（v2.2-final模式）
 
 这个模块是现有 image_generator.py 的增强版本，
 整合了新的架构组件以解决"人脸一致性 vs 环境丰富度"问题。
+
+⚡ v2.2-final 改造：直接从JSON读取锁定参数，不使用Execution Planner V3决策
 
 使用方式:
     from enhanced_image_generator import EnhancedImageGenerator
     
     gen = EnhancedImageGenerator("config.yaml")
-    image = gen.generate_scene(scene_json)
+    image = gen.generate_scene(scene_json)  # scene_json 应该是 v2.2-final 格式
 """
 
 import os
@@ -41,8 +43,9 @@ os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")  # 设置为 error 级�
 # 导入新的模块
 from pulid_engine import PuLIDEngine, CharacterProfile
 from decoupled_fusion_engine import DecoupledFusionEngine
+# ⚡ v2.2-final 改造：移除 ExecutionPlannerV3 导入，只保留需要的枚举和类
 from execution_planner_v3 import (
-    ExecutionPlannerV3, 
+    # ExecutionPlannerV3,  # ❌ 已移除，不再使用
     GenerationStrategy,
     GenerationMode,
     IdentityEngine,
@@ -63,7 +66,7 @@ class EnhancedImageGenerator:
     整合了:
     - PuLID-FLUX (身份保持 + 环境融合)
     - 解耦融合引擎 (SAM2 + YOLO)
-    - Execution Planner V3 (智能路由)
+    - v2.2-final 模式（直接从JSON读取锁定参数，不使用Planner决策）
     - 角色档案系统 (多参考图)
     """
     
@@ -89,9 +92,9 @@ class EnhancedImageGenerator:
         self.planner_config = self.image_config.get("execution_planner", {})
         self.profiles_config = self.image_config.get("character_profiles", {})
         
-        # ⚡ 关键修复：传递完整的 config 给 ExecutionPlannerV3，确保能读取 prompt_engine 配置
-        # ExecutionPlannerV3 需要读取 prompt_engine.scene_analyzer_mode 来初始化 LLM 客户端
-        self.planner = ExecutionPlannerV3(self.config)  # 传递完整 config，而不是只有 execution_planner 部分
+        # ⚡ v2.2-final 改造：移除 Planner，直接从JSON读取锁定参数
+        # Execution Planner V3 已退休，不再参与生成流程的决策
+        # self.planner = ExecutionPlannerV3(self.config)  # ❌ 已移除
         self.pulid_engine = None  # 延迟加载
         self.fusion_engine = None  # 延迟加载
         self.flux_pipeline = None  # 延迟加载
@@ -114,7 +117,7 @@ class EnhancedImageGenerator:
         logger.info("EnhancedImageGenerator 初始化完成")
         logger.info(f"  PuLID 启用: {self.pulid_config.get('enabled', False)}")
         logger.info(f"  解耦融合启用: {self.decoupled_config.get('enabled', False)}")
-        logger.info(f"  Planner 版本: V{self.planner_config.get('version', 3)}")
+        logger.info(f"  ⚡ v2.2-final模式: 直接从JSON读取锁定参数，不使用Planner决策")
         logger.info(f"  显存管理器: {'启用' if enable_memory_manager else '禁用'}")
     
     def _init_memory_manager(self):
@@ -632,9 +635,11 @@ class EnhancedImageGenerator:
                 
             def __call__(self, prompt, width=768, height=1152, **kwargs):
                 """使用 PuLID 的 Flux 模型生成场景（无身份注入）"""
+                # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为原生 Flux 生成不支持
+                native_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
                 # 直接使用原生 Flux 模型生成（无身份注入）
                 if hasattr(self.pulid_engine, 'flux_model') and self.pulid_engine.flux_model is not None:
-                    image = self._generate_with_native_flux(prompt, width, height, **kwargs)
+                    image = self._generate_with_native_flux(prompt, width, height, **native_kwargs)
                     # 返回类似 diffusers pipeline 的对象（有 .images 属性）
                     class Result:
                         def __init__(self, img):
@@ -772,6 +777,81 @@ class EnhancedImageGenerator:
         
         return FluxWrapper(self.pulid_engine)
     
+    def _build_strategy_from_json(self, scene: Dict[str, Any]) -> GenerationStrategy:
+        """
+        从 v2.2-final JSON 构建策略对象（不使用Planner决策）
+        
+        ⚡ v2.2-final 改造：直接从JSON读取锁定参数，不使用Planner
+        """
+        from execution_planner_v3 import GenerationMode, IdentityEngine, SceneEngine
+        
+        # 从JSON读取锁定参数
+        model_route = scene.get("model_route", {})
+        base_model = model_route.get("base_model", "flux")
+        identity_engine_str = model_route.get("identity_engine", "pulid")
+        
+        # 映射 identity_engine 字符串到枚举
+        # ⚡ 关键修复：当 identity_engine 是 "none" 时，不使用身份引擎
+        identity_engine_map = {
+            "pulid": IdentityEngine.PULID,
+            "instantid": IdentityEngine.INSTANTID,
+            "none": None,  # 不使用身份引擎
+        }
+        identity_engine = identity_engine_map.get(identity_engine_str.lower(), IdentityEngine.PULID)
+        
+        # 映射 base_model 到 SceneEngine
+        # ⚠️ 注意：SceneEngine 枚举中没有 FLUX，只有 FLUX1 和 FLUX2
+        scene_engine_map = {
+            "flux": SceneEngine.FLUX1,  # Flux.1-dev (高质量)
+            "flux1": SceneEngine.FLUX1,
+            "flux2": SceneEngine.FLUX2,
+            "sdxl": SceneEngine.SDXL,
+        }
+        scene_engine = scene_engine_map.get(base_model.lower(), SceneEngine.FLUX1)
+        
+        # 从JSON读取其他参数（使用默认值如果不存在）
+        shot_info = scene.get("shot", {})
+        shot_type = shot_info.get("type", "medium")
+        
+        # 判断是否使用解耦模式
+        # ⚡ 修复：wide shot 禁用解耦融合，避免多人物和半个脸的问题
+        # 解耦融合只在 medium shot 且明确配置时使用
+        use_decoupled = False  # 默认禁用，避免生成问题
+        # 如果配置中明确启用解耦融合，且是 medium shot，才使用
+        if self.decoupled_config.get("enabled", False) and shot_type == "medium":
+            use_decoupled = True
+        
+        # 参考强度（根据shot类型调整）
+        reference_strength_map = {
+            "wide": 50,
+            "medium": 70,
+            "close_up": 85,
+            "aerial": 60,
+        }
+        reference_strength = reference_strength_map.get(shot_type, 70)
+        
+        # 构建策略对象
+        strategy = GenerationStrategy(
+            mode=GenerationMode.STANDARD,
+            scene_engine=scene_engine,
+            identity_engine=identity_engine,
+            reference_strength=reference_strength,
+            reference_mode="face_only",  # 默认，可以从JSON读取
+            use_decoupled_pipeline=use_decoupled,
+            verify_face_similarity=True,
+            similarity_threshold=0.7,
+        )
+        
+        # 从JSON读取参考图路径（如果存在）
+        character = scene.get("character", {})
+        reference_image = character.get("reference_image", "")
+        if reference_image:
+            strategy.primary_reference = reference_image
+        
+        logger.info(f"  ✓ 从JSON构建策略: base_model={base_model}, identity_engine={identity_engine_str}, shot={shot_type}, decoupled={use_decoupled}")
+        
+        return strategy
+    
     def generate_scene(
         self,
         scene: Dict[str, Any],
@@ -783,10 +863,10 @@ class EnhancedImageGenerator:
         """
         生成场景图像
         
-        这是主入口方法，会根据场景自动选择最佳策略
+        ⚡ v2.2-final 改造：直接从JSON读取锁定参数，不使用Planner决策
         
         Args:
-            scene: 场景 JSON (v2 格式)
+            scene: 场景 JSON (v2.2-final 格式，所有参数已锁定)
             character_id: 角色 ID (可选，用于选择角色档案)
             face_reference: 人脸参考图 (可选，覆盖角色档案)
             original_prompt: 原始 prompt（如果提供，会优先使用它，而不是从 scene 构建）
@@ -801,28 +881,25 @@ class EnhancedImageGenerator:
         # ⚡ 关键修复：使用 print 确保日志输出到控制台（logger 可能被重定向）
         print("  [步骤0] 进入 generate_scene 方法...")
         logger.info("=" * 60)
-        logger.info("开始生成场景图像")
+        logger.info("开始生成场景图像（v2.2-final模式：直接从JSON读取锁定参数）")
         logger.info("=" * 60)
         
         import time
         start_time = time.time()
         
-        # 1. 分析场景，获取策略
-        print("  [步骤1] 分析场景，获取策略...")
-        logger.info("  [步骤1] 分析场景，获取策略...")
+        # 1. 从JSON构建策略（不使用Planner决策）
+        print("  [步骤1] 从JSON读取锁定参数...")
+        logger.info("  [步骤1] 从JSON读取锁定参数（不使用Planner）...")
         strategy_start = time.time()
         try:
-            strategy = self.planner.analyze_scene(
-                scene=scene,
-                character_profiles=self.character_profiles
-            )
+            strategy = self._build_strategy_from_json(scene)
             elapsed = time.time() - strategy_start
-            print(f"  ✓ 场景分析完成 (耗时: {elapsed:.2f}秒)")
-            logger.info(f"  ✓ 场景分析完成 (耗时: {elapsed:.2f}秒)")
+            print(f"  ✓ 参数读取完成 (耗时: {elapsed:.2f}秒)")
+            logger.info(f"  ✓ 参数读取完成 (耗时: {elapsed:.2f}秒)")
         except Exception as e:
             elapsed = time.time() - strategy_start
-            print(f"  ❌ 场景分析失败 (耗时: {elapsed:.2f}秒): {e}")
-            logger.error(f"  ❌ 场景分析失败 (耗时: {elapsed:.2f}秒): {e}")
+            print(f"  ❌ 参数读取失败 (耗时: {elapsed:.2f}秒): {e}")
+            logger.error(f"  ❌ 参数读取失败 (耗时: {elapsed:.2f}秒): {e}")
             import traceback
             traceback.print_exc()
             raise
@@ -848,12 +925,28 @@ class EnhancedImageGenerator:
             traceback.print_exc()
             raise
         
-        # 3. 构建 Prompt（如果提供了 original_prompt，优先使用它）
+        # 3. 构建 Prompt（直接从JSON读取，不使用Planner）
         print("  [步骤3] 构建 Prompt...")
-        logger.info("  [步骤3] 构建 Prompt...")
+        logger.info("  [步骤3] 构建 Prompt（从JSON读取）...")
         prompt_start = time.time()
         try:
-            prompt = self.planner.build_weighted_prompt(scene, strategy, original_prompt=original_prompt)
+            # ⚡ v2.2-final 改造：直接从JSON读取prompt，不使用Planner构建
+            prompt_config = scene.get("prompt", {})
+            if "final" in prompt_config:
+                # 优先使用JSON中的final字段
+                prompt = prompt_config["final"]
+            elif original_prompt:
+                # 其次使用传入的original_prompt
+                prompt = original_prompt
+            else:
+                # 最后使用base_template（如果存在）
+                base_template = prompt_config.get("base_template", "")
+                if base_template:
+                    # 简单的模板替换（如果需要）
+                    prompt = base_template
+                else:
+                    prompt = ""
+            
             elapsed = time.time() - prompt_start
             print(f"  ✓ Prompt 构建完成 (耗时: {elapsed:.2f}秒)")
             logger.info(f"  ✓ Prompt 构建完成 (耗时: {elapsed:.2f}秒)")
@@ -869,7 +962,9 @@ class EnhancedImageGenerator:
         
         # 4. 根据策略选择生成方式
         logger.info("  [步骤4] 根据策略选择生成方式...")
-        logger.info(f"  策略决策: scene_engine={strategy.scene_engine.value}, identity_engine={strategy.identity_engine.value}, use_decoupled={strategy.use_decoupled_pipeline}")
+        # ⚡ 关键修复：当 identity_engine 为 None 时，不能访问 .value
+        identity_engine_str = strategy.identity_engine.value if strategy.identity_engine else "None"
+        logger.info(f"  策略决策: scene_engine={strategy.scene_engine.value}, identity_engine={identity_engine_str}, use_decoupled={strategy.use_decoupled_pipeline}")
         gen_start = time.time()
         
         # ⚡ 关键修复：优先检查 scene_engine，确保 Planner 的决策被正确执行
@@ -884,32 +979,50 @@ class EnhancedImageGenerator:
                     **kwargs
                 )
             else:
-                logger.warning(f"  ⚠ Planner 决定使用 SDXL，但 identity_engine={strategy.identity_engine.value}，回退到标准 SDXL 生成")
+                identity_engine_str = strategy.identity_engine.value if strategy.identity_engine else "None"
+                logger.warning(f"  ⚠ Planner 决定使用 SDXL，但 identity_engine={identity_engine_str}，回退到标准 SDXL 生成")
                 image = self._generate_with_sdxl(
                     prompt=prompt,
                     face_reference=ref_image,
                     strategy=strategy,
                     **kwargs
                 )
-        # 2. 如果没有参考图像，直接使用标准生成（不需要身份注入）
-        elif ref_image is None:
-            logger.info("  没有参考图像，使用标准生成模式（无身份注入）")
+        # 2. 如果没有参考图像或 identity_engine 是 None，直接使用标准生成（不需要身份注入）
+        elif ref_image is None or strategy.identity_engine is None:
+            reason = "没有参考图像" if ref_image is None else "identity_engine 为 None"
+            logger.info(f"  {reason}，使用标准生成模式（无身份注入）")
             image = self._generate_standard(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
-        # 3. 解耦模式（远景/中景，参考强度 < 70%）
-        elif strategy.use_decoupled_pipeline and strategy.reference_strength < 70:
-            logger.info("  使用解耦生成模式（远景/中景）")
+        # 3. 解耦模式（仅在明确启用且配置允许时使用）
+        # ⚡ 修复：添加更严格的条件，避免多人物和半个脸的问题
+        elif strategy.use_decoupled_pipeline and self.decoupled_config.get("enabled", False):
+            logger.info("  使用解耦生成模式（仅在配置明确启用时）")
             image = self._generate_decoupled(
                 prompt=prompt,
                 face_reference=ref_image,
                 strategy=strategy,
                 **kwargs
             )
-        # 4. PuLID 模式（Flux + PuLID，稳定性良好的场景）
+        # 4. Flux + InstantID（回退到 SDXL + InstantID）
+        elif strategy.scene_engine == SceneEngine.FLUX1 and strategy.identity_engine == IdentityEngine.INSTANTID:
+            logger.warning("  ⚠ Flux + InstantID 尚未实现，回退到 SDXL + InstantID")
+            # ⚡ 关键修复：临时修改 strategy.scene_engine 为 SDXL，以便使用 SDXL + InstantID
+            original_scene_engine = strategy.scene_engine
+            strategy.scene_engine = SceneEngine.SDXL
+            logger.info("  ⚡ 使用 SDXL + InstantID（回退方案，Flux + InstantID 尚未实现）")
+            image = self._generate_with_sdxl_instantid(
+                prompt=prompt,
+                face_reference=ref_image,
+                strategy=strategy,
+                **kwargs
+            )
+            # 恢复原始 scene_engine（如果需要）
+            strategy.scene_engine = original_scene_engine
+        # 5. PuLID 模式（Flux + PuLID，稳定性良好的场景）
         elif strategy.identity_engine == IdentityEngine.PULID:
             logger.info("  ⚡ 使用 Flux + PuLID（上限方案，适用于稳定场景）")
             image = self._generate_with_pulid(
@@ -918,9 +1031,9 @@ class EnhancedImageGenerator:
                 strategy=strategy,
                 **kwargs
             )
-        # 5. 标准生成（InstantID 或无身份约束）
+        # 6. 标准生成（其他情况或无身份约束）
         else:
-            logger.info("  使用标准生成模式 (InstantID 或无身份约束)")
+            logger.info("  使用标准生成模式 (其他情况或无身份约束)")
             image = self._generate_standard(
                 prompt=prompt,
                 face_reference=ref_image,
@@ -1006,16 +1119,53 @@ class EnhancedImageGenerator:
                 enhance_clothing = True
                 logger.info(f"  检测到需要服饰一致性的场景（reference_mode={strategy.reference_mode}, strength={strategy.reference_strength}），自动启用服饰一致性增强")
         
+        # ⚡ v2.2-final 改造：优先从config.yaml读取默认值，JSON中的generation_params是可选的覆盖
+        scene = kwargs.get("scene", {})
+        gen_params = scene.get("generation_params", {}) if scene else {}
+        
+        # 优先使用JSON中的参数（如果存在），否则使用config.yaml中的默认值
+        # 这样设计的好处：
+        # 1. 如果所有场景使用相同参数，只需在config.yaml中配置一次
+        # 2. 如果某个场景需要特殊参数，可以在JSON中覆盖
+        width = gen_params.get("width") or self.pulid_config.get("width", 1536)
+        height = gen_params.get("height") or self.pulid_config.get("height", 1536)
+        num_steps = gen_params.get("num_inference_steps") or self.pulid_config.get("num_inference_steps", 50)
+        guidance = gen_params.get("guidance_scale") or self.pulid_config.get("guidance_scale", 7.5)
+        
+        # 记录参数来源
+        source = "JSON覆盖" if gen_params else "config.yaml默认值"
+        logger.info(f"使用生成参数 ({source}): {width}x{height}, {num_steps}步, guidance={guidance}")
+        print(f"  [调试] 推理步数: {num_steps} ({source})")
+        
+        # ⚡ 关键修复：读取 LoRA 配置
+        lora_config = None
+        character_id = None
+        if scene and "character" in scene:
+            character_info = scene.get("character", {})
+            lora_config = character_info.get("lora_config", {})
+            character_id = character_info.get("id", None)
+            if lora_config:
+                logger.info(f"  检测到 LoRA 配置: {lora_config.get('lora_path', 'N/A')}")
+                print(f"  [调试] LoRA路径: {lora_config.get('lora_path', 'N/A')}, 权重: {lora_config.get('weight', 0.9)}")
+        
+        # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为 PuLID 引擎不支持
+        pulid_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
+        # 但需要传递 LoRA 配置
+        if lora_config:
+            pulid_kwargs['lora_config'] = lora_config
+        if character_id:
+            pulid_kwargs['character_id'] = character_id
+        
         return self.pulid_engine.generate_with_identity(
             prompt=prompt,
             face_reference=face_reference,
             reference_strength=strategy.reference_strength,
-            width=self.pulid_config.get("width", 768),
-            height=self.pulid_config.get("height", 1152),
-            num_inference_steps=self.pulid_config.get("num_inference_steps", 28),
-            guidance_scale=self.pulid_config.get("guidance_scale", 3.5),
+            width=width,
+            height=height,
+            num_inference_steps=num_steps,
+            guidance_scale=guidance,
             enhance_clothing_consistency=enhance_clothing,
-            **kwargs
+            **pulid_kwargs
         )
     
     def _generate_decoupled(
@@ -1041,15 +1191,24 @@ class EnhancedImageGenerator:
             logger.warning("解耦融合引擎不可用，回退到 PuLID 生成")
             return self._generate_with_pulid(prompt, face_reference, strategy, **kwargs)
         
+        # ⚡ v2.2-final 改造：从JSON中读取generation_params
+        scene = kwargs.get("scene", {})
+        gen_params = scene.get("generation_params", {}) if scene else {}
+        width = gen_params.get("width", self.pulid_config.get("width", 768))
+        height = gen_params.get("height", self.pulid_config.get("height", 1152))
+        
+        # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为融合引擎不支持
+        fusion_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
+        
         image = self.fusion_engine.generate_decoupled(
             prompt=prompt,
             face_reference=face_reference,
-            width=self.pulid_config.get("width", 768),
-            height=self.pulid_config.get("height", 1152),
+            width=width,
+            height=height,
             scene_generator=self.flux_pipeline,
             identity_injector=self.pulid_engine,
             reference_strength=strategy.reference_strength,
-            **kwargs
+            **fusion_kwargs
         )
         
         # 质量验证（在最终图像上进行）
@@ -1319,16 +1478,65 @@ class EnhancedImageGenerator:
             logger.info("  直接调用 InstantID pipeline 生成图像（避免递归调用）...")
             
             # 准备参数
+            # ⚡ 关键修复：从 scene.generation_params 读取参数（如果存在）
+            scene = kwargs.get("scene", {})
+            gen_params = scene.get("generation_params", {}) if scene else {}
             negative_prompt = kwargs.get("negative_prompt", "low quality, blurry, distorted, deformed, bad anatomy, bad hands, text, watermark")
-            guidance_scale = kwargs.get("guidance_scale", 5.0)
-            num_inference_steps = kwargs.get("num_inference_steps", 30)
-            seed = kwargs.get("seed", None)
+            guidance_scale = gen_params.get("guidance_scale", kwargs.get("guidance_scale", 5.0))
+            num_inference_steps = gen_params.get("num_inference_steps", kwargs.get("num_inference_steps", 30))
+            seed = gen_params.get("seed", kwargs.get("seed", None))
+            if seed == -1:
+                seed = None
+            
+            # ⚡ 关键修复：加载 LoRA 权重（如果配置了）
+            # 从 scene 中读取 LoRA 配置
+            scene = kwargs.get("scene", {})
+            character = scene.get("character", {}) if scene else {}
+            lora_config = character.get("lora_config", {}) if character else {}
+            lora_path = lora_config.get("lora_path", "")
+            lora_weight = lora_config.get("weight", 0.9)
+            character_id = character.get("id", "")
+            
+            # 如果配置了 LoRA 路径，加载 LoRA
+            if lora_path and Path(lora_path).exists():
+                try:
+                    # 使用 character_id 作为 adapter_name（如果存在），否则使用默认名称
+                    adapter_name = character_id if character_id else "character_lora"
+                    logger.info(f"  加载 LoRA: {lora_path} (权重: {lora_weight}, 适配器: {adapter_name})")
+                    pipeline.load_lora_weights(lora_path, adapter_name=adapter_name)
+                    # 设置 LoRA 权重（如果 pipeline 支持）
+                    if hasattr(pipeline, 'set_adapters'):
+                        pipeline.set_adapters([adapter_name], adapter_weights=[lora_weight])
+                    logger.info(f"  ✓ LoRA 加载成功")
+                except Exception as e:
+                    logger.warning(f"  ⚠ LoRA 加载失败: {e}，继续使用 InstantID（无 LoRA）")
+            elif character_id:
+                # 尝试使用 character_id 从配置中加载 LoRA
+                try:
+                    logger.info(f"  尝试从配置加载 LoRA（character_id: {character_id}）...")
+                    # 使用 ImageGenerator 的 LoRA 加载逻辑
+                    if hasattr(temp_generator, '_load_lora'):
+                        temp_generator._load_lora()
+                        logger.info(f"  ✓ 从配置加载 LoRA 成功")
+                except Exception as e:
+                    logger.warning(f"  ⚠ 从配置加载 LoRA 失败: {e}")
             
             # 调整 IP-Adapter scale（根据 reference_strength）
             ip_adapter_scale = temp_generator.face_emb_scale if hasattr(temp_generator, 'face_emb_scale') else 0.8
             if hasattr(strategy, 'reference_strength'):
                 ip_adapter_scale = ip_adapter_scale * (strategy.reference_strength / 100.0)
                 ip_adapter_scale = max(0.3, min(1.0, ip_adapter_scale))
+            
+            # ⚡ 关键修复：从 scene.generation_params 读取分辨率（gen_params 已在前面定义）
+            width = gen_params.get("width", temp_generator.width if hasattr(temp_generator, 'width') else 1024)
+            height = gen_params.get("height", temp_generator.height if hasattr(temp_generator, 'height') else 1024)
+            # 如果 gen_params 中有这些参数，使用它们（否则使用前面已经设置的值）
+            if "num_inference_steps" in gen_params:
+                num_inference_steps = gen_params.get("num_inference_steps")
+            if "guidance_scale" in gen_params:
+                guidance_scale = gen_params.get("guidance_scale")
+            
+            logger.info(f"  生成参数: {width}x{height}, {num_inference_steps}步, guidance={guidance_scale}, ip_adapter_scale={ip_adapter_scale:.2f}")
             
             # 生成图像
             output_path = Path(tempfile.mktemp(suffix='.png'))
@@ -1337,8 +1545,8 @@ class EnhancedImageGenerator:
                 image_embeds=face_emb,
                 image=face_kps,  # ⚡ 修复：添加关键点图像参数
                 controlnet_conditioning_scale=ip_adapter_scale,
-                width=temp_generator.width if hasattr(temp_generator, 'width') else 1024,
-                height=temp_generator.height if hasattr(temp_generator, 'height') else 1024,
+                width=width,
+                height=height,
                 num_inference_steps=num_inference_steps,
                 guidance_scale=guidance_scale,
                 negative_prompt=negative_prompt,
@@ -1554,14 +1762,26 @@ class EnhancedImageGenerator:
         if self.flux_pipeline is None:
             raise RuntimeError("Flux pipeline 不可用")
         
+        # ⚡ v2.2-final 改造：从JSON中读取generation_params
+        scene = kwargs.get("scene", {})
+        gen_params = scene.get("generation_params", {}) if scene else {}
+        width = gen_params.get("width", self.pulid_config.get("width", 768))
+        height = gen_params.get("height", self.pulid_config.get("height", 1152))
+        num_steps = gen_params.get("num_inference_steps", self.pulid_config.get("num_inference_steps", 28))
+        guidance_scale = gen_params.get("guidance_scale", self.pulid_config.get("guidance_scale", 3.5))
+        
+        # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为 FluxPipeline 不支持
+        # 只保留 Flux pipeline 支持的参数（如 seed, negative_prompt 等）
+        flux_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
+        
         # 使用 Flux 生成
         result = self.flux_pipeline(
             prompt=prompt,
-            width=self.pulid_config.get("width", 768),
-            height=self.pulid_config.get("height", 1152),
-            num_inference_steps=self.pulid_config.get("num_inference_steps", 28),
-            guidance_scale=self.pulid_config.get("guidance_scale", 3.5),
-            **kwargs
+            width=width,
+            height=height,
+            num_inference_steps=num_steps,
+            guidance_scale=guidance_scale,
+            **flux_kwargs
         )
         
         # ⚡ 关键修复：处理 Result 对象（FluxWrapper 返回的）和 ImagePipelineOutput（diffusers 返回的）
@@ -1779,13 +1999,13 @@ class EnhancedImageGenerator:
             except Exception as e:
                 logger.warning(f"清理 quality_analyzer 失败: {e}")
         
-        # ⚡ 关键修复：清理 planner 的 LLM 客户端引用（虽然不占显存，但有助于垃圾回收）
-        if self.planner is not None:
-            try:
-                if hasattr(self.planner, 'llm_client'):
-                    self.planner.llm_client = None
-            except Exception as e:
-                logger.warning(f"清理 planner LLM 客户端失败: {e}")
+        # ⚡ v2.2-final 改造：已移除Planner，不再需要清理
+        # if self.planner is not None:
+        #     try:
+        #         if hasattr(self.planner, 'llm_client'):
+        #             self.planner.llm_client = None
+        #     except Exception as e:
+        #         logger.warning(f"清理 planner LLM 客户端失败: {e}")
         
         # 强制清理所有 Python 对象
         import gc
@@ -1952,7 +2172,8 @@ if __name__ == "__main__":
             strategy = generator.planner.analyze_scene(test_scene)
             print(f"\n生成策略:")
             print(f"  参考强度: {strategy.reference_strength}%")
-            print(f"  身份引擎: {strategy.identity_engine.value}")
+            identity_engine_str = strategy.identity_engine.value if strategy.identity_engine else "None"
+            print(f"  身份引擎: {identity_engine_str}")
             print(f"  解耦生成: {strategy.use_decoupled_pipeline}")
             
             # 测试 Prompt 构建

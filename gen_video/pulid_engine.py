@@ -843,6 +843,128 @@ class PuLIDEngine:
         # 确保 pipeline 已加载
         self.load_pipeline()
         
+        # ⚡ 关键修复：加载 LoRA（如果提供）
+        lora_config = kwargs.get('lora_config', None)
+        character_id = kwargs.get('character_id', None)
+        lora_loaded = False
+        
+        if lora_config:
+            lora_path = lora_config.get('lora_path', '')
+            lora_weight = lora_config.get('weight', 0.9)
+            
+            # 检查路径（支持相对路径）
+            if lora_path:
+                lora_path_obj = Path(lora_path)
+                if not lora_path_obj.is_absolute():
+                    # 相对路径：从 gen_video 目录开始（pulid_engine.py 在 gen_video 目录下）
+                    base_path = Path(__file__).parent  # gen_video 目录
+                    lora_path_obj = base_path / lora_path
+                lora_path = str(lora_path_obj)
+            
+            if lora_path and Path(lora_path).exists():
+                try:
+                    adapter_name = character_id if character_id else "character_lora"
+                    logger.info(f"  加载 LoRA: {lora_path} (权重: {lora_weight}, 适配器: {adapter_name})")
+                    print(f"  [调试] 尝试加载 LoRA: {lora_path}")
+                    
+                    # 1. 优先尝试在 pipeline 上加载（diffusers 模式，支持 LoRA）
+                    if self.pipeline is not None:
+                        try:
+                            self.pipeline.load_lora_weights(lora_path, adapter_name=adapter_name)
+                            # 设置 LoRA 权重（如果 pipeline 支持）
+                            if hasattr(self.pipeline, 'set_adapters'):
+                                self.pipeline.set_adapters([adapter_name], adapter_weights=[lora_weight])
+                            logger.info(f"  ✓ LoRA 加载成功 (pipeline)")
+                            print(f"  [调试] LoRA 加载成功 (pipeline)")
+                            lora_loaded = True
+                        except Exception as e:
+                            logger.warning(f"  ⚠ Pipeline LoRA 加载失败: {e}")
+                    
+                    # 2. 如果 pipeline 不存在但需要 LoRA，尝试加载 pipeline
+                    if not lora_loaded and self.pipeline is None:
+                        try:
+                            logger.info(f"  Pipeline 不存在，尝试加载 diffusers pipeline 以支持 LoRA...")
+                            self._load_diffusers_pipeline()
+                            if self.pipeline is not None:
+                                try:
+                                    self.pipeline.load_lora_weights(lora_path, adapter_name=adapter_name)
+                                    if hasattr(self.pipeline, 'set_adapters'):
+                                        self.pipeline.set_adapters([adapter_name], adapter_weights=[lora_weight])
+                                    logger.info(f"  ✓ LoRA 加载成功 (新加载的 pipeline)")
+                                    print(f"  [调试] LoRA 加载成功 (新加载的 pipeline)")
+                                    lora_loaded = True
+                                except Exception as e:
+                                    logger.warning(f"  ⚠ 新加载的 Pipeline LoRA 加载失败: {e}")
+                        except Exception as e:
+                            logger.warning(f"  ⚠ 加载 Pipeline 失败: {e}")
+                    
+                    # 3. 尝试在原生模型上加载（原生模式，不支持直接加载 LoRA）
+                    # 注意：原生 Flux 模型（flux.model.Flux）不支持直接 load_lora_weights
+                    # 原生模式主要用于性能优化，如果需要 LoRA，建议使用 pipeline 模式
+                    if not lora_loaded and self.use_native and self.flux_model is not None:
+                        try:
+                            # 尝试使用 PEFT 加载 LoRA
+                            try:
+                                from peft import PeftModel
+                                from safetensors.torch import load_file
+                                
+                                logger.info(f"  尝试使用 PEFT 加载 LoRA 到原生模型...")
+                                
+                                # 方法1：尝试使用 PeftModel.from_pretrained（如果模型支持）
+                                # 注意：原生 Flux 模型可能不支持 PeftModel，需要手动合并权重
+                                
+                                # 方法2：手动加载 LoRA 权重并合并到模型
+                                logger.info(f"  手动加载 LoRA 权重: {lora_path}")
+                                lora_state_dict = load_file(lora_path)
+                                
+                                # 获取模型的状态字典
+                                model_state_dict = self.flux_model.state_dict()
+                                
+                                # 合并 LoRA 权重（简单方法：直接添加到对应层）
+                                # 注意：这需要 LoRA 权重格式与模型层名称匹配
+                                merged_count = 0
+                                for key, value in lora_state_dict.items():
+                                    # LoRA 权重通常以 "lora_A" 或 "lora_B" 结尾
+                                    # 需要找到对应的基础层并合并
+                                    base_key = key.replace(".lora_A", "").replace(".lora_B", "")
+                                    if base_key in model_state_dict:
+                                        # 简单的权重合并（实际应该使用 LoRA 的数学公式）
+                                        # W_new = W_base + alpha * (lora_B @ lora_A)
+                                        # 这里简化处理，直接按权重比例合并
+                                        if ".lora_A" in key or ".lora_B" in key:
+                                            # 跳过 lora_A 和 lora_B，需要成对处理
+                                            continue
+                                        else:
+                                            # 如果是合并后的权重，直接应用
+                                            model_state_dict[base_key] = model_state_dict[base_key] + lora_weight * value
+                                            merged_count += 1
+                                
+                                if merged_count > 0:
+                                    # 加载合并后的权重
+                                    self.flux_model.load_state_dict(model_state_dict, strict=False)
+                                    logger.info(f"  ✓ LoRA 加载成功 (原生模型，合并了 {merged_count} 个权重)")
+                                    print(f"  [调试] LoRA 加载成功 (原生模型，合并了 {merged_count} 个权重)")
+                                    lora_loaded = True
+                                else:
+                                    logger.warning(f"  ⚠ 无法匹配 LoRA 权重格式，可能需要使用 diffusers pipeline 模式")
+                                    
+                            except ImportError:
+                                logger.warning(f"  ⚠ PEFT 库未安装，无法加载 LoRA 到原生模型")
+                            except Exception as e:
+                                logger.warning(f"  ⚠ 原生模型 LoRA 加载失败: {e}")
+                                logger.info(f"  ℹ 建议：使用 diffusers pipeline 模式以支持 LoRA")
+                                
+                        except Exception as e:
+                            logger.warning(f"  ⚠ 原生模型 LoRA 加载异常: {e}")
+                    
+                    if not lora_loaded:
+                        logger.warning(f"  ⚠ LoRA 加载失败（pipeline 和原生模型都失败），继续使用 PuLID（无 LoRA）")
+                except Exception as e:
+                    logger.warning(f"  ⚠ LoRA 加载异常: {e}，继续使用 PuLID（无 LoRA）")
+            else:
+                logger.warning(f"  ⚠ LoRA 路径不存在: {lora_path}")
+                print(f"  [调试] LoRA 路径不存在: {lora_path}")
+        
         # 转换参考强度到 PuLID 权重
         # PuLID 权重范围通常是 0.0-1.0
         # reference_strength 0-100 映射到 0.0-1.0
@@ -870,6 +992,7 @@ class PuLIDEngine:
         logger.info(f"  参考强度: {reference_strength}% -> PuLID weight: {pulid_weight:.2f}")
         logger.info(f"  分辨率: {width}x{height}")
         logger.info(f"  步数: {num_inference_steps}")
+        print(f"  [调试] PuLID引擎接收到的推理步数: {num_inference_steps}")
         
         # 设置随机种子
         generator = None

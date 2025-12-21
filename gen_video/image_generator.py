@@ -102,14 +102,15 @@ class ImageGenerator:
             self.image_config.get(
                 "ascii_only_prompt", False))
         
-        # 增强模式配置（新方案：PuLID + 解耦融合 + Execution Planner V3）
+        # 增强模式配置（新方案：PuLID + 解耦融合，v2.2-final直接从JSON读取参数）
         enhanced_config = self.image_config.get("enhanced_mode", {})
         self.use_enhanced_mode = enhanced_config.get("enabled", False)
         self.enhanced_generator = None  # 延迟加载
         
         if self.use_enhanced_mode:
-            print("  ℹ️  增强模式已启用（PuLID + 解耦融合 + Execution Planner V3）")
+            print("  ℹ️  增强模式已启用（PuLID + 解耦融合，v2.2-final模式）")
             print("     当 scene 参数存在时，将自动使用增强模式生成")
+            print("     ⚡ v2.2-final: 直接从JSON读取锁定参数，不使用Planner决策")
 
         # 初始化 Prompt 模块组件
         self.token_estimator = TokenEstimator(
@@ -2200,7 +2201,7 @@ class ImageGenerator:
                     face_ref = Image.open(reference_image_path).convert('RGB')
                 
                 # 使用增强生成器生成
-                print("  ✨ 使用增强模式生成（PuLID + 解耦融合 + Execution Planner V3）")
+                print("  ✨ 使用增强模式生成（PuLID + 解耦融合，v2.2-final模式）")
                 print("  [调试] 准备调用 generate_scene...")
                 import time
                 call_start = time.time()
@@ -3608,11 +3609,19 @@ class ImageGenerator:
             print(f"  负面提示词: {negative_prompt[:100]}...")
         
         # 从 scene 获取尺寸（如果有）
+        # ⚡ 关键修复：优先从 generation_params 读取分辨率（v2.2-final格式）
         width = self.width
         height = self.height
         if scene and isinstance(scene, dict):
-            width = scene.get("width", width)
-            height = scene.get("height", height)
+            # 优先从 generation_params 读取（v2.2-final格式）
+            gen_params = scene.get("generation_params", {})
+            if gen_params and isinstance(gen_params, dict):
+                width = gen_params.get("width", width)
+                height = gen_params.get("height", height)
+            else:
+                # 向后兼容：直接从 scene 读取（旧格式）
+                width = scene.get("width", width)
+                height = scene.get("height", height)
         
         # ⚡ 关键修复：对于 wide shot 和 top_down 场景，确保分辨率足够高
         # 低分辨率会导致图像模糊，特别是对于包含人物和环境的场景
@@ -4371,8 +4380,38 @@ class ImageGenerator:
                 test_prompt = "(single person, lone figure, only one character, one person only, sole character, single individual:2.0), " + prompt
                 try:
                     from transformers import CLIPTokenizer
-                    tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-large-patch14")
-                    test_tokens = len(tokenizer(test_prompt, truncation=False, return_tensors="pt").input_ids[0])
+                    from pathlib import Path
+                    # ⚡ 关键修复：优先使用本地SDXL模型，避免网络下载
+                    local_sdxl_path = Path(__file__).parent / "models" / "sdxl-base"
+                    tokenizer = None
+                    
+                    # 尝试从本地SDXL模型加载
+                    if local_sdxl_path.exists() and (local_sdxl_path / "tokenizer").exists():
+                        try:
+                            tokenizer = CLIPTokenizer.from_pretrained(
+                                str(local_sdxl_path),
+                                subfolder="tokenizer",
+                                local_files_only=True
+                            )
+                        except Exception:
+                            pass
+                    
+                    # 如果本地加载失败，尝试使用缓存
+                    if tokenizer is None:
+                        try:
+                            tokenizer = CLIPTokenizer.from_pretrained(
+                                "openai/clip-vit-large-patch14",
+                                local_files_only=True  # 只使用本地缓存，不联网下载
+                            )
+                        except Exception:
+                            pass
+                    
+                    if tokenizer:
+                        test_tokens = len(tokenizer(test_prompt, truncation=False, return_tensors="pt").input_ids[0])
+                    else:
+                        # 如果无法加载tokenizer，保守处理：不添加
+                        print(f"  ⚠ 无法加载tokenizer，跳过添加单人约束以避免截断")
+                        return prompt
                     if test_tokens <= 70:  # 留出安全边界
                         prompt = test_prompt
                         print(f"  ✓ 已添加单人场景约束：在 prompt 最前面强调单人（权重2.0，防止重复人物）")
