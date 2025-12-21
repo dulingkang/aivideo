@@ -100,27 +100,34 @@ class BatchNovelGenerator:
         scenes = data.get('scenes', [])
         print(f"  ✓ 从 {json_path} 加载了 {len(scenes)} 个场景")
         
-        # ⚡ v2.1-exec支持：检测并转换v2格式
-        converted_count = 0
+        # ⚡ v2.2-final/v2.1-exec支持：检测格式
+        v22_count = 0
+        v21_count = 0
+        v2_count = 0
+        
         for i, scene in enumerate(scenes):
             scene_version = scene.get('version', '')
+            scene_id = scene.get('scene_id', i)
             
-            # 如果是v2格式且启用自动转换
-            if scene_version == 'v2' and auto_convert_v21:
-                try:
-                    from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
-                    converter = JSONV2ToV21Converter()
-                    scenes[i] = converter.convert_scene(scene)
-                    converted_count += 1
-                    print(f"  ℹ 场景 {scene.get('scene_id', i)}: v2 → v2.1-exec 转换完成")
-                except Exception as e:
-                    print(f"  ⚠ 场景 {scene.get('scene_id', i)} 转换失败: {e}，使用原始格式")
-            # 如果已经是v2.1-exec格式，直接使用
+            # v2.2-final格式（推荐）
+            if scene_version == 'v2.2-final':
+                v22_count += 1
+                print(f"  ✓ 场景 {scene_id}: v2.2-final格式（推荐）")
+            # v2.1-exec格式（向后兼容）
             elif scene_version.startswith('v2.1'):
-                print(f"  ✓ 场景 {scene.get('scene_id', i)}: 已是v2.1-exec格式")
+                v21_count += 1
+                print(f"  ✓ 场景 {scene_id}: v2.1-exec格式（向后兼容）")
+            # v2格式（已废弃）
+            elif scene_version == 'v2':
+                v2_count += 1
+                print(f"  ⚠ 场景 {scene_id}: v2格式（已废弃，建议升级到v2.2-final）")
         
-        if converted_count > 0:
-            print(f"  ✓ 共转换 {converted_count} 个场景为v2.1-exec格式")
+        if v22_count > 0:
+            print(f"  ✓ 共 {v22_count} 个场景使用v2.2-final格式（推荐）")
+        if v21_count > 0:
+            print(f"  ℹ 共 {v21_count} 个场景使用v2.1-exec格式（向后兼容）")
+        if v2_count > 0:
+            print(f"  ⚠ 共 {v2_count} 个场景使用v2格式（已废弃，建议升级）")
         
         return scenes
     

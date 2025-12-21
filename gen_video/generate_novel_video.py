@@ -190,17 +190,25 @@ class NovelVideoGenerator:
         print("开始生成小说推文视频")
         print("=" * 60)
         
-        # ⚡ v2.1-exec模式：如果scene是v2.1-exec格式，使用Execution Executor
-        if use_v21_exec and scene and scene.get("version", "").startswith("v2.1"):
+        # ⚡ v2.2-final/v2.1-exec模式：如果scene是新格式，使用Execution Executor
+        scene_version = scene.get("version", "") if scene else ""
+        
+        # 检测v2.2-final格式（推荐）
+        if scene and scene_version == "v2.2-final":
+            print("  ✓ 检测到v2.2-final格式，使用Execution Executor")
             return self._generate_v21_exec(scene, output_dir, width, height, num_frames, fps)
         
-        # 兼容模式：如果scene是v2格式，自动转换为v2.1-exec（可选）
-        if scene and scene.get("version") == "v2" and use_v21_exec:
-            print("  ℹ 检测到v2格式，自动转换为v2.1-exec")
-            from utils.json_v2_to_v21_converter import JSONV2ToV21Converter
-            converter = JSONV2ToV21Converter()
-            scene = converter.convert_scene(scene)
+        # 检测v2.1-exec格式（向后兼容）
+        if use_v21_exec and scene and scene_version.startswith("v2.1"):
+            print("  ✓ 检测到v2.1-exec格式，使用Execution Executor")
             return self._generate_v21_exec(scene, output_dir, width, height, num_frames, fps)
+        
+        # 兼容模式：如果scene是v2格式，提示使用新格式（不再自动转换）
+        if scene and scene_version == "v2" and use_v21_exec:
+            print("  ⚠ 检测到v2格式，建议直接使用v2.2-final格式")
+            print("  ℹ v2格式已废弃，请使用v2.2-final格式（参考: schemas/scene_v22_final.json）")
+            # 不再自动转换，直接返回错误或使用旧流程
+            print("  ℹ 使用旧流程处理v2格式（不推荐）")
         
         # 原有流程（兼容）
         if prompt is None:
@@ -1045,10 +1053,14 @@ class NovelVideoGenerator:
         fps: int
     ) -> Dict[str, Path]:
         """
-        使用v2.1-exec格式生成（Execution Executor模式）
+        使用v2.2-final/v2.1-exec格式生成（Execution Executor模式）
+        
+        支持格式:
+        - v2.2-final: 新格式（推荐）
+        - v2.1-exec: 旧格式（向后兼容）
         
         Args:
-            scene: v2.1-exec格式的场景JSON
+            scene: v2.2-final或v2.1-exec格式的场景JSON
             output_dir: 输出目录
             width: 图像宽度
             height: 图像高度
@@ -1058,9 +1070,15 @@ class NovelVideoGenerator:
         Returns:
             dict: 包含 'image' 和 'video' 路径的字典
         """
-        print("=" * 60)
-        print("使用v2.1-exec模式生成")
-        print("=" * 60)
+        scene_version = scene.get("version", "")
+        if scene_version == "v2.2-final":
+            print("=" * 60)
+            print("使用v2.2-final模式生成")
+            print("=" * 60)
+        else:
+            print("=" * 60)
+            print("使用v2.1-exec模式生成")
+            print("=" * 60)
         
         try:
             from utils.execution_executor_v21 import (
