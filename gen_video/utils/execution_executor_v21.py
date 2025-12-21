@@ -124,9 +124,26 @@ class ExecutionExecutorV21:
             # 添加scene_id（如果缺失）
             if "scene_id" not in scene_data:
                 scene_id_str = scene_data.get("id", "scene_001")
-                if scene_id_str.startswith("scene_"):
-                    scene_id = int(scene_id_str.split("_")[1])
-                else:
+                try:
+                    if scene_id_str.startswith("scene_"):
+                        # 尝试提取数字部分
+                        parts = scene_id_str.split("_")
+                        if len(parts) > 1:
+                            # 尝试解析数字
+                            try:
+                                scene_id = int(parts[1])
+                            except ValueError:
+                                # 如果不是数字，使用索引
+                                scene_id = 1
+                        else:
+                            scene_id = 1
+                    else:
+                        # 尝试直接解析为数字
+                        try:
+                            scene_id = int(scene_id_str)
+                        except ValueError:
+                            scene_id = 1
+                except Exception:
                     scene_id = 1
                 scene_data["scene_id"] = scene_id
             return scene_data
