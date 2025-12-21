@@ -104,9 +104,12 @@ class ExecutionValidator:
         issues: List[ValidationIssue] = []
         
         # 0. 规范化格式（支持v2.2-final）
-        version = scene.get("version", "")
-        if version == "v2.2-final" and "scene" in scene:
+        original_version = scene.get("version", "")
+        is_v22_final = False
+        
+        if original_version == "v2.2-final" and "scene" in scene:
             # v2.2-final格式：提取scene字段
+            is_v22_final = True
             scene = scene["scene"]
             # 添加scene_id（如果缺失）
             if "scene_id" not in scene:
@@ -131,7 +134,10 @@ class ExecutionValidator:
         
         # 1. 检查版本（规范化后）
         version = scene.get("version", "")
-        if version not in ["v2.2-final", "v2.1-exec"] and not version.startswith("v2.1"):
+        if is_v22_final:
+            # 规范化后的v2.2-final格式，版本是正确的
+            version = "v2.2-final"
+        elif version not in ["v2.2-final", "v2.1-exec"] and not version.startswith("v2.1"):
             issues.append(ValidationIssue(
                 level=ValidationLevel.ERROR,
                 field="version",
