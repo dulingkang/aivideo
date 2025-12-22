@@ -75,10 +75,10 @@
       ]
     },
     "environment": {
-      "location": "",
+      "location": "desert wasteland, gray-green sand",
       "time": "day",
       "weather": "clear",
-      "atmosphere": "xianxia_anime style, soft_cinematic lighting",
+      "atmosphere": "xianxia_anime style, soft_cinematic lighting, melancholic mood",
       "background_elements": []
     },
     "prompt": {
@@ -96,7 +96,7 @@
           "decide_model_route"
         ]
       },
-      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, standing pose, upright posture, medium shot, sharp focus, high detail, clear image, cinematic lighting, epic atmosphere, Chinese fantasy illustration style"
+      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, standing pose, upright posture, in desert wasteland, gray-green sand, xianxia_anime style, soft_cinematic lighting, melancholic mood, medium shot, sharp focus, high detail, clear image, cinematic lighting, epic atmosphere, Chinese fantasy illustration style"
     },
     "generation_params": {
       "width": 1536,
