@@ -1,7 +1,7 @@
 # v2.2-final 开发总结
 
 ## 开发时间
-2025-12-21
+2025-12-21 ~ 2025-12-22
 
 ## 核心改进
 
@@ -82,6 +82,30 @@
 
 **相关文件**：
 - `gen_video/utils/json_validator_v22.py`
+
+---
+
+### 6. ✅ 解耦模式 LoRA 加载修复 (2025-12-22)
+
+**问题**：
+- 解耦模式下 `lora_config` 被错误传递给 `scene_generator`（FluxPipeline 不支持）
+- 解耦模式下 LoRA 配置未正确传递给 `identity_injector`
+- `image_generator.py` 中 Path 类型处理错误
+
+**解决方案**：
+1. 修复解耦模式参数传递：从 `scene_generator` 的 kwargs 中移除 `lora_config` 和 `character_id`
+2. 增强 LoRA 配置传递：在 `_generate_decoupled` 中正确读取并传递 LoRA 配置
+3. 修复 Path 类型错误：添加类型检查，避免重复转换
+
+**相关文件**：
+- `gen_video/decoupled_fusion_engine.py`
+- `gen_video/enhanced_image_generator.py`
+- `gen_video/image_generator.py`
+- `gen_video/pulid_engine.py`
+
+**测试结果**：
+- ✅ scene_006 错误已修复
+- ⚠️ 部分场景（003, 004, 005, 008）相似度仍低，需要进一步优化
 
 ---
 

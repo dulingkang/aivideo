@@ -813,14 +813,6 @@ class EnhancedImageGenerator:
         shot_info = scene.get("shot", {})
         shot_type = shot_info.get("type", "medium")
         
-        # 判断是否使用解耦模式
-        # ⚡ 修复：wide shot 禁用解耦融合，避免多人物和半个脸的问题
-        # 解耦融合只在 medium shot 且明确配置时使用
-        use_decoupled = False  # 默认禁用，避免生成问题
-        # 如果配置中明确启用解耦融合，且是 medium shot，才使用
-        if self.decoupled_config.get("enabled", False) and shot_type == "medium":
-            use_decoupled = True
-        
         # 参考强度（根据shot类型调整）
         reference_strength_map = {
             "wide": 50,
@@ -829,6 +821,19 @@ class EnhancedImageGenerator:
             "aerial": 60,
         }
         reference_strength = reference_strength_map.get(shot_type, 70)
+        
+        # 判断是否使用解耦模式
+        # ⚡ 关键修复：根据参考强度和镜头类型决定是否使用解耦模式
+        # 解耦模式更适合远景/中景（参考强度 < 60%），特写/近景（参考强度 >= 70%）应该使用 PuLID 直接生成
+        use_decoupled = False  # 默认禁用，避免生成问题
+        # 如果配置中明确启用解耦融合，且参考强度 < 70%，才使用解耦模式
+        # 原因：参考强度 >= 70% 的场景（如 medium/close_up）需要强锁脸，解耦模式可能导致人脸相似度不足
+        if self.decoupled_config.get("enabled", False) and reference_strength < 70:
+            use_decoupled = True
+            logger.info(f"  使用解耦模式（参考强度 {reference_strength}% < 70%，适合解耦生成）")
+        else:
+            if reference_strength >= 70:
+                logger.info(f"  禁用解耦模式（参考强度 {reference_strength}% >= 70%，使用 PuLID 直接生成以确保人脸相似度）")
         
         # 构建策略对象
         strategy = GenerationStrategy(
@@ -932,9 +937,49 @@ class EnhancedImageGenerator:
         try:
             # ⚡ v2.2-final 改造：直接从JSON读取prompt，不使用Planner构建
             prompt_config = scene.get("prompt", {})
+            environment_info = scene.get("environment", {})
+            
             if "final" in prompt_config:
                 # 优先使用JSON中的final字段
                 prompt = prompt_config["final"]
+                
+                # ⚡ 关键修复：如果final prompt中缺少环境描述，从environment中补充
+                # 检查final prompt中是否包含环境相关关键词
+                has_environment = any(keyword in prompt.lower() for keyword in [
+                    "in ", "atmosphere", "location", "environment", "background", 
+                    "scene", "setting", "place", "area", "space"
+                ])
+                
+                if not has_environment and environment_info:
+                    # 补充环境描述
+                    env_parts = []
+                    location = environment_info.get("location", "").strip()
+                    if location:
+                        env_parts.append(f"in {location}")
+                    
+                    atmosphere = environment_info.get("atmosphere", "").strip()
+                    if atmosphere:
+                        env_parts.append(atmosphere)
+                    
+                    background_elements = environment_info.get("background_elements", [])
+                    if background_elements:
+                        elements_text = ", ".join(str(e) for e in background_elements if e)
+                        if elements_text:
+                            env_parts.append(elements_text)
+                    
+                    if env_parts:
+                        # 在角色描述后插入环境描述
+                        # 简单策略：在第一个逗号后插入
+                        if ", " in prompt:
+                            parts = prompt.split(", ", 2)
+                            if len(parts) >= 2:
+                                prompt = f"{parts[0]}, {', '.join(env_parts)}, {', '.join(parts[1:])}"
+                            else:
+                                prompt = f"{prompt}, {', '.join(env_parts)}"
+                        else:
+                            prompt = f"{prompt}, {', '.join(env_parts)}"
+                        logger.info(f"补充环境描述到prompt: {', '.join(env_parts)}")
+                        print(f"  [调试] 补充环境描述: {', '.join(env_parts)}")
             elif original_prompt:
                 # 其次使用传入的original_prompt
                 prompt = original_prompt
@@ -1137,20 +1182,26 @@ class EnhancedImageGenerator:
         logger.info(f"使用生成参数 ({source}): {width}x{height}, {num_steps}步, guidance={guidance}")
         print(f"  [调试] 推理步数: {num_steps} ({source})")
         
-        # ⚡ 关键修复：读取 LoRA 配置
+        # ⚡ 关键修复：读取 LoRA 配置（仅在 character.present 为 true 时）
         lora_config = None
         character_id = None
         if scene and "character" in scene:
             character_info = scene.get("character", {})
-            lora_config = character_info.get("lora_config", {})
-            character_id = character_info.get("id", None)
-            if lora_config:
-                logger.info(f"  检测到 LoRA 配置: {lora_config.get('lora_path', 'N/A')}")
-                print(f"  [调试] LoRA路径: {lora_config.get('lora_path', 'N/A')}, 权重: {lora_config.get('weight', 0.9)}")
+            # ⚡ 关键修复：只有在 character.present 为 true 时才读取 LoRA 配置
+            character_present = character_info.get("present", False)
+            if character_present:
+                lora_config = character_info.get("lora_config", {})
+                character_id = character_info.get("id", None)
+                if lora_config:
+                    logger.info(f"  检测到 LoRA 配置: {lora_config.get('lora_path', 'N/A')}")
+                    print(f"  [调试] LoRA路径: {lora_config.get('lora_path', 'N/A')}, 权重: {lora_config.get('weight', 0.9)}")
+            else:
+                logger.info(f"  ℹ 场景无人物 (character.present=false)，跳过 LoRA 配置")
+                print(f"  [调试] 场景无人物，跳过 LoRA 配置")
         
         # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为 PuLID 引擎不支持
         pulid_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
-        # 但需要传递 LoRA 配置
+        # 但需要传递 LoRA 配置（仅在 character.present 为 true 时）
         if lora_config:
             pulid_kwargs['lora_config'] = lora_config
         if character_id:
@@ -1196,9 +1247,35 @@ class EnhancedImageGenerator:
         gen_params = scene.get("generation_params", {}) if scene else {}
         width = gen_params.get("width", self.pulid_config.get("width", 768))
         height = gen_params.get("height", self.pulid_config.get("height", 1152))
+        num_steps = gen_params.get("num_inference_steps") or self.pulid_config.get("num_inference_steps", 50)
+        guidance_scale = gen_params.get("guidance_scale") or self.pulid_config.get("guidance_scale", 7.5)
+        
+        logger.info(f"解耦生成参数: {width}x{height}, {num_steps}步, guidance={guidance_scale}")
+        print(f"  [调试] 解耦生成推理步数: {num_steps} (JSON覆盖)")
+        
+        # ⚡ 关键修复：读取 LoRA 配置（仅在 character.present 为 true 时）
+        lora_config = None
+        character_id = None
+        if scene and "character" in scene:
+            character_info = scene.get("character", {})
+            character_present = character_info.get("present", False)
+            if character_present:
+                lora_config = character_info.get("lora_config", {})
+                character_id = character_info.get("id", None)
+                if lora_config:
+                    logger.info(f"  检测到 LoRA 配置: {lora_config.get('lora_path', 'N/A')}")
+                    print(f"  [调试] LoRA路径: {lora_config.get('lora_path', 'N/A')}, 权重: {lora_config.get('weight', 0.9)}")
         
         # ⚡ 关键修复：从 kwargs 中移除 scene 参数，因为融合引擎不支持
         fusion_kwargs = {k: v for k, v in kwargs.items() if k != "scene"}
+        # 但需要传递生成参数和 LoRA 配置
+        fusion_kwargs['num_inference_steps'] = num_steps
+        fusion_kwargs['guidance_scale'] = guidance_scale
+        # ⚡ 关键修复：传递 LoRA 配置给 identity_injector（pulid_engine）
+        if lora_config:
+            fusion_kwargs['lora_config'] = lora_config
+        if character_id:
+            fusion_kwargs['character_id'] = character_id
         
         image = self.fusion_engine.generate_decoupled(
             prompt=prompt,

@@ -466,11 +466,24 @@ class DecoupledFusionEngine:
         
         if scene_generator is not None:
             # 使用提供的场景生成器
+            # ⚡ 关键修复：确保传递 num_inference_steps 和 guidance_scale
+            scene_kwargs = kwargs.copy()
+            # ⚡ 关键修复：移除 scene_generator 不支持的参数（lora_config, character_id 等）
+            # 这些参数只应该传递给 identity_injector，不应该传递给 scene_generator
+            scene_kwargs.pop('lora_config', None)
+            scene_kwargs.pop('character_id', None)
+            # 如果 kwargs 中没有 num_inference_steps，使用默认值
+            if 'num_inference_steps' not in scene_kwargs:
+                scene_kwargs['num_inference_steps'] = 50  # 默认值
+            if 'guidance_scale' not in scene_kwargs:
+                scene_kwargs['guidance_scale'] = 7.5  # 默认值
+            
+            logger.info(f"场景生成参数: {width}x{height}, {scene_kwargs.get('num_inference_steps', 50)}步, guidance={scene_kwargs.get('guidance_scale', 7.5)}")
             scene_image = scene_generator(
                 prompt=scene_prompt,
                 width=width,
                 height=height,
-                **kwargs
+                **scene_kwargs
             ).images[0]
         else:
             logger.warning("未提供场景生成器，跳过场景生成")
@@ -671,17 +684,19 @@ class DecoupledFusionEngine:
             y_min, y_max = coords[0].min(), coords[0].max()
             x_min, x_max = coords[1].min(), coords[1].max()
             
-            # ⚡ 关键修复：生成人物图像时，需要包含完整的角色描述（包括服饰）
+            # ⚡ 关键修复：生成人物图像时，需要包含完整的角色描述（包括服饰和姿态）
             # 从 kwargs 中获取原始 prompt（包含角色描述）
             original_prompt = kwargs.get('prompt', '')
             
-            # ⚡ 关键修复：从原始 prompt 中提取角色描述（包括服饰信息）
-            # 如果 original_prompt 中没有角色描述，尝试从场景中提取
+            # ⚡ 关键修复：从原始 prompt 中提取完整的角色描述
+            # 包括：角色名称、气质、服饰、姿态、镜头类型
             person_prompt = original_prompt
             
-            # 检查 prompt 中是否包含角色和服饰描述
+            # 检查 prompt 中是否包含关键信息
             has_character = any(kw in person_prompt.lower() for kw in ['hanli', '韩立', 'character', 'person'])
-            has_clothing = any(kw in person_prompt.lower() for kw in ['robe', 'clothing', 'clothes', 'garment', 'outfit', '服饰', '衣服', '道袍', '长袍'])
+            has_clothing = any(kw in person_prompt.lower() for kw in ['robe', 'clothing', 'clothes', 'garment', 'outfit', '服饰', '衣服', '道袍', '长袍', 'daoist', 'cultivator'])
+            has_pose = any(kw in person_prompt.lower() for kw in ['pose', 'standing', 'sitting', 'lying', 'posture', 'upright'])
+            has_shot = any(kw in person_prompt.lower() for kw in ['shot', 'close', 'medium', 'wide', 'full'])
             
             # ⚡ 关键修复：如果没有角色描述，添加基本描述
             if not has_character:
@@ -690,18 +705,50 @@ class DecoupledFusionEngine:
             # ⚡ 关键修复：如果没有服饰描述，添加基本服饰描述（仙侠风格）
             if not has_clothing:
                 # 检查是否是仙侠场景
-                is_xianxia = any(kw in person_prompt.lower() for kw in ['xianxia', 'immortal', 'cultivator', '仙侠', '修仙', '修士'])
+                is_xianxia = any(kw in person_prompt.lower() for kw in ['xianxia', 'immortal', 'cultivator', '仙侠', '修仙', '修士', 'daoist'])
                 if is_xianxia:
                     person_prompt = f"{person_prompt}, wearing traditional Chinese cultivator robe, deep cyan flowing fabric, not armor"
                 else:
                     person_prompt = f"{person_prompt}, wearing appropriate clothing"
             
-            logger.info(f"人物生成 prompt: {person_prompt[:150]}...")
+            # ⚡ 关键修复：确保包含姿态和镜头类型信息（如果原始prompt中有）
+            # 这些信息对人物生成很重要
+            if not has_pose:
+                # 尝试从原始prompt中提取姿态信息
+                pose_keywords = ['standing', 'sitting', 'lying', 'upright', 'posture']
+                for kw in pose_keywords:
+                    if kw in original_prompt.lower():
+                        person_prompt = f"{person_prompt}, {kw}"
+                        break
+            
+            # 添加镜头类型（如果原始prompt中有，确保人物生成时也包含）
+            if has_shot:
+                # 提取镜头类型描述
+                import re
+                shot_patterns = [
+                    r'(?:extreme\s+)?(?:wide|medium|close|full|american)\s+shot[^,)]*',
+                    r'(?:full\s+body|upper\s+body|head\s+and\s+shoulders|face\s+only|distant\s+view)[^,)]*',
+                ]
+                for pattern in shot_patterns:
+                    matches = re.findall(pattern, original_prompt, flags=re.IGNORECASE)
+                    if matches:
+                        # 将镜头类型添加到人物prompt前面（高优先级）
+                        shot_desc = " ".join(set(matches))
+                        person_prompt = f"{shot_desc}, {person_prompt}"
+                        break
+            
+            logger.info(f"人物生成 prompt: {person_prompt[:200]}...")
             
             # ⚡ 关键修复：从 kwargs 中移除 prompt，避免重复传递
             # 因为我们已经显式传递了 person_prompt
             kwargs_clean = {k: v for k, v in kwargs.items() if k != 'prompt'}
+            # ⚡ 关键修复：确保传递 num_inference_steps 和 guidance_scale
+            if 'num_inference_steps' not in kwargs_clean:
+                kwargs_clean['num_inference_steps'] = 50  # 默认值
+            if 'guidance_scale' not in kwargs_clean:
+                kwargs_clean['guidance_scale'] = 7.5  # 默认值
             
+            logger.info(f"身份注入参数: {x_max - x_min}x{y_max - y_min}, {kwargs_clean.get('num_inference_steps', 50)}步, guidance={kwargs_clean.get('guidance_scale', 7.5)}")
             person_image = identity_injector.generate_with_identity(
                 prompt=person_prompt,
                 face_reference=face_reference,

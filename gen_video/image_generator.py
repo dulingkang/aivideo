@@ -4216,11 +4216,13 @@ class ImageGenerator:
         # 优先级：1) face_reference_image_path 2) 韩立_face.png 3) 目录中的第一张
         face_image = None
         used_reference_path = None
-        if face_reference_image_path and Path(
-                face_reference_image_path).exists():
-            face_image = Image.open(face_reference_image_path).convert("RGB")
-            used_reference_path = face_reference_image_path
-            print(f"  ✓ 使用传入的参考图像: {face_reference_image_path}")
+        if face_reference_image_path:
+            # ⚡ 关键修复：确保 Path 类型正确
+            face_ref_path = Path(face_reference_image_path) if not isinstance(face_reference_image_path, Path) else face_reference_image_path
+            if face_ref_path.exists():
+                face_image = Image.open(face_ref_path).convert("RGB")
+                used_reference_path = face_ref_path
+                print(f"  ✓ 使用传入的参考图像: {face_ref_path}")
         elif self.face_image_path:
             face_path = Path(self.face_image_path)
             if face_path.exists():
