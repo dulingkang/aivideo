@@ -1,0 +1,130 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T15:58:54.693304",
+    "description": "从 V1 格式转换的场景 5",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 5
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_005",
+    "scene_id": 5,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "conflict",
+      "description": "韩立施展元婴虚化之法，将庞大的元婴精元灌注全身。"
+    },
+    "shot": {
+      "type": "close_up",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "close_up shot"
+    },
+    "pose": {
+      "type": "face_only",
+      "locked": true,
+      "validated_by": "shot_pose_rules",
+      "auto_corrected": true,
+      "description": "close-up face, portrait, face only"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "main"
+    },
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      "reference_image": "character_references/hanli_reference.jpg",
+      "negative_gender_lock": [
+        "female",
+        "woman",
+        "girl",
+        "soft facial features",
+        "delicate face",
+        "long eyelashes",
+        "narrow shoulders",
+        "slim waist",
+        "feminine body"
+      ]
+    },
+    "environment": {
+      "location": "Han Li uses Nascent Soul Void method,energy flowing",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "neutral mood, soft_cinematic lighting, xianxia_anime style",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "v1_original": "Han Li uses the Nascent Soul Void method,channeling its vast essence into his flesh.",
+      "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, uses the Nascent Soul Void method,channeling its vast essence into his flesh., resolute determined expression, Nascent Soul essence flooding the body,visible energy flow, with soft bokeh background, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "close_up",
+      "angle": "eye_level",
+      "movement": "dolly_out",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "他运转元婴虚化之法，硬生生将滚滚精元送入躯体每一处。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "neutral",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T15:58:54.693016",
+    "description": "从 V1 格式转换的场景 4",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 4
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_004",
+    "scene_id": 4,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "emotional_beat",
+      "description": "他忆起与冰凤分离以及禁制爆发时的剧痛。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v1_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "main"
+    },
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      "reference_image": "character_references/hanli_reference.jpg",
+      "negative_gender_lock": [
+        "female",
+        "woman",
+        "girl",
+        "soft facial features",
+        "delicate face",
+        "long eyelashes",
+        "narrow shoulders",
+        "slim waist",
+        "feminine body"
+      ]
+    },
+    "environment": {
+      "location": "Han Li recalls separation from Ice Phoenix",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "sad mood, soft_cinematic lighting, xianxia_anime style",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "v1_original": "Han Li recalls being separated from Ice Phoenix and the agony of the restriction flaring up.",
+      "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, recalls being separated from Ice Phoenix and the agony of the restriction flaring up., expression showing pain, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "pan",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "被迫与冰凤分开后，二人互下的禁制再度作祟。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "sad",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T15:58:54.693604",
+    "description": "从 V1 格式转换的场景 6",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 6
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_006",
+    "scene_id": 6,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "emotional_beat",
+      "description": "他费力偏过头，只见一望无际的青灰砂砾。"
+    },
+    "shot": {
+      "type": "wide",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "wide shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v1_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "main"
+    },
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      "reference_image": "character_references/hanli_reference.jpg",
+      "negative_gender_lock": [
+        "female",
+        "woman",
+        "girl",
+        "soft facial features",
+        "delicate face",
+        "long eyelashes",
+        "narrow shoulders",
+        "slim waist",
+        "feminine body"
+      ]
+    },
+    "environment": {
+      "location": "Endless gray-green gravel plain",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "serene mood, soft_cinematic lighting, xianxia_anime style",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "v1_original": "Han Li strains to tilt his head,revealing an endless expanse of gray-green gravel.",
+      "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, strains to tilt his head,revealing an endless expanse of gray-green gravel., calm serene expression, in Endless gray-green gravel plain, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 40,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "wide",
+      "angle": "eye_level",
+      "movement": "pan",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "好不容易偏动头颅，映入眼帘的仍是无边无际的青灰沙砾。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "serene",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}

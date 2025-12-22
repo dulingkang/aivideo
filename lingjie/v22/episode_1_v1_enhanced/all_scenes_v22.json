@@ -1,0 +1,580 @@
+[
+  {
+    "version": "v2.2-final",
+    "metadata": {
+      "created_at": "2025-12-22T14:28:46.478350",
+      "description": "从 V1 格式转换的场景 0",
+      "episode_id": "lingjie_ep1",
+      "scene_id": 0
+    },
+    "scene": {
+      "version": "v2.2-final",
+      "id": "scene_000",
+      "scene_id": 0,
+      "duration_sec": 3.0,
+      "intent": {
+        "type": "title_reveal",
+        "description": "镜头淡入，云雾笼罩的仙域天空中金色卷轴舒展开来并闪烁灵光。"
+      },
+      "shot": {
+        "type": "medium",
+        "locked": true,
+        "source": "v1_conversion",
+        "description": "medium shot"
+      },
+      "pose": {
+        "type": "stand",
+        "locked": true,
+        "validated_by": "v1_conversion",
+        "auto_corrected": false,
+        "description": "standing pose, upright posture"
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "none",
+        "locked": true,
+        "decision_reason": "v1_conversion",
+        "character_role": "supporting"
+      },
+      "character": {
+        "present": false
+      },
+      "environment": {
+        "location": "Sky of the immortal realm,mist-wreathed,golden radiance",
+        "time": "day",
+        "weather": "mist",
+        "atmosphere": "serene mood, soft lighting, xianxia_anime style",
+        "background_elements": [
+          "golden_scroll"
+        ]
+      },
+      "prompt": {
+        "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+        "llm_enhancement": {
+          "enable": false,
+          "role": "copywriter",
+          "tasks": [
+            "enhance_scene_description",
+            "add_atmosphere_details"
+          ],
+          "forbidden_tasks": [
+            "decide_shot_type",
+            "decide_pose_type",
+            "decide_model_route"
+          ]
+        },
+        "v1_original": "Xianxia opening,mist-shrouded immortal sky,golden scroll unfurling,spirit particles drifting,wide cinematic shot,film-grade lighting,4K",
+        "final": "Xianxia opening,mist-shrouded immortal sky,golden scroll unfurling,spirit particles drifting,wide cinematic shot,film-grade lighting,4K, peaceful serene expression, in Sky of the immortal realm,mist-wreathed,golden radiance, Golden light,scroll-unfurling effect, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+      },
+      "generation_params": {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "seed": -1
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "static",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "narration": {
+        "text": "我是云卷仙音，欢迎回来。第一集《陌生之地·初入灵界》。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "serene",
+        "timing_policy": "fit_scene"
+      },
+      "validation": {
+        "shot_pose_compatible": true,
+        "model_route_valid": true,
+        "character_anchor_complete": false,
+        "prompt_template_valid": true
+      }
+    }
+  },
+  {
+    "version": "v2.2-final",
+    "metadata": {
+      "created_at": "2025-12-22T14:28:46.478430",
+      "description": "从 V1 格式转换的场景 1",
+      "episode_id": "lingjie_ep1",
+      "scene_id": 1
+    },
+    "scene": {
+      "version": "v2.2-final",
+      "id": "scene_001",
+      "scene_id": 1,
+      "duration_sec": 4.0,
+      "intent": {
+        "type": "emotional_beat",
+        "description": "韩立躺在青灰色沙地上一动不动，感受地面升腾的燥热。"
+      },
+      "shot": {
+        "type": "wide",
+        "locked": true,
+        "source": "v1_conversion",
+        "description": "wide shot"
+      },
+      "pose": {
+        "type": "stand",
+        "locked": true,
+        "validated_by": "shot_pose_rules",
+        "auto_corrected": true,
+        "description": "standing pose, upright posture"
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "pulid",
+        "locked": true,
+        "decision_reason": "v1_conversion",
+        "character_role": "main"
+      },
+      "character": {
+        "id": "hanli",
+        "name": "韩立",
+        "present": true,
+        "role": "main",
+        "identity": {
+          "gender": "male",
+          "age_range": "young_adult",
+          "physique": "lean",
+          "face_shape": "sharp"
+        },
+        "lora_config": {
+          "type": "single",
+          "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+          "weight": 0.9,
+          "trigger": "hanli"
+        },
+        "anchor_patches": {
+          "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+          "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+          "face_detailer": {
+            "enable": true,
+            "trigger": "shot_scale >= medium",
+            "denoise": 0.35,
+            "steps": 12
+          }
+        },
+        "reference_image": "character_references/hanli_reference.jpg",
+        "negative_gender_lock": [
+          "female",
+          "woman",
+          "girl",
+          "soft facial features",
+          "delicate face",
+          "long eyelashes",
+          "narrow shoulders",
+          "slim waist",
+          "feminine body"
+        ]
+      },
+      "environment": {
+        "location": "Gray-green desert floor",
+        "time": "day",
+        "weather": "clear",
+        "atmosphere": "tense mood, soft_cinematic lighting, xianxia_anime style",
+        "background_elements": []
+      },
+      "prompt": {
+        "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+        "llm_enhancement": {
+          "enable": false,
+          "role": "copywriter",
+          "tasks": [
+            "enhance_scene_description",
+            "add_atmosphere_details"
+          ],
+          "forbidden_tasks": [
+            "decide_shot_type",
+            "decide_pose_type",
+            "decide_model_route"
+          ]
+        },
+        "v1_original": "Han Li lying on gray-green sand,motionless,feeling the ground's dry heat.",
+        "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, he resting on gray-green sand,still,feeling the ground's dry heat., solemn contemplative expression, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+      },
+      "generation_params": {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 40,
+        "guidance_scale": 7.5,
+        "seed": -1
+      },
+      "camera": {
+        "shot": "wide",
+        "angle": "top_down",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "narration": {
+        "text": "韩立保持不动，静静体会脚下炽热的沙地。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "validation": {
+        "shot_pose_compatible": true,
+        "model_route_valid": true,
+        "character_anchor_complete": true,
+        "prompt_template_valid": true
+      }
+    }
+  },
+  {
+    "version": "v2.2-final",
+    "metadata": {
+      "created_at": "2025-12-22T14:28:46.478475",
+      "description": "从 V1 格式转换的场景 2",
+      "episode_id": "lingjie_ep1",
+      "scene_id": 2
+    },
+    "scene": {
+      "version": "v2.2-final",
+      "id": "scene_002",
+      "scene_id": 2,
+      "duration_sec": 4.0,
+      "intent": {
+        "type": "introduce_world",
+        "description": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。"
+      },
+      "shot": {
+        "type": "medium",
+        "locked": true,
+        "source": "v1_conversion",
+        "description": "medium shot"
+      },
+      "pose": {
+        "type": "stand",
+        "locked": true,
+        "validated_by": "v1_conversion",
+        "auto_corrected": false,
+        "description": "standing pose, upright posture"
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "none",
+        "locked": true,
+        "decision_reason": "v1_conversion",
+        "character_role": "supporting"
+      },
+      "character": {
+        "present": false
+      },
+      "environment": {
+        "location": "Three brilliant suns,four hazy moon silhouettes",
+        "time": "day",
+        "weather": "clear",
+        "atmosphere": "mysterious mood, soft_cinematic lighting, xianxia_anime style",
+        "background_elements": []
+      },
+      "prompt": {
+        "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+        "llm_enhancement": {
+          "enable": false,
+          "role": "copywriter",
+          "tasks": [
+            "enhance_scene_description",
+            "add_atmosphere_details"
+          ],
+          "forbidden_tasks": [
+            "decide_shot_type",
+            "decide_pose_type",
+            "decide_model_route"
+          ]
+        },
+        "v1_original": "Three dazzling suns and four hazy lunar silhouettes appear in the sky.",
+        "final": "Three dazzling suns and four hazy lunar silhouettes appear in the sky., mysterious contemplative expression, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+      },
+      "generation_params": {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "seed": -1
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "narration": {
+        "text": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "mysterious",
+        "timing_policy": "fit_scene"
+      },
+      "validation": {
+        "shot_pose_compatible": true,
+        "model_route_valid": true,
+        "character_anchor_complete": false,
+        "prompt_template_valid": true
+      }
+    }
+  },
+  {
+    "version": "v2.2-final",
+    "metadata": {
+      "created_at": "2025-12-22T14:28:46.478514",
+      "description": "从 V1 格式转换的场景 3",
+      "episode_id": "lingjie_ep1",
+      "scene_id": 3
+    },
+    "scene": {
+      "version": "v2.2-final",
+      "id": "scene_003",
+      "scene_id": 3,
+      "duration_sec": 4.0,
+      "intent": {
+        "type": "flashback",
+        "description": "韩立回想空间节点的遭遇，面色渐渐阴沉。"
+      },
+      "shot": {
+        "type": "close_up",
+        "locked": true,
+        "source": "v1_conversion",
+        "description": "close_up shot"
+      },
+      "pose": {
+        "type": "face_only",
+        "locked": true,
+        "validated_by": "shot_pose_rules",
+        "auto_corrected": true,
+        "description": "close-up face, portrait, face only"
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "pulid",
+        "locked": true,
+        "decision_reason": "v1_conversion",
+        "character_role": "main"
+      },
+      "character": {
+        "id": "hanli",
+        "name": "韩立",
+        "present": true,
+        "role": "main",
+        "identity": {
+          "gender": "male",
+          "age_range": "young_adult",
+          "physique": "lean",
+          "face_shape": "sharp"
+        },
+        "lora_config": {
+          "type": "single",
+          "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+          "weight": 0.9,
+          "trigger": "hanli"
+        },
+        "anchor_patches": {
+          "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+          "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+          "face_detailer": {
+            "enable": true,
+            "trigger": "shot_scale >= medium",
+            "denoise": 0.35,
+            "steps": 12
+          }
+        },
+        "reference_image": "character_references/hanli_reference.jpg",
+        "negative_gender_lock": [
+          "female",
+          "woman",
+          "girl",
+          "soft facial features",
+          "delicate face",
+          "long eyelashes",
+          "narrow shoulders",
+          "slim waist",
+          "feminine body"
+        ]
+      },
+      "environment": {
+        "location": "Han Li recalls the spatial node ordeal,his expression darkens",
+        "time": "day",
+        "weather": "clear",
+        "atmosphere": "tense mood, soft_cinematic lighting, xianxia_anime style",
+        "background_elements": []
+      },
+      "prompt": {
+        "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+        "llm_enhancement": {
+          "enable": false,
+          "role": "copywriter",
+          "tasks": [
+            "enhance_scene_description",
+            "add_atmosphere_details"
+          ],
+          "forbidden_tasks": [
+            "decide_shot_type",
+            "decide_pose_type",
+            "decide_model_route"
+          ]
+        },
+        "v1_original": "Han Li recalls the spatial-node ordeal,his expression turning grim.",
+        "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, he recalls the spatial-node ordeal,his expression turning grim., tense expression, with soft bokeh background suggesting memories, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+      },
+      "generation_params": {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "seed": -1
+      },
+      "camera": {
+        "shot": "close_up",
+        "angle": "eye_level",
+        "movement": "dolly_in",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "narration": {
+        "text": "每当想起空间节点发生的一切，韩立的脸色就会暗沉下来，心底泛起寒意。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "tense",
+        "timing_policy": "fit_scene"
+      },
+      "validation": {
+        "shot_pose_compatible": true,
+        "model_route_valid": true,
+        "character_anchor_complete": true,
+        "prompt_template_valid": true
+      }
+    }
+  },
+  {
+    "version": "v2.2-final",
+    "metadata": {
+      "created_at": "2025-12-22T14:28:46.478549",
+      "description": "从 V1 格式转换的场景 4",
+      "episode_id": "lingjie_ep1",
+      "scene_id": 4
+    },
+    "scene": {
+      "version": "v2.2-final",
+      "id": "scene_004",
+      "scene_id": 4,
+      "duration_sec": 4.0,
+      "intent": {
+        "type": "emotional_beat",
+        "description": "他忆起与冰凤分离以及禁制爆发时的剧痛。"
+      },
+      "shot": {
+        "type": "medium",
+        "locked": true,
+        "source": "v1_conversion",
+        "description": "medium shot"
+      },
+      "pose": {
+        "type": "stand",
+        "locked": true,
+        "validated_by": "v1_conversion",
+        "auto_corrected": false,
+        "description": "standing pose, upright posture"
+      },
+      "model_route": {
+        "base_model": "flux",
+        "identity_engine": "pulid",
+        "locked": true,
+        "decision_reason": "v1_conversion",
+        "character_role": "main"
+      },
+      "character": {
+        "id": "hanli",
+        "name": "韩立",
+        "present": true,
+        "role": "main",
+        "identity": {
+          "gender": "male",
+          "age_range": "young_adult",
+          "physique": "lean",
+          "face_shape": "sharp"
+        },
+        "lora_config": {
+          "type": "single",
+          "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+          "weight": 0.9,
+          "trigger": "hanli"
+        },
+        "anchor_patches": {
+          "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+          "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+          "face_detailer": {
+            "enable": true,
+            "trigger": "shot_scale >= medium",
+            "denoise": 0.35,
+            "steps": 12
+          }
+        },
+        "reference_image": "character_references/hanli_reference.jpg",
+        "negative_gender_lock": [
+          "female",
+          "woman",
+          "girl",
+          "soft facial features",
+          "delicate face",
+          "long eyelashes",
+          "narrow shoulders",
+          "slim waist",
+          "feminine body"
+        ]
+      },
+      "environment": {
+        "location": "Han Li recalls separation from Ice Phoenix",
+        "time": "day",
+        "weather": "clear",
+        "atmosphere": "sad mood, soft_cinematic lighting, xianxia_anime style",
+        "background_elements": []
+      },
+      "prompt": {
+        "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+        "llm_enhancement": {
+          "enable": false,
+          "role": "copywriter",
+          "tasks": [
+            "enhance_scene_description",
+            "add_atmosphere_details"
+          ],
+          "forbidden_tasks": [
+            "decide_shot_type",
+            "decide_pose_type",
+            "decide_model_route"
+          ]
+        },
+        "v1_original": "Han Li recalls being separated from Ice Phoenix and the agony of the restriction flaring up.",
+        "final": "hanli, young male cultivator with sharp composed eyes, wearing green daoist robe, he recalls being separated from Ice Phoenix and the agony of the restriction flaring up., expression showing pain, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+      },
+      "generation_params": {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "seed": -1
+      },
+      "camera": {
+        "shot": "medium",
+        "angle": "eye_level",
+        "movement": "pan",
+        "focal_length_mm": 35,
+        "depth_of_field": "shallow"
+      },
+      "narration": {
+        "text": "被迫与冰凤分开后，二人互下的禁制再度作祟。",
+        "voice_id": "yunjuan_xianyin",
+        "emotion_hint": "sad",
+        "timing_policy": "fit_scene"
+      },
+      "validation": {
+        "shot_pose_compatible": true,
+        "model_route_valid": true,
+        "character_anchor_complete": true,
+        "prompt_template_valid": true
+      }
+    }
+  }
+]

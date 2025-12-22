@@ -1,0 +1,93 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T15:24:55.556286",
+    "description": "从 V1 格式转换的场景 2",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 2
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_002",
+    "scene_id": 2,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "introduce_world",
+      "description": "天空中同时浮现三个耀眼的太阳与四轮朦胧的月影。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v1_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Three brilliant suns,four hazy moon silhouettes",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "mysterious mood, soft_cinematic lighting, xianxia_anime style",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "v1_original": "Three dazzling suns and four hazy lunar silhouettes appear in the sky.",
+      "final": "Three dazzling suns and four hazy lunar silhouettes appear in the sky., mysterious contemplative expression, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "pan",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "他震惊地发现头顶竟悬着三颗烈日和四轮淡淡的月影。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "mysterious",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}

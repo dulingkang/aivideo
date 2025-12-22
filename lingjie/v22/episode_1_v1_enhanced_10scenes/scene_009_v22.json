@@ -1,0 +1,93 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T15:58:54.694497",
+    "description": "从 V1 格式转换的场景 9",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 9
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_009",
+    "scene_id": 9,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "introduce_world",
+      "description": "刺耳尖鸣划破长空，二十多颗黑点从天俯冲而下。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v1_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Sky,black dots emerging",
+      "time": "dusk",
+      "weather": "clear",
+      "atmosphere": "tense mood, soft_cinematic lighting, xianxia_anime style",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "v1_original": "Shrill screeches echo as over twenty black dots dive from the sky.",
+      "final": "Shrill screeches echo as over twenty black dots dive from the sky., tense expression, in Sky,black dots emerging, Shrill cries,rapid descent, xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "static",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "附近上空响起凄厉尖鸣，一个个黑影相继扑向沙海。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "tense",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}
