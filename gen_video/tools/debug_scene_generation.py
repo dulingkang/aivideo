@@ -24,8 +24,8 @@ def find_scene_files(output_dir: str, scene_id: str) -> Dict[str, Any]:
         "partial_files": []
     }
     
-    # 查找图片
-    for pattern in [f"scene_{scene_id:03d}/*.png", f"scene_{scene_id:03d}/*.jpg"]:
+    # 查找图片（scene_id已经是格式化后的字符串，如"001"）
+    for pattern in [f"scene_{scene_id}/*.png", f"scene_{scene_id}/*.jpg"]:
         for img_file in output_path.glob(pattern):
             if "novel_image" in img_file.name or "scene_image" in img_file.name:
                 scene_info["image"] = {
@@ -36,7 +36,7 @@ def find_scene_files(output_dir: str, scene_id: str) -> Dict[str, Any]:
                 break
     
     # 查找视频
-    for pattern in [f"scene_{scene_id:03d}/*.mp4", f"scene_{scene_id:03d}/*.avi"]:
+    for pattern in [f"scene_{scene_id}/*.mp4", f"scene_{scene_id}/*.avi"]:
         for vid_file in output_path.glob(pattern):
             if "novel_video" in vid_file.name or "scene_video" in vid_file.name:
                 scene_info["video"] = {
@@ -47,7 +47,7 @@ def find_scene_files(output_dir: str, scene_id: str) -> Dict[str, Any]:
                 break
     
     # 查找M6报告
-    for pattern in [f"**/*scene_{scene_id:03d}*m6*.json", f"**/*scene_{scene_id:03d}*identity*.json"]:
+    for pattern in [f"**/*scene_{scene_id}*m6*.json", f"**/*scene_{scene_id}*identity*.json"]:
         for m6_file in output_path.glob(pattern):
             scene_info["m6_report"] = {
                 "path": str(m6_file),

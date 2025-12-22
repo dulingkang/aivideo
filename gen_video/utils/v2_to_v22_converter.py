@@ -44,6 +44,9 @@ def convert_v2_to_v22(v2_scene: Dict[str, Any]) -> Dict[str, Any]:
     pose_type = _convert_pose_type(character.get("pose", "stand"))
     pose_description = _get_pose_description(pose_type)
     shot_type = camera.get("shot", "medium")
+    # 修复：extreme_close 不是有效类型，转换为 close_up
+    if shot_type in ["extreme_close", "extreme_close"]:
+        shot_type = "close_up"
     
     # 验证shot+pose兼容性（在构建字典之前）
     ShotType, PoseType, rules = _get_execution_rules()
@@ -53,23 +56,21 @@ def convert_v2_to_v22(v2_scene: Dict[str, Any]) -> Dict[str, Any]:
         "close_up": ShotType.CLOSE_UP,
         "aerial": ShotType.AERIAL,
     }
-    pose_mapping = {
-        "stand": PoseType.STAND,
-        "walk": PoseType.WALK,
-        "sit": PoseType.SIT,
-        "lying": PoseType.LYING,
-        "kneel": PoseType.KNEEL,
-        "face_only": PoseType.FACE_ONLY,
-    }
     
     shot_type_enum = shot_mapping.get(shot_type.lower(), ShotType.MEDIUM)
-    pose_type_enum = pose_mapping.get(pose_type.lower(), PoseType.STAND)
     
-    # 检查shot+pose兼容性
+    # ⚡ 自动修正不合法组合（使用转换后的 pose_type）
+    original_pose_type = pose_type  # 保存原始值用于打印
+    pose_decision = rules.validate_pose(shot_type_enum, pose_type)
+    if pose_decision.auto_corrected:
+        pose_type = pose_decision.pose_type.value
+        pose_description = _get_pose_description(pose_type)
+        print(f"  ⚠ 自动修正: {shot_type} + {original_pose_type} → {shot_type} + {pose_type} (原因: {pose_decision.correction_reason})")
+    
     shot_pose_rules = rules.SHOT_POSE_RULES.get(shot_type_enum, {})
     allowed_poses = shot_pose_rules.get("allow", [])
     forbidden_poses = shot_pose_rules.get("forbid", [])
-    shot_pose_compatible = pose_type_enum not in forbidden_poses and (not allowed_poses or pose_type_enum in allowed_poses)
+    shot_pose_compatible = pose_decision.pose_type not in forbidden_poses and (not allowed_poses or pose_decision.pose_type in allowed_poses)
     
     # 构建 v2.2-final 格式
     v22_scene = {
@@ -81,6 +82,7 @@ def convert_v2_to_v22(v2_scene: Dict[str, Any]) -> Dict[str, Any]:
             "scene_id": scene_id
         },
         "scene": {
+            "version": "v2.2-final",  # 验证器需要 scene 内部也有 version 字段
             "id": f"scene_{scene_id:03d}",
             "scene_id": scene_id,
             "duration_sec": v2_scene.get("duration_sec", 4.0),
@@ -103,8 +105,8 @@ def convert_v2_to_v22(v2_scene: Dict[str, Any]) -> Dict[str, Any]:
             "pose": {
                 "type": pose_type,
                 "locked": True,
-                "validated_by": "v2_conversion",
-                "auto_corrected": False,
+                "validated_by": "shot_pose_rules" if pose_decision.auto_corrected else "v2_conversion",
+                "auto_corrected": pose_decision.auto_corrected,
                 "description": pose_description
             },
             
@@ -118,29 +120,17 @@ def convert_v2_to_v22(v2_scene: Dict[str, Any]) -> Dict[str, Any]:
             },
             
             # Character
-            "character": _build_character_config(character),
+            "character": _build_character_config(character, v2_scene),
             
             # Environment
-            "environment": {
-                "location": visual_constraints.get("environment", ""),
-                "time": visual_constraints.get("time_of_day", "day"),
-                "weather": visual_constraints.get("weather", "clear"),
-                "atmosphere": _build_atmosphere(visual_constraints, quality_target),
-                "background_elements": visual_constraints.get("elements", [])
-            },
+            "environment": _build_environment(v2_scene, visual_constraints, quality_target),
             
-            # Prompt
-            "prompt": _build_prompt_config(v2_scene, character, visual_constraints),
+            # Prompt (使用修正后的 pose_type)
+            "prompt": _build_prompt_config(v2_scene, character, visual_constraints, pose_type),
             
             # Generation Params (可选，如果所有场景使用相同参数，可以从config.yaml读取)
             # 如果某个场景需要特殊参数，可以在这里覆盖
-            # "generation_params": {
-            #     "width": 1536,
-            #     "height": 1536,
-            #     "num_inference_steps": 50,
-            #     "guidance_scale": 7.5,
-            #     "seed": -1
-            # },
+            "generation_params": _build_generation_params(v2_scene, generation_policy),
             
             # Camera
             "camera": {
@@ -185,6 +175,10 @@ def _convert_pose_type(v2_pose: str) -> str:
         "walk": "walk",
         "kneeling": "kneel",
         "kneel": "kneel",
+        # 扩展映射：处理 v2 中的特殊 pose 类型
+        "recalling": "stand",  # 回想时通常是站立
+        "enduring_pain": "stand",  # 忍受痛苦时通常是站立
+        "motionless": "lying",  # 不动通常是躺着
     }
     return pose_map.get(v2_pose.lower(), "stand")
 
@@ -197,11 +191,12 @@ def _get_pose_description(pose: str) -> str:
         "stand": "standing pose, upright posture",
         "walk": "walking, in motion",
         "kneel": "kneeling, on knees",
+        "face_only": "close-up face, portrait, face only",
     }
     return descriptions.get(pose.lower(), "standing pose")
 
 
-def _build_character_config(character: Dict[str, Any]) -> Dict[str, Any]:
+def _build_character_config(character: Dict[str, Any], v2_scene: Dict[str, Any] = None) -> Dict[str, Any]:
     """构建 character 配置"""
     if not character.get("present", False):
         return {
@@ -209,6 +204,12 @@ def _build_character_config(character: Dict[str, Any]) -> Dict[str, Any]:
         }
     
     character_id = character.get("id", "hanli")
+    v2_scene = v2_scene or {}
+    assets = v2_scene.get("assets", {})
+    
+    # 提取 reference_image（优先从 assets.reference_images，否则使用默认路径）
+    reference_images = assets.get("reference_images", [])
+    reference_image = reference_images[0] if reference_images else "character_references/hanli_reference.jpg"
     
     # 韩立的默认配置
     if character_id == "hanli":
@@ -227,7 +228,7 @@ def _build_character_config(character: Dict[str, Any]) -> Dict[str, Any]:
             
             "lora_config": {
                 "type": "single",
-                "lora_path": "",
+                "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
                 "weight": 0.9,
                 "trigger": "hanli"
             },
@@ -243,7 +244,7 @@ def _build_character_config(character: Dict[str, Any]) -> Dict[str, Any]:
                 }
             },
             
-            "reference_image": "",
+            "reference_image": reference_image,
             "negative_gender_lock": [
                 "female", "woman", "girl",
                 "soft facial features", "delicate face",
@@ -271,13 +272,84 @@ def _build_character_config(character: Dict[str, Any]) -> Dict[str, Any]:
                 "trigger": character_id
             },
             "anchor_patches": {},
-            "reference_image": "",
+            "reference_image": "character_references/hanli_reference.jpg",
             "negative_gender_lock": []
         }
 
 
+def _build_generation_params(v2_scene: Dict[str, Any], generation_policy: Dict[str, Any]) -> Dict[str, Any]:
+    """构建 generation_params 配置"""
+    # 默认值（可以从 config.yaml 读取，这里先硬编码）
+    params = {
+        "width": 1536,
+        "height": 1536,
+        "num_inference_steps": 50,
+        "guidance_scale": 7.5,
+        "seed": -1
+    }
+    
+    # 如果 v2 中有特殊配置，可以在这里覆盖
+    # 例如：特写镜头可能需要更多推理步数
+    camera = v2_scene.get("camera", {})
+    shot_type = camera.get("shot", "medium")
+    
+    if shot_type == "close_up":
+        params["num_inference_steps"] = 50  # 特写需要更多步数
+    elif shot_type == "wide":
+        params["num_inference_steps"] = 40  # 远景可以少一些
+    
+    return params
+
+
+def _build_environment(v2_scene: Dict[str, Any], visual_constraints: Dict[str, Any], quality_target: Dict[str, Any]) -> Dict[str, Any]:
+    """构建 environment 配置"""
+    # 提取 location（优先从 visual_constraints.environment，如果为空则从 notes 中提取）
+    location = visual_constraints.get("environment", "").strip()
+    
+    # 如果 location 为空，尝试从 notes 中提取
+    if not location:
+        notes = v2_scene.get("notes", "")
+        # 简单提取：查找常见的位置关键词
+        # 这里可以更智能地提取，但先做简单处理
+        if "沙地" in notes or "沙漠" in notes:
+            location = "desert wasteland, gray-green sand"
+        elif "天空" in notes or "仙域" in notes:
+            location = "Sky of the immortal realm, mist-wreathed"
+        # 如果还是空，使用默认值
+        if not location:
+            location = "unknown location"
+    
+    # 构建 atmosphere
+    atmosphere_parts = []
+    
+    # 从 quality_target 提取风格
+    style = quality_target.get("style", "")
+    if style:
+        atmosphere_parts.append(f"{style} style")
+    
+    lighting = quality_target.get("lighting_style", "")
+    if lighting:
+        atmosphere_parts.append(f"{lighting} lighting")
+    
+    # 从 intent 提取情绪
+    intent = v2_scene.get("intent", {})
+    emotion = intent.get("emotion", "")
+    if emotion:
+        atmosphere_parts.append(f"{emotion} mood")
+    
+    atmosphere = ", ".join(atmosphere_parts) if atmosphere_parts else "serene atmosphere"
+    
+    return {
+        "location": location,
+        "time": visual_constraints.get("time_of_day", "day"),
+        "weather": visual_constraints.get("weather", "clear"),
+        "atmosphere": atmosphere,
+        "background_elements": visual_constraints.get("elements", [])
+    }
+
+
 def _build_atmosphere(visual_constraints: Dict[str, Any], quality_target: Dict[str, Any]) -> str:
-    """构建 atmosphere 描述"""
+    """构建 atmosphere 描述（已废弃，使用 _build_environment）"""
     parts = []
     
     # 从 visual_constraints 提取
@@ -296,8 +368,15 @@ def _build_atmosphere(visual_constraints: Dict[str, Any], quality_target: Dict[s
     return ", ".join(parts) if parts else "serene atmosphere"
 
 
-def _build_prompt_config(v2_scene: Dict[str, Any], character: Dict[str, Any], visual_constraints: Dict[str, Any]) -> Dict[str, Any]:
-    """构建 prompt 配置"""
+def _build_prompt_config(v2_scene: Dict[str, Any], character: Dict[str, Any], visual_constraints: Dict[str, Any], corrected_pose_type: str = None) -> Dict[str, Any]:
+    """构建 prompt 配置
+    
+    Args:
+        v2_scene: v2 场景数据
+        character: 角色配置
+        visual_constraints: 视觉约束
+        corrected_pose_type: 修正后的 pose 类型（如果 pose 被自动修正，传入修正后的值）
+    """
     # 构建基础 prompt
     prompt_parts = []
     
@@ -309,8 +388,11 @@ def _build_prompt_config(v2_scene: Dict[str, Any], character: Dict[str, Any], vi
             prompt_parts.append("calm and restrained temperament, sharp but composed eyes, determined expression")
             prompt_parts.append("wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire")
         
-        # Pose - 使用转换后的pose类型
-        pose_type = _convert_pose_type(character.get("pose", "stand"))
+        # Pose - 优先使用修正后的 pose_type，否则使用原始值转换
+        if corrected_pose_type:
+            pose_type = corrected_pose_type
+        else:
+            pose_type = _convert_pose_type(character.get("pose", "stand"))
         pose_desc = _get_pose_description(pose_type)
         prompt_parts.append(pose_desc)
     

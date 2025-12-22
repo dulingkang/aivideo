@@ -125,8 +125,14 @@ def main():
     parser.add_argument(
         "--max-scenes",
         type=int,
-        default=5,
-        help="最大测试场景数（默认: 5）"
+        default=None,
+        help="最大测试场景数（默认: 全部）"
+    )
+    parser.add_argument(
+        "--start-scene",
+        type=int,
+        default=0,
+        help="起始场景索引（从0开始，默认: 0）。例如：--start-scene 3 表示从第4个场景开始（scene_003）"
     )
     
     args = parser.parse_args()
@@ -143,6 +149,15 @@ def main():
         print(f"✗ 未找到场景文件: {scenes_dir / 'scene_*_v22.json'}")
         sys.exit(1)
     
+    # ⚡ 新增：支持从指定场景开始
+    if args.start_scene > 0:
+        if args.start_scene >= len(scene_files):
+            print(f"✗ 起始场景索引 {args.start_scene} 超出范围（总共 {len(scene_files)} 个场景）")
+            sys.exit(1)
+        scene_files = scene_files[args.start_scene:]
+        print(f"ℹ 从场景索引 {args.start_scene} 开始（{scene_files[0].name if scene_files else '无'}）")
+    
+    # 限制最大场景数
     if args.max_scenes:
         scene_files = scene_files[:args.max_scenes]
     

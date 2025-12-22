@@ -392,6 +392,43 @@ class ExecutionExecutorV21:
         if "final" in prompt_config:
             final_prompt = prompt_config["final"]
             
+            # ⚡ 关键修复：如果final prompt中缺少环境描述，从environment中补充
+            # 检查final prompt中是否包含环境相关关键词
+            has_environment = any(keyword in final_prompt.lower() for keyword in [
+                "in ", "atmosphere", "location", "environment", "background", 
+                "scene", "setting", "place", "area", "space"
+            ])
+            
+            if not has_environment and environment_info:
+                # 补充环境描述
+                env_parts = []
+                location = environment_info.get("location", "").strip()
+                if location:
+                    env_parts.append(f"in {location}")
+                
+                atmosphere = environment_info.get("atmosphere", "").strip()
+                if atmosphere:
+                    env_parts.append(atmosphere)
+                
+                background_elements = environment_info.get("background_elements", [])
+                if background_elements:
+                    elements_text = ", ".join(str(e) for e in background_elements if e)
+                    if elements_text:
+                        env_parts.append(elements_text)
+                
+                if env_parts:
+                    # 在角色描述后、pose描述前插入环境描述
+                    # 简单策略：在第一个逗号后插入
+                    if ", " in final_prompt:
+                        parts = final_prompt.split(", ", 2)
+                        if len(parts) >= 2:
+                            final_prompt = f"{parts[0]}, {', '.join(env_parts)}, {', '.join(parts[1:])}"
+                        else:
+                            final_prompt = f"{final_prompt}, {', '.join(env_parts)}"
+                    else:
+                        final_prompt = f"{final_prompt}, {', '.join(env_parts)}"
+                    logger.info(f"补充环境描述到prompt: {', '.join(env_parts)}")
+            
             # 确保提示词包含LoRA trigger词（如果配置了）
             lora_config = character_info.get("lora_config", {})
             trigger = lora_config.get("trigger")
@@ -515,7 +552,30 @@ class ExecutionExecutorV21:
         Returns:
             优化后的Prompt
         """
-        # 尝试使用CLIP tokenizer精确计算token数
+        # ⚡ 关键修复：如果 max_tokens >= 256，说明是 Flux 模型，使用 T5 tokenizer
+        # 否则使用 CLIP tokenizer（SDXL）
+        if max_tokens >= 256:
+            # Flux 模型：使用 T5 tokenizer
+            try:
+                from transformers import T5Tokenizer
+                tokenizer = T5Tokenizer.from_pretrained(
+                    "xlabs-ai/xflux_text_encoders",
+                    local_files_only=True
+                )
+                tokens = tokenizer(prompt, truncation=False, return_tensors="pt")
+                token_count = tokens.input_ids.shape[1]
+                logger.info(f"Prompt token数 (T5): {token_count} (限制: {max_tokens})")
+                
+                if token_count <= max_tokens:
+                    return prompt
+                
+                # Token数超限，需要精简
+                logger.warning(f"Prompt token数超限（{token_count} > {max_tokens}），开始精简...")
+            except Exception as e:
+                logger.warning(f"无法加载 T5 tokenizer: {e}，跳过token检查")
+                return prompt  # Flux 模型如果无法检查，直接返回（T5 会自动处理）
+        
+        # SDXL 模型：使用 CLIP tokenizer
         try:
             from transformers import CLIPTokenizer
             from pathlib import Path
@@ -551,7 +611,7 @@ class ExecutionExecutorV21:
                 try:
                     tokens = tokenizer.encode(prompt, return_tensors="pt")
                     token_count = tokens.shape[1]
-                    logger.info(f"Prompt token数: {token_count} (限制: {max_tokens})")
+                    logger.info(f"Prompt token数 (CLIP): {token_count} (限制: {max_tokens})")
                     
                     if token_count <= max_tokens:
                         return prompt
