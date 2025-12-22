@@ -1,0 +1,94 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T11:28:10.518802",
+    "description": "从 v2 格式转换的场景 999",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 999
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_999",
+    "scene_id": 999,
+    "duration_sec": 3.0,
+    "intent": {
+      "type": "emotional_beat",
+      "description": "画面淡出，夜色下的仙城剪影与灵光缓缓下落。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v2_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v2_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v2_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Night sky,city silhouette,drifting spirit particles",
+      "time": "day",
+      "weather": "clear",
+      "atmosphere": "xianxia_anime style, soft lighting, serene mood",
+      "background_elements": [
+        "spirit_particles"
+      ]
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "final": "in Night sky,city silhouette,drifting spirit particles, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "static",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "下集再见。我是云卷仙音，第二集的故事即将开始。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "serene",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T11:28:10.518565",
+    "description": "从 v2 格式转换的场景 20",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 20
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_020",
+    "scene_id": 20,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "introduce_world",
+      "description": "地面轻轻震动，几名骑乘怪兽的骑士出现在远方。"
+    },
+    "shot": {
+      "type": "wide",
+      "locked": true,
+      "source": "v2_conversion",
+      "description": "wide shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v2_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v2_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Distant horizon",
+      "time": "night",
+      "weather": "clear",
+      "atmosphere": "xianxia_anime style, dramatic_contrast lighting, tense mood",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "final": "in Distant horizon, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 40,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "wide",
+      "angle": "eye_level",
+      "movement": "pan",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "不多时大地微微颤动，远处出现几名骑着怪兽的骑士。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "tense",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}

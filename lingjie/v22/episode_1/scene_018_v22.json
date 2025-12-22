@@ -1,0 +1,129 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T11:28:10.517922",
+    "description": "从 v2 格式转换的场景 18",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 18
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_018",
+    "scene_id": 18,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "emotional_beat",
+      "description": "远处传来轰隆声，韩立神色一变。"
+    },
+    "shot": {
+      "type": "close_up",
+      "locked": true,
+      "source": "v2_conversion",
+      "description": "close_up shot"
+    },
+    "pose": {
+      "type": "face_only",
+      "locked": true,
+      "validated_by": "shot_pose_rules",
+      "auto_corrected": true,
+      "description": "close-up face, portrait, face only"
+    },
+    "model_route": {
+      "base_model": "flux_instantid",
+      "identity_engine": "pulid",
+      "locked": true,
+      "decision_reason": "v2_conversion",
+      "character_role": "main"
+    },
+    "character": {
+      "id": "hanli",
+      "name": "韩立",
+      "present": true,
+      "role": "main",
+      "identity": {
+        "gender": "male",
+        "age_range": "young_adult",
+        "physique": "lean",
+        "face_shape": "sharp"
+      },
+      "lora_config": {
+        "type": "single",
+        "lora_path": "models/lora/hanli/pytorch_lora_weights.safetensors",
+        "weight": 0.9,
+        "trigger": "hanli"
+      },
+      "anchor_patches": {
+        "temperament_anchor": "calm and restrained temperament, sharp but composed eyes, determined expression",
+        "explicit_lock_words": "wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire",
+        "face_detailer": {
+          "enable": true,
+          "trigger": "shot_scale >= medium",
+          "denoise": 0.35,
+          "steps": 12
+        }
+      },
+      "reference_image": "character_references/hanli_reference.jpg",
+      "negative_gender_lock": [
+        "female",
+        "woman",
+        "girl",
+        "soft facial features",
+        "delicate face",
+        "long eyelashes",
+        "narrow shoulders",
+        "slim waist",
+        "feminine body"
+      ]
+    },
+    "environment": {
+      "location": "Distant horizon",
+      "time": "night",
+      "weather": "clear",
+      "atmosphere": "xianxia_anime style, dramatic_contrast lighting, alert mood",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "final": "hanli, calm and restrained temperament, sharp but composed eyes, determined expression, wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire, close-up face, portrait, face only, in Distant horizon, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "close_up",
+      "angle": "eye_level",
+      "movement": "dolly_out",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "忽然韩立神情骤变，脸上浮现惊疑。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "alert",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": true,
+      "prompt_template_valid": true
+    }
+  }
+}

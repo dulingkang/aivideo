@@ -1,0 +1,94 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T10:54:02.780515",
+    "description": "从 V1 格式转换的场景 0",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 0
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_000",
+    "scene_id": 0,
+    "duration_sec": 3.0,
+    "intent": {
+      "type": "title_reveal",
+      "description": "镜头淡入，云雾笼罩的仙域天空中金色卷轴舒展开来并闪烁灵光。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v1_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v1_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v1_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Sky of the immortal realm,mist-wreathed,golden radiance",
+      "time": "day",
+      "weather": "mist",
+      "atmosphere": "serene mood, soft lighting, xianxia_anime style",
+      "background_elements": [
+        "golden_scroll"
+      ]
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "final": "in Sky of the immortal realm,mist-wreathed,golden radiance, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "static",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "我是云卷仙音，欢迎回来。第一集《陌生之地·初入灵界》。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "serene",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}

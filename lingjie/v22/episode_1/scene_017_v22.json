@@ -1,0 +1,92 @@
+{
+  "version": "v2.2-final",
+  "metadata": {
+    "created_at": "2025-12-22T11:28:10.517673",
+    "description": "从 v2 格式转换的场景 17",
+    "episode_id": "lingjie_ep1",
+    "scene_id": 17
+  },
+  "scene": {
+    "version": "v2.2-final",
+    "id": "scene_017",
+    "scene_id": 17,
+    "duration_sec": 4.0,
+    "intent": {
+      "type": "introduce_world",
+      "description": "最后一轮太阳渐渐黯淡，形态变化，七枚弯月即将出现。"
+    },
+    "shot": {
+      "type": "medium",
+      "locked": true,
+      "source": "v2_conversion",
+      "description": "medium shot"
+    },
+    "pose": {
+      "type": "stand",
+      "locked": true,
+      "validated_by": "v2_conversion",
+      "auto_corrected": false,
+      "description": "standing pose, upright posture"
+    },
+    "model_route": {
+      "base_model": "flux",
+      "identity_engine": "none",
+      "locked": true,
+      "decision_reason": "v2_conversion",
+      "character_role": "supporting"
+    },
+    "character": {
+      "present": false
+    },
+    "environment": {
+      "location": "Sky,last sun fading,seven crescents soon to appear",
+      "time": "night",
+      "weather": "clear",
+      "atmosphere": "xianxia_anime style, dramatic_contrast lighting, mysterious mood",
+      "background_elements": []
+    },
+    "prompt": {
+      "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
+      "llm_enhancement": {
+        "enable": false,
+        "role": "copywriter",
+        "tasks": [
+          "enhance_scene_description",
+          "add_atmosphere_details"
+        ],
+        "forbidden_tasks": [
+          "decide_shot_type",
+          "decide_pose_type",
+          "decide_model_route"
+        ]
+      },
+      "final": "in Sky,last sun fading,seven crescents soon to appear, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style"
+    },
+    "generation_params": {
+      "width": 1536,
+      "height": 1536,
+      "num_inference_steps": 50,
+      "guidance_scale": 7.5,
+      "seed": -1
+    },
+    "camera": {
+      "shot": "medium",
+      "angle": "eye_level",
+      "movement": "static",
+      "focal_length_mm": 35,
+      "depth_of_field": "shallow"
+    },
+    "narration": {
+      "text": "不知过了多久，天上最后的太阳也慢慢暗去。",
+      "voice_id": "yunjuan_xianyin",
+      "emotion_hint": "mysterious",
+      "timing_policy": "fit_scene"
+    },
+    "validation": {
+      "shot_pose_compatible": true,
+      "model_route_valid": true,
+      "character_anchor_complete": false,
+      "prompt_template_valid": true
+    }
+  }
+}
