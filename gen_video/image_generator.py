@@ -3853,11 +3853,17 @@ class ImageGenerator:
                         camera = scene.get("camera", {}) if scene else {}
                         camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
                         
+                        # 根据镜头类型设置 IP-Adapter scale（基于历史测试结果）
+                        # wide: 30-40%, medium: 55-65%, close: 75-85%
                         if camera_shot == "wide":
-                            ip_adapter_scale = 0.9  # wide shot 使用较低的 scale，避免过度融合
-                            print(f"  🔧 wide shot：使用较低的 IP-Adapter scale: {ip_adapter_scale}（避免过度融合导致模糊）")
-                        else:
-                            ip_adapter_scale = 1.2  # 其他场景使用较高的 scale
+                            ip_adapter_scale = 0.4  # wide shot: 环境优先，降低人物融合
+                            print(f"  🔧 wide shot：IP-Adapter scale: {ip_adapter_scale}（环境优先）")
+                        elif camera_shot == "medium":
+                            ip_adapter_scale = 0.6  # medium shot: 平衡
+                            print(f"  🔧 medium shot：IP-Adapter scale: {ip_adapter_scale}（平衡）")
+                        else:  # close_up 或其他
+                            ip_adapter_scale = 0.85  # close shot: 人脸优先
+                            print(f"  🔧 close shot：IP-Adapter scale: {ip_adapter_scale}（人脸优先）")
                         
                         if hasattr(flux_pipeline, 'set_ip_adapter_scale'):
                             flux_pipeline.set_ip_adapter_scale(ip_adapter_scale)
@@ -3946,11 +3952,17 @@ class ImageGenerator:
                         camera = scene.get("camera", {}) if scene else {}
                         camera_shot = camera.get("shot", "medium") if isinstance(camera, dict) else "medium"
                         
+                        # 根据镜头类型设置 IP-Adapter scale（基于历史测试结果）
+                        # wide: 30-40%, medium: 55-65%, close: 75-85%
                         if camera_shot == "wide":
-                            ip_adapter_scale = 0.9  # wide shot 使用较低的 scale，避免过度融合
-                            print(f"  🔧 wide shot：使用较低的 IP-Adapter scale: {ip_adapter_scale}（避免过度融合导致模糊）")
-                        else:
-                            ip_adapter_scale = 1.2  # 其他场景使用较高的 scale
+                            ip_adapter_scale = 0.4  # wide shot: 环境优先，降低人物融合
+                            print(f"  🔧 wide shot：IP-Adapter scale: {ip_adapter_scale}（环境优先）")
+                        elif camera_shot == "medium":
+                            ip_adapter_scale = 0.6  # medium shot: 平衡
+                            print(f"  🔧 medium shot：IP-Adapter scale: {ip_adapter_scale}（平衡）")
+                        else:  # close_up 或其他
+                            ip_adapter_scale = 0.85  # close shot: 人脸优先
+                            print(f"  🔧 close shot：IP-Adapter scale: {ip_adapter_scale}（人脸优先）")
                         
                         if hasattr(flux_pipeline, 'set_ip_adapter_scale'):
                             flux_pipeline.set_ip_adapter_scale(ip_adapter_scale)

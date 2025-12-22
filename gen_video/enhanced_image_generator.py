@@ -814,8 +814,10 @@ class EnhancedImageGenerator:
         shot_type = shot_info.get("type", "medium")
         
         # 参考强度（根据shot类型调整）
+        # ⚡ 修复：wide shot 提高参考强度到 60%，让 PuLID 原生生成时人物更清晰
         reference_strength_map = {
-            "wide": 50,
+            "wide": 60,       # 提高：避免人物模糊
+            "extreme_wide": 55,
             "medium": 70,
             "close_up": 85,
             "aerial": 60,
@@ -824,11 +826,14 @@ class EnhancedImageGenerator:
         
         # 判断是否使用解耦模式
         # ⚡ 关键修复：根据参考强度和镜头类型决定是否使用解耦模式
-        # 解耦模式更适合远景/中景（参考强度 < 60%），特写/近景（参考强度 >= 70%）应该使用 PuLID 直接生成
+        # 解耦模式更适合中等参考强度（50-70%），但 wide shot 应该禁用（人物太小，PuLID效果不好）
         use_decoupled = False  # 默认禁用，避免生成问题
-        # 如果配置中明确启用解耦融合，且参考强度 < 70%，才使用解耦模式
-        # 原因：参考强度 >= 70% 的场景（如 medium/close_up）需要强锁脸，解耦模式可能导致人脸相似度不足
-        if self.decoupled_config.get("enabled", False) and reference_strength < 70:
+        
+        # ⚡ 修复：wide shot 不使用解耦模式（人物占比小，解耦后 PuLID 注入效果差导致模糊）
+        if shot_type in ["wide", "extreme_wide", "aerial"]:
+            use_decoupled = False
+            logger.info(f"  禁用解耦模式（{shot_type} shot：人物占比小，直接 PuLID 生成效果更好）")
+        elif self.decoupled_config.get("enabled", False) and reference_strength < 70:
             use_decoupled = True
             logger.info(f"  使用解耦模式（参考强度 {reference_strength}% < 70%，适合解耦生成）")
         else:

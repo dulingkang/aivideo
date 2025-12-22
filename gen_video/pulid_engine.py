@@ -1759,23 +1759,22 @@ class PuLIDEngine:
         Returns:
             调整后的权重
         """
-        # 使用 S 曲线 (sigmoid)
-        # 公式: 1 / (1 + exp(-k*(x-0.5)))
-        # k 控制曲线陡峭程度
+        # ⚡ 2024-12-22 修复：提高整体权重，解决人脸不像问题
+        # 根据测试反馈，之前的权重太低，PuLID 身份注入效果不足
         import math
         
         if enhance_clothing:
             # 服饰增强模式：让中等强度也能获得更高权重
-            # 调整曲线，使 60-70% 的参考强度映射到更高的权重
-            k = 5  # 稍微平缓，让中等值也能获得较高权重
-            center = 0.45  # 向左偏移，让中等值更早达到高权重
-            min_weight = 0.35  # 提高最小值
-            max_weight = 0.98  # 提高最大值，增强整体一致性（包括服饰）
+            k = 5
+            center = 0.40  # 更早达到高权重
+            min_weight = 0.50  # ⚡ 提高：从 0.35 到 0.50
+            max_weight = 1.0   # ⚡ 提高：从 0.98 到 1.0
         else:
-            k = 6  # 陡峭程度
-            center = 0.5  # 曲线中心
-            min_weight = 0.3
-            max_weight = 0.95
+            # ⚡ 标准模式：也需要提高权重
+            k = 5          # 稍微平缓，让中等值更稳定
+            center = 0.45  # 向左偏移
+            min_weight = 0.45  # ⚡ 提高：从 0.30 到 0.45
+            max_weight = 1.0   # ⚡ 提高：从 0.95 到 1.0
         
         adjusted = 1 / (1 + math.exp(-k * (weight - center)))
         

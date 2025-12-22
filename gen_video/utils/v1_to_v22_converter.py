@@ -206,29 +206,139 @@ def _build_generation_params(camera_shot: str) -> Dict[str, Any]:
     return params
 
 
-def _build_prompt_config(v1_scene: Dict[str, Any], character: Dict[str, Any], environment: Dict[str, Any], pose_type: str) -> Dict[str, Any]:
-    """构建 prompt 配置"""
-    # 构建基础 prompt
+def _build_prompt_config(v1_scene: Dict[str, Any], character: Dict[str, Any], environment: Dict[str, Any], pose_type: str, pose_auto_corrected: bool = False, original_pose: str = "") -> Dict[str, Any]:
+    """
+    构建 prompt 配置（V1 增强版）
+    
+    策略：
+    1. 角色锚定词放最前面（确保人物一致性）
+    2. 直接使用 V1 原始 prompt（保留场景信息）
+    3. 补充情绪、环境、特效
+    4. 为 close_up 添加背景暗示
+    5. 当 pose 被自动修正时，替换冲突关键词
+    """
     prompt_parts = []
     
-    # 角色
+    # 1. 角色锚定词（如果角色存在）- 放在最前面确保身份
     if character.get("present", False):
+        # 触发词 + 简短身份描述（不要太长，避免压制场景描述）
         prompt_parts.append("hanli")
-        prompt_parts.append("calm and restrained temperament, sharp but composed eyes, determined expression")
-        prompt_parts.append("wearing his iconic mid-late-stage green daoist robe, traditional Chinese cultivation attire")
-        
-        # Pose
+        prompt_parts.append("young male cultivator with sharp composed eyes")
+        prompt_parts.append("wearing green daoist robe")
+    
+    # 2. ⭐ 核心：使用 V1 原始 prompt 或 composition（最有价值的信息！）
+    v1_prompt = v1_scene.get("prompt", "").strip()
+    v1_composition = v1_scene.get("visual", {}).get("composition", "").strip()
+    
+    if v1_prompt:
+        # 清理 prompt，避免重复角色名（因为已经在前面添加了 hanli）
+        cleaned_prompt = v1_prompt
+        # ⚡ 修复：直接删除 "Han Li" 而不是替换为代词，避免 "hanli" + "he" 被理解为两个人
+        cleaned_prompt = cleaned_prompt.replace("Han Li's", "")  # 删除 "Han Li's"
+        cleaned_prompt = cleaned_prompt.replace("Han Li ", "")   # 删除 "Han Li " (带空格)
+        cleaned_prompt = cleaned_prompt.replace("Han Li,", "")   # 删除 "Han Li," 
+        cleaned_prompt = cleaned_prompt.replace("Han Li", "")    # 删除剩余的 "Han Li"
+        # 清理多余的空格和逗号
+        cleaned_prompt = cleaned_prompt.replace("  ", " ").replace(" ,", ",").replace(",,", ",")
+        cleaned_prompt = cleaned_prompt.strip().strip(",").strip()
+        prompt_parts.append(cleaned_prompt)
+    elif v1_composition:
+        # 使用 composition 作为备选
+        cleaned_composition = v1_composition
+        # ⚡ 同样的修复
+        cleaned_composition = cleaned_composition.replace("Han Li's", "")
+        cleaned_composition = cleaned_composition.replace("Han Li ", "")
+        cleaned_composition = cleaned_composition.replace("Han Li,", "")
+        cleaned_composition = cleaned_composition.replace("Han Li", "")
+        cleaned_composition = cleaned_composition.replace("  ", " ").replace(" ,", ",").replace(",,", ",")
+        cleaned_composition = cleaned_composition.strip().strip(",").strip()
+        prompt_parts.append(cleaned_composition)
+    else:
+        # 回退：使用 pose 描述
         pose_desc = _get_pose_description(pose_type)
         prompt_parts.append(pose_desc)
     
-    # 环境
-    if environment.get("location"):
-        prompt_parts.append(f"in {environment['location']}")
+    # 3. 添加情绪描述（从 mood 字段）
+    mood = v1_scene.get("mood", "").strip().lower()
+    mood_map = {
+        "tense": "tense expression",
+        "solemn": "solemn contemplative expression",
+        "alert": "alert vigilant expression",
+        "calm": "calm serene expression",
+        "agony": "expression showing pain",
+        "fierce": "fierce determined expression",
+        "mysterious": "mysterious contemplative expression",
+        "resolute": "resolute determined expression",
+        "focused": "focused concentrated expression",
+        "perilous": "wary cautious expression",
+        "brutal": "intense grim expression",
+        "contemplative": "thoughtful expression",
+        "serene": "peaceful serene expression"
+    }
+    if mood in mood_map:
+        prompt_parts.append(mood_map[mood])
     
-    # 风格和质量
-    prompt_parts.append("cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style")
+    # 4. 添加环境（如果 V1 prompt 中没有明确的环境描述）
+    v1_environment = v1_scene.get("visual", {}).get("environment", "").strip()
+    # 检查是否已有环境描述
+    current_prompt = ", ".join(prompt_parts).lower()
+    has_environment = any(kw in current_prompt for kw in ["in ", "on ", "at ", "under ", "above "])
     
-    final_prompt = ", ".join(prompt_parts)
+    if v1_environment and not has_environment:
+        prompt_parts.append(f"in {v1_environment}")
+    
+    # 5. 添加特效（如果有）
+    fx = v1_scene.get("visual", {}).get("fx", "").strip()
+    if fx:
+        prompt_parts.append(fx)
+    
+    # 6. 为 close_up 镜头添加背景暗示（避免纯人像，增加场景感）
+    camera = v1_scene.get("camera", "").lower()
+    if "close" in camera:
+        # 检查是否已有背景描述
+        current_prompt = ", ".join(prompt_parts).lower()
+        if "background" not in current_prompt and "in " not in current_prompt[-50:]:
+            # 从 description 或 environment 推断背景
+            desc = v1_scene.get("description", "")
+            env = v1_environment.lower()
+            
+            if "沙" in desc or "desert" in env or "sand" in env or "gravel" in env:
+                prompt_parts.append("with soft blurred desert background")
+            elif "天" in desc or "sky" in env:
+                prompt_parts.append("with blurred celestial sky background")
+            elif "回想" in desc or "回忆" in desc or "recall" in v1_prompt.lower():
+                prompt_parts.append("with soft bokeh background suggesting memories")
+            else:
+                prompt_parts.append("with soft bokeh background")
+    
+    # 7. 风格锚定词（放在最后）
+    prompt_parts.append("xianxia anime style, Chinese fantasy, cinematic lighting, high detail, 4K")
+    
+    # 过滤空字符串并拼接
+    final_prompt = ", ".join([p for p in prompt_parts if p])
+    
+    # 8. 如果 pose 被自动修正，替换冲突关键词
+    if pose_auto_corrected:
+        # 定义 pose 冲突关键词映射
+        pose_conflict_replacements = {
+            "lying": {
+                # 当 lying 被修正为 stand 时的替换
+                "lying": "resting",
+                "motionless": "still",
+                "on the ground": "contemplating",
+                "lying on": "surveying",
+            },
+            "sit": {
+                "sitting": "standing",
+                "seated": "upright",
+            }
+        }
+        
+        # 获取原始 pose 的替换规则
+        if original_pose.lower() in pose_conflict_replacements:
+            replacements = pose_conflict_replacements[original_pose.lower()]
+            for old_word, new_word in replacements.items():
+                final_prompt = final_prompt.replace(old_word, new_word)
     
     return {
         "base_template": "{{character.name}}, {{character.anchor_patches.temperament_anchor}}, {{character.anchor_patches.explicit_lock_words}}, {{pose.description}}, in {{environment.location}}, {{environment.atmosphere}}, {{environment.background_elements}}, cinematic lighting, high detail, epic atmosphere, Chinese fantasy illustration style",
@@ -247,6 +357,7 @@ def _build_prompt_config(v1_scene: Dict[str, Any], character: Dict[str, Any], en
             ]
         },
         
+        "v1_original": v1_prompt,  # 保留原始 prompt 供调试
         "final": final_prompt
     }
 
@@ -400,7 +511,11 @@ def convert_v1_to_v22(v1_scene: Dict[str, Any], episode_id: str, scene_id: int, 
             "environment": environment,
             
             # Prompt
-            "prompt": _build_prompt_config(v1_scene, character, environment, pose_type),
+            "prompt": _build_prompt_config(
+                v1_scene, character, environment, pose_type,
+                pose_auto_corrected=pose_decision.auto_corrected,
+                original_pose=pose_type_enum.value
+            ),
             
             # Generation Params
             "generation_params": _build_generation_params(camera_shot),
